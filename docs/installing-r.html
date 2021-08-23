@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Applied Data Skills</title>
+  <title>A Installing R | Applied Data Skills</title>
   <meta name="description" content="." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Applied Data Skills" />
+  <meta property="og:title" content="A Installing R | Applied Data Skills" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://psyteachr.github.io/ads-v1" />
   <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logo.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="psyteachr/ads-v1" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Data Skills" />
+  <meta name="twitter:title" content="A Installing R | Applied Data Skills" />
   
   <meta name="twitter:description" content="." />
   <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logo.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/apple-touch-icon.png" />
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="next.html"/>
+<link rel="next" href="symbols.html"/>
 <script src="libs/header-attrs-2.9.4/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -161,26 +161,64 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Applied Data Skills</h1>
-<h2 class="subtitle"><em>for Processing &amp; Presenting Data</em></h2>
-<p class="author"><em>Emily Nordmann and Lisa DeBruine</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-08-23</em></p>
+<div id="installing-r" class="section level1" number="11">
+<h1><span class="header-section-number">A</span> Installing <code>R</code></h1>
+<p>Installing R and RStudio is usually straightforward. The sections below explain how and <a href="https://www.youtube.com/watch?v=lVKMsaWju8w">there is a helpful YouTube video here</a>.</p>
+<div id="installing-base-r" class="section level2" number="11.1">
+<h2><span class="header-section-number">A.1</span> Installing Base R</h2>
+<p>Install base R from <a href="https://cran.rstudio.com/" class="uri">https://cran.rstudio.com/</a>. Choose the download link for your operating system (Linux, Mac OS X, or Windows).</p>
+<p>If you have a Mac, install the latest release from the newest <code>R-x.x.x.pkg</code> link (or a legacy version if you have an older operating system). After you install R, you should also install <a href="http://xquartz.macosforge.org/">XQuartz</a> to be able to use some visualisation packages.</p>
+<p>If you are installing the Windows version, choose the "<a href="https://cran.rstudio.com/bin/windows/base/">base</a>" subdirectory and click on the download link at the top of the page. After you install R, you should also install <a href="https://cran.rstudio.com/bin/windows/Rtools/">RTools</a>; use the "recommended" version highlighted near the top of the list.</p>
+<p>If you are using Linux, choose your specific operating system and follow the installation instructions.</p>
 </div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.</p>
-<p><img src="images/logo.png" 
-     style="float: right; width: 200px; height: 200px; max-width: 25%;" 
-     alt="ADS Hex Logo" /></p>
-<p>By the end of this book, you will be able to:</p>
+<div id="installing-rstudio" class="section level2" number="11.2">
+<h2><span class="header-section-number">A.2</span> Installing RStudio</h2>
+<p>Go to <a href="https://www.rstudio.com/products/rstudio/download/#download">rstudio.com</a> and download the RStudio Desktop (Open Source License) version for your operating system under the list titled <strong>Installers for Supported Platforms</strong>.</p>
+<div id="rstudio-settings" class="section level3" number="11.2.1">
+<h3><span class="header-section-number">A.2.1</span> RStudio Settings</h3>
+<p>There are a few settings you should fix immediately after updating RStudio. Go to <strong><code>Global Options...</code></strong> under the <strong><code>Tools</code></strong> menu (⌘,), and in the General tab, uncheck the box that says <strong><code>Restore .RData into workspace at startup</code></strong>. If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to <strong><code>Never</code></strong>. The only thing you want to save are your scripts.</p>
+<p>You may also want to change the appearance of your code. Different fonts and themes can sometimes help with visual difficulties or [dyslexia]((<a href="https://datacarpentry.org/blog/2017/09/coding-and-dyslexia" class="uri">https://datacarpentry.org/blog/2017/09/coding-and-dyslexia</a>){target="_blank"}. I prefer a dark background and the FiraCode font for my own coding, but I will use the default theme for screenshots in this book.</p>
+<div class="figure" style="text-align: center"><span id="fig:settings-general-1"></span>
+<img src="images/rstudio_settings_general.png" alt="My RStudio General and Appearance settings" width="45%" />
+<p class="caption">
+Figure A.1: My RStudio General and Appearance settings
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:settings-general-2"></span>
+<img src="images/rstudio_settings_appearance.png" alt="My RStudio General and Appearance settings" width="45%" />
+<p class="caption">
+Figure A.2: My RStudio General and Appearance settings
+</p>
+</div>
+<p>You may also want to change the settings in the Code tab. I prefer two spaces instead of tabs for my code and I like to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.</p>
+<div class="figure" style="text-align: center"><span id="fig:settings-code-1"></span>
+<img src="images/rstudio_settings_code_editing.png" alt="My RStudio Code settings" width="45%" />
+<p class="caption">
+Figure A.3: My RStudio Code settings
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:settings-code-2"></span>
+<img src="images/rstudio_settings_code_display.png" alt="My RStudio Code settings" width="45%" />
+<p class="caption">
+Figure A.4: My RStudio Code settings
+</p>
+</div>
+</div>
+</div>
+<div id="installing-latex" class="section level2" number="11.3">
+<h2><span class="header-section-number">A.3</span> Installing LaTeX</h2>
+<p>You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. This course will not require you to make PDFs. To generate PDF reports, you will additionally need:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://pandoc.org/installing.html">pandoc</a>, and</li>
+<li>LaTeX, a typesetting language, available for
 <ul>
-<li>Use R to clean and process data.</li>
-<li>Use R to summarise data.</li>
-<li>Use R to informatively visualise data.</li>
-<li>Use R to create reusable report templates.</li>
-</ul>
+<li>WINDOWS: <a href="http://miktex.org/">MikTeX</a></li>
+<li>Mac OS: <a href="https://tug.org/mactex/downloading.html">MacTex</a> (3.2GB download) or <a href="http://ww.tug.org/mactex/morepackages.html">BasicTeX</a> (78MB download, but should work fine)</li>
+<li>Linux: <a href="https://www.tug.org/texlive/">TeX Live</a></li>
+</ul></li>
+</ol>
 
+</div>
 </div>
 <div class="psyteachr_footer">
   
@@ -292,8 +330,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="next.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="symbols.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

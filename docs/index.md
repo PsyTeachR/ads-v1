@@ -1,5 +1,6 @@
 --- 
 title: "Applied Data Skills"
+subtitle: "for Processing & Presenting Data"
 author: "Emily Nordmann and Lisa DeBruine"
 date: "2021-08-23"
 site: bookdown::bookdown_site
@@ -18,23 +19,18 @@ favicon: "images/favicon.ico"
 
 
 
-
-
 # Overview {-}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.
 
-## Course Aims
+<img src="images/logo.png" 
+     style="float: right; width: 200px; height: 200px; max-width: 25%;" 
+     alt="ADS Hex Logo" />
 
-* Aim 1
-* Aim 2
-* Aim 3
+By the end of this book, you will be able to: 
 
-## Intended Learning Outcomes
-
-By the end of this course students will be able to:
-
-* ILO 1
-* ILO 2
-* ILO 3
+* Use R to clean and process data.
+* Use R to summarise data. 
+* Use R to informatively visualise data. 
+* Use R to create reusable report templates.
 

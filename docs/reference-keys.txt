@@ -4,6 +4,7 @@ fig:settings-code-1
 fig:settings-code-2
 fig:img-soundimals-hash
 conventions
+license
 intro
 ilo-intro
 reports

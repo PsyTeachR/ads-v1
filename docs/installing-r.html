@@ -6,7 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>A Installing R | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Installing R and RStudio is usually straightforward. The sections below explain how and there is a helpful YouTube video here.  A.1 Installing Base R Install base R from https://cran.rstudio.com/....">
+<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta property="og:title" content="A Installing R | Applied Data Skills">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://psyteachr.github.io/ads-v1/installing-r.html">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/twitter_card.png">
+<meta property="og:description" content="Installing R and RStudio is usually straightforward. The sections below explain how and there is a helpful YouTube video here.  A.1 Installing Base R Install base R from https://cran.rstudio.com/....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Installing R | Applied Data Skills">
+<meta name="twitter:description" content="Installing R and RStudio is usually straightforward. The sections below explain how and there is a helpful YouTube video here.  A.1 Installing Base R Install base R from https://cran.rstudio.com/....">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/twitter_card.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
@@ -15,7 +26,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-6NP3MF25W3');
-    </script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/style.css">
 </head>
@@ -88,26 +99,26 @@
 <p>There are a few settings you should fix immediately after updating RStudio. Go to <strong><code>Global Options...</code></strong> under the <strong><code>Tools</code></strong> menu (⌘,), and in the General tab, uncheck the box that says <strong><code>Restore .RData into workspace at startup</code></strong>. If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to <strong><code>Never</code></strong>. The only thing you want to save are your scripts.</p>
 <p>You may also want to change the appearance of your code. Different fonts and themes can sometimes help with visual difficulties or [dyslexia]((<a href="https://datacarpentry.org/blog/2017/09/coding-and-dyslexia" class="uri">https://datacarpentry.org/blog/2017/09/coding-and-dyslexia</a>){target="_blank"}. I prefer a dark background and the FiraCode font for my own coding, but I will use the default theme for screenshots in this book.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:settings-general-1"></span>
+<span style="display:block;" id="fig:settings-general-1"></span>
 <img src="images/rstudio_settings_general.png" alt="My RStudio General and Appearance settings" width="45%"><p class="caption">
 Figure A.1: My RStudio General and Appearance settings
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span id="fig:settings-general-2"></span>
+<span style="display:block;" id="fig:settings-general-2"></span>
 <img src="images/rstudio_settings_appearance.png" alt="My RStudio General and Appearance settings" width="45%"><p class="caption">
 Figure A.2: My RStudio General and Appearance settings
 </p>
 </div>
 <p>You may also want to change the settings in the Code tab. I prefer two spaces instead of tabs for my code and I like to be able to see the <a class="glossary" target="_blank" title="Spaces, tabs and line breaks" href="https://psyteachr.github.io/glossary/w#whitespace">whitespace</a> characters. But these are all a matter of personal preference.</p>
 <div class="figure" style="text-align: center">
-<span id="fig:settings-code-1"></span>
+<span style="display:block;" id="fig:settings-code-1"></span>
 <img src="images/rstudio_settings_code_editing.png" alt="My RStudio Code settings" width="45%"><p class="caption">
 Figure A.3: My RStudio Code settings
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span id="fig:settings-code-2"></span>
+<span style="display:block;" id="fig:settings-code-2"></span>
 <img src="images/rstudio_settings_code_display.png" alt="My RStudio Code settings" width="45%"><p class="caption">
 Figure A.4: My RStudio Code settings
 </p>
@@ -243,6 +254,10 @@ window.onload = function() {
   update_total_correct();
 }
 
+</script><script>
+window.onload = function() {
+  $("footer div.row div:eq(1) p").html('<a href="https://psyteachr.github.io/"><img src="images/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>');
+}
 </script><div class="chapter-nav">
 <div class="prev"><a href="next.html"><span class="header-section-number">10</span> What's Next</a></div>
 <div class="next"><a href="symbols.html"><span class="header-section-number">B</span> Symbols</a></div>
@@ -259,8 +274,8 @@ window.onload = function() {
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/appendix-a-installing-r.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/appendix-a-installing-r.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/appendix-a-installing-r.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/appendix-a-installing-r.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

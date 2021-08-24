@@ -11,7 +11,7 @@ bookdown::bs4_book:
     after_body: [include/webex.js, include/script.js]
   css: [include/psyteachr.css, include/webex.css, include/style.css]
   theme:
-    primary: "#127AB2"
+    primary: "#61589C"
   config:
     toc:
       collapse: section

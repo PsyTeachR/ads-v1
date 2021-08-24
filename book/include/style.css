@@ -9,3 +9,22 @@
 .package { font-weight: 600; }
 .package::before { content: "{"; }
 .package::after { content: "}"; }
+
+/* rainbow borders */
+body {
+  margin-top: 18px;
+  box-shadow: 0 -3px 0 0px var(--purple),
+              0 -6px 0 0px var(--blue),
+              0 -9px 0 0px var(--green),
+              0 -12px 0 0px var(--yellow),
+              0 -15px 0 0px var(--orange),
+              0 -18px 0 0px var(--pink);
+}
+
+footer {
+  box-shadow: 0 -3px 0 0px var(--blue),
+              0 -6px 0 0px var(--green),
+              0 -9px 0 0px var(--yellow),
+              0 -12px 0 0px var(--orange),
+              0 -15px 0 0px var(--pink);
+}

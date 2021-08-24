@@ -1,223 +1,137 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>A Installing R | Applied Data Skills</title>
+<meta name="author" content="Emily Nordmann and Lisa DeBruine">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Installing R | Applied Data Skills</title>
-  <meta name="description" content="." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="A Installing R | Applied Data Skills" />
-  <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://psyteachr.github.io/ads-v1" />
-  <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logo.png" />
-  <meta property="og:description" content="." />
-  <meta name="github-repo" content="psyteachr/ads-v1" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Installing R | Applied Data Skills" />
-  
-  <meta name="twitter:description" content="." />
-  <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logo.png" />
-
-<meta name="author" content="Emily Nordmann and Lisa DeBruine" />
-
-
-<meta name="date" content="2021-08-23" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/apple-touch-icon.png" />
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="next.html"/>
-<link rel="next" href="symbols.html"/>
-<script src="libs/header-attrs-2.9.4/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6NP3MF25W3');
-</script>
-
-
-
-
-<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
-<link rel="stylesheet" href="include/webex.css" type="text/css" />
-<link rel="stylesheet" href="include/style.css" type="text/css" />
+      gtag('config', 'G-6NP3MF25W3');
+    </script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
+<link rel="stylesheet" href="include/webex.css">
+<link rel="stylesheet" href="include/style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Applied Data Skills</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Intro to R, RStudio and R Markdown</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#ilo-intro"><i class="fa fa-check"></i><b>1.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="reports.html"><a href="reports.html"><i class="fa fa-check"></i><b>2</b> Reports with R Markdown</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="reports.html"><a href="reports.html#ilo-reports"><i class="fa fa-check"></i><b>2.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>3</b> Basic Data Visualisation</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="viz.html"><a href="viz.html#ilo-viz"><i class="fa fa-check"></i><b>3.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Data Import and Relations</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#ilo-data"><i class="fa fa-check"></i><b>4.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>5</b> Data Tidying</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="tidy.html"><a href="tidy.html#ilo-tidy"><i class="fa fa-check"></i><b>5.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="wrangle.html"><a href="wrangle.html"><i class="fa fa-check"></i><b>6</b> Data Wrangling</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="wrangle.html"><a href="wrangle.html#ilo-wrangle"><i class="fa fa-check"></i><b>6.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>7</b> Data Summaries</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="summary.html"><a href="summary.html#ilo-summary"><i class="fa fa-check"></i><b>7.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="custom.html"><a href="custom.html"><i class="fa fa-check"></i><b>8</b> Customising Visualisations</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="custom.html"><a href="custom.html#ilo-custom"><i class="fa fa-check"></i><b>8.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="present.html"><a href="present.html"><i class="fa fa-check"></i><b>9</b> Dashboards, Reports, and Presentations</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="present.html"><a href="present.html#ilo-present"><i class="fa fa-check"></i><b>9.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="next.html"><a href="next.html"><i class="fa fa-check"></i><b>10</b> What's Next</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="next.html"><a href="next.html#ilo-next"><i class="fa fa-check"></i><b>10.1</b> Intended Learning Outcomes</a></li>
-</ul></li>
-<li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a>
-<ul>
-<li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
-<li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a>
-<ul>
-<li class="chapter" data-level="A.2.1" data-path="installing-r.html"><a href="installing-r.html#rstudio-settings"><i class="fa fa-check"></i><b>A.2.1</b> RStudio Settings</a></li>
-</ul></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
-<li class="chapter" data-level="C" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>C</b> Glossary</a></li>
-<li class="divider"></li>
-<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"
-    target="blank"><img alt="Creative Commons License"
-    style="border-width:0"
-    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
-<li><a href="https://psyteachr.github.io/books" target="blank">PsyTeachR Books</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="for Processing &amp; Presenting Data">Applied Data Skills</a>:
+        <small class="text-muted">for Processing &amp; Presenting Data</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Data Skills</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Overview</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R, RStudio and R Markdown</a></li>
+<li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
+<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
+<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import and Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">5</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">6</span> Data Wrangling</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">7</span> Data Summaries</a></li>
+<li><a class="" href="custom.html"><span class="header-section-number">8</span> Customising Visualisations</a></li>
+<li><a class="" href="present.html"><span class="header-section-number">9</span> Dashboards, Reports, and Presentations</a></li>
+<li><a class="" href="next.html"><span class="header-section-number">10</span> What's Next</a></li>
+<li class="book-part">Appendices</li>
+<li><a class="active" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
+<li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
+<li><a class="" href="glossary.html"><span class="header-section-number">C</span> Glossary</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="installing-r" class="section level1" number="11">
-<h1><span class="header-section-number">A</span> Installing <code>R</code></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="installing-r" class="section level1" number="11">
+<h1>
+<span class="header-section-number">A</span> Installing <code>R</code><a class="anchor" aria-label="anchor" href="#installing-r"><i class="fas fa-link"></i></a>
+</h1>
 <p>Installing R and RStudio is usually straightforward. The sections below explain how and <a href="https://www.youtube.com/watch?v=lVKMsaWju8w">there is a helpful YouTube video here</a>.</p>
 <div id="installing-base-r" class="section level2" number="11.1">
-<h2><span class="header-section-number">A.1</span> Installing Base R</h2>
+<h2>
+<span class="header-section-number">A.1</span> Installing Base R<a class="anchor" aria-label="anchor" href="#installing-base-r"><i class="fas fa-link"></i></a>
+</h2>
 <p>Install base R from <a href="https://cran.rstudio.com/" class="uri">https://cran.rstudio.com/</a>. Choose the download link for your operating system (Linux, Mac OS X, or Windows).</p>
 <p>If you have a Mac, install the latest release from the newest <code>R-x.x.x.pkg</code> link (or a legacy version if you have an older operating system). After you install R, you should also install <a href="http://xquartz.macosforge.org/">XQuartz</a> to be able to use some visualisation packages.</p>
 <p>If you are installing the Windows version, choose the "<a href="https://cran.rstudio.com/bin/windows/base/">base</a>" subdirectory and click on the download link at the top of the page. After you install R, you should also install <a href="https://cran.rstudio.com/bin/windows/Rtools/">RTools</a>; use the "recommended" version highlighted near the top of the list.</p>
 <p>If you are using Linux, choose your specific operating system and follow the installation instructions.</p>
 </div>
 <div id="installing-rstudio" class="section level2" number="11.2">
-<h2><span class="header-section-number">A.2</span> Installing RStudio</h2>
+<h2>
+<span class="header-section-number">A.2</span> Installing RStudio<a class="anchor" aria-label="anchor" href="#installing-rstudio"><i class="fas fa-link"></i></a>
+</h2>
 <p>Go to <a href="https://www.rstudio.com/products/rstudio/download/#download">rstudio.com</a> and download the RStudio Desktop (Open Source License) version for your operating system under the list titled <strong>Installers for Supported Platforms</strong>.</p>
 <div id="rstudio-settings" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">A.2.1</span> RStudio Settings</h3>
+<h3>
+<span class="header-section-number">A.2.1</span> RStudio Settings<a class="anchor" aria-label="anchor" href="#rstudio-settings"><i class="fas fa-link"></i></a>
+</h3>
 <p>There are a few settings you should fix immediately after updating RStudio. Go to <strong><code>Global Options...</code></strong> under the <strong><code>Tools</code></strong> menu (⌘,), and in the General tab, uncheck the box that says <strong><code>Restore .RData into workspace at startup</code></strong>. If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to <strong><code>Never</code></strong>. The only thing you want to save are your scripts.</p>
 <p>You may also want to change the appearance of your code. Different fonts and themes can sometimes help with visual difficulties or [dyslexia]((<a href="https://datacarpentry.org/blog/2017/09/coding-and-dyslexia" class="uri">https://datacarpentry.org/blog/2017/09/coding-and-dyslexia</a>){target="_blank"}. I prefer a dark background and the FiraCode font for my own coding, but I will use the default theme for screenshots in this book.</p>
-<div class="figure" style="text-align: center"><span id="fig:settings-general-1"></span>
-<img src="images/rstudio_settings_general.png" alt="My RStudio General and Appearance settings" width="45%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span id="fig:settings-general-1"></span>
+<img src="images/rstudio_settings_general.png" alt="My RStudio General and Appearance settings" width="45%"><p class="caption">
 Figure A.1: My RStudio General and Appearance settings
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:settings-general-2"></span>
-<img src="images/rstudio_settings_appearance.png" alt="My RStudio General and Appearance settings" width="45%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span id="fig:settings-general-2"></span>
+<img src="images/rstudio_settings_appearance.png" alt="My RStudio General and Appearance settings" width="45%"><p class="caption">
 Figure A.2: My RStudio General and Appearance settings
 </p>
 </div>
-<p>You may also want to change the settings in the Code tab. I prefer two spaces instead of tabs for my code and I like to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.</p>
-<div class="figure" style="text-align: center"><span id="fig:settings-code-1"></span>
-<img src="images/rstudio_settings_code_editing.png" alt="My RStudio Code settings" width="45%" />
-<p class="caption">
+<p>You may also want to change the settings in the Code tab. I prefer two spaces instead of tabs for my code and I like to be able to see the <a class="glossary" target="_blank" title="Spaces, tabs and line breaks" href="https://psyteachr.github.io/glossary/w#whitespace">whitespace</a> characters. But these are all a matter of personal preference.</p>
+<div class="figure" style="text-align: center">
+<span id="fig:settings-code-1"></span>
+<img src="images/rstudio_settings_code_editing.png" alt="My RStudio Code settings" width="45%"><p class="caption">
 Figure A.3: My RStudio Code settings
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:settings-code-2"></span>
-<img src="images/rstudio_settings_code_display.png" alt="My RStudio Code settings" width="45%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span id="fig:settings-code-2"></span>
+<img src="images/rstudio_settings_code_display.png" alt="My RStudio Code settings" width="45%"><p class="caption">
 Figure A.4: My RStudio Code settings
 </p>
 </div>
 </div>
 </div>
 <div id="installing-latex" class="section level2" number="11.3">
-<h2><span class="header-section-number">A.3</span> Installing LaTeX</h2>
+<h2>
+<span class="header-section-number">A.3</span> Installing LaTeX<a class="anchor" aria-label="anchor" href="#installing-latex"><i class="fas fa-link"></i></a>
+</h2>
 <p>You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. This course will not require you to make PDFs. To generate PDF reports, you will additionally need:</p>
 <ol style="list-style-type: decimal">
-<li><a href="http://pandoc.org/installing.html">pandoc</a>, and</li>
+<li>
+<a href="http://pandoc.org/installing.html">pandoc</a>, and</li>
 <li>LaTeX, a typesetting language, available for
 <ul>
-<li>WINDOWS: <a href="http://miktex.org/">MikTeX</a></li>
+<li>WINDOWS: <a href="http://miktex.org/">MikTeX</a>
+</li>
 <li>Mac OS: <a href="https://tug.org/mactex/downloading.html">MacTex</a> (3.2GB download) or <a href="http://ww.tug.org/mactex/morepackages.html">BasicTeX</a> (78MB download, but should work fine)</li>
-<li>Linux: <a href="https://www.tug.org/texlive/">TeX Live</a></li>
-</ul></li>
+<li>Linux: <a href="https://www.tug.org/texlive/">TeX Live</a>
+</li>
+</ul>
+</li>
 </ol>
-
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -324,66 +238,42 @@ window.onload = function() {
   update_total_correct();
 }
 
-</script>
-            </section>
+</script><div class="chapter-nav">
+<div class="prev"><a href="next.html"><span class="header-section-number">10</span> What's Next</a></div>
+<div class="next"><a href="symbols.html"><span class="header-section-number">B</span> Symbols</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#installing-r"><span class="header-section-number">A</span> Installing R</a></li>
+<li><a class="nav-link" href="#installing-base-r"><span class="header-section-number">A.1</span> Installing Base R</a></li>
+<li>
+<a class="nav-link" href="#installing-rstudio"><span class="header-section-number">A.2</span> Installing RStudio</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#rstudio-settings"><span class="header-section-number">A.2.1</span> RStudio Settings</a></li></ul>
+</li>
+<li><a class="nav-link" href="#installing-latex"><span class="header-section-number">A.3</span> Installing LaTeX</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="next.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="symbols.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Applied Data Skills</strong>: for Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-08-24.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
-"google": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": {},
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
-});
-});
-</script>
 
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
 </body>
-
 </html>

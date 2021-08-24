@@ -2,7 +2,7 @@
 title: "Applied Data Skills"
 subtitle: "for Processing & Presenting Data"
 author: "Emily Nordmann and Lisa DeBruine"
-date: "2021-08-23"
+date: "2021-08-24"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -11,7 +11,7 @@ link-citations: yes
 description: "."
 url: "https://psyteachr.github.io/ads-v1"
 github-repo: "psyteachr/ads-v1"
-cover-image: "images/logo.png"
+cover-image: "images/twitter_card.png"
 apple-touch-icon: "images/apple-touch-icon.png"
 apple-touch-icon-size: 180
 favicon: "images/favicon.ico"
@@ -24,7 +24,7 @@ favicon: "images/favicon.ico"
 This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.
 
 <img src="images/logo.png" 
-     style="float: right; width: 200px; height: 200px; max-width: 25%;" 
+     style="float: right; width: 200px; max-width: 25%;" 
      alt="ADS Hex Logo" />
 
 By the end of this book, you will be able to: 

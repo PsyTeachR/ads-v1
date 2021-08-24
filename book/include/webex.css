@@ -25,7 +25,7 @@
 }
 .webex-solution.open {
     height: auto;
-    background-color: rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--blue);
     border-radius: 5px;
 }
 .webex-solution button {

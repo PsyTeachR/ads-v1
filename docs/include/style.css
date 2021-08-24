@@ -1,8 +1,11 @@
 /* (edit style.css for your own book styles) */
 
-.book .book-body .page-wrapper .page-inner section.normal h1.title {
-  margin-bottom: 0.2em;
+/* references with hanging indent */
+.csl-entry {
+  padding-left: 2em ;
+  text-indent: -2em ;
 }
-.book .book-body .page-wrapper .page-inner section.normal h2.subtitle {
-  margin-top: 0;
-}
+
+.package { font-weight: 600; }
+.package::before { content: "{"; }
+.package::after { content: "}"; }

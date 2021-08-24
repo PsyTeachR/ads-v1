@@ -37,9 +37,9 @@ This book provides an overview of the basic skills needed to turn raw data into 
 
 By the end of this book, you will be able to use R to:
 
-* clean and process data  
-* summarise data  
-* informatively visualise data  
+* clean and process data
+* summarise data
+* informatively visualise data
 * create reusable report templates
 
 ## Conventions
@@ -48,12 +48,10 @@ This book will use the following conventions:
 
 * File paths: `r path("data/sales.csv")`
 * R Packages: `r pkg("tidyverse")`
-* Functions: `r func("ggplot", "data")`
-* Arguments: `r arg("width")`
-* Strings: `r dt("Lisa")`
-* Numbers: `r dt(100)`
-* Logical values: `r dt(TRUE)`
-* Other code: `x <- list(a = "Alligator", b = "Loki")`
+* Functions: `r hl(paste("A", 1, sep = ""))`
+* Strings: `r hl("Lisa")`
+* Numbers: `r hl(100)`
+* Logical values: `r hl(TRUE)`
 * Glossary items: `r glossary("ordinal")`
 * Internal links: Chapter\ \@ref(viz)
 * External links: [Mastering Shiny](https://mastering-shiny.org/){target="_blank"}

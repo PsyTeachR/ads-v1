@@ -30,9 +30,9 @@ This book provides an overview of the basic skills needed to turn raw data into 
 
 By the end of this book, you will be able to use R to:
 
-* clean and process data  
-* summarise data  
-* informatively visualise data  
+* clean and process data
+* summarise data
+* informatively visualise data
 * create reusable report templates
 
 ## Conventions
@@ -41,12 +41,10 @@ This book will use the following conventions:
 
 * File paths: <code class='path'>data/sales.csv</code>
 * R Packages: <code class='package'>tidyverse</code>
-* Functions: <code><span class='fu'>ggplot</span>(data)</code>
-* Arguments: <code><span class='at'>width</span></code>
-* Strings: <code><span class='st'>&quot;Lisa&quot;</span></code>
+* Functions: <code><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='fl'>1</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span></code>
+* Strings: <code><span class='st'>"Lisa"</span></code>
 * Numbers: <code><span class='fl'>100</span></code>
 * Logical values: <code><span class='cn'>TRUE</span></code>
-* Other code: `x <- list(a = "Alligator", b = "Loki")`
 * Glossary items: <a class='glossary' target='_blank' title='Discrete variables that have an inherent order, such as number of legs' href='https://psyteachr.github.io/glossary/o#ordinal'>ordinal</a>
 * Internal links: Chapter\ \@ref(viz)
 * External links: [Mastering Shiny](https://mastering-shiny.org/){target="_blank"}

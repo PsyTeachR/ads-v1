@@ -4,3 +4,150 @@
 
 * Be able to change data between long and wide formats
 * Separate, mutate, rename column headers and category labels
+
+
+## Pipes {#pipes}
+
+<div style="width: 200px; float: right;"><img src="images/pipe_sticker.png" style="width: 100%" /></div>
+
+Pipes are a way to order your code in a more readable format. 
+
+Let's say you have a small data table with 10 customer IDs, and how many widgets and gadgets each purchased in 2020 and 2021. You want to calculate the total number of items purchased per year make a table sorted by the total number of  items purchased.
+
+One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you've created several unnecessary data objects in your environment. This can get confusing in very long scripts. 
+
+
+```r
+# make a data table with 10 customers
+data_original <- tibble(
+  customer_id = 1:10,
+  widgets_2020 = c(4, 4, 4, 1, 2, 4, 3, 2, 3, 4),
+  widgets_2021 = c(4, 5, 4, 0, 0, 6, 2, 2, 2, 2),
+  gadgets_2020 = c(4, 4, 5, 1, 2, 5, 1, 3, 3, 2),
+  gadgets_2021 = c(4, 7, 4, 1, 0, 0, 0, 0, 3, 4)
+)
+
+# gather columns 2 to 5 into "item_year" and "number" columns
+data_gathered <- gather(data_original, item_year, number, 2:5)
+
+# separate the item_year column at the _ into "item" and "year" columns
+data_separated <- separate(data_gathered, item_year, c("item", "year"), sep = "_")
+
+# group the data by customer_id and year
+data_grouped <- group_by(data_separated, customer_id, year)
+
+# calculate the total number for each customer_id/year 
+data_summarised <- summarise(data_grouped, year_total = sum(number), .groups = "drop_last")
+
+# calculate the total number for each customer
+data_mutated <- mutate(data_summarised, total = sum(year_total)) 
+
+# spread the year_total column into columns by year
+data_spread <- spread(data_mutated, year, year_total)
+
+# change the column order and names
+data <- select(data_spread, "Customer ID" = customer_id, `2020`, `2021`, total) 
+```
+
+::: {.warning data-latex=""}
+You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+:::
+
+One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
+
+
+```r
+mean_petal_width <- round(mean(iris$Petal.Width), 2)
+```
+
+But it gets extremely confusing for long chains:
+
+
+```r
+# do not ever do this!!
+data <- 
+  select(
+    spread(
+      mutate(
+        summarise(
+          group_by(
+            separate(
+              gather(
+                tibble(
+                  customer_id = 1:10,
+                  widgets_2020 = c(4, 4, 4, 1, 2, 4, 3, 2, 3, 4),
+                  widgets_2021 = c(4, 5, 4, 0, 0, 6, 2, 2, 2, 2),
+                  gadgets_2020 = c(4, 4, 5, 1, 2, 5, 1, 3, 3, 2),
+                  gadgets_2021 = c(4, 7, 4, 1, 0, 0, 0, 0, 3, 4)
+                ), 
+                item_year, number, 2:5), 
+              item_year, c("item", "year"), sep = "_"), 
+            customer_id, year), 
+          year_total = sum(number), .groups = "drop_last"),
+        total = sum(year_total)),
+      year, year_total),
+    "Customer ID" = customer_id, `2020`, `2021`, total) 
+```
+
+The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.
+
+
+```r
+data <- tibble(
+  customer_id = 1:10,
+  widgets_2020 = c(4, 4, 4, 1, 2, 4, 3, 2, 3, 4),
+  widgets_2021 = c(4, 5, 4, 0, 0, 6, 2, 2, 2, 2),
+  gadgets_2020 = c(4, 4, 5, 1, 2, 5, 1, 3, 3, 2),
+  gadgets_2021 = c(4, 7, 4, 1, 0, 0, 0, 0, 3, 4)
+) %>%
+  gather(item_year, number, 2:5) %>%
+  separate(item_year, c("item", "year"), sep = "_") %>%
+  group_by(customer_id, year) %>%
+  summarise(year_total = sum(number), .groups = "drop_last") %>%
+  mutate(total = sum(year_total)) %>%
+  spread(year, year_total) %>%
+  select("Customer ID" = customer_id, 
+         `2020`, 
+         `2021`, 
+         total) %>%
+  print()
+```
+
+```
+## # A tibble: 10 x 4
+## # Groups:   Customer ID [10]
+##    `Customer ID` `2020` `2021` total
+##            <int>  <dbl>  <dbl> <dbl>
+##  1             1      8      8    16
+##  2             2      8     12    20
+##  3             3      9      8    17
+##  4             4      2      1     3
+##  5             5      4      0     4
+##  6             6      9      6    15
+##  7             7      4      2     6
+##  8             8      5      2     7
+##  9             9      6      5    11
+## 10            10      6      6    12
+```
+
+You can read this code from top to bottom as follows:
+
+1. Make a tibble called `data` with
+    - id of 1 to 10,
+    - values for `widgets_2020`,
+    - values for `widgets_2021`,
+    - values for `gadgets_2020`,
+    - values for `gadgets_2021`; **and then**
+2. Gather to create `item_year` and `number` column from columns 2 to 5; **and then**
+3. Separate the column `item_year` into 2 new columns called `item`and `year`, separate at the "_"; **and then**
+4. Group by columns `customer_id` and `year`; **and then**
+5. Summarise and new column called `year_total` as the sum of the `number` column for each group and drop the last (year) grouping; **and then**
+6. Mutate the table to add a new column called `total` that is the sum of the `year_total` column for each group; **and then**
+6. Spread to make new columns with the key names in `year` and values in `year_total`; **and then**
+7. Change columns names and order
+
+You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
+
+::: {.info data-latex=""}
+You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
+:::

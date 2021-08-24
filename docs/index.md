@@ -49,6 +49,15 @@ This book will use the following conventions:
 * Internal links: Chapter\ \@ref(viz)
 * External links: [Mastering Shiny](https://mastering-shiny.org/){target="_blank"}
 * Menu/interface options: **`New File...`**
+* Quiz question: I am going to learn a lot: <select class='webex-solveme' data-answer='["TRUE"]'> <option></option> <option>TRUE</option> <option>FALSE</option></select>
+
+
+<div class='webex-solution'><button>Hidden Solutions</button>
+
+You found it!
+
+</div>
+
 
 ::: {.info data-latex=""}
 Informational asides.

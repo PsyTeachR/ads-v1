@@ -2,6 +2,10 @@ bookdown::bs4_book:
   default: true
   md_extensions: -smart
   df_print: kable
+  repo:
+    base: https://github.com/psyteachr/ads-v1
+    branch: master
+    subdir: book
   includes:
     in_header: include/header.html
     after_body: [include/footer.html, include/webex.js]

@@ -3,6 +3,7 @@ fig:settings-general-2
 fig:settings-code-1
 fig:settings-code-2
 fig:img-soundimals-hash
+conventions
 intro
 ilo-intro
 reports

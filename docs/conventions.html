@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>C Conventions | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content='This book will use the following conventions: File paths: data/sales.csv R Packages: tidyverse Functions: paste("A", 1, sep = "") Strings: "Lisa", "Emily" Numbers: 100, 3.14 Logical values: TRUE,...'>
+<meta name="description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="C Conventions | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/conventions.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/twitter_card.png">
-<meta property="og:description" content='This book will use the following conventions: File paths: data/sales.csv R Packages: tidyverse Functions: paste("A", 1, sep = "") Strings: "Lisa", "Emily" Numbers: 100, 3.14 Logical values: TRUE,...'>
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta property="og:description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C Conventions | Applied Data Skills">
-<meta name="twitter:description" content='This book will use the following conventions: File paths: data/sales.csv R Packages: tidyverse Functions: paste("A", 1, sep = "") Strings: "Lisa", "Emily" Numbers: 100, 3.14 Logical values: TRUE,...'>
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/twitter_card.png">
+<meta name="twitter:description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -79,13 +79,18 @@
 <h1>
 <span class="header-section-number">C</span> Conventions<a class="anchor" aria-label="anchor" href="#conventions"><i class="fas fa-link"></i></a>
 </h1>
+<p><code>`verbatim`</code></p>
 <p>This book will use the following conventions:</p>
 <ul>
+<li>Generic code: <code><a href="https://rdrr.io/r/base/list.html">list(number = 1, letter = "A")</a></code>
+</li>
+<li>Highlighted code: <code><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>number <span class="op">=</span> <span class="fl">1</span>, letter <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span></code>
+</li>
 <li>File paths: <code class="path">data/sales.csv</code>
 </li>
 <li>R Packages: <code class="package">tidyverse</code>
 </li>
-<li>Functions: <code><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">1</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code>
+<li>Functions: <code><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="op">)</span></code>
 </li>
 <li>Strings: <code><span class="st">"Lisa"</span></code>, <code><span class="st">"Emily"</span></code>
 </li>
@@ -126,7 +131,7 @@ Hidden Solutions
 <div class="try">
 <p>Try it yourself.</p>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code chunks</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Applied"</span>, <span class="st">"Data"</span>, <span class="st">"Skills"</span>, <span class="fl">1</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Applied Data Skills 1"</code></pre>
@@ -264,7 +269,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-08-24.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-08-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

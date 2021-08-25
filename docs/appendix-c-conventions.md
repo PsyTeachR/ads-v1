@@ -1,10 +1,14 @@
 # Conventions
 
+`` `verbatim` ``
+
 This book will use the following conventions:
 
+* Generic code: `list(number = 1, letter = "A")`
+* Highlighted code: <code><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>number <span class='op'>=</span> <span class='fl'>1</span>, letter <span class='op'>=</span> <span class='st'>"A"</span><span class='op'>)</span></code>
 * File paths: <code class='path'>data/sales.csv</code>
 * R Packages: <code class='package'>tidyverse</code>
-* Functions: <code><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='fl'>1</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span></code>
+* Functions: <code><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='op'>)</span></code>
 * Strings: <code><span class='st'>"Lisa"</span></code>, <code><span class='st'>"Emily"</span></code>
 * Numbers: <code><span class='fl'>100</span></code>, <code><span class='fl'>3.14</span></code>
 * Logical values: <code><span class='cn'>TRUE</span></code>, <code><span class='cn'>FALSE</span></code>
@@ -17,11 +21,8 @@ This book will use the following conventions:
 
 
 <div class='webex-solution'><button>Hidden Solutions</button>
-
 You found it!
-
 </div>
-
 
 ::: {.info data-latex=""}
 Informational asides.

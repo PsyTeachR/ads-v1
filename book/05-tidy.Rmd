@@ -108,15 +108,13 @@ data <- tibble(
   select("Customer ID" = customer_id, 
          `2020`, 
          `2021`, 
-         total) %>%
-  print()
-  
+         total)
 ```
 
 You can read this code from top to bottom as follows:
 
 1. Make a tibble called `data` with
-    - id of 1 to 10,
+    - customer_id of 1 to 10,
     - values for `widgets_2020`,
     - values for `widgets_2021`,
     - values for `gadgets_2020`,

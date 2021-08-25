@@ -1,10 +1,14 @@
 # Conventions
 
+`` `verbatim` ``
+
 This book will use the following conventions:
 
+* Generic code: `list(number = 1, letter = "A")`
+* Highlighted code: `r hl(list(number = 1, letter = "A"))`
 * File paths: `r path("data/sales.csv")`
 * R Packages: `r pkg("tidyverse")`
-* Functions: `r hl(paste("A", 1, sep = ""))`
+* Functions: `r hl(paste())`
 * Strings: `r hl("Lisa")`, `r hl("Emily")`
 * Numbers: `r hl(100)`, `r hl(3.14)`
 * Logical values: `r hl(TRUE)`, `r hl(FALSE)`
@@ -15,9 +19,9 @@ This book will use the following conventions:
 * Menu/interface options: **`New File...`**
 * Quiz question: I am going to learn a lot: `r torf(TRUE)`
 
-`r hide("Hidden Solutions")`
+```{block, webex.hide="Hidden Solutions"}
 You found it!
-`r unhide()`
+```
 
 ::: {.info data-latex=""}
 Informational asides.

@@ -109,31 +109,13 @@ data <- tibble(
   select("Customer ID" = customer_id, 
          `2020`, 
          `2021`, 
-         total) %>%
-  print()
-```
-
-```
-## # A tibble: 10 x 4
-## # Groups:   Customer ID [10]
-##    `Customer ID` `2020` `2021` total
-##            <int>  <dbl>  <dbl> <dbl>
-##  1             1      8      8    16
-##  2             2      8     12    20
-##  3             3      9      8    17
-##  4             4      2      1     3
-##  5             5      4      0     4
-##  6             6      9      6    15
-##  7             7      4      2     6
-##  8             8      5      2     7
-##  9             9      6      5    11
-## 10            10      6      6    12
+         total)
 ```
 
 You can read this code from top to bottom as follows:
 
 1. Make a tibble called `data` with
-    - id of 1 to 10,
+    - customer_id of 1 to 10,
     - values for `widgets_2020`,
     - values for `widgets_2021`,
     - values for `gadgets_2020`,

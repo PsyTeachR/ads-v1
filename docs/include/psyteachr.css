@@ -10,6 +10,11 @@
   --purple: #61589C; /* hsl(248, 28%, 48%) */
 }
 
+.chapter-nav .next, .chapter-nav .prev {
+  box-shadow: none;
+  border-color: var(--blue);
+}
+
 .small_right, .small_left {
   display: inline-block;
   width: 25%;

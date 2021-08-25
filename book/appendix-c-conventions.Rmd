@@ -1,7 +1,5 @@
 # Conventions
 
-`` `verbatim` ``
-
 This book will use the following conventions:
 
 * Generic code: `list(number = 1, letter = "A")`

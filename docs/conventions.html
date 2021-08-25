@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>C Conventions | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
+<meta name="description" content='This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages: tidyverse...'>
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="C Conventions | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/conventions.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
-<meta property="og:description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
+<meta property="og:description" content='This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages: tidyverse...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C Conventions | Applied Data Skills">
-<meta name="twitter:description" content='`verbatim` This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages:...'>
+<meta name="twitter:description" content='This book will use the following conventions: Generic code: list(number = 1, letter = "A") Highlighted code: list(number = 1, letter = "A") File paths: data/sales.csv R Packages: tidyverse...'>
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,6 @@
 <h1>
 <span class="header-section-number">C</span> Conventions<a class="anchor" aria-label="anchor" href="#conventions"><i class="fas fa-link"></i></a>
 </h1>
-<p><code>`verbatim`</code></p>
 <p>This book will use the following conventions:</p>
 <ul>
 <li>Generic code: <code><a href="https://rdrr.io/r/base/list.html">list(number = 1, letter = "A")</a></code>
@@ -245,7 +244,13 @@ window.onload = function() {
 
 </script><script>
 $( document ).ready(function() {
-  $("footer div.row div:eq(1) p").html('<a href="https://psyteachr.github.io/"><img src="images/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>');
+  var cite = ' ';
+  var psyteachr = ' <a href="https://psyteachr.github.io/"><img src="images/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a>';
+  var license = ' <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>';
+
+  $("footer div.row div:eq(1) p").html(
+    psyteachr . license . cite
+  );
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="symbols.html"><span class="header-section-number">B</span> Symbols</a></div>

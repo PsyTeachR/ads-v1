@@ -1,3 +1,6 @@
+fig:img-bootswatch
+tab:unnamed-chunk-5
+fig:item-by-line
 fig:settings-general
 fig:settings-code
 fig:img-soundimals-hash
@@ -5,6 +8,22 @@ intro
 ilo-intro
 reports
 ilo-reports
+resources-repro
+setup-repro
+projects
+working-directory
+naming-things
+r-markdown
+yaml-header
+setup
+structure
+code-chunks
+tables
+images
+in-line-r
+output-formats
+data-types
+glossary-reports
 viz
 ilo-viz
 data
@@ -20,6 +39,7 @@ custom
 ilo-custom
 present
 ilo-present
+resources-present
 next
 ilo-next
 installing-r

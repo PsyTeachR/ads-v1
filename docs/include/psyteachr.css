@@ -15,6 +15,16 @@
   border-color: var(--blue);
 }
 
+/* references with hanging indent */
+.csl-entry {
+  padding-left: 2em ;
+  text-indent: -2em ;
+}
+
+.package { font-weight: 600; }
+.package::before { content: "{"; }
+.package::after { content: "}"; }
+
 .small_right, .small_left {
   display: inline-block;
   width: 25%;

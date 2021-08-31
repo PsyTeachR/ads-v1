@@ -1,36 +1,38 @@
 --- 
 title: "Applied Data Skills"
-subtitle: "for Processing & Presenting Data"
+subtitle: "Processing & Presenting Data"
 author: "Emily Nordmann and Lisa DeBruine"
-date: "2021-08-23"
+date: "2021-08-31"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-biblio-style: apalike
+biblio-style: apa
+csl: include/apa.csl
 link-citations: yes
-description: "."
-url: "https://psyteachr.github.io/ads-v1"
-github-repo: "psyteachr/ads-v1"
-cover-image: "images/logo.png"
-apple-touch-icon: "images/apple-touch-icon.png"
+description: |
+  This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.
+url: https://psyteachr.github.io/ads-v1
+github-repo: psyteachr/ads-v1
+cover-image: images/logos/twitter_card.png
+apple-touch-icon: images/logos/apple-touch-icon.png
 apple-touch-icon-size: 180
-favicon: "images/favicon.ico"
+favicon: images/logos/favicon.ico
 ---
 
 
 
 # Overview {-}
 
-This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.
+This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports, presentations, and dashboards. The book will introduce learners to R [@R-base], a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports, presentations, and dashboards that automatically update when the underlying data changes.
 
-<img src="images/logo.png" 
-     style="float: right; width: 200px; height: 200px; max-width: 25%;" 
-     alt="ADS Hex Logo" />
+<div class="small_right"><img src="images/logos/logo.png" 
+     alt="ADS Hex Logo" /></div>
 
-By the end of this book, you will be able to: 
+By the end of this book, you will be able to use R to:
 
-* Use R to clean and process data.
-* Use R to summarise data. 
-* Use R to informatively visualise data. 
-* Use R to create reusable report templates.
+* clean and process data
+* summarise data
+* informatively visualise data
+* create reusable report templates
+
 

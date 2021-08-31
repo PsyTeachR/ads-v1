@@ -1,7 +1,5 @@
-fig:settings-general-1
-fig:settings-general-2
-fig:settings-code-1
-fig:settings-code-2
+fig:settings-general
+fig:settings-code
 fig:img-soundimals-hash
 intro
 ilo-intro
@@ -13,6 +11,7 @@ data
 ilo-data
 tidy
 ilo-tidy
+pipes
 wrangle
 ilo-wrangle
 summary
@@ -29,4 +28,4 @@ installing-rstudio
 rstudio-settings
 installing-latex
 symbols
-glossary
+conventions

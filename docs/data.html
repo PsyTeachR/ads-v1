@@ -67,6 +67,7 @@
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
+<li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -89,6 +90,3920 @@
 </li>
 <li>Be able to identify and handle common problems with data import</li>
 <li>Be able to match related data from multiple tables</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span></code></pre></div>
+<p>For this lesson, please download a <a href="data/data.zip">directory of data files used in this class</a>.</p>
+</div>
+<div id="data-import" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Data Import<a class="anchor" aria-label="anchor" href="#data-import"><i class="fas fa-link"></i></a>
+</h2>
+<div id="builtin" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Built-in data<a class="anchor" aria-label="anchor" href="#builtin"><i class="fas fa-link"></i></a>
+</h3>
+<p>R comes with built-in datasets. Some packages, like tidyr, also contain data. The <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function lists the datasets available in a package.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># lists datasets in tidyr</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"tidyr"</span><span class="op">)</span></code></pre></div>
+<p>Type the name of a dataset into the console to see the data. Type <code>?table1</code> into the console to see the dataset description.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">table1</span></code></pre></div>
+<p>You can also use the <code><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function to load a dataset into your <a class="glossary" target="_blank" title="The interactive workspace where your script runs" href="https://psyteachr.github.io/glossary/g#global-environment">global environment</a>.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># loads table1 into the environment</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"table1"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="import_data" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Importing data<a class="anchor" aria-label="anchor" href="#import_data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <a class="glossary" target="_blank" title="The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd)." href="https://psyteachr.github.io/glossary/e#extension">extension</a> following a period at the end of the file name.</p>
+<div id="rioimport" class="section level4 unnumbered">
+<h4>rio::import()<a class="anchor" aria-label="anchor" href="#rioimport"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code class="package">rio</code> package has very straightforward functions for reading and saving data: <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span></code> and <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span> <span class="co"># tab-separated values</span>
+<span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span> <span class="co"># comma-separated values</span>
+<span class="va">demo_xls</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span> <span class="co"># Excel format</span>
+<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span> <span class="co"># SPSS format</span>
+<span class="va">demo_json</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.json"</span><span class="op">)</span> <span class="co"># JSON format</span></code></pre></div>
+</div>
+<div id="file-type-specific-import-functions" class="section level4 unnumbered">
+<h4>File type specific import functions<a class="anchor" aria-label="anchor" href="#file-type-specific-import-functions"><i class="fas fa-link"></i></a>
+</h4>
+<p>However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
+<span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
+<span class="va">demo_xl</span>   <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
+<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span>
+<span class="va">demo_json</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json</a></span><span class="op">(</span><span class="st">"data/demo.json"</span><span class="op">)</span></code></pre></div>
+<p>The <code class="package">readr</code> functions display a message the you import data explaining what <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   character = col_character(),
+##   integer = col_double(),
+##   double = col_double(),
+##   logical = col_logical(),
+##   date = col_character()
+## )</code></pre>
+<p>If it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
+  character <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>,
+  integer <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
+  number <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
+  logical <span class="op">=</span> <span class="fu">col_logical</span><span class="op">(</span><span class="op">)</span>,
+  date <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%d-%b-%y"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">demo</span>  <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: The following named parsers don't match the column names: number</code></pre>
+<div class="info">
+<p>For dates, you might need to set the format. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. Above, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>{day number}-{month abbreviation}-{2-digit year}</code>.</p>
+</div>
+</div>
+<div id="google-sheets" class="section level4 unnumbered">
+<h4>Google Sheets<a class="anchor" aria-label="anchor" href="#google-sheets"><i class="fas fa-link"></i></a>
+</h4>
+<p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/googlesheets4">googlesheets4</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
+
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/"</span>
+
+<span class="va">demo_goo</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="looking-at-data" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> Looking at data<a class="anchor" aria-label="anchor" href="#looking-at-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.</p>
+<p>Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<div id="view" class="section level4 unnumbered">
+<h4>View()<a class="anchor" aria-label="anchor" href="#view"><i class="fas fa-link"></i></a>
+</h4>
+<p>A familiar way to look at the table is given by <code><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the <a class="glossary" target="_blank" title="RStudio is arranged with four window “panes.”" href="https://psyteachr.github.io/glossary/p#panes">environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.</p>
+</div>
+<div id="print" class="section level4 unnumbered">
+<h4>print()<a class="anchor" aria-label="anchor" href="#print"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows.</p>
+<p>Let's look at the <code>demo_tsv</code> table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo_tsv</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+character
+</th>
+<th style="text-align:right;">
+integer
+</th>
+<th style="text-align:right;">
+double
+</th>
+<th style="text-align:left;">
+logical
+</th>
+<th style="text-align:left;">
+date
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+01-Sep-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+31-Aug-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+30-Aug-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+29-Aug-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+28-Aug-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+27-Aug-21
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="glimpse" class="section level4 unnumbered">
+<h4>glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
+</h4>
+<p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name. You can learn about data types in Appendix <a href="reports.html#data-types">2.5</a>.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 6
+## Columns: 5
+## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
+## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
+## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
+## $ date      &lt;chr&gt; "01-Sep-21", "31-Aug-21", "30-Aug-21", "29-Aug-21", "28-Aug-…</code></pre>
+</div>
+<div id="summary" class="section level4 unnumbered">
+<h4>summary()<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h4>
+<p>You can get a quick summary of a dataset with the <code><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></code> function.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
+<pre><code>##   character            integer         double        logical   
+##  Length:6           Min.   :1.00   Min.   :1.50   Min.   :0.0  
+##  Class :character   1st Qu.:2.25   1st Qu.:2.75   1st Qu.:0.0  
+##  Mode  :character   Median :3.50   Median :4.00   Median :1.0  
+##                     Mean   :3.50   Mean   :4.00   Mean   :0.6  
+##                     3rd Qu.:4.75   3rd Qu.:5.25   3rd Qu.:1.0  
+##                     Max.   :6.00   Max.   :6.50   Max.   :1.0  
+##                                                   NA's   :1    
+##      date          
+##  Length:6          
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## </code></pre>
+</div>
+</div>
+<div id="creating-data" class="section level3" number="4.2.4">
+<h3>
+<span class="header-section-number">4.2.4</span> Creating data<a class="anchor" aria-label="anchor" href="#creating-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>If we are creating a small data table from scratch, we can use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
+<p>Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
+<p>If you don't know the value for one of the cells, you can enter <code>NA</code>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Katara"</span>, <span class="st">"Toph"</span>, <span class="st">"Sokka"</span><span class="op">)</span>,
+  bends <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"water"</span>, <span class="st">"earth"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  friendly <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
+
+<span class="co"># print it</span>
+<span class="va">avatar</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+bends
+</th>
+<th style="text-align:left;">
+friendly
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Katara
+</td>
+<td style="text-align:left;">
+water
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toph
+</td>
+<td style="text-align:left;">
+earth
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sokka
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">avatar_by_row</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
+  <span class="op">~</span><span class="va">name</span>,    <span class="op">~</span><span class="va">bends</span>,  <span class="op">~</span><span class="va">friendly</span>,
+  <span class="st">"Katara"</span>, <span class="st">"water"</span>, <span class="cn">TRUE</span>,
+  <span class="st">"Toph"</span>,   <span class="st">"earth"</span>, <span class="cn">TRUE</span>,
+  <span class="st">"Sokka"</span>,  <span class="cn">NA</span>,      <span class="cn">TRUE</span>
+<span class="op">)</span></code></pre></div>
+<div class="info">
+<p>You don't have to line up the columns in a tribble like we did above, but it can make it easier to spot errors.</p>
+</div>
+</div>
+<div id="writing-data" class="section level3" number="4.2.5">
+<h3>
+<span class="header-section-number">4.2.5</span> Writing data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>If you have data that you want to save to a CSV file, use <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>, as follows.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">avatar</span>, <span class="st">"data/avatar.csv"</span><span class="op">)</span></code></pre></div>
+<p>This will save the data in CSV format to your working directory.</p>
+<p>Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account.</p>
+<p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
+<span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
+
+<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  character <span class="op">=</span> <span class="st">"Z"</span>,
+  integer <span class="op">=</span> <span class="fl">0L</span>,
+  double <span class="op">=</span> <span class="fl">0.5</span>,
+  logical <span class="op">=</span> <span class="cn">FALSE</span>,
+  date <span class="op">=</span> <span class="st">"01-Jan-00"</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/sheet_append.html">sheet_append</a></span><span class="op">(</span><span class="va">sheet_id</span>, <span class="va">new_data</span><span class="op">)</span>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">sheet_id</span><span class="op">)</span></code></pre></div>
+<div class="try">
+<ul>
+<li>Create a new table called <code>family</code> with the first name, last name, and age of your family members.</li>
+<li>Save it to a CSV file called "family.csv".</li>
+<li>Clear the object from your environment by restarting R or with the code <code><a href="https://rdrr.io/r/base/rm.html">remove(family)</a></code>.</li>
+<li>Load the data back in and view it.</li>
+</ul>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># create the table</span>
+<span class="va">family</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
+  <span class="op">~</span><span class="va">first_name</span>, <span class="op">~</span><span class="va">last_name</span>, <span class="op">~</span><span class="va">age</span>,
+  <span class="st">"Lisa"</span>, <span class="st">"DeBruine"</span>, <span class="fl">45</span>,
+  <span class="st">"Robbie"</span>, <span class="st">"Jones"</span>, <span class="fl">14</span>
+<span class="op">)</span>
+
+<span class="co"># save the data to CSV</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">family</span>, <span class="st">"data/family.csv"</span><span class="op">)</span>
+
+<span class="co"># remove the object from the environment</span>
+<span class="fu"><a href="https://rdrr.io/r/base/rm.html">remove</a></span><span class="op">(</span><span class="va">family</span><span class="op">)</span>
+
+<span class="co"># load the data</span>
+<span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/family.csv"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<p>We'll be working with <a class="glossary" target="_blank" title="Data in a rectangular table format, where each row has an entry for each column." href="https://psyteachr.github.io/glossary/t#tabular-data">tabular data</a> a lot in this class, but tabular data is made up of <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a>, which groups together data with the same basic <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a>. Appendix <a href="reports.html#data-types">2.5</a> explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.</p>
+</div>
+<div id="troubleshooting" class="section level3" number="4.2.6">
+<h3>
+<span class="header-section-number">4.2.6</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+</h3>
+<p>What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like <code><span class="fl">1.2</span></code> get represented as <code><span class="st">"1.2"</span></code>, which will cause very weird errors like <code>"100" &lt; "9" == TRUE</code>. You can catch this by using <code><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code> to check your data.</p>
+<p>The data directory you downloaded contains a file called "mess.csv". Let's try loading this dataset.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in (function (input = "", file = NULL, text = NULL, cmd = NULL, :
+## Stopped early on line 5. Expected 7 fields but found 0. Consider fill=TRUE
+## and comment.char=. First discarded non-empty line: &lt;&lt;junk,missing,0.72,b,1,2 -
+## 3,2020-01-2&gt;&gt;</code></pre>
+<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   `This is my messy dataset` = col_character()
+## )</code></pre>
+<pre><code>## Warning: 27 parsing failures.
+## row col  expected    actual            file
+##   1  -- 1 columns 7 columns 'data/mess.csv'
+##   2  -- 1 columns 7 columns 'data/mess.csv'
+##   3  -- 1 columns 7 columns 'data/mess.csv'
+##   4  -- 1 columns 7 columns 'data/mess.csv'
+##   5  -- 1 columns 7 columns 'data/mess.csv'
+## ... ... ......... ......... ...............
+## See problems(...) for more details.</code></pre>
+<p>You'll get a warning with many parsing errors and <code>mess</code> is just a single row. View the file <code>data/mess.csv</code> by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?</p>
+<pre><code>This is my messy dataset
+
+junk,order,score,letter,good,min_max,date
+junk,1,-1,a,1,1 - 2,2020-01-1
+
+junk,missing,0.72,b,1,2 - 3,2020-01-2
+
+junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
+
+junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
+<p>First, the file starts with a note: "This is my messy dataset". We want to skip the first two lines. You can do this with the argument <code>skip</code> in <code>read_csv()</code>.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   junk = col_character(),
+##   order = col_character(),
+##   score = col_double(),
+##   letter = col_character(),
+##   good = col_character(),
+##   min_max = col_character(),
+##   date = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mess</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+junk
+</th>
+<th style="text-align:left;">
+order
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+letter
+</th>
+<th style="text-align:left;">
+good
+</th>
+<th style="text-align:left;">
+min_max
+</th>
+<th style="text-align:left;">
+date
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1 - 2
+</td>
+<td style="text-align:left;">
+2020-01-1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+missing
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+2 - 3
+</td>
+<td style="text-align:left;">
+2020-01-2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+-0.62
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+3 - 4
+</td>
+<td style="text-align:left;">
+2020-01-3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:left;">
+d
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+4 - 5
+</td>
+<td style="text-align:left;">
+2020-01-4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+e
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+5 - 6
+</td>
+<td style="text-align:left;">
+2020-01-5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+6 - 7
+</td>
+<td style="text-align:left;">
+2020-01-6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:left;">
+g
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+7 - 8
+</td>
+<td style="text-align:left;">
+2020-01-7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:left;">
+h
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+8 - 9
+</td>
+<td style="text-align:left;">
+2020-01-8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:left;">
+i
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+9 - 10
+</td>
+<td style="text-align:left;">
+2020-01-9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+0.90
+</td>
+<td style="text-align:left;">
+j
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+10 - 11
+</td>
+<td style="text-align:left;">
+2020-01-10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+-1.55
+</td>
+<td style="text-align:left;">
+k
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+11 - 12
+</td>
+<td style="text-align:left;">
+2020-01-11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+l
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+12 - 13
+</td>
+<td style="text-align:left;">
+2020-01-12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+13 - 14
+</td>
+<td style="text-align:left;">
+2020-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+-0.66
+</td>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+14 - 15
+</td>
+<td style="text-align:left;">
+2020-01-14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:right;">
+-0.99
+</td>
+<td style="text-align:left;">
+o
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+15 - 16
+</td>
+<td style="text-align:left;">
+2020-01-15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:right;">
+1.97
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+16 - 17
+</td>
+<td style="text-align:left;">
+2020-01-16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:right;">
+-0.44
+</td>
+<td style="text-align:left;">
+q
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+17 - 18
+</td>
+<td style="text-align:left;">
+2020-01-17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:right;">
+-0.90
+</td>
+<td style="text-align:left;">
+r
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+18 - 19
+</td>
+<td style="text-align:left;">
+2020-01-18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:right;">
+-0.15
+</td>
+<td style="text-align:left;">
+s
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+19 - 20
+</td>
+<td style="text-align:left;">
+2020-01-19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:right;">
+-0.83
+</td>
+<td style="text-align:left;">
+t
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+20 - 21
+</td>
+<td style="text-align:left;">
+2020-01-20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:right;">
+1.99
+</td>
+<td style="text-align:left;">
+u
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:left;">
+21 - 22
+</td>
+<td style="text-align:left;">
+2020-01-21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+v
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+22 - 23
+</td>
+<td style="text-align:left;">
+2020-01-22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+23
+</td>
+<td style="text-align:right;">
+-0.40
+</td>
+<td style="text-align:left;">
+w
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+23 - 24
+</td>
+<td style="text-align:left;">
+2020-01-23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:right;">
+-0.47
+</td>
+<td style="text-align:left;">
+x
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+24 - 25
+</td>
+<td style="text-align:left;">
+2020-01-24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:left;">
+y
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+25 - 26
+</td>
+<td style="text-align:left;">
+2020-01-25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+junk
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:left;">
+z
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+26 - 27
+</td>
+<td style="text-align:left;">
+2020-01-26
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>OK, that's a little better, but this table is still a serious mess in several ways:</p>
+<ul>
+<li>
+<code>junk</code> is a column that we don't need</li>
+<li>
+<code>order</code> should be an integer column</li>
+<li>
+<code>good</code> should be a logical column</li>
+<li>
+<code>good</code> uses all kinds of different ways to record TRUE and FALSE values</li>
+<li>
+<code>min_max</code> contains two pieces of numeric information, but is a character column</li>
+<li>
+<code>date</code> should be a date column</li>
+</ul>
+<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">5</a> and <a href="wrangle.html#wrangle">6</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code><span class="fu">read_csv</span><span class="op">(</span><span class="op">)</span></code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code><span class="fu">col_double</span><span class="op">(</span><span class="op">)</span></code> or the abbreviation, like <code><span class="st">"l"</span></code>. Omitted column names are guessed.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">function</th>
+<th align="left"></th>
+<th align="left">abbreviation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">col_logical()</td>
+<td align="left">l</td>
+<td align="left">logical values</td>
+</tr>
+<tr class="even">
+<td align="left">col_integer()</td>
+<td align="left">i</td>
+<td align="left">integer values</td>
+</tr>
+<tr class="odd">
+<td align="left">col_double()</td>
+<td align="left">d</td>
+<td align="left">numeric values</td>
+</tr>
+<tr class="even">
+<td align="left">col_character()</td>
+<td align="left">c</td>
+<td align="left">strings</td>
+</tr>
+<tr class="odd">
+<td align="left">col_factor(levels, ordered)</td>
+<td align="left">f</td>
+<td align="left">a fixed set of values</td>
+</tr>
+<tr class="even">
+<td align="left">col_date(format = "")</td>
+<td align="left">D</td>
+<td align="left">with the locale's date_format</td>
+</tr>
+<tr class="odd">
+<td align="left">col_time(format = "")</td>
+<td align="left">t</td>
+<td align="left">with the locale's time_format</td>
+</tr>
+<tr class="even">
+<td align="left">col_datetime(format = "")</td>
+<td align="left">T</td>
+<td align="left">ISO8601 date time</td>
+</tr>
+<tr class="odd">
+<td align="left">col_number()</td>
+<td align="left">n</td>
+<td align="left">numbers containing the grouping_mark</td>
+</tr>
+<tr class="even">
+<td align="left">col_skip()</td>
+<td align="left">_, -</td>
+<td align="left">don't import this column</td>
+</tr>
+<tr class="odd">
+<td align="left">col_guess()</td>
+<td align="left">?</td>
+<td align="left">parse using the "best" type based on the input</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># omitted values are guessed</span>
+<span class="co"># ?col_date for format options</span>
+<span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  junk <span class="op">=</span> <span class="st">"-"</span>, <span class="co"># skip this column</span>
+  order <span class="op">=</span> <span class="st">"i"</span>,
+  good <span class="op">=</span> <span class="st">"l"</span>,
+  date <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">tidier</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
+                   skip <span class="op">=</span> <span class="fl">2</span>,
+                   col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: 1 parsing failure.
+## row   col   expected  actual            file
+##   2 order an integer missing 'data/mess.csv'</code></pre>
+<p>You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (<code>2</code>) and column (<code>order</code>) the error was found in, what kind of data was expected (<code>integer</code>), and what the actual value was (<code><span class="st">"missing"</span></code>). If you specifically tell <code><span class="fu">read_csv</span><span class="op">(</span><span class="op">)</span></code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what the missing values were recorded as with the <code>na</code> argument.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidiest</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
+                   skip <span class="op">=</span> <span class="fl">2</span>,
+                   na <span class="op">=</span> <span class="st">"missing"</span>,
+                   col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
+<p>Now <code>order</code> is an integer where "missing" is now <code>NA</code>, <code>good</code> is a logical value, where <code><span class="fl">0</span></code> and <code><span class="cn">F</span></code> are converted to <code><span class="cn">FALSE</span></code> and <code><span class="fl">1</span></code> and <code><span class="cn">T</span></code> are converted to <code><span class="cn">TRUE</span></code>, and <code>date</code> is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the <code>min_max</code> column containing two different types of data.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidiest</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+order
+</th>
+<th style="text-align:left;">
+score
+</th>
+<th style="text-align:left;">
+letter
+</th>
+<th style="text-align:left;">
+good
+</th>
+<th style="text-align:left;">
+min_max
+</th>
+<th style="text-align:left;">
+date
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+-1
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+1 - 2
+</td>
+<td style="text-align:left;">
+2020-01-01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+0.72
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+2 - 3
+</td>
+<td style="text-align:left;">
+2020-01-02
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+-0.62
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+3 - 4
+</td>
+<td style="text-align:left;">
+2020-01-03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+2.03
+</td>
+<td style="text-align:left;">
+d
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+4 - 5
+</td>
+<td style="text-align:left;">
+2020-01-04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+e
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+5 - 6
+</td>
+<td style="text-align:left;">
+2020-01-05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0.99
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+6 - 7
+</td>
+<td style="text-align:left;">
+2020-01-06
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+0.03
+</td>
+<td style="text-align:left;">
+g
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+7 - 8
+</td>
+<td style="text-align:left;">
+2020-01-07
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+0.67
+</td>
+<td style="text-align:left;">
+h
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+8 - 9
+</td>
+<td style="text-align:left;">
+2020-01-08
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+0.57
+</td>
+<td style="text-align:left;">
+i
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+9 - 10
+</td>
+<td style="text-align:left;">
+2020-01-09
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:left;">
+j
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+10 - 11
+</td>
+<td style="text-align:left;">
+2020-01-10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+-1.55
+</td>
+<td style="text-align:left;">
+k
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+11 - 12
+</td>
+<td style="text-align:left;">
+2020-01-11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+l
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+12 - 13
+</td>
+<td style="text-align:left;">
+2020-01-12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+0.15
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+13 - 14
+</td>
+<td style="text-align:left;">
+2020-01-13
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+-0.66
+</td>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+14 - 15
+</td>
+<td style="text-align:left;">
+2020-01-14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+-0.99
+</td>
+<td style="text-align:left;">
+o
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+15 - 16
+</td>
+<td style="text-align:left;">
+2020-01-15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+1.97
+</td>
+<td style="text-align:left;">
+p
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+16 - 17
+</td>
+<td style="text-align:left;">
+2020-01-16
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+-0.44
+</td>
+<td style="text-align:left;">
+q
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+17 - 18
+</td>
+<td style="text-align:left;">
+2020-01-17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+-0.9
+</td>
+<td style="text-align:left;">
+r
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+18 - 19
+</td>
+<td style="text-align:left;">
+2020-01-18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+-0.15
+</td>
+<td style="text-align:left;">
+s
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+19 - 20
+</td>
+<td style="text-align:left;">
+2020-01-19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+-0.83
+</td>
+<td style="text-align:left;">
+t
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+20 - 21
+</td>
+<td style="text-align:left;">
+2020-01-20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+1.99
+</td>
+<td style="text-align:left;">
+u
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+21 - 22
+</td>
+<td style="text-align:left;">
+2020-01-21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+0.04
+</td>
+<td style="text-align:left;">
+v
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+22 - 23
+</td>
+<td style="text-align:left;">
+2020-01-22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+-0.4
+</td>
+<td style="text-align:left;">
+w
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+23 - 24
+</td>
+<td style="text-align:left;">
+2020-01-23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+-0.47
+</td>
+<td style="text-align:left;">
+x
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+24 - 25
+</td>
+<td style="text-align:left;">
+2020-01-24
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+-0.41
+</td>
+<td style="text-align:left;">
+y
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+25 - 26
+</td>
+<td style="text-align:left;">
+2020-01-25
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+0.68
+</td>
+<td style="text-align:left;">
+z
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+26 - 27
+</td>
+<td style="text-align:left;">
+2020-01-26
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="data-relations" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Data Relations<a class="anchor" aria-label="anchor" href="#data-relations"><i class="fas fa-link"></i></a>
+</h2>
+<p>First, we'll create two small data tables.</p>
+<p><code>customer</code> has id, gender and age for customers 1-5. Age and gender are missing for customer 3.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
+  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="cn">NA</span>, <span class="st">"nb"</span>, <span class="st">"f"</span><span class="op">)</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>, <span class="fl">22</span>, <span class="cn">NA</span>, <span class="fl">19</span>, <span class="fl">18</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>orders</code> has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">orders</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,
+  items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">18</span>, <span class="fl">21</span>, <span class="fl">23</span>, <span class="fl">9</span>, <span class="fl">11</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table></div>
+<div id="mutating-joins" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> Mutating Joins<a class="anchor" aria-label="anchor" href="#mutating-joins"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table.</p>
+<p>All the mutating joins have this basic syntax:</p>
+<p><code>****_join(x, y, by = NULL, suffix = c(".x", ".y")</code></p>
+<ul>
+<li>
+<code>x</code> = the first (left) table</li>
+<li>
+<code>y</code> = the second (right) table</li>
+<li>
+<code>by</code> = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.</li>
+<li>
+<code>suffix</code> = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.</li>
+</ul>
+<div class="info">
+<p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
+</div>
+<div id="left_join" class="section level4 unnumbered">
+<h4>left_join()<a class="anchor" aria-label="anchor" href="#left_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-left-join"></span>
+<img src="images/joins/left_join.png" alt="Left Join" width="100%"><p class="caption">
+Figure 4.1: Left Join
+</p>
+</div>
+</div>
+<p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">left_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-left-join-rev"></span>
+<img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%"><p class="caption">
+Figure 4.2: Left Join (reversed)
+</p>
+</div>
+</div>
+<p>The order of tables is swapped here, so the result is all rows from the <code>orders</code> table joined to any matching rows from the <code>customers</code> table.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">left_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+items
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="right_join" class="section level4 unnumbered">
+<h4>right_join()<a class="anchor" aria-label="anchor" href="#right_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-right-join"></span>
+<img src="images/joins/right_join.png" alt="Right Join" width="100%"><p class="caption">
+Figure 4.3: Right Join
+</p>
+</div>
+</div>
+<p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything that matches from the first (left) table.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">right_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="info">
+<p>This table has the same information as <code>left_join(orders, customers, by = "id")</code>, but the columns are in a different order (left table, then right table).</p>
+</div>
+</div>
+<div id="inner_join" class="section level4 unnumbered">
+<h4>inner_join()<a class="anchor" aria-label="anchor" href="#inner_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-inner-join"></span>
+<img src="images/joins/inner_join.png" alt="Inner Join" width="100%"><p class="caption">
+Figure 4.4: Inner Join
+</p>
+</div>
+</div>
+<p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">inner_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="full_join" class="section level4 unnumbered">
+<h4>full_join()<a class="anchor" aria-label="anchor" href="#full_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-full-join"></span>
+<img src="images/joins/full_join.png" alt="Full Join" width="100%"><p class="caption">
+Figure 4.5: Full Join
+</p>
+</div>
+</div>
+<p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to <code>NA</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">full_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="filtering-joins" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> Filtering Joins<a class="anchor" aria-label="anchor" href="#filtering-joins"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table." href="https://psyteachr.github.io/glossary/f#filtering-joins">Filtering joins</a> act like the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.</p>
+<div id="semi_join" class="section level4 unnumbered">
+<h4>semi_join()<a class="anchor" aria-label="anchor" href="#semi_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-semi-join"></span>
+<img src="images/joins/semi_join.png" alt="Semi Join" width="100%"><p class="caption">
+Figure 4.6: Semi Join
+</p>
+</div>
+</div>
+<p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">semi_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="info">
+<p>Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.</p>
+</div>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-semi-join-rev"></span>
+<img src="images/joins/semi_join_rev.png" alt="Semi Join (Reversed)" width="100%"><p class="caption">
+Figure 4.7: Semi Join (Reversed)
+</p>
+</div>
+</div>
+<p>Order matters in a semi join.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">semi_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="anti_join" class="section level4 unnumbered">
+<h4>anti_join()<a class="anchor" aria-label="anchor" href="#anti_join"><i class="fas fa-link"></i></a>
+</h4>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-anti-join"></span>
+<img src="images/joins/anti_join.png" alt="Anti Join" width="100%"><p class="caption">
+Figure 4.8: Anti Join
+</p>
+</div>
+</div>
+<p>An <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching values in the right table, keeping just columns from the left table.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">anti_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="join">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-anti-join-rev"></span>
+<img src="images/joins/anti_join_rev.png" alt="Anti Join (Reversed)" width="100%"><p class="caption">
+Figure 4.9: Anti Join (Reversed)
+</p>
+</div>
+</div>
+<p>Order matters in an anti join.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">anti_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+items
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="binding-joins" class="section level3" number="4.3.3">
+<h3>
+<span class="header-section-number">4.3.3</span> Binding Joins<a class="anchor" aria-label="anchor" href="#binding-joins"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Joins that bind one table to another by adding their rows or columns together." href="https://psyteachr.github.io/glossary/b#binding-joins">Binding joins</a> bind one table to another by adding their rows or columns together.</p>
+<div id="bind_rows" class="section level4 unnumbered">
+<h4>bind_rows()<a class="anchor" aria-label="anchor" href="#bind_rows"><i class="fas fa-link"></i></a>
+</h4>
+<p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
+<p>Here we'll add customer data for customers 6-9 and bind that to the original customer table.</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">9</span>,
+  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nb"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"f"</span><span class="op">)</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>, <span class="fl">16</span>, <span class="fl">20</span>, <span class="fl">19</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">bind_rows</span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
+<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> (see below) to avoid duplicates.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">16</span>, <span class="fl">20</span>, <span class="fl">19</span><span class="op">)</span>,
+  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"f"</span>, <span class="st">"nb"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"f"</span><span class="op">)</span>,
+  new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">bind_rows</span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+new
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="bind_cols" class="section level4 unnumbered">
+<h4>bind_cols()<a class="anchor" aria-label="anchor" href="#bind_cols"><i class="fas fa-link"></i></a>
+</h4>
+<p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_info</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">bind_cols</span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_info</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+colour
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+red
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+orange
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+yellow
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+green
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+blue
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="set-operations" class="section level3" number="4.3.4">
+<h3>
+<span class="header-section-number">4.3.4</span> Set Operations<a class="anchor" aria-label="anchor" href="#set-operations"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff)." href="https://psyteachr.github.io/glossary/s#set-operations">Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).</p>
+<div id="intersect" class="section level4 unnumbered">
+<h4>intersect()<a class="anchor" aria-label="anchor" href="#intersect"><i class="fas fa-link"></i></a>
+</h4>
+<p><code><a href="https://rdrr.io/r/base/sets.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">9</span><span class="op">)</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>, <span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">16</span>, <span class="fl">20</span>, <span class="fl">19</span><span class="op">)</span>,
+  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"f"</span>, <span class="st">"f"</span>, <span class="st">"m"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"f"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has an <code><a href="https://rdrr.io/r/base/sets.html">intersect()</a></code> function. The error message can be confusing and looks something like this:</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<pre><code>## Error: Must subset rows with a valid subscript vector.
+## ℹ Logical subscripts must match the size of the indexed input.
+## x Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.</code></pre>
+</div>
+</div>
+<div id="union" class="section level4 unnumbered">
+<h4>union()<a class="anchor" aria-label="anchor" href="#union"><i class="fas fa-link"></i></a>
+</h4>
+<p><code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> returns all the rows from both tables, removing duplicate rows.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> function. You usually won't get an error message, but the output won't be what you expect.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3 4 5
+## 
+## [[2]]
+## [1] "m"  "m"  NA   "nb" "f" 
+## 
+## [[3]]
+## [1] 19 22 NA 19 18
+## 
+## [[4]]
+## [1] 4 5 6 7 8 9
+## 
+## [[5]]
+## [1] 19 18 19 16 20 19
+## 
+## [[6]]
+## [1] "f" "f" "m" "m" "f" "f"</code></pre>
+</div>
+</div>
+<div id="setdiff" class="section level4 unnumbered">
+<h4>setdiff()<a class="anchor" aria-label="anchor" href="#setdiff"><i class="fas fa-link"></i></a>
+</h4>
+<p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>Order matters for <code>setdiff</code>.</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">new_customers</span>, <span class="va">customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+gender
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+f
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+m
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+m
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+f
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+f
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+m
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+nb
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+f
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="glossary-data" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-data"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:left;">
+definition
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/a.html#argument" class="glossary" target="_blank">argument</a>
+</td>
+<td style="text-align:left;">
+A variable that provides input to a function.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/b.html#base-r" class="glossary" target="_blank">base r</a>
+</td>
+<td style="text-align:left;">
+The set of R functions that come with a basic installation of R, before you add external packages
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/b.html#binding-joins" class="glossary" target="_blank">binding joins</a>
+</td>
+<td style="text-align:left;">
+Joins that bind one table to another by adding their rows or columns together.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/c.html#character" class="glossary" target="_blank">character</a>
+</td>
+<td style="text-align:left;">
+A data type representing strings of text.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/d.html#data-type" class="glossary" target="_blank">data type</a>
+</td>
+<td style="text-align:left;">
+The kind of data represented by an object.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/e.html#extension" class="glossary" target="_blank">extension</a>
+</td>
+<td style="text-align:left;">
+The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/f.html#filtering-joins" class="glossary" target="_blank">filtering joins</a>
+</td>
+<td style="text-align:left;">
+Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/g.html#global-environment" class="glossary" target="_blank">global environment</a>
+</td>
+<td style="text-align:left;">
+The interactive workspace where your script runs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/m.html#mutating-joins" class="glossary" target="_blank">mutating joins</a>
+</td>
+<td style="text-align:left;">
+Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/p.html#panes" class="glossary" target="_blank">panes</a>
+</td>
+<td style="text-align:left;">
+RStudio is arranged with four window “panes.”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/s.html#set-operations" class="glossary" target="_blank">set operations</a>
+</td>
+<td style="text-align:left;">
+Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/t.html#tabular-data" class="glossary" target="_blank">tabular data</a>
+</td>
+<td style="text-align:left;">
+Data in a rectangular table format, where each row has an entry for each column.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/t.html#tidyverse" class="glossary" target="_blank">tidyverse</a>
+</td>
+<td style="text-align:left;">
+A set of R packages that help you create and work with tidy data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/v.html#vector" class="glossary" target="_blank">vector</a>
+</td>
+<td style="text-align:left;">
+A type of data structure that is basically a list of things like T/F values, numbers, or strings.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="resources-data" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-data"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">Data import cheatsheet</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation heatsheet</a></li>
+<li>
+<a href="http://r4ds.had.co.nz/data-import.html">Chapter 11: Data Import</a> in <em>R for Data Science</em>
+</li>
+<li>
+<a href="http://r4ds.had.co.nz/relational-data.html">Chapter 13: Relational Data</a> in <em>R for Data Science</em>
+</li>
 </ul>
 </div>
 </div>
@@ -216,6 +4131,26 @@ $( document ).ready(function() {
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#data"><span class="header-section-number">4</span> Data Import and Relations</a></li>
 <li><a class="nav-link" href="#ilo-data"><span class="header-section-number">4.1</span> Intended Learning Outcomes</a></li>
+<li>
+<a class="nav-link" href="#data-import"><span class="header-section-number">4.2</span> Data Import</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#builtin"><span class="header-section-number">4.2.1</span> Built-in data</a></li>
+<li><a class="nav-link" href="#import_data"><span class="header-section-number">4.2.2</span> Importing data</a></li>
+<li><a class="nav-link" href="#looking-at-data"><span class="header-section-number">4.2.3</span> Looking at data</a></li>
+<li><a class="nav-link" href="#creating-data"><span class="header-section-number">4.2.4</span> Creating data</a></li>
+<li><a class="nav-link" href="#writing-data"><span class="header-section-number">4.2.5</span> Writing data</a></li>
+<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.2.6</span> Troubleshooting</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#data-relations"><span class="header-section-number">4.3</span> Data Relations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mutating-joins"><span class="header-section-number">4.3.1</span> Mutating Joins</a></li>
+<li><a class="nav-link" href="#filtering-joins"><span class="header-section-number">4.3.2</span> Filtering Joins</a></li>
+<li><a class="nav-link" href="#binding-joins"><span class="header-section-number">4.3.3</span> Binding Joins</a></li>
+<li><a class="nav-link" href="#set-operations"><span class="header-section-number">4.3.4</span> Set Operations</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#glossary-data"><span class="header-section-number">4.4</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-data"><span class="header-section-number">4.5</span> Further resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -233,7 +4168,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-08-31.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -5,3 +5,644 @@
 * Be able to import data from a range of sources using `rio::import()`
 * Be able to identify and handle common problems with data import
 * Be able to match related data from multiple tables
+
+```{r setup}
+library(tidyverse)
+library(rio)
+```
+
+For this lesson, please download a [directory of data files used in this class](data/data.zip).
+
+## Data Import
+
+### Built-in data {#builtin}
+
+R comes with built-in datasets. Some packages, like tidyr, also contain data. The `data()` function lists the datasets available in a package.
+
+```{r built-in-data, eval = FALSE}
+# lists datasets in tidyr
+data(package = "tidyr")
+```
+
+Type the name of a dataset into the console to see the data. Type `?table1` into the console to see the dataset description.
+
+```{r}
+?table1
+```
+
+You can also use the `r hl(data())` function to load a dataset into your `r glossary("global environment")`.
+
+```{r}
+# loads table1 into the environment
+data("table1")
+```
+
+
+### Importing data {#import_data}
+
+```{r, include=FALSE}
+demo <- tibble(
+  character = LETTERS[1:6],
+  integer = 1:6,
+  double = 1.5:6.5,
+  logical = c(T, T, F, F, NA, T),
+  date = format((lubridate::today() - 0:5), format = "%d-%b-%y")
+)
+
+export(demo, "data/demo.csv")
+export(demo, "data/demo.tsv")
+export(demo, "data/demo.xlsx", overwrite = TRUE)
+export(demo, "data/demo.sav")
+export(demo, "data/demo.json")
+```
+
+
+Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter `r glossary("extension")` following a period at the end of the file name. 
+
+#### rio::import()  {-}
+
+The `r pkg("rio")` package has very straightforward functions for reading and saving data: `r hl(rio::import())` and `r hl(rio::export())`.
+
+```{r}
+demo_tsv  <- import("data/demo.tsv") # tab-separated values
+demo_csv  <- import("data/demo.csv") # comma-separated values
+demo_xls  <- import("data/demo.xlsx") # Excel format
+demo_sav  <- import("data/demo.sav") # SPSS format
+demo_json <- import("data/demo.json") # JSON format
+```
+
+
+#### File type specific import functions {-}
+
+However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
+
+```{r, message=FALSE}
+demo_tsv  <- readr::read_tsv("data/demo.tsv")
+demo_csv  <- readr::read_csv("data/demo.csv")
+demo_xl   <- readxl::read_excel("data/demo.xlsx")
+demo_sav  <- haven::read_sav("data/demo.sav")
+demo_json <- jsonlite::read_json("data/demo.json")
+```
+
+The `r pkg("readr")` functions display a message the you import data explaining what `r glossary("data type")` each column is.
+
+```{r}
+demo <- readr::read_csv("data/demo.csv")
+```
+
+If it makes a mistake, such as reading the "date" column as a `r glossary("character")`, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.
+
+```{r}
+ct <- cols(
+  character = col_character(),
+  integer = col_double(),
+  number = col_double(),
+  logical = col_logical(),
+  date = col_date(format = "%d-%b-%y")
+)
+
+demo  <- readr::read_csv("data/demo.csv", col_types = ct)
+```
+
+::: {.info data-latex=""}
+For dates, you might need to set the format. See `?strptime` for a list of the codes used to represent different date formats. Above, `r hl("%d-%b-%y")` means that the dates are formatted like `{day number}-{month abbreviation}-{2-digit year}`. 
+:::
+
+
+#### Google Sheets  {-}
+
+If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`.
+
+```{r, message = FALSE}
+library(googlesheets4)
+
+gs4_deauth() # skip authorisation for public data
+
+url <- "https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/"
+
+demo_goo  <- googlesheets4::read_sheet(url)
+```
+
+
+
+
+
+### Looking at data
+
+Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
+
+Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: `r hl(View())`, `r hl(print())`, `r hl(tibble::glimpse())`. 
+
+#### View() {-}
+
+A familiar way to look at the table is given by `r hl(View())` (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  `r glossary("panes", "environment pane")` to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
+
+#### print() {-}
+
+The `r hl(print())` method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
+
+Let's look at the `demo_tsv` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
+
+```{r print}
+demo_tsv
+```
+
+#### glimpse() {-}
+
+The function `r hl(tibble::glimpse())` gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the `r glossary("data type")` of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
+
+```{r sw_glimpse}
+glimpse(demo_xls)
+```
+
+#### summary() {-}
+
+You can get a quick summary of a dataset with the `r hl(summary())` function.
+
+```{r}
+summary(demo_sav)
+```
+
+### Creating data 
+
+If we are creating a small data table from scratch, we can use the `r hl(tibble::tibble())` function, and type the data right in. The `tibble` package is part of the `r glossary("tidyverse")` package that we loaded at the start of this chapter. 
+
+Let's create a small table with the names of three Avatar characters and their bending type. The `r hl(tibble())` function takes `r glossary("argument", "arguments")` with the names that you want your columns to have. The values are `r glossary("vector", "vectors")` that list the column values in order.
+
+If you don't know the value for one of the cells, you can enter `NA`, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
+
+```{r tibble-define}    
+avatar <- tibble(
+  name = c("Katara", "Toph", "Sokka"),
+  bends = c("water", "earth", NA),
+  friendly = TRUE
+)
+
+# print it
+avatar
+```
+
+You can also use the `r hl(tibble::tribble())` function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
+
+```{r tribble-define}
+avatar_by_row <- tribble(
+  ~name,    ~bends,  ~friendly,
+  "Katara", "water", TRUE,
+  "Toph",   "earth", TRUE,
+  "Sokka",  NA,      TRUE
+)
+```
+
+::: {.info data-latex=""}
+You don't have to line up the columns in a tribble like we did above, but it can make it easier to spot errors.
+:::
+
+### Writing data
+
+If you have data that you want to save to a CSV file, use `r hl(rio::export())`, as follows.
+
+```{r write_csv, eval = FALSE}
+export(avatar, "data/avatar.csv")
+```
+
+This will save the data in CSV format to your working directory.
+
+Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account. 
+
+You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this.
+
+```{r, eval = FALSE}
+gs4_auth(email = "debruine@gmail.com")
+sheet_id <- gs4_create("demo-file", sheets = demo)
+
+new_data <- tibble(
+  character = "Z",
+  integer = 0L,
+  double = 0.5,
+  logical = FALSE,
+  date = "01-Jan-00"
+)
+
+sheet_append(sheet_id, new_data)
+demo <- read_sheet(sheet_id)
+```
+
+
+::: {.try data-latex=""}
+* Create a new table called `family` with the first name, last name, and age of your family members. 
+* Save it to a CSV file called "family.csv". 
+* Clear the object from your environment by restarting R or with the code `remove(family)`.
+* Load the data back in and view it.
+
+```{r, eval = FALSE, webex.hide="Solution"}
+# create the table
+family <- tribble(
+  ~first_name, ~last_name, ~age,
+  "Lisa", "DeBruine", 45,
+  "Robbie", "Jones", 14
+)
+
+# save the data to CSV
+export(family, "data/family.csv")
+
+# remove the object from the environment
+remove(family)
+
+# load the data
+family <- import("data/family.csv")
+```
+:::
+
+We'll be working with `r glossary("tabular data")` a lot in this class, but tabular data is made up of `r glossary("vector", "vectors")`, which groups together data with the same basic `r glossary("data type")`. Appendix\ \@ref(data-types) explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.
+
+
+### Troubleshooting
+
+What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like `r hl(1.2)` get represented as `r hl("1.2")`, which will cause very weird errors like `"100" < "9" == TRUE`. You can catch this by using `r hl(glimpse())` to check your data.
+
+The data directory you downloaded contains a file called "mess.csv". Let's try loading this dataset.
+
+```{r}
+mess <- import("data/mess.csv")
+```
+
+When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is `r hl(readr::read_csv)`.
+
+```{r}
+mess <- read_csv("data/mess.csv")
+```
+
+
+You'll get a warning with many parsing errors and `mess` is just a single row. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
+
+```
+This is my messy dataset
+
+junk,order,score,letter,good,min_max,date
+junk,1,-1,a,1,1 - 2,2020-01-1
+
+junk,missing,0.72,b,1,2 - 3,2020-01-2
+
+junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
+
+junk,4,2.03,d,T,4 - 5,2020-01-4
+```
+
+First, the file starts with a note: "This is my messy dataset". We want to skip the first two lines. You can do this with the argument `skip` in `read_csv()`.
+
+```{r mess}
+mess <- read_csv("data/mess.csv", skip = 2)
+mess
+```
+
+OK, that's a little better, but this table is still a serious mess in several ways:
+
+* `junk` is a column that we don't need
+* `order` should be an integer column
+* `good` should be a logical column
+* `good` uses all kinds of different ways to record TRUE and FALSE values
+* `min_max` contains two pieces of numeric information, but is a character column
+* `date` should be a date column
+
+We'll learn how to deal with this mess in Chapters\ \@ref(tidy) and \@ref(wrangle), but we can fix a few things by setting the `col_types` argument in `r hl(read_csv())` to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument `col_types` takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like `r hl(col_double())` or the abbreviation, like `r hl("l")`. Omitted column names are guessed.
+
+| function | |abbreviation | type |
+|:---------|:--------------|:-----|
+| col_logical()   | l | logical values |
+| col_integer()   | i | integer values |
+| col_double()    | d | numeric values |
+| col_character() | c | strings |
+| col_factor(levels, ordered) | f | a fixed set of values |
+| col_date(format = "")     | D | with the locale's date_format |
+| col_time(format = "")     | t | with the locale's time_format |
+| col_datetime(format = "") | T | ISO8601 date time |
+| col_number()    | n | numbers containing the grouping_mark |
+| col_skip()      | _, - | don't import this column |
+| col_guess()     | ? | parse using the "best" type based on the input |
+
+```{r tidier}
+# omitted values are guessed
+# ?col_date for format options
+ct <- list(
+  junk = "-", # skip this column
+  order = "i",
+  good = "l",
+  date = col_date(format = "%Y-%m-%d")
+)
+
+tidier <- read_csv("data/mess.csv", 
+                   skip = 2,
+                   col_types = ct)
+```
+
+You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (`2`) and column (`order`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`r hl("missing")`). If you specifically tell `r hl(read_csv())` to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
+
+```{r}
+tidiest <- read_csv("data/mess.csv", 
+                   skip = 2,
+                   na = "missing",
+                   col_types = ct)
+```
+
+
+Now `order` is an integer where "missing" is now `NA`, `good` is a logical value, where `r hl(0)` and `r hl(F)` are converted to `r hl(FALSE)` and `r hl(1)` and `r hl(T)` are converted to `r hl(TRUE)`, and `date` is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the `min_max` column containing two different types of data.
+
+```{r tidiest-table}
+tidiest
+```
+
+## Data Relations
+
+First, we'll create two small data tables. 
+
+`customer` has id, gender and age for customers 1-5. Age and gender are missing for customer 3.
+
+```{r subject}
+customers <- tibble(
+  id = 1:5,
+  gender = c("m", "m", NA, "nb", "f"),
+  age = c(19, 22, NA, 19, 18)
+)
+```
+
+`r knitr::kable(customers)`
+
+`orders` has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.
+
+```{r orders}
+orders <- tibble(
+  id = c(2, 3, 4, 4, 5, 5, 6, 6, 7),
+  items = c(10, 18, 21, 23, 9, 11, 11, 12, 3)
+)
+```
+
+`r knitr::kable(orders)`
+
+
+### Mutating Joins
+
+`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table.  
+
+All the mutating joins have this basic syntax:
+
+`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
+
+* `x` = the first (left) table
+* `y` = the second (right) table
+* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
+* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+
+::: {.info data-latex=""}
+You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
+:::
+
+#### left_join() {#left_join -}
+
+```{r img-left-join, echo=FALSE, fig.width=4, fig.cap="Left Join", class="join"}
+knitr::include_graphics("images/joins/left_join.png")
+```
+
+A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
+
+```{r left_join}
+left_join(customers, orders, by = "id")
+```
+
+```{r img-left-join-rev, echo=FALSE, fig.width=4, fig.cap="Left Join (reversed)", class="join"}
+knitr::include_graphics("images/joins/left_join_rev.png")
+```
+
+The order of tables is swapped here, so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
+
+```{r left_join-2}
+left_join(orders, customers, by = "id")
+```
+
+#### right_join() {#right_join -}
+
+```{r img-right-join, echo=FALSE, fig.width=4, fig.cap="Right Join", class="join"}
+knitr::include_graphics("images/joins/right_join.png")
+```
+
+A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
+
+```{r right_join}
+right_join(customers, orders, by = "id")
+```
+
+::: {.info data-latex=""}
+This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
+:::
+
+#### inner_join() {#inner_join -}
+
+```{r img-inner-join, echo=FALSE, fig.width=4, fig.cap="Inner Join", class="join"}
+knitr::include_graphics("images/joins/inner_join.png")
+```
+
+An `inner_join` returns all the rows that have a match in the other table.
+
+```{r inner_join}
+inner_join(customers, orders, by = "id")
+```
+
+
+#### full_join() {#full_join -}
+
+```{r img-full-join, echo=FALSE, fig.width=4, fig.cap="Full Join", class="join"}
+knitr::include_graphics("images/joins/full_join.png")
+```
+
+A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
+
+```{r full_join}
+full_join(customers, orders, by = "id")
+```
+
+
+### Filtering Joins
+
+`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
+
+#### semi_join() {#semi_join -}
+
+```{r img-semi-join, echo=FALSE, fig.width=4, fig.cap="Semi Join", class="join"}
+knitr::include_graphics("images/joins/semi_join.png")
+```
+
+A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
+
+```{r semi_join}
+semi_join(customers, orders, by = "id")
+```
+
+::: {.info data-latex=""}
+Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
+:::
+
+```{r img-semi-join-rev, echo=FALSE, fig.width=4, fig.cap="Semi Join (Reversed)", class="join"}
+knitr::include_graphics("images/joins/semi_join_rev.png")
+```
+
+Order matters in a semi join.
+
+```{r semi_join-2}
+semi_join(orders, customers, by = "id")
+```
+
+#### anti_join() {#anti_join -}
+
+```{r img-anti-join, echo=FALSE, fig.width=4, fig.cap="Anti Join", class="join"}
+knitr::include_graphics("images/joins/anti_join.png")
+```
+
+An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
+
+```{r anti_join}
+anti_join(customers, orders, by = "id")
+```
+
+```{r img-anti-join-rev, echo=FALSE, fig.width=4, fig.cap="Anti Join (Reversed)", class="join"}
+knitr::include_graphics("images/joins/anti_join_rev.png")
+```
+
+Order matters in an anti join.
+
+```{r anti_join-2}
+anti_join(orders, customers, by = "id")
+```
+
+### Binding Joins
+
+`r glossary("Binding joins")` bind one table to another by adding their rows or columns together.
+
+#### bind_rows() {#bind_rows -}
+
+You can combine the rows of two tables with `bind_rows`.
+
+Here we'll add customer data for customers 6-9 and bind that to the original customer table.
+
+```{r bind_rows}
+new_customers <- tibble(
+  id = 6:9,
+  gender = c("nb", "m", "f", "f"),
+  age = c(19, 16, 20, 19)
+)
+
+bind_rows(customers, new_customers)
+```
+
+The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
+
+If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use `union()` (see below) to avoid duplicates.
+
+```{r bind-rows-union}
+new_customers <- tibble(
+  id = 5:9,
+  age = c(18, 19, 16, 20, 19),
+  gender = c("f", "nb", "m", "f", "f"),
+  new = c(1,2,3,4,5)
+)
+
+bind_rows(customers, new_customers)
+```
+
+#### bind_cols() {#bind_cols -}
+
+You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
+
+```{r bind_cols}
+new_info <- tibble(
+  colour = c("red", "orange", "yellow", "green", "blue")
+)
+
+bind_cols(customers, new_info)
+```
+
+### Set Operations
+
+`r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
+
+#### intersect() {#intersect -}
+
+`intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
+
+```{r intersect}
+new_customers <- tibble(
+  id = seq(4, 9),
+  age = c(19, 18, 19, 16, 20, 19),
+  gender = c("f", "f", "m", "m", "f", "f")
+)
+
+intersect(customers, new_customers)
+
+```
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has an `intersect()` function. The error message can be confusing and looks something like this:
+
+```{r base-intersect, error = TRUE}
+base::intersect(customers, new_customers)
+```
+:::
+
+#### union() {#union -}
+
+`union()` returns all the rows from both tables, removing duplicate rows.
+
+```{r union}
+union(customers, new_customers)
+```
+
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `union()` function. You usually won't get an error message, but the output won't be what you expect.
+
+```{r base-union}
+base::union(customers, new_customers)
+```
+:::
+
+#### setdiff() {#setdiff -}
+
+`setdiff` returns rows that are in the first table, but not in the second table.
+
+```{r setdiff}
+setdiff(customers, new_customers)
+```
+
+Order matters for `setdiff`.
+
+```{r setdiff-order}
+setdiff(new_customers, customers)
+```
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
+
+```{r base-setdiff}
+base::setdiff(customers, new_customers)
+```
+:::
+
+
+## Glossary {#glossary-data}
+
+`r glossary_table()`
+
+## Further resources {#resources-data}
+
+* [Data import cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+* [Data transformation heatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+* [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
+* [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
+
+
+```{r, include = FALSE}
+# clean up temp datasets
+files <- c("data/avatar_na.csv", "data/family.csv")
+
+file.exists(files) %>%
+  `[`(files, .) %>%
+  file.remove()
+```

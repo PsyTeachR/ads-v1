@@ -129,7 +129,7 @@ a[target="_blank"]::after {
   content:"\f360"; /* f35d or  f360*/
 }
 
-a.glossary::after {
+a.glossary::after, code a::after {
   content: none !important;
   margin: 0 !important;
 }

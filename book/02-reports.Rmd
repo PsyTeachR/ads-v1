@@ -6,15 +6,6 @@
 -   Be able to edit Markdown to show/hide code and use inline coding
 -   Be able to identify different types of data
 
-## Resources {#resources-repro}
-
--   [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
--   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
--   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
--   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
--   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
--   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
--   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
 
 ## Setup {#setup-repro}
 
@@ -325,3 +316,13 @@ You can knit your file to PDF or Word if you have the right packages installed o
 ## Glossary {#glossary-reports}
 
 `r glossary_table()`
+
+## Further Resources {#resources-repro}
+
+-   [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+-   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+-   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+-   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+-   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
+-   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
+-   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan

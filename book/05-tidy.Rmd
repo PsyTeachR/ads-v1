@@ -141,3 +141,13 @@ You can make intermediate objects whenever you need to break up your code becaus
 ::: {.info data-latex=""}
 You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
 :::
+
+
+```{r}
+# https://www.kaggle.com/sid321axn/amazon-alexa-reviews
+# extracted from Amazon by Manu Siddhartha & Anurag Bhatt
+
+data_csv  <- rio::import("data/amazon_alexa.csv")
+
+```
+

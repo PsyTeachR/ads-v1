@@ -67,6 +67,7 @@
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
+<li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -90,34 +91,17 @@
 <li>Be able to identify different types of data</li>
 </ul>
 </div>
-<div id="resources-repro" class="section level2" number="2.2">
+<div id="setup-repro" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">2.2</span> Resources<a class="anchor" aria-label="anchor" href="#resources-repro"><i class="fas fa-link"></i></a>
-</h2>
-<ul>
-<li><a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheat Sheet</a></li>
-<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">kableExtra</a></li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown reference Guide</a></li>
-<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown Tutorial</a></li>
-<li>
-<a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire, &amp; Garrett Grolemund</li>
-<li>
-<a href="https://slides.djnavarro.net/project-structure/">Project Structure</a> by Danielle Navarro</li>
-<li>
-<a href="https://speakerdeck.com/jennybc/how-to-name-files">How to name files</a> by Jenny Bryan</li>
-</ul>
-</div>
-<div id="setup-repro" class="section level2" number="2.3">
-<h2>
-<span class="header-section-number">2.3</span> Setup<a class="anchor" aria-label="anchor" href="#setup-repro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-repro"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="projects" class="section level2" number="2.4">
+<div id="projects" class="section level2" number="2.3">
 <h2>
-<span class="header-section-number">2.4</span> Organising a project<a class="anchor" aria-label="anchor" href="#projects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3</span> Organising a project<a class="anchor" aria-label="anchor" href="#projects"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, we need to get organised.</p>
 <p><a class="glossary" target="_blank" title="A way to organise related files in RStudio" href="https://psyteachr.github.io/glossary/p#project">Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.</p>
@@ -125,9 +109,9 @@
 <p>Make a new <a class="glossary" target="_blank" title="A collection or “folder” of files on a computer." href="https://psyteachr.github.io/glossary/d#directory">directory</a> where you will keep all of your materials for this class.</p>
 <p>Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code class="path">02-reports</code> in this directory.</p>
 </div>
-<div id="working-directory" class="section level3" number="2.4.1">
+<div id="working-directory" class="section level3" number="2.3.1">
 <h3>
-<span class="header-section-number">2.4.1</span> Working Directory<a class="anchor" aria-label="anchor" href="#working-directory"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.1</span> Working Directory<a class="anchor" aria-label="anchor" href="#working-directory"><i class="fas fa-link"></i></a>
 </h3>
 <p>Where should you put all of your files? You usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single <a class="glossary" target="_blank" title="The filepath where R is currently reading and writing files." href="https://psyteachr.github.io/glossary/w#working-directory">working directory</a> where your data and scripts are stored.</p>
 <p>Your script should only reference files in three locations, using the appropriate format.</p>
@@ -165,9 +149,9 @@
 <p>Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.</p>
 </div>
 </div>
-<div id="naming-things" class="section level3" number="2.4.2">
+<div id="naming-things" class="section level3" number="2.3.2">
 <h3>
-<span class="header-section-number">2.4.2</span> Naming Things<a class="anchor" aria-label="anchor" href="#naming-things"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.3.2</span> Naming Things<a class="anchor" aria-label="anchor" href="#naming-things"><i class="fas fa-link"></i></a>
 </h3>
 <p>Name files so that both people and computers can easily find things. Here are some important principles:</p>
 <ul>
@@ -206,9 +190,9 @@
 </div>
 </div>
 </div>
-<div id="r-markdown" class="section level2" number="2.5">
+<div id="r-markdown" class="section level2" number="2.4">
 <h2>
-<span class="header-section-number">2.5</span> R Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4</span> R Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this lesson, we will learn to make an R Markdown document with a table of contents, appropriate headers, tables, images, and inline R.</p>
 <p>We will use <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with three backtick symbols in a row, with some information about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
@@ -216,9 +200,9 @@
 <div class="try">
 <p>Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown...</code></strong> menu. Change the title and author, then click the knit button to create an html file.</p>
 </div>
-<div id="yaml-header" class="section level3" number="2.5.1">
+<div id="yaml-header" class="section level3" number="2.4.1">
 <h3>
-<span class="header-section-number">2.5.1</span> YAML Header<a class="anchor" aria-label="anchor" href="#yaml-header"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.1</span> YAML Header<a class="anchor" aria-label="anchor" href="#yaml-header"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header is where you can set several options.</p>
 <pre><code>---
@@ -249,9 +233,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 </p>
 </div>
 </div>
-<div id="setup" class="section level3" number="2.5.2">
+<div id="setup" class="section level3" number="2.4.2">
 <h3>
-<span class="header-section-number">2.5.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"><i class="fas fa-link"></i></a>
 </h3>
 <p>When you create a new R Markdown file in RStudio, a setup chunk is automatically created.</p>
 <div class="verbatim">
@@ -301,9 +285,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 <option>load(tidyverse)</option></select></p>
 </div>
 </div>
-<div id="structure" class="section level3" number="2.5.3">
+<div id="structure" class="section level3" number="2.4.3">
 <h3>
-<span class="header-section-number">2.5.3</span> Markdown<a class="anchor" aria-label="anchor" href="#structure"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.3</span> Markdown<a class="anchor" aria-label="anchor" href="#structure"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can use the visual <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a> editor if you have RStudio version 1.4 or higher. This will be a button at the top of the source pane with a pen tip. This is useful for complex styling, but you can also use these common plain-text style markups:</p>
 <ul>
@@ -318,9 +302,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 <p>Delete the default text and add some structure to your document by creating headers and subheaders. We're going to present a summary table and plot the data.</p>
 </div>
 </div>
-<div id="code-chunks" class="section level3" number="2.5.4">
+<div id="code-chunks" class="section level3" number="2.4.4">
 <h3>
-<span class="header-section-number">2.5.4</span> Code Chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.4</span> Code Chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can include <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">code chunks</a> that create and display images, tables, or computations to include in your text. Let's start by loading some data.</p>
 <p>First, create a code chunk in your document. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). This code loads some data from the web.</p>
@@ -337,9 +321,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 <p>It's usually good practice to start a code chunk with a comment that explains what you're doing there, especially if the code is not explained in the text of the report.</p>
 <p>If you name your objects clearly, you often don't need to add clarifying comments. For example, if I'd named the three objects above <code>total_number_of_sales</code>, <code>first_year</code> and <code>last_year</code>, I would omit the comments. It's a bit of an art to comment your code well.</p>
 </div>
-<div id="tables" class="section level3" number="2.5.5">
+<div id="tables" class="section level3" number="2.4.5">
 <h3>
-<span class="header-section-number">2.5.5</span> Tables<a class="anchor" aria-label="anchor" href="#tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.5</span> Tables<a class="anchor" aria-label="anchor" href="#tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>Next, create a code chunk where you want to display a summary table. We'll use tidyverse functions you will learn in the <a href="#tidyr">data wrangling lectures</a> to count the number of products per year for each product line.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -510,9 +494,9 @@ Vintage Cars
 <p>See how many different ways you can style the table above. Use the <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" target="_blank">kableExtra vignette</a> for inspiration.</p>
 </div>
 </div>
-<div id="images" class="section level3" number="2.5.6">
+<div id="images" class="section level3" number="2.4.6">
 <h3>
-<span class="header-section-number">2.5.6</span> Images<a class="anchor" aria-label="anchor" href="#images"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.6</span> Images<a class="anchor" aria-label="anchor" href="#images"><i class="fas fa-link"></i></a>
 </h3>
 <p>Next, create a code chunk where you want to display an image in your document. Let's put it after the table. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to show the range of sales within each country.</p>
 <p>Notice how the figure caption is formatted in the chunk options.</p>
@@ -539,9 +523,9 @@ Figure 2.2: The number of items in each order by product line.
 <p>![All the Things by <a href="images/memes/x-all-the-things.png">Hyperbole and a Half</a>{float: right; style="width:50%"} You can also include images that you did not create in R using the markdown syntax for images:</p>
 <pre><code>![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png){style="float: right; width:50%"}</code></pre>
 </div>
-<div id="in-line-r" class="section level3" number="2.5.7">
+<div id="in-line-r" class="section level3" number="2.4.7">
 <h3>
-<span class="header-section-number">2.5.7</span> In-line R<a class="anchor" aria-label="anchor" href="#in-line-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.7</span> In-line R<a class="anchor" aria-label="anchor" href="#in-line-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>Sometimes you just need to insert a number from the data into some text in your report. Inline R code lets you do that. First, we'll calculate the total number of sales per year in a code block. This block can be hidden in the final report.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -565,21 +549,21 @@ Figure 2.2: The number of items in each order by product line.
 <p>In a markdown document, new paragraphs are only created when you skip a blank line. If you include a single line break in a sentence, like above, it won't show up in the report. This can be a good way to organise complicated text with inline code.</p>
 </div>
 </div>
-<div id="output-formats" class="section level3" number="2.5.8">
+<div id="output-formats" class="section level3" number="2.4.8">
 <h3>
-<span class="header-section-number">2.5.8</span> Output Formats<a class="anchor" aria-label="anchor" href="#output-formats"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.8</span> Output Formats<a class="anchor" aria-label="anchor" href="#output-formats"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter <a href="present.html#present">9</a>. In fact, the book you are reading right now was created using R markdown.</p>
 </div>
 </div>
-<div id="data-types" class="section level2" number="2.6">
+<div id="data-types" class="section level2" number="2.5">
 <h2>
-<span class="header-section-number">2.6</span> Data Types<a class="anchor" aria-label="anchor" href="#data-types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5</span> Data Types<a class="anchor" aria-label="anchor" href="#data-types"><i class="fas fa-link"></i></a>
 </h2>
 </div>
-<div id="glossary-reports" class="section level2" number="2.7">
+<div id="glossary-reports" class="section level2" number="2.6">
 <h2>
-<span class="header-section-number">2.7</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-reports"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-reports"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -681,6 +665,23 @@ A structured format for information
 </tr>
 </tbody>
 </table></div>
+</div>
+<div id="resources-repro" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-repro"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheat Sheet</a></li>
+<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">kableExtra</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown reference Guide</a></li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown Tutorial</a></li>
+<li>
+<a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire, &amp; Garrett Grolemund</li>
+<li>
+<a href="https://slides.djnavarro.net/project-structure/">Project Structure</a> by Danielle Navarro</li>
+<li>
+<a href="https://speakerdeck.com/jennybc/how-to-name-files">How to name files</a> by Jenny Bryan</li>
+</ul>
 </div>
 </div>
 <script>
@@ -807,28 +808,28 @@ $( document ).ready(function() {
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#reports"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
 <li><a class="nav-link" href="#ilo-reports"><span class="header-section-number">2.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#resources-repro"><span class="header-section-number">2.2</span> Resources</a></li>
-<li><a class="nav-link" href="#setup-repro"><span class="header-section-number">2.3</span> Setup</a></li>
+<li><a class="nav-link" href="#setup-repro"><span class="header-section-number">2.2</span> Setup</a></li>
 <li>
-<a class="nav-link" href="#projects"><span class="header-section-number">2.4</span> Organising a project</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#working-directory"><span class="header-section-number">2.4.1</span> Working Directory</a></li>
-<li><a class="nav-link" href="#naming-things"><span class="header-section-number">2.4.2</span> Naming Things</a></li>
+<a class="nav-link" href="#projects"><span class="header-section-number">2.3</span> Organising a project</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#working-directory"><span class="header-section-number">2.3.1</span> Working Directory</a></li>
+<li><a class="nav-link" href="#naming-things"><span class="header-section-number">2.3.2</span> Naming Things</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#r-markdown"><span class="header-section-number">2.5</span> R Markdown</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#yaml-header"><span class="header-section-number">2.5.1</span> YAML Header</a></li>
-<li><a class="nav-link" href="#setup"><span class="header-section-number">2.5.2</span> Setup</a></li>
-<li><a class="nav-link" href="#structure"><span class="header-section-number">2.5.3</span> Markdown</a></li>
-<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.5.4</span> Code Chunks</a></li>
-<li><a class="nav-link" href="#tables"><span class="header-section-number">2.5.5</span> Tables</a></li>
-<li><a class="nav-link" href="#images"><span class="header-section-number">2.5.6</span> Images</a></li>
-<li><a class="nav-link" href="#in-line-r"><span class="header-section-number">2.5.7</span> In-line R</a></li>
-<li><a class="nav-link" href="#output-formats"><span class="header-section-number">2.5.8</span> Output Formats</a></li>
+<a class="nav-link" href="#r-markdown"><span class="header-section-number">2.4</span> R Markdown</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#yaml-header"><span class="header-section-number">2.4.1</span> YAML Header</a></li>
+<li><a class="nav-link" href="#setup"><span class="header-section-number">2.4.2</span> Setup</a></li>
+<li><a class="nav-link" href="#structure"><span class="header-section-number">2.4.3</span> Markdown</a></li>
+<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.4.4</span> Code Chunks</a></li>
+<li><a class="nav-link" href="#tables"><span class="header-section-number">2.4.5</span> Tables</a></li>
+<li><a class="nav-link" href="#images"><span class="header-section-number">2.4.6</span> Images</a></li>
+<li><a class="nav-link" href="#in-line-r"><span class="header-section-number">2.4.7</span> In-line R</a></li>
+<li><a class="nav-link" href="#output-formats"><span class="header-section-number">2.4.8</span> Output Formats</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#data-types"><span class="header-section-number">2.6</span> Data Types</a></li>
-<li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.7</span> Glossary</a></li>
+<li><a class="nav-link" href="#data-types"><span class="header-section-number">2.5</span> Data Types</a></li>
+<li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.6</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-repro"><span class="header-section-number">2.7</span> Further Resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -846,7 +847,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-08-31.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

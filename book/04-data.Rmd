@@ -6,25 +6,26 @@
 * Be able to identify and handle common problems with data import
 * Be able to match related data from multiple tables
 
+
 ```{r setup}
 library(tidyverse)
 library(rio)
 ```
 
-For this lesson, please download a [directory of data files used in this class](data/data.zip).
-
 ## Data Import
+
+For this lesson, please download a [directory of data files used in this class](data/data.zip).
 
 ### Built-in data {#builtin}
 
-R comes with built-in datasets. Some packages, like tidyr, also contain data. The `data()` function lists the datasets available in a package.
+R comes with built-in datasets. Some packages, like `r pkg("tidyr")`, also contain data. The `r hl(data())` function lists the datasets available in a `r glossary("package")`.
 
 ```{r built-in-data, eval = FALSE}
 # lists datasets in tidyr
 data(package = "tidyr")
 ```
 
-Type the name of a dataset into the console to see the data. Type `?table1` into the console to see the dataset description.
+Type the name of a dataset into the `r glossary("console")` to see the data. Type `?table1` into the console to see the dataset description.
 
 ```{r}
 ?table1
@@ -59,7 +60,7 @@ export(demo, "data/demo.json")
 
 Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter `r glossary("extension")` following a period at the end of the file name. 
 
-#### rio::import()  {-}
+#### rio::import()  
 
 The `r pkg("rio")` package has very straightforward functions for reading and saving data: `r hl(rio::import())` and `r hl(rio::export())`.
 
@@ -72,7 +73,7 @@ demo_json <- import("data/demo.json") # JSON format
 ```
 
 
-#### File type specific import functions {-}
+#### File type specific import functions 
 
 However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
 
@@ -84,7 +85,7 @@ demo_sav  <- haven::read_sav("data/demo.sav")
 demo_json <- jsonlite::read_json("data/demo.json")
 ```
 
-The `r pkg("readr")` functions display a message the you import data explaining what `r glossary("data type")` each column is.
+The `r pkg("readr")` functions display a message when you import data explaining what `r glossary("data type")` each column is.
 
 ```{r}
 demo <- readr::read_csv("data/demo.csv")
@@ -96,7 +97,7 @@ If it makes a mistake, such as reading the "date" column as a `r glossary("chara
 ct <- cols(
   character = col_character(),
   integer = col_double(),
-  number = col_double(),
+  double = col_double(),
   logical = col_logical(),
   date = col_date(format = "%d-%b-%y")
 )
@@ -109,7 +110,7 @@ For dates, you might need to set the format. See `?strptime` for a list of the c
 :::
 
 
-#### Google Sheets  {-}
+#### Google Sheets  
 
 If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`.
 
@@ -133,11 +134,11 @@ Now that you've loaded some data, look the upper right hand window of RStudio, u
 
 Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: `r hl(View())`, `r hl(print())`, `r hl(tibble::glimpse())`. 
 
-#### View() {-}
+#### View() 
 
 A familiar way to look at the table is given by `r hl(View())` (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  `r glossary("panes", "environment pane")` to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
 
-#### print() {-}
+#### print() 
 
 The `r hl(print())` method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
 
@@ -147,7 +148,7 @@ Let's look at the `demo_tsv` table that we loaded above. Depending on how wide y
 demo_tsv
 ```
 
-#### glimpse() {-}
+#### glimpse() 
 
 The function `r hl(tibble::glimpse())` gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the `r glossary("data type")` of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
 
@@ -155,7 +156,7 @@ The function `r hl(tibble::glimpse())` gives a sideways version of the table. Th
 glimpse(demo_xls)
 ```
 
-#### summary() {-}
+#### summary() {#summary-function}
 
 You can get a quick summary of a dataset with the `r hl(summary())` function.
 
@@ -396,7 +397,7 @@ All the mutating joins have this basic syntax:
 You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
 :::
 
-#### left_join() {#left_join -}
+#### left_join() {#left_join}
 
 ```{r img-left-join, echo=FALSE, fig.width=4, fig.cap="Left Join", class="join"}
 knitr::include_graphics("images/joins/left_join.png")
@@ -418,7 +419,7 @@ The order of tables is swapped here, so the result is all rows from the `orders`
 left_join(orders, customers, by = "id")
 ```
 
-#### right_join() {#right_join -}
+#### right_join() {#right_join}
 
 ```{r img-right-join, echo=FALSE, fig.width=4, fig.cap="Right Join", class="join"}
 knitr::include_graphics("images/joins/right_join.png")
@@ -434,7 +435,7 @@ right_join(customers, orders, by = "id")
 This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
 :::
 
-#### inner_join() {#inner_join -}
+#### inner_join() {#inner_join}
 
 ```{r img-inner-join, echo=FALSE, fig.width=4, fig.cap="Inner Join", class="join"}
 knitr::include_graphics("images/joins/inner_join.png")
@@ -447,7 +448,7 @@ inner_join(customers, orders, by = "id")
 ```
 
 
-#### full_join() {#full_join -}
+#### full_join() {#full_join}
 
 ```{r img-full-join, echo=FALSE, fig.width=4, fig.cap="Full Join", class="join"}
 knitr::include_graphics("images/joins/full_join.png")
@@ -464,7 +465,7 @@ full_join(customers, orders, by = "id")
 
 `r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
 
-#### semi_join() {#semi_join -}
+#### semi_join() {#semi_join}
 
 ```{r img-semi-join, echo=FALSE, fig.width=4, fig.cap="Semi Join", class="join"}
 knitr::include_graphics("images/joins/semi_join.png")
@@ -490,7 +491,7 @@ Order matters in a semi join.
 semi_join(orders, customers, by = "id")
 ```
 
-#### anti_join() {#anti_join -}
+#### anti_join() {#anti_join}
 
 ```{r img-anti-join, echo=FALSE, fig.width=4, fig.cap="Anti Join", class="join"}
 knitr::include_graphics("images/joins/anti_join.png")
@@ -516,7 +517,7 @@ anti_join(orders, customers, by = "id")
 
 `r glossary("Binding joins")` bind one table to another by adding their rows or columns together.
 
-#### bind_rows() {#bind_rows -}
+#### bind_rows() {#bind_rows}
 
 You can combine the rows of two tables with `bind_rows`.
 
@@ -547,7 +548,7 @@ new_customers <- tibble(
 bind_rows(customers, new_customers)
 ```
 
-#### bind_cols() {#bind_cols -}
+#### bind_cols() {#bind_cols}
 
 You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
 
@@ -563,7 +564,7 @@ bind_cols(customers, new_info)
 
 `r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
 
-#### intersect() {#intersect -}
+#### intersect() {#intersect}
 
 `intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
 
@@ -586,7 +587,7 @@ base::intersect(customers, new_customers)
 ```
 :::
 
-#### union() {#union -}
+#### union() {#union}
 
 `union()` returns all the rows from both tables, removing duplicate rows.
 
@@ -603,7 +604,7 @@ base::union(customers, new_customers)
 ```
 :::
 
-#### setdiff() {#setdiff -}
+#### setdiff() {#setdiff}
 
 `setdiff` returns rows that are in the first table, but not in the second table.
 

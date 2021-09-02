@@ -80,6 +80,7 @@ hl <- function(code) {
   txt <- rlang::enexpr(code) %>% rlang::as_label()
 
   downlit::highlight(txt, classes = downlit::classes_pandoc()) %>%
+    gsub("a href", "a target='_blank' href", .) %>%
     paste0("<code>", . , "</code>")
 }
 

@@ -311,7 +311,6 @@ In a markdown document, new paragraphs are only created when you skip a blank li
 
 You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter \@ref(present). In fact, the book you are reading right now was created using R markdown.
 
-## Data Types
 
 ## Glossary {#glossary-reports}
 

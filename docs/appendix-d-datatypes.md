@@ -123,7 +123,7 @@ Individual data values can be grouped together into containers. The main types o
 
 ### Vectors {#vectors}
 
-A <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> in R is a set of items (or 'elements') in a specific order. All of the elements in a vector must be of the same **data type** (numeric, character, logical). You can create a vector by enclosing the elements in the function <code><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span></code>.
+A <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> in R is a set of items (or 'elements') in a specific order. All of the elements in a vector must be of the same **data type** (numeric, character, logical). You can create a vector by enclosing the elements in the function <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span></code>.
 
 
 ```r
@@ -276,7 +276,7 @@ In the command `x:y` the `:` operator would give you the sequence of number star
 ##  [1]   0  -1  -2  -3  -4  -5  -6  -7  -8  -9 -10
 ```
 
-What if you want to create a sequence but with something other than integer steps? You can use the <code><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='op'>)</span></code> function. Look at the examples below and work out what the arguments do.
+What if you want to create a sequence but with something other than integer steps? You can use the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='op'>)</span></code> function. Look at the examples below and work out what the arguments do.
 
 
 ```r
@@ -292,7 +292,7 @@ seq(0, 10, along.with = LETTERS)
 ## [16]  6.0  6.4  6.8  7.2  7.6  8.0  8.4  8.8  9.2  9.6 10.0
 ```
 
-What if you want to repeat a vector many times? You could either type it out (painful) or use the <code><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>)</span></code> function, which can repeat vectors in different ways.
+What if you want to repeat a vector many times? You could either type it out (painful) or use the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>)</span></code> function, which can repeat vectors in different ways.
 
 
 ```r
@@ -307,7 +307,7 @@ rep(c("A", "B", "C"), each = 2) # A to C, 2 times each
 ## [1] "A" "A" "B" "B" "C" "C"
 ```
 
-The <code><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>)</span></code> function is useful to create a vector of logical values (`TRUE`/`FALSE` or `1`/`0`) to select values from another vector.
+The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='op'>)</span></code> function is useful to create a vector of logical values (`TRUE`/`FALSE` or `1`/`0`) to select values from another vector.
 
 
 ```r
@@ -412,7 +412,7 @@ Tabular data becomes especially important for when we talk about <a class='gloss
 
 #### Table info
 
-We can get information about the table using the functions <code><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of columns), <code><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of rows), <code><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='op'>)</span></code> (the number of rows and number of columns), and <code><span class='fu'><a href='https://rdrr.io/r/base/name.html'>name</a></span><span class='op'>(</span><span class='op'>)</span></code> (the column names).
+We can get information about the table using the functions <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of columns), <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of rows), <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='op'>)</span></code> (the number of rows and number of columns), and <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/name.html'>name</a></span><span class='op'>(</span><span class='op'>)</span></code> (the column names).
 
 
 ```r

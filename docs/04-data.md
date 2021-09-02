@@ -7,18 +7,19 @@
 * Be able to match related data from multiple tables
 
 
+
 ```r
 library(tidyverse)
 library(rio)
 ```
 
-For this lesson, please download a [directory of data files used in this class](data/data.zip).
-
 ## Data Import
+
+For this lesson, please download a [directory of data files used in this class](data/data.zip).
 
 ### Built-in data {#builtin}
 
-R comes with built-in datasets. Some packages, like tidyr, also contain data. The `data()` function lists the datasets available in a package.
+R comes with built-in datasets. Some packages, like <code class='package'>tidyr</code>, also contain data. The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='op'>)</span></code> function lists the datasets available in a <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>package</a>.
 
 
 ```r
@@ -26,14 +27,14 @@ R comes with built-in datasets. Some packages, like tidyr, also contain data. Th
 data(package = "tidyr")
 ```
 
-Type the name of a dataset into the console to see the data. Type `?table1` into the console to see the dataset description.
+Type the name of a dataset into the <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a> to see the data. Type `?table1` into the console to see the dataset description.
 
 
 ```r
 ?table1
 ```
 
-You can also use the <code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='op'>)</span></code> function to load a dataset into your <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>.
+You can also use the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='op'>)</span></code> function to load a dataset into your <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>.
 
 
 ```r
@@ -49,9 +50,9 @@ data("table1")
 
 Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> following a period at the end of the file name. 
 
-#### rio::import()  {-}
+#### rio::import()  
 
-The <code class='package'>rio</code> package has very straightforward functions for reading and saving data: <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rio/man/import.html'>import</a></span><span class='op'>(</span><span class='op'>)</span></code> and <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>.
+The <code class='package'>rio</code> package has very straightforward functions for reading and saving data: <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/import.html'>import</a></span><span class='op'>(</span><span class='op'>)</span></code> and <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>.
 
 
 ```r
@@ -63,7 +64,7 @@ demo_json <- import("data/demo.json") # JSON format
 ```
 
 
-#### File type specific import functions {-}
+#### File type specific import functions 
 
 However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
 
@@ -76,7 +77,7 @@ demo_sav  <- haven::read_sav("data/demo.sav")
 demo_json <- jsonlite::read_json("data/demo.json")
 ```
 
-The <code class='package'>readr</code> functions display a message the you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.
+The <code class='package'>readr</code> functions display a message when you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.
 
 
 ```r
@@ -102,7 +103,7 @@ If it makes a mistake, such as reading the "date" column as a <a class='glossary
 ct <- cols(
   character = col_character(),
   integer = col_double(),
-  number = col_double(),
+  double = col_double(),
   logical = col_logical(),
   date = col_date(format = "%d-%b-%y")
 )
@@ -110,16 +111,12 @@ ct <- cols(
 demo  <- readr::read_csv("data/demo.csv", col_types = ct)
 ```
 
-```
-## Warning: The following named parsers don't match the column names: number
-```
-
 ::: {.info data-latex=""}
 For dates, you might need to set the format. See `?strptime` for a list of the codes used to represent different date formats. Above, <code><span class='st'>"%d-%b-%y"</span></code> means that the dates are formatted like `{day number}-{month abbreviation}-{2-digit year}`. 
 :::
 
 
-#### Google Sheets  {-}
+#### Google Sheets  
 
 If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>.
 
@@ -142,15 +139,15 @@ demo_goo  <- googlesheets4::read_sheet(url)
 
 Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
 
-Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
+Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
 
-#### View() {-}
+#### View() 
 
-A familiar way to look at the table is given by <code><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
+A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
 
-#### print() {-}
+#### print() 
 
-The <code><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
+The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
 
 Let's look at the `demo_tsv` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
 
@@ -177,51 +174,51 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 01-Sep-21 </td>
+   <td style="text-align:left;"> 02-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 31-Aug-21 </td>
+   <td style="text-align:left;"> 01-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 30-Aug-21 </td>
+   <td style="text-align:left;"> 31-Aug-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 29-Aug-21 </td>
+   <td style="text-align:left;"> 30-Aug-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 28-Aug-21 </td>
+   <td style="text-align:left;"> 29-Aug-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 27-Aug-21 </td>
+   <td style="text-align:left;"> 28-Aug-21 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
-#### glimpse() {-}
+#### glimpse() 
 
-The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
+The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
 
 
 ```r
@@ -235,12 +232,12 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "01-Sep-21", "31-Aug-21", "30-Aug-21", "29-Aug-21", "28-Aug-…
+## $ date      <chr> "02-Sep-21", "01-Sep-21", "31-Aug-21", "30-Aug-21", "29-Aug-…
 ```
 
-#### summary() {-}
+#### summary() {#summary-function}
 
-You can get a quick summary of a dataset with the <code><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function.
+You can get a quick summary of a dataset with the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function.
 
 
 ```r
@@ -268,7 +265,7 @@ summary(demo_sav)
 
 ### Creating data 
 
-If we are creating a small data table from scratch, we can use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
+If we are creating a small data table from scratch, we can use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
 
 Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class='fu'>tibble</span><span class='op'>(</span><span class='op'>)</span></code> function takes <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a> with the names that you want your columns to have. The values are <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a> that list the column values in order.
 
@@ -317,7 +314,7 @@ avatar
 
 </div>
 
-You can also use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
+You can also use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
 
 
 ```r
@@ -335,7 +332,7 @@ You don't have to line up the columns in a tribble like we did above, but it can
 
 ### Writing data
 
-If you have data that you want to save to a CSV file, use <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>, as follows.
+If you have data that you want to save to a CSV file, use <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>, as follows.
 
 
 ```r
@@ -418,7 +415,7 @@ mess <- import("data/mess.csv")
 ## 3,2020-01-2>>
 ```
 
-When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class='fu'>readr</span><span class='fu'>::</span><span class='va'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span></code>.
+When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class='fu'>readr</span><span class='fu'>::</span><span class='va'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span></code>.
 
 
 ```r
@@ -1148,7 +1145,7 @@ orders <- tibble(
 
 ### Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table.  
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table.  
 
 All the mutating joins have this basic syntax:
 
@@ -1163,7 +1160,7 @@ All the mutating joins have this basic syntax:
 You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
 :::
 
-#### left_join() {#left_join -}
+#### left_join() {#left_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/left_join.png" alt="Left Join" width="100%" />
@@ -1319,7 +1316,7 @@ left_join(orders, customers, by = "id")
 
 </div>
 
-#### right_join() {#right_join -}
+#### right_join() {#right_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/right_join.png" alt="Right Join" width="100%" />
@@ -1408,7 +1405,7 @@ right_join(customers, orders, by = "id")
 This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
 :::
 
-#### inner_join() {#inner_join -}
+#### inner_join() {#inner_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/inner_join.png" alt="Inner Join" width="100%" />
@@ -1476,7 +1473,7 @@ inner_join(customers, orders, by = "id")
 </div>
 
 
-#### full_join() {#full_join -}
+#### full_join() {#full_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/full_join.png" alt="Full Join" width="100%" />
@@ -1572,7 +1569,7 @@ full_join(customers, orders, by = "id")
 
 <a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
 
-#### semi_join() {#semi_join -}
+#### semi_join() {#semi_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/semi_join.png" alt="Semi Join" width="100%" />
@@ -1677,7 +1674,7 @@ semi_join(orders, customers, by = "id")
 
 </div>
 
-#### anti_join() {#anti_join -}
+#### anti_join() {#anti_join}
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/anti_join.png" alt="Anti Join" width="100%" />
@@ -1755,7 +1752,7 @@ anti_join(orders, customers, by = "id")
 
 <a class='glossary' target='_blank' title='Joins that bind one table to another by adding their rows or columns together.' href='https://psyteachr.github.io/glossary/b#binding-joins'>Binding joins</a> bind one table to another by adding their rows or columns together.
 
-#### bind_rows() {#bind_rows -}
+#### bind_rows() {#bind_rows}
 
 You can combine the rows of two tables with `bind_rows`.
 
@@ -1926,7 +1923,7 @@ bind_rows(customers, new_customers)
 
 </div>
 
-#### bind_cols() {#bind_cols -}
+#### bind_cols() {#bind_cols}
 
 You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
 
@@ -1990,7 +1987,7 @@ bind_cols(customers, new_info)
 
 <a class='glossary' target='_blank' title='Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).' href='https://psyteachr.github.io/glossary/s#set-operations'>Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
 
-#### intersect() {#intersect -}
+#### intersect() {#intersect}
 
 `intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
 
@@ -2041,7 +2038,7 @@ base::intersect(customers, new_customers)
 ```
 :::
 
-#### union() {#union -}
+#### union() {#union}
 
 `union()` returns all the rows from both tables, removing duplicate rows.
 
@@ -2146,7 +2143,7 @@ base::union(customers, new_customers)
 ```
 :::
 
-#### setdiff() {#setdiff -}
+#### setdiff() {#setdiff}
 
 `setdiff` returns rows that are in the first table, but not in the second table.
 
@@ -2317,6 +2314,10 @@ base::setdiff(customers, new_customers)
    <td style="text-align:left;"> A data type representing strings of text. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [console](https://psyteachr.github.io/glossary/c.html#console){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> The pane in RStudio where you can type in commands and view output messages. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [data type](https://psyteachr.github.io/glossary/d.html#data-type){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> The kind of data represented by an object. </td>
   </tr>
@@ -2335,6 +2336,10 @@ base::setdiff(customers, new_customers)
   <tr>
    <td style="text-align:left;"> [mutating joins](https://psyteachr.github.io/glossary/m.html#mutating-joins){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [package](https://psyteachr.github.io/glossary/p.html#package){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A group of R functions. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [panes](https://psyteachr.github.io/glossary/p.html#panes){class="glossary" target="_blank"} </td>

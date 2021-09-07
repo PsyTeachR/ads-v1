@@ -91,7 +91,7 @@ Here is one way to structure them so that similar files have the same structure 
 -   <code class='path'>report_v3.doc</code>
 -   <code class='path'>data_customer_2021-11-12.xls</code>
 -   <code class='path'>data_customer_2021-11-15.xls</code>
--   <select class='webex-solveme' data-answer='["data_vendor_2021-11-15.xls"]'> <option></option> <option>vendor-data_2021-11-15.xls</option> <option>data-vendor-2021_11_15.xls</option> <option>data_vendor_2021-11-15.xls</option> <option>data_2021-11-15_vendor.xls</option></select>
+-   <select class='webex-select'><option value='blank'></option><option value=''>vendor-data_2021-11-15.xls</option><option value=''>data-vendor-2021_11_15.xls</option><option value='answer'>data_vendor_2021-11-15.xls</option><option value=''>data_2021-11-15_vendor.xls</option></select>
 
 ::: {.try data-latex=""}
 Think of other ways to name the files above. Look at some of your own project files and see what you can improve.
@@ -188,7 +188,7 @@ Find a list of the current chunk options by typing <code><span class='fu'><a tar
 You can also add the packages you need in this chunk using <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span></code>. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>package_I_need</span><span class='op'>)</span></code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.
 
 ::: {.try data-latex=""}
-We'll frequently use functions from the package <code class='package'>tidyverse</code>, so load that in your setup chunk using the code <select class='webex-solveme' data-answer='["library(tidyverse)"]'> <option></option> <option>install.packages("tidyverse")</option> <option>library(tidyverse)</option> <option>load(tidyverse)</option></select>
+We'll frequently use functions from the package <code class='package'>tidyverse</code>, so load that in your setup chunk using the code <select class='webex-select'><option value='blank'></option><option value=''>install.packages("tidyverse")</option><option value='answer'>library(tidyverse)</option><option value=''>load(tidyverse)</option></select>
 :::
 
 ### Markdown {#structure}

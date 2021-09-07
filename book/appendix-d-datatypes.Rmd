@@ -2,7 +2,7 @@
 
 ## Basic data types 
 
-Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")` There is also a specific data type called a `r glossary("factor")`, which lets you specify the order of categories.
+Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")`, as well as the special classes of `r glossary("factor")` and date/times.
 
 ### Numeric data
 
@@ -60,6 +60,39 @@ is.logical(10 > 5)
 You might also see logical values abbreviated as `T` and `F`, or `0` and `1`. This can cause some problems down the road, so we will always spell out the whole thing.
 :::
 
+### Factors
+
+A `r glossary("factor")` is a specific type of integer that lets you specify the categories and their order. This is useful in data tables to make plots display with categories in the correct order.
+
+```{r}
+myfactor <- factor("B", levels = c("A", "B","C"))
+myfactor
+```
+
+Factors are a type of integer, but you can tell that they are factors by checking their `class()`.
+
+```{r}
+typeof(myfactor)
+class(myfactor)
+```
+
+### Dates and Times
+
+Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the `r pkg("lubridate", "https://lubridate.tidyverse.org/")` package provides functions to help you with this.
+
+```{r}
+today <- lubridate::today()
+now <- lubridate::now(tzone = "GMT")
+```
+
+Date and datetimes are a type of double, but you can tell that they are dates by checking their `class()`. Datetimes can have one or more of a few classes that start with `POSIX`.
+
+```{r}
+typeof(today)
+typeof(now)
+class(today)
+class(now)
+```
 
 
 ```{r, include = FALSE}
@@ -85,6 +118,8 @@ What data types are these:
 * `1 == 2` `r mcq(logi)`
 
 :::
+
+
 
 ## Basic container types {#containers}
 

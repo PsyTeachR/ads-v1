@@ -179,11 +179,11 @@
 <li><code class="path">report_v3.doc</code></li>
 <li><code class="path">data_customer_2021-11-12.xls</code></li>
 <li><code class="path">data_customer_2021-11-15.xls</code></li>
-<li><select class="webex-solveme" data-answer='["data_vendor_2021-11-15.xls"]'><option></option>
-<option>vendor-data_2021-11-15.xls</option>
-<option>data-vendor-2021_11_15.xls</option>
-<option>data_vendor_2021-11-15.xls</option>
-<option>data_2021-11-15_vendor.xls</option></select></li>
+<li><select class="webex-select"><option value="blank"></option>
+<option value="">vendor-data_2021-11-15.xls</option>
+<option value="">data-vendor-2021_11_15.xls</option>
+<option value="answer">data_vendor_2021-11-15.xls</option>
+<option value="">data_2021-11-15_vendor.xls</option></select></li>
 </ul>
 <div class="try">
 <p>Think of other ways to name the files above. Look at some of your own project files and see what you can improve.</p>
@@ -279,10 +279,10 @@ Figure 2.1: Light themes in versions 3 and 4.
 <p>Find a list of the current chunk options by typing <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code> in the console. See the <a href="https://yihui.name/knitr/options/" target="_blank">knitr options documentation</a> for explanations of the possible options.</p>
 <p>You can also add the packages you need in this chunk using <code><span class="kw"><a target="_blank" href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="op">)</span></code>. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to <code><span class="kw"><a target="_blank" href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">package_I_need</span><span class="op">)</span></code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
 <div class="try">
-<p>We'll frequently use functions from the package <code class="package">tidyverse</code>, so load that in your setup chunk using the code <select class="webex-solveme" data-answer='["library(tidyverse)"]'><option></option>
-<option>install.packages("tidyverse")</option>
-<option>library(tidyverse)</option>
-<option>load(tidyverse)</option></select></p>
+<p>We'll frequently use functions from the package <code class="package">tidyverse</code>, so load that in your setup chunk using the code <select class="webex-select"><option value="blank"></option>
+<option value="">install.packages("tidyverse")</option>
+<option value="answer">library(tidyverse)</option>
+<option value="">load(tidyverse)</option></select></p>
 </div>
 </div>
 <div id="structure" class="section level3" number="2.4.3">
@@ -841,7 +841,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-02.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -80,7 +80,7 @@ However, it is also useful to know the specific functions that are used to impor
 ```{r, message=FALSE}
 demo_tsv  <- readr::read_tsv("data/demo.tsv")
 demo_csv  <- readr::read_csv("data/demo.csv")
-demo_xl   <- readxl::read_excel("data/demo.xlsx")
+demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav  <- haven::read_sav("data/demo.sav")
 demo_json <- jsonlite::read_json("data/demo.json")
 ```

@@ -1,4 +1,4 @@
-# Intro to R, RStudio and R Markdown {#intro}
+# Intro to R and RStudio {#intro}
 
 ## Intended Learning Outcomes {#ilo-intro}
 

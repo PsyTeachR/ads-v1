@@ -6,6 +6,13 @@
 -   Be able to edit Markdown to show/hide code and use inline coding
 -   Be able to identify different types of data
 
+
+```r
+library(tidyverse) # readr, dplyr, tidyr, ggplot2
+library(knitr)
+library(kableExtra)
+```
+
 You'll learn about the following functions in this chapter:
 
 * `knitr::opts_chunk$set()`
@@ -37,14 +44,8 @@ The chapter also has examples that uses functions that you'll learn more about i
 * `dplyr::mutate()`
 -->
 
-## Setup {#setup-repro}
 
 
-```r
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-```
 
 ## Organising a project {#projects}
 
@@ -130,14 +131,26 @@ Think of other ways to name the files above. Look at some of your own project fi
 
 ## R Markdown {#rmarkdown}
 
-In this lesson, we will learn to make an R Markdown document with a table of contents, appropriate headers, tables, images, and inline R.
+We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
-We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script mixes blocks of text and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
+If you open up a new R Markdown file from a template, you will see an example document with several b<a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> in it. 
 
-If you open up a new R Markdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it. Compiling a document is called <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knitting</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.
+### Knitting {#rmd-knit}
+
+To create an HTML or PDF report from an R Markdown (Rmd) document, you <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> it. There is a button that looks like a ball of yarn with needles through it that you click on to knit your file into a report.
+
+::: {.info data-latex=""}
+You can also type the following code into the console (substituting your specific file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
+
+
+```r
+knitr::knit2html("report.Rmd")
+```
+:::
+
 
 ::: {.try data-latex=""}
-Create a new R Markdown file from the **`File > New File > R Markdown...`** menu. Change the title and author, then click the knit button to create an html file.
+Create a new R Markdown file from the **`File > New File > R Markdown...`** menu. Change the title and author, then knit to create an html file.
 :::
 
 ### YAML Header {#yaml}
@@ -174,7 +187,18 @@ The built-in bootswatch themes are: default, cerulean, cosmo, darkly, flatly, jo
 <p class="caption">(\#fig:img-bootswatch)Light themes in versions 3 and 4.</p>
 </div>
 
-### Setup {#setup-rmarkdown}
+::: {.warning data-latex=""}
+YAML headers can be very picky about spaces and semicolons (the rest of R Markdown is much more forgiving). For example, if you put a space before "author", you will get an error that looks like:
+
+```
+Error in yaml::yaml.load(..., eval.expr = TRUE) : 
+  Parser error: while parsing a block mapping at line 1, column 1 did not find expected key at line 2, column 2
+```
+
+The error message will tell you exactly where the problem is (the second character of the second line of the YAML header), and it's usually a matter of fixing typos or making sure that the indenting is exactly right.
+:::
+
+### Setup {#rmd-setup}
 
 When you create a new R Markdown file in RStudio, a setup chunk is automatically created.
 
@@ -319,7 +343,7 @@ kable(summary_table,
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-5)Number of sales per product line each year.</caption>
+<caption>(\#tab:unnamed-chunk-6)Number of sales per product line each year.</caption>
  <thead>
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="1"><div style="">Product Lines</div></th>
@@ -444,14 +468,7 @@ The total sales per year were £3,516,980 (2003), £4,724,163 (2004), and £1,79
 In a markdown document, new paragraphs are only created when you skip a blank line. If you include a single line break in a sentence, like above, it won't show up in the report. This can be a good way to organise complicated text with inline code.
 :::
 
-### Output Formats {#knit}
-
-You can knit using the knit button at the top of the source pane. You can also type the following code into the console (substituting your file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
-
-
-```r
-knitr::knit2html("report.Rmd")
-```
+### Output Formats
 
 You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
 
@@ -588,7 +605,7 @@ tasks <- tibble::tribble(
 )
 ```
 
-Figure out how to make it so that code chunks don't show in your knitted document [section\ \@ref(setup-rmarkdown)]
+Figure out how to make it so that code chunks don't show in your knitted document [section\ \@ref(rmd-setup)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -692,7 +709,7 @@ This report was created using <code>&#096;r R.version.string&#096;</code>.
 
 ### Knit {#exercises-reports-kit}
 
-Knit this document to html [section\ \@ref(knit)]
+Knit this document to html [section\ \@ref(rmd-knit)]
 
 
 <div class='webex-solution'><button>Solution</button>

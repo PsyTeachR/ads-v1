@@ -6,6 +6,13 @@
 * Separate, mutate, reorder, and rename columns
 * Use pipes to chain together functions
 
+
+```r
+library(tidyverse) # functions from tidyr, dplyr, readr, and pipes
+library(readxl)
+library(stringr)
+```
+
 You'll learn about the following functions in this chapter:
 
 * `tidyr::pivot_longer()'
@@ -19,11 +26,6 @@ You'll learn about the following functions in this chapter:
 * `%>%`
 
 
-```r
-library(tidyverse) # functions from tidyr, dplyr, readr, and pipes
-library(readxl)
-library(stringr)
-```
 
 ## Data Structure
 
@@ -1834,7 +1836,10 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 
 ## Further resources {#resources-tidy}
 
-
+* [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
+* [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
+* [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
+* [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 ## Exercises {#exercises-tidy}
 

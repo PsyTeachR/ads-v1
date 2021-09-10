@@ -86,11 +86,11 @@ body {
 /* verbatim code chunks with ```{r ...} at top */
 
 div.verbatim {
-  border: 1px solid grey;
+  border: 1px solid rgb(238, 238, 238);
   padding: 0.25em 0 0 0;
-  border-radius: 5px;
-  margin-bottom: 1em;
-  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  border-radius: 3.2px;
+  margin: 0 -0.5rem 1rem -0.5rem;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 div.verbatim code {

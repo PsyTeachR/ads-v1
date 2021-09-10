@@ -7,6 +7,23 @@
 * Be able to match related data from multiple tables
 
 
+You'll learn about the following functions in this chapter:
+
+* `data()`
+* `rio::inport()`
+* `readr::read_tsv()`
+* `readr::read_csv()`
+* `readxl::read_excel()`
+* `haven::read_sav()`
+* `jsonlite::read_json()`
+* `readr::cols()`
+* `readr::col_character()`
+* `readr::col_double()`
+* `readr::col_logical()`
+* `readr::col_date()`
+
+
+
 ```{r setup}
 library(tidyverse)
 library(rio)
@@ -80,7 +97,7 @@ However, it is also useful to know the specific functions that are used to impor
 ```{r, message=FALSE}
 demo_tsv  <- readr::read_tsv("data/demo.tsv")
 demo_csv  <- readr::read_csv("data/demo.csv")
-demo_xl   <- readxl::read_excel("data/demo.xlsx")
+demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav  <- haven::read_sav("data/demo.sav")
 demo_json <- jsonlite::read_json("data/demo.json")
 ```
@@ -637,6 +654,17 @@ base::setdiff(customers, new_customers)
 * [Data transformation heatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
 * [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
+
+## Exercises {#exercises-data}
+
+
+
+
+
+
+
+
+
 
 
 ```{r, include = FALSE}

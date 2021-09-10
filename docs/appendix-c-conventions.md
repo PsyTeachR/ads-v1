@@ -15,7 +15,10 @@ This book will use the following conventions:
 * Internal links: Chapter\ \@ref(viz)
 * External links: [Mastering Shiny](https://mastering-shiny.org/){target="_blank"}
 * Menu/interface options: **`New File...`**
-* Quiz question: I am going to learn a lot: <select class='webex-solveme' data-answer='["TRUE"]'> <option></option> <option>TRUE</option> <option>FALSE</option></select>
+* Quiz question: I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value=''>FALSE</option></select>
+
+* What is a p-value? <div class='webex-radiogroup' id='radio_ZJUWVHAGTB'><label><input type="radio" autocomplete="off" name="radio_ZJUWVHAGTB" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZJUWVHAGTB" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZJUWVHAGTB" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
+
 
 
 <div class='webex-solution'><button>Hidden Solutions</button>

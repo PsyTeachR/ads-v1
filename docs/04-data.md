@@ -7,6 +7,13 @@
 * Be able to match related data from multiple tables
 
 
+
+```r
+library(tidyverse) # includes readr
+library(rio)
+library(haven)
+```
+
 You'll learn about the following functions in this chapter:
 
 * `data()`
@@ -15,20 +22,11 @@ You'll learn about the following functions in this chapter:
 * `readr::read_csv()`
 * `readxl::read_excel()`
 * `haven::read_sav()`
-* `jsonlite::read_json()`
 * `readr::cols()`
 * `readr::col_character()`
 * `readr::col_double()`
 * `readr::col_logical()`
 * `readr::col_date()`
-
-
-
-
-```r
-library(tidyverse)
-library(rio)
-```
 
 ## Data Import
 
@@ -77,7 +75,6 @@ demo_tsv  <- import("data/demo.tsv") # tab-separated values
 demo_csv  <- import("data/demo.csv") # comma-separated values
 demo_xls  <- import("data/demo.xlsx") # Excel format
 demo_sav  <- import("data/demo.sav") # SPSS format
-demo_json <- import("data/demo.json") # JSON format
 ```
 
 
@@ -91,7 +88,6 @@ demo_tsv  <- readr::read_tsv("data/demo.tsv")
 demo_csv  <- readr::read_csv("data/demo.csv")
 demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav  <- haven::read_sav("data/demo.sav")
-demo_json <- jsonlite::read_json("data/demo.json")
 ```
 
 The <code class='package'>readr</code> functions display a message when you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.

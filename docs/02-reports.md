@@ -6,6 +6,36 @@
 -   Be able to edit Markdown to show/hide code and use inline coding
 -   Be able to identify different types of data
 
+You'll learn about the following functions in this chapter:
+
+* `knitr::opts_chunk$set()`
+* `kableExtra::kable()`
+* `kableExtra::add_header_above()`
+* `kableExtra::row_spec()`
+* `kableExtra::column_spec()`
+* `kableExtra::kable_classic()`
+
+The chapter also has examples that uses functions that you'll learn more about in later chapters. Don't worry about learning these functions this week; just copy the examples into your practice script.
+
+<!--
+* `readr::read_csv()`
+* `nrow()`
+* `min()`
+* `max()`
+* `dplyr::group_by()`
+* `dplyr::count()`
+* `tidyr::pivot_wider()`
+* `print()`
+* `ggplot2::ggplot()`
+* `ggplot2::aes()`
+* `ggplot2::geom_violin()`
+* `ggplot2::xlab()`
+* `ggplot2::scale_y_continuous()`
+* `ggplot2::scale_fill_viridis_d()`
+* `ggplot2::theme()`
+* `dplyr::summarise()`
+* `dplyr::mutate()`
+-->
 
 ## Setup {#setup-repro}
 
@@ -13,6 +43,7 @@
 ```r
 library(tidyverse)
 library(knitr)
+library(kableExtra)
 ```
 
 ## Organising a project {#projects}
@@ -29,7 +60,7 @@ Choose **`New Project...`** under the **`File`** menu to create a new project ca
 
 ### Working Directory
 
-Where should you put all of your files? You usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a> where your data and scripts are stored.
+Where should you put all of your files? You usually want to have all of your scripts and data files inside one folder on your computer, the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a>. You can organise files in subdirectories inside this main project directory, such as putting all raw data files in a directory called <code class='path'>data</code> and saving any image files to a directory called <code class='path'>images</code>.
 
 Your script should only reference files in three locations, using the appropriate format.
 
@@ -60,7 +91,7 @@ dat <- read_csv("C:/Carla's_files/yearly_reports/2020-2021/data/widgets_gadgets.
 ```
 
 ::: {.info data-latex=""}
-Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
+Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files work for everyone, regardless of their operating system.
 :::
 
 ### Naming Things
@@ -97,11 +128,11 @@ Here is one way to structure them so that similar files have the same structure 
 Think of other ways to name the files above. Look at some of your own project files and see what you can improve.
 :::
 
-## R Markdown
+## R Markdown {#rmarkdown}
 
 In this lesson, we will learn to make an R Markdown document with a table of contents, appropriate headers, tables, images, and inline R.
 
-We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with three backtick symbols in a row, with some information about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
+We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script mixes blocks of text and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
 If you open up a new R Markdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it. Compiling a document is called <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knitting</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.
 
@@ -109,7 +140,7 @@ If you open up a new R Markdown file from a template, you will see an example do
 Create a new R Markdown file from the **`File > New File > R Markdown...`** menu. Change the title and author, then click the knit button to create an html file.
 :::
 
-### YAML Header
+### YAML Header {#yaml}
 
 The <a class='glossary' target='_blank' title='A structured format for information' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is where you can set several options.
 
@@ -143,7 +174,7 @@ The built-in bootswatch themes are: default, cerulean, cosmo, darkly, flatly, jo
 <p class="caption">(\#fig:img-bootswatch)Light themes in versions 3 and 4.</p>
 </div>
 
-### Setup
+### Setup {#setup-rmarkdown}
 
 When you create a new R Markdown file in RStudio, a setup chunk is automatically created.
 
@@ -191,7 +222,7 @@ You can also add the packages you need in this chunk using <code><span class='kw
 We'll frequently use functions from the package <code class='package'>tidyverse</code>, so load that in your setup chunk using the code <select class='webex-select'><option value='blank'></option><option value=''>install.packages("tidyverse")</option><option value='answer'>library(tidyverse)</option><option value=''>load(tidyverse)</option></select>
 :::
 
-### Markdown {#structure}
+### Markdown {#markdown}
 
 You can use the visual <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a> editor if you have RStudio version 1.4 or higher. This will be a button at the top of the source pane with a pen tip. This is useful for complex styling, but you can also use these common plain-text style markups:
 
@@ -206,17 +237,22 @@ Download the [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/
 Delete the default text and add some structure to your document by creating headers and subheaders. We're going to present a summary table and plot the data.
 :::
 
-### Code Chunks
+### Code Chunks {#code-chunks}
 
-You can include <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. Let's start by loading some data.
+You can include <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. A code block starts and ends with three backtick symbols in a row. After the first three backticks, there is some information about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document).
+
+Let's start by loading some data.
 
 First, create a code chunk in your document. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). This code loads some data from the web.
 
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r}</code></pre>
 
 ```r
-# https://www.kaggle.com/kyanyoga/sample-sales-data
+# Data from https://www.kaggle.com/kyanyoga/sample-sales-data
 sales <- read_csv("data/sales_data_sample.csv")
 ```
+
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
 You can add comments inside R chunks with the hash symbol (`#`). The R interpreter will ignore characters from the hash to the end of the line.
 
@@ -233,7 +269,7 @@ It's usually good practice to start a code chunk with a comment that explains wh
 
 If you name your objects clearly, you often don't need to add clarifying comments. For example, if I'd named the three objects above `total_number_of_sales`, `first_year` and `last_year`, I would omit the comments. It's a bit of an art to comment your code well.
 
-### Tables
+### Tables {#rmd-tables}
 
 Next, create a code chunk where you want to display a summary table. We'll use tidyverse functions you will learn in the [data wrangling lectures](#tidyr) to count the number of products per year for each product line.
 
@@ -242,7 +278,9 @@ Next, create a code chunk where you want to display a summary table. We'll use t
 summary_table <- sales %>%
   group_by(YEAR_ID, PRODUCTLINE) %>%
   count() %>%
-  spread(key = YEAR_ID, value = n) %>%
+  pivot_wider(id_cols = PRODUCTLINE,
+              names_from = YEAR_ID, 
+              values_from = n) %>%
   print()
 ```
 
@@ -264,14 +302,15 @@ The table above is OK, but it could be more reader-friendly by changing the colu
 
 
 ```r
-library(kableExtra)
-
 kable(summary_table, 
       col.names = c("", "2003", "2004", "2005"),
       caption = "Number of sales per product line each year.") %>%
   add_header_above(c("Product Lines" = 1, "Sales" = 3), line = F, bold = T) %>%
+  # change the header style
   row_spec(0, color = "grey") %>%
+  # change the table style
   kable_classic(full_width = F) %>%
+  # make the first column bold with a border to the right
   column_spec(1, bold = T, border_right = T) %>%
   # highlight sales over 200 in red
   column_spec(2, color = ifelse(summary_table$`2003` > 200, "red", "black")) %>%
@@ -343,9 +382,9 @@ kable(summary_table,
 See how many different ways you can style the table above. Use the [kableExtra vignette](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html){target="_blank"} for inspiration.
 :::
 
-### Images
+### Images {#rmd-images}
 
-Next, create a code chunk where you want to display an image in your document. Let's put it after the table. We'll use some code that you'll learn more about in Chapter \@ref(viz) to show the range of sales within each country.
+Next, create a code chunk where you want to display an image in your document. Let's put it after the table. We'll use some code that you'll learn more about in Chapter\ \@ref(viz) to show the range of sales within each country.
 
 Notice how the figure caption is formatted in the chunk options.
 
@@ -372,7 +411,7 @@ ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
 
     ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png){style="float: right; width:50%"}
 
-### In-line R
+### Inline R {#rmd-inline-r}
 
 Sometimes you just need to insert a number from the data into some text in your report. Inline R code lets you do that. First, we'll calculate the total number of sales per year in a code block. This block can be hidden in the final report.
 
@@ -405,9 +444,16 @@ The total sales per year were £3,516,980 (2003), £4,724,163 (2004), and £1,79
 In a markdown document, new paragraphs are only created when you skip a blank line. If you include a single line break in a sentence, like above, it won't show up in the report. This can be a good way to organise complicated text with inline code.
 :::
 
-### Output Formats
+### Output Formats {#knit}
 
-You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter \@ref(present). In fact, the book you are reading right now was created using R markdown.
+You can knit using the knit button at the top of the source pane. You can also type the following code into the console (substituting your file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
+
+
+```r
+knitr::knit2html("report.Rmd")
+```
+
+You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
 
 
 ## Glossary {#glossary-reports}
@@ -478,3 +524,187 @@ You can knit your file to PDF or Word if you have the right packages installed o
 -   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
 -   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
 -   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
+
+## Exercises {#exercises-reports}
+
+### New project {#exercises-reports-project}
+
+Create a new project called "demo_report" [section\ \@ref(projects)]
+
+### Set up an R Markdown script {#exercises-reports-setup}
+
+In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [section\ \@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [section\ \@ref(yaml)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+    ---
+    title: "My Job"
+    author: "Me"
+    output:
+      html_document:
+        df_print: kable
+        theme: 
+          version: 4
+          bootswatch: sandstone
+    ---
+
+</div>
+
+
+### R Markdown {#exercises-reports-rmarkdown}
+
+Write a short paragraph describing your job [section\ \@ref(markdown)]. Include a bullet-point list of links to websites that are useful for your job [section\ \@ref(markdown)].
+
+
+<div class='webex-solution'><button>Solution</button>
+
+
+```
+I am a research psychologist who is interested in open science 
+and teaching computational skills.
+
+* [psyTeachR books](https://psyteachr.github.io/)
+* [Google Scholar](https://scholar.google.com/)
+```
+
+
+</div>
+
+
+
+
+### Tables {#exercises-reports-tables}
+
+Use the following code to load a small table of tasks [section\ \@ref(code-chunks)]. Edit it to be relevant to your job (you can change the categories entirely if you want).  
+
+
+```r
+tasks <- tibble::tribble(
+  ~task,                   ~category,      ~frequency,
+  "Respond to tweets",     "social media", "daily",
+  "Create a twitter poll", "social media", "weekly",
+  "Make the sales report", "reporting",    "montly"
+)
+```
+
+Figure out how to make it so that code chunks don't show in your knitted document [section\ \@ref(setup-rmarkdown)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+
+You can set the default to `echo = FALSE` in the setup chunk at the top of the script.
+
+
+```r
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+To set visibility for a specific code chunk, put `echo = FALSE` inside the curly brackets.
+
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, echo=FALSE}</code></pre>
+
+```r
+# code to hide
+```
+
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
+
+</div>
+
+
+Display the table with purple italic column headers. Try different styles using <code class='package'>kableExtra</code> [section\ \@ref(rmd-tables)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+kableExtra::kable(tasks) %>%
+  kableExtra::kable_minimal() %>%
+  kableExtra::row_spec(row = 0, italic = TRUE, color = "purple")
+```
+
+<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:left;font-style: italic;color: purple !important;"> task </th>
+   <th style="text-align:left;font-style: italic;color: purple !important;"> category </th>
+   <th style="text-align:left;font-style: italic;color: purple !important;"> frequency </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Respond to tweets </td>
+   <td style="text-align:left;"> social media </td>
+   <td style="text-align:left;"> daily </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Create a twitter poll </td>
+   <td style="text-align:left;"> social media </td>
+   <td style="text-align:left;"> weekly </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Make the sales report </td>
+   <td style="text-align:left;"> reporting </td>
+   <td style="text-align:left;"> montly </td>
+  </tr>
+</tbody>
+</table>
+
+
+</div>
+
+### Images {#exercises-reports-images}
+
+Add an image of anything relevant [section\ \@ref(rmd-images)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+
+You can add an image from the web using its URL:
+
+`![Applied Data Skills](https://psyteachr.github.io/ads-v1/images/logos/logo.png)`
+    
+Or save an image into your project directory (e.g., in the images folder) and add it using the relative path:
+
+`![Applied Data Skills](images/logos/logo.png)`
+    
+
+</div>
+
+
+### Inline R {#exercises-reports-inline}
+
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [section\ \@ref(rmd-inline-r)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+
+This report was created using <code>&#096;r R.version.string&#096;</code>.
+
+
+</div>
+
+
+### Knit {#exercises-reports-kit}
+
+Knit this document to html [section\ \@ref(knit)]
+
+
+<div class='webex-solution'><button>Solution</button>
+
+Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)
+
+
+```r
+knitr::knit2html("demo.Rmd")
+```
+
+
+</div>
+
+

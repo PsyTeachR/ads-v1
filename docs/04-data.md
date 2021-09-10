@@ -7,6 +7,23 @@
 * Be able to match related data from multiple tables
 
 
+You'll learn about the following functions in this chapter:
+
+* `data()`
+* `rio::inport()`
+* `readr::read_tsv()`
+* `readr::read_csv()`
+* `readxl::read_excel()`
+* `haven::read_sav()`
+* `jsonlite::read_json()`
+* `readr::cols()`
+* `readr::col_character()`
+* `readr::col_double()`
+* `readr::col_logical()`
+* `readr::col_date()`
+
+
+
 
 ```r
 library(tidyverse)
@@ -174,42 +191,42 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 07-Sep-21 </td>
+   <td style="text-align:left;"> 10-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 06-Sep-21 </td>
+   <td style="text-align:left;"> 09-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 05-Sep-21 </td>
+   <td style="text-align:left;"> 08-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 04-Sep-21 </td>
+   <td style="text-align:left;"> 07-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 03-Sep-21 </td>
+   <td style="text-align:left;"> 06-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 02-Sep-21 </td>
+   <td style="text-align:left;"> 05-Sep-21 </td>
   </tr>
 </tbody>
 </table>
@@ -232,7 +249,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "07-Sep-21", "06-Sep-21", "05-Sep-21", "04-Sep-21", "03-Sep-…
+## $ date      <chr> "10-Sep-21", "09-Sep-21", "08-Sep-21", "07-Sep-21", "06-Sep-…
 ```
 
 #### summary() {#summary-function}
@@ -2372,6 +2389,17 @@ base::setdiff(customers, new_customers)
 * [Data transformation heatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
 * [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
+
+## Exercises {#exercises-data}
+
+
+
+
+
+
+
+
+
 
 
 

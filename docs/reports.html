@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="Chapter 2 Reports with R Markdown | Applied Data Skills">
 <meta name="twitter:description" content="2.1 Intended Learning Outcomes Be able to knit a simple reproducible report with R Markdown Be able to edit Markdown to show/hide code and use inline coding Be able to identify different types of...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9.4/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -90,6 +90,35 @@
 <li>Be able to edit Markdown to show/hide code and use inline coding</li>
 <li>Be able to identify different types of data</li>
 </ul>
+<p>You'll learn about the following functions in this chapter:</p>
+<ul>
+<li><code>knitr::opts_chunk$set()</code></li>
+<li><code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kableExtra::kable()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">kableExtra::add_header_above()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">kableExtra::row_spec()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">kableExtra::column_spec()</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kableExtra::kable_classic()</a></code></li>
+</ul>
+<p>The chapter also has examples that uses functions that you'll learn more about in later chapters. Don't worry about learning these functions this week; just copy the examples into your practice script.</p>
+<!--
+* `readr::read_csv()`
+* `nrow()`
+* `min()`
+* `max()`
+* `dplyr::group_by()`
+* `dplyr::count()`
+* `tidyr::pivot_wider()`
+* `print()`
+* `ggplot2::ggplot()`
+* `ggplot2::aes()`
+* `ggplot2::geom_violin()`
+* `ggplot2::xlab()`
+* `ggplot2::scale_y_continuous()`
+* `ggplot2::scale_fill_viridis_d()`
+* `ggplot2::theme()`
+* `dplyr::summarise()`
+* `dplyr::mutate()`
+-->
 </div>
 <div id="setup-repro" class="section level2" number="2.2">
 <h2>
@@ -97,7 +126,8 @@
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="projects" class="section level2" number="2.3">
 <h2>
@@ -113,7 +143,7 @@
 <h3>
 <span class="header-section-number">2.3.1</span> Working Directory<a class="anchor" aria-label="anchor" href="#working-directory"><i class="fas fa-link"></i></a>
 </h3>
-<p>Where should you put all of your files? You usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single <a class="glossary" target="_blank" title="The filepath where R is currently reading and writing files." href="https://psyteachr.github.io/glossary/w#working-directory">working directory</a> where your data and scripts are stored.</p>
+<p>Where should you put all of your files? You usually want to have all of your scripts and data files inside one folder on your computer, the <a class="glossary" target="_blank" title="The filepath where R is currently reading and writing files." href="https://psyteachr.github.io/glossary/w#working-directory">working directory</a>. You can organise files in subdirectories inside this main project directory, such as putting all raw data files in a directory called <code class="path">data</code> and saving any image files to a directory called <code class="path">images</code>.</p>
 <p>Your script should only reference files in three locations, using the appropriate format.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -146,7 +176,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"C:/Carla's_files/yearly_reports/2020-2021/data/widgets_gadgets.xlsx"</span><span class="op">)</span>   <span class="co"># wrong</span></code></pre></div>
 <div class="info">
-<p>Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.</p>
+<p>Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files work for everyone, regardless of their operating system.</p>
 </div>
 </div>
 <div id="naming-things" class="section level3" number="2.3.2">
@@ -190,19 +220,19 @@
 </div>
 </div>
 </div>
-<div id="r-markdown" class="section level2" number="2.4">
+<div id="rmarkdown" class="section level2" number="2.4">
 <h2>
-<span class="header-section-number">2.4</span> R Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4</span> R Markdown<a class="anchor" aria-label="anchor" href="#rmarkdown"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this lesson, we will learn to make an R Markdown document with a table of contents, appropriate headers, tables, images, and inline R.</p>
-<p>We will use <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with three backtick symbols in a row, with some information about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
+<p>We will use <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script mixes blocks of text and code. The text can be written using <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
 <p>If you open up a new R Markdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it. Compiling a document is called <a class="glossary" target="_blank" title="To create an HTML, PDF, or Word document from an R Markdown (Rmd) document" href="https://psyteachr.github.io/glossary/k#knit">knitting</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.</p>
 <div class="try">
 <p>Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown...</code></strong> menu. Change the title and author, then click the knit button to create an html file.</p>
 </div>
-<div id="yaml-header" class="section level3" number="2.4.1">
+<div id="yaml" class="section level3" number="2.4.1">
 <h3>
-<span class="header-section-number">2.4.1</span> YAML Header<a class="anchor" aria-label="anchor" href="#yaml-header"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.1</span> YAML Header<a class="anchor" aria-label="anchor" href="#yaml"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header is where you can set several options.</p>
 <pre><code>---
@@ -233,9 +263,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 </p>
 </div>
 </div>
-<div id="setup" class="section level3" number="2.4.2">
+<div id="setup-rmarkdown" class="section level3" number="2.4.2">
 <h3>
-<span class="header-section-number">2.4.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.2</span> Setup<a class="anchor" aria-label="anchor" href="#setup-rmarkdown"><i class="fas fa-link"></i></a>
 </h3>
 <p>When you create a new R Markdown file in RStudio, a setup chunk is automatically created.</p>
 <div class="verbatim">
@@ -285,9 +315,9 @@ Figure 2.1: Light themes in versions 3 and 4.
 <option value="">load(tidyverse)</option></select></p>
 </div>
 </div>
-<div id="structure" class="section level3" number="2.4.3">
+<div id="markdown" class="section level3" number="2.4.3">
 <h3>
-<span class="header-section-number">2.4.3</span> Markdown<a class="anchor" aria-label="anchor" href="#structure"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.3</span> Markdown<a class="anchor" aria-label="anchor" href="#markdown"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can use the visual <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a> editor if you have RStudio version 1.4 or higher. This will be a button at the top of the source pane with a pen tip. This is useful for complex styling, but you can also use these common plain-text style markups:</p>
 <ul>
@@ -306,11 +336,16 @@ Figure 2.1: Light themes in versions 3 and 4.
 <h3>
 <span class="header-section-number">2.4.4</span> Code Chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can include <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">code chunks</a> that create and display images, tables, or computations to include in your text. Let's start by loading some data.</p>
+<p>You can include <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">code chunks</a> that create and display images, tables, or computations to include in your text. A code block starts and ends with three backtick symbols in a row. After the first three backticks, there is some information about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document).</p>
+<p>Let's start by loading some data.</p>
 <p>First, create a code chunk in your document. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). This code loads some data from the web.</p>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r}</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># https://www.kaggle.com/kyanyoga/sample-sales-data</span>
+<code class="sourceCode R"><span class="co"># Data from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
 <span class="va">sales</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
 <p>You can add comments inside R chunks with the hash symbol (<code>#</code>). The R interpreter will ignore characters from the hash to the end of the line.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># important numbers</span>
@@ -321,16 +356,18 @@ Figure 2.1: Light themes in versions 3 and 4.
 <p>It's usually good practice to start a code chunk with a comment that explains what you're doing there, especially if the code is not explained in the text of the report.</p>
 <p>If you name your objects clearly, you often don't need to add clarifying comments. For example, if I'd named the three objects above <code>total_number_of_sales</code>, <code>first_year</code> and <code>last_year</code>, I would omit the comments. It's a bit of an art to comment your code well.</p>
 </div>
-<div id="tables" class="section level3" number="2.4.5">
+<div id="rmd-tables" class="section level3" number="2.4.5">
 <h3>
-<span class="header-section-number">2.4.5</span> Tables<a class="anchor" aria-label="anchor" href="#tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.5</span> Tables<a class="anchor" aria-label="anchor" href="#rmd-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>Next, create a code chunk where you want to display a summary table. We'll use tidyverse functions you will learn in the <a href="#tidyr">data wrangling lectures</a> to count the number of products per year for each product line.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">summary_table</span> <span class="op">&lt;-</span> <span class="va">sales</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">YEAR_ID</span>, <span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">spread</span><span class="op">(</span>key <span class="op">=</span> <span class="va">YEAR_ID</span>, value <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pivot_wider</span><span class="op">(</span>id_cols <span class="op">=</span> <span class="va">PRODUCTLINE</span>,
+              names_from <span class="op">=</span> <span class="va">YEAR_ID</span>, 
+              values_from <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ## # Groups:   PRODUCTLINE [7]
@@ -345,14 +382,15 @@ Figure 2.1: Light themes in versions 3 and 4.
 ## 7 Vintage Cars        221    284    102</code></pre>
 <p>The table above is OK, but it could be more reader-friendly by changing the column labels and adding a caption. You can also use more specialised functions from <code class="package">kableExtra</code> to format your tables. These are very powerful, but take practice.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">summary_table</span>, 
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">summary_table</span>, 
       col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"2003"</span>, <span class="st">"2004"</span>, <span class="st">"2005"</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Number of sales per product line each year."</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Product Lines"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"Sales"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, line <span class="op">=</span> <span class="cn">F</span>, bold <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># change the header style</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, color <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># change the table style</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># make the first column bold with a border to the right</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span>, bold <span class="op">=</span> <span class="cn">T</span>, border_right <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># highlight sales over 200 in red</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">2</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">summary_table</span><span class="op">$</span><span class="va">`2003`</span> <span class="op">&gt;</span> <span class="fl">200</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -494,9 +532,9 @@ Vintage Cars
 <p>See how many different ways you can style the table above. Use the <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" target="_blank">kableExtra vignette</a> for inspiration.</p>
 </div>
 </div>
-<div id="images" class="section level3" number="2.4.6">
+<div id="rmd-images" class="section level3" number="2.4.6">
 <h3>
-<span class="header-section-number">2.4.6</span> Images<a class="anchor" aria-label="anchor" href="#images"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.6</span> Images<a class="anchor" aria-label="anchor" href="#rmd-images"><i class="fas fa-link"></i></a>
 </h3>
 <p>Next, create a code chunk where you want to display an image in your document. Let's put it after the table. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to show the range of sales within each country.</p>
 <p>Notice how the figure caption is formatted in the chunk options.</p>
@@ -523,9 +561,9 @@ Figure 2.2: The number of items in each order by product line.
 <p>![All the Things by <a href="images/memes/x-all-the-things.png">Hyperbole and a Half</a>{float: right; style="width:50%"} You can also include images that you did not create in R using the markdown syntax for images:</p>
 <pre><code>![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png){style="float: right; width:50%"}</code></pre>
 </div>
-<div id="in-line-r" class="section level3" number="2.4.7">
+<div id="rmd-inline-r" class="section level3" number="2.4.7">
 <h3>
-<span class="header-section-number">2.4.7</span> In-line R<a class="anchor" aria-label="anchor" href="#in-line-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.7</span> Inline R<a class="anchor" aria-label="anchor" href="#rmd-inline-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>Sometimes you just need to insert a number from the data into some text in your report. Inline R code lets you do that. First, we'll calculate the total number of sales per year in a code block. This block can be hidden in the final report.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -549,10 +587,13 @@ Figure 2.2: The number of items in each order by product line.
 <p>In a markdown document, new paragraphs are only created when you skip a blank line. If you include a single line break in a sentence, like above, it won't show up in the report. This can be a good way to organise complicated text with inline code.</p>
 </div>
 </div>
-<div id="output-formats" class="section level3" number="2.4.8">
+<div id="knit" class="section level3" number="2.4.8">
 <h3>
-<span class="header-section-number">2.4.8</span> Output Formats<a class="anchor" aria-label="anchor" href="#output-formats"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.8</span> Output Formats<a class="anchor" aria-label="anchor" href="#knit"><i class="fas fa-link"></i></a>
 </h3>
+<p>You can knit using the knit button at the top of the source pane. You can also type the following code into the console (substituting your file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter <a href="present.html#present">9</a>. In fact, the book you are reading right now was created using R markdown.</p>
 </div>
 </div>
@@ -678,20 +719,204 @@ A structured format for information
 <a href="https://speakerdeck.com/jennybc/how-to-name-files">How to name files</a> by Jenny Bryan</li>
 </ul>
 </div>
+<div id="exercises-reports" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-reports"><i class="fas fa-link"></i></a>
+</h2>
+<div id="exercises-reports-project" class="section level3" number="2.7.1">
+<h3>
+<span class="header-section-number">2.7.1</span> New project<a class="anchor" aria-label="anchor" href="#exercises-reports-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a new project called "demo_report" [section <a href="reports.html#projects">2.3</a>]</p>
+</div>
+<div id="exercises-reports-setup" class="section level3" number="2.7.2">
+<h3>
+<span class="header-section-number">2.7.2</span> Set up an R Markdown script<a class="anchor" aria-label="anchor" href="#exercises-reports-setup"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [section <a href="reports.html#rmarkdown">2.4</a>]. Edit the YAML header to output tables using kable. Set a custom theme. [section <a href="reports.html#yaml">2.4.1</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<pre><code>---
+title: "My Job"
+author: "Me"
+output:
+  html_document:
+    df_print: kable
+    theme: 
+      version: 4
+      bootswatch: sandstone
+---</code></pre>
+</div>
+</div>
+<div id="exercises-reports-rmarkdown" class="section level3" number="2.7.3">
+<h3>
+<span class="header-section-number">2.7.3</span> R Markdown<a class="anchor" aria-label="anchor" href="#exercises-reports-rmarkdown"><i class="fas fa-link"></i></a>
+</h3>
+<p>Write a short paragraph describing your job [section <a href="reports.html#markdown">2.4.3</a>]. Include a bullet-point list of links to websites that are useful for your job [section <a href="reports.html#markdown">2.4.3</a>].</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<pre><code>I am a research psychologist who is interested in open science 
+and teaching computational skills.
+
+* [psyTeachR books](https://psyteachr.github.io/)
+* [Google Scholar](https://scholar.google.com/)</code></pre>
+</div>
+</div>
+<div id="exercises-reports-tables" class="section level3" number="2.7.4">
+<h3>
+<span class="header-section-number">2.7.4</span> Tables<a class="anchor" aria-label="anchor" href="#exercises-reports-tables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use the following code to load a small table of tasks [section <a href="reports.html#code-chunks">2.4.4</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
+  <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
+  <span class="st">"Create a twitter poll"</span>, <span class="st">"social media"</span>, <span class="st">"weekly"</span>,
+  <span class="st">"Make the sales report"</span>, <span class="st">"reporting"</span>,    <span class="st">"montly"</span>
+<span class="op">)</span></code></pre></div>
+<p>Figure out how to make it so that code chunks don't show in your knitted document [section <a href="reports.html#setup-rmarkdown">2.4.2</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>You can set the default to <code>echo = FALSE</code> in the setup chunk at the top of the script.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>To set visibility for a specific code chunk, put <code>echo = FALSE</code> inside the curly brackets.</p>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r, echo=FALSE}</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># code to hide</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
+</div>
+<p>Display the table with purple italic column headers. Try different styles using <code class="package">kableExtra</code> [section <a href="reports.html#rmd-tables">2.4.5</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<thead><tr>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+task
+</th>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+category
+</th>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+frequency
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Respond to tweets
+</td>
+<td style="text-align:left;">
+social media
+</td>
+<td style="text-align:left;">
+daily
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Create a twitter poll
+</td>
+<td style="text-align:left;">
+social media
+</td>
+<td style="text-align:left;">
+weekly
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Make the sales report
+</td>
+<td style="text-align:left;">
+reporting
+</td>
+<td style="text-align:left;">
+montly
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="exercises-reports-images" class="section level3" number="2.7.5">
+<h3>
+<span class="header-section-number">2.7.5</span> Images<a class="anchor" aria-label="anchor" href="#exercises-reports-images"><i class="fas fa-link"></i></a>
+</h3>
+<p>Add an image of anything relevant [section <a href="reports.html#rmd-images">2.4.6</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>You can add an image from the web using its URL:</p>
+<p><code>![Applied Data Skills](https://psyteachr.github.io/ads-v1/images/logos/logo.png)</code></p>
+<p>Or save an image into your project directory (e.g., in the images folder) and add it using the relative path:</p>
+<p><code>![Applied Data Skills](images/logos/logo.png)</code></p>
+</div>
+</div>
+<div id="exercises-reports-inline" class="section level3" number="2.7.6">
+<h3>
+<span class="header-section-number">2.7.6</span> Inline R<a class="anchor" aria-label="anchor" href="#exercises-reports-inline"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object <code>R.version.string</code>. [section <a href="reports.html#rmd-inline-r">2.4.7</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>This report was created using <code>`r R.version.string`</code>.</p>
+</div>
+</div>
+<div id="exercises-reports-kit" class="section level3" number="2.7.7">
+<h3>
+<span class="header-section-number">2.7.7</span> Knit<a class="anchor" aria-label="anchor" href="#exercises-reports-kit"><i class="fas fa-link"></i></a>
+</h3>
+<p>Knit this document to html [section <a href="reports.html#knit">2.4.8</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"demo.Rmd"</span><span class="op">)</span></code></pre></div>
+</div>
+
+</div>
+</div>
 </div>
 <script>
 
 /* update total correct if #webex-total_correct exists */
 update_total_correct = function() {
+  console.log("webex: update total_correct");
+
   if (t = document.getElementById("webex-total_correct")) {
-    t.innerHTML =
-      document.getElementsByClassName("webex-correct").length + " of " +
-      document.getElementsByClassName("webex-solveme").length + " correct";
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
   }
 }
 
 /* webex-solution button toggling function */
 b_func = function() {
+  console.log("webex: toggle hide");
+  
   var cl = this.parentElement.classList;
   if (cl.contains('open')) {
     cl.remove("open");
@@ -702,6 +927,8 @@ b_func = function() {
 
 /* function for checking solveme answers */
 solveme_func = function(e) {
+  console.log("webex: check solveme");
+
   var real_answers = JSON.parse(this.dataset.answer);
   var my_answer = this.value;
   var cl = this.classList;
@@ -745,7 +972,50 @@ solveme_func = function(e) {
   update_total_correct();
 }
 
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
 window.onload = function() {
+  console.log("onload");
   /* set up solution buttons */
   var buttons = document.getElementsByTagName("button");
 
@@ -781,6 +1051,18 @@ window.onload = function() {
     solveme[i].onkeyup = solveme_func;
     solveme[i].onchange = solveme_func;
   }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
 
   update_total_correct();
 }
@@ -811,19 +1093,30 @@ $( document ).ready(function() {
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#r-markdown"><span class="header-section-number">2.4</span> R Markdown</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#yaml-header"><span class="header-section-number">2.4.1</span> YAML Header</a></li>
-<li><a class="nav-link" href="#setup"><span class="header-section-number">2.4.2</span> Setup</a></li>
-<li><a class="nav-link" href="#structure"><span class="header-section-number">2.4.3</span> Markdown</a></li>
+<a class="nav-link" href="#rmarkdown"><span class="header-section-number">2.4</span> R Markdown</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#yaml"><span class="header-section-number">2.4.1</span> YAML Header</a></li>
+<li><a class="nav-link" href="#setup-rmarkdown"><span class="header-section-number">2.4.2</span> Setup</a></li>
+<li><a class="nav-link" href="#markdown"><span class="header-section-number">2.4.3</span> Markdown</a></li>
 <li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.4.4</span> Code Chunks</a></li>
-<li><a class="nav-link" href="#tables"><span class="header-section-number">2.4.5</span> Tables</a></li>
-<li><a class="nav-link" href="#images"><span class="header-section-number">2.4.6</span> Images</a></li>
-<li><a class="nav-link" href="#in-line-r"><span class="header-section-number">2.4.7</span> In-line R</a></li>
-<li><a class="nav-link" href="#output-formats"><span class="header-section-number">2.4.8</span> Output Formats</a></li>
+<li><a class="nav-link" href="#rmd-tables"><span class="header-section-number">2.4.5</span> Tables</a></li>
+<li><a class="nav-link" href="#rmd-images"><span class="header-section-number">2.4.6</span> Images</a></li>
+<li><a class="nav-link" href="#rmd-inline-r"><span class="header-section-number">2.4.7</span> Inline R</a></li>
+<li><a class="nav-link" href="#knit"><span class="header-section-number">2.4.8</span> Output Formats</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.5</span> Glossary</a></li>
 <li><a class="nav-link" href="#resources-repro"><span class="header-section-number">2.6</span> Further Resources</a></li>
+<li>
+<a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.7</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.7.1</span> New project</a></li>
+<li><a class="nav-link" href="#exercises-reports-setup"><span class="header-section-number">2.7.2</span> Set up an R Markdown script</a></li>
+<li><a class="nav-link" href="#exercises-reports-rmarkdown"><span class="header-section-number">2.7.3</span> R Markdown</a></li>
+<li><a class="nav-link" href="#exercises-reports-tables"><span class="header-section-number">2.7.4</span> Tables</a></li>
+<li><a class="nav-link" href="#exercises-reports-images"><span class="header-section-number">2.7.5</span> Images</a></li>
+<li><a class="nav-link" href="#exercises-reports-inline"><span class="header-section-number">2.7.6</span> Inline R</a></li>
+<li><a class="nav-link" href="#exercises-reports-kit"><span class="header-section-number">2.7.7</span> Knit</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -841,7 +1134,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-07.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -53,7 +53,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Overview</a></li>
-<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R, RStudio and R Markdown</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
 <li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="active" href="data.html"><span class="header-section-number">4</span> Data Import and Relations</a></li>
@@ -91,6 +91,10 @@
 <li>Be able to identify and handle common problems with data import</li>
 <li>Be able to match related data from multiple tables</li>
 </ul>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># includes readr</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></code></pre></div>
 <p>You'll learn about the following functions in this chapter:</p>
 <ul>
 <li><code><a href="https://rdrr.io/r/utils/data.html">data()</a></code></li>
@@ -99,16 +103,12 @@
 <li><code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code></li>
 <li><code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code></li>
 <li><code><a href="https://haven.tidyverse.org/reference/read_spss.html">haven::read_sav()</a></code></li>
-<li><code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">jsonlite::read_json()</a></code></li>
 <li><code><a href="https://readr.tidyverse.org/reference/cols.html">readr::cols()</a></code></li>
 <li><code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::col_character()</a></code></li>
 <li><code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::col_double()</a></code></li>
 <li><code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">readr::col_logical()</a></code></li>
 <li><code><a href="https://readr.tidyverse.org/reference/parse_datetime.html">readr::col_date()</a></code></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="data-import" class="section level2" number="4.2">
 <h2>
@@ -120,14 +120,14 @@
 <span class="header-section-number">4.2.1</span> Built-in data<a class="anchor" aria-label="anchor" href="#builtin"><i class="fas fa-link"></i></a>
 </h3>
 <p>R comes with built-in datasets. Some packages, like <code class="package">tidyr</code>, also contain data. The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function lists the datasets available in a <a class="glossary" target="_blank" title="A group of R functions." href="https://psyteachr.github.io/glossary/p#package">package</a>.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># lists datasets in tidyr</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"tidyr"</span><span class="op">)</span></code></pre></div>
 <p>Type the name of a dataset into the <a class="glossary" target="_blank" title="The pane in RStudio where you can type in commands and view output messages." href="https://psyteachr.github.io/glossary/c#console">console</a> to see the data. Type <code>?table1</code> into the console to see the dataset description.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">table1</span></code></pre></div>
 <p>You can also use the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function to load a dataset into your <a class="glossary" target="_blank" title="The interactive workspace where your script runs" href="https://psyteachr.github.io/glossary/g#global-environment">global environment</a>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loads table1 into the environment</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"table1"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -141,26 +141,24 @@
 <span class="header-section-number">4.2.2.1</span> rio::import()<a class="anchor" aria-label="anchor" href="#rioimport"><i class="fas fa-link"></i></a>
 </h4>
 <p>The <code class="package">rio</code> package has very straightforward functions for reading and saving data: <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span></code> and <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span> <span class="co"># tab-separated values</span>
 <span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span> <span class="co"># comma-separated values</span>
 <span class="va">demo_xls</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span> <span class="co"># Excel format</span>
-<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span> <span class="co"># SPSS format</span>
-<span class="va">demo_json</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.json"</span><span class="op">)</span> <span class="co"># JSON format</span></code></pre></div>
+<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span> <span class="co"># SPSS format</span></code></pre></div>
 </div>
 <div id="file-type-specific-import-functions" class="section level4" number="4.2.2.2">
 <h4>
 <span class="header-section-number">4.2.2.2</span> File type specific import functions<a class="anchor" aria-label="anchor" href="#file-type-specific-import-functions"><i class="fas fa-link"></i></a>
 </h4>
 <p>However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
 <span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
 <span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
-<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span>
-<span class="va">demo_json</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">read_json</a></span><span class="op">(</span><span class="st">"data/demo.json"</span><span class="op">)</span></code></pre></div>
+<span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
 <p>The <code class="package">readr</code> functions display a message when you import data explaining what <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -172,7 +170,7 @@
 ##   date = col_character()
 ## )</code></pre>
 <p>If it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
   character <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>,
   integer <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
@@ -191,7 +189,7 @@
 <span class="header-section-number">4.2.2.3</span> Google Sheets<a class="anchor" aria-label="anchor" href="#google-sheets"><i class="fas fa-link"></i></a>
 </h4>
 <p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/googlesheets4">googlesheets4</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
@@ -219,7 +217,7 @@
 </h4>
 <p>The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows.</p>
 <p>Let's look at the <code>demo_tsv</code> table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_tsv</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -352,7 +350,7 @@ TRUE
 <span class="header-section-number">4.2.3.3</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h4>
 <p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name. You can learn about data types in Appendix <a href="data-types.html#data-types">D</a>.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 5
@@ -367,7 +365,7 @@ TRUE
 <span class="header-section-number">4.2.3.4</span> summary()<a class="anchor" aria-label="anchor" href="#summary-function"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can get a quick summary of a dataset with the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>##   character            integer         double        logical   
 ##  Length:6           Min.   :1.00   Min.   :1.50   Min.   :0.0  
@@ -394,7 +392,7 @@ TRUE
 <p>If we are creating a small data table from scratch, we can use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
 <p>Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
 <p>If you don't know the value for one of the cells, you can enter <code>NA</code>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Katara"</span>, <span class="st">"Toph"</span>, <span class="st">"Sokka"</span><span class="op">)</span>,
   bends <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"water"</span>, <span class="st">"earth"</span>, <span class="cn">NA</span><span class="op">)</span>,
@@ -454,7 +452,7 @@ TRUE
 </table></div>
 </div>
 <p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">avatar_by_row</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
   <span class="op">~</span><span class="va">name</span>,    <span class="op">~</span><span class="va">bends</span>,  <span class="op">~</span><span class="va">friendly</span>,
   <span class="st">"Katara"</span>, <span class="st">"water"</span>, <span class="cn">TRUE</span>,
@@ -470,12 +468,12 @@ TRUE
 <span class="header-section-number">4.2.5</span> Writing data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>If you have data that you want to save to a CSV file, use <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>, as follows.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">avatar</span>, <span class="st">"data/avatar.csv"</span><span class="op">)</span></code></pre></div>
 <p>This will save the data in CSV format to your working directory.</p>
 <p>Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account.</p>
 <p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
 <span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
 
@@ -500,7 +498,7 @@ TRUE
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create the table</span>
 <span class="va">family</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
   <span class="op">~</span><span class="va">first_name</span>, <span class="op">~</span><span class="va">last_name</span>, <span class="op">~</span><span class="va">age</span>,
@@ -526,14 +524,14 @@ Solution
 </h3>
 <p>What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like <code><span class="fl">1.2</span></code> get represented as <code><span class="st">"1.2"</span></code>, which will cause very weird errors like <code>"100" &lt; "9" == TRUE</code>. You can catch this by using <code><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code> to check your data.</p>
 <p>The data directory you downloaded contains a file called "mess.csv". Let's try loading this dataset.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in (function (input = "", file = NULL, text = NULL, cmd = NULL, :
 ## Stopped early on line 5. Expected 7 fields but found 0. Consider fill=TRUE
 ## and comment.char=. First discarded non-empty line: &lt;&lt;junk,missing,0.72,b,1,2 -
 ## 3,2020-01-2&gt;&gt;</code></pre>
 <p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -561,7 +559,7 @@ junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
 
 junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <p>First, the file starts with a note: "This is my messy dataset". We want to skip the first two lines. You can do this with the argument <code>skip</code> in <code>read_csv()</code>.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -574,7 +572,7 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 ##   min_max = col_character(),
 ##   date = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -1283,7 +1281,7 @@ z
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># omitted values are guessed</span>
 <span class="co"># ?col_date for format options</span>
 <span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -1300,13 +1298,13 @@ z
 ## row   col   expected  actual            file
 ##   2 order an integer missing 'data/mess.csv'</code></pre>
 <p>You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (<code>2</code>) and column (<code>order</code>) the error was found in, what kind of data was expected (<code>integer</code>), and what the actual value was (<code><span class="st">"missing"</span></code>). If you specifically tell <code><span class="fu">read_csv</span><span class="op">(</span><span class="op">)</span></code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what the missing values were recorded as with the <code>na</code> argument.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidiest</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                    skip <span class="op">=</span> <span class="fl">2</span>,
                    na <span class="op">=</span> <span class="st">"missing"</span>,
                    col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
 <p>Now <code>order</code> is an integer where "missing" is now <code>NA</code>, <code>good</code> is a logical value, where <code><span class="fl">0</span></code> and <code><span class="cn">F</span></code> are converted to <code><span class="cn">FALSE</span></code> and <code><span class="fl">1</span></code> and <code><span class="cn">T</span></code> are converted to <code><span class="cn">TRUE</span></code>, and <code>date</code> is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the <code>min_max</code> column containing two different types of data.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidiest</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -1862,7 +1860,7 @@ FALSE
 </h2>
 <p>First, we'll create two small data tables.</p>
 <p><code>customer</code> has id, gender and age for customers 1-5. Age and gender are missing for customer 3.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
   gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"m"</span>, <span class="cn">NA</span>, <span class="st">"nb"</span>, <span class="st">"f"</span><span class="op">)</span>,
@@ -1939,7 +1937,7 @@ f
 </tbody>
 </table></div>
 <p><code>orders</code> has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">orders</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,
   items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">18</span>, <span class="fl">21</span>, <span class="fl">23</span>, <span class="fl">9</span>, <span class="fl">11</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">3</span><span class="op">)</span>
@@ -2061,7 +2059,7 @@ Figure 4.1: Left Join
 </div>
 </div>
 <p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">left_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2190,7 +2188,7 @@ Figure 4.2: Left Join (reversed)
 </div>
 </div>
 <p>The order of tables is swapped here, so the result is all rows from the <code>orders</code> table joined to any matching rows from the <code>customers</code> table.</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">left_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2352,7 +2350,7 @@ Figure 4.3: Right Join
 </div>
 </div>
 <p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything that matches from the first (left) table.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">right_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2517,7 +2515,7 @@ Figure 4.4: Inner Join
 </div>
 </div>
 <p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">inner_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2637,7 +2635,7 @@ Figure 4.5: Full Join
 </div>
 </div>
 <p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to <code>NA</code>.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">full_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2819,7 +2817,7 @@ Figure 4.6: Semi Join
 </div>
 </div>
 <p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">semi_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2894,7 +2892,7 @@ Figure 4.7: Semi Join (Reversed)
 </div>
 </div>
 <p>Order matters in a semi join.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">semi_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2972,7 +2970,7 @@ Figure 4.8: Anti Join
 </div>
 </div>
 <p>An <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">anti_join</span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -3009,7 +3007,7 @@ Figure 4.9: Anti Join (Reversed)
 </div>
 </div>
 <p>Order matters in an anti join.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">anti_join</span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -3062,7 +3060,7 @@ items
 </h4>
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
 <p>Here we'll add customer data for customers 6-9 and bind that to the original customer table.</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">9</span>,
   gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nb"</span>, <span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"f"</span><span class="op">)</span>,
@@ -3188,7 +3186,7 @@ f
 </div>
 <p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
 <p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> (see below) to avoid duplicates.</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
   age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">16</span>, <span class="fl">20</span>, <span class="fl">19</span><span class="op">)</span>,
@@ -3363,7 +3361,7 @@ f
 <span class="header-section-number">4.3.3.2</span> bind_cols()<a class="anchor" aria-label="anchor" href="#bind_cols"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_info</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -3471,7 +3469,7 @@ blue
 <span class="header-section-number">4.3.4.1</span> intersect()<a class="anchor" aria-label="anchor" href="#intersect"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/base/sets.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">9</span><span class="op">)</span>,
   age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>, <span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">16</span>, <span class="fl">20</span>, <span class="fl">19</span><span class="op">)</span>,
@@ -3507,7 +3505,7 @@ f
 </div>
 <div class="warning">
 <p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has an <code><a href="https://rdrr.io/r/base/sets.html">intersect()</a></code> function. The error message can be confusing and looks something like this:</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## Error: Must subset rows with a valid subscript vector.
 ## ℹ Logical subscripts must match the size of the indexed input.
@@ -3519,7 +3517,7 @@ f
 <span class="header-section-number">4.3.4.2</span> union()<a class="anchor" aria-label="anchor" href="#union"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> returns all the rows from both tables, removing duplicate rows.</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -3650,7 +3648,7 @@ f
 </div>
 <div class="warning">
 <p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/r/base/sets.html">union()</a></code> function. You usually won't get an error message, but the output won't be what you expect.</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1 2 3 4 5
@@ -3676,7 +3674,7 @@ f
 <span class="header-section-number">4.3.4.3</span> setdiff()<a class="anchor" aria-label="anchor" href="#setdiff"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -3740,7 +3738,7 @@ nb
 </table></div>
 </div>
 <p>Order matters for <code>setdiff</code>.</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">new_customers</span>, <span class="va">customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -3816,7 +3814,7 @@ f
 </div>
 <div class="warning">
 <p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code><a href="https://rdrr.io/r/base/sets.html">setdiff()</a></code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">

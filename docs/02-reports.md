@@ -88,7 +88,7 @@ Do not load it in using an <a class='glossary' target='_blank' title='A file pat
 
 
 ```r
-dat <- read_csv("C:/Carla's_files/yearly_reports/2020-2021/data/widgets_gadgets.xlsx")   # wrong
+dat <- read_csv("C:/Carla's_files/2020-2021/data/widgets_gadgets.xlsx")   # wrong
 ```
 
 ::: {.info data-latex=""}
@@ -133,7 +133,7 @@ Think of other ways to name the files above. Look at some of your own project fi
 
 We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
-If you open up a new R Markdown file from a template, you will see an example document with several b<a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> in it. 
+If you open up a new R Markdown file from a template, you will see an example document with several <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> in it. 
 
 ### Knitting {#rmd-knit}
 
@@ -267,7 +267,7 @@ You can include <a class='glossary' target='_blank' title='A section of code in 
 
 Let's start by loading some data.
 
-First, create a code chunk in your document. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). This code loads some data from the web.
+First, create a code chunk in your document. This code loads some data from the web. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). 
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r}</code></pre>
 
@@ -304,23 +304,65 @@ summary_table <- sales %>%
   count() %>%
   pivot_wider(id_cols = PRODUCTLINE,
               names_from = YEAR_ID, 
-              values_from = n) %>%
-  print()
+              values_from = n)
+
+kable(summary_table)
 ```
 
-```
-## # A tibble: 7 x 4
-## # Groups:   PRODUCTLINE [7]
-##   PRODUCTLINE      `2003` `2004` `2005`
-##   <chr>             <int>  <int>  <int>
-## 1 Classic Cars        366    442    159
-## 2 Motorcycles         109    164     58
-## 3 Planes               85    161     60
-## 4 Ships                81    115     38
-## 5 Trains               28     37     12
-## 6 Trucks and Buses    110    142     49
-## 7 Vintage Cars        221    284    102
-```
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> PRODUCTLINE </th>
+   <th style="text-align:right;"> 2003 </th>
+   <th style="text-align:right;"> 2004 </th>
+   <th style="text-align:right;"> 2005 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Classic Cars </td>
+   <td style="text-align:right;"> 366 </td>
+   <td style="text-align:right;"> 442 </td>
+   <td style="text-align:right;"> 159 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Motorcycles </td>
+   <td style="text-align:right;"> 109 </td>
+   <td style="text-align:right;"> 164 </td>
+   <td style="text-align:right;"> 58 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Planes </td>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:right;"> 161 </td>
+   <td style="text-align:right;"> 60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ships </td>
+   <td style="text-align:right;"> 81 </td>
+   <td style="text-align:right;"> 115 </td>
+   <td style="text-align:right;"> 38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Trains </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 37 </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Trucks and Buses </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 142 </td>
+   <td style="text-align:right;"> 49 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Vintage Cars </td>
+   <td style="text-align:right;"> 221 </td>
+   <td style="text-align:right;"> 284 </td>
+   <td style="text-align:right;"> 102 </td>
+  </tr>
+</tbody>
+</table>
 
 The table above is OK, but it could be more reader-friendly by changing the column labels and adding a caption. You can also use more specialised functions from <code class='package'>kableExtra</code> to format your tables. These are very powerful, but take practice.
 
@@ -412,7 +454,7 @@ Next, create a code chunk where you want to display an image in your document. L
 
 Notice how the figure caption is formatted in the chunk options.
 
-<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r item-by-line, fig.cap="The number of items in each order by product line."}</code></pre>
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r item-by-line, fig.cap="Items by product line."}</code></pre>
 
 ```r
 ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
@@ -426,14 +468,19 @@ ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
         axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
 <div class="figure" style="text-align: center">
-<img src="02-reports_files/figure-html/item-by-line-1.png" alt="The number of items in each order by product line." width="100%" />
-<p class="caption">(\#fig:item-by-line)The number of items in each order by product line.</p>
-</div><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+<img src="02-reports_files/figure-html/item-by-line-display-1.png" alt="Items by product line." width="100%" />
+<p class="caption">(\#fig:item-by-line-display)Items by product line.</p>
+</div>
 
-![All the Things by [Hyperbole and a Half](images/memes/x-all-the-things.png){float: right; style="width:50%"} You can also include images that you did not create in R using the markdown syntax for images:
 
-    ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png){style="float: right; width:50%"}
+You can also include images that you did not create in R using the markdown syntax for images:
+
+    ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
+
+![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
 
 ### Inline R {#rmd-inline-r}
 
@@ -454,12 +501,12 @@ sales05 <- sales_per_year %>% filter(YEAR_ID == 2005) %>% pull(fmt)
 
 You can insert the results into a paragraph with inline R code that looks like this:
 
-```{=html}
+
 <pre><code>The total sales per year were 
-£3,516,980 (2003), 
-£4,724,163 (2004), and 
-£1,791,487 (2005).</code></pre>
-```
+£<code>&#096;r sales03&#096;</code> (2003), 
+£<code>&#096;r sales04&#096;</code> (2004), and 
+£<code>&#096;r sales05&#096;</code> (2005).</code></pre>
+
 **Rendered text:**
 
 The total sales per year were £3,516,980 (2003), £4,724,163 (2004), and £1,791,487 (2005).
@@ -546,11 +593,11 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 ### New project {#exercises-reports-project}
 
-Create a new project called "demo_report" [section\ \@ref(projects)]
+Create a new project called "demo_report" [\@ref(projects)]
 
 ### Set up an R Markdown script {#exercises-reports-setup}
 
-In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [section\ \@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [section\ \@ref(yaml)]
+In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [\@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [\@ref(yaml)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -571,7 +618,7 @@ In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [
 
 ### R Markdown {#exercises-reports-rmarkdown}
 
-Write a short paragraph describing your job [section\ \@ref(markdown)]. Include a bullet-point list of links to websites that are useful for your job [section\ \@ref(markdown)].
+Write a short paragraph describing your job [\@ref(markdown)]. Include a bullet-point list of links to websites that are useful for your job [\@ref(markdown)].
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -593,7 +640,7 @@ and teaching computational skills.
 
 ### Tables {#exercises-reports-tables}
 
-Use the following code to load a small table of tasks [section\ \@ref(code-chunks)]. Edit it to be relevant to your job (you can change the categories entirely if you want).  
+Use the following code to load a small table of tasks [\@ref(code-chunks)]. Edit it to be relevant to your job (you can change the categories entirely if you want).  
 
 
 ```r
@@ -605,7 +652,7 @@ tasks <- tibble::tribble(
 )
 ```
 
-Figure out how to make it so that code chunks don't show in your knitted document [section\ \@ref(rmd-setup)]
+Figure out how to make it so that code chunks don't show in your knitted document [\@ref(rmd-setup)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -632,7 +679,7 @@ To set visibility for a specific code chunk, put `echo = FALSE` inside the curly
 </div>
 
 
-Display the table with purple italic column headers. Try different styles using <code class='package'>kableExtra</code> [section\ \@ref(rmd-tables)]
+Display the table with purple italic column headers. Try different styles using <code class='package'>kableExtra</code> [\@ref(rmd-tables)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -675,7 +722,7 @@ kableExtra::kable(tasks) %>%
 
 ### Images {#exercises-reports-images}
 
-Add an image of anything relevant [section\ \@ref(rmd-images)]
+Add an image of anything relevant [\@ref(rmd-images)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -695,7 +742,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [section\ \@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -707,9 +754,9 @@ This report was created using <code>&#096;r R.version.string&#096;</code>.
 </div>
 
 
-### Knit {#exercises-reports-kit}
+### Knit {#exercises-reports-knit}
 
-Knit this document to html [section\ \@ref(rmd-knit)]
+Knit this document to html [\@ref(rmd-knit)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -718,7 +765,7 @@ Click on the knit button or run the following code in the console. (Do not put i
 
 
 ```r
-knitr::knit2html("demo.Rmd")
+knitr::knit2html("job.Rmd")
 ```
 
 

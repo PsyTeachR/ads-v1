@@ -85,7 +85,7 @@ dat <- read_csv("data/widgets_gadgets.xlsx")  # correct
 Do not load it in using an `r glossary("absolute path")`:
 
 ```{r abs-path, eval = FALSE}
-dat <- read_csv("C:/Carla's_files/yearly_reports/2020-2021/data/widgets_gadgets.xlsx")   # wrong
+dat <- read_csv("C:/Carla's_files/2020-2021/data/widgets_gadgets.xlsx")   # wrong
 ```
 
 ::: {.info data-latex=""}
@@ -130,7 +130,7 @@ Think of other ways to name the files above. Look at some of your own project fi
 
 We will use `r glossary("R Markdown")` to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using `r glossary("markdown")`, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
-If you open up a new R Markdown file from a template, you will see an example document with several b`r glossary("chunk", "code chunks")` in it. 
+If you open up a new R Markdown file from a template, you will see an example document with several `r glossary("chunk", "code chunks")` in it. 
 
 ### Knitting {#rmd-knit}
 
@@ -254,7 +254,7 @@ You can include `r glossary("chunk", "code chunks")` that create and display ima
 
 Let's start by loading some data.
 
-First, create a code chunk in your document. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). This code loads some data from the web.
+First, create a code chunk in your document. This code loads some data from the web. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). 
 
 ```{r, message=FALSE, verbatim="r"}
 # Data from https://www.kaggle.com/kyanyoga/sample-sales-data
@@ -285,8 +285,9 @@ summary_table <- sales %>%
   count() %>%
   pivot_wider(id_cols = PRODUCTLINE,
               names_from = YEAR_ID, 
-              values_from = n) %>%
-  print()
+              values_from = n)
+
+kable(summary_table)
 ```
 
 The table above is OK, but it could be more reader-friendly by changing the column labels and adding a caption. You can also use more specialised functions from `r pkg("kableExtra")` to format your tables. These are very powerful, but take practice.
@@ -318,7 +319,7 @@ Next, create a code chunk where you want to display an image in your document. L
 
 Notice how the figure caption is formatted in the chunk options.
 
-```{r item-by-line, fig.cap="The number of items in each order by product line.", verbatim="r item-by-line, fig.cap=\"The number of items in each order by product line.\""}
+```{r item-by-line, eval=F, verbatim="r item-by-line, fig.cap=\"Items by product line.\""}
 ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
   geom_violin(alpha = 0.5, show.legend = FALSE) +
   xlab("") +
@@ -330,9 +331,24 @@ ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
         axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
-![All the Things by [Hyperbole and a Half](images/memes/x-all-the-things.png){float: right; style="width:50%"} You can also include images that you did not create in R using the markdown syntax for images:
+```{r item-by-line-display, echo=F, fig.cap="Items by product line."}
+ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
+  geom_violin(alpha = 0.5, show.legend = FALSE) +
+  xlab("") +
+  scale_y_continuous(name = "Sales per order", 
+                     breaks = seq(0, 14000, 2000), 
+                     labels = paste0("£", seq(0, 14, 2), "K")) +
+  scale_fill_viridis_d() +
+  theme(text = element_text(size = 20, family = "Times"),
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
 
-    ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png){style="float: right; width:50%"}
+
+You can also include images that you did not create in R using the markdown syntax for images:
+
+    ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
+
+![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
 
 ### Inline R {#rmd-inline-r}
 
@@ -352,12 +368,12 @@ sales05 <- sales_per_year %>% filter(YEAR_ID == 2005) %>% pull(fmt)
 
 You can insert the results into a paragraph with inline R code that looks like this:
 
-```{=html}
+
 <pre><code>The total sales per year were 
-£`r sales03` (2003), 
-£`r sales04` (2004), and 
-£`r sales05` (2005).</code></pre>
-```
+£`r backtick("r sales03")` (2003), 
+£`r backtick("r sales04")` (2004), and 
+£`r backtick("r sales05")` (2005).</code></pre>
+
 **Rendered text:**
 
 The total sales per year were £`r sales03` (2003), £`r sales04` (2004), and £`r sales05` (2005).
@@ -389,11 +405,11 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 ### New project {#exercises-reports-project}
 
-Create a new project called "demo_report" [section\ \@ref(projects)]
+Create a new project called "demo_report" [\@ref(projects)]
 
 ### Set up an R Markdown script {#exercises-reports-setup}
 
-In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [section\ \@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [section\ \@ref(yaml)]
+In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [\@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [\@ref(yaml)]
 
 `r hide()`
     ---
@@ -410,7 +426,7 @@ In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [
 
 ### R Markdown {#exercises-reports-rmarkdown}
 
-Write a short paragraph describing your job [section\ \@ref(markdown)]. Include a bullet-point list of links to websites that are useful for your job [section\ \@ref(markdown)].
+Write a short paragraph describing your job [\@ref(markdown)]. Include a bullet-point list of links to websites that are useful for your job [\@ref(markdown)].
 
 `r hide()`
 
@@ -428,7 +444,7 @@ and teaching computational skills.
 
 ### Tables {#exercises-reports-tables}
 
-Use the following code to load a small table of tasks [section\ \@ref(code-chunks)]. Edit it to be relevant to your job (you can change the categories entirely if you want).  
+Use the following code to load a small table of tasks [\@ref(code-chunks)]. Edit it to be relevant to your job (you can change the categories entirely if you want).  
 
 ```{r}
 tasks <- tibble::tribble(
@@ -439,7 +455,7 @@ tasks <- tibble::tribble(
 )
 ```
 
-Figure out how to make it so that code chunks don't show in your knitted document [section\ \@ref(rmd-setup)]
+Figure out how to make it so that code chunks don't show in your knitted document [\@ref(rmd-setup)]
 
 `r hide()`
 
@@ -457,7 +473,7 @@ To set visibility for a specific code chunk, put `echo = FALSE` inside the curly
 
 `r unhide()`
 
-Display the table with purple italic column headers. Try different styles using `r pkg("kableExtra")` [section\ \@ref(rmd-tables)]
+Display the table with purple italic column headers. Try different styles using `r pkg("kableExtra")` [\@ref(rmd-tables)]
 
 ```{r, webex.hide=T}
 kableExtra::kable(tasks) %>%
@@ -467,7 +483,7 @@ kableExtra::kable(tasks) %>%
 
 ### Images {#exercises-reports-images}
 
-Add an image of anything relevant [section\ \@ref(rmd-images)]
+Add an image of anything relevant [\@ref(rmd-images)]
 
 `r hide()`
 
@@ -483,7 +499,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using `r R.version.string`." You can get the version using the object `R.version.string`. [section\ \@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using `r R.version.string`." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 `r hide()`
 
@@ -491,15 +507,15 @@ This report was created using `r backtick("r R.version.string")`.
 
 `r unhide()`
 
-### Knit {#exercises-reports-kit}
+### Knit {#exercises-reports-knit}
 
-Knit this document to html [section\ \@ref(rmd-knit)]
+Knit this document to html [\@ref(rmd-knit)]
 
 `r hide()`
 Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)
 
 ```{r, eval = FALSE}
-knitr::knit2html("demo.Rmd")
+knitr::knit2html("job.Rmd")
 ```
 
 `r unhide()`

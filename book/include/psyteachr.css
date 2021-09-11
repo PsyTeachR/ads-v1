@@ -120,6 +120,10 @@ div.verbatim pre.sourceCode {
   padding: 0 1em !important;
 }
 
+.webex-solution div.verbatim {
+  margin: 0.5em;
+}
+
 
 /* external link icons */
 a[target="_blank"]::after {

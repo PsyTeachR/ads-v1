@@ -1,15 +1,6 @@
 fig:img-bootswatch
 tab:unnamed-chunk-6
-fig:item-by-line
-fig:img-left-join
-fig:img-left-join-rev
-fig:img-right-join
-fig:img-inner-join
-fig:img-full-join
-fig:img-semi-join
-fig:img-semi-join-rev
-fig:img-anti-join
-fig:img-anti-join-rev
+fig:item-by-line-display
 tab:unnamed-chunk-1
 tab:wide-data
 tab:long-data
@@ -47,7 +38,7 @@ exercises-reports-rmarkdown
 exercises-reports-tables
 exercises-reports-images
 exercises-reports-inline
-exercises-reports-kit
+exercises-reports-knit
 viz
 ilo-viz
 data

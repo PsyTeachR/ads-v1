@@ -187,42 +187,42 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 10-Sep-21 </td>
+   <td style="text-align:left;"> 11-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 09-Sep-21 </td>
+   <td style="text-align:left;"> 10-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 08-Sep-21 </td>
+   <td style="text-align:left;"> 09-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 07-Sep-21 </td>
+   <td style="text-align:left;"> 08-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 06-Sep-21 </td>
+   <td style="text-align:left;"> 07-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 05-Sep-21 </td>
+   <td style="text-align:left;"> 06-Sep-21 </td>
   </tr>
 </tbody>
 </table>
@@ -245,7 +245,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "10-Sep-21", "09-Sep-21", "08-Sep-21", "07-Sep-21", "06-Sep-…
+## $ date      <chr> "11-Sep-21", "10-Sep-21", "09-Sep-21", "08-Sep-21", "07-Sep-…
 ```
 
 #### summary() {#summary-function}
@@ -1175,10 +1175,7 @@ You can leave out the `by` argument if you're matching on all of the columns wit
 
 #### left_join() {#left_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/left_join.png" alt="Left Join" width="100%" />
-<p class="caption">(\#fig:img-left-join)Left Join</p>
-</div></div>
+<div class="join"><img src="images/joins/left_join.png" /></div>
 
 A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
 
@@ -1246,10 +1243,7 @@ left_join(customers, orders, by = "id")
 
 </div>
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%" />
-<p class="caption">(\#fig:img-left-join-rev)Left Join (reversed)</p>
-</div></div>
+<div class="join"><img src="images/joins/left_join_rev.png" /></div>
 
 The order of tables is swapped here, so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
 
@@ -1331,10 +1325,7 @@ left_join(orders, customers, by = "id")
 
 #### right_join() {#right_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/right_join.png" alt="Right Join" width="100%" />
-<p class="caption">(\#fig:img-right-join)Right Join</p>
-</div></div>
+<div class="join"><img src="images/joins/right_join.png" /></div>
 
 A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
 
@@ -1420,10 +1411,7 @@ This table has the same information as `left_join(orders, customers, by = "id")`
 
 #### inner_join() {#inner_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/inner_join.png" alt="Inner Join" width="100%" />
-<p class="caption">(\#fig:img-inner-join)Inner Join</p>
-</div></div>
+<div class="join"><img src="images/joins/inner_join.png" /></div>
 
 An `inner_join` returns all the rows that have a match in the other table.
 
@@ -1488,10 +1476,7 @@ inner_join(customers, orders, by = "id")
 
 #### full_join() {#full_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/full_join.png" alt="Full Join" width="100%" />
-<p class="caption">(\#fig:img-full-join)Full Join</p>
-</div></div>
+<div class="join"><img src="images/joins/full_join.png" /></div>
 
 A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
 
@@ -1584,10 +1569,7 @@ full_join(customers, orders, by = "id")
 
 #### semi_join() {#semi_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/semi_join.png" alt="Semi Join" width="100%" />
-<p class="caption">(\#fig:img-semi-join)Semi Join</p>
-</div></div>
+<div class="join"><img src="images/joins/semi_join.png" /></div>
 
 A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
 
@@ -1636,10 +1618,7 @@ semi_join(customers, orders, by = "id")
 Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
 :::
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/semi_join_rev.png" alt="Semi Join (Reversed)" width="100%" />
-<p class="caption">(\#fig:img-semi-join-rev)Semi Join (Reversed)</p>
-</div></div>
+<div class="join"><img src="images/joins/semi_join_rev.png" /></div>
 
 Order matters in a semi join.
 
@@ -1689,10 +1668,7 @@ semi_join(orders, customers, by = "id")
 
 #### anti_join() {#anti_join}
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/anti_join.png" alt="Anti Join" width="100%" />
-<p class="caption">(\#fig:img-anti-join)Anti Join</p>
-</div></div>
+<div class="join"><img src="images/joins/anti_join.png" /></div>
 
 An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
 
@@ -1722,10 +1698,7 @@ anti_join(customers, orders, by = "id")
 
 </div>
 
-<div class = 'join'><div class="figure" style="text-align: center">
-<img src="images/joins/anti_join_rev.png" alt="Anti Join (Reversed)" width="100%" />
-<p class="caption">(\#fig:img-anti-join-rev)Anti Join (Reversed)</p>
-</div></div>
+<div class="join"><img src="images/joins/anti_join_rev.png" /></div>
 
 Order matters in an anti join.
 

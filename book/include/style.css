@@ -7,6 +7,14 @@
   clear: right;
 }
 
+.join img {
+  width: 100%;
+}
+
+div.sourceCode {
+  clear: both;
+}
+
 /* references with hanging indent */
 .csl-entry {
   padding-left: 2em ;

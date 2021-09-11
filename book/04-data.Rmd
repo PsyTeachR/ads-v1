@@ -411,9 +411,7 @@ You can leave out the `by` argument if you're matching on all of the columns wit
 
 #### left_join() {#left_join}
 
-```{r img-left-join, echo=FALSE, fig.width=4, fig.cap="Left Join", class="join"}
-knitr::include_graphics("images/joins/left_join.png")
-```
+<div class="join"><img src="images/joins/left_join.png" /></div>
 
 A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
 
@@ -421,9 +419,7 @@ A `left_join` keeps all the data from the first (left) table and joins anything 
 left_join(customers, orders, by = "id")
 ```
 
-```{r img-left-join-rev, echo=FALSE, fig.width=4, fig.cap="Left Join (reversed)", class="join"}
-knitr::include_graphics("images/joins/left_join_rev.png")
-```
+<div class="join"><img src="images/joins/left_join_rev.png" /></div>
 
 The order of tables is swapped here, so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
 
@@ -433,9 +429,7 @@ left_join(orders, customers, by = "id")
 
 #### right_join() {#right_join}
 
-```{r img-right-join, echo=FALSE, fig.width=4, fig.cap="Right Join", class="join"}
-knitr::include_graphics("images/joins/right_join.png")
-```
+<div class="join"><img src="images/joins/right_join.png" /></div>
 
 A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
 
@@ -449,9 +443,7 @@ This table has the same information as `left_join(orders, customers, by = "id")`
 
 #### inner_join() {#inner_join}
 
-```{r img-inner-join, echo=FALSE, fig.width=4, fig.cap="Inner Join", class="join"}
-knitr::include_graphics("images/joins/inner_join.png")
-```
+<div class="join"><img src="images/joins/inner_join.png" /></div>
 
 An `inner_join` returns all the rows that have a match in the other table.
 
@@ -462,9 +454,7 @@ inner_join(customers, orders, by = "id")
 
 #### full_join() {#full_join}
 
-```{r img-full-join, echo=FALSE, fig.width=4, fig.cap="Full Join", class="join"}
-knitr::include_graphics("images/joins/full_join.png")
-```
+<div class="join"><img src="images/joins/full_join.png" /></div>
 
 A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
 
@@ -479,9 +469,7 @@ full_join(customers, orders, by = "id")
 
 #### semi_join() {#semi_join}
 
-```{r img-semi-join, echo=FALSE, fig.width=4, fig.cap="Semi Join", class="join"}
-knitr::include_graphics("images/joins/semi_join.png")
-```
+<div class="join"><img src="images/joins/semi_join.png" /></div>
 
 A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
 
@@ -493,9 +481,7 @@ semi_join(customers, orders, by = "id")
 Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
 :::
 
-```{r img-semi-join-rev, echo=FALSE, fig.width=4, fig.cap="Semi Join (Reversed)", class="join"}
-knitr::include_graphics("images/joins/semi_join_rev.png")
-```
+<div class="join"><img src="images/joins/semi_join_rev.png" /></div>
 
 Order matters in a semi join.
 
@@ -505,9 +491,7 @@ semi_join(orders, customers, by = "id")
 
 #### anti_join() {#anti_join}
 
-```{r img-anti-join, echo=FALSE, fig.width=4, fig.cap="Anti Join", class="join"}
-knitr::include_graphics("images/joins/anti_join.png")
-```
+<div class="join"><img src="images/joins/anti_join.png" /></div>
 
 An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
 
@@ -515,9 +499,7 @@ An `anti_join` return all rows from the left table where there are *not* matchin
 anti_join(customers, orders, by = "id")
 ```
 
-```{r img-anti-join-rev, echo=FALSE, fig.width=4, fig.cap="Anti Join (Reversed)", class="join"}
-knitr::include_graphics("images/joins/anti_join_rev.png")
-```
+<div class="join"><img src="images/joins/anti_join_rev.png" /></div>
 
 Order matters in an anti join.
 

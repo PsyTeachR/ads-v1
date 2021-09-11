@@ -40,8 +40,9 @@
     color: white;
     padding: 0 0.5em;
 }
-.webex-solution pre.sourceCode {
-    border-color: var(--green);
+.webex-solution > pre,
+.webex-solution > div.sourceCode {
+    margin: 0.5em;
 }
 
 .webex-radiogroup label {

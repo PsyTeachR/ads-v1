@@ -1,0 +1,10 @@
+citHeader("To cite this book in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "Applied Data Skills",
+  author   = "Emily Nordmann and Lisa DeBruine",
+  year     = "2021",
+  url      = "https://psyteachr.github.io/ads-v1/",
+  textVersion = paste("Emily Nordmann and Lisa DeBruine (2021. Applied Data Skills: Processing & Presenting Data. https://psyteachr.github.io/ads-v1/")
+)

@@ -16,21 +16,21 @@ If you are using Linux, choose your specific operating system and follow the ins
 
 Go to [rstudio.com](https://www.rstudio.com/products/rstudio/download/#download){target="_blank"} and download the RStudio Desktop (Open Source License) version for your operating system under the list titled **Installers for Supported Platforms**.
 
-## RStudio Settings
+## RStudio Settings {#rstudio-settings}
 
 There are a few settings you should fix immediately after updating RStudio. Go to **`Global Options...`** under the **`Tools`** menu (&#8984;,), and in the General tab, uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 You may also want to change the appearance of your code. Different fonts and themes can sometimes help with visual difficulties or [dyslexia](https://datacarpentry.org/blog/2017/09/coding-and-dyslexia){target="_blank"}. 
 
 <div class="figure" style="text-align: center">
-<img src="images/rstudio_settings_general_appearance.png" alt="RStudio General and Appearance settings" width="100%" />
+<img src="images/appx/rstudio_settings_general_appearance.png" alt="RStudio General and Appearance settings" width="100%" />
 <p class="caption">(\#fig:settings-general)RStudio General and Appearance settings</p>
 </div>
 
-You may also want to change the settings in the Code tab. Foe example, Lisa prefers two spaces instead of tabs for my code and likes to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.
+You may also want to change the settings in the Code tab. For example, Lisa prefers two spaces instead of tabs for my code and likes to be able to see the <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a> characters. But these are all a matter of personal preference.
 
 <div class="figure" style="text-align: center">
-<img src="images/rstudio_settings_code.png" alt="RStudio Code settings" width="100%" />
+<img src="images/appx/rstudio_settings_code.png" alt="RStudio Code settings" width="100%" />
 <p class="caption">(\#fig:settings-code)RStudio Code settings</p>
 </div>
 
@@ -41,5 +41,7 @@ You can install the LaTeX typesetting system to produce PDF reports from RStudio
 
 
 ```r
+# run this in the console
+install.packages("tinytex")
 tinytex::install_tinytex()
 ```

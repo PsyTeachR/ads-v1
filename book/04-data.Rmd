@@ -11,6 +11,7 @@
 library(tidyverse) # includes readr
 library(rio)
 library(haven)
+library(readxl)
 ```
 
 You'll learn about the following functions in this chapter:

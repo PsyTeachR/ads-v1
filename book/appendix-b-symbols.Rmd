@@ -35,7 +35,7 @@
 
 ```{r img-soundimals-hash, echo=FALSE, fig.cap="[Image by James Chapman/Soundimals](https://soundimals.tumblr.com/post/167354564886/chapmangamo-the-symbol-has-too-many-names)"}
 
-knitr::include_graphics("images/soundimals_hash.png")
+knitr::include_graphics("images/appx/soundimals_hash.png")
 
 ```
 

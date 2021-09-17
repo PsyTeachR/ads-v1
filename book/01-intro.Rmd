@@ -4,4 +4,139 @@
 
 * Understand structure and content of course
 * Install R and RStudio
-* Understand reproducibility
+* Be able to distinguish numeric and character data types
+
+## Structure of the course
+
+
+## Installing R and RStudio {#intro-installing-r}
+
+Appendix\ \@ref(installing-r) has technical details on installing R and RStudio on your computer. Here, we'll concentrate on introducing you to RStudio's interface and getting it configured.
+
+### RStudio {#rstudio_ide}
+
+When you installed R, that gave your computer the ability to process the R programming language, and also installed an app called "R". We will never use that app. Instead, we will use [RStudio](http://www.rstudio.com){target="_blank"}, which is an Integrated Development Environment (`r glossary("IDE")`): a program that serves as a text editor, file manager, spreadsheet viewer, and more.
+
+```{r img-rstudio, echo=FALSE, fig.cap="The RStudio IDE"}
+knitr::include_graphics("images/intro/rstudio.png")
+``` 
+
+RStudio is arranged with four window `r glossary("panes")`. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+
+### Reproducibility {#intro-reproducibility}
+
+In this class, you will be learning how to make `r glossary("reproducibility", "reproducible")` reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.
+
+When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create a report every month with the social media analytics for your company, a reproducible report allows you to download a new month's data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.
+
+
+::: {.try data-latex=""}
+Appendix\ \@ref(rstudio-settings) shows you how to change two important settings in the global Options to increase reproducibility. Your settings should have:
+
+* Restore .RData into workspace at startup: `r mcq(c("Checked", answer = "Not Checked"))`
+* Save workspace to .RData on exit: `r mcq(c("Always", answer = "Never", "Ask"))`
+:::
+
+## Add-on packages {#install-package}
+
+One of the great things about R is that it is **user extensible**: anyone can create a new add-on software package that extends its functionality. There are currently thousands of add-on packages that R users have created to solve many different kinds of problems, or just simply to have fun. There are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
+
+Add-on packages are not distributed with `r glossary("base R")`, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone.
+
+The main repository where packages reside is called `r glossary("CRAN")`, the Comprehensive R Archive Network. You can install from the CRAN archive through R using the `r hl(install.packages())` function.
+
+There is an important distinction between **installing** a package and **loading** a package.
+
+### Installing a package 
+
+<div class="small_right"><img src="images/memes/pokemon.gif" /></div>
+
+This is done using `r hl(install.packages())`. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
+
+Install the `r pkg("esquisse")` package on your system. This package lets you create plots interactively and copy the code needed to make them reproducibly.
+
+```{r install-pckg, eval = FALSE}
+# type this in the console pane
+install.packages("esquisse")
+```
+
+If you don't already have packages like `r pkg("ggplot2")` and `r pkg("shiny")` installed, it will also install these **dependencies** for you. If you don't get an error message at the end, the installation was successful. 
+
+::: {.dangerous data-latex=""}
+Never install a package from inside a script. Only do this from the console pane.
+:::
+
+### Loading a package
+
+This is done using `r hl(library(packagename))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run `r hl(library(packagename))` within a session, the functionality of the package referred to by `packagename` will be made available for your R session. The next time you start R, you will need to run the `r hl(library())` function again if you want to access its functionality.
+
+You can load the functions in `r pkg("esquisse")` for your current R session as follows:
+
+```{r library-pckg}
+library(esquisse)
+```
+
+You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
+
+Now you can run the function `r hl(esquisse::esquisser())`, which runs an interactive plotting example on the built-in dataset `diamonds` from the `r pkg("ggplot2")` package.
+
+```{r esquisser-demo, eval = FALSE}
+# type this in the console pane
+esquisse::esquisser(ggplot2::diamonds)
+```
+
+::: {.info data-latex=""}
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `r hl(readr::read_csv())`, that refers to the function `r hl(read_csv())` in the `r pkg("readr")` add-on package.
+:::
+
+
+You can also install multiple packages at once. Here is the command to install all of the packages we'll be using in this class. 
+
+```{r install-all-packages, eval = FALSE}
+install.packages(
+  "tidyverse", # for everything
+  "rio", "haven", "readxl", # for data import
+  "kableExtra", # for nice tables
+  "ggwordcloud", "tidytext" # for word clouds
+)
+```
+
+
+### Tidyverse
+
+`r pkg("tidyverse")`is a meta-package that loads several packages we'll be using in almost every report:
+
+- `r pkg("ggplot2")`, for data visualisation (Chapter\ \@ref(viz))
+- `r pkg("readr")`, for data import (Chapter\ \@ref(data))
+- `r pkg("tibble")`, for tables (Chapter\ \@ref(data))
+- `r pkg("tidyr")`, for data tidying (Chapter\ \@ref(tidy))
+- `r pkg("dplyr")`, for data manipulation (Chapter\ \@ref(wrangle))
+- `r pkg("stringr")`, for `r glossary("string", "strings")`
+- `r pkg("forcats")`, for `r glossary("factor", "factors")`
+- `r pkg("purrr")`, for repeating things
+
+## Data types {#intro-data-types}
+
+Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R. Appendix\ \@ref(#data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between `r glossary("numeric")` and `r glossary("character")` data.
+
+Numeric data are numbers like `r hl(42)` or `r hl(3.14159)`. You can use numbers in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day.
+
+Character data are `r glossary("string", "strings")`: text inside of quotes. That text can be letters, punctuation, or even numbers. For example, `r hl("January")` is a character string, but so is `r hl("1")` if you put it in quotes.
+
+::: {.warning data-latex=""}
+If you try to add two strings, even if they contain only numbers, you'll get an error. We'll learn how to deal with errors like this in Chapter\ \@ref(data).
+
+```{r, error = TRUE}
+"1" + "2"
+```
+## Glossary {#glossary-intro}
+
+`r glossary_table()`
+
+## Further Resources {#resources-intro}
+
+* [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+* [RStudio Cloud](https://rstudio.cloud/){target="_blank"}
+
+
+

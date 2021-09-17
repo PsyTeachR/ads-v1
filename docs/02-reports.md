@@ -183,7 +183,7 @@ The `df_print: kable` option prints data frames using `knitr::kable`. You'll lea
 The built-in bootswatch themes are: default, cerulean, cosmo, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, spacelab, united, and yeti. You can [view and download more themes](https://bootswatch.com/4/).
 
 <div class="figure" style="text-align: center">
-<img src="images/bootswatch.png" alt="Light themes in versions 3 and 4." width="100%" />
+<img src="images/reports/bootswatch.png" alt="Light themes in versions 3 and 4." width="100%" />
 <p class="caption">(\#fig:img-bootswatch)Light themes in versions 3 and 4.</p>
 </div>
 
@@ -581,7 +581,7 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 ## Further Resources {#resources-repro}
 
--   [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+-   [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown.pdf)
 -   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
 -   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 -   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)

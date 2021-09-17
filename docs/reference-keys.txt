@@ -1,3 +1,4 @@
+fig:img-rstudio
 fig:img-bootswatch
 tab:unnamed-chunk-6
 fig:item-by-line-display
@@ -14,6 +15,17 @@ fig:settings-code
 fig:img-soundimals-hash
 intro
 ilo-intro
+structure-of-the-course
+intro-installing-r
+rstudio_ide
+intro-reproducibility
+install-package
+installing-a-package
+loading-a-package
+tidyverse
+intro-data-types
+glossary-intro
+resources-intro
 reports
 ilo-reports
 projects

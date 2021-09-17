@@ -2,7 +2,7 @@
 
 ## Basic data types 
 
-Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")`, as well as the special classes of `r glossary("factor")` and date/times.
+Data can be numbers, words, true/false values or combinations of these. The basic `r glossary("data type", "data types")` in R are: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")`, as well as the special classes of `r glossary("factor")` and date/times.
 
 ### Numeric data
 
@@ -14,7 +14,6 @@ If you ever want to know the data type of something, use the `typeof` function.
 typeof(10)   # double
 typeof(10.0) # double
 typeof(10L)  # integer
-typeof(10i)  # complex
 ```
 
 If you want to know if something is numeric (a double or an integer), you can use the function `is.numeric()` and it will tell you if it is numeric (`TRUE`) or not (`FALSE`).

@@ -8,9 +8,8 @@
 
 
 ```r
-library(tidyverse) # functions from tidyr, dplyr, readr, and pipes
+library(tidyverse) # functions from tidyr, dplyr, readr, stringr, and pipes
 library(readxl)
-library(stringr)
 ```
 
 You'll learn about the following functions in this chapter:
@@ -1542,7 +1541,7 @@ glimpse(tidy_data)
 
 ## Pipes {#pipes}
 
-<div style="width: 200px; float: right;"><img src="images/pipe_sticker.png" style="width: 100%" /></div>
+<div style="width: 200px; float: right;"><img src="images/tidy/pipe_sticker.png" style="width: 100%" /></div>
 
 Pipes are a way to order your code in a more readable format. 
 

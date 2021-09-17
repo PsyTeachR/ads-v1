@@ -8,6 +8,16 @@
 
 ## Structure of the course
 
+This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.
+
+Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice. 
+
+Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.
+
+<div class="small_right"><img src="images/memes/typos.jpg"
+     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon" /></div>
+     
+Learning to code involves making a **lot** of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.
 
 ## Installing R and RStudio {#intro-installing-r}
 
@@ -26,7 +36,7 @@ RStudio is arranged with four window <a class='glossary' target='_blank' title='
 
 ### Reproducibility {#intro-reproducibility}
 
-In this class, you will be learning how to make <a class='glossary' target='_blank' title='' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.
+In this class, you will be learning how to make <a class='glossary' target='_blank' title='The extent to which the findings of a study can be repeated in some other context' href='https://psyteachr.github.io/glossary/r#reproducibility'>reproducible</a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.
 
 When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create a report every month with the social media analytics for your company, a reproducible report allows you to download a new month's data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.
 
@@ -81,10 +91,6 @@ library(esquisse)
 
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
-::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package.
-:::
-
 Now you can run the function <code><span class='fu'>esquisse</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/esquisse/man/esquisser.html'>esquisser</a></span><span class='op'>(</span><span class='op'>)</span></code>, which runs an interactive plotting example on the built-in dataset `diamonds` from the <code class='package'>ggplot2</code> package.
 
 
@@ -92,6 +98,10 @@ Now you can run the function <code><span class='fu'>esquisse</span><span class='
 # type this in the console pane
 esquisse::esquisser(ggplot2::diamonds)
 ```
+
+::: {.info data-latex=""}
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package.
+:::
 
 
 You can also install multiple packages at once. Here is the command to install all of the packages we'll be using in this class. 
@@ -122,7 +132,7 @@ install.packages(
 
 ## Data types {#intro-data-types}
 
-Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a> in R. Appendix\ \@ref(#data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> and <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> data.
+Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a> in R. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> and <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> data.
 
 Numeric data are numbers like <code><span class='fl'>42</span></code> or <code><span class='fl'>3.14159</span></code>. You can use numbers in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day.
 
@@ -139,6 +149,8 @@ If you try to add two strings, even if they contain only numbers, you'll get an 
 ```
 ## Error in "1" + "2": non-numeric argument to binary operator
 ```
+:::
+
 ## Glossary {#glossary-intro}
 
 <table>
@@ -182,8 +194,8 @@ If you try to add two strings, even if they contain only numbers, you'll get an 
    <td style="text-align:left;"> RStudio is arranged with four window “panes.” </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> [reproducible](https://psyteachr.github.io/glossary/r.html#reproducible){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> [reproducibility](https://psyteachr.github.io/glossary/r.html#reproducibility){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> The extent to which the findings of a study can be repeated in some other context </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [string](https://psyteachr.github.io/glossary/s.html#string){class="glossary" target="_blank"} </td>

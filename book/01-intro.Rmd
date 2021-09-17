@@ -8,6 +8,16 @@
 
 ## Structure of the course
 
+This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.
+
+Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice. 
+
+Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.
+
+<div class="small_right"><img src="images/memes/typos.jpg"
+     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon" /></div>
+     
+Learning to code involves making a **lot** of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.
 
 ## Installing R and RStudio {#intro-installing-r}
 
@@ -117,7 +127,7 @@ install.packages(
 
 ## Data types {#intro-data-types}
 
-Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R. Appendix\ \@ref(#data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between `r glossary("numeric")` and `r glossary("character")` data.
+Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of `r glossary("data type", "data types")` in R. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between `r glossary("numeric")` and `r glossary("character")` data.
 
 Numeric data are numbers like `r hl(42)` or `r hl(3.14159)`. You can use numbers in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day.
 
@@ -129,6 +139,8 @@ If you try to add two strings, even if they contain only numbers, you'll get an 
 ```{r, error = TRUE}
 "1" + "2"
 ```
+:::
+
 ## Glossary {#glossary-intro}
 
 `r glossary_table()`

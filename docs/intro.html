@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 1 Intro to R and RStudio | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course   1.3...">
+<meta name="description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Intro to R and RStudio | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/intro.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
-<meta property="og:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course   1.3...">
+<meta property="og:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Intro to R and RStudio | Applied Data Skills">
-<meta name="twitter:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course   1.3...">
+<meta name="twitter:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -95,6 +95,13 @@
 <h2>
 <span class="header-section-number">1.2</span> Structure of the course<a class="anchor" aria-label="anchor" href="#structure-of-the-course"><i class="fas fa-link"></i></a>
 </h2>
+<p>This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.</p>
+<p>Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice.</p>
+<p>Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.</p>
+<div class="small_right">
+<img src="images/memes/typos.jpg" alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon">
+</div>
+<p>Learning to code involves making a <strong>lot</strong> of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.</p>
 </div>
 <div id="intro-installing-r" class="section level2" number="1.3">
 <h2>
@@ -118,7 +125,7 @@ Figure 1.1: The RStudio IDE
 <h3>
 <span class="header-section-number">1.3.2</span> Reproducibility<a class="anchor" aria-label="anchor" href="#intro-reproducibility"><i class="fas fa-link"></i></a>
 </h3>
-<p>In this class, you will be learning how to make <a class="glossary" target="_blank" title="" href="https://psyteachr.github.io/glossary/r#reproducible">reproducible</a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.</p>
+<p>In this class, you will be learning how to make <a class="glossary" target="_blank" title="The extent to which the findings of a study can be repeated in some other context" href="https://psyteachr.github.io/glossary/r#reproducibility">reproducible</a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.</p>
 <p>When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create a report every month with the social media analytics for your company, a reproducible report allows you to download a new month's data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.</p>
 <div class="try">
 <p>Appendix <a href="installing-r.html#rstudio-settings">A.3</a> shows you how to change two important settings in the global Options to increase reproducibility. Your settings should have:</p>
@@ -170,13 +177,13 @@ Figure 1.1: The RStudio IDE
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/esquisse">esquisse</a></span><span class="op">)</span></code></pre></div>
 <p>You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.</p>
-<div class="info">
-<p>You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="op">)</span></code>, that refers to the function <code><span class="fu">read_csv</span><span class="op">(</span><span class="op">)</span></code> in the <code class="package">readr</code> add-on package.</p>
-</div>
 <p>Now you can run the function <code><span class="fu">esquisse</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/esquisse/man/esquisser.html">esquisser</a></span><span class="op">(</span><span class="op">)</span></code>, which runs an interactive plotting example on the built-in dataset <code>diamonds</code> from the <code class="package">ggplot2</code> package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># type this in the console pane</span>
 <span class="fu">esquisse</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/esquisse/man/esquisser.html">esquisser</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span><span class="op">)</span></code></pre></div>
+<div class="info">
+<p>You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="op">)</span></code>, that refers to the function <code><span class="fu">read_csv</span><span class="op">(</span><span class="op">)</span></code> in the <code class="package">readr</code> add-on package.</p>
+</div>
 <p>You can also install multiple packages at once. Here is the command to install all of the packages we'll be using in this class.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span>
@@ -217,14 +224,15 @@ Figure 1.1: The RStudio IDE
 <h2>
 <span class="header-section-number">1.5</span> Data types<a class="anchor" aria-label="anchor" href="#intro-data-types"><i class="fas fa-link"></i></a>
 </h2>
-<p>Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a> in R. Appendix @ref(#data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a> and <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a> data.</p>
+<p>Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a> in R. Appendix <a href="data-types.html#data-types">D</a> has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a> and <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a> data.</p>
 <p>Numeric data are numbers like <code><span class="fl">42</span></code> or <code><span class="fl">3.14159</span></code>. You can use numbers in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day.</p>
 <p>Character data are <a class="glossary" target="_blank" title="A piece of text inside of quotes." href="https://psyteachr.github.io/glossary/s#string">strings</a>: text inside of quotes. That text can be letters, punctuation, or even numbers. For example, <code><span class="st">"January"</span></code> is a character string, but so is <code><span class="st">"1"</span></code> if you put it in quotes.</p>
-<p>::: {.warning data-latex=""}
-If you try to add two strings, even if they contain only numbers, you'll get an error. We'll learn how to deal with errors like this in Chapter <a href="data.html#data">4</a>.</p>
+<div class="warning">
+<p>If you try to add two strings, even if they contain only numbers, you'll get an error. We'll learn how to deal with errors like this in Chapter <a href="data.html#data">4</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"1"</span> <span class="op">+</span> <span class="st">"2"</span></code></pre></div>
 <pre><code>## Error in "1" + "2": non-numeric argument to binary operator</code></pre>
+</div>
 </div>
 <div id="glossary-intro" class="section level2" number="1.6">
 <h2>
@@ -306,9 +314,10 @@ RStudio is arranged with four window “panes.”
 </tr>
 <tr>
 <td style="text-align:left;">
-<a href="https://psyteachr.github.io/glossary/r.html#reproducible" class="glossary" target="_blank">reproducible</a>
+<a href="https://psyteachr.github.io/glossary/r.html#reproducibility" class="glossary" target="_blank">reproducibility</a>
 </td>
 <td style="text-align:left;">
+The extent to which the findings of a study can be repeated in some other context
 </td>
 </tr>
 <tr>

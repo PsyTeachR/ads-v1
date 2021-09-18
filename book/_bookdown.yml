@@ -1,4 +1,4 @@
-book_filename: _main
+book_filename: ads-v1
 new_session: yes
 output_dir: ../docs
 before_chapter_script:

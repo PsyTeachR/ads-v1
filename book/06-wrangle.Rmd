@@ -3,6 +3,7 @@
 ## Intended Learning Outcomes {#ilo-wrangle}
 
 * Be able to select and filter data for relevance
+* Be able to create new columns and edit existing ones
 * Be able to calculate row means
 
 

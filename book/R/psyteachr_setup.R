@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
   out.width  = '100%',
   fig.width  = 8,
   fig.height = 5,
-  fig.align  = 'center'
+  fig.align  = 'center',
+  dpi = 96
 )
 
 ## set global theme options for figures
@@ -40,7 +41,7 @@ knitr::knit_hooks$set(verbatim = function(before, options, envir) {
 
 ## verbatim inline R in backticks
 backtick <- function(code) {
-  warning("The backtick() function is deprecated. Use two backticks and a space to surround text with verbatim backticks, e.g. `` `in_backticks` ``")
+  #warning("The backtick() function is deprecated. Use two backticks and a space to surround text with verbatim backticks, e.g. `` `in_backticks` ``")
   # removes inline math coding when you use >1 $ in a line
   code <- gsub("\\$", "\\\\$", code)
   paste0("<code>&#096;", code, "&#096;</code>")

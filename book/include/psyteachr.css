@@ -48,8 +48,8 @@
   width: 25%;
   max-width: 200px;
 }
-.small_right { float: right;}
-.small_left { float: left; }
+.small_right { float: right; margin: 1em 0 1em 1em;}
+.small_left { float: left; margin: 1em 1em 1em 0;}
 .small_right img, .small_left img { max-width: 100%; }
 
 /* rainbow borders */

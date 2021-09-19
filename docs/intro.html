@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 1 Intro to R and RStudio | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
+<meta name="description" content="1.1 Intended Learning Outcomes Install R and RStudio Be able to install add-on packages Be able to distinguish numeric and character data types  1.2 Installing R and RStudio Appendix A has...">
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Intro to R and RStudio | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/intro.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
-<meta property="og:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:description" content="1.1 Intended Learning Outcomes Install R and RStudio Be able to install add-on packages Be able to distinguish numeric and character data types  1.2 Installing R and RStudio Appendix A has...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Intro to R and RStudio | Applied Data Skills">
-<meta name="twitter:description" content="1.1 Intended Learning Outcomes Understand structure and content of course Install R and RStudio Be able to distinguish numeric and character data types  1.2 Structure of the course This book...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta name="twitter:description" content="1.1 Intended Learning Outcomes Install R and RStudio Be able to install add-on packages Be able to distinguish numeric and character data types  1.2 Installing R and RStudio Appendix A has...">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -68,6 +68,7 @@
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">E</span> Styling Plots</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -86,31 +87,19 @@
 <span class="header-section-number">1.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-intro"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>Understand structure and content of course</li>
 <li>Install R and RStudio</li>
+<li>Be able to install add-on packages</li>
 <li>Be able to distinguish numeric and character data types</li>
 </ul>
 </div>
-<div id="structure-of-the-course" class="section level2" number="1.2">
+<div id="intro-installing-r" class="section level2" number="1.2">
 <h2>
-<span class="header-section-number">1.2</span> Structure of the course<a class="anchor" aria-label="anchor" href="#structure-of-the-course"><i class="fas fa-link"></i></a>
-</h2>
-<p>This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.</p>
-<p>Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice.</p>
-<p>Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.</p>
-<div class="small_right">
-<img src="images/memes/typos.jpg" alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon">
-</div>
-<p>Learning to code involves making a <strong>lot</strong> of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.</p>
-</div>
-<div id="intro-installing-r" class="section level2" number="1.3">
-<h2>
-<span class="header-section-number">1.3</span> Installing R and RStudio<a class="anchor" aria-label="anchor" href="#intro-installing-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.2</span> Installing R and RStudio<a class="anchor" aria-label="anchor" href="#intro-installing-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Appendix <a href="installing-r.html#installing-r">A</a> has technical details on installing R and RStudio on your computer. Here, we'll concentrate on introducing you to RStudio's interface and getting it configured.</p>
-<div id="rstudio_ide" class="section level3" number="1.3.1">
+<div id="rstudio_ide" class="section level3" number="1.2.1">
 <h3>
-<span class="header-section-number">1.3.1</span> RStudio<a class="anchor" aria-label="anchor" href="#rstudio_ide"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.2.1</span> RStudio<a class="anchor" aria-label="anchor" href="#rstudio_ide"><i class="fas fa-link"></i></a>
 </h3>
 <p>When you installed R, that gave your computer the ability to process the R programming language, and also installed an app called "R". We will never use that app. Instead, we will use <a href="http://www.rstudio.com" target="_blank">RStudio</a>, which is an Integrated Development Environment (<a class="glossary" target="_blank" title="Integrated Development Environment: a program that serves as a text editor, file manager, and provides functions to help you read and write code. RStudio is an IDE for R." href="https://psyteachr.github.io/glossary/i#ide">IDE</a>): a program that serves as a text editor, file manager, spreadsheet viewer, and more.</p>
 <div class="figure" style="text-align: center">
@@ -119,11 +108,11 @@
 Figure 1.1: The RStudio IDE
 </p>
 </div>
-<p>RStudio is arranged with four window <a class="glossary" target="_blank" title="RStudio is arranged with four window “panes.”" href="https://psyteachr.github.io/glossary/p#panes">panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
+<p>RStudio is arranged with four window <a class="glossary" target="_blank" title='RStudio is arranged with four window "panes".' href="https://psyteachr.github.io/glossary/p#panes">panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
 </div>
-<div id="intro-reproducibility" class="section level3" number="1.3.2">
+<div id="intro-reproducibility" class="section level3" number="1.2.2">
 <h3>
-<span class="header-section-number">1.3.2</span> Reproducibility<a class="anchor" aria-label="anchor" href="#intro-reproducibility"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.2.2</span> Reproducibility<a class="anchor" aria-label="anchor" href="#intro-reproducibility"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this class, you will be learning how to make <a class="glossary" target="_blank" title="The extent to which the findings of a study can be repeated in some other context" href="https://psyteachr.github.io/glossary/r#reproducibility">reproducible</a> reports. This involves writing scripts that transform data, create summaries and visualisations, and embed them in a report in a way that always gives you the same results.</p>
 <p>When you do things reproducibly, others (and future you) can understand and check your work. You can also reuse your work more easily. For example, if you need to create a report every month with the social media analytics for your company, a reproducible report allows you to download a new month's data and create the report within seconds. It might take a little longer to set up the report in the first instance with reproducible methods, but the time it saves you in the long run is invaluable.</p>
@@ -143,17 +132,17 @@ Figure 1.1: The RStudio IDE
 </div>
 </div>
 </div>
-<div id="install-package" class="section level2" number="1.4">
+<div id="install-package" class="section level2" number="1.3">
 <h2>
-<span class="header-section-number">1.4</span> Add-on packages<a class="anchor" aria-label="anchor" href="#install-package"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.3</span> Add-on packages<a class="anchor" aria-label="anchor" href="#install-package"><i class="fas fa-link"></i></a>
 </h2>
 <p>One of the great things about R is that it is <strong>user extensible</strong>: anyone can create a new add-on software package that extends its functionality. There are currently thousands of add-on packages that R users have created to solve many different kinds of problems, or just simply to have fun. There are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.</p>
 <p>Add-on packages are not distributed with <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a>, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone.</p>
 <p>The main repository where packages reside is called <a class="glossary" target="_blank" title="The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R." href="https://psyteachr.github.io/glossary/c#cran">CRAN</a>, the Comprehensive R Archive Network. You can install from the CRAN archive through R using the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="op">)</span></code> function.</p>
 <p>There is an important distinction between <strong>installing</strong> a package and <strong>loading</strong> a package.</p>
-<div id="installing-a-package" class="section level3" number="1.4.1">
+<div id="installing-a-package" class="section level3" number="1.3.1">
 <h3>
-<span class="header-section-number">1.4.1</span> Installing a package<a class="anchor" aria-label="anchor" href="#installing-a-package"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.3.1</span> Installing a package<a class="anchor" aria-label="anchor" href="#installing-a-package"><i class="fas fa-link"></i></a>
 </h3>
 <div class="small_right">
 <img src="images/memes/pokemon.gif">
@@ -168,9 +157,9 @@ Figure 1.1: The RStudio IDE
 <p>Never install a package from inside a script. Only do this from the console pane.</p>
 </div>
 </div>
-<div id="loading-a-package" class="section level3" number="1.4.2">
+<div id="loading-a-package" class="section level3" number="1.3.2">
 <h3>
-<span class="header-section-number">1.4.2</span> Loading a package<a class="anchor" aria-label="anchor" href="#loading-a-package"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.3.2</span> Loading a package<a class="anchor" aria-label="anchor" href="#loading-a-package"><i class="fas fa-link"></i></a>
 </h3>
 <p>This is done using <code><span class="kw"><a target="_blank" href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span></code>. This is like <strong>launching</strong> an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run <code><span class="kw"><a target="_blank" href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span></code> within a session, the functionality of the package referred to by <code>packagename</code> will be made available for your R session. The next time you start R, you will need to run the <code><span class="kw"><a target="_blank" href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="op">)</span></code> function again if you want to access its functionality.</p>
 <p>You can load the functions in <code class="package">esquisse</code> for your current R session as follows:</p>
@@ -193,9 +182,9 @@ Figure 1.1: The RStudio IDE
   <span class="st">"ggwordcloud"</span>, <span class="st">"tidytext"</span> <span class="co"># for word clouds</span>
 <span class="op">)</span></code></pre></div>
 </div>
-<div id="tidyverse" class="section level3" number="1.4.3">
+<div id="tidyverse" class="section level3" number="1.3.3">
 <h3>
-<span class="header-section-number">1.4.3</span> Tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.3.3</span> Tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
 </h3>
 <p><code class="package">tidyverse</code>is a meta-package that loads several packages we'll be using in almost every report:</p>
 <ul>
@@ -218,11 +207,24 @@ Figure 1.1: The RStudio IDE
 <li>
 <code class="package">purrr</code>, for repeating things</li>
 </ul>
+<p>When you install <code class="package">tidyverse</code>, it also installs some other useful packages that you can load individually. You can get the full list using <code><a href="https://tidyverse.tidyverse.org/reference/tidyverse_packages.html">tidyverse_packages()</a></code>, but the packages we'll be using in this book are:</p>
+<ul>
+<li>
+<code class="package">googlesheets4</code>, for working with Google spreadsheets</li>
+<li>
+<code class="package">readxl</code>, for Excel files</li>
+<li>
+<code class="package">lubridate</code>, for working with dates</li>
+<li>
+<code class="package">hms</code>, for working with times</li>
+<li>
+<code class="package">rvest</code>, for web scraping</li>
+</ul>
 </div>
 </div>
-<div id="intro-data-types" class="section level2" number="1.5">
+<div id="intro-data-types" class="section level2" number="1.4">
 <h2>
-<span class="header-section-number">1.5</span> Data types<a class="anchor" aria-label="anchor" href="#intro-data-types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4</span> Data types<a class="anchor" aria-label="anchor" href="#intro-data-types"><i class="fas fa-link"></i></a>
 </h2>
 <p>Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a> in R. Appendix <a href="data-types.html#data-types">D</a> has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a> and <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a> data.</p>
 <p>Numeric data are numbers like <code><span class="fl">42</span></code> or <code><span class="fl">3.14159</span></code>. You can use numbers in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day.</p>
@@ -234,9 +236,9 @@ Figure 1.1: The RStudio IDE
 <pre><code>## Error in "1" + "2": non-numeric argument to binary operator</code></pre>
 </div>
 </div>
-<div id="glossary-intro" class="section level2" number="1.6">
+<div id="glossary-intro" class="section level2" number="1.5">
 <h2>
-<span class="header-section-number">1.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-intro"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -309,7 +311,7 @@ A data type representing a real decimal number or integer.
 <a href="https://psyteachr.github.io/glossary/p.html#panes" class="glossary" target="_blank">panes</a>
 </td>
 <td style="text-align:left;">
-RStudio is arranged with four window “panes.”
+RStudio is arranged with four window "panes".
 </td>
 </tr>
 <tr>
@@ -331,9 +333,9 @@ A piece of text inside of quotes.
 </tbody>
 </table></div>
 </div>
-<div id="resources-intro" class="section level2" number="1.7">
+<div id="resources-intro" class="section level2" number="1.6">
 <h2>
-<span class="header-section-number">1.7</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-intro"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">RStudio IDE Cheatsheet</a></li>
@@ -520,6 +522,17 @@ $( document ).ready(function() {
   $("footer div.row div:eq(1) p").html(
     psyteachr + license + cite
   );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="index.html">Overview</a></div>
@@ -529,23 +542,22 @@ $( document ).ready(function() {
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#intro"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
 <li><a class="nav-link" href="#ilo-intro"><span class="header-section-number">1.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#structure-of-the-course"><span class="header-section-number">1.2</span> Structure of the course</a></li>
 <li>
-<a class="nav-link" href="#intro-installing-r"><span class="header-section-number">1.3</span> Installing R and RStudio</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rstudio_ide"><span class="header-section-number">1.3.1</span> RStudio</a></li>
-<li><a class="nav-link" href="#intro-reproducibility"><span class="header-section-number">1.3.2</span> Reproducibility</a></li>
+<a class="nav-link" href="#intro-installing-r"><span class="header-section-number">1.2</span> Installing R and RStudio</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rstudio_ide"><span class="header-section-number">1.2.1</span> RStudio</a></li>
+<li><a class="nav-link" href="#intro-reproducibility"><span class="header-section-number">1.2.2</span> Reproducibility</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#install-package"><span class="header-section-number">1.4</span> Add-on packages</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#installing-a-package"><span class="header-section-number">1.4.1</span> Installing a package</a></li>
-<li><a class="nav-link" href="#loading-a-package"><span class="header-section-number">1.4.2</span> Loading a package</a></li>
-<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">1.4.3</span> Tidyverse</a></li>
+<a class="nav-link" href="#install-package"><span class="header-section-number">1.3</span> Add-on packages</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#installing-a-package"><span class="header-section-number">1.3.1</span> Installing a package</a></li>
+<li><a class="nav-link" href="#loading-a-package"><span class="header-section-number">1.3.2</span> Loading a package</a></li>
+<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">1.3.3</span> Tidyverse</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#intro-data-types"><span class="header-section-number">1.5</span> Data types</a></li>
-<li><a class="nav-link" href="#glossary-intro"><span class="header-section-number">1.6</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-intro"><span class="header-section-number">1.7</span> Further Resources</a></li>
+<li><a class="nav-link" href="#intro-data-types"><span class="header-section-number">1.4</span> Data types</a></li>
+<li><a class="nav-link" href="#glossary-intro"><span class="header-section-number">1.5</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-intro"><span class="header-section-number">1.6</span> Further Resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -563,7 +575,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

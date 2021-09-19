@@ -391,7 +391,7 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 `r glossary_table()`
 
-## Further Resources {#resources-repro}
+## Further Resources {#resources-reports}
 
 -   [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown.pdf)
 -   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)

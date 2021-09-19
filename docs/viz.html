@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 3 Basic Data Visualisation | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Be able to choose appropriate plots for data Create histograms, bar plots, scatter plots, and trend...">
+<meta name="description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Create plots in layers using ggplot Be able to choose appropriate plots for data library(tidyverse)...">
 <meta name="generator" content="bookdown 0.23 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Basic Data Visualisation | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/viz.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
-<meta property="og:description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Be able to choose appropriate plots for data Create histograms, bar plots, scatter plots, and trend...">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Create plots in layers using ggplot Be able to choose appropriate plots for data library(tidyverse)...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 3 Basic Data Visualisation | Applied Data Skills">
-<meta name="twitter:description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Be able to choose appropriate plots for data Create histograms, bar plots, scatter plots, and trend...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta name="twitter:description" content="3.1 Intended Learning Outcomes Understand the difference between categorical and continuous data Create plots in layers using ggplot Be able to choose appropriate plots for data library(tidyverse)...">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -68,6 +68,7 @@
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">E</span> Styling Plots</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -87,8 +88,444 @@
 </h2>
 <ul>
 <li>Understand the difference between categorical and continuous data</li>
+<li>Create plots in layers using ggplot</li>
 <li>Be able to choose appropriate plots for data</li>
-<li>Create histograms, bar plots, scatter plots, and trend lines, change plot size and position in code chunk</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="variable-types" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Variable Types<a class="anchor" aria-label="anchor" href="#variable-types"><i class="fas fa-link"></i></a>
+</h2>
+<p>If a spreadsheet is in a <code>r glossary("tidy data")</code> format, each row is an <a class="glossary" target="_blank" title="All of the data about a single trial or question." href="https://psyteachr.github.io/glossary/o#observation">observation</a>, each column is a <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/v#variable">variable</a>, and the information in each cell is a <a class="glossary" target="_blank" title="A single number or piece of data." href="https://psyteachr.github.io/glossary/v#value">value</a>. We'll learn more about how to get our data into this format in Chapter <a href="tidy.html#tidy">5</a>, but to get started we'll use built-in datasets with the right format.</p>
+<p>For example, the table below lists pets owned by members of the psyTeachR team. Each row is an observation of one pet. There are 5 variables for each pet, their <code>name</code>, <code>owner</code>, <code>species</code>, <code>weight</code>, and <code>rating</code>.</p>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+owner
+</th>
+<th style="text-align:left;">
+species
+</th>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:left;">
+rating
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Darwin
+</td>
+<td style="text-align:left;">
+Lisa
+</td>
+<td style="text-align:left;">
+ferret
+</td>
+<td style="text-align:right;">
+1.2
+</td>
+<td style="text-align:left;">
+a little evil
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oy
+</td>
+<td style="text-align:left;">
+Lisa
+</td>
+<td style="text-align:left;">
+ferret
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:left;">
+very good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Khaleesi
+</td>
+<td style="text-align:left;">
+Emily
+</td>
+<td style="text-align:left;">
+cat
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:left;">
+very good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bernie
+</td>
+<td style="text-align:left;">
+Phil
+</td>
+<td style="text-align:left;">
+dog
+</td>
+<td style="text-align:right;">
+32.0
+</td>
+<td style="text-align:left;">
+very good
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>When you're plotting data, it's important to know what type of variables you have.</p>
+<div id="continuous" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Continuous<a class="anchor" aria-label="anchor" href="#continuous"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Data that can take on any values between other existing values." href="https://psyteachr.github.io/glossary/c#continuous">Continuous</a> variables are properties you can measure, like weight. Continuous variables are always numbers. They may be rounded to the nearest whole number, but it should make sense to have a measurement halfway between.</p>
+</div>
+<div id="categorical" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Categorical<a class="anchor" aria-label="anchor" href="#categorical"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Data that can only take certain values, such as types of pet." href="https://psyteachr.github.io/glossary/c#categorical">Categorical</a> variables are properties you can count, like the number of pets of each species. Categorical variables can be <a class="glossary" target="_blank" title="Categorical variables that don't have an inherent order, such as types of animal." href="https://psyteachr.github.io/glossary/n#nominal">nominal</a>, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). Sometimes people represent categorical variables with numbers that correspond to names, like 0 = "no" and 1 = "yes", but values in between don't have a clear interpretation. If you have control over how the data are recorded, it's better to use the text names for clarity, but you'll learn how to recode columns in Chapter <a href="wrangle.html#wrangle">6</a>.</p>
+</div>
+<div id="ordinal" class="section level3" number="3.2.3">
+<h3>
+<span class="header-section-number">3.2.3</span> Ordinal<a class="anchor" aria-label="anchor" href="#ordinal"><i class="fas fa-link"></i></a>
+</h3>
+<p><a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as number of legs" href="https://psyteachr.github.io/glossary/o#ordinal">Ordinal</a> variables are a type of categorical variable with a clear order, but the distance between the categories isn't something you could exactly equate, like points on a <a class="glossary" target="_blank" title="A rating scale with a small number of discrete points in order" href="https://psyteachr.github.io/glossary/l#likert">Likert</a> rating scale. Even if a data table uses numbers like 1-7 to represent ordinal variables, you shouldn't treat them like continuous variables.</p>
+</div>
+<div id="dates-and-times" class="section level3" number="3.2.4">
+<h3>
+<span class="header-section-number">3.2.4</span> Dates and Times<a class="anchor" aria-label="anchor" href="#dates-and-times"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dates and times are a special case of variable. They can act like categorical or continuous variables, and there are special ways to plot them.</p>
+</div>
+</div>
+<div id="building-plots" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Building Plots<a class="anchor" aria-label="anchor" href="#building-plots"><i class="fas fa-link"></i></a>
+</h2>
+<div id="layered-plots" class="section level3" number="3.3.1">
+<h3>
+<span class="header-section-number">3.3.1</span> Layered Plots<a class="anchor" aria-label="anchor" href="#layered-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Figure <a href="viz.html#fig:layers">3.1</a> displays the evolution of a simple scatterplot using this layered approach. First, the plot space is built (layer 1); the variables are specified (layer 2); the type of visualisation (known as a <code>geom</code>) that is desired for these variables is specified (layer 3) - in this case <code>geom_point()</code> is called to visualise individual data points; a second geom is added to include a line of best fit (layer 4), the axis labels are edited for readability (layer 5), and finally, a theme is applied to change the overall appearance of the plot (layer 6).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:layers"></span>
+<img src="03-viz_files/figure-html/layers-1.png" alt="Evolution of a layered plot" width="100%"><p class="caption">
+Figure 3.1: Evolution of a layered plot
+</p>
+</div>
+<p>Importantly, each layer is independent and independently customisable. For example, the size, colour and position of each component can be adjusted, or one could, for example, remove the first geom (the data points) to only visualise the line of best fit, simply by removing the layer that draws the data points (Figure <a href="viz.html#fig:remove-layer">3.2</a>). The use of layers makes it easy to build up complex plots step-by-step, and to adapt or extend plots from existing code.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:remove-layer"></span>
+<img src="03-viz_files/figure-html/remove-layer-1.png" alt="Plot with scatterplot layer removed." width="100%"><p class="caption">
+Figure 3.2: Plot with scatterplot layer removed.
+</p>
+</div>
+</div>
+<div id="loading-data" class="section level3" number="3.3.2">
+<h3>
+<span class="header-section-number">3.3.2</span> Loading Data<a class="anchor" aria-label="anchor" href="#loading-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let's build up a simple version of the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter <a href="data.html#data">4</a>, but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. A <a class="glossary" target="_blank" title="A data type representing a real decimal number" href="https://psyteachr.github.io/glossary/d#double">double</a> is a kind of <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a> value that can have decimal places.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/survey_data.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   caller_id = col_character(),
+##   employee_id = col_character(),
+##   call_start = col_datetime(format = ""),
+##   wait_time = col_double(),
+##   call_time = col_double(),
+##   issue_category = col_character(),
+##   satisfaction = col_double()
+## )</code></pre>
+<p>This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.</p>
+<ul>
+<li>
+<code>caller_id</code> is a unique ID for each caller</li>
+<li>
+<code>employee_id</code> is a unique ID for each employee taking calls</li>
+<li>
+<code>call_start</code> is the date and time that the call arrived</li>
+<li>
+<code>wait_time</code> is the number of seconds the caller had to wait</li>
+<li>
+<code>call_time</code> is the number of seconds the call lasted after the employee picked up</li>
+<li>
+<code>issue_category</code> is whether the issue was technical, sales, returns, other</li>
+<li>
+<code>satisfaction</code> is the customer satisfaction rating on a scale from 1 (very unsatisfied) to 5 (very satisfied)</li>
+</ul>
+</div>
+<div id="plot-setup" class="section level3" number="3.3.3">
+<h3>
+<span class="header-section-number">3.3.3</span> Plot setup<a class="anchor" aria-label="anchor" href="#plot-setup"><i class="fas fa-link"></i></a>
+</h3>
+<p>Every plot starts with the <code>ggplot()</code> function and a data table. If your data are not loaded or you have a typo in your code, this will give you an error message. It's best to check your plot after each step so you can figure out where errors are more easily.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="mapping" class="section level3" number="3.3.4">
+<h3>
+<span class="header-section-number">3.3.4</span> Mapping<a class="anchor" aria-label="anchor" href="#mapping"><i class="fas fa-link"></i></a>
+</h3>
+<p>The next <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to <code>ggplot()</code> is the <code>mapping</code>. This tells the plot which columns in the data should be represented by different "aesthetics" of the plot, such as the x-axis, y-axis, line colour, object fill, or line style.</p>
+<p>The <code>mapping</code> argument requires an <code>aes()</code> function that can take the arguments <code>x</code> and <code>y</code>. Set those to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># set up the mapping</span>
+<span class="va">wait_vs_call</span> <span class="op">&lt;-</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">wait_time</span>, 
+                    y <span class="op">=</span> <span class="va">call_time</span><span class="op">)</span>
+
+<span class="co"># set up the plot</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="info">
+<p>You will often see the two steps above (setting up the mapping and setting up the plot) combined like below. If you put arguments in the right order, you don't need to use their names, and you can put the <code>aes()</code> function directly in the second argument. Once you're very familiar with plotting, this shortcut will make sense, but we'll use the longer, clearer version to start.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">survey_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">wait_time</span>, y <span class="op">=</span> <span class="va">call_time</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="geoms" class="section level3" number="3.3.5">
+<h3>
+<span class="header-section-number">3.3.5</span> Geoms<a class="anchor" aria-label="anchor" href="#geoms"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now we can add our plot elements in layers. These are referred to as <a class="glossary" target="_blank" title="The geometric style in which data are displayed, such as boxplot, density, or histogram." href="https://psyteachr.github.io/glossary/g#geom">geoms</a> and their functions start with <code>geom_</code>. You <strong>add</strong> layers onto the base plot created by <code>ggplot()</code> with a plus (<code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>).</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="co"># scatterplot</span></code></pre></div>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="warning">
+<p>Somewhat annoyingly, the plus has to be on the end of the previous line, not at the start of the next line. If you do make this mistake, you will get the following error message.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R">  <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="co"># scatterplot</span></code></pre></div>
+<pre><code>## Error: Cannot use `+.gg()` with a single argument. Did you accidentally put + on a new line?</code></pre>
+</div>
+</div>
+<div id="multiple-geoms" class="section level3" number="3.3.6">
+<h3>
+<span class="header-section-number">3.3.6</span> Multiple Geoms<a class="anchor" aria-label="anchor" href="#multiple-geoms"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can add more than one geom. They display in the order you set them up. In the code below, we make two different plots and assign them to <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/o#object">objects</a> that we can add together using the <code><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout()</a></code> function from the <code class="package">patchwork</code> package.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">point_first</span> <span class="op">&lt;-</span> 
+  <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># scatterplot</span>
+  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span><span class="op">)</span> <span class="co"># line of best fit</span>
+  
+<span class="va">line_first</span> <span class="op">&lt;-</span>
+  <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span><span class="op">)</span> <span class="op">+</span> <span class="co"># line of best fit</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="co"># scatterplot</span>
+
+<span class="co"># add plots together in 1 row</span>
+<span class="va">point_first</span> <span class="op">+</span> <span class="va">line_first</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'</code></pre>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="styling-geoms" class="section level3" number="3.3.7">
+<h3>
+<span class="header-section-number">3.3.7</span> Styling Geoms<a class="anchor" aria-label="anchor" href="#styling-geoms"><i class="fas fa-link"></i></a>
+</h3>
+<p>We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom (not use it to represent different levels of a variable), you can set arguments inside the geom function. See Appendix <a href="plotstyle.html#plotstyle">E</a> for more information about the ways to style plot aesthetics.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"dodgerblue"</span>, 
+             alpha <span class="op">=</span> <span class="fl">0.15</span>,
+             shape <span class="op">=</span> <span class="fl">18</span>,
+             size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, 
+              formula <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">x</span>, <span class="co"># default value; avoids annoying message</span>
+              colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">.8</span><span class="op">)</span>,
+              linetype <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="03-viz_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="try">
+<p>Play around with different values for the aesthetics above. Figure out what the default values are for <code>shape</code> and <code>size</code>.</p>
+</div>
+</div>
+</div>
+<div id="appropriate-plots" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Appropriate Plots<a class="anchor" aria-label="anchor" href="#appropriate-plots"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="glossary-viz" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-viz"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:left;">
+definition
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/a.html#argument" class="glossary" target="_blank">argument</a>
+</td>
+<td style="text-align:left;">
+A variable that provides input to a function.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/c.html#categorical" class="glossary" target="_blank">categorical</a>
+</td>
+<td style="text-align:left;">
+Data that can only take certain values, such as types of pet.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/c.html#continuous" class="glossary" target="_blank">continuous</a>
+</td>
+<td style="text-align:left;">
+Data that can take on any values between other existing values.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/d.html#double" class="glossary" target="_blank">double</a>
+</td>
+<td style="text-align:left;">
+A data type representing a real decimal number
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/g.html#geom" class="glossary" target="_blank">geom</a>
+</td>
+<td style="text-align:left;">
+The geometric style in which data are displayed, such as boxplot, density, or histogram.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/l.html#likert" class="glossary" target="_blank">likert</a>
+</td>
+<td style="text-align:left;">
+A rating scale with a small number of discrete points in order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/n.html#nominal" class="glossary" target="_blank">nominal</a>
+</td>
+<td style="text-align:left;">
+Categorical variables that don't have an inherent order, such as types of animal.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/n.html#numeric" class="glossary" target="_blank">numeric</a>
+</td>
+<td style="text-align:left;">
+A data type representing a real decimal number or integer.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/o.html#object" class="glossary" target="_blank">object</a>
+</td>
+<td style="text-align:left;">
+A word that identifies and stores the value of some data for later use.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/o.html#observation" class="glossary" target="_blank">observation</a>
+</td>
+<td style="text-align:left;">
+All of the data about a single trial or question.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/o.html#ordinal" class="glossary" target="_blank">ordinal</a>
+</td>
+<td style="text-align:left;">
+Discrete variables that have an inherent order, such as number of legs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/v.html#value" class="glossary" target="_blank">value</a>
+</td>
+<td style="text-align:left;">
+A single number or piece of data.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/v.html#variable" class="glossary" target="_blank">variable</a>
+</td>
+<td style="text-align:left;">
+A word that identifies and stores the value of some data for later use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="resources-viz" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-viz"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<a href="https://psyteachr.github.io/introdataviz/">Data visualisation using R, for researchers who don't use R</a> (-<span class="citation"><a href="references.html#ref-nordmann_2021" role="doc-biblioref">Nordmann et al.</a> (<a href="references.html#ref-nordmann_2021" role="doc-biblioref">2021</a>)</span>)</li>
+<li>
+<a href="http://r4ds.had.co.nz/data-visualisation.html">Chapter 3: Data Visualisation</a> of <em>R for Data Science</em>
+</li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">ggplot2 cheat sheet</a></li>
+<li><a href="https://ggplot2.tidyverse.org/articles/">ggplot2 FAQs</a></li>
+<li>
+<a href="http://r4ds.had.co.nz/graphics-for-communication.html">Chapter 28: Graphics for communication</a> of <em>R for Data Science</em>
+</li>
+<li>
+<a href="http://socviz.co/look-at-data.html">Look at Data</a> from <a href="http://socviz.co/">Data Vizualization for Social Science</a>
+</li>
+<li>
+<a href="https://psyteachr.github.io/hack-your-data/">Hack Your Data Beautiful</a> workshop by University of Glasgow postgraduate students</li>
+<li>
+<a href="http://www.cookbook-r.com/Graphs">Graphs</a> in <em>Cookbook for R</em>
+</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/">ggplot2 documentation</a></li>
+<li>
+<a href="http://www.r-graph-gallery.com/">The R Graph Gallery</a> (this is really useful)</li>
+<li><a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 ggplot2 Visualizations</a></li>
+<li>
+<a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook</a> by Winston Chang</li>
+<li><a href="https://www.ggplot2-exts.org/">ggplot extensions</a></li>
+<li>
+<a href="https://plot.ly/ggplot2/">plotly</a> for creating interactive graphs</li>
 </ul>
 </div>
 </div>
@@ -271,6 +708,17 @@ $( document ).ready(function() {
   $("footer div.row div:eq(1) p").html(
     psyteachr + license + cite
   );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></div>
@@ -280,6 +728,28 @@ $( document ).ready(function() {
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#viz"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="nav-link" href="#ilo-viz"><span class="header-section-number">3.1</span> Intended Learning Outcomes</a></li>
+<li>
+<a class="nav-link" href="#variable-types"><span class="header-section-number">3.2</span> Variable Types</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#continuous"><span class="header-section-number">3.2.1</span> Continuous</a></li>
+<li><a class="nav-link" href="#categorical"><span class="header-section-number">3.2.2</span> Categorical</a></li>
+<li><a class="nav-link" href="#ordinal"><span class="header-section-number">3.2.3</span> Ordinal</a></li>
+<li><a class="nav-link" href="#dates-and-times"><span class="header-section-number">3.2.4</span> Dates and Times</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#building-plots"><span class="header-section-number">3.3</span> Building Plots</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#layered-plots"><span class="header-section-number">3.3.1</span> Layered Plots</a></li>
+<li><a class="nav-link" href="#loading-data"><span class="header-section-number">3.3.2</span> Loading Data</a></li>
+<li><a class="nav-link" href="#plot-setup"><span class="header-section-number">3.3.3</span> Plot setup</a></li>
+<li><a class="nav-link" href="#mapping"><span class="header-section-number">3.3.4</span> Mapping</a></li>
+<li><a class="nav-link" href="#geoms"><span class="header-section-number">3.3.5</span> Geoms</a></li>
+<li><a class="nav-link" href="#multiple-geoms"><span class="header-section-number">3.3.6</span> Multiple Geoms</a></li>
+<li><a class="nav-link" href="#styling-geoms"><span class="header-section-number">3.3.7</span> Styling Geoms</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#appropriate-plots"><span class="header-section-number">3.4</span> Appropriate Plots</a></li>
+<li><a class="nav-link" href="#glossary-viz"><span class="header-section-number">3.5</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-viz"><span class="header-section-number">3.6</span> Further Resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -297,7 +767,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

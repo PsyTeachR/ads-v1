@@ -3,5 +3,276 @@
 ## Intended Learning Outcomes {#ilo-viz}
 
 * Understand the difference between categorical and continuous data
+* Create plots in layers using ggplot
 * Be able to choose appropriate plots for data
-* Create histograms, bar plots, scatter plots, and trend lines, change plot size and position in code chunk 
+
+```{r}
+library(tidyverse)
+library(patchwork)
+```
+
+
+## Variable Types
+
+If a spreadsheet is in a ` r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use built-in datasets with the right format.
+
+For example, the table below lists pets owned by members of the psyTeachR team. Each row is an observation of one pet. There are 5 variables for each pet, their `name`, `owner`, `species`, `weight`, and `rating`.
+
+```{r, echo = FALSE}
+tribble(
+  ~name,      ~owner, ~species, ~weight, ~rating,
+  "Darwin",   "Lisa", "ferret",  1.2,    "a little evil",
+  "Oy",       "Lisa", "ferret",  2.9,    "very good",
+  "Khaleesi", "Emily", "cat",    4.5,    "very good",
+  "Bernie",   "Phil",  "dog",   32.0,    "very good"
+)
+```
+
+When you're plotting data, it's important to know what type of variables you have.
+
+### Continuous
+
+`r glossary("Continuous")` variables are properties you can measure, like weight. Continuous variables are always numbers. They may be rounded to the nearest whole number, but it should make sense to have a measurement halfway between.
+
+### Categorical
+
+`r glossary("Categorical")` variables are properties you can count, like the number of pets of each species. Categorical variables can be `r glossary("nominal")`, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). Sometimes people represent categorical variables with numbers that correspond to names, like 0 = "no" and 1 = "yes", but values in between don't have a clear interpretation. If you have control over how the data are recorded, it's better to use the text names for clarity, but you'll learn how to recode columns in Chapter\ \@ref(wrangle).
+
+### Ordinal
+
+`r glossary("Ordinal")` variables are a type of categorical variable with a clear order, but the distance between the categories isn't something you could exactly equate, like points on a `r glossary("Likert")` rating scale. Even if a data table uses numbers like 1-7 to represent ordinal variables, you shouldn't treat them like continuous variables.
+
+### Dates and Times
+
+Dates and times are a special case of variable. They can act like categorical or continuous variables, and there are special ways to plot them.
+
+
+## Building Plots
+
+```{r sim-survey, include = FALSE}
+library(faux)
+library(lubridate)
+set.seed(8765309)
+
+issues <- c(
+  technical = 0, 
+  sales = 2, 
+  returns = 1,
+  other = 1
+)
+
+survey_data <- add_random(employee_id = 10) %>%
+  add_random(caller_id = sample(50:100, 10), 
+             .nested_in = "employee_id") %>%
+  mutate(call_start = runif(nrow(.), 2020, 2021) %>% date_decimal()) %>%
+  add_ranef("caller_id", wait_time = 1, call_time = 1, .cors = 0.5) %>%
+  mutate(wait_time = norm2beta(wait_time, 2, 4, ncp=10) * 5,
+         call_time = norm2beta(call_time, 2, 4, ncp=0) * 2 + 0.5,
+         # round and add outliers
+         wait_time = round(wait_time * 60) + 
+           sample(c(0, 100), nrow(.), T, c(99, 1)),
+         call_time = round(call_time * 60) + 
+           sample(c(0, 100), nrow(.), T, c(99, 1))
+  ) %>%
+  add_between("caller_id", issue_category = names(issues)) %>%
+  add_ranef("employee_id", employee_quality = 1) %>%
+  add_ranef(error = 1) %>%
+  mutate(satisfaction = (employee_quality + 
+           recode(issue_category, !!!issues) -
+           (wait_time * .1) + 
+           error) %>% norm2likert(c(1,2,3,2,1))) %>%
+  select(caller_id, employee_id, call_start, wait_time, call_time,
+         issue_category, satisfaction)
+
+write_csv(survey_data, "data/survey_data.csv")
+```
+
+
+### Layered Plots
+
+Figure\ \@ref(fig:layers) displays the evolution of a simple scatterplot using this layered approach. First, the plot space is built (layer 1); the variables are specified (layer 2); the type of visualisation (known as a `geom`) that is desired for these variables is specified (layer 3) - in this case `geom_point()` is called to visualise individual data points; a second geom is added to include a line of best fit (layer 4), the axis labels are edited for readability (layer 5), and finally, a theme is applied to change the overall appearance of the plot (layer 6).
+
+```{r layers, fig.cap="Evolution of a layered plot", echo = FALSE, message=FALSE}
+survey_data <- read_csv(file = "data/survey_data.csv")
+xlim <- c(0, max(survey_data$wait_time) + 10)
+ylim <- c(0, max(survey_data$call_time) + 10)
+
+a <- ggplot() + labs(subtitle = "Layer 1")
+b <- ggplot(survey_data, aes(x = wait_time, y = call_time)) + 
+  labs(subtitle = "Layer 2")
+c <- b + geom_point(alpha = 0.15, color = "dodgerblue") + 
+  labs(subtitle = "Layer 3")
+d <- c + geom_smooth(method = "lm", color = rgb(0, .5, .8)) + 
+  labs(subtitle = "Layer 4")
+e <- d + scale_x_continuous(name = "Wait Time (min)", 
+                            breaks = seq(0, 600, 60),
+                            labels = 0:10,
+                            limits = xlim) +
+  scale_y_continuous(name = "Call time (min)",
+                     breaks = seq(0, 600, 30),
+                     labels = seq(0, 10, .5) %>% format(digits = 1),
+                     limits = ylim) + 
+  labs(subtitle = "Layer 5")
+f <- e + theme_minimal(base_family = "Times") + 
+  theme(panel.grid.minor = element_blank()) +
+  labs(subtitle = "Layer 6")
+
+a + b + c + d + e + f + plot_layout(nrow = 2)
+```
+
+Importantly, each layer is independent and independently customisable. For example, the size, colour and position of each component can be adjusted, or one could, for example, remove the first geom (the data points) to only visualise the line of best fit, simply by removing the layer that draws the data points (Figure\ \@ref(fig:remove-layer)). The use of layers makes it easy to build up complex plots step-by-step, and to adapt or extend plots from existing code.
+
+```{r remove-layer, fig.cap="Plot with scatterplot layer removed.", echo = FALSE}
+ggplot(survey_data, aes(x = wait_time, y = call_time)) + 
+  #geom_point(alpha = 0.15, color = "dodgerblue") +
+  geom_smooth(method = "lm", formula = y~x, color = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (min)", 
+                            breaks = seq(0, 600, 60),
+                            labels = 0:10,
+                            limits = xlim) +
+  scale_y_continuous(name = "Call time (min)",
+                     breaks = seq(0, 600, 30),
+                     labels = seq(0, 10, .5) %>% format(digits = 1),
+                     limits = ylim) + 
+  theme_minimal(base_family = "Times") + 
+  theme(panel.grid.minor = element_blank())
+```
+
+### Loading Data
+
+Let's build up a simple version of the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter\ \@ref(data), but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. A `r glossary("double")` is a kind of `r glossary("numeric")` value that can have decimal places.
+
+```{r}
+survey_data <- read_csv(file = "data/survey_data.csv")
+```
+
+This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.
+
+* `caller_id` is a unique ID for each caller
+* `employee_id` is a unique ID for each employee taking calls
+* `call_start` is the date and time that the call arrived
+* `wait_time` is the number of seconds the caller had to wait
+* `call_time` is the number of seconds the call lasted after the employee picked up
+* `issue_category` is whether the issue was `r paste(names(issues), collapse = ", ")`
+* `satisfaction` is the customer satisfaction rating on a scale from 1 (very unsatisfied) to 5 (very satisfied)
+
+### Plot setup
+
+Every plot starts with the `ggplot()` function and a data table. If your data are not loaded or you have a typo in your code, this will give you an error message. It's best to check your plot after each step so you can figure out where errors are more easily.
+
+```{r}
+ggplot(data = survey_data)
+```
+
+### Mapping
+
+The next `r glossary("argument")` to `ggplot()` is the `mapping`. This tells the plot which columns in the data should be represented by different "aesthetics" of the plot, such as the x-axis, y-axis, line colour, object fill, or line style.
+
+The `mapping` argument requires an `aes()` function that can take the arguments `x` and `y`. Set those to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.
+
+```{r}
+# set up the mapping
+wait_vs_call <- aes(x = wait_time, 
+                    y = call_time)
+
+# set up the plot
+ggplot(data = survey_data, mapping = wait_vs_call)
+```
+
+
+::: {.info data-latex=""}
+You will often see the two steps above (setting up the mapping and setting up the plot) combined like below. If you put arguments in the right order, you don't need to use their names, and you can put the `aes()` function directly in the second argument. Once you're very familiar with plotting, this shortcut will make sense, but we'll use the longer, clearer version to start.
+
+```{r, eval = FALSE}
+ggplot(survey_data, aes(x = wait_time, y = call_time))
+```
+
+:::
+
+### Geoms
+
+Now we can add our plot elements in layers. These are referred to as `r glossary("geom", "geoms")` and their functions start with `geom_`. You **add** layers onto the base plot created by `ggplot()` with a plus (`+`). 
+
+```{r}
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point() # scatterplot
+```
+
+::: {.warning data-latex=""}
+Somewhat annoyingly, the plus has to be on the end of the previous line, not at the start of the next line. If you do make this mistake, you will get the following error message.
+
+```{r, error = TRUE, results='hide'}
+ggplot(data = survey_data, mapping = wait_vs_call)
+  + geom_point() # scatterplot
+```
+:::
+
+### Multiple Geoms
+
+You can add more than one geom. They display in the order you set them up. In the code below, we make two different plots and assign them to `r glossary("object", "objects")` that we can add together using the `plot_layout()` function from the `r pkg("patchwork")` package.
+
+```{r}
+point_first <- 
+  ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point() + # scatterplot
+  geom_smooth(method = lm) # line of best fit
+  
+line_first <-
+  ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_smooth(method = lm) + # line of best fit
+  geom_point() # scatterplot
+
+# add plots together in 1 row
+point_first + line_first + plot_layout(nrow = 1)
+```
+
+
+### Styling Geoms
+
+We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom (not use it to represent different levels of a variable), you can set arguments inside the geom function. See Appendix\ \@ref(plotstyle) for more information about the ways to style plot aesthetics.
+
+
+```{r}
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.15,
+             shape = 18,
+             size = 2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, # default value; avoids annoying message
+              colour = rgb(0, .5, .8),
+              linetype = 4) 
+```
+
+
+::: {.try data-latex=""}
+Play around with different values for the aesthetics above. Figure out what the default values are for `shape` and `size`.
+:::
+
+
+
+
+
+## Appropriate Plots
+
+
+## Glossary {#glossary-viz}
+
+`r glossary_table()`
+
+## Further Resources {#resources-viz}
+
+* [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) (-@nordmann_2021)
+* [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
+* [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+* [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)
+* [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
+* [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)
+* [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students
+* [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
+* [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
+* [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
+* [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+* [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/) by Winston Chang
+* [ggplot extensions](https://www.ggplot2-exts.org/)
+* [plotly](https://plot.ly/ggplot2/) for creating interactive graphs

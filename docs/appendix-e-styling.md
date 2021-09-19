@@ -11,7 +11,7 @@ Hover over a colour to see its R name.
 <style>
   .colordemo { list-item-style: none; padding: 0; margin: 0;}
   
-  .colordemo li, main ul.color > li:first-child { 
+  .colordemo li, main ul.colordemo > li:first-child { 
     display: inline-block; 
     width: 0em; height: 0em; 
     border: 0.25px solid black; 

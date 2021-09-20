@@ -28,6 +28,9 @@ fig:unnamed-chunk-4
 fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
+fig:unnamed-chunk-8
+fig:unnamed-chunk-9
+fig:unnamed-chunk-10
 structure-of-the-course
 how-to-learn-data-skills
 intro
@@ -209,3 +212,5 @@ brewer-palettes
 qualitative-brewer-palettes
 sequential-brewer-palettes
 diverging-brewer-palettes
+themes-1
+ggthemes

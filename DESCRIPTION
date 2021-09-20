@@ -39,6 +39,7 @@ Imports:
     kableExtra,
     patchwork,
     grDevices,
+    ggthemes,
     ggwordcloud,
     tidytext,
     glue

@@ -8,8 +8,10 @@
 
 
 ```r
-library(tidyverse)
+library(ggplot2)
 library(patchwork)
+library(ggthemes)
+library(lubridate)
 ```
 
 
@@ -135,7 +137,7 @@ This data is simulated data for a call centre customer satisfaction survey. The 
 * `call_start` is the date and time that the call arrived
 * `wait_time` is the number of seconds the caller had to wait
 * `call_time` is the number of seconds the call lasted after the employee picked up
-* `issue_category` is whether the issue was technical, sales, returns, other
+* `issue_category` is whether the issue was tech, sales, returns, other
 * `satisfaction` is the customer satisfaction rating on a scale from 1 (very unsatisfied) to 5 (very satisfied)
 
 ### Plot setup
@@ -195,12 +197,7 @@ Somewhat annoyingly, the plus has to be on the end of the previous line, not at 
 
 
 ```r
-ggplot(data = survey_data, mapping = wait_vs_call)
-```
-
-<img src="03-viz_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
-
-```r
+g <- ggplot(data = survey_data, mapping = wait_vs_call)
   + geom_point() # scatterplot
 ```
 
@@ -246,13 +243,13 @@ We should definitely put the line in front of the points, but the points are sti
 ```r
 ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_point(colour = "dodgerblue", 
-             alpha = 0.15,
+             alpha = 0.2,
              shape = 18,
              size = 2) + 
   geom_smooth(method = lm, 
               formula = y~x, # default value; avoids annoying message
               colour = rgb(0, .5, .8),
-              linetype = 4) 
+              linetype = 3) 
 ```
 
 <img src="03-viz_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
@@ -262,11 +259,428 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
 Play around with different values for the aesthetics above. Figure out what the default values are for `shape` and `size`.
 :::
 
+### Format Axes
+
+Now we need to make the axes look neater. There are several functions you can use to change the axis labels, but the most powerful ones are the `scale_` functions. You need to use a scale function that matches the data you're plotting on that axis. Both of the axes here are <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a>, so we'll use `scale_x_continuous()` and `scale_y_continuous()`.
+
+The `name` argument changes the axis label. The `breaks` argument sets the major units and needs a <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of possible values, which can extend beyond the range of the data (e.g., `wait time` only goes up to 350, but we can specify breaks up to 600). The `seq()` function creates a sequence of numbers `from` one `to` another `by` specified steps.
 
 
+```r
+# set the breaks
+x_breaks <- seq(from = 0, to = 600, by = 60)
+y_breaks <- seq(from = 0, to = 600, by = 30)
+
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, 
+              colour = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks)
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+
+::: {.try data-latex=""}
+Check the help for `?scale_x_continuous` to see how you would set the minor units or specify how many breaks you want instead.
+:::
+
+We can change how the axis text displays by setting the `labels` argument. Let's change this to minutes instead of seconds by dividing the labels by 60. 
+
+
+```r
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, 
+              colour = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (minutes)", 
+                     breaks = x_breaks,
+                     labels = x_breaks/60) +
+  scale_y_continuous(name = "Call time (minutes)",
+                     breaks = y_breaks,
+                     labels = y_breaks/60)
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
+
+If you want to change the minimum and maximum values on an axis, use the `limits` argument. Many plots make more sense if the minimum and maximum values represent the range of possible values, even if those values aren't present in the data. Here, wait and call times can't be less than 0 seconds, so we'll set the minimum values to 0 and the maximum values to 10 seconds above the highest value in the data.
+
+
+
+```r
+# set the axis limits
+xlim <- c(0, max(survey_data$wait_time) + 10)
+ylim <- c(0, max(survey_data$call_time) + 10)
+
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, 
+              colour = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (minutes)", 
+                     breaks = x_breaks,
+                     labels = x_breaks/60,
+                     limits = xlim) +
+  scale_y_continuous(name = "Call time (minutes)",
+                     breaks = y_breaks,
+                     labels = format(y_breaks/60, digits = 1),
+                     limits = ylim)
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" />
+
+::: {.info data-latex=""}
+The y-axis has increments of 30 seconds, so to make sure the whole numbers also have a decimal place (e.g., "1.0" instead of "1"), we used the `format()` function to set the number of decimal places to display.
+:::
+
+### Themes
+
+<code class='package'>ggplot2</code> comes with several built-in themes, such as `theme_minimal()` and `theme_bw()`, but the <code class='package'><a href='https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/' target='_blank'>ggthemes</a></code> package provides even more themes that match different software, such as GoogleDocs or Stata, or publications, such as the Economist or the Wall Street Journal. Let's add the GoogleDocs theme, but change the font size to 11 with the `base_size` argument and change the font to "Times" with the `base_family` argument.
+
+
+```r
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, 
+              colour = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (minutes)", 
+                     breaks = x_breaks,
+                     labels = x_breaks/60,
+                     limits = xlim) +
+  scale_y_continuous(name = "Call time (minutes)",
+                     breaks = y_breaks,
+                     labels = format(y_breaks/60, digits = 1),
+                     limits = ylim) +
+  ggthemes::theme_gdocs(base_size = 11, base_family = "Times")
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" />
+
+### Theme Tweaks
+
+If you're still not quite happy with a theme, you can customise it even further with the `themes()` function. Check the help for this function to see all of the possible options. The most common thing you'll want to do is to remove an element entirely. You do this by setting the relevant argument to `element_blank()`. Below, we're getting rid of the x-axis line and the plot background, which removes the line around the plot.
+
+
+```r
+ggplot(data = survey_data, mapping = wait_vs_call) +
+  geom_point(colour = "dodgerblue", 
+             alpha = 0.2) + 
+  geom_smooth(method = lm, 
+              formula = y~x, 
+              colour = rgb(0, .5, .8)) +
+  scale_x_continuous(name = "Wait Time (minutes)", 
+                     breaks = x_breaks,
+                     labels = x_breaks/60,
+                     limits = xlim) +
+  scale_y_continuous(name = "Call time (minutes)",
+                     breaks = y_breaks,
+                     labels = format(y_breaks/60, digits = 1),
+                     limits = ylim) +
+  ggthemes::theme_gdocs(base_size = 11, base_family = "Times") +
+  theme(axis.line.x = element_blank(),
+        plot.background = element_blank())
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 ## Appropriate Plots
+
+The [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) is a great resource to help you find plots appropriate to your data. The examples below all use the same customer satisfaction data, but each plot communicates something different. 
+
+We don't expect you to memorise all of the plot types or the methods for customising them, but it will be helpful to try out the code in the examples below for yourself, changing values to test your understanding.
+
+### Counting Categories
+
+If you want to count the number of things per category, you can use `geom_bar()`.
+
+
+```r
+count_issues <- aes(x = issue_category)
+
+ggplot(data = survey_data, mapping = count_issues) +
+  geom_bar()
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+We'll want to customise some things about this, like the colours, order of the columns, and their labels. Inspect the code below to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions.
+
+
+```r
+# gives each issue a different colour
+count_issues <- aes(x = issue_category,
+                    fill = issue_category) 
+
+# change the deafult order and colours
+new_colors <- c(tech = "goldenrod", 
+                returns = "darkgreen", 
+                sales = "dodgerblue3", 
+                other = "purple3")
+new_order <- c("tech", "returns", "sales", "other")
+new_labels <- c("Technical", "Returns", "Sales", "Other")
+
+ggplot(data = survey_data, mapping = count_issues) +
+  geom_bar() +
+  scale_x_discrete(
+    name = "Issue Category", # change axis title
+    limits = new_order, # change order
+    labels = new_labels # change labels
+  ) +
+  scale_fill_manual(
+    values = new_colors, # change colours
+    guide = "none" # remove the legend
+  ) +
+  scale_y_continuous(
+    name = "", # remove axis title
+    # remove the space above and below the y-axis
+    expand = expansion(add = 0), 
+    limits = c(0, 350) # minimum = 0, maximum = 350
+  ) +
+  ggtitle("Number of issues per category") # add a title
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
+
+### Continuous Distribution
+
+If you have a continuous variable, like the number of seconds callers have to wait, you can use `geom_histogram()` to show the distribution. 
+
+
+```r
+ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/unnamed-chunk-18-1.png" alt="Histogram of wait times." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-18)Histogram of wait times.</p>
+</div>
+
+You should always set the `binwidth` or number of `bins` to something meaningful for your data (otherwise you get that annoying message). You might need to try a few options before you find something that looks good and conveys the meaning of your plot; `binwidth = 15` seems to work well here. 
+
+By default, the bars start *centered* on 0, so the first bar would include -7.5 to 7.5 seconds, which doesn't make much sense. We can set `boundary = 0` so that each bar represents increments of 15 seconds *starting* from 0. 
+
+The default style of grey bars is ugly, so you can change that by setting the `fill` and `colour`. 
+
+We can also set up a custom the x-axis called `wait_x` so we can reuse it in other plots.
+
+
+```r
+# set up x-axis 
+wait_x <- scale_x_continuous(
+  name = "Wait time (minutes)",
+  breaks = seq(0, 600, 60),
+  labels = seq(0, 600, 60)/60,
+  limits = c(0, 360)
+)
+
+# style histogram
+ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+  geom_histogram(boundary = 0, binwidth = 15, 
+                 fill = "white", color = "black") +
+  wait_x
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/unnamed-chunk-19-1.png" alt="Histogram with custom styles." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-19)Histogram with custom styles.</p>
+</div>
+
+### Grouped Continuous Distribution
+
+You can set the `fill` aesthetic in the mapping to show what proportion of each bin comes from each category. By default, the categories are positioned stacked on top of each other. The function `geom_area()` gives a similar effect when `stat = "bin"`. 
+
+
+```r
+# set fill by issue category
+wait_by_issue <- aes(x = wait_time, fill = issue_category)
+
+# stacked histogram
+histogram_stack <- ggplot(data = survey_data, mapping = wait_by_issue) +
+  geom_histogram(boundary = 0, 
+                 binwidth = 15, 
+                 color = "black") +
+  wait_x + 
+  ggtitle("Stacked Histogram")
+
+# area plot
+area_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+  geom_area(stat = "bin", 
+            boundary = 0, 
+            binwidth = 15, 
+            color = "black",
+            show.legend = FALSE) +
+  wait_x +
+  ggtitle("Area")
+
+histogram_stack + area_plot + 
+  plot_layout(nrow = 1, guides = "collect")
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Stacked histogram." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-20)Stacked histogram.</p>
+</div>
+
+::: {.warning data-latex=""}
+Make sure to remove the `fill` argument from `geom_histogram()`, or it will overwrite the colours set in the mapping.
+:::
+
+If you want to compare more than one distribution, you can set the `position` argument of `geom_histogram()` to "dodge", but this can look confusing with several categories. You can use`geom_freqpoly()` to plot a line connecting the top of each bin. Which you choose depends on what point you are trying to make with the plot.
+
+
+```r
+# set both fill and colour to differ by issue category
+wait_by_issue <- aes(x = wait_time, 
+                     fill = issue_category, 
+                     colour = issue_category)
+
+# dodged histogram
+histogram_dodge <- ggplot(data = survey_data, mapping = wait_by_issue) +
+  geom_histogram(boundary = 0, 
+                 binwidth = 15, 
+                 position = "dodge") +
+  wait_x + 
+  ggtitle("Dodged Histogram")
+
+# frequency plot
+freqpoly_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+  geom_freqpoly(binwidth = 15, 
+                boundary = 0,
+                size = 1) +
+  wait_x +
+  ggtitle("Frequency")
+
+# paste the three plots together
+histogram_dodge + freqpoly_plot + 
+  plot_layout(nrow = 1, guides = "collect")
+```
+
+```
+## Warning: Removed 8 row(s) containing missing values (geom_path).
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/unnamed-chunk-21-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-21)Different ways to plot the distribution of a continuous variable for multiple groups.</p>
+</div>
+
+
+### Two Continuous Distributions
+
+When you want to see how two continuous variables are related, set one as the x-axis and the other as the y-axis. Usually, if one variable causes the other, you plot the cause on the x-axis and the effect on the y-axis. Here, we want to see if longer wait times cause the calls to be longer. 
+
+
+```r
+wait_by_call <- aes(x = wait_time,
+                    y = call_time)
+
+# assign the base plot to a variable to use later
+g <- ggplot(data = survey_data, mapping = wait_by_call)
+
+g + geom_point()
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+
+```r
+point_plot <- g +
+  geom_point(alpha = 0.2) +
+  ggtitle("Point Plot")
+
+smooth_plot <- g +
+  geom_smooth(method = "loess", formula = y~x) +
+  ggtitle("Smooth")
+
+lm_plot <- g +
+  geom_smooth(method = lm, formula = y~x) +
+  ggtitle("Linear")
+
+combo_plot <- g +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = lm, formula = y~x) +
+  ggtitle("Combo")
+
+point_plot + smooth_plot + lm_plot + combo_plot
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/unnamed-chunk-23-1.png" alt="Different ways to show the relationship between two continuous variables." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-23)Different ways to show the relationship between two continuous variables.</p>
+</div>
+
+### Dates
+
+The `call_start` column contains both a date and a time, so use the `date()` function from <code class='package'>lubridate</code> to convert it to just a date. We'll need this to be able to transform the x-axis below.
+
+
+```r
+satisfaction_by_date <- aes(x = lubridate::date(call_start),
+                            y = satisfaction)
+
+# assign the base plot to a variable to use later
+g <- ggplot(data = survey_data, mapping = satisfaction_by_date)
+
+g + geom_smooth(method = lm,  formula = y~x)
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
+
+We can use `scale_x_date()` to set the `date_breaks` to be "1 month" apart. The `date_labels` use a code for different date formats, which you can see in the help for `?strptime`. For example, you can change the dates to a format like "2020/01/31" with the formatting string `"%Y/%m/%d"`.
+
+
+
+
+```r
+g + geom_smooth(method = lm,  formula = y~x) +
+  scale_x_date(name = "",
+               date_breaks = "1 month", 
+               date_labels = "%b") +
+  scale_y_continuous(name = "Caller Satisfaction") +
+  ggtitle("2020 Caller Satisfaction")
+```
+
+<img src="03-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
+
+::: {.try data-latex=""}
+It looks like customer satisfaction declined a bit in the first half of the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5.
+
+
+```r
+g + geom_smooth(method = lm,  formula = y~x) +
+  scale_x_date(name = "",
+               date_breaks = "1 month", 
+               date_labels = "%b") +
+  scale_y_continuous(name = "Caller Satisfaction",
+                     breaks = 1:5,
+                     limits = c(1, 5)) +
+  ggtitle("2020 Caller Satisfaction")
+```
+
+<img src="03-viz_files/figure-html/webex.hide-1.png" width="100%" style="display: block; margin: auto;" />
+
+:::
+
+
+
+
 
 
 ## Glossary {#glossary-viz}
@@ -331,6 +745,10 @@ Play around with different values for the aesthetics above. Figure out what the 
    <td style="text-align:left;"> [variable](https://psyteachr.github.io/glossary/v.html#variable){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A word that identifies and stores the value of some data for later use. </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> [vector](https://psyteachr.github.io/glossary/v.html#vector){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A type of data structure that is basically a list of things like T/F values, numbers, or strings. </td>
+  </tr>
 </tbody>
 </table>
 
@@ -338,7 +756,7 @@ Play around with different values for the aesthetics above. Figure out what the 
 
 ## Further Resources {#resources-viz}
 
-* [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) (-@nordmann_2021)
+* [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) [@nordmann_2021]
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
 * [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 * [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)

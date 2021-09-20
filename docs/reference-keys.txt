@@ -4,6 +4,11 @@ tab:unnamed-chunk-6
 fig:item-by-line-display
 fig:layers
 fig:remove-layer
+fig:unnamed-chunk-18
+fig:unnamed-chunk-19
+fig:unnamed-chunk-20
+fig:unnamed-chunk-21
+fig:unnamed-chunk-23
 tab:unnamed-chunk-1
 tab:wide-data
 tab:long-data
@@ -72,7 +77,15 @@ mapping
 geoms
 multiple-geoms
 styling-geoms
+format-axes
+themes
+theme-tweaks
 appropriate-plots
+counting-categories
+continuous-distribution
+grouped-continuous-distribution
+two-continuous-distributions
+dates
 glossary-viz
 resources-viz
 data

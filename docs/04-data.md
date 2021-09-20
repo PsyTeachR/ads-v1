@@ -188,42 +188,42 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 19-Sep-21 </td>
+   <td style="text-align:left;"> 20-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 18-Sep-21 </td>
+   <td style="text-align:left;"> 19-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 17-Sep-21 </td>
+   <td style="text-align:left;"> 18-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 16-Sep-21 </td>
+   <td style="text-align:left;"> 17-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 15-Sep-21 </td>
+   <td style="text-align:left;"> 16-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 14-Sep-21 </td>
+   <td style="text-align:left;"> 15-Sep-21 </td>
   </tr>
 </tbody>
 </table>
@@ -246,7 +246,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "19-Sep-21", "18-Sep-21", "17-Sep-21", "16-Sep-21", "15-Sep-…
+## $ date      <chr> "20-Sep-21", "19-Sep-21", "18-Sep-21", "17-Sep-21", "16-Sep-…
 ```
 
 #### summary() {#summary-function}

@@ -5,6 +5,7 @@ knitr::opts_chunk$set(
   echo = FALSE,
   warning = FALSE
 )
+library(ggthemes)
 ```
 
 
@@ -116,13 +117,13 @@ ggplot(lines) +
 
 ## Palettes
 
-
 ```{r, include = FALSE}
 palette_demo <- function(levels, seed = 8675309) {
   set.seed(seed)
   
   dat <- faux::sim_design(
     within = list(level = 1:levels),
+    between = list(condition= c("control", "experimental")),
     n = 50, dv = "score",
     plot = FALSE, long = TRUE)
   
@@ -154,6 +155,13 @@ viridis_d_plot <- function(g, option = "viridis") {
 
 ```
 
+Discrete palettes change depending on the number of categories. 
+
+```{r, fig.width = 8, fig.height = 10, fig.cap="Default discrete palette with different numbers of levels."}
+plots <- lapply(1:8, palette_demo)
+wrap_plots(plots, ncol = 2)
+```
+
 
 ### Viridis Palettes
 
@@ -164,7 +172,7 @@ Viridis palettes are very good for colourblind-safe and greyscale-safe plots. Th
 Set `r glossary("discrete")` viridis colours with `scale_colour_viridis_d()` or `scale_fill_viridis_d()` and set the `option` argument to one of the options below. Set `direction = -1` to reverse the order of colours.
 
 
-```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 10, fig.cap="Discrete viridis palettes."}
+```{r, fig.width = 8, fig.height = 10, fig.cap="Discrete viridis palettes."}
 options <- list("magma", "inferno", "plasma", "viridis", "cividis")
 
 g <- palette_demo(5)
@@ -262,4 +270,48 @@ plots <- lapply(palettes, palette_plot, g = g)
 wrap_plots(plots, ncol = 2)
 ```
 
+## Themes
 
+`r pkg("ggplot2")` has 8 built-in themes that you can add to a plot like `plot + theme_bw()` or set as the default theme at the top of your script like `theme_set(theme_bw())`.
+
+```{r, fig.width = 8, fig.height = 8, fig.cap="{ggplot2} themes."}
+g <- palette_demo(2) + facet_wrap(~condition)
+
+themes <- c("theme_bw", "theme_classic", "theme_dark", "theme_gray", "theme_light", "theme_linedraw", "theme_minimal", "theme_void")
+
+plots <- lapply(themes, function(f) {
+  g + get(f)() + ggtitle(glue::glue("{f}()"))
+})
+wrap_plots(plots, ncol = 2)
+```
+
+### ggthemes
+
+You can get more themes from add-on packages, like `r pkg("ggthemes", "https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/")`. Most of the themes also have custom `scale_` functions like `scale_colour_economist()`. Their website has extensive examples and instructions for alternate or dark version sof these themes.
+
+```{r, fig.width = 8, fig.height = 18, fig.cap="{ggthemes} themes."}
+g <- palette_demo(2) + facet_wrap(~condition)
+
+themes <- c("theme_wsj", "theme_tufte", "theme_stata", "theme_gdocs", "theme_fivethirtyeight", "theme_economist", "theme_igray", "theme_hc", "theme_few", "theme_map", "theme_excel", "theme_calc", "theme_economist_white", "theme_excel_new", "theme_pander", "theme_solarized", "theme_solarized_2") %>% sort() %>% setNames(., .)
+
+plots <- lapply(themes, function(f) {
+  scale_colour <- tryCatch({
+    get(gsub("theme_","scale_colour_", gsub("_2", "", f)))()
+  }, error = function(e) {
+    return(NULL)
+  })
+  
+  scale_fill <- tryCatch({
+    get(gsub("theme_","scale_fill_", gsub("_2", "", f)))()
+  }, error = function(e) {
+    return(NULL)
+  })
+  
+  g + get(f)() + 
+    ggtitle(glue::glue("{f}()")) + 
+    scale_colour + 
+    scale_fill
+})
+
+wrap_plots(plots, ncol = 2)
+```

@@ -1664,6 +1664,13 @@ Figure E.3: The 6 linetype values at different sizes.
 <h2>
 <span class="header-section-number">E.2</span> Palettes<a class="anchor" aria-label="anchor" href="#palettes"><i class="fas fa-link"></i></a>
 </h2>
+<p>Discrete palettes change depending on the number of categories.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Default discrete palette with different numbers of levels." width="100%"><p class="caption">
+Figure E.4: Default discrete palette with different numbers of levels.
+</p>
+</div>
 <div id="viridis-palettes" class="section level3" number="15.2.1">
 <h3>
 <span class="header-section-number">E.2.1</span> Viridis Palettes<a class="anchor" aria-label="anchor" href="#viridis-palettes"><i class="fas fa-link"></i></a>
@@ -1675,9 +1682,9 @@ Figure E.3: The 6 linetype values at different sizes.
 </h4>
 <p>Set <a class="glossary" target="_blank" title="Data that can only take certain values, such as integers." href="https://psyteachr.github.io/glossary/d#discrete">discrete</a> viridis colours with <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Discrete viridis palettes." width="100%"><p class="caption">
-Figure E.4: Discrete viridis palettes.
+<span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Discrete viridis palettes." width="100%"><p class="caption">
+Figure E.5: Discrete viridis palettes.
 </p>
 </div>
 <div class="info">
@@ -1690,9 +1697,9 @@ Figure E.4: Discrete viridis palettes.
 </h4>
 <p>Set <a class="glossary" target="_blank" title="Data that can take on any values between other existing values." href="https://psyteachr.github.io/glossary/c#continuous">continuous</a> viridis colours with <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_c()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Continuous viridis palettes." width="100%"><p class="caption">
-Figure E.5: Continuous viridis palettes.
+<span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Continuous viridis palettes." width="100%"><p class="caption">
+Figure E.6: Continuous viridis palettes.
 </p>
 </div>
 </div>
@@ -1708,9 +1715,9 @@ Figure E.5: Continuous viridis palettes.
 </h4>
 <p>These palettes are good for <a class="glossary" target="_blank" title="Data that can only take certain values, such as types of pet." href="https://psyteachr.github.io/glossary/c#categorical">categorical</a> data with up to 8 categories (some palettes can handle up to 12). The "Paired" palette is useful if your categories are arranged in pairs.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Qualitative brewer palettes." width="100%"><p class="caption">
-Figure E.6: Qualitative brewer palettes.
+<span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Qualitative brewer palettes." width="100%"><p class="caption">
+Figure E.7: Qualitative brewer palettes.
 </p>
 </div>
 </div>
@@ -1720,9 +1727,9 @@ Figure E.6: Qualitative brewer palettes.
 </h4>
 <p>These palettes are good for up to 9 <a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as number of legs" href="https://psyteachr.github.io/glossary/o#ordinal">ordinal</a> categories with a lot of categories.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Sequential brewer palettes." width="100%"><p class="caption">
-Figure E.7: Sequential brewer palettes.
+<span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Sequential brewer palettes." width="100%"><p class="caption">
+Figure E.8: Sequential brewer palettes.
 </p>
 </div>
 </div>
@@ -1732,13 +1739,37 @@ Figure E.7: Sequential brewer palettes.
 </h4>
 <p>These palettes are good for <a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as number of legs" href="https://psyteachr.github.io/glossary/o#ordinal">ordinal</a> categories with up to 11 levels where the centre level is a neutral or baseline category and the levels above and below it differ in an important way, such as agree versus disagree options.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Diverging brewer palettes." width="100%"><p class="caption">
-Figure E.8: Diverging brewer palettes.
+<span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-8-1.png" alt="Diverging brewer palettes." width="100%"><p class="caption">
+Figure E.9: Diverging brewer palettes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="themes-1" class="section level2" number="15.3">
+<h2>
+<span class="header-section-number">E.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><code class="package">ggplot2</code> has 8 built-in themes that you can add to a plot like <code>plot + theme_bw()</code> or set as the default theme at the top of your script like <code><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set(theme_bw())</a></code>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-9-1.png" alt="{ggplot2} themes." width="100%"><p class="caption">
+Figure E.10: {ggplot2} themes.
+</p>
+</div>
+<div id="ggthemes" class="section level3" number="15.3.1">
+<h3>
+<span class="header-section-number">E.3.1</span> ggthemes<a class="anchor" aria-label="anchor" href="#ggthemes"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can get more themes from add-on packages, like <code class="package"><a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/" target="_blank">ggthemes</a></code>. Most of the themes also have custom <code>scale_</code> functions like <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_economist.html">scale_colour_economist()</a></code>. Their website has extensive examples and instructions for alternate or dark version sof these themes.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%"><p class="caption">
+Figure E.11: {ggthemes} themes.
 </p>
 </div>
 
-</div>
 </div>
 </div>
 </div>
@@ -1953,6 +1984,9 @@ $( document ).ready(function() {
 <li><a class="nav-link" href="#viridis-palettes"><span class="header-section-number">E.2.1</span> Viridis Palettes</a></li>
 <li><a class="nav-link" href="#brewer-palettes"><span class="header-section-number">E.2.2</span> Brewer Palettes</a></li>
 </ul>
+</li>
+<li>
+<a class="nav-link" href="#themes-1"><span class="header-section-number">E.3</span> Themes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ggthemes"><span class="header-section-number">E.3.1</span> ggthemes</a></li></ul>
 </li>
 </ul>
 

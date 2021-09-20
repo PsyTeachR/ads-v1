@@ -572,6 +572,12 @@ You can probably guess what the `linetype` argument does.
 
 
 
+Discrete palettes change depending on the number of categories. 
+
+<div class="figure" style="text-align: center">
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Default discrete palette with different numbers of levels." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Default discrete palette with different numbers of levels.</p>
+</div>
 
 
 ### Viridis Palettes
@@ -584,8 +590,8 @@ Set <a class='glossary' target='_blank' title='Data that can only take certain v
 
 
 <div class="figure" style="text-align: center">
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Discrete viridis palettes." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Discrete viridis palettes.</p>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Discrete viridis palettes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Discrete viridis palettes.</p>
 </div>
 
 
@@ -598,8 +604,8 @@ If the end colour is too light for your plot or the start colour too dark, you c
 Set <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a> viridis colours with `scale_colour_viridis_c()` or `scale_fill_viridis_c()` and set the `option` argument to one of the options below. Set `direction = -1` to reverse the order of colours.
 
 <div class="figure" style="text-align: center">
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Continuous viridis palettes." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Continuous viridis palettes.</p>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Continuous viridis palettes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Continuous viridis palettes.</p>
 </div>
 
 ### Brewer Palettes
@@ -611,8 +617,8 @@ Brewer palettes give you a lot of control over plot colour and fill. You set the
 These palettes are good for <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> data with up to 8 categories (some palettes can handle up to 12). The "Paired" palette is useful if your categories are arranged in pairs.
 
 <div class="figure" style="text-align: center">
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Qualitative brewer palettes." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Qualitative brewer palettes.</p>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Qualitative brewer palettes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Qualitative brewer palettes.</p>
 </div>
 
 #### Sequential Brewer Palettes
@@ -620,8 +626,8 @@ These palettes are good for <a class='glossary' target='_blank' title='Data that
 These palettes are good for up to 9 <a class='glossary' target='_blank' title='Discrete variables that have an inherent order, such as number of legs' href='https://psyteachr.github.io/glossary/o#ordinal'>ordinal</a> categories with a lot of categories.
 
 <div class="figure" style="text-align: center">
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Sequential brewer palettes." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Sequential brewer palettes.</p>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Sequential brewer palettes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-7)Sequential brewer palettes.</p>
 </div>
 
 #### Diverging Brewer Palettes
@@ -629,8 +635,24 @@ These palettes are good for up to 9 <a class='glossary' target='_blank' title='D
 These palettes are good for <a class='glossary' target='_blank' title='Discrete variables that have an inherent order, such as number of legs' href='https://psyteachr.github.io/glossary/o#ordinal'>ordinal</a> categories with up to 11 levels where the centre level is a neutral or baseline category and the levels above and below it differ in an important way, such as agree versus disagree options.
 
 <div class="figure" style="text-align: center">
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Diverging brewer palettes." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-7)Diverging brewer palettes.</p>
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-8-1.png" alt="Diverging brewer palettes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-8)Diverging brewer palettes.</p>
 </div>
 
+## Themes
 
+<code class='package'>ggplot2</code> has 8 built-in themes that you can add to a plot like `plot + theme_bw()` or set as the default theme at the top of your script like `theme_set(theme_bw())`.
+
+<div class="figure" style="text-align: center">
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-9-1.png" alt="{ggplot2} themes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-9){ggplot2} themes.</p>
+</div>
+
+### ggthemes
+
+You can get more themes from add-on packages, like <code class='package'><a href='https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/' target='_blank'>ggthemes</a></code>. Most of the themes also have custom `scale_` functions like `scale_colour_economist()`. Their website has extensive examples and instructions for alternate or dark version sof these themes.
+
+<div class="figure" style="text-align: center">
+<img src="appendix-e-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-10){ggthemes} themes.</p>
+</div>

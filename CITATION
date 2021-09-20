@@ -1,10 +1,13 @@
-citHeader("To cite this book in publications use:")
+message: "If you use this book, please cite it as below."
 
-citEntry(
-  entry    = "Manual",
-  title    = "Applied Data Skills",
-  author   = "Emily Nordmann and Lisa DeBruine",
-  year     = "2021",
-  url      = "https://psyteachr.github.io/ads-v1/",
-  textVersion = paste("Emily Nordmann and Lisa DeBruine (2021. Applied Data Skills: Processing & Presenting Data. https://psyteachr.github.io/ads-v1/")
-)
+authors:
+- family-names: "Nordmann"
+  given-names: "Emily"
+  orcid: "https://orcid.org/0000-0002-0806-1081"
+- family-names: "DeBruine"
+  given-names: "Lisa"
+  orcid: "https://orcid.org/0000-0002-7523-5539"
+title: "Applied Data Skills"
+version: 1.0
+date-released: 2021-09-18
+url: "https://github.com/psyteachr/ads-v1/"

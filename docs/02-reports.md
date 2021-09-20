@@ -54,7 +54,7 @@ First, we need to get organised.
 <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
 
 ::: {.try data-latex=""}
-Make a new <a class='glossary' target='_blank' title='A collection or “folder” of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a> where you will keep all of your materials for this class.
+Make a new <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a> where you will keep all of your materials for this class.
 
 Choose **`New Project...`** under the **`File`** menu to create a new project called <code class='path'>02-reports</code> in this directory.
 :::
@@ -540,7 +540,7 @@ You can knit your file to PDF or Word if you have the right packages installed o
   </tr>
   <tr>
    <td style="text-align:left;"> [directory](https://psyteachr.github.io/glossary/d.html#directory){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> A collection or “folder” of files on a computer. </td>
+   <td style="text-align:left;"> A collection or "folder" of files on a computer. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [extension](https://psyteachr.github.io/glossary/e.html#extension){class="glossary" target="_blank"} </td>
@@ -579,7 +579,7 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 
 
-## Further Resources {#resources-repro}
+## Further Resources {#resources-reports}
 
 -   [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown.pdf)
 -   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)

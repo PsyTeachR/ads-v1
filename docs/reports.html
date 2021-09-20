@@ -11,12 +11,12 @@
 <meta property="og:title" content="Chapter 2 Reports with R Markdown | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/reports.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <meta property="og:description" content="2.1 Intended Learning Outcomes Be able to knit a simple reproducible report with R Markdown Be able to edit Markdown to show/hide code and use inline coding Be able to identify different types of...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Reports with R Markdown | Applied Data Skills">
 <meta name="twitter:description" content="2.1 Intended Learning Outcomes Be able to knit a simple reproducible report with R Markdown Be able to edit Markdown to show/hide code and use inline coding Be able to identify different types of...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -68,6 +68,7 @@
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">E</span> Styling Plots</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -131,7 +132,7 @@
 <p>First, we need to get organised.</p>
 <p><a class="glossary" target="_blank" title="A way to organise related files in RStudio" href="https://psyteachr.github.io/glossary/p#project">Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.</p>
 <div class="try">
-<p>Make a new <a class="glossary" target="_blank" title="A collection or “folder” of files on a computer." href="https://psyteachr.github.io/glossary/d#directory">directory</a> where you will keep all of your materials for this class.</p>
+<p>Make a new <a class="glossary" target="_blank" title='A collection or "folder" of files on a computer.' href="https://psyteachr.github.io/glossary/d#directory">directory</a> where you will keep all of your materials for this class.</p>
 <p>Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code class="path">02-reports</code> in this directory.</p>
 </div>
 <div id="working-directory" class="section level3" number="2.2.1">
@@ -658,15 +659,15 @@ Vintage Cars
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r item-by-line, fig.cap="Items by product line."}</code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">sales</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">COUNTRY</span>, y <span class="op">=</span> <span class="va">SALES</span>, fill <span class="op">=</span> <span class="va">COUNTRY</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_violin</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">xlab</span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Sales per order"</span>, 
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sales</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">COUNTRY</span>, y <span class="op">=</span> <span class="va">SALES</span>, fill <span class="op">=</span> <span class="va">COUNTRY</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Sales per order"</span>, 
                      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">14000</span>, <span class="fl">2000</span><span class="op">)</span>, 
                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"£"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">14</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"K"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_fill_viridis_d</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, family <span class="op">=</span> <span class="st">"Times"</span><span class="op">)</span>,
-        axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, vjust <span class="op">=</span> <span class="fl">1</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, family <span class="op">=</span> <span class="st">"Times"</span><span class="op">)</span>,
+        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, vjust <span class="op">=</span> <span class="fl">1</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
 <div class="figure" style="text-align: center">
@@ -749,7 +750,7 @@ A section of code in an R Markdown file
 <a href="https://psyteachr.github.io/glossary/d.html#directory" class="glossary" target="_blank">directory</a>
 </td>
 <td style="text-align:left;">
-A collection or “folder” of files on a computer.
+A collection or "folder" of files on a computer.
 </td>
 </tr>
 <tr>
@@ -819,9 +820,9 @@ A structured format for information
 </tbody>
 </table></div>
 </div>
-<div id="resources-repro" class="section level2" number="2.5">
+<div id="resources-reports" class="section level2" number="2.5">
 <h2>
-<span class="header-section-number">2.5</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-repro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5</span> Further Resources<a class="anchor" aria-label="anchor" href="#resources-reports"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown.pdf">R Markdown Cheat Sheet</a></li>
@@ -1193,6 +1194,17 @@ $( document ).ready(function() {
   $("footer div.row div:eq(1) p").html(
     psyteachr + license + cite
   );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></div>
@@ -1222,7 +1234,7 @@ $( document ).ready(function() {
 </ul>
 </li>
 <li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.4</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-repro"><span class="header-section-number">2.5</span> Further Resources</a></li>
+<li><a class="nav-link" href="#resources-reports"><span class="header-section-number">2.5</span> Further Resources</a></li>
 <li>
 <a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.6</span> Exercises</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.6.1</span> New project</a></li>
@@ -1251,7 +1263,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

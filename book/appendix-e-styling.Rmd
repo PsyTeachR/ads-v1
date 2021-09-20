@@ -1,0 +1,104 @@
+# Styling Plots {#plotstyle}
+
+## Aesthetics
+
+### Colour
+
+The `colour` argument changes the point and line colour. Type `colours()` into the console to see a list of all the named colours in R. Alternatively, you can use hexadecimal colours like `"#FF8000"` or the `rgb()` function to set red, green, and blue values on a scale from 0 to 1.
+
+Hover over a colour to see its R name.
+
+<style>
+  .colordemo { list-item-style: none; padding: 0; margin: 0;}
+  
+  .colordemo li, main ul.colordemo > li:first-child { 
+    display: inline-block; 
+    width: 0em; height: 0em; 
+    border: 0.25px solid black; 
+    margin: 0px; padding: 0.75em; 
+    vertical-align: text-top;
+  }
+  .colordemo li span { 
+    display: none; 
+    background-color: white; 
+    border: 0.25px solid black; 
+    padding: 0.25em 0.5em; 
+    border-radius: 0 1em 1em 1em;
+  }
+  .colordemo li:hover span { display: inline; position: absolute;}
+</style>
+
+```{r colour-demo, echo = FALSE, results='asis'}
+
+name <- colours(TRUE)
+rgb <- col2rgb(name) 
+hsv <- rgb2hsv(rgb)
+hex <- as.hexmode(rgb) %>% as.character() %>% 
+  apply(2, paste, collapse = "")
+
+colors <- tibble(name = name,
+       hue = hsv[1, ],
+       sat = hsv[2, ],
+       val = hsv[3, ],
+       hex = hex) %>%
+  arrange(hue, sat, val)
+
+glue::glue("    <li style='background-color: #{colors$hex};'><span>{colors$name}</span></li>") %>%
+  paste(collapse = "\n") %>%
+  paste0("\n<ul class='colordemo'>\n", ., "\n</ul>\n") %>%
+  cat()
+```
+
+### Alpha
+
+The `alpha` argument changes transparency (0 = totally transparent, 1 = totally opaque). 
+
+```{r alpha-demo, echo = FALSE, fig.height = 3, fig.width = 10, fig.cap="Varying alpha values."}
+alphas <- crossing(alpha = seq(0, 1, .1), y = 0:1)
+ggplot(alphas, aes(x = alpha, y = y, alpha = I(alpha), 
+                   color = as.factor(y))) +
+  geom_hline(yintercept = 0, size = 5, color = "dodgerblue") +
+  geom_hline(yintercept = 1, size = 5, color = "black") +
+  geom_point(size = 20, show.legend = FALSE) +
+  scale_x_continuous("alpha", breaks = alphas$alpha) +
+  scale_y_continuous("", breaks = -1:2, limits = c(-1, 2)) +
+  scale_color_manual(values = c("black", "dodgerblue")) +
+  theme_minimal(base_size = 20) +
+  theme(axis.text.y = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+### Shape
+
+The `shape` argument changes the shape of points. 
+
+```{r shape-demo, echo = FALSE, fig.height = 2, fig.width = 10, fig.cap="The 25 shape values"}
+shapes <- tibble(shape = 1:25, y = 0)
+ggplot(shapes, aes(x = shape, y = y, shape = I(shape))) +
+  geom_point(size = 8) +
+  scale_x_continuous("", breaks = shapes$shape) +
+  scale_y_continuous("", breaks = 0) +
+  theme_minimal(base_size = 20) +
+  theme(axis.text.y = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+### Linetype
+
+You can probably guess what the `linetype` argument does.
+
+
+```{r linetype-demo, echo = FALSE, fig.height = 4, fig.width = 10, fig.cap="The 6 linetype values at different sizes."}
+lines <- crossing(linetype = 1:6, size = c(0.25, 0.5, 1, 2)) %>% 
+  mutate(x = linetype)
+ggplot(lines) +
+  geom_vline(aes(xintercept = linetype, 
+                 linetype = I(linetype),
+                 size = I(size))) +
+  scale_x_continuous("linetype", breaks = 1:6, 
+                     expand = expansion(add = 1)) +
+  facet_wrap(~size, nrow = 1, labeller = label_both) +
+  theme_minimal(base_size = 20) +
+  theme(axis.text.y = element_blank(),
+        panel.grid.minor = element_blank())
+```

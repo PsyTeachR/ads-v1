@@ -2,22 +2,9 @@
 
 ## Intended Learning Outcomes {#ilo-intro}
 
-* Understand structure and content of course
 * Install R and RStudio
+* Be able to install add-on packages
 * Be able to distinguish numeric and character data types
-
-## Structure of the course
-
-This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.
-
-Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice. 
-
-Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.
-
-<div class="small_right"><img src="images/memes/typos.jpg"
-     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon" /></div>
-     
-Learning to code involves making a **lot** of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.
 
 ## Installing R and RStudio {#intro-installing-r}
 
@@ -32,7 +19,7 @@ When you installed R, that gave your computer the ability to process the R progr
 <p class="caption">(\#fig:img-rstudio)The RStudio IDE</p>
 </div>
 
-RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
 
 ### Reproducibility {#intro-reproducibility}
 
@@ -130,6 +117,14 @@ install.packages(
 - <code class='package'>forcats</code>, for <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factors</a>
 - <code class='package'>purrr</code>, for repeating things
 
+When you install <code class='package'>tidyverse</code>, it also installs some other useful packages that you can load individually. You can get the full list using `tidyverse_packages()`, but the packages we'll be using in this book are:
+
+- <code class='package'>googlesheets4</code>, for working with Google spreadsheets
+- <code class='package'>readxl</code>, for Excel files
+- <code class='package'>lubridate</code>, for working with dates
+- <code class='package'>hms</code>, for working with times
+- <code class='package'>rvest</code>, for web scraping
+
 ## Data types {#intro-data-types}
 
 Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a> in R. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly. But for now, it's just important to understand the difference between <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> and <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> data.
@@ -191,7 +186,7 @@ If you try to add two strings, even if they contain only numbers, you'll get an 
   </tr>
   <tr>
    <td style="text-align:left;"> [panes](https://psyteachr.github.io/glossary/p.html#panes){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> RStudio is arranged with four window “panes.” </td>
+   <td style="text-align:left;"> RStudio is arranged with four window "panes". </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [reproducibility](https://psyteachr.github.io/glossary/r.html#reproducibility){class="glossary" target="_blank"} </td>

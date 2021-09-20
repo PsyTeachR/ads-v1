@@ -11,12 +11,12 @@
 <meta property="og:title" content="Chapter 8 Customising Visualisations | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/custom.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <meta property="og:description" content="8.1 Intended Learning Outcomes Customise plots with a consistent style Create high quality plots like BBC, NYT, 538 library(tidyverse) library(ggwordcloud) # for word clouds library(tidytext) #...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 Customising Visualisations | Applied Data Skills">
 <meta name="twitter:description" content="8.1 Intended Learning Outcomes Customise plots with a consistent style Create high quality plots like BBC, NYT, 538 library(tidyverse) library(ggwordcloud) # for word clouds library(tidytext) #...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/twitter_card.png">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -68,6 +68,7 @@
 <li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
 <li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">E</span> Styling Plots</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -89,7 +90,7 @@
 <li>Customise plots with a consistent style</li>
 <li>Create high quality plots like BBC, NYT, 538</li>
 </ul>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lepennec/ggwordcloud">ggwordcloud</a></span><span class="op">)</span> <span class="co"># for word clouds</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span> <span class="co"># for manipulating text for word clouds</span>
@@ -99,14 +100,14 @@
 <h2>
 <span class="header-section-number">8.2</span> Word Clouds<a class="anchor" aria-label="anchor" href="#word-clouds"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># https://www.kaggle.com/sid321axn/amazon-alexa-reviews</span>
 <span class="co"># extracted from Amazon by Manu Siddhartha &amp; Anurag Bhatt</span>
 <span class="va">alexa</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/amazon_alexa.csv"</span><span class="op">)</span></code></pre></div>
 <p>Next, we need to make a table of the number of times each individual word appears per rating The function <code><span class="fu">tidytext</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="op">)</span></code> does this for you by splitting the words in the <code>input</code> column into individual words in a new <code>output</code> column.</p>
 <p>Then we can get rid of common "stop words" and integers by filtering only words that are not in our <code>omitted</code> list.</p>
 <p>Then we group by rating and use <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="op">)</span></code> to get the top 25 words, ordered by the column <code>n</code>.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">omitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">$</span><span class="va">word</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>
 
 <span class="va">words</span> <span class="op">&lt;-</span> <span class="va">alexa</span> <span class="op">%&gt;%</span>
@@ -117,21 +118,21 @@
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">25</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Now we can make two word clouds and paste them together (word clouds don't play well with facets). So we filter the <code>words</code> table to get one rating, then set up a ggplot with the aesthetics <code>label</code>, <code>colour</code>, and <code>size</code>. The <code>label</code> will come from the <code>word</code> column, while the <code>colour</code> will be different for each <code>word</code> and the <code>size</code> of the word will be proportional to <code>n</code>, the number of times the word appeared.</p>
 <p>The visualisation we'll use is <code><span class="fu">ggwordcloud</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span></code>. We can control how big the cloud is with <code><span class="fu">ggwordcloud</span><span class="fu">::</span><span class="fu">scale_size_area</span><span class="op">(</span><span class="op">)</span></code> (this usually takes some trial-and-error). Then add a title and a minimal theme to get rid of the axes and grid lines.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rating1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">words</span>, <span class="va">rating</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_size_area</span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Rating = 1"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Rating = 1"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></code></pre></div>
 <p>Make another plot for a different rating and paste them together with <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>.</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rating5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">words</span>, <span class="va">rating</span> <span class="op">==</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_size_area</span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Rating = 5"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size_area</a></span><span class="op">(</span>max_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Rating = 5"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>
 
 <span class="va">rating1</span> <span class="op">+</span> <span class="va">rating5</span></code></pre></div>
 <div class="inline-figure"><img src="08-custom_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;"></div>
@@ -317,6 +318,17 @@ $( document ).ready(function() {
   $("footer div.row div:eq(1) p").html(
     psyteachr + license + cite
   );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="summary.html"><span class="header-section-number">7</span> Data Summaries</a></div>
@@ -344,7 +356,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

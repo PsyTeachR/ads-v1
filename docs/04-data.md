@@ -157,7 +157,7 @@ Always, always, always, look at your data once you've created or loaded a table.
 
 #### View() 
 
-A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
+A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
 
 #### print() 
 
@@ -188,42 +188,42 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 17-Sep-21 </td>
+   <td style="text-align:left;"> 20-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 16-Sep-21 </td>
+   <td style="text-align:left;"> 19-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 15-Sep-21 </td>
+   <td style="text-align:left;"> 18-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 14-Sep-21 </td>
+   <td style="text-align:left;"> 17-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 13-Sep-21 </td>
+   <td style="text-align:left;"> 16-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 12-Sep-21 </td>
+   <td style="text-align:left;"> 15-Sep-21 </td>
   </tr>
 </tbody>
 </table>
@@ -246,7 +246,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "17-Sep-21", "16-Sep-21", "15-Sep-21", "14-Sep-21", "13-Sep-…
+## $ date      <chr> "20-Sep-21", "19-Sep-21", "18-Sep-21", "17-Sep-21", "16-Sep-…
 ```
 
 #### summary() {#summary-function}
@@ -2330,7 +2330,7 @@ base::setdiff(customers, new_customers)
   </tr>
   <tr>
    <td style="text-align:left;"> [panes](https://psyteachr.github.io/glossary/p.html#panes){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> RStudio is arranged with four window “panes.” </td>
+   <td style="text-align:left;"> RStudio is arranged with four window "panes". </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [set operations](https://psyteachr.github.io/glossary/s.html#set-operations){class="glossary" target="_blank"} </td>

@@ -2,22 +2,9 @@
 
 ## Intended Learning Outcomes {#ilo-intro}
 
-* Understand structure and content of course
 * Install R and RStudio
+* Be able to install add-on packages
 * Be able to distinguish numeric and character data types
-
-## Structure of the course
-
-This book accompanies a 10-week course, covering one chapter per week. Each chapter will introduce you to some new skills and concepts using concrete examples. At various points, there will be multiple-choice or fill-in-the-blank questions for you to check your understanding. Each chapter has accompanying walk-through videos, where an instructor demonstrates the skills covered in the chapter. Each chapter also has accompanying exercises that you should do to reinforce your learning.
-
-Learning data skills is kind of like having a gym membership (HT to Phil McAleer for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice. 
-
-Additionally, data skills do not require you to memorise lots of code. You will be introduced to many different code functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and cheat sheets, learning how to goggle your problem and choose a helpful solution, and learning how to read error messages.
-
-<div class="small_right"><img src="images/memes/typos.jpg"
-     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon" /></div>
-     
-Learning to code involves making a **lot** of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As I've become a more experienced coder, I'm not sure I make fewer errors, it's just that I recover from them faster.
 
 ## Installing R and RStudio {#intro-installing-r}
 
@@ -124,6 +111,14 @@ install.packages(
 - `r pkg("stringr")`, for `r glossary("string", "strings")`
 - `r pkg("forcats")`, for `r glossary("factor", "factors")`
 - `r pkg("purrr")`, for repeating things
+
+When you install `r pkg("tidyverse")`, it also installs some other useful packages that you can load individually. You can get the full list using `tidyverse_packages()`, but the packages we'll be using in this book are:
+
+- `r pkg("googlesheets4")`, for working with Google spreadsheets
+- `r pkg("readxl")`, for Excel files
+- `r pkg("lubridate")`, for working with dates
+- `r pkg("hms")`, for working with times
+- `r pkg("rvest")`, for web scraping
 
 ## Data types {#intro-data-types}
 

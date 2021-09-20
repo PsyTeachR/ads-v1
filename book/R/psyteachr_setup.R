@@ -4,6 +4,7 @@
 suppressPackageStartupMessages({
   library(tidyverse)
   library(glossary)
+  library(patchwork)
 })
 
 # default knitr options

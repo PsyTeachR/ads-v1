@@ -1,10 +1,18 @@
 # Styling Plots {#plotstyle}
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE
+)
+```
+
+
 ## Aesthetics
 
-### Colour
+### Colour/Fill
 
-The `colour` argument changes the point and line colour. Type `colours()` into the console to see a list of all the named colours in R. Alternatively, you can use hexadecimal colours like `"#FF8000"` or the `rgb()` function to set red, green, and blue values on a scale from 0 to 1.
+The `colour` argument changes the point and line colour, while the `fill` argument changes the interior colour of shapes. Type `colours()` into the console to see a list of all the named colours in R. Alternatively, you can use hexadecimal colours like `"#FF8000"` or the `rgb()` function to set red, green, and blue values on a scale from 0 to 1.
 
 Hover over a colour to see its R name.
 
@@ -13,11 +21,11 @@ Hover over a colour to see its R name.
   
   .colordemo li, main ul.colordemo > li:first-child { 
     display: inline-block; 
-    width: 0em; height: 0em; 
     border: 0.25px solid black; 
-    margin: 0px; padding: 0.75em; 
-    vertical-align: text-top;
+    margin: 0px; 
+    padding: 1.3em 0.2em 0.2em 1.2em; 
   }
+  
   .colordemo li span { 
     display: none; 
     background-color: white; 
@@ -25,7 +33,10 @@ Hover over a colour to see its R name.
     padding: 0.25em 0.5em; 
     border-radius: 0 1em 1em 1em;
   }
-  .colordemo li:hover span { display: inline; position: absolute;}
+  .colordemo li:hover span { 
+    display: inline; 
+    position: absolute;
+  }
 </style>
 
 ```{r colour-demo, echo = FALSE, results='asis'}
@@ -37,9 +48,9 @@ hex <- as.hexmode(rgb) %>% as.character() %>%
   apply(2, paste, collapse = "")
 
 colors <- tibble(name = name,
-       hue = hsv[1, ],
-       sat = hsv[2, ],
-       val = hsv[3, ],
+       hue = hsv[1, ] %>% round(2),
+       sat = hsv[2, ] %>% round(2),
+       val = hsv[3, ] %>% round(2),
        hex = hex) %>%
   arrange(hue, sat, val)
 
@@ -102,3 +113,153 @@ ggplot(lines) +
   theme(axis.text.y = element_blank(),
         panel.grid.minor = element_blank())
 ```
+
+## Palettes
+
+
+```{r, include = FALSE}
+palette_demo <- function(levels, seed = 8675309) {
+  set.seed(seed)
+  
+  dat <- faux::sim_design(
+    within = list(level = 1:levels),
+    n = 50, dv = "score",
+    plot = FALSE, long = TRUE)
+  
+  ggplot(dat, aes(x = level, 
+                  y = score, 
+                  color = level, 
+                  fill = level)) + 
+    geom_violin(alpha = 0.8, color = "black") +
+    stat_summary(fun = mean) +
+    scale_x_discrete(name = "") +
+    guides(color = "none", fill = "none") +
+     theme(axis.text.y = element_blank(),
+           axis.title.y = element_blank(),
+           axis.ticks.y = element_blank())
+}
+
+palette_plot <- function(g, p) { 
+  g + scale_color_brewer(palette = p) +
+    scale_fill_brewer(palette = p) +
+    ggtitle(glue::glue("palette = \"{p}\""))
+}
+
+viridis_d_plot <- function(g, option = "viridis") { 
+  g + scale_color_viridis_d(option = option) +
+    scale_fill_viridis_d(option = option) +
+    ggtitle(glue::glue("option = \"{option}\""))
+}
+
+
+```
+
+
+### Viridis Palettes
+
+Viridis palettes are very good for colourblind-safe and greyscale-safe plots. The work with any number of categories, but are best for larger numbers of categories or continuous colours.
+
+#### Discrete Viridis Palettes
+
+Set `r glossary("discrete")` viridis colours with `scale_colour_viridis_d()` or `scale_fill_viridis_d()` and set the `option` argument to one of the options below. Set `direction = -1` to reverse the order of colours.
+
+
+```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 10, fig.cap="Discrete viridis palettes."}
+options <- list("magma", "inferno", "plasma", "viridis", "cividis")
+
+g <- palette_demo(5)
+plots5 <- lapply(options, viridis_d_plot, g = g)
+
+g <- palette_demo(15)
+plots15 <- lapply(options, viridis_d_plot, g = g)
+
+( wrap_plots(plots5, ncol = 1) | 
+  wrap_plots(plots15, ncol = 1)) +
+  plot_layout(widths = c(1, 3))
+```
+
+
+::: {.info data-latex=""}
+If the end colour is too light for your plot or the start colour too dark, you can set the `begin` and `end` arguments to values between 0 and 1, such as `r hl(scale_colour_viridis_c(begin = .1, end = .9))`.
+:::
+
+#### Continuous Viridis Palettes
+
+Set `r glossary("continuous")` viridis colours with `scale_colour_viridis_c()` or `scale_fill_viridis_c()` and set the `option` argument to one of the options below. Set `direction = -1` to reverse the order of colours.
+
+```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Continuous viridis palettes."}
+options <- list("magma", "inferno", "plasma", "viridis", "cividis")
+
+set.seed(8675309)
+g <- faux::rnorm_multi(
+    n = 10000,
+    vars = 2, 
+    r = 0.5) %>%
+  ggplot(aes(X1, X2)) + 
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+
+viridis_c_plot <- function(g, option, geom = geom_hex) {
+  g + scale_color_viridis_c(option = option) +
+    geom() +
+    scale_fill_viridis_c(option = option) +
+    ggtitle(glue::glue("option = \"{option}\""))
+}
+
+hex_plots <- lapply(options, viridis_c_plot, g = g)
+wrap_plots(hex_plots, nrow = 3)
+    
+```
+
+### Brewer Palettes
+
+Brewer palettes give you a lot of control over plot colour and fill. You set them with `scale_color_brewer()` or `scale_fill_brewer()` and set the `palette` argument to one of the palettes below. Set `direction = -1` to reverse the order of colours.
+
+#### Qualitative Brewer Palettes
+
+These palettes are good for `r glossary("categorical")` data with up to 8 categories (some palettes can handle up to 12). The "Paired" palette is useful if your categories are arranged in pairs.
+
+```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Qualitative brewer palettes."}
+palettes <- list("Accent", "Dark2", "Paired", "Pastel1", "Pastel2", "Set1", "Set2", "Set3")
+
+g <- palette_demo(12)
+plots <- lapply(palettes, palette_plot, g = g)
+wrap_plots(plots, ncol = 2)
+```
+
+#### Sequential Brewer Palettes
+
+These palettes are good for up to 9 `r glossary("ordinal")` categories with a lot of categories.
+
+```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 18, fig.cap="Sequential brewer palettes."}
+palettes <- c("Reds", "RdPu",
+              "Oranges", "OrRd", 
+              "YlOrRd", "YlOrBr", "YlGn", "YlGnBu",
+              "Greens", "GnBu",
+              "Blues", "BuGn", "BuPu", 
+              "Purples", "PuRd", "PuBu", "PuBuGn",
+              "Greys")
+
+g <- palette_demo(9)
+plots <- lapply(palettes, palette_plot, g = g)
+wrap_plots(plots, ncol = 2)
+```
+
+#### Diverging Brewer Palettes
+
+These palettes are good for `r glossary("ordinal")` categories with up to 11 levels where the centre level is a neutral or baseline category and the levels above and below it differ in an important way, such as agree versus disagree options.
+
+```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 10, fig.cap="Diverging brewer palettes."}
+palettes <- c("BrBG", "PiYG", "PRGn", "PuOr", "RdBu", "RdGy", "RdYlBu", "RdYlGn", "Spectral")
+
+g <- palette_demo(11)
+plots <- lapply(palettes, palette_plot, g = g)
+wrap_plots(plots, ncol = 2)
+```
+
+

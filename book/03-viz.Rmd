@@ -66,7 +66,7 @@ lubridate::today()
 lubridate::now(tzone = "GMT")
 ```
 
-#### Test your understanding
+### Test your understanding
 
 Coming back to the pets dataset, what type of variable is in each column?
 
@@ -86,12 +86,12 @@ ord <- c(x = "continuous", x = "nominal", answer = "ordinal", x = "date")
 date <- c(x = "continuous", x = "nominal", x = "ordinal", answer = "date")
 ```
 
-* `name` `r nom` `r mcq(chr)`
-* `owner` `r nom` `r mcq(chr)`
-* `species` `r nom` `r mcq(fctr)`
-* `birthdate` `r date` `r mcq(date)`
-* `weight` `r cont` `r mcq(num)`
-* `rating` `r ord` `r mcq(fctr)`
+* `name` `r mcq(nom)` `r mcq(chr)`
+* `owner` `r mcq(nom)` `r mcq(chr)`
+* `species` `r mcq(nom)` `r mcq(fctr)`
+* `birthdate` `r mcq(date)` `r mcq(date)`
+* `weight` `r mcq(cont)` `r mcq(num)`
+* `rating` `r mcq(ord)` `r mcq(fctr)`
 :::
 
 

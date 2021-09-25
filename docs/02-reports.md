@@ -2,66 +2,31 @@
 
 ## Intended Learning Outcomes {#ilo-reports}
 
--   Be able to knit a simple reproducible report with R Markdown
--   Be able to edit Markdown to show/hide code and use inline coding
--   Be able to identify different types of data
+* Be able to organise a project
+* Be able to knit a simple reproducible report with R Markdown
+* Be able to edit Markdown to show/hide code and use inline coding
 
 
 ```r
-library(tidyverse) # readr, dplyr, tidyr, ggplot2
-library(knitr)
-library(kableExtra)
+library(tidyverse)  # various data manipulation functions
+library(knitr)      # for rendering a report from a script
+library(kableExtra) # for styling tables
 ```
-
-You'll learn about the following functions in this chapter:
-
-* `knitr::opts_chunk$set()`
-* `kableExtra::kable()`
-* `kableExtra::add_header_above()`
-* `kableExtra::row_spec()`
-* `kableExtra::column_spec()`
-* `kableExtra::kable_classic()`
-
-The chapter also has examples that uses functions that you'll learn more about in later chapters. Don't worry about learning these functions this week; just copy the examples into your practice script.
-
-<!--
-* `readr::read_csv()`
-* `nrow()`
-* `min()`
-* `max()`
-* `dplyr::group_by()`
-* `dplyr::count()`
-* `tidyr::pivot_wider()`
-* `print()`
-* `ggplot2::ggplot()`
-* `ggplot2::aes()`
-* `ggplot2::geom_violin()`
-* `ggplot2::xlab()`
-* `ggplot2::scale_y_continuous()`
-* `ggplot2::scale_fill_viridis_d()`
-* `ggplot2::theme()`
-* `dplyr::summarise()`
-* `dplyr::mutate()`
--->
-
-
 
 
 ## Organising a project {#projects}
 
-First, we need to get organised.
+First, we need to get organised. <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images. 
 
-<a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
+### File System
 
-::: {.try data-latex=""}
-Make a new <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a> where you will keep all of your materials for this class.
+Modern computers tend to hide the file system from users, but we need to understand a little bit about how files are stored on your computer in order to get a script to find your data. Your computer's file system is like a big box (or <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a>) that contains both files and smaller boxes, or "subdirectories". You can specify the location of a file with its name and the names of all the directories it is inside.
 
-Choose **`New Project...`** under the **`File`** menu to create a new project called <code class='path'>02-reports</code> in this directory.
-:::
+For example, if Lisa is looking for a file called `report.Rmd`on their Desktop, they can specify the full file <a class='glossary' target='_blank' title='A string representing the location of a file or directory.' href='https://psyteachr.github.io/glossary/p#path'>path</a> like this: `/Users/lisad/Desktop/report.Rmd`, because the `Desktop` directory is inside the `lisad` directory, which is inside the `Users` directory, which is located at the base of the whole file system. If that file was on *your* desktop, you would probably have a different path unless your user directory is also called `lisad`. You can also use the `~` shortcut to represent the user directory of the person who is currently logged in, like this: `~/Desktop/report.Rmd`.
 
 ### Working Directory
 
-Where should you put all of your files? You usually want to have all of your scripts and data files inside one folder on your computer, the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a>. You can organise files in subdirectories inside this main project directory, such as putting all raw data files in a directory called <code class='path'>data</code> and saving any image files to a directory called <code class='path'>images</code>.
+Where should you put all of your files? You usually want to have all of your scripts and data files for a single project inside one folder on your computer, the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a> for that project. You can organise files in subdirectories inside this main project directory, such as putting all raw data files in a directory called <code class='path'>data</code> and saving any image files to a directory called <code class='path'>images</code>.
 
 Your script should only reference files in three locations, using the appropriate format.
 
@@ -88,7 +53,7 @@ Do not load it in using an <a class='glossary' target='_blank' title='A file pat
 
 
 ```r
-dat <- read_csv("C:/Carla's_files/2020-2021/data/widgets_gadgets.xlsx")   # wrong
+dat <- read_csv("C:/My Files/2020-2021/data/widgets_gadgets.xlsx")   # wrong
 ```
 
 ::: {.info data-latex=""}
@@ -100,7 +65,7 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 Name files so that both people and computers can easily find things. Here are some important principles:
 
 -   file and directory names should only contain letters, numbers, dashes, and underscores, with a full stop (`.`) between the file name and <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> (that means no spaces!)
--   be consistent with capitalisation (I prefer to never use it to make it easy to remember)
+-   be consistent with capitalisation (set a rule to make it easy to remember, like always use lowercase)
 -   use underscores (`_`) to separate parts of the file name, and dashes (`-`) to separate words in a section
 -   name files with a pattern that alphabetises in a sensible order and makes it easy for you to find the file you're looking for
 -   prefix a filename with an underscore to move it to the top of the list, or prefix all files with numbers to control their order
@@ -129,6 +94,38 @@ Here is one way to structure them so that similar files have the same structure 
 Think of other ways to name the files above. Look at some of your own project files and see what you can improve.
 :::
 
+### Start a Project
+
+Now that we understand how the file system work and how to name things to make it easier for scripts to access them, we're ready to make our first project. 
+
+First, make a new <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a> where you will keep all of your materials for this class. You can set this directory to be the default working directory under the General tab of the Global Options. This means that files will be saved here by default if you aren't working in a project. 
+
+Next, choose **`New Project...`** under the **`File`** menu to create a new project called <code class='path'>02-reports</code>. Make sure you save it inside the directory you just made. RStudio will restart itself and open with this new project directory as the working directory. 
+
+
+```r
+include_graphics(c("images/reports/new_proj_1.png",
+                   "images/reports/new_proj_2.png",
+                   "images/reports/new_proj_3.png"))
+```
+
+<div class="figure" style="text-align: center">
+<img src="images/reports/new_proj_1.png" alt="Starting a new project." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2-1)Starting a new project.</p>
+</div><div class="figure" style="text-align: center">
+<img src="images/reports/new_proj_2.png" alt="Starting a new project." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2-2)Starting a new project.</p>
+</div><div class="figure" style="text-align: center">
+<img src="images/reports/new_proj_3.png" alt="Starting a new project." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2-3)Starting a new project.</p>
+</div>
+
+Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called `02-reports.Rproj`, which is a file that contains all of the project information.You can double-click on it to open up the project. 
+
+::: {.info data-latex=""}
+Depending on your settings, you may also see a directory called `.Rproj.user`, which contains your specific user settings. You can ignore this and other "invisible" files that start with a full stop.
+:::
+
 ## R Markdown {#rmarkdown}
 
 We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
@@ -137,7 +134,7 @@ If you open up a new R Markdown file from a template, you will see an example do
 
 ### Knitting {#rmd-knit}
 
-To create an HTML or PDF report from an R Markdown (Rmd) document, you <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> it. There is a button that looks like a ball of yarn with needles through it that you click on to knit your file into a report.
+To create an HTML or PDF report from an R Markdown (Rmd) document, you <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> it. There is a button that looks like a ball of yarn with needles through it that you click to knit your file into a report.
 
 ::: {.info data-latex=""}
 You can also type the following code into the console (substituting your specific file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -210,19 +207,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
-You can set more default options for your document here.
+You can set more default options for your document here. Type `str(knitr::opts_chunk$get())` into the console to see the full list of options that you can set and their default values. You only need to change 
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r setup, include=FALSE}</code></pre>
 
 ```r
 knitr::opts_chunk$set(
-  fig.width  = 8, 
-  fig.height = 5, 
-  fig.path   = 'images/',
-  echo       = FALSE, 
-  warning    = TRUE, 
-  message    = FALSE,
-  cache      = FALSE
+  echo       = FALSE,     # don't show code chunks
+  message    = FALSE,     # don't show messages from your code
+  warning    = TRUE,      # do show warnings from your code
+  fig.width  = 8,         # figure width in inches (at 96 dpi)
+  fig.height = 5,         # figure height in inches (at 96 dpi)
+  out.width = "100%"      # figures should take up 100% of the page width
 )
 ```
 
@@ -273,7 +269,8 @@ First, create a code chunk in your document. This code loads some data from the 
 
 ```r
 # Data from https://www.kaggle.com/kyanyoga/sample-sales-data
-sales <- read_csv("data/sales_data_sample.csv")
+
+sales <- read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv")
 ```
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
@@ -385,7 +382,7 @@ kable(summary_table,
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-6)Number of sales per product line each year.</caption>
+<caption>(\#tab:unnamed-chunk-7)Number of sales per product line each year.</caption>
  <thead>
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="1"><div style="">Product Lines</div></th>
@@ -517,7 +514,7 @@ In a markdown document, new paragraphs are only created when you skip a blank li
 
 ### Output Formats
 
-You can knit your file to PDF or Word if you have the right packages installed on your computer. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
+You can knit your file to PDF or Word if you have the right packages installed on your computer, although you'll lose some of the interactivity that an HTML report provides. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
 
 
 ## Glossary {#glossary-reports}
@@ -555,6 +552,10 @@ You can knit your file to PDF or Word if you have the right packages installed o
    <td style="text-align:left;"> A way to specify formatting, such as headers, paragraphs, lists, bolding, and links. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [path](https://psyteachr.github.io/glossary/p.html#path){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A string representing the location of a file or directory. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [project](https://psyteachr.github.io/glossary/p.html#project){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A way to organise related files in RStudio </td>
   </tr>
@@ -581,11 +582,12 @@ You can knit your file to PDF or Word if you have the right packages installed o
 
 ## Further Resources {#resources-reports}
 
--   [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown.pdf)
+-   [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet)
 -   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
 -   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 -   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
 -   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
+-   [Chapter 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html) of *R for Data Science*
 -   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
 -   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
 

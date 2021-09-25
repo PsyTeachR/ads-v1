@@ -2,31 +2,16 @@
 
 ## Intended Learning Outcomes {#ilo-data}
 
-* Be able to import data from a range of sources using `rio::import()`
+* Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
 * Be able to match related data from multiple tables
 
-
 ```{r setup}
 library(tidyverse) # includes readr
-library(rio)
-library(haven)
-library(readxl)
+library(rio)       # for almost any data import/export
+library(haven)     # for SPSS, Stata,and SAS files
+library(readxl)    # for Excel files
 ```
-
-You'll learn about the following functions in this chapter:
-
-* `data()`
-* `rio::inport()`
-* `readr::read_tsv()`
-* `readr::read_csv()`
-* `readxl::read_excel()`
-* `haven::read_sav()`
-* `readr::cols()`
-* `readr::col_character()`
-* `readr::col_double()`
-* `readr::col_logical()`
-* `readr::col_date()`
 
 ## Data Import
 

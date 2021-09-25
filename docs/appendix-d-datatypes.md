@@ -177,7 +177,7 @@ Individual data values can be grouped together into containers. The main types o
 
 ### Vectors {#vectors}
 
-A <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> in R is a set of items (or 'elements') in a specific order. All of the elements in a vector must be of the same **data type** (numeric, character, logical). You can create a vector by enclosing the elements in the function <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span></code>.
+A <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> in R is a set of items (or 'elements') in a specific order. All of the elements in a vector must be of the same **data type** (numeric, character, logical). You can create a vector by enclosing the elements in the function <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span></code>.
 
 
 ```r
@@ -564,7 +564,7 @@ friendly   <- avatar$friendly  # by column name
   </tr>
   <tr>
    <td style="text-align:left;"> [vector](https://psyteachr.github.io/glossary/v.html#vector){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> A type of data structure that is basically a list of things like T/F values, numbers, or strings. </td>
+   <td style="text-align:left;"> A type of data structure that collects values with the same data type, like T/F values, numbers, or strings. </td>
   </tr>
 </tbody>
 </table>

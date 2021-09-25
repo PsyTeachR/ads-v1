@@ -7,7 +7,7 @@
 <title>E Styling Plots | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
 <meta name="description" content="E.1 Aesthetics  E.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
-<meta name="generator" content="bookdown 0.23 with bs4_book()">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="E Styling Plots | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/plotstyle.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:title" content="E Styling Plots | Applied Data Skills">
 <meta name="twitter:description" content="E.1 Aesthetics  E.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.10.6/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
@@ -1680,7 +1680,7 @@ Figure E.4: Default discrete palette with different numbers of levels.
 <h4>
 <span class="header-section-number">E.2.1.1</span> Discrete Viridis Palettes<a class="anchor" aria-label="anchor" href="#discrete-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
-<p>Set <a class="glossary" target="_blank" title="Data that can only take certain values, such as integers." href="https://psyteachr.github.io/glossary/d#discrete">discrete</a> viridis colours with <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
+<p>Set <a class="glossary" target="_blank" title="Data that can only take certain values, such as integers." href="https://psyteachr.github.io/glossary/d#discrete">discrete</a> viridis colours with <code>scale_colour_viridis_d()</code> or <code>scale_fill_viridis_d()</code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Discrete viridis palettes." width="100%"><p class="caption">
@@ -1695,7 +1695,7 @@ Figure E.5: Discrete viridis palettes.
 <h4>
 <span class="header-section-number">E.2.1.2</span> Continuous Viridis Palettes<a class="anchor" aria-label="anchor" href="#continuous-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
-<p>Set <a class="glossary" target="_blank" title="Data that can take on any values between other existing values." href="https://psyteachr.github.io/glossary/c#continuous">continuous</a> viridis colours with <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_c()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
+<p>Set <a class="glossary" target="_blank" title="Data that can take on any values between other existing values." href="https://psyteachr.github.io/glossary/c#continuous">continuous</a> viridis colours with <code>scale_colour_viridis_c()</code> or <code>scale_fill_viridis_c()</code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Continuous viridis palettes." width="100%"><p class="caption">
@@ -1708,7 +1708,7 @@ Figure E.6: Continuous viridis palettes.
 <h3>
 <span class="header-section-number">E.2.2</span> Brewer Palettes<a class="anchor" aria-label="anchor" href="#brewer-palettes"><i class="fas fa-link"></i></a>
 </h3>
-<p>Brewer palettes give you a lot of control over plot colour and fill. You set them with <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_color_brewer()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer()</a></code> and set the <code>palette</code> argument to one of the palettes below. Set <code>direction = -1</code> to reverse the order of colours.</p>
+<p>Brewer palettes give you a lot of control over plot colour and fill. You set them with <code>scale_color_brewer()</code> or <code>scale_fill_brewer()</code> and set the <code>palette</code> argument to one of the palettes below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div id="qualitative-brewer-palettes" class="section level4" number="15.2.2.1">
 <h4>
 <span class="header-section-number">E.2.2.1</span> Qualitative Brewer Palettes<a class="anchor" aria-label="anchor" href="#qualitative-brewer-palettes"><i class="fas fa-link"></i></a>
@@ -1751,7 +1751,7 @@ Figure E.9: Diverging brewer palettes.
 <h2>
 <span class="header-section-number">E.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes-1"><i class="fas fa-link"></i></a>
 </h2>
-<p><code class="package">ggplot2</code> has 8 built-in themes that you can add to a plot like <code>plot + theme_bw()</code> or set as the default theme at the top of your script like <code><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set(theme_bw())</a></code>.</p>
+<p><code class="package">ggplot2</code> has 8 built-in themes that you can add to a plot like <code>plot + theme_bw()</code> or set as the default theme at the top of your script like <code>theme_set(theme_bw())</code>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="appendix-e-styling_files/figure-html/unnamed-chunk-9-1.png" alt="{ggplot2} themes." width="100%"><p class="caption">
@@ -2005,7 +2005,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-20.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

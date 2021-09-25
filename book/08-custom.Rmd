@@ -9,9 +9,30 @@
 ```{r setup-custom, messages = FALSE}
 library(tidyverse)
 library(ggwordcloud) # for word clouds
-library(tidytext) # for manipulating text for word clouds
-library(patchwork) # for combining plots
+library(tidytext)    # for manipulating text for word clouds
+library(patchwork)   # for combining plots
+library(treemap)     # for treemap plots
 ```
+
+## Treemap
+
+```{r, fig.height = 10, fig.cap = "Treemap plot of 2020 population by country, for countries with more than 10M."}
+pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
+                               skip = 16) %>%
+  dplyr::filter(Type == "Country/Area") %>%
+  select(country = 3, population = `2020`) %>%
+  mutate(population = round(as.numeric(population) * 1000)) %>%
+  dplyr::filter(population > 10000000)
+
+treemap(pop_data,
+  index="country",
+  vSize="population",
+  title = "",
+  palette = "BuPu",
+  inflate.labels = TRUE
+)
+```
+
 
 
 ## Word Clouds

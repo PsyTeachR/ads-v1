@@ -233,6 +233,20 @@ all_tweets <- purrr::map_df(tweet_files, read_csv, col_types = ct) %>%
   mutate(month = lubridate::month(time, label = TRUE))
 ```
 
+```
+## Warning: One or more parsing issues, see `problems()` for details
+
+## Warning: One or more parsing issues, see `problems()` for details
+
+## Warning: One or more parsing issues, see `problems()` for details
+
+## Warning: One or more parsing issues, see `problems()` for details
+
+## Warning: One or more parsing issues, see `problems()` for details
+
+## Warning: One or more parsing issues, see `problems()` for details
+```
+
 Now we can look at the distribution of impressions per tweet for each month.
 
 

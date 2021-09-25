@@ -17,6 +17,6 @@ browseURL(
 )
 
 # preview a chapter (wrecks sidebar links)
-browseURL(
-  xfun::in_dir("book", bookdown::preview_chapter("appendix-e-styling.Rmd"))
-)
+# browseURL(
+#   xfun::in_dir("book", bookdown::preview_chapter("appendix-e-styling.Rmd"))
+# )

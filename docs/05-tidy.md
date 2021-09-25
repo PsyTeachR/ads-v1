@@ -1553,17 +1553,20 @@ untidy_data <- read_csv(file = "data/untidy_data.csv")
 ```
 
 ```
-## 
+## Rows: 5 Columns: 7
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   customer_id = col_double(),
-##   itemsprice_2018 = col_character(),
-##   itemsprice_2019 = col_character(),
-##   itemsprice_2020 = col_character(),
-##   totalprice_2018 = col_double(),
-##   totalprice_2019 = col_double(),
-##   totalprice_2020 = col_double()
-## )
+## Delimiter: ","
+## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
+## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -1695,17 +1698,20 @@ totalprice_data <- read_csv(file = "data/untidy_data.csv") %>%
 ```
 
 ```
-## 
+## Rows: 5 Columns: 7
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   customer_id = col_double(),
-##   itemsprice_2018 = col_character(),
-##   itemsprice_2019 = col_character(),
-##   itemsprice_2020 = col_character(),
-##   totalprice_2018 = col_double(),
-##   totalprice_2019 = col_double(),
-##   totalprice_2020 = col_double()
-## )
+## Delimiter: ","
+## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
+## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ::: {.info data-latex=""}

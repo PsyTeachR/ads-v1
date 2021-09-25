@@ -10,9 +10,36 @@
 ```r
 library(tidyverse)
 library(ggwordcloud) # for word clouds
-library(tidytext) # for manipulating text for word clouds
-library(patchwork) # for combining plots
+library(tidytext)    # for manipulating text for word clouds
+library(patchwork)   # for combining plots
+library(treemap)     # for treemap plots
 ```
+
+## Treemap
+
+
+```r
+pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
+                               skip = 16) %>%
+  dplyr::filter(Type == "Country/Area") %>%
+  select(country = 3, population = `2020`) %>%
+  mutate(population = round(as.numeric(population) * 1000)) %>%
+  dplyr::filter(population > 10000000)
+
+treemap(pop_data,
+  index="country",
+  vSize="population",
+  title = "",
+  palette = "BuPu",
+  inflate.labels = TRUE
+)
+```
+
+<div class="figure" style="text-align: center">
+<img src="08-custom_files/figure-html/unnamed-chunk-1-1.png" alt="Treemap plot of 2020 population by country, for countries with more than 10M." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Treemap plot of 2020 population by country, for countries with more than 10M.</p>
+</div>
+
 
 
 ## Word Clouds
@@ -71,7 +98,7 @@ rating5 <- filter(words, rating == 5) %>%
 rating1 + rating5
 ```
 
-<img src="08-custom_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="08-custom_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 

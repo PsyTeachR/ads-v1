@@ -25,7 +25,6 @@ Imports:
     bookdown,
     knitr,
     downlit,
-    rlang,
     xfun,
     faux,
     tinytex,
@@ -33,16 +32,16 @@ Imports:
     webexercises,
     glossary (>= 0.0.0.9001),
     esquisse,
-    readxl,
     rio,
-    haven,
     kableExtra,
     patchwork,
     grDevices,
     ggthemes,
     ggwordcloud,
     tidytext,
-    glue
+    treemap,
+    glue,
+    flexdashboard
 Remotes: 
     psyteachr/glossary
 Depends: 

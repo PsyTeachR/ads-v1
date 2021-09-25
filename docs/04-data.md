@@ -2,32 +2,17 @@
 
 ## Intended Learning Outcomes {#ilo-data}
 
-* Be able to import data from a range of sources using `rio::import()`
+* Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
 * Be able to match related data from multiple tables
 
 
-
 ```r
 library(tidyverse) # includes readr
-library(rio)
-library(haven)
-library(readxl)
+library(rio)       # for almost any data import/export
+library(haven)     # for SPSS, Stata,and SAS files
+library(readxl)    # for Excel files
 ```
-
-You'll learn about the following functions in this chapter:
-
-* `data()`
-* `rio::inport()`
-* `readr::read_tsv()`
-* `readr::read_csv()`
-* `readxl::read_excel()`
-* `haven::read_sav()`
-* `readr::cols()`
-* `readr::col_character()`
-* `readr::col_double()`
-* `readr::col_logical()`
-* `readr::col_date()`
 
 ## Data Import
 
@@ -99,15 +84,21 @@ demo <- readr::read_csv("data/demo.csv")
 ```
 
 ```
-## 
+## Rows: 6 Columns: 5
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   character = col_character(),
-##   integer = col_double(),
-##   double = col_double(),
-##   logical = col_logical(),
-##   date = col_character()
-## )
+## Delimiter: ","
+## chr (2): character, date
+## dbl (2): integer, double
+## lgl (1): logical
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 If it makes a mistake, such as reading the "date" column as a <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.
@@ -188,42 +179,42 @@ demo_tsv
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 20-Sep-21 </td>
+   <td style="text-align:left;"> 26-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> B </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 19-Sep-21 </td>
+   <td style="text-align:left;"> 25-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 18-Sep-21 </td>
+   <td style="text-align:left;"> 24-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> D </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 17-Sep-21 </td>
+   <td style="text-align:left;"> 23-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> E </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5.5 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 16-Sep-21 </td>
+   <td style="text-align:left;"> 22-Sep-21 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> F </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6.5 </td>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 15-Sep-21 </td>
+   <td style="text-align:left;"> 21-Sep-21 </td>
   </tr>
 </tbody>
 </table>
@@ -246,7 +237,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "20-Sep-21", "19-Sep-21", "18-Sep-21", "17-Sep-21", "16-Sep-…
+## $ date      <chr> "26-Sep-21", "25-Sep-21", "24-Sep-21", "23-Sep-21", "22-Sep-…
 ```
 
 #### summary() {#summary-function}
@@ -281,7 +272,7 @@ summary(demo_sav)
 
 If we are creating a small data table from scratch, we can use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
 
-Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class='fu'>tibble</span><span class='op'>(</span><span class='op'>)</span></code> function takes <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a> with the names that you want your columns to have. The values are <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a> that list the column values in order.
+Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class='fu'>tibble</span><span class='op'>(</span><span class='op'>)</span></code> function takes <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a> with the names that you want your columns to have. The values are <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a> that list the column values in order.
 
 If you don't know the value for one of the cells, you can enter `NA`, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
 
@@ -408,7 +399,7 @@ family <- import("data/family.csv")
 </div>
 :::
 
-We'll be working with <a class='glossary' target='_blank' title='Data in a rectangular table format, where each row has an entry for each column.' href='https://psyteachr.github.io/glossary/t#tabular-data'>tabular data</a> a lot in this class, but tabular data is made up of <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a>, which groups together data with the same basic <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a>. Appendix\ \@ref(data-types) explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.
+We'll be working with <a class='glossary' target='_blank' title='Data in a rectangular table format, where each row has an entry for each column.' href='https://psyteachr.github.io/glossary/t#tabular-data'>tabular data</a> a lot in this class, but tabular data is made up of <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a>, which groups together data with the same basic <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a>. Appendix\ \@ref(data-types) explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.
 
 
 ### Troubleshooting
@@ -437,23 +428,19 @@ mess <- read_csv("data/mess.csv")
 ```
 
 ```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   `This is my messy dataset` = col_character()
-## )
+## Rows: 27 Columns: 1
 ```
 
 ```
-## Warning: 27 parsing failures.
-## row col  expected    actual            file
-##   1  -- 1 columns 7 columns 'data/mess.csv'
-##   2  -- 1 columns 7 columns 'data/mess.csv'
-##   3  -- 1 columns 7 columns 'data/mess.csv'
-##   4  -- 1 columns 7 columns 'data/mess.csv'
-##   5  -- 1 columns 7 columns 'data/mess.csv'
-## ... ... ......... ......... ...............
-## See problems(...) for more details.
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr (1): This is my messy dataset
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -480,17 +467,20 @@ mess <- read_csv("data/mess.csv", skip = 2)
 ```
 
 ```
-## 
+## Rows: 26 Columns: 7
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   junk = col_character(),
-##   order = col_character(),
-##   score = col_double(),
-##   letter = col_character(),
-##   good = col_character(),
-##   min_max = col_character(),
-##   date = col_character()
-## )
+## Delimiter: ","
+## chr (6): junk, order, letter, good, min_max, date
+## dbl (1): score
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -790,12 +780,6 @@ ct <- list(
 tidier <- read_csv("data/mess.csv", 
                    skip = 2,
                    col_types = ct)
-```
-
-```
-## Warning: 1 parsing failure.
-## row   col   expected  actual            file
-##   2 order an integer missing 'data/mess.csv'
 ```
 
 You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (`2`) and column (`order`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (<code><span class='st'>"missing"</span></code>). If you specifically tell <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
@@ -2346,7 +2330,7 @@ base::setdiff(customers, new_customers)
   </tr>
   <tr>
    <td style="text-align:left;"> [vector](https://psyteachr.github.io/glossary/v.html#vector){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> A type of data structure that is basically a list of things like T/F values, numbers, or strings. </td>
+   <td style="text-align:left;"> A type of data structure that collects values with the same data type, like T/F values, numbers, or strings. </td>
   </tr>
 </tbody>
 </table>

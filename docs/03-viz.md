@@ -102,14 +102,12 @@ lubridate::now(tzone = "GMT")
 
 ```
 ## [1] "2021-09-26"
-## [1] "2021-09-25 23:16:07 GMT"
+## [1] "2021-09-25 23:23:40 GMT"
 ```
 
+#### Test your understanding
 
-::: {.try data-latex=""}
 Coming back to the pets dataset, what type of variable is in each column?
-
-
 
 <table>
  <thead>
@@ -160,12 +158,16 @@ Coming back to the pets dataset, what type of variable is in each column?
 
 
 
-* `name` continuous, nominal, ordinal, date numeric, character, factor, date
-* `owner` continuous, nominal, ordinal, date numeric, character, factor, date
-* `species` continuous, nominal, ordinal, date numeric, character, factor, date
-* `birthdate` continuous, nominal, ordinal, date continuous, nominal, ordinal, date
-* `weight` continuous, nominal, ordinal, date numeric, character, factor, date
-* `rating` continuous, nominal, ordinal, date numeric, character, factor, date
+::: {.try data-latex=""}
+
+
+
+* `name` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
+* `owner` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
+* `species` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select>
+* `birthdate` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='answer'>date</option></select>
+* `weight` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='answer'>numeric</option><option value='x'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
+* `rating` continuous, nominal, ordinal, date <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select>
 :::
 
 

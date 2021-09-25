@@ -101,6 +101,7 @@ variable-types
 continuous
 categorical
 dates-and-times
+test-your-understanding
 building-plots
 layered-plots
 loading-data
@@ -118,12 +119,12 @@ counting-categories
 bar-plot
 column-plot
 pie-chart
-test-your-understanding
+test-your-understanding-1
 one-continuous-variable
 histogram
 frequency-plot
 density-plot
-test-your-understanding-1
+test-your-understanding-2
 grouped-continuous-variables
 subdividing-distributions
 comparing-distributions

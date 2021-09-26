@@ -87,13 +87,19 @@
 <span class="header-section-number">D.1</span> Basic data types<a class="anchor" aria-label="anchor" href="#basic-data-types"><i class="fas fa-link"></i></a>
 </h2>
 <p>Data can be numbers, words, true/false values or combinations of these. The basic <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a> in R are: <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a>, <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, and <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a>, as well as the special classes of <a class="glossary" target="_blank" title="A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter" href="https://psyteachr.github.io/glossary/f#factor">factor</a> and date/times.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:excel-format-cells"></span>
+<img src="images/appx/excel-format-cells.png" alt="Data types are like the categories when you format cells in Excel." width="100%"><p class="caption">
+Figure 3.1: Data types are like the categories when you format cells in Excel.
+</p>
+</div>
 <div id="numeric-data" class="section level3" number="14.1.1">
 <h3>
 <span class="header-section-number">D.1.1</span> Numeric data<a class="anchor" aria-label="anchor" href="#numeric-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>All of the numbers are <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a> data types. There are two types of numeric data, <a class="glossary" target="_blank" title="A data type representing whole numbers." href="https://psyteachr.github.io/glossary/i#integer">integer</a> and <a class="glossary" target="_blank" title="A data type representing a real decimal number" href="https://psyteachr.github.io/glossary/d#double">double</a>. Integers are the whole numbers, like -1, 0 and 1. Doubles are numbers that can have fractional amounts. If you just type a plain number such as <code>10</code>, it is stored as a double, even if it doesn't have a decimal point. If you want it to be an exact integer, you can use the <code>L</code> suffix (10L), but this distinction doesn't make much difference in practice.</p>
 <p>If you ever want to know the data type of something, use the <code>typeof</code> function.</p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>   <span class="co"># double</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">10.0</span><span class="op">)</span> <span class="co"># double</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">10L</span><span class="op">)</span>  <span class="co"># integer</span></code></pre></div>
@@ -101,7 +107,7 @@
 ## [1] "double"
 ## [1] "integer"</code></pre>
 <p>If you want to know if something is numeric (a double or an integer), you can use the function <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code> and it will tell you if it is numeric (<code>TRUE</code>) or not (<code>FALSE</code>).</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">10L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">10.0</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="st">"Not a number"</span><span class="op">)</span></code></pre></div>
@@ -114,13 +120,13 @@
 <span class="header-section-number">D.1.2</span> Character data<a class="anchor" aria-label="anchor" href="#character-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">Characters</a> (also called "strings") are any text between quotation marks.</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="st">"This is a character string"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="st">'You can use double or single quotes'</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"
 ## [1] "character"</code></pre>
 <p>This can include quotes, but you have to <a class="glossary" target="_blank" title='Include special characters like " inside of a string by prefacing them with a backslash.' href="https://psyteachr.github.io/glossary/e#escape">escape</a> quotes using a backslash to signal that the quote isn't meant to be the end of the string.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_string</span> <span class="op">&lt;-</span> <span class="st">"The instructor said, \"R is cool,\" and the class agreed."</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">my_string</span><span class="op">)</span> <span class="co"># cat() prints the arguments</span></code></pre></div>
 <pre><code>## The instructor said, "R is cool," and the class agreed.</code></pre>
@@ -130,13 +136,13 @@
 <span class="header-section-number">D.1.3</span> Logical Data<a class="anchor" aria-label="anchor" href="#logical-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">Logical</a> data (also sometimes called "boolean" values) is one of two values: true or false. In R, we always write them in uppercase: <code><span class="cn">TRUE</span></code> and <code><span class="cn">FALSE</span></code>.</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "logical"
 ## [1] "logical"</code></pre>
 <p>When you compare two values with an <a class="glossary" target="_blank" title="A symbol that performs a mathematical operation, such as +, -, *, /" href="https://psyteachr.github.io/glossary/o#operator">operator</a>, such as checking to see if 10 is greater than 5, the resulting value is logical.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="info">
@@ -148,13 +154,13 @@
 <span class="header-section-number">D.1.4</span> Factors<a class="anchor" aria-label="anchor" href="#factors"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <a class="glossary" target="_blank" title="A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter" href="https://psyteachr.github.io/glossary/f#factor">factor</a> is a specific type of integer that lets you specify the categories and their order. This is useful in data tables to make plots display with categories in the correct order.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">myfactor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="st">"B"</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>,<span class="st">"C"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">myfactor</span></code></pre></div>
 <pre><code>## [1] B
 ## Levels: A B C</code></pre>
 <p>Factors are a type of integer, but you can tell that they are factors by checking their <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>.</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">myfactor</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">myfactor</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"
@@ -165,11 +171,11 @@
 <span class="header-section-number">D.1.5</span> Dates and Times<a class="anchor" aria-label="anchor" href="#dates-and-times-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the <code class="package"><a href="https://lubridate.tidyverse.org/" target="_blank">lubridate</a></code> package provides functions to help you with this.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">today</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">now</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
 <p>Date and datetimes are a type of double, but you can tell that they are dates by checking their <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>. Datetimes can have one or more of a few classes that start with <code>POSIX</code>.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">today</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">today</span><span class="op">)</span>
@@ -275,7 +281,7 @@
 <span class="header-section-number">D.2.1</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> in R is a set of items (or 'elements') in a specific order. All of the elements in a vector must be of the same <strong>data type</strong> (numeric, character, logical). You can create a vector by enclosing the elements in the function <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## put information into a vector using c(...)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"this"</span>, <span class="st">"is"</span>, <span class="st">"cool"</span><span class="op">)</span>
@@ -285,13 +291,13 @@
 ## [1] 1 2 3 4 5 6</code></pre>
 <div class="try">
 <p>What happens when you mix types? What class is the variable <code>mixed</code>?</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mixed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"good"</span>, <span class="fl">2L</span>, <span class="st">"b"</span>, <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">mixed</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 </div>
@@ -304,36 +310,36 @@ Solution
 <span class="header-section-number">D.2.1.1</span> Selecting values from a vector<a class="anchor" aria-label="anchor" href="#selecting-values-from-a-vector"><i class="fas fa-link"></i></a>
 </h4>
 <p>If we wanted to pick specific values out of a vector by position, we can use square brackets (an <a class="glossary" target="_blank" title="A symbol used to get values from a container object, such as [, [[, or $" href="https://psyteachr.github.io/glossary/e#extract-operator">extract operator</a>, or <code>[]</code>) after the vector.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span><span class="op">)</span>
 <span class="va">values</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="co"># selects the second value</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>You can select more than one value from the vector by putting a vector of numbers inside the square brackets. For example, you can select the 18th, 19th, 20th, 21st, 4th, 9th and 15th letter from the built-in vector <code>LETTERS</code> (which gives all the uppercase letters in the Latin alphabet).</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">word</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">20</span>, <span class="fl">21</span>, <span class="fl">4</span>, <span class="fl">9</span>, <span class="fl">15</span><span class="op">)</span>
 <span class="va">LETTERS</span><span class="op">[</span><span class="va">word</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "R" "S" "T" "U" "D" "I" "O"</code></pre>
 <div class="try">
 <p>Can you decode the secret message?</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">secret</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">5</span>, <span class="fl">22</span>, <span class="fl">5</span>, <span class="fl">18</span>, <span class="fl">7</span>, <span class="fl">15</span>, <span class="fl">14</span>, <span class="fl">14</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">9</span>, <span class="fl">22</span>, <span class="fl">5</span>, <span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">21</span>, <span class="fl">21</span>, <span class="fl">16</span><span class="op">)</span></code></pre></div>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">LETTERS</span><span class="op">[</span><span class="va">secret</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "N" "E" "V" "E" "R" "G" "O" "N" "N" "A" "G" "I" "V" "E" "Y" "O" "U" "U" "P"</code></pre>
 </div>
 </div>
 <p>You can also create 'named' vectors, where each element has a name. For example:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>first <span class="op">=</span> <span class="fl">77.9</span>, second <span class="op">=</span> <span class="op">-</span><span class="fl">13.2</span>, third <span class="op">=</span> <span class="fl">100.1</span><span class="op">)</span>
 <span class="va">vec</span></code></pre></div>
 <pre><code>##  first second  third 
 ##   77.9  -13.2  100.1</code></pre>
 <p>We can then access elements by name using a character vector within the square brackets. We can put them in any order we want, and we can repeat elements:</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"third"</span>, <span class="st">"second"</span>, <span class="st">"second"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##  third second second 
 ##  100.1  -13.2  -13.2</code></pre>
@@ -341,7 +347,7 @@ Solution
 <p>We can get the vector of names using the <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> function, and we can set or change them using something like <code>names(vec2) &lt;- c("n1", "n2", "n3")</code>.</p>
 </div>
 <p>Another way to access elements is by using a logical vector within the square brackets. This will pull out the elements of the vector for which the corresponding element of the logical vector is <code>TRUE</code>. If the logical vector doesn't have the same length as the original, it will repeat. You can find out how long a vector is using the <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> function.</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">)</span>
 <span class="va">LETTERS</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 26
@@ -353,7 +359,7 @@ Solution
 </h4>
 <p>Here are some useful tricks to save typing when creating vectors.</p>
 <p>In the command <code>x:y</code> the <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> operator would give you the sequence of number starting at <code>x</code>, and going to <code>y</code> in increments of 1.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="fl">15.3</span><span class="op">:</span><span class="fl">20.5</span>
 <span class="fl">0</span><span class="op">:</span><span class="op">-</span><span class="fl">10</span></code></pre></div>
@@ -361,7 +367,7 @@ Solution
 ## [1] 15.3 16.3 17.3 18.3 19.3 20.3
 ##  [1]   0  -1  -2  -3  -4  -5  -6  -7  -8  -9 -10</code></pre>
 <p>What if you want to create a sequence but with something other than integer steps? You can use the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">)</span></code> function. Look at the examples below and work out what the arguments do.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, length.out <span class="op">=</span> <span class="fl">11</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, along.with <span class="op">=</span> <span class="va">LETTERS</span><span class="op">)</span></code></pre></div>
@@ -370,7 +376,7 @@ Solution
 ##  [1]  0.0  0.4  0.8  1.2  1.6  2.0  2.4  2.8  3.2  3.6  4.0  4.4  4.8  5.2  5.6
 ## [16]  6.0  6.4  6.8  7.2  7.6  8.0  8.4  8.8  9.2  9.6 10.0</code></pre>
 <p>What if you want to repeat a vector many times? You could either type it out (painful) or use the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">)</span></code> function, which can repeat vectors in different ways.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>                      <span class="co"># ten zeroes</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">7</span><span class="op">)</span>       <span class="co"># alternating 1 and 3, 7 times</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># A to C, 2 times each</span></code></pre></div>
@@ -378,7 +384,7 @@ Solution
 ##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
 ## [1] "A" "A" "B" "B" "C" "C"</code></pre>
 <p>The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">)</span></code> function is useful to create a vector of logical values (<code>TRUE</code>/<code>FALSE</code> or <code>1</code>/<code>0</code>) to select values from another vector.</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get IDs in the pattern Y Y N N ...</span>
 <span class="va">ids</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">40</span>
 <span class="va">yynn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">2</span>, 
@@ -392,7 +398,7 @@ Solution
 <span class="header-section-number">D.2.2</span> Lists<a class="anchor" aria-label="anchor" href="#lists"><i class="fas fa-link"></i></a>
 </h3>
 <p>Recall that vectors can contain data of only one type. What if you want to store a collection of data of different data types? For that purpose you would use a <a class="glossary" target="_blank" title="A container data type that allows items with different data types to be grouped together." href="https://psyteachr.github.io/glossary/l#list">list</a>. Define a list using the <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> function.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_types</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   double <span class="op">=</span> <span class="fl">10.0</span>,
   integer <span class="op">=</span> <span class="fl">10L</span>,
@@ -407,12 +413,12 @@ Solution
 ##  $ character: chr "10"
 ##  $ logical  : logi TRUE</code></pre>
 <p>You can refer to elements of a list using square brackets like a vector, but you can also use the dollar sign notation (<code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>) if the list items have names.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_types</span><span class="op">$</span><span class="va">logical</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="try">
 <p>Explore the 5 ways shown below to extract a value from a list. What data type is each object? What is the difference between the single and double brackets? Which one is the same as the dollar sign?</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bracket1</span> <span class="op">&lt;-</span> <span class="va">data_types</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="va">bracket2</span> <span class="op">&lt;-</span> <span class="va">data_types</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="va">name1</span>    <span class="op">&lt;-</span> <span class="va">data_types</span><span class="op">[</span><span class="st">"double"</span><span class="op">]</span>
@@ -428,7 +434,7 @@ Solution
 <span class="header-section-number">D.2.3</span> Tables<a class="anchor" aria-label="anchor" href="#tables-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a class="glossary" target="_blank" title="Data in a rectangular table format, where each row has an entry for each column." href="https://psyteachr.github.io/glossary/t#tabular-data">Tabular data</a> structures allow for a collection of data of different types (characters, integers, logical, etc.) but subject to the constraint that each "column" of the table (element of the list) must have the same number of elements. The base R version of a table is called a <code>data.frame</code>, while the 'tidyverse' version is called a <code>tibble</code>. Tibbles are far easier to work with, so we'll be using those. To learn more about differences between these two data structures, see <code>vignette("tibble")</code>.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># construct a table by column with tibble</span>
 <span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Katara"</span>, <span class="st">"Toph"</span>, <span class="st">"Sokka"</span><span class="op">)</span>,
@@ -455,7 +461,7 @@ Solution
 <span class="header-section-number">D.2.3.1</span> Table info<a class="anchor" aria-label="anchor" href="#table-info"><i class="fas fa-link"></i></a>
 </h4>
 <p>We can get information about the table using the functions <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="op">)</span></code> (number of columns), <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></code> (number of rows), <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></code> (the number of rows and number of columns), and <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/name.html">name</a></span><span class="op">(</span><span class="op">)</span></code> (the column names).</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">avatar</span><span class="op">)</span> <span class="co"># how many rows?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">avatar</span><span class="op">)</span> <span class="co"># how many columns?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">avatar</span><span class="op">)</span>  <span class="co"># what are the table dimensions?</span>
@@ -470,7 +476,7 @@ Solution
 <span class="header-section-number">D.2.3.2</span> Accessing rows and columns<a class="anchor" aria-label="anchor" href="#row-col-access"><i class="fas fa-link"></i></a>
 </h4>
 <p>There are various ways of accessing specific columns or rows from a table. The ones below are from <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> and are useful to know about, but you'll be learning easier (and more readable) ways in Chapters <a href="tidy.html#tidy">5</a> and <a href="wrangle.html#wrangle">6</a>. Examples of these base R accessing functions are provided here for reference, since you might see them in other people's scripts.</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">katara</span>     <span class="op">&lt;-</span> <span class="va">avatar</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span> <span class="co"># first row</span>
 <span class="va">type</span>       <span class="op">&lt;-</span> <span class="va">avatar</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="co"># second column (bends)</span>
 <span class="va">benders</span>    <span class="op">&lt;-</span> <span class="va">avatar</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># selected rows (by number)</span>

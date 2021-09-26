@@ -138,7 +138,6 @@ div.verbatim pre.sourceCode {
   padding: 0 1em !important;
 }
 
-
 /* external link icons */
 a[target="_blank"]::after {
   margin: 0 3px 0 5px;

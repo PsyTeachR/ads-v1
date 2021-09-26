@@ -2,7 +2,7 @@
 
 ## Intended Learning Outcomes {#ilo-viz}
 
-* Understand the difference between categorical and continuous data
+* Identify categorical versus continuous data
 * Create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
@@ -25,8 +25,8 @@ pets <- tribble(
   ~name,      ~owner,  ~species, ~birthdate,   ~weight, ~rating,
   "Darwin",   "Lisa",  "ferret", "1998-04-02",  1.2,    "a little evil",
   "Oy",       "Lisa",  "ferret", NA          ,  2.9,    "very good",
-  "Khaleesi", "Emily", "cat",    "2018-01-01",  4.5,    "very good",
-  "Bernie",   "Phil",  "dog",    "2013-01-01", 32.0,    "very good"
+  "Khaleesi", "Emily", "cat",    "2014-10-01",  4.5,    "very good",
+  "Bernie",   "Phil",  "dog",    "2017-06-01", 32.0,    "very good"
 ) %>%
   mutate(species = factor(species, c("dog", "cat", "ferret")),
          birthdate = as.Date(birthdate),
@@ -39,13 +39,17 @@ pets <- tribble(
 pets
 ```
 
-Data can be numbers, words, dates, true/false values or combinations of these. When you're plotting data, it's important to know what type of variables you have, which can help you te decide what types of plots are most appropriate. It is also useful to know what `r glossary("data type")` they are. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly.
+Variables can be classified as `r glossary("continuous")` (numbers) or `r glossary("categorical")` (labels). When you're plotting data, it's important to know what kind of variables you have, which can help you decide what types of plots are most appropriate. Each variable also has a `r glossary("data type")`, such as `r glossary("numeric")` (numbers), `r glossary("character")` (text), or `r glossary("logical")` (TRUE/FALSE values). Some plots can only work on some data types. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly.
+
+```{r excel-format-cells, echo = FALSE, fig.cap="Data types are like the categories when you format cells in Excel."}
+include_graphics("images/appx/excel-format-cells.png")
+```
 
 ### Continuous
 
 `r glossary("Continuous")` variables are properties you can measure, like weight. You can use continuous variables in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day. They may be rounded to the nearest whole number, but it should make sense to have a measurement halfway between.
 
-Continuous variables always have a `r glossary("numeric")` data type. They are either `r glossary("integer", "integers")` like `r hl(42)` or `r glossary("doubles")` like `r hl(3.14159)`. 
+Continuous variables always have a `r glossary("numeric")` data type. They are either `r glossary("integer", "integers")` like `r hl(42)` or `r glossary("double", "doubles")` like `r hl(3.14159)`. 
 
 ### Categorical
 
@@ -112,24 +116,31 @@ issues <- c(
 survey_data <- add_random(employee_id = 10) %>%
   add_random(caller_id = sample(50:100, 10), 
              .nested_in = "employee_id") %>%
+  add_between("caller_id", issue_category = names(issues), 
+              .prob = c(.4, .1, .3, .1)) %>%
+  add_ranef("caller_id", 
+            wait_time = 1, 
+            call_time = 1, 
+            .cors = 0.5) %>%
+  add_ranef("employee_id", 
+            employee_quality = 1, 
+            employee_time = 1, 
+            .cors = -.5) %>%
+  add_ranef(error = 1) %>%
   mutate(call_start = runif(nrow(.), 2020, 2021) %>% date_decimal()) %>%
-  add_ranef("caller_id", wait_time = 1, call_time = 1, .cors = 0.5) %>%
   mutate(wait_time = norm2beta(wait_time, 2, 4, ncp=10) * 5,
-         call_time = norm2beta(call_time, 2, 4, ncp=0) * 2 + 0.5,
+         call_time = norm2beta(call_time + employee_time, 2, 4, ncp=0) * 2 + 0.1,
          # round and add outliers
          wait_time = round(wait_time * 60) + 
            sample(c(0, 100), nrow(.), T, c(99, 1)),
          call_time = round(call_time * 60) + 
            sample(c(0, 100), nrow(.), T, c(99, 1))
   ) %>%
-  add_between("caller_id", issue_category = names(issues), 
-              .prob = c(.4, .1, .3, .1)) %>%
-  add_ranef("employee_id", employee_quality = 1) %>%
-  add_ranef(error = 1) %>%
   mutate(satisfaction = (employee_quality + 
            recode(issue_category, !!!issues) -
-           (wait_time * .1) + 
-           error) %>% norm2likert(c(1,2,3,2,1))) %>%
+           (wait_time * .1) +
+           (month(call_start) * -.05) +
+           error) %>% norm2likert(prob = c(1,3,4,5,2))) %>%
   select(caller_id, employee_id, call_start, wait_time, call_time,
          issue_category, satisfaction)
 
@@ -154,13 +165,9 @@ c <- b + geom_point(alpha = 0.2, color = "dodgerblue") +
   labs(subtitle = "Layer 3")
 d <- c + geom_smooth(method = "lm", color = rgb(0, .5, .8)) + 
   labs(subtitle = "Layer 4")
-e <- d + scale_x_continuous(name = "Wait Time (min)", 
-                            breaks = x_breaks,
-                            labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (min)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) + 
-  coord_cartesian(xlim = c(0, 60*6), ylim = c(0, 60*3.5)) +
+e <- d + scale_x_continuous(name = "Wait Time (seconds)", breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)", breaks = y_breaks) + 
+  coord_cartesian(xlim = c(0, 360), ylim = c(0, 180)) +
   labs(subtitle = "Layer 5")
 f <- e + ggthemes::theme_gdocs(base_size = 11, base_family = "Times") + 
   theme(axis.line.x = element_blank(),
@@ -177,20 +184,16 @@ Importantly, each layer is independent and independently customisable. For examp
 ggplot(survey_data, aes(x = wait_time, y = call_time)) + 
   #geom_point(alpha = 0.15, color = "dodgerblue") +
   geom_smooth(method = "lm", formula = y~x, color = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (min)", 
-                            breaks = seq(0, 600, 60),
-                            labels = 0:10) +
-  scale_y_continuous(name = "Call time (min)",
-                     breaks = seq(0, 600, 30),
-                     labels = seq(0, 10, .5) %>% format(digits = 1)) + 
-  coord_cartesian(xlim = c(0, 60*6), ylim = c(0, 60*3.5)) +
+  scale_x_continuous(name = "Wait Time (seconds)", breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)", breaks = y_breaks) + 
+  coord_cartesian(xlim = c(0, 360), ylim = c(0, 180)) +
   theme_minimal(base_family = "Times") + 
   theme(panel.grid.minor = element_blank())
 ```
 
 ### Loading Data
 
-Let's build up a simple version of the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter\ \@ref(data), but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. The abbreviation "chr" is for `r glossary("character")` columns, "dbl" is for `r glossary("double")` columns, and "dttm" is a date/time column.
+Let's build up the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter\ \@ref(data), but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. The abbreviation "chr" is for `r glossary("character")` columns, "dbl" is for `r glossary("double")` columns, and "dttm" is a date/time column.
 
 ```{r}
 survey_data <- read_csv(file = "data/survey_data.csv")
@@ -352,22 +355,6 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
 Check the help for `?scale_x_continuous` to see how you would set the minor units or specify how many breaks you want instead.
 :::
 
-We can change how the axis text displays by setting the `labels` argument. Let's change this to minutes instead of seconds by dividing the labels by 60. 
-
-```{r build-plot-labels, fig.cap="Changing axis labels."}
-ggplot(data = survey_data, mapping = wait_vs_call) +
-  geom_point(colour = "dodgerblue", 
-             alpha = 0.2) + 
-  geom_smooth(method = lm, 
-              formula = y~x, 
-              colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = y_breaks/60)
-```
 
 ### Axis Limits
 
@@ -380,19 +367,13 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5))
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180))
 ```
-
-::: {.info data-latex=""}
-The y-axis has increments of 30 seconds, so to make sure the whole numbers also have a decimal place (e.g., "1.0" instead of "1"), we used the `format()` function to set the number of decimal places to display.
-:::
 
 ::: {.dangerous data-latex=""}
 You can also set the `limits` argument inside  the `scale_` functions, but this actually removes any data that falls outside these limits, rather than cropping your plot, and this can change the appearance of certain types of plots like violin plots and density plots.
@@ -409,15 +390,13 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5)) +
-  ggthemes::theme_gdocs(base_size = 11, base_family = "Times")
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180)) +
+  theme_gdocs(base_size = 11, base_family = "Times")
 ```
 
 ### Theme Tweaks
@@ -431,30 +410,19 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5)) +
-  ggthemes::theme_gdocs(base_size = 11, base_family = "Times") +
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180)) +
+  theme_gdocs(base_size = 11, base_family = "Times") +
   theme(axis.line.x = element_blank(),
         plot.background = element_blank())
 ```
 
 
 ## Appropriate Plots
-
-```{r quiz-geoms, include = FALSE}
-bar <- c(answer = "geom_bar", x = "geom_col")
-col <- c(x = "geom_bar", answer = "geom_col")
-hist <- c(answer = "geom_histogram", x = "geom_freqpoly", x = "geom_density")
-freq <- c(x = "geom_histogram", answer = "geom_freqpoly", x = "geom_density")
-dens <- c(x = "geom_histogram", x = "geom_freqpoly", answer = "geom_density")
-```
-
 
 The [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) is a great resource to help you find plots appropriate to your data, based on how many variables you're plotting and what type they are. The examples below all use the same customer satisfaction data, but each plot communicates something different. 
 
@@ -467,6 +435,7 @@ We don't expect you to memorise all of the plot types or the methods for customi
 If you want to count the number of things per category, you can use `geom_bar()`.
 
 ```{r}
+#set up mapping
 count_issues <- aes(x = issue_category)
 
 ggplot(data = survey_data, mapping = count_issues) +
@@ -475,7 +444,7 @@ ggplot(data = survey_data, mapping = count_issues) +
 
 ::: {.try data-latex=""}
 
-You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions.
+You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions. You'll learn more about this in Chapter\ \@ref(custom).
 
 ```{r custom-bar, webex.hide = "Code"}
 # gives each issue a different colour
@@ -539,20 +508,26 @@ Pie charts are a [misleading form of data visualisation](https://www.data-to-viz
 
 #### Test your understanding
 
+```{r, include = FALSE}
+bar <- c(answer = "geom_bar", x = "geom_col")
+col <- c(x = "geom_bar", answer = "geom_col")
+```
+
+
 Here is a small data table.
 
 country             | population      | island
---------------------|-----------------|---------------
-Northern Ireland    | 1895510         | Ireland
-Wales               | 3169586         | Great Britain
-Republic of Ireland | 4937786         | Ireland
-Scotland            | 5466000         | Great Britain
-England             | 56550138        | Great Britain
+:-------------------|----------------:|:--------------
+Northern Ireland    | 1,895,510       | Ireland
+Wales               | 3,169,586       | Great Britain
+Republic of Ireland | 4,937,786       | Ireland
+Scotland            | 5,466,000       | Great Britain
+England             | 56,550,138      | Great Britain
 
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? `r mcq(col)`
-```{r, echo = FALSE, results='asis'}
+```{r test-counting-categories, echo = FALSE, results='asis'}
 opt <- c(answer = "aes(x = country, y = population)",
          x = "aes(x = population, y = country)",
          x = "aes(x = country)",
@@ -590,21 +565,22 @@ By default, the bars start *centered* on 0, so the first bar would include -7.5 
 
 The default style of grey bars is ugly, so you can change that by setting the `fill` and `colour`. 
 
-We can also set up a custom the x-axis called `wait_x` so we can reuse it in other plots.
+We can also set up a base plot object called `g`, since we'll be making several plots with the same data table with the same mapping, and a custom the x-axis called `wait_x` so we can reuse it in other plots
 
 ```{r, fig.cap="Histogram with custom styles."}
-# set up x-axis 
+# set up base plot 
+g <- ggplot(data = survey_data, mapping = aes(x = wait_time))
+
+# set up x-axis for wait_time
 wait_x <- scale_x_continuous(
-  name = "Wait time (minutes)",
-  breaks = seq(0, 600, 60),
-  labels = seq(0, 600, 60)/60
+  name = "Wait time (seconds)",
+  breaks = seq(0, 600, 60)
 )
 
 # style histogram
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+g + wait_x +
   geom_histogram(boundary = 0, binwidth = 15, 
-                 fill = "white", color = "black") +
-  wait_x
+                 fill = "white", color = "black")
 ```
 
 #### Frequency Plot
@@ -612,10 +588,9 @@ ggplot(data = survey_data, mapping = aes(x = wait_time)) +
 Rather than plotting each bin as a bar, you can connect a line across the top of each bin using a frequency plot. The function `geom_freqpoly()` works the same as `geom_histogram()`, except it can't take a `fill` argument because it's just a line.
 
 ```{r}
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+g + wait_x +
   geom_freqpoly(boundary = 0, binwidth = 15, 
-                color = "black") +
-  wait_x
+                color = "black")
 ```
 
 
@@ -624,16 +599,21 @@ ggplot(data = survey_data, mapping = aes(x = wait_time)) +
 If the distribution is smooth, a density plot is often a better way to show the distribution. A density plot doesn't need the `binwidth` or `boundary` arguments because it doesn't split the data into bins, but it can have `fill`.
 
 ```{r}
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
-  geom_density(fill = "purple", color = "black") +
-  wait_x
+g + wait_x +
+  geom_density(fill = "purple", color = "black")
 ```
 
 #### Test your understanding
 
 Imagine you have a table of the [population for each country in the world](https://population.un.org/wpp/Download/Standard/Population/){target="_blank"} with the columns `country` and `population`. We'll just look at the 76 countries with populations of less than a million.
 
-```{r, echo = FALSE}
+```{r test-one-continuous, echo = FALSE}
+# set up quiz answers
+hist <- c(answer = "geom_histogram", x = "geom_freqpoly", x = "geom_density")
+freq <- c(x = "geom_histogram", answer = "geom_freqpoly", x = "geom_density")
+dens <- c(x = "geom_histogram", x = "geom_freqpoly", answer = "geom_density")
+
+# load data
 pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
                                skip = 16) %>%
   dplyr::filter(Type == "Country/Area") %>%
@@ -641,7 +621,7 @@ pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEX
   mutate(population = round(as.numeric(population) * 1000)) %>%
   dplyr::filter(population < 1e6)
   
-
+# make plots
 g <- ggplot(pop_data, aes(x = population)) +
   scale_x_continuous(breaks = seq(0, 1e6, 1e5),
                      labels = c(paste0(0:9*100, "K"), "1M")) +
@@ -681,28 +661,27 @@ There are several ways to compare continuous data across groups. Which you choos
 
 You can set the `fill` aesthetic in the mapping to show what proportion of each bin comes from each category. By default, the categories are positioned stacked on top of each other. The function `geom_area()` gives a similar effect when `stat = "bin"`. 
 
-```{r, fig.height = 3, fig.width = 8, fig.cap="Stacked histogram and area plot."}
+```{r, fig.height = 3, fig.width = 8, fig.cap="Stacked histogram versus area plot."}
 # set fill by issue category
 wait_by_issue <- aes(x = wait_time, fill = issue_category)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
 # stacked histogram
-histogram_stack <- ggplot(data = survey_data, mapping = wait_by_issue) +
+histogram_stack <- g + wait_x +
   geom_histogram(boundary = 0, 
                  binwidth = 15, 
                  color = "black") +
-  wait_x + 
   ggtitle("Stacked Histogram")
 
 # area plot
-area_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+area_plot <- g + wait_x +
   geom_area(stat = "bin", 
             boundary = 0, 
             binwidth = 15, 
-            color = "black",
-            show.legend = FALSE) +
-  wait_x +
+            color = "black") +
   ggtitle("Area")
 
+# put plots together
 histogram_stack + area_plot + 
   plot_layout(nrow = 1, guides = "collect")
 ```
@@ -720,24 +699,23 @@ If you want to compare more than one distribution, you can set the `position` ar
 wait_by_issue <- aes(x = wait_time, 
                      fill = issue_category, 
                      colour = issue_category)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
 # dodged histogram
-histogram_dodge <- ggplot(data = survey_data, mapping = wait_by_issue) +
+histogram_dodge <- g + wait_x +
   geom_histogram(boundary = 0, 
                  binwidth = 15, 
                  position = "dodge") +
-  wait_x + 
   ggtitle("Dodged Histogram")
 
 # frequency plot
-freqpoly_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+freqpoly_plot <- g + wait_x +
   geom_freqpoly(binwidth = 15, 
                 boundary = 0,
                 size = 1) +
-  wait_x +
   ggtitle("Frequency")
 
-# paste the three plots together
+# put plots together
 histogram_dodge + freqpoly_plot + 
   plot_layout(nrow = 1, guides = "collect")
 ```
@@ -749,9 +727,9 @@ Another way to compare groups of continuous variables is the violin plot. This i
 ```{r violin-plot, fig.cap = "Basic violin plot."}
 wait_by_issue <- aes(x = issue_category, 
                      y = wait_time)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
-ggplot(data = survey_data, mapping = wait_by_issue) + 
-  geom_violin()
+g + geom_violin()
 ```
 
 #### Boxplot
@@ -759,15 +737,11 @@ ggplot(data = survey_data, mapping = wait_by_issue) +
 Boxplots serve a similar purpose to violin plots (without the giggles from the back row). They don't show you the shape of the distribution, but rather some statistics about it. The middle line represents the `r glossary("median")`; half the data are above this line and half below it. The box encloses the 25th to 75th percentiles of the data, so 50% of the data falls inside the box. The "whiskers" extending above and below the box extend 1.5 times the height of the box, although you can change this with the `coef` argument. The points show `r glossary("outlier", "outliers")` -- individual data points that fall outside of this range.
 
 ```{r box-plot, fig.cap = "Basic boxplot."}
-wait_by_issue <- aes(x = issue_category, 
-                     y = wait_time)
-
-ggplot(data = survey_data, mapping = wait_by_issue) + 
-  geom_boxplot()
+g + geom_boxplot()
 ```
 
 
-#### Violin Combos
+#### Combo Plots
 
 Violin plots are frequently layered with other geoms that represent the mean or median values in the data.
 
@@ -780,18 +754,17 @@ wait_by_issue <- aes(x = issue_category,
 
 # set up default plot
 g <- ggplot(data = survey_data, mapping = wait_by_issue) +
-  guides(fill = "none", colour = "none") +
-  coord_cartesian(ylim = c(0, 420)) +
-  scale_y_continuous(name = "Wait Time (minutes)",
-                     breaks = seq(0, 600, 60),
-                     labels = 0:10) +
-  scale_x_discrete(name = "Issue Category")
+  scale_x_discrete(name = "Issue Category") +
+  scale_y_continuous(name = "Wait Time (seconds)",
+                     breaks = seq(0, 600, 60)) +
+  coord_cartesian(ylim = c(0, 360)) +
+  guides(fill = "none", colour = "none") # remove legends
 
 median <- g + geom_violin(alpha = 0.5, draw_quantiles = 0.5) +
   ggtitle("Median line (default trim)")
 
 mean_point <- g + geom_violin(alpha = 0.5, trim = FALSE) + 
- stat_summary(fun = mean, geom = "point", size = 3) +
+ stat_summary(fun = mean, geom = "point", size = 2) +
   ggtitle("Mean point (no trim)")
   
 violinbox <- g + geom_violin(alpha = 0.5) + 
@@ -805,15 +778,67 @@ median + mean_point + violinbox
 ```
 
 ::: {.dangerous data-latex=""}
-```{r col-plot-bad, fig.cap="Don't plot continuous data with column plots."}
-g + stat_summary(fun = mean, geom = "col", alpha = 0.5)
+```{r col-plot-bad, message=FALSE, fig.cap="Don't plot continuous data with column plots."}
+# stat_summary applies a function ("mean") to the data 
+# and plots the results using the specified geom ("col")
+
+g + stat_summary(fun = "mean", geom = "col", alpha = 0.5) +
+  # sets the y-axis limits automatically
+  coord_cartesian(ylim = NULL) 
 ```
 
-The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are between 2.5 and 3.5 minutes, or spread evenly from 0 to 7 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+:::
+
+#### Test your understanding
+
+```{r test-grouped-continuous, echo=FALSE, fig.height = 3}
+box <- c(x = "geom_box()",
+         answer = "geom_boxplot()",
+         x = "geom_violin()",
+         x = "geom_violinplot()")
+
+violin <- c(x = "geom_box()",
+         x = "geom_boxplot()",
+         answer = "geom_violin()",
+         x = "geom_violinplot()")
+
+median <- c(x = "mean",
+            answer = "median",
+            x = "mode")
+
+e04 <- setNames(faux::make_id(10, "e", 2), rep("x", 10))
+e07 <- e04
+names(e04)[4] <- "answer"
+names(e07)[7] <- "answer"
+
+aes <- sample(c(
+  answer = "aes(x = employee_id, y = call_time, fill = employee_id)",
+  x = "aes(x = employee_id, y = call_time, fill = call_time)",
+  x = "aes(x = employee_id, y = call_time, colour = call_time)",
+  x = "aes(x = employee_id, y = call_time, colour = employee_id)"
+))
+
+g <- ggplot(survey_data, aes(x = employee_id, y = call_time, fill = employee_id)) +
+  guides(fill = "none")
+  
+v <- g + geom_violin(draw_quantiles = 0.5)
+b <- g + geom_boxplot()
+
+v + b + plot_annotation(tag_levels = "A")
+```
+
+::: {.try data-latex=""}
+* How would you create plot A? `r mcq(violin)`
+* How would you create plot B? `r mcq(box)`
+* What do the horizontal lines in the middle of the shapes represent? `r mcq(median)`
+* What does the mapping look like for both plots? `r longmcq(aes)`
+* Which employee tends to have the longest calls? `r mcq(e04)`
+* Which employee has the record longest call? `r mcq(e07)`
 :::
 
 
-### Two Continuous Distributions
+### Two Continuous Variables
 
 When you want to see how two continuous variables are related, set one as the x-axis and the other as the y-axis. Usually, if one variable causes the other, you plot the cause on the x-axis and the effect on the y-axis. Here, we want to see if longer wait times cause the calls to be longer. 
 
@@ -852,7 +877,12 @@ loess_plot <- g +
 lm_plot + loess_plot
 ```
 
-### Dates
+::: {.warning data-latex=""}
+If there isn't much data at the extremes of the x-axis, the curve can be very uncertain. This is represented by the wider shaded area, which means that the true relationship might be anywhere within that area.
+:::
+
+
+#### Dates
 
 The `call_start` column contains both a date and a time, so use the `date()` function from `r pkg("lubridate")` to convert it to just a date. We'll need it in this format to be able to transform the x-axis below.
 
@@ -878,10 +908,12 @@ g + geom_smooth(method = lm,  formula = y~x) +
 ```
 
 ::: {.try data-latex=""}
-It looks like customer satisfaction declined a bit in the first half of the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5.
+It looks like customer satisfaction declined across the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5. You can also plot the individual data points to emphasise the range of values. 
 
 ```{r, webex.hide = TRUE}
-g + geom_smooth(method = lm,  formula = y~x) +
+g + 
+  geom_jitter(width = 0, height = .1, alpha = 0.2) +
+  geom_smooth(method = lm,  formula = y~x) +
   scale_x_date(name = "",
                date_breaks = "1 month", 
                date_labels = "%b") +
@@ -894,9 +926,43 @@ g + geom_smooth(method = lm,  formula = y~x) +
 :::
 
 
+### Ordinal Variables
 
+When you have a limited range of numeric values, such as an ordinal rating scale, sometimes overlapping data makes it difficult to see what is going on in a point plot. In this section, we'll explore a few options for dealing with this.
 
+```{r over-plot, fig.cap="Overlapping data."}
+sat_call <- aes(x = call_time, y = satisfaction)
+g <- ggplot(data = survey_data, mapping = sat_call)
 
+g + geom_point()
+```
+
+#### Jitter Plot
+
+You can use `geom_jitter()` to move the points around a bit to make them easier to see. You can also set alpha transparency. Here, the x-axis is continuous, so there is no need to jitter the `width`, but the y-axis is ordinal categories, so the `height` is jittered between -0.2 and +0.2 away from the true y-value.
+
+```{r jitter-plot, fig.cap = "Jitter plot."}
+g + geom_jitter(width = 0, height = .2, alpha = 0.5)
+```
+
+#### Facets
+
+Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction. Note that the `fill` will use continuous colours if `satisfaction` is a numeric data type, but you can convert it to a factor to use categorical colours.
+
+```{r fact-plot, fig.height = 8, fig.cap = "A histogram with facets."}
+ggplot(data = survey_data, mapping = aes(x = call_time)) +
+  geom_histogram(binwidth = 10, 
+                 boundary = 0, 
+                 fill = "dodgerblue", 
+                 color = "black") +
+  facet_wrap(~satisfaction, ncol = 1, labeller = label_both) +
+  scale_x_continuous(name = "Call Time (seconds)",
+                     breaks = seq(0, 600, 30))
+```
+
+::: {.info data-latex=""}
+These are not, by any means, all the plot types that you can make in R. This chapter just gave you a basic overview, and we will go into more detail in Chapter\ \@ref(custom). The [further resources](#resources-viz) section at the end of this chapter lists many resources, but the [R Graph Gallery](http://www.r-graph-gallery.com/){target="_blank"} is an especially useful one to get inspiration for the kinds of beautiful plots you can make in R. 
+:::
 
 ## Glossary {#glossary-viz}
 

@@ -9,21 +9,8 @@
 
 ```r
 library(tidyverse) # functions from tidyr, dplyr, readr, stringr, and pipes
-library(readxl)
+library(readxl)    # for reading excel files
 ```
-
-You'll learn about the following functions in this chapter:
-
-* `tidyr::pivot_longer()'
-* `tidyr::pivot_wider()`
-* `tidyr::separate()`
-* `dplyr::select()`
-* `dplyr::mutate()`
-* `readr::type_convert()`
-* `stringr::str_replace_all()`
-* `tidyr::starts_with()`
-* `%>%`
-
 
 
 ## Data Structure

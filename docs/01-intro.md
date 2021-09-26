@@ -40,6 +40,10 @@ Appendix\ \@ref(rstudio-settings) shows you how to change two important settings
 * Save workspace to .RData on exit: <select class='webex-select'><option value='blank'></option><option value=''>Always</option><option value='answer'>Never</option><option value=''>Ask</option></select>
 :::
 
+When you open up RStudio or restart R, your Environment tab should be completely empty. If it is not, check the options above.
+
+* How do you restart R? (there may be more than one right answer) <div class='webex-radiogroup' id='radio_YCUKTXIFCP'><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="x"></input> <span>Quit RStudio</span></label><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="answer"></input> <span>Menu: Session > Restart R</span></label><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="x"></input> <span>Click on the broom icon in the Environment tab</span></label><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="answer"></input> <span><span class="apple">Cmd-Shift-F10</span> or <span class="windows">Ctl-Shift-F10</span></span></label><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="answer"></input> <span>type `.rs.restartR()` in the console</span></label><label><input type="radio" autocomplete="off" name="radio_YCUKTXIFCP" value="x"></input> <span>type `q()` in the console</span></label></div>
+
 ## Add-on packages {#packages}
 
 One of the great things about R is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.

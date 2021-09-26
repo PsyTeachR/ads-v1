@@ -4,6 +4,13 @@
 
 Data can be numbers, words, true/false values or combinations of these. The basic `r glossary("data type", "data types")` in R are: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")`, as well as the special classes of `r glossary("factor")` and date/times.
 
+```{r excel-format-cells, echo = FALSE, fig.cap="Data types are like the categories when you format cells in Excel."}
+include_graphics("images/appx/excel-format-cells.png")
+```
+
+
+
+
 ### Numeric data
 
 All of the numbers are `r glossary("numeric")` data types. There are two types of numeric data, `r glossary("integer")` and `r glossary("double")`. Integers are the whole numbers, like -1, 0 and 1. Doubles are numbers that can have fractional amounts. If you just type a plain number such as `10`, it is stored as a double, even if it doesn't have a decimal point. If you want it to be an exact integer, you can use the `L` suffix (10L), but this distinction doesn't make much difference in practice.

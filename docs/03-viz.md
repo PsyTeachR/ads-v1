@@ -2,7 +2,7 @@
 
 ## Intended Learning Outcomes {#ilo-viz}
 
-* Understand the difference between categorical and continuous data
+* Identify categorical versus continuous data
 * Create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
@@ -55,7 +55,7 @@ For example, the table below lists pets owned by members of the psyTeachR team. 
    <td style="text-align:left;"> Khaleesi </td>
    <td style="text-align:left;"> Emily </td>
    <td style="text-align:left;"> cat </td>
-   <td style="text-align:left;"> 2018-01-01 </td>
+   <td style="text-align:left;"> 2014-10-01 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> very good </td>
   </tr>
@@ -63,7 +63,7 @@ For example, the table below lists pets owned by members of the psyTeachR team. 
    <td style="text-align:left;"> Bernie </td>
    <td style="text-align:left;"> Phil </td>
    <td style="text-align:left;"> dog </td>
-   <td style="text-align:left;"> 2013-01-01 </td>
+   <td style="text-align:left;"> 2017-06-01 </td>
    <td style="text-align:right;"> 32.0 </td>
    <td style="text-align:left;"> very good </td>
   </tr>
@@ -72,13 +72,18 @@ For example, the table below lists pets owned by members of the psyTeachR team. 
 
 </div>
 
-Data can be numbers, words, dates, true/false values or combinations of these. When you're plotting data, it's important to know what type of variables you have, which can help you te decide what types of plots are most appropriate. It is also useful to know what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> they are. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly.
+Variables can be classified as <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a> (numbers) or <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> (labels). When you're plotting data, it's important to know what kind of variables you have, which can help you decide what types of plots are most appropriate. Each variable also has a <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a>, such as <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> (numbers), <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> (text), or <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> (TRUE/FALSE values). Some plots can only work on some data types. Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly.
+
+<div class="figure" style="text-align: center">
+<img src="images/appx/excel-format-cells.png" alt="Data types are like the categories when you format cells in Excel." width="100%" />
+<p class="caption">(\#fig:excel-format-cells)Data types are like the categories when you format cells in Excel.</p>
+</div>
 
 ### Continuous
 
 <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>Continuous</a> variables are properties you can measure, like weight. You can use continuous variables in mathematical operations, like calculating the sum total of a column of prices or the average number of social media likes per day. They may be rounded to the nearest whole number, but it should make sense to have a measurement halfway between.
 
-Continuous variables always have a <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> data type. They are either <a class='glossary' target='_blank' title='A data type representing whole numbers.' href='https://psyteachr.github.io/glossary/i#integer'>integers</a> like <code><span class='fl'>42</span></code> or <a class='glossary' target='_blank' title='' href='https://psyteachr.github.io/glossary/d#doubles'>doubles</a> like <code><span class='fl'>3.14159</span></code>. 
+Continuous variables always have a <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> data type. They are either <a class='glossary' target='_blank' title='A data type representing whole numbers.' href='https://psyteachr.github.io/glossary/i#integer'>integers</a> like <code><span class='fl'>42</span></code> or <a class='glossary' target='_blank' title='A data type representing a real decimal number' href='https://psyteachr.github.io/glossary/d#double'>doubles</a> like <code><span class='fl'>3.14159</span></code>. 
 
 ### Categorical
 
@@ -102,7 +107,7 @@ lubridate::now(tzone = "GMT")
 
 ```
 ## [1] "2021-09-26"
-## [1] "2021-09-25 23:29:36 GMT"
+## [1] "2021-09-26 18:36:36 GMT"
 ```
 
 ### Test your understanding
@@ -141,7 +146,7 @@ Coming back to the pets dataset, what type of variable is in each column?
    <td style="text-align:left;"> Khaleesi </td>
    <td style="text-align:left;"> Emily </td>
    <td style="text-align:left;"> cat </td>
-   <td style="text-align:left;"> 2018-01-01 </td>
+   <td style="text-align:left;"> 2014-10-01 </td>
    <td style="text-align:right;"> 4.5 </td>
    <td style="text-align:left;"> very good </td>
   </tr>
@@ -149,7 +154,7 @@ Coming back to the pets dataset, what type of variable is in each column?
    <td style="text-align:left;"> Bernie </td>
    <td style="text-align:left;"> Phil </td>
    <td style="text-align:left;"> dog </td>
-   <td style="text-align:left;"> 2013-01-01 </td>
+   <td style="text-align:left;"> 2017-06-01 </td>
    <td style="text-align:right;"> 32.0 </td>
    <td style="text-align:left;"> very good </td>
   </tr>
@@ -195,7 +200,7 @@ Importantly, each layer is independent and independently customisable. For examp
 
 ### Loading Data
 
-Let's build up a simple version of the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter\ \@ref(data), but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. The abbreviation "chr" is for <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> columns, "dbl" is for <a class='glossary' target='_blank' title='A data type representing a real decimal number' href='https://psyteachr.github.io/glossary/d#double'>double</a> columns, and "dttm" is a date/time column.
+Let's build up the plot above, layer by layer. First we need to get the data. We'll learn how to load data in Chapter\ \@ref(data), but you can copy the code below to create a data table object. The "column specification" tells you what each column is named and what type of data it is. The abbreviation "chr" is for <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> columns, "dbl" is for <a class='glossary' target='_blank' title='A data type representing a real decimal number' href='https://psyteachr.github.io/glossary/d#double'>double</a> columns, and "dttm" is a date/time column.
 
 
 ```r
@@ -437,28 +442,6 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
 Check the help for `?scale_x_continuous` to see how you would set the minor units or specify how many breaks you want instead.
 :::
 
-We can change how the axis text displays by setting the `labels` argument. Let's change this to minutes instead of seconds by dividing the labels by 60. 
-
-
-```r
-ggplot(data = survey_data, mapping = wait_vs_call) +
-  geom_point(colour = "dodgerblue", 
-             alpha = 0.2) + 
-  geom_smooth(method = lm, 
-              formula = y~x, 
-              colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = y_breaks/60)
-```
-
-<div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/build-plot-labels-1.png" alt="Changing axis labels." width="100%" />
-<p class="caption">(\#fig:build-plot-labels)Changing axis labels.</p>
-</div>
 
 ### Axis Limits
 
@@ -472,24 +455,18 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5))
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180))
 ```
 
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/build-plot-limits-1.png" alt="Changing the axis limits." width="100%" />
 <p class="caption">(\#fig:build-plot-limits)Changing the axis limits.</p>
 </div>
-
-::: {.info data-latex=""}
-The y-axis has increments of 30 seconds, so to make sure the whole numbers also have a decimal place (e.g., "1.0" instead of "1"), we used the `format()` function to set the number of decimal places to display.
-:::
 
 ::: {.dangerous data-latex=""}
 You can also set the `limits` argument inside  the `scale_` functions, but this actually removes any data that falls outside these limits, rather than cropping your plot, and this can change the appearance of certain types of plots like violin plots and density plots.
@@ -507,15 +484,13 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5)) +
-  ggthemes::theme_gdocs(base_size = 11, base_family = "Times")
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180)) +
+  theme_gdocs(base_size = 11, base_family = "Times")
 ```
 
 <div class="figure" style="text-align: center">
@@ -535,15 +510,13 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_smooth(method = lm, 
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (minutes)", 
-                     breaks = x_breaks,
-                     labels = x_breaks/60) +
-  scale_y_continuous(name = "Call time (minutes)",
-                     breaks = y_breaks,
-                     labels = format(y_breaks/60, digits = 1)) +
-  coord_cartesian(xlim = c(0, 60*6), 
-                  ylim = c(0, 60*3.5)) +
-  ggthemes::theme_gdocs(base_size = 11, base_family = "Times") +
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = x_breaks) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = y_breaks) +
+  coord_cartesian(xlim = c(0, 360), 
+                  ylim = c(0, 180)) +
+  theme_gdocs(base_size = 11, base_family = "Times") +
   theme(axis.line.x = element_blank(),
         plot.background = element_blank())
 ```
@@ -555,9 +528,6 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
 
 
 ## Appropriate Plots
-
-
-
 
 The [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) is a great resource to help you find plots appropriate to your data, based on how many variables you're plotting and what type they are. The examples below all use the same customer satisfaction data, but each plot communicates something different. 
 
@@ -571,6 +541,7 @@ If you want to count the number of things per category, you can use `geom_bar()`
 
 
 ```r
+#set up mapping
 count_issues <- aes(x = issue_category)
 
 ggplot(data = survey_data, mapping = count_issues) +
@@ -581,7 +552,7 @@ ggplot(data = survey_data, mapping = count_issues) +
 
 ::: {.try data-latex=""}
 
-You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions.
+You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions. You'll learn more about this in Chapter\ \@ref(custom).
 
 
 <div class='webex-solution'><button>Code</button>
@@ -644,19 +615,19 @@ count_data <- count(x = survey_data, issue_category)
 <tbody>
   <tr>
    <td style="text-align:left;"> tech </td>
-   <td style="text-align:right;"> 306 </td>
+   <td style="text-align:right;"> 311 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> sales </td>
-   <td style="text-align:right;"> 86 </td>
+   <td style="text-align:right;"> 88 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> returns </td>
-   <td style="text-align:right;"> 225 </td>
+   <td style="text-align:right;"> 232 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> other </td>
-   <td style="text-align:right;"> 90 </td>
+   <td style="text-align:right;"> 76 </td>
   </tr>
 </tbody>
 </table>
@@ -684,22 +655,25 @@ Pie charts are a [misleading form of data visualisation](https://www.data-to-viz
 
 #### Test your understanding
 
+
+
+
 Here is a small data table.
 
 country             | population      | island
---------------------|-----------------|---------------
-Northern Ireland    | 1895510         | Ireland
-Wales               | 3169586         | Great Britain
-Republic of Ireland | 4937786         | Ireland
-Scotland            | 5466000         | Great Britain
-England             | 56550138        | Great Britain
+:-------------------|----------------:|:--------------
+Northern Ireland    | 1,895,510       | Ireland
+Wales               | 3,169,586       | Great Britain
+Republic of Ireland | 4,937,786       | Ireland
+Scotland            | 5,466,000       | Great Britain
+England             | 56,550,138      | Great Britain
 
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? <select class='webex-select'><option value='blank'></option><option value='x'>geom_bar</option><option value='answer'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_BOIXGHJJHQ'><label><input type="radio" autocomplete="off" name="radio_BOIXGHJJHQ" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_BOIXGHJJHQ" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_BOIXGHJJHQ" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_BOIXGHJJHQ" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_BOIXGHJJHQ" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_IVXWBHTFIG'><label><input type="radio" autocomplete="off" name="radio_IVXWBHTFIG" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_IVXWBHTFIG" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_IVXWBHTFIG" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_IVXWBHTFIG" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_IVXWBHTFIG" value="x"></input> <span>aes(y = population)</span></label></div>
 * What geom would you use to plot the number of countries on each island? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_bar</option><option value='x'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_JNXOIVXWBH'><label><input type="radio" autocomplete="off" name="radio_JNXOIVXWBH" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_JNXOIVXWBH" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_JNXOIVXWBH" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_JNXOIVXWBH" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_JNXOIVXWBH" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_KQGYPIKVNE'><label><input type="radio" autocomplete="off" name="radio_KQGYPIKVNE" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_KQGYPIKVNE" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_KQGYPIKVNE" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_KQGYPIKVNE" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_KQGYPIKVNE" value="x"></input> <span>aes(y = population)</span></label></div>
 :::
 
 ### One Continuous Variable
@@ -731,22 +705,23 @@ By default, the bars start *centered* on 0, so the first bar would include -7.5 
 
 The default style of grey bars is ugly, so you can change that by setting the `fill` and `colour`. 
 
-We can also set up a custom the x-axis called `wait_x` so we can reuse it in other plots.
+We can also set up a base plot object called `g`, since we'll be making several plots with the same data table with the same mapping, and a custom the x-axis called `wait_x` so we can reuse it in other plots
 
 
 ```r
-# set up x-axis 
+# set up base plot 
+g <- ggplot(data = survey_data, mapping = aes(x = wait_time))
+
+# set up x-axis for wait_time
 wait_x <- scale_x_continuous(
-  name = "Wait time (minutes)",
-  breaks = seq(0, 600, 60),
-  labels = seq(0, 600, 60)/60
+  name = "Wait time (seconds)",
+  breaks = seq(0, 600, 60)
 )
 
 # style histogram
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+g + wait_x +
   geom_histogram(boundary = 0, binwidth = 15, 
-                 fill = "white", color = "black") +
-  wait_x
+                 fill = "white", color = "black")
 ```
 
 <div class="figure" style="text-align: center">
@@ -760,10 +735,9 @@ Rather than plotting each bin as a bar, you can connect a line across the top of
 
 
 ```r
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
+g + wait_x +
   geom_freqpoly(boundary = 0, binwidth = 15, 
-                color = "black") +
-  wait_x
+                color = "black")
 ```
 
 <img src="03-viz_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
@@ -775,9 +749,8 @@ If the distribution is smooth, a density plot is often a better way to show the 
 
 
 ```r
-ggplot(data = survey_data, mapping = aes(x = wait_time)) +
-  geom_density(fill = "purple", color = "black") +
-  wait_x
+g + wait_x +
+  geom_density(fill = "purple", color = "black")
 ```
 
 <img src="03-viz_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
@@ -786,14 +759,14 @@ ggplot(data = survey_data, mapping = aes(x = wait_time)) +
 
 Imagine you have a table of the [population for each country in the world](https://population.un.org/wpp/Download/Standard/Population/){target="_blank"} with the columns `country` and `population`. We'll just look at the 76 countries with populations of less than a million.
 
-<img src="03-viz_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/test-one-continuous-1.png" width="100%" style="display: block; margin: auto;" />
 
 ::: {.try data-latex=""}
 
 * What kind of plot is A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='answer'>geom_density</option></select>
 * What kind of plot is B? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='x'>geom_density</option></select>
 * What kind of plot is C? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='answer'>geom_freqpoly</option><option value='x'>geom_density</option></select>
-* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_TFIGKQGYPI'><label><input type="radio" autocomplete="off" name="radio_TFIGKQGYPI" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_TFIGKQGYPI" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TFIGKQGYPI" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_TFIGKQGYPI" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
+* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_PGJXCZGPIK'><label><input type="radio" autocomplete="off" name="radio_PGJXCZGPIK" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_PGJXCZGPIK" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_PGJXCZGPIK" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_PGJXCZGPIK" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
 * What is the `binwidth` of the histogram? <select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>100</option><option value='answer'>100K</option><option value=''>1M</option></select>
 :::
 
@@ -809,32 +782,31 @@ You can set the `fill` aesthetic in the mapping to show what proportion of each 
 ```r
 # set fill by issue category
 wait_by_issue <- aes(x = wait_time, fill = issue_category)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
 # stacked histogram
-histogram_stack <- ggplot(data = survey_data, mapping = wait_by_issue) +
+histogram_stack <- g + wait_x +
   geom_histogram(boundary = 0, 
                  binwidth = 15, 
                  color = "black") +
-  wait_x + 
   ggtitle("Stacked Histogram")
 
 # area plot
-area_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+area_plot <- g + wait_x +
   geom_area(stat = "bin", 
             boundary = 0, 
             binwidth = 15, 
-            color = "black",
-            show.legend = FALSE) +
-  wait_x +
+            color = "black") +
   ggtitle("Area")
 
+# put plots together
 histogram_stack + area_plot + 
   plot_layout(nrow = 1, guides = "collect")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Stacked histogram and area plot." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-20)Stacked histogram and area plot.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-19-1.png" alt="Stacked histogram versus area plot." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-19)Stacked histogram versus area plot.</p>
 </div>
 
 ::: {.warning data-latex=""}
@@ -851,31 +823,30 @@ If you want to compare more than one distribution, you can set the `position` ar
 wait_by_issue <- aes(x = wait_time, 
                      fill = issue_category, 
                      colour = issue_category)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
 # dodged histogram
-histogram_dodge <- ggplot(data = survey_data, mapping = wait_by_issue) +
+histogram_dodge <- g + wait_x +
   geom_histogram(boundary = 0, 
                  binwidth = 15, 
                  position = "dodge") +
-  wait_x + 
   ggtitle("Dodged Histogram")
 
 # frequency plot
-freqpoly_plot <- ggplot(data = survey_data, mapping = wait_by_issue) +
+freqpoly_plot <- g + wait_x +
   geom_freqpoly(binwidth = 15, 
                 boundary = 0,
                 size = 1) +
-  wait_x +
   ggtitle("Frequency")
 
-# paste the three plots together
+# put plots together
 histogram_dodge + freqpoly_plot + 
   plot_layout(nrow = 1, guides = "collect")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-21-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-21)Different ways to plot the distribution of a continuous variable for multiple groups.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-20)Different ways to plot the distribution of a continuous variable for multiple groups.</p>
 </div>
 
 #### Violin Plot
@@ -886,9 +857,9 @@ Another way to compare groups of continuous variables is the violin plot. This i
 ```r
 wait_by_issue <- aes(x = issue_category, 
                      y = wait_time)
+g <- ggplot(data = survey_data, mapping = wait_by_issue)
 
-ggplot(data = survey_data, mapping = wait_by_issue) + 
-  geom_violin()
+g + geom_violin()
 ```
 
 <div class="figure" style="text-align: center">
@@ -898,15 +869,11 @@ ggplot(data = survey_data, mapping = wait_by_issue) +
 
 #### Boxplot
 
-Boxplots serve a similar purpose to violin plots (without the giggles from the back row). They don't show you the shape of the distribution, but rather some statistics about it. The middle line represents the <a class='glossary' target='_blank' title='' href='https://psyteachr.github.io/glossary/m#median'>median</a>; half the data are above this line and half below it. The box encloses the 25th to 75th percentiles of the data, so 50% of the data falls inside the box. The "whiskers" extending above and below the box extend 1.5 times the height of the box, although you can change this with the `coef` argument. The points show <a class='glossary' target='_blank' title='A data point that is extremely distant from most of the other data points' href='https://psyteachr.github.io/glossary/o#outlier'>outliers</a> -- individual data points that fall outside of this range.
+Boxplots serve a similar purpose to violin plots (without the giggles from the back row). They don't show you the shape of the distribution, but rather some statistics about it. The middle line represents the <a class='glossary' target='_blank' title='The middle number in a distribution where half of the values are larger and half are smaller.' href='https://psyteachr.github.io/glossary/m#median'>median</a>; half the data are above this line and half below it. The box encloses the 25th to 75th percentiles of the data, so 50% of the data falls inside the box. The "whiskers" extending above and below the box extend 1.5 times the height of the box, although you can change this with the `coef` argument. The points show <a class='glossary' target='_blank' title='A data point that is extremely distant from most of the other data points' href='https://psyteachr.github.io/glossary/o#outlier'>outliers</a> -- individual data points that fall outside of this range.
 
 
 ```r
-wait_by_issue <- aes(x = issue_category, 
-                     y = wait_time)
-
-ggplot(data = survey_data, mapping = wait_by_issue) + 
-  geom_boxplot()
+g + geom_boxplot()
 ```
 
 <div class="figure" style="text-align: center">
@@ -915,7 +882,7 @@ ggplot(data = survey_data, mapping = wait_by_issue) +
 </div>
 
 
-#### Violin Combos
+#### Combo Plots
 
 Violin plots are frequently layered with other geoms that represent the mean or median values in the data.
 
@@ -929,18 +896,17 @@ wait_by_issue <- aes(x = issue_category,
 
 # set up default plot
 g <- ggplot(data = survey_data, mapping = wait_by_issue) +
-  guides(fill = "none", colour = "none") +
-  coord_cartesian(ylim = c(0, 420)) +
-  scale_y_continuous(name = "Wait Time (minutes)",
-                     breaks = seq(0, 600, 60),
-                     labels = 0:10) +
-  scale_x_discrete(name = "Issue Category")
+  scale_x_discrete(name = "Issue Category") +
+  scale_y_continuous(name = "Wait Time (seconds)",
+                     breaks = seq(0, 600, 60)) +
+  coord_cartesian(ylim = c(0, 360)) +
+  guides(fill = "none", colour = "none") # remove legends
 
 median <- g + geom_violin(alpha = 0.5, draw_quantiles = 0.5) +
   ggtitle("Median line (default trim)")
 
 mean_point <- g + geom_violin(alpha = 0.5, trim = FALSE) + 
- stat_summary(fun = mean, geom = "point", size = 3) +
+ stat_summary(fun = mean, geom = "point", size = 2) +
   ggtitle("Mean point (no trim)")
   
 violinbox <- g + geom_violin(alpha = 0.5) + 
@@ -961,7 +927,12 @@ median + mean_point + violinbox
 ::: {.dangerous data-latex=""}
 
 ```r
-g + stat_summary(fun = mean, geom = "col", alpha = 0.5)
+# stat_summary applies a function ("mean") to the data 
+# and plots the results using the specified geom ("col")
+
+g + stat_summary(fun = "mean", geom = "col", alpha = 0.5) +
+  # sets the y-axis limits automatically
+  coord_cartesian(ylim = NULL) 
 ```
 
 <div class="figure" style="text-align: center">
@@ -969,11 +940,25 @@ g + stat_summary(fun = mean, geom = "col", alpha = 0.5)
 <p class="caption">(\#fig:col-plot-bad)Don't plot continuous data with column plots.</p>
 </div>
 
-The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are between 2.5 and 3.5 minutes, or spread evenly from 0 to 7 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+:::
+
+#### Test your understanding
+
+<img src="03-viz_files/figure-html/test-grouped-continuous-1.png" width="100%" style="display: block; margin: auto;" />
+
+::: {.try data-latex=""}
+* How would you create plot A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='x'>geom_boxplot()</option><option value='answer'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
+* How would you create plot B? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='answer'>geom_boxplot()</option><option value='x'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
+* What do the horizontal lines in the middle of the shapes represent? <select class='webex-select'><option value='blank'></option><option value='x'>mean</option><option value='answer'>median</option><option value='x'>mode</option></select>
+* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_XWEPEKHHCN'><label><input type="radio" autocomplete="off" name="radio_XWEPEKHHCN" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_XWEPEKHHCN" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_XWEPEKHHCN" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_XWEPEKHHCN" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label></div>
+
+* Which employee tends to have the longest calls? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='answer'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='x'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
+* Which employee has the record longest call? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='x'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='answer'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
 :::
 
 
-### Two Continuous Distributions
+### Two Continuous Variables
 
 When you want to see how two continuous variables are related, set one as the x-axis and the other as the y-axis. Usually, if one variable causes the other, you plot the cause on the x-axis and the effect on the y-axis. Here, we want to see if longer wait times cause the calls to be longer. 
 
@@ -1020,11 +1005,16 @@ lm_plot + loess_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-23-1.png" alt="Different ways to show the relationship between two continuous variables." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-23)Different ways to show the relationship between two continuous variables.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-22-1.png" alt="Different ways to show the relationship between two continuous variables." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-22)Different ways to show the relationship between two continuous variables.</p>
 </div>
 
-### Dates
+::: {.warning data-latex=""}
+If there isn't much data at the extremes of the x-axis, the curve can be very uncertain. This is represented by the wider shaded area, which means that the true relationship might be anywhere within that area.
+:::
+
+
+#### Dates
 
 The `call_start` column contains both a date and a time, so use the `date()` function from <code class='package'>lubridate</code> to convert it to just a date. We'll need it in this format to be able to transform the x-axis below.
 
@@ -1039,7 +1029,7 @@ g <- ggplot(data = survey_data, mapping = satisfaction_by_date)
 g + geom_smooth(method = lm, formula = y~x)
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
 
 We can use `scale_x_date()` to set the `date_breaks` to be "1 month" apart. The `date_labels` use a code for different date formats, which you can see in the help for `?strptime`. For example, you can change the dates to a format like "2020/01/31" with the formatting string `"%Y/%m/%d"`.
 
@@ -1053,16 +1043,18 @@ g + geom_smooth(method = lm,  formula = y~x) +
   ggtitle("2020 Caller Satisfaction")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
 
 ::: {.try data-latex=""}
-It looks like customer satisfaction declined a bit in the first half of the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5.
+It looks like customer satisfaction declined across the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5. You can also plot the individual data points to emphasise the range of values. 
 
 
 <div class='webex-solution'><button>Solution</button>
 
 ```r
-g + geom_smooth(method = lm,  formula = y~x) +
+g + 
+  geom_jitter(width = 0, height = .1, alpha = 0.2) +
+  geom_smooth(method = lm,  formula = y~x) +
   scale_x_date(name = "",
                date_breaks = "1 month", 
                date_labels = "%b") +
@@ -1072,15 +1064,67 @@ g + geom_smooth(method = lm,  formula = y~x) +
   ggtitle("2020 Caller Satisfaction")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
 </div>
 
 :::
 
 
+### Ordinal Variables
+
+When you have a limited range of numeric values, such as an ordinal rating scale, sometimes overlapping data makes it difficult to see what is going on in a point plot. In this section, we'll explore a few options for dealing with this.
 
 
+```r
+sat_call <- aes(x = call_time, y = satisfaction)
+g <- ggplot(data = survey_data, mapping = sat_call)
 
+g + geom_point()
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/over-plot-1.png" alt="Overlapping data." width="100%" />
+<p class="caption">(\#fig:over-plot)Overlapping data.</p>
+</div>
+
+#### Jitter Plot
+
+You can use `geom_jitter()` to move the points around a bit to make them easier to see. You can also set alpha transparency. Here, the x-axis is continuous, so there is no need to jitter the `width`, but the y-axis is ordinal categories, so the `height` is jittered between -0.2 and +0.2 away from the true y-value.
+
+
+```r
+g + geom_jitter(width = 0, height = .2, alpha = 0.5)
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/jitter-plot-1.png" alt="Jitter plot." width="100%" />
+<p class="caption">(\#fig:jitter-plot)Jitter plot.</p>
+</div>
+
+#### Facets
+
+Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction. Note that the `fill` will use continuous colours if `satisfaction` is a numeric data type, but you can convert it to a factor to use categorical colours.
+
+
+```r
+ggplot(data = survey_data, mapping = aes(x = call_time)) +
+  geom_histogram(binwidth = 10, 
+                 boundary = 0, 
+                 fill = "dodgerblue", 
+                 color = "black") +
+  facet_wrap(~satisfaction, ncol = 1, labeller = label_both) +
+  scale_x_continuous(name = "Call Time (seconds)",
+                     breaks = seq(0, 600, 30))
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-viz_files/figure-html/fact-plot-1.png" alt="A histogram with facets." width="100%" />
+<p class="caption">(\#fig:fact-plot)A histogram with facets.</p>
+</div>
+
+::: {.info data-latex=""}
+These are not, by any means, all the plot types that you can make in R. This chapter just gave you a basic overview, and we will go into more detail in Chapter\ \@ref(custom). The [further resources](#resources-viz) section at the end of this chapter lists many resources, but the [R Graph Gallery](http://www.r-graph-gallery.com/){target="_blank"} is an especially useful one to get inspiration for the kinds of beautiful plots you can make in R. 
+:::
 
 ## Glossary {#glossary-viz}
 
@@ -1117,10 +1161,6 @@ g + geom_smooth(method = lm,  formula = y~x) +
    <td style="text-align:left;"> A data type representing a real decimal number </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> [doubles](https://psyteachr.github.io/glossary/d.html#doubles){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;">  </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> [factor](https://psyteachr.github.io/glossary/f.html#factor){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter </td>
   </tr>
@@ -1137,8 +1177,12 @@ g + geom_smooth(method = lm,  formula = y~x) +
    <td style="text-align:left;"> A rating scale with a small number of discrete points in order </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [logical](https://psyteachr.github.io/glossary/l.html#logical){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing TRUE or FALSE values. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [median](https://psyteachr.github.io/glossary/m.html#median){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> The middle number in a distribution where half of the values are larger and half are smaller. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [nominal](https://psyteachr.github.io/glossary/n.html#nominal){class="glossary" target="_blank"} </td>

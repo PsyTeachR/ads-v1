@@ -7,10 +7,11 @@
 * Be able to match related data from multiple tables
 
 ```{r setup}
-library(tidyverse) # includes readr
-library(rio)       # for almost any data import/export
-library(haven)     # for SPSS, Stata,and SAS files
-library(readxl)    # for Excel files
+library(tidyverse)     # includes readr & tibble
+library(rio)           # for almost any data import/export
+library(haven)         # for SPSS, Stata,and SAS files
+library(readxl)        # for Excel files
+library(googlesheets4) # for Google Sheets
 ```
 
 ## Data Import
@@ -40,92 +41,6 @@ data("table1")
 ```
 
 
-### Importing data {#import_data}
-
-```{r, include=FALSE}
-demo <- tibble(
-  character = LETTERS[1:6],
-  integer = 1:6,
-  double = 1.5:6.5,
-  logical = c(T, T, F, F, NA, T),
-  date = format((lubridate::today() - 0:5), format = "%d-%b-%y")
-)
-
-export(demo, "data/demo.csv")
-export(demo, "data/demo.tsv")
-export(demo, "data/demo.xlsx", overwrite = TRUE)
-export(demo, "data/demo.sav")
-```
-
-
-Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter `r glossary("extension")` following a period at the end of the file name. 
-
-#### rio::import()  
-
-The `r pkg("rio")` package has very straightforward functions for reading and saving data: `r hl(rio::import())` and `r hl(rio::export())`.
-
-```{r}
-demo_tsv  <- import("data/demo.tsv") # tab-separated values
-demo_csv  <- import("data/demo.csv") # comma-separated values
-demo_xls  <- import("data/demo.xlsx") # Excel format
-demo_sav  <- import("data/demo.sav") # SPSS format
-```
-
-
-#### File type specific import functions 
-
-However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
-
-```{r, message=FALSE}
-demo_tsv  <- readr::read_tsv("data/demo.tsv")
-demo_csv  <- readr::read_csv("data/demo.csv")
-demo_xls <- readxl::read_excel("data/demo.xlsx")
-demo_sav  <- haven::read_sav("data/demo.sav")
-```
-
-The `r pkg("readr")` functions display a message when you import data explaining what `r glossary("data type")` each column is.
-
-```{r}
-demo <- readr::read_csv("data/demo.csv")
-```
-
-If it makes a mistake, such as reading the "date" column as a `r glossary("character")`, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.
-
-```{r}
-ct <- cols(
-  character = col_character(),
-  integer = col_double(),
-  double = col_double(),
-  logical = col_logical(),
-  date = col_date(format = "%d-%b-%y")
-)
-
-demo  <- readr::read_csv("data/demo.csv", col_types = ct)
-```
-
-::: {.info data-latex=""}
-For dates, you might need to set the format. See `?strptime` for a list of the codes used to represent different date formats. Above, `r hl("%d-%b-%y")` means that the dates are formatted like `{day number}-{month abbreviation}-{2-digit year}`. 
-:::
-
-
-#### Google Sheets  
-
-If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`.
-
-```{r, message = FALSE}
-library(googlesheets4)
-
-gs4_deauth() # skip authorisation for public data
-
-url <- "https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/"
-
-demo_goo  <- googlesheets4::read_sheet(url)
-```
-
-
-
-
-
 ### Looking at data
 
 Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
@@ -134,24 +49,29 @@ Always, always, always, look at your data once you've created or loaded a table.
 
 #### View() 
 
-A familiar way to look at the table is given by `r hl(View())` (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  `r glossary("panes", "environment pane")` to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
+A familiar way to look at the table is given by `r hl(View())` (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the  `r glossary("panes", "environment pane")`. You can close the tab when you're done looking at it; it won't remove the object.
+
+```{r, eval = FALSE}
+View(table1)
+```
+
 
 #### print() 
 
-The `r hl(print())` method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
+The `r hl(print())` method can be run explicitly, but is more commonly called by just typing the variable name on a blank line. The default is not to print the entire table, but just the first 10 rows. 
 
-Let's look at the `demo_tsv` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
+Let's look at the `table1` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
 
 ```{r print}
-demo_tsv
+table1
 ```
 
 #### glimpse() 
 
-The function `r hl(tibble::glimpse())` gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the `r glossary("data type")` of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
+The function `r hl(tibble::glimpse())` gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the `r glossary("data type")` of each column in angled brackets after each column name. 
 
 ```{r sw_glimpse}
-glimpse(demo_xls)
+glimpse(table1)
 ```
 
 #### summary() {#summary-function}
@@ -159,16 +79,150 @@ glimpse(demo_xls)
 You can get a quick summary of a dataset with the `r hl(summary())` function.
 
 ```{r}
-summary(demo_sav)
+summary(table1)
 ```
+
+
+### Importing data {#import_data}
+
+Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter `r glossary("extension")` following a period at the end of the file name. 
+
+```{r importing-data-setup, include=FALSE}
+demo <- tibble(
+  character = LETTERS[1:6],
+  factor = factor(rep(c("high", "low", "med"), 2), 
+                  levels = c("low", "med", "high")),
+  integer = 1:6,
+  double = 1.5:6.5,
+  logical = c(T, T, F, F, NA, T),
+  date = lubridate::today() - 0:5
+)
+
+export(demo, "data/demo.csv")
+export(demo, "data/demo.tsv")
+export(demo, "data/demo.xlsx", overwrite = TRUE)
+export(demo, "data/demo.sav")
+export(demo, "data/demo.json")
+```
+
+
+#### rio::import()  
+
+The `r pkg("rio")` package has very straightforward functions for reading and saving data: `r hl(rio::import())` and `r hl(rio::export())`.
+
+```{r}
+demo_tsv  <- import("data/demo.tsv")  # tab-separated values
+demo_csv  <- import("data/demo.csv")  # comma-separated values
+demo_xls  <- import("data/demo.xlsx") # Excel format
+demo_sav  <- import("data/demo.sav")  # SPSS format
+```
+
+
+#### File type specific import 
+
+However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
+
+```{r, message=FALSE}
+demo_tsv <- readr::read_tsv("data/demo.tsv")
+demo_csv <- readr::read_csv("data/demo.csv")
+demo_xls <- readxl::read_excel("data/demo.xlsx")
+demo_sav <- haven::read_sav("data/demo.sav")
+```
+
+If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/){target="_blank"}.
+
+```{r, message = FALSE}
+gs4_deauth() # skip authorisation for public data
+
+demo_gs4  <- googlesheets4::read_sheet(
+  ss = "1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"
+)
+```
+
+
+#### Column data types
+
+Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.
+
+```{r}
+glimpse(demo_csv)
+```
+
+```{r}
+glimpse(demo_xls)
+```
+
+```{r}
+glimpse(demo_sav)
+```
+
+```{r}
+glimpse(demo_gs4)
+```
+
+The `r pkg("readr")` functions display a message when you import data explaining what `r glossary("data type")` each column is.
+
+```{r}
+demo <- readr::read_csv("data/demo.csv")
+```
+
+The "Column specification" tells you which `r glossary("data type")` each column is. You can review data types in Appendix\ \@ref(data-types). Options are:
+
+* `chr`: `r glossary("character")`
+* `dbl`: `r glossary("double")`
+* `lgl`: `r glossary("logical")`
+* `int`: `r glossary("integer")`
+* `date`: date
+* `dttm`: date/time
+
+If it makes a mistake, such as reading the "date" column as a `r glossary("character")`, you can manually set the column data types. Copy the code that is printed when you run `spec(demo)`, and make any changes you need.
+
+```{r}
+spec(demo)
+```
+
+Factor columns will always import as character data types, so you have to set their data type manually with `col_factor()` and set the order of levels with the `levels` argument. Otherwise, the order defaults to the order they appear in the dataset.
+
+```{r}
+ct <- cols(
+  character = col_character(),
+  factor = col_factor(levels = c("low", "med", "high")),
+  integer = col_integer(),
+  double = col_double(),
+  logical = col_logical(),
+  date = col_date(format = "%Y-%m-%d")
+)
+
+demo <- readr::read_csv("data/demo.csv", col_types = ct)
+```
+
+::: {.info data-latex=""}
+For dates, you might need to set the format your dates are in. See `?strptime` for a list of the codes used to represent different date formats. For example, `r hl("%d-%b-%y")` means that the dates are formatted like `31-Jan-21`. 
+:::
+
+The functions from `r pkg("readxl")` have a different, more limited way to specify the column types. You will have to convert factor columns and dates using `mutate()`, which you'll learn about in Chapter\ \@ref(wrangle), so most people let `read_excel()` guess data types and don't set the `col_types` argument.
+
+The function `read_sav()` from `r pkg("haven")` has an advantage over `rio::import()` for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).
+
+```{r}
+demo_sav$factor <- haven::as_factor(demo_sav$factor)
+
+glimpse(demo_sav)
+```
+
+
+::: {.info data-latex=""}
+The way you specify column types for `r pkg("googlesheets4")` is a little different from `r pkg("readr")`, although you can also use the shortcodes described in the help for `read_sheet()` with `r pkg("readr")` functions. There is currently no column specification for factors.
+:::
+
 
 ### Creating data 
 
-If we are creating a small data table from scratch, we can use the `r hl(tibble::tibble())` function, and type the data right in. The `tibble` package is part of the `r glossary("tidyverse")` package that we loaded at the start of this chapter. 
+If you need to create a small data table from scratch, use the `r hl(tibble::tibble())` function, and type the data right in. The `tibble` package is part of the `r glossary("tidyverse")` package that we loaded at the start of this chapter. 
 
 Let's create a small table with the names of three Avatar characters and their bending type. The `r hl(tibble())` function takes `r glossary("argument", "arguments")` with the names that you want your columns to have. The values are `r glossary("vector", "vectors")` that list the column values in order.
 
-If you don't know the value for one of the cells, you can enter `NA`, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
+If you don't know the value for one of the cells, you can enter `r glossary("NA")`, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
 
 ```{r tibble-define}    
 avatar <- tibble(
@@ -193,7 +247,7 @@ avatar_by_row <- tribble(
 ```
 
 ::: {.info data-latex=""}
-You don't have to line up the columns in a tribble like we did above, but it can make it easier to spot errors.
+You don't have to line up the columns in a tribble, but it can make it easier to spot errors.
 :::
 
 ### Writing data
@@ -334,7 +388,14 @@ tidier <- read_csv("data/mess.csv",
                    col_types = ct)
 ```
 
-You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (`2`) and column (`order`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`r hl("missing")`). If you specifically tell `r hl(read_csv())` to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
+You will get a message about "parsing failures" when you run this. Warnings look scary at first, but always start by reading the message.
+
+```{r}
+problems()
+```
+
+
+The table tells you what row (`3`) and column (`2`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`r hl("missing")`). If you specifically tell `r hl(read_csv())` to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
 
 ```{r}
 tidiest <- read_csv("data/mess.csv", 
@@ -347,20 +408,22 @@ tidiest <- read_csv("data/mess.csv",
 Now `order` is an integer where "missing" is now `NA`, `good` is a logical value, where `r hl(0)` and `r hl(F)` are converted to `r hl(FALSE)` and `r hl(1)` and `r hl(T)` are converted to `r hl(TRUE)`, and `date` is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the `min_max` column containing two different types of data.
 
 ```{r tidiest-table}
-tidiest
+head(tidiest)
 ```
 
 ## Data Relations
 
-First, we'll create two small data tables. 
+The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
 
-`customer` has id, gender and age for customers 1-5. Age and gender are missing for customer 3.
+For this demo, first we'll create two small data tables. 
+
+`customer` has id, city and postcode for customers 1-5. City and postcode are missing for customer 3.
 
 ```{r subject}
 customers <- tibble(
   id = 1:5,
-  gender = c("m", "m", NA, "nb", "f"),
-  age = c(19, 22, NA, 19, 18)
+  city = c("Port Ellen", "Dufftown", NA, "Aberlour", "Tobermory"),
+  postcode = c("PA42 7DU", "AB55 4DH", NA, "AB38 7RY", "PA75 6NR")
 )
 ```
 
@@ -380,7 +443,7 @@ orders <- tibble(
 
 ### Mutating Joins
 
-`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table.  
+`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -451,7 +514,7 @@ full_join(customers, orders, by = "id")
 
 ### Filtering Joins
 
-`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
+`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter\ \@ref(wrangle).)
 
 #### semi_join() {#semi_join}
 
@@ -506,8 +569,8 @@ Here we'll add customer data for customers 6-9 and bind that to the original cus
 ```{r bind_rows}
 new_customers <- tibble(
   id = 6:9,
-  gender = c("nb", "m", "f", "f"),
-  age = c(19, 16, 20, 19)
+  city = c("Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
+  postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
 )
 
 bind_rows(customers, new_customers)
@@ -520,8 +583,8 @@ If a row is duplicated between the two tables (like id 5 below), the row will al
 ```{r bind-rows-union}
 new_customers <- tibble(
   id = 5:9,
-  age = c(18, 19, 16, 20, 19),
-  gender = c("f", "nb", "m", "f", "f"),
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
   new = c(1,2,3,4,5)
 )
 
@@ -540,6 +603,38 @@ new_info <- tibble(
 bind_cols(customers, new_info)
 ```
 
+#### Importing folders
+
+If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
+
+```{r}
+# write our data to a new folder for the demo
+write_csv(x = customers, file = "data/customers1.csv")
+write_csv(x = new_customers, file = "data/customers2.csv")
+
+files <- list.files(
+  path = "data", 
+  pattern = "customers",
+  full.names = TRUE
+)
+
+files
+```
+
+Now we can use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a table with all the combined data.
+
+```{r, message=FALSE}
+purrr::map_df(files, read_csv)
+```
+
+```{r, inlcude=FALSE}
+# clean up temporary files
+file.remove("data/customers1.csv")
+file.remove("data/customers2.csv")
+```
+
+
+
 ### Set Operations
 
 `r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
@@ -550,9 +645,9 @@ bind_cols(customers, new_info)
 
 ```{r intersect}
 new_customers <- tibble(
-  id = seq(4, 9),
-  age = c(19, 18, 19, 16, 20, 19),
-  gender = c("f", "f", "m", "m", "f", "f")
+  id = 5:9,
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
 )
 
 intersect(customers, new_customers)
@@ -605,6 +700,7 @@ If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also 
 base::setdiff(customers, new_customers)
 ```
 :::
+
 
 
 ## Glossary {#glossary-data}

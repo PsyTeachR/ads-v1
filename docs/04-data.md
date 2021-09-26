@@ -8,10 +8,11 @@
 
 
 ```r
-library(tidyverse) # includes readr
-library(rio)       # for almost any data import/export
-library(haven)     # for SPSS, Stata,and SAS files
-library(readxl)    # for Excel files
+library(tidyverse)     # includes readr & tibble
+library(rio)           # for almost any data import/export
+library(haven)         # for SPSS, Stata,and SAS files
+library(readxl)        # for Excel files
+library(googlesheets4) # for Google Sheets
 ```
 
 ## Data Import
@@ -44,12 +45,130 @@ data("table1")
 ```
 
 
+### Looking at data
+
+Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
+
+Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
+
+#### View() 
+
+A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a>. You can close the tab when you're done looking at it; it won't remove the object.
+
+
+```r
+View(table1)
+```
+
+
+#### print() 
+
+The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on a blank line. The default is not to print the entire table, but just the first 10 rows. 
+
+Let's look at the `table1` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
+
+
+```r
+table1
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> cases </th>
+   <th style="text-align:right;"> population </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 745 </td>
+   <td style="text-align:right;"> 19987071 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 2666 </td>
+   <td style="text-align:right;"> 20595360 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 37737 </td>
+   <td style="text-align:right;"> 172006362 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 80488 </td>
+   <td style="text-align:right;"> 174504898 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 212258 </td>
+   <td style="text-align:right;"> 1272915272 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 213766 </td>
+   <td style="text-align:right;"> 1280428583 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+#### glimpse() 
+
+The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. 
+
+
+```r
+glimpse(table1)
+```
+
+```
+## Rows: 6
+## Columns: 4
+## $ country    <chr> "Afghanistan", "Afghanistan", "Brazil", "Brazil", "China", …
+## $ year       <int> 1999, 2000, 1999, 2000, 1999, 2000
+## $ cases      <int> 745, 2666, 37737, 80488, 212258, 213766
+## $ population <int> 19987071, 20595360, 172006362, 174504898, 1272915272, 12804…
+```
+
+#### summary() {#summary-function}
+
+You can get a quick summary of a dataset with the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function.
+
+
+```r
+summary(table1)
+```
+
+```
+##    country               year          cases          population       
+##  Length:6           Min.   :1999   Min.   :   745   Min.   :1.999e+07  
+##  Class :character   1st Qu.:1999   1st Qu.: 11434   1st Qu.:5.845e+07  
+##  Mode  :character   Median :2000   Median : 59112   Median :1.733e+08  
+##                     Mean   :2000   Mean   : 91277   Mean   :4.901e+08  
+##                     3rd Qu.:2000   3rd Qu.:179316   3rd Qu.:9.983e+08  
+##                     Max.   :2000   Max.   :213766   Max.   :1.280e+09
+```
+
+
 ### Importing data {#import_data}
 
-
-
-
 Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> following a period at the end of the file name. 
+
+
+
 
 #### rio::import()  
 
@@ -57,23 +176,103 @@ The <code class='package'>rio</code> package has very straightforward functions 
 
 
 ```r
-demo_tsv  <- import("data/demo.tsv") # tab-separated values
-demo_csv  <- import("data/demo.csv") # comma-separated values
+demo_tsv  <- import("data/demo.tsv")  # tab-separated values
+demo_csv  <- import("data/demo.csv")  # comma-separated values
 demo_xls  <- import("data/demo.xlsx") # Excel format
-demo_sav  <- import("data/demo.sav") # SPSS format
+demo_sav  <- import("data/demo.sav")  # SPSS format
 ```
 
 
-#### File type specific import functions 
+#### File type specific import 
 
 However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
 
 
 ```r
-demo_tsv  <- readr::read_tsv("data/demo.tsv")
-demo_csv  <- readr::read_csv("data/demo.csv")
+demo_tsv <- readr::read_tsv("data/demo.tsv")
+demo_csv <- readr::read_csv("data/demo.csv")
 demo_xls <- readxl::read_excel("data/demo.xlsx")
-demo_sav  <- haven::read_sav("data/demo.sav")
+demo_sav <- haven::read_sav("data/demo.sav")
+```
+
+If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/){target="_blank"}.
+
+
+```r
+gs4_deauth() # skip authorisation for public data
+
+demo_gs4  <- googlesheets4::read_sheet(
+  ss = "1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"
+)
+```
+
+
+#### Column data types
+
+Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.
+
+
+```r
+glimpse(demo_csv)
+```
+
+```
+## Rows: 6
+## Columns: 6
+## $ character <chr> "A", "B", "C", "D", "E", "F"
+## $ factor    <chr> "high", "low", "med", "high", "low", "med"
+## $ integer   <dbl> 1, 2, 3, 4, 5, 6
+## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
+## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+```
+
+
+```r
+glimpse(demo_xls)
+```
+
+```
+## Rows: 6
+## Columns: 6
+## $ character <chr> "A", "B", "C", "D", "E", "F"
+## $ factor    <chr> "high", "low", "med", "high", "low", "med"
+## $ integer   <dbl> 1, 2, 3, 4, 5, 6
+## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
+## $ date      <dttm> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+```
+
+
+```r
+glimpse(demo_sav)
+```
+
+```
+## Rows: 6
+## Columns: 6
+## $ character <chr> "A", "B", "C", "D", "E", "F"
+## $ factor    <dbl+lbl> 3, 1, 2, 3, 1, 2
+## $ integer   <dbl> 1, 2, 3, 4, 5, 6
+## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ logical   <dbl> 1, 1, 0, 0, NA, 1
+## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+```
+
+
+```r
+glimpse(demo_gs4)
+```
+
+```
+## Rows: 6
+## Columns: 6
+## $ character <chr> "A", "B", "C", "D", "E", "F"
+## $ factor    <chr> "high", "low", "med", "high", "low", "med"
+## $ integer   <dbl> 1, 2, 3, 4, 5, 6
+## $ number    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
+## $ date      <dttm> 2021-09-01, 2021-08-31, 2021-08-30, 2021-08-29, 2021-08-28, …
 ```
 
 The <code class='package'>readr</code> functions display a message when you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.
@@ -84,15 +283,16 @@ demo <- readr::read_csv("data/demo.csv")
 ```
 
 ```
-## Rows: 6 Columns: 5
+## Rows: 6 Columns: 6
 ```
 
 ```
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
-## chr (2): character, date
-## dbl (2): integer, double
-## lgl (1): logical
+## chr  (2): character, factor
+## dbl  (2): integer, double
+## lgl  (1): logical
+## date (1): date
 ```
 
 ```
@@ -101,180 +301,88 @@ demo <- readr::read_csv("data/demo.csv")
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-If it makes a mistake, such as reading the "date" column as a <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>, you can manually set the column data types. Just copy the "Column specification" that was printed when you first imported the data, and make any changes you need.
+The "Column specification" tells you which <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is. You can review data types in Appendix\ \@ref(data-types). Options are:
+
+* `chr`: <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>
+* `dbl`: <a class='glossary' target='_blank' title='A data type representing a real decimal number' href='https://psyteachr.github.io/glossary/d#double'>double</a>
+* `lgl`: <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a>
+* `int`: <a class='glossary' target='_blank' title='A data type representing whole numbers.' href='https://psyteachr.github.io/glossary/i#integer'>integer</a>
+* `date`: date
+* `dttm`: date/time
+
+If it makes a mistake, such as reading the "date" column as a <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>, you can manually set the column data types. Copy the code that is printed when you run `spec(demo)`, and make any changes you need.
+
+
+```r
+spec(demo)
+```
+
+```
+## cols(
+##   character = col_character(),
+##   factor = col_character(),
+##   integer = col_double(),
+##   double = col_double(),
+##   logical = col_logical(),
+##   date = col_date(format = "")
+## )
+```
+
+Factor columns will always import as character data types, so you have to set their data type manually with `col_factor()` and set the order of levels with the `levels` argument. Otherwise, the order defaults to the order they appear in the dataset.
 
 
 ```r
 ct <- cols(
   character = col_character(),
-  integer = col_double(),
+  factor = col_factor(levels = c("low", "med", "high")),
+  integer = col_integer(),
   double = col_double(),
   logical = col_logical(),
-  date = col_date(format = "%d-%b-%y")
+  date = col_date(format = "%Y-%m-%d")
 )
 
-demo  <- readr::read_csv("data/demo.csv", col_types = ct)
+demo <- readr::read_csv("data/demo.csv", col_types = ct)
 ```
 
 ::: {.info data-latex=""}
-For dates, you might need to set the format. See `?strptime` for a list of the codes used to represent different date formats. Above, <code><span class='st'>"%d-%b-%y"</span></code> means that the dates are formatted like `{day number}-{month abbreviation}-{2-digit year}`. 
+For dates, you might need to set the format your dates are in. See `?strptime` for a list of the codes used to represent different date formats. For example, <code><span class='st'>"%d-%b-%y"</span></code> means that the dates are formatted like `31-Jan-21`. 
 :::
 
+The functions from <code class='package'>readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using `mutate()`, which you'll learn about in Chapter\ \@ref(wrangle), so most people let `read_excel()` guess data types and don't set the `col_types` argument.
 
-#### Google Sheets  
-
-If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>.
-
-
-```r
-library(googlesheets4)
-
-gs4_deauth() # skip authorisation for public data
-
-url <- "https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/"
-
-demo_goo  <- googlesheets4::read_sheet(url)
-```
-
-
-
-
-
-### Looking at data
-
-Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
-
-Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
-
-#### View() 
-
-A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'). This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an objects in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it up in a viewer that looks a bit like Excel. You can close the tab when you're done looking at it; it won't remove the object.
-
-#### print() 
-
-The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. The default is not to print the entire table, but just the first 10 rows. 
-
-Let's look at the `demo_tsv` table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column. 
+The function `read_sav()` from <code class='package'>haven</code> has an advantage over `rio::import()` for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).
 
 
 ```r
-demo_tsv
-```
+demo_sav$factor <- haven::as_factor(demo_sav$factor)
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> character </th>
-   <th style="text-align:right;"> integer </th>
-   <th style="text-align:right;"> double </th>
-   <th style="text-align:left;"> logical </th>
-   <th style="text-align:left;"> date </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> A </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 26-Sep-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 25-Sep-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> C </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 24-Sep-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> D </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 23-Sep-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> E </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> 22-Sep-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 21-Sep-21 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-#### glimpse() 
-
-The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. You can learn about data types in Appendix\ \@ref(data-types).
-
-
-```r
-glimpse(demo_xls)
+glimpse(demo_sav)
 ```
 
 ```
 ## Rows: 6
-## Columns: 5
+## Columns: 6
 ## $ character <chr> "A", "B", "C", "D", "E", "F"
+## $ factor    <fct> high, low, med, high, low, med
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
-## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <chr> "26-Sep-21", "25-Sep-21", "24-Sep-21", "23-Sep-21", "22-Sep-…
+## $ logical   <dbl> 1, 1, 0, 0, NA, 1
+## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
 ```
 
-#### summary() {#summary-function}
 
-You can get a quick summary of a dataset with the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function.
+::: {.info data-latex=""}
+The way you specify column types for <code class='package'>googlesheets4</code> is a little different from <code class='package'>readr</code>, although you can also use the shortcodes described in the help for `read_sheet()` with <code class='package'>readr</code> functions. There is currently no column specification for factors.
+:::
 
-
-```r
-summary(demo_sav)
-```
-
-```
-##   character            integer         double        logical   
-##  Length:6           Min.   :1.00   Min.   :1.50   Min.   :0.0  
-##  Class :character   1st Qu.:2.25   1st Qu.:2.75   1st Qu.:0.0  
-##  Mode  :character   Median :3.50   Median :4.00   Median :1.0  
-##                     Mean   :3.50   Mean   :4.00   Mean   :0.6  
-##                     3rd Qu.:4.75   3rd Qu.:5.25   3rd Qu.:1.0  
-##                     Max.   :6.00   Max.   :6.50   Max.   :1.0  
-##                                                   NA's   :1    
-##      date          
-##  Length:6          
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-##                    
-## 
-```
 
 ### Creating data 
 
-If we are creating a small data table from scratch, we can use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
+If you need to create a small data table from scratch, use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
 
 Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class='fu'>tibble</span><span class='op'>(</span><span class='op'>)</span></code> function takes <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a> with the names that you want your columns to have. The values are <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a> that list the column values in order.
 
-If you don't know the value for one of the cells, you can enter `NA`, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
+If you don't know the value for one of the cells, you can enter <a class='glossary' target='_blank' title='A missing value that is "Not Available"' href='https://psyteachr.github.io/glossary/n#na'>NA</a>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.
 
 
 ```r
@@ -332,7 +440,7 @@ avatar_by_row <- tribble(
 ```
 
 ::: {.info data-latex=""}
-You don't have to line up the columns in a tribble like we did above, but it can make it easier to spot errors.
+You don't have to line up the columns in a tribble, but it can make it easier to spot errors.
 :::
 
 ### Writing data
@@ -782,7 +890,15 @@ tidier <- read_csv("data/mess.csv",
                    col_types = ct)
 ```
 
-You will get a message about "1 parsing failure" when you run this. Warnings look scary at first, but always start by reading the message. The table tells you what row (`2`) and column (`order`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (<code><span class='st'>"missing"</span></code>). If you specifically tell <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
+You will get a message about "parsing failures" when you run this. Warnings look scary at first, but always start by reading the message.
+
+
+```r
+problems()
+```
+
+
+The table tells you what row (`3`) and column (`2`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (<code><span class='st'>"missing"</span></code>). If you specifically tell <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
 
 
 ```r
@@ -797,7 +913,7 @@ Now `order` is an integer where "missing" is now `NA`, `good` is a logical value
 
 
 ```r
-tidiest
+head(tidiest)
 ```
 
 <div class="kable-table">
@@ -862,166 +978,6 @@ tidiest
    <td style="text-align:left;"> 6 - 7 </td>
    <td style="text-align:left;"> 2020-01-06 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:left;"> 0.03 </td>
-   <td style="text-align:left;"> g </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 7 - 8 </td>
-   <td style="text-align:left;"> 2020-01-07 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:left;"> 0.67 </td>
-   <td style="text-align:left;"> h </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 8 - 9 </td>
-   <td style="text-align:left;"> 2020-01-08 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> 0.57 </td>
-   <td style="text-align:left;"> i </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 9 - 10 </td>
-   <td style="text-align:left;"> 2020-01-09 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:left;"> 0.9 </td>
-   <td style="text-align:left;"> j </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 10 - 11 </td>
-   <td style="text-align:left;"> 2020-01-10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:left;"> -1.55 </td>
-   <td style="text-align:left;"> k </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 11 - 12 </td>
-   <td style="text-align:left;"> 2020-01-11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> l </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 12 - 13 </td>
-   <td style="text-align:left;"> 2020-01-12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:left;"> 0.15 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 13 - 14 </td>
-   <td style="text-align:left;"> 2020-01-13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:left;"> -0.66 </td>
-   <td style="text-align:left;"> n </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 14 - 15 </td>
-   <td style="text-align:left;"> 2020-01-14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:left;"> -0.99 </td>
-   <td style="text-align:left;"> o </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 15 - 16 </td>
-   <td style="text-align:left;"> 2020-01-15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:left;"> 1.97 </td>
-   <td style="text-align:left;"> p </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 16 - 17 </td>
-   <td style="text-align:left;"> 2020-01-16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:left;"> -0.44 </td>
-   <td style="text-align:left;"> q </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 17 - 18 </td>
-   <td style="text-align:left;"> 2020-01-17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> -0.9 </td>
-   <td style="text-align:left;"> r </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 18 - 19 </td>
-   <td style="text-align:left;"> 2020-01-18 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:left;"> -0.15 </td>
-   <td style="text-align:left;"> s </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 19 - 20 </td>
-   <td style="text-align:left;"> 2020-01-19 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> -0.83 </td>
-   <td style="text-align:left;"> t </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 20 - 21 </td>
-   <td style="text-align:left;"> 2020-01-20 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:left;"> 1.99 </td>
-   <td style="text-align:left;"> u </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 21 - 22 </td>
-   <td style="text-align:left;"> 2020-01-21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 22 </td>
-   <td style="text-align:left;"> 0.04 </td>
-   <td style="text-align:left;"> v </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 22 - 23 </td>
-   <td style="text-align:left;"> 2020-01-22 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:left;"> -0.4 </td>
-   <td style="text-align:left;"> w </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 23 - 24 </td>
-   <td style="text-align:left;"> 2020-01-23 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:left;"> -0.47 </td>
-   <td style="text-align:left;"> x </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 24 - 25 </td>
-   <td style="text-align:left;"> 2020-01-24 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 25 </td>
-   <td style="text-align:left;"> -0.41 </td>
-   <td style="text-align:left;"> y </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> 25 - 26 </td>
-   <td style="text-align:left;"> 2020-01-25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:left;"> 0.68 </td>
-   <td style="text-align:left;"> z </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> 26 - 27 </td>
-   <td style="text-align:left;"> 2020-01-26 </td>
-  </tr>
 </tbody>
 </table>
 
@@ -1029,16 +985,18 @@ tidiest
 
 ## Data Relations
 
-First, we'll create two small data tables. 
+The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
 
-`customer` has id, gender and age for customers 1-5. Age and gender are missing for customer 3.
+For this demo, first we'll create two small data tables. 
+
+`customer` has id, city and postcode for customers 1-5. City and postcode are missing for customer 3.
 
 
 ```r
 customers <- tibble(
   id = 1:5,
-  gender = c("m", "m", NA, "nb", "f"),
-  age = c(19, 22, NA, 19, 18)
+  city = c("Port Ellen", "Dufftown", NA, "Aberlour", "Tobermory"),
+  postcode = c("PA42 7DU", "AB55 4DH", NA, "AB38 7RY", "PA75 6NR")
 )
 ```
 
@@ -1046,35 +1004,35 @@ customers <- tibble(
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
 </tbody>
 </table>
@@ -1143,7 +1101,7 @@ orders <- tibble(
 
 ### Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table.  
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -1175,52 +1133,52 @@ left_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:right;"> items </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 18 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 21 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 23 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 9 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
 </tbody>
@@ -1244,64 +1202,64 @@ left_join(orders, customers, by = "id")
   <tr>
    <th style="text-align:right;"> id </th>
    <th style="text-align:right;"> items </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 10 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 18 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 21 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 23 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 11 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 11 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 12 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
 </tbody>
 </table>
@@ -1325,64 +1283,64 @@ right_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:right;"> items </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 18 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 21 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 23 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 9 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
 </tbody>
@@ -1411,46 +1369,46 @@ inner_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:right;"> items </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 18 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 21 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 23 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 9 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
 </tbody>
@@ -1476,70 +1434,70 @@ full_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:right;"> items </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 18 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 21 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> 23 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 9 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
 </tbody>
@@ -1550,7 +1508,7 @@ full_join(customers, orders, by = "id")
 
 ### Filtering Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter\ \@ref(wrangle).)
 
 #### semi_join() {#semi_join}
 
@@ -1569,30 +1527,30 @@ semi_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
 </tbody>
 </table>
@@ -1668,15 +1626,15 @@ anti_join(customers, orders, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
 </tbody>
 </table>
@@ -1733,8 +1691,8 @@ Here we'll add customer data for customers 6-9 and bind that to the original cus
 ```r
 new_customers <- tibble(
   id = 6:9,
-  gender = c("nb", "m", "f", "f"),
-  age = c(19, 16, 20, 19)
+  city = c("Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
+  postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
 )
 
 bind_rows(customers, new_customers)
@@ -1746,55 +1704,55 @@ bind_rows(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
   </tr>
 </tbody>
 </table>
@@ -1809,8 +1767,8 @@ If a row is duplicated between the two tables (like id 5 below), the row will al
 ```r
 new_customers <- tibble(
   id = 5:9,
-  age = c(18, 19, 16, 20, 19),
-  gender = c("f", "nb", "m", "f", "f"),
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
   new = c(1,2,3,4,5)
 )
 
@@ -1823,70 +1781,70 @@ bind_rows(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:right;"> new </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
    <td style="text-align:right;"> 4 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
    <td style="text-align:right;"> 5 </td>
   </tr>
 </tbody>
@@ -1913,46 +1871,167 @@ bind_cols(customers, new_info)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
    <th style="text-align:left;"> colour </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
    <td style="text-align:left;"> red </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
    <td style="text-align:left;"> orange </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> yellow </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
    <td style="text-align:left;"> green </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
    <td style="text-align:left;"> blue </td>
   </tr>
 </tbody>
 </table>
 
 </div>
+
+#### Importing folders
+
+If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
+
+
+```r
+# write our data to a new folder for the demo
+write_csv(x = customers, file = "data/customers1.csv")
+write_csv(x = new_customers, file = "data/customers2.csv")
+
+files <- list.files(
+  path = "data", 
+  pattern = "customers",
+  full.names = TRUE
+)
+
+files
+```
+
+```
+## [1] "data/customers1.csv" "data/customers2.csv"
+```
+
+Now we can use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a table with all the combined data.
+
+
+```r
+purrr::map_df(files, read_csv)
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> new </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+
+```r
+# clean up temporary files
+file.remove("data/customers1.csv")
+file.remove("data/customers2.csv")
+```
+
+```
+## [1] TRUE
+## [1] TRUE
+```
+
+
 
 ### Set Operations
 
@@ -1965,9 +2044,9 @@ bind_cols(customers, new_info)
 
 ```r
 new_customers <- tibble(
-  id = seq(4, 9),
-  age = c(19, 18, 19, 16, 20, 19),
-  gender = c("f", "f", "m", "m", "f", "f")
+  id = 5:9,
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
 )
 
 intersect(customers, new_customers)
@@ -1979,15 +2058,15 @@ intersect(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
 </tbody>
 </table>
@@ -2005,7 +2084,7 @@ base::intersect(customers, new_customers)
 ```
 ## Error: Must subset rows with a valid subscript vector.
 ## ℹ Logical subscripts must match the size of the indexed input.
-## x Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
+## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
 
@@ -2024,60 +2103,55 @@ union(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
   </tr>
 </tbody>
 </table>
@@ -2098,19 +2172,19 @@ base::union(customers, new_customers)
 ## [1] 1 2 3 4 5
 ## 
 ## [[2]]
-## [1] "m"  "m"  NA   "nb" "f" 
+## [1] "Port Ellen" "Dufftown"   NA           "Aberlour"   "Tobermory" 
 ## 
 ## [[3]]
-## [1] 19 22 NA 19 18
+## [1] "PA42 7DU" "AB55 4DH" NA         "AB38 7RY" "PA75 6NR"
 ## 
 ## [[4]]
-## [1] 4 5 6 7 8 9
+## [1] 5 6 7 8 9
 ## 
 ## [[5]]
-## [1] 19 18 19 16 20 19
+## [1] "PA75 6NR" "FK1 4RS"  "PA42 7EA" "G81 4SJ"  "KW15 1SE"
 ## 
 ## [[6]]
-## [1] "f" "f" "m" "m" "f" "f"
+## [1] "Tobermory" "Falkirk"   "Ardbeg"    "Doogal"    "Kirkwall"
 ```
 :::
 
@@ -2129,30 +2203,30 @@ setdiff(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
 </tbody>
 </table>
@@ -2172,35 +2246,30 @@ setdiff(new_customers, customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> age </th>
-   <th style="text-align:left;"> gender </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> city </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:left;"> f </td>
-  </tr>
-  <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:left;"> m </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:left;"> m </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:left;"> Ardbeg </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> f </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+   <td style="text-align:left;"> Doogal </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:left;"> f </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+   <td style="text-align:left;"> Kirkwall </td>
   </tr>
 </tbody>
 </table>
@@ -2221,41 +2290,42 @@ base::setdiff(customers, new_customers)
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> gender </th>
-   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> m </td>
-   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> nb </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> f </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 :::
+
 
 
 ## Glossary {#glossary-data}
@@ -2293,6 +2363,10 @@ base::setdiff(customers, new_customers)
    <td style="text-align:left;"> The kind of data represented by an object. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [double](https://psyteachr.github.io/glossary/d.html#double){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing a real decimal number </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [extension](https://psyteachr.github.io/glossary/e.html#extension){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd). </td>
   </tr>
@@ -2305,8 +2379,20 @@ base::setdiff(customers, new_customers)
    <td style="text-align:left;"> The interactive workspace where your script runs </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [integer](https://psyteachr.github.io/glossary/i.html#integer){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing whole numbers. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [logical](https://psyteachr.github.io/glossary/l.html#logical){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing TRUE or FALSE values. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [mutating joins](https://psyteachr.github.io/glossary/m.html#mutating-joins){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [na](https://psyteachr.github.io/glossary/n.html#na){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A missing value that is "Not Available" </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [package](https://psyteachr.github.io/glossary/p.html#package){class="glossary" target="_blank"} </td>

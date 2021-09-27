@@ -8,7 +8,7 @@
 
 
 ```r
-library(tidyverse)
+library(tidyverse)   # data wrangling functions
 library(ggwordcloud) # for word clouds
 library(tidytext)    # for manipulating text for word clouds
 library(patchwork)   # for combining plots
@@ -21,10 +21,10 @@ library(treemap)     # for treemap plots
 ```r
 pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
                                skip = 16) %>%
-  dplyr::filter(Type == "Country/Area") %>%
+  filter(Type == "Country/Area") %>%
   select(country = 3, population = `2020`) %>%
   mutate(population = round(as.numeric(population) * 1000)) %>%
-  dplyr::filter(population > 10000000)
+  filter(population > 10000000)
 
 treemap(pop_data,
   index="country",
@@ -51,11 +51,11 @@ treemap(pop_data,
 alexa <- rio::import("data/amazon_alexa.csv")
 ```
 
-Next, we need to make a table of the number of times each individual word appears per rating  The function <code><span class='fu'>tidytext</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='op'>)</span></code> does this for you by splitting the words in the `input` column into individual words in a new `output` column.
+Next, we need to make a table of the number of times each individual word appears per rating  The function `tidytext::unnest_tokens()` does this for you by splitting the words in the `input` column into individual words in a new `output` column.
 
 Then we can get rid of common "stop words" and integers by filtering only words that are not in our `omitted` list.
 
-Then we group by rating and use <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='op'>)</span></code> to get the top 25 words, ordered by the column `n`. 
+Then we group by rating and use `dplyr::slice_max()` to get the top 25 words, ordered by the column `n`. 
 
 
 

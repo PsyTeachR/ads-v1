@@ -7,9 +7,9 @@
 * Be able to calculate row means
 
 
-
 ```r
-library(tidyverse)
+library(tidyverse)   # data wrangling functions
+library(lubridate)   # for handling dates and times
 ```
 
 ## Twitter Example
@@ -29,7 +29,7 @@ daily_tweets <- read_csv(file)
 
 ### Select Relevant Data
 
-The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper `dplyr::starts_with()` to get all the columns that start with "promoted" and remove the by prefacing the function with `!`. Now there should be 20 columns, which we can inspect with `glimpse()`. 
+The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper `dplyr::starts_with()` to get all the columns that start with "promoted" and remove them by prefacing the function with `!`. Now there should be 20 columns, which we can inspect with `glimpse()`. 
 
 
 ```r
@@ -78,7 +78,10 @@ ggplot(daily_tweets, aes(x = Date, y = likes)) +
   ggtitle("Likes: August 2021")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="06-wrangle_files/figure-html/likes-per-day-plot-1.png" alt="Likes per day." width="100%" />
+<p class="caption">(\#fig:likes-per-day-plot)Likes per day.</p>
+</div>
 
 
 ### Plot Multiple Engagements
@@ -92,7 +95,55 @@ long_tweets <- daily_tweets %>%
   pivot_longer(cols = c(likes, retweets, replies),
                names_to = "engage_type",
                values_to = "n")
+
+head(long_tweets)
 ```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Date </th>
+   <th style="text-align:left;"> engage_type </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2021-08-01 </td>
+   <td style="text-align:left;"> likes </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-01 </td>
+   <td style="text-align:left;"> retweets </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-01 </td>
+   <td style="text-align:left;"> replies </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-02 </td>
+   <td style="text-align:left;"> likes </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-02 </td>
+   <td style="text-align:left;"> retweets </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-02 </td>
+   <td style="text-align:left;"> replies </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
 
 Now we can plot the number of engagements per day by engagement type by making the line colour determined by the value of the `engage_type` column. 
 
@@ -108,7 +159,10 @@ ggplot(long_tweets, aes(x = Date, y = n, colour = engage_type)) +
   ggtitle("August 2021")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="06-wrangle_files/figure-html/eng-per-day-plot-1.png" alt="Engagements per day by engagement type." width="100%" />
+<p class="caption">(\#fig:eng-per-day-plot)Engagements per day by engagement type.</p>
+</div>
 
 When you have data on very different scales, such as likes, which are much higher than replies and retweets, it can sometimes help to change the y-axis to a log scale. `ggplot2::scale_y_continuous()` lets you transform the axis with the `trans` argument.
 
@@ -126,7 +180,10 @@ ggplot(long_tweets, aes(x = Date, y = n, colour = engage_type)) +
   ggtitle("August 2021")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="06-wrangle_files/figure-html/log-eng-plot-1.png" alt="Engagements per day with a log-transformed y-axis." width="100%" />
+<p class="caption">(\#fig:log-eng-plot)Engagements per day with a log-transformed y-axis.</p>
+</div>
 
 
 ### Multiple Data Files
@@ -142,12 +199,12 @@ files <- list.files(
 )
 ```
 
-Then use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a big data frame (df) with all the combined data. Then we can pipe that to the `select()` function to get rid of the "promoted" columns.
+Then use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a big data frame with all the combined data. Then we can pipe that to the `select()` function to get rid of the "promoted" columns.
 
 
 ```r
 all_daily_tweets <- purrr::map_df(files, read_csv) %>%
-  select(!starts_with("promoted")) 
+  select(!starts_with("promoted"))
 ```
 
 Now you can make your plot of likes per day for all of the months.
@@ -164,7 +221,7 @@ ggplot(all_daily_tweets, aes(x = Date, y = likes)) +
   ggtitle("Likes 2021")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="06-wrangle_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 ::: {.info data-latex=""}
@@ -174,17 +231,73 @@ Notice that we changed the date breaks and labels for the x-axis. `%B` is the da
 
 ### Likes by Month
 
-If you want to plot likes by month, first you need a column for the month. Use `mutate()` to make a new column, using `lubridate::month()` to extract the month name from the `Date` column. The group by the new `month` column and calculate the sum of `likes`.
+If you want to plot likes by month, first you need a column for the month. Use `mutate()` to make a new column, using `lubridate::month()` to extract the month name from the `Date` column. 
+
+Then group by the new `month` column and calculate the sum of `likes`. The `group_by()` function causes all of the subsequent functions to operate inside of groups, until you call `ungroup()`. In the example below, the `sum(likes)` function calculates the sum total of the `likes` column separately for each month.
 
 
 ```r
 likes_by_month <- all_daily_tweets %>%
-  mutate(month = lubridate::month(Date, label = TRUE)) %>%
+  mutate(month = month(Date, label = TRUE)) %>%
   group_by(month) %>%
-  summarise(total_likes = sum(likes)) 
+  summarise(total_likes = sum(likes)) %>%
+  ungroup()
+
+likes_by_month
 ```
 
-A column plot might make more sense than a line plot here.
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> month </th>
+   <th style="text-align:right;"> total_likes </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Jan </td>
+   <td style="text-align:right;"> 1981 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Feb </td>
+   <td style="text-align:right;"> 1603 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mar </td>
+   <td style="text-align:right;"> 2238 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Apr </td>
+   <td style="text-align:right;"> 2912 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> May </td>
+   <td style="text-align:right;"> 2083 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jun </td>
+   <td style="text-align:right;"> 2303 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jul </td>
+   <td style="text-align:right;"> 1534 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aug </td>
+   <td style="text-align:right;"> 3535 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+::: {.warning data-latex=""}
+Make sure you call the `ungroup()` function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.
+:::
+
+A column plot might make more sense than a line plot for this summary.
 
 
 ```r
@@ -197,7 +310,10 @@ ggplot(likes_by_month, aes(x = month, y = total_likes, fill = month)) +
   scale_x_discrete(name = "")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="06-wrangle_files/figure-html/likes-by-month-plot-1.png" alt="Likes by month." width="100%" />
+<p class="caption">(\#fig:likes-by-month-plot)Likes by month.</p>
+</div>
 
 ### Data by Tweet
 
@@ -221,30 +337,14 @@ First, let's open only the first file and see if we need to do anything to it.
 tweets <- read_csv(tweet_files[1])
 ```
 
-If you look at the file in the Viewer, you can set that the `Tweet id` column is using scientific notation (`	
-1.355500e+18`) instead of the full 18-digit tweet ID. We won't ever want to *add*, ID numbers, so it's safe to represent these as characters. Now we can set up the map over all the files, then get rid of all the promoted columns and add a `month` column (reading the date from the `time` column in these data).
+If you look at the file in the Viewer, you can set that the `Tweet id` column is using scientific notation (`1.355500e+18`) instead of the full 18-digit tweet ID. We won't ever want to *add* ID numbers, so it's safe to represent these as characters. Now we can set up the map over all the files, then get rid of all the promoted columns and add a `month` column (reading the date from the `time` column in these data).
 
 
 ```r
 ct <- cols("Tweet id" = col_character())
-
-all_tweets <- purrr::map_df(tweet_files, read_csv, col_types = ct) %>%
+all_tweets <- purrr::map_df(tweet_files, read_csv, col_types = ct, ) %>%
   select(!starts_with("promoted")) %>%
   mutate(month = lubridate::month(time, label = TRUE))
-```
-
-```
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
 ```
 
 Now we can look at the distribution of impressions per tweet for each month.
@@ -262,7 +362,10 @@ ggplot(all_tweets, aes(x = month, y = impressions, fill = month)) +
   ggtitle("Distribution of Twitter Impressions per Tweet in 2021")
 ```
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="06-wrangle_files/figure-html/imp-month-plot-1.png" alt="Impressions per tweet per month." width="100%" />
+<p class="caption">(\#fig:imp-month-plot)Impressions per tweet per month.</p>
+</div>
 
 You can display Lisa's top tweet for the year.
 
@@ -287,9 +390,9 @@ Oh, this was fun! You think of the ten least-related nouns possible. I scored in
 https://t.co/FhR4DR38OU
 ---------------------------
 
-Or you can make a word cloud of the top words you tweet about.
+Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter\ \@ref(custom)).
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="06-wrangle_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 

@@ -3,12 +3,12 @@
 ## Intended Learning Outcomes {#ilo-tidy}
 
 * Be able to change data between long and wide formats
-* Separate, mutate, reorder, and rename columns
+* Separate, add, change, reorder, and rename columns
 * Use pipes to chain together functions
 
 
 ```r
-library(tidyverse) # functions from tidyr, dplyr, readr, stringr, and pipes
+library(tidyverse) # for data wrangling
 library(readxl)    # for reading excel files
 ```
 
@@ -103,11 +103,11 @@ Let's say you wanted to calculate the total price per customer over the three ye
 
 You would probably normally use Excel to 
 
-1. split `itemsprice_2018` columns into `item_2018` and `price_2018` columns
-2. split `itemsprice_2019` columns into `item_2019` and `price_2019` columns
-3. split `itemsprice_2020` columns into `item_2018` and `price_2020` columns
-4. add item_2018 + item_2019 + item_2020 to get the total number of items bought per customer
-5. add totalprice_2018 + totalprice_2019 + totalprice_2020 to get the total price per customer
+1. split `itemsprice_2018` column into `item_2018` and `price_2018` columns
+2. split `itemsprice_2019` column into `item_2019` and `price_2019` columns
+3. split `itemsprice_2020` column into `item_2018` and `price_2020` columns
+4. add `item_2018 + item_2019 + item_2020` to get the total number of items bought per customer
+5. add `totalprice_2018 + totalprice_2019 + totalprice_2020` to get the total price per customer
 
 ::: {.try data-latex=""}
 Think about how many steps in Excel this would be if there were 10 years in the table, or a different number of years each time you encountered data like this.
@@ -303,7 +303,7 @@ tidy_data %>%
 If there were 10 years in the table, or a different number of years each time you encountered data like this, the code for producing the table above never changes.
 :::
 
-If you have control over how the data are recorded, it will make your life easier to record it in a tidy format from the start. However, we don't always have control, so this class will also teach you how to convert an untidy table into a tidy tables.
+If you have control over how the data are recorded, it will make your life easier to record it in a tidy format from the start. However, we don't always have control, so this class will also teach you how to convert untidy tables into tidy tables.
 
 ## Reshaping Data
 
@@ -1502,13 +1502,13 @@ glimpse(mutated_data)
 ## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
 ```
 
-Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()`
+Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Section\ \@ref(col_types)).
 
 
 ```r
 tidy_data <- type_convert(
   df = mutated_data,
-  trim_ws = TRUE, # removes spaces before and after values
+  trim_ws = TRUE # removes spaces before and after values
 )
 
 # check the data types
@@ -1594,7 +1594,7 @@ mutated_data <- mutate(
 
 tidy_data <- type_convert(
   df = mutated_data,
-  trim_ws = TRUE,
+  trim_ws = TRUE
 )
 ```
 
@@ -1609,7 +1609,7 @@ tidy_data <- type_convert(
 
 
 ::: {.warning data-latex=""}
-You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+You *can* give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
 :::
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
@@ -1624,6 +1624,7 @@ But it gets extremely confusing for long chains:
 
 ```r
 # do not ever do this!!!!!!
+
 tidy_data <- type_convert(
   df = mutate(
     .data = separate(
@@ -1653,7 +1654,7 @@ tidy_data <- type_convert(
       replacement = ""
     )
   ),
-  trim_ws = TRUE,
+  trim_ws = TRUE
 )
 ```
 
@@ -1739,7 +1740,7 @@ tidy_data <- read_csv(file = "data/untidy_data.csv") %>%
     )
   ) %>%
   type_convert(
-    trim_ws = TRUE,
+    trim_ws = TRUE
   )
 ```
 

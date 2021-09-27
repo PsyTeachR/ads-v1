@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 7 Data Summaries | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables   /* update total correct if #webex-total_correct exists */ update_total_correct = function() { ...">
+<meta name="description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables library(tidyverse)  # data wrangling functions library(rtweet) # for searching tweets library(kableExtra) #...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 7 Data Summaries | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/summary.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables   /* update total correct if #webex-total_correct exists */ update_total_correct = function() { ...">
+<meta property="og:description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables library(tidyverse)  # data wrangling functions library(rtweet) # for searching tweets library(kableExtra) #...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 7 Data Summaries | Applied Data Skills">
-<meta name="twitter:description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables   /* update total correct if #webex-total_correct exists */ update_total_correct = function() { ...">
+<meta name="twitter:description" content="7.1 Intended Learning Outcomes Summarise data by groups Produce well-formatted tables library(tidyverse)  # data wrangling functions library(rtweet) # for searching tweets library(kableExtra) #...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -90,6 +90,415 @@
 <li>Summarise data by groups</li>
 <li>Produce well-formatted tables</li>
 </ul>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span> <span class="co"># for searching tweets</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span> <span class="co"># for pasting strings</span></code></pre></div>
+<p>We'll use the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function from <code class="package">rtweet</code> to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #BisexualAwarenessWeek or #BiWeek. Some of these will be duplicates, so we'll combine them with <code><a href="https://generics.r-lib.org/reference/setops.html">union()</a></code>.</p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bi_aware</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#BisexualAwarenessWeek"</span>, 
+                         n <span class="op">=</span> <span class="fl">10000</span>, 
+                         include_rts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="va">bi_week</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#BiWeek"</span>, 
+                         n <span class="op">=</span> <span class="fl">10000</span>, 
+                         include_rts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># combine, excluding duplicates</span>
+<span class="va">bi_tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">bi_aware</span>, <span class="va">bi_week</span><span class="op">)</span></code></pre></div>
+<p>Now let's create a series of summary tables and plots with these data.</p>
+<div id="general-info" class="section level3" number="7.1.1">
+<h3>
+<span class="header-section-number">7.1.1</span> General info<a class="anchor" aria-label="anchor" href="#general-info"><i class="fas fa-link"></i></a>
+</h3>
+<p>What date range is represented in these data? How many tweets were there? First, run <code>glimpse(bi_tweets)</code> to find out what information is in the downloaded data.</p>
+<p>The <code>created_at</code> column should give us the date they were created. We can use the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> functions to get the range of dates, and the <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> function to format them for our report.</p>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n_tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">bi_tweets</span><span class="op">)</span>
+<span class="va">date_from</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">bi_tweets</span><span class="op">$</span><span class="va">created_at</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
+<span class="va">date_to</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">bi_tweets</span><span class="op">$</span><span class="va">created_at</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span></code></pre></div>
+<p>There are a few ways to insert those values into the text of a report. First, you can use <code><a href="https://glue.tidyverse.org/reference/glue.html">glue()</a></code> to create a block of text that uses the objects you just created.</p>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"There were {n_tweets} tweets between {date_from} and {date_to}."</span><span class="op">)</span></code></pre></div>
+<p>Then you can display that text in an <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> report with inline r like this, <code>`r text`</code>, which will produce the following:</p>
+<blockquote>
+<p>There were 2034 tweets between 17 September, 2021 and 26 September, 2021.</p>
+</blockquote>
+<p>Or you can insert individual objects into markdown text with inline r:</p>
+<p>There were <code>`r n_tweets`</code> tweets between <code>`r date_from`</code> and <code>`r date_to`</code>.</p>
+</div>
+<div id="summary-counts" class="section level3" number="7.1.2">
+<h3>
+<span class="header-section-number">7.1.2</span> Summary counts<a class="anchor" aria-label="anchor" href="#summary-counts"><i class="fas fa-link"></i></a>
+</h3>
+<p>How many different accounts tweeted? Who tweeted most?</p>
+<p>You can count categories with the <code>count()</code> function. It looks like two accounts might have the same screen name, but they probably won't have the same user_id, so you can count both of those things. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group. Use <code>arrange(desc(n))</code> to sort the table by <code>n</code> in descending order.</p>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets_per_user</span> <span class="op">&lt;-</span> <span class="fu">count</span><span class="op">(</span><span class="va">bi_tweets</span>, <span class="va">user_id</span>, <span class="va">screen_name</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+user_id
+</th>
+<th style="text-align:left;">
+screen_name
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+282143568
+</td>
+<td style="text-align:left;">
+BRC_Central
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+34575609
+</td>
+<td style="text-align:left;">
+bisexualindex
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3236295640
+</td>
+<td style="text-align:left;">
+LarkerAnthology
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+363529473
+</td>
+<td style="text-align:left;">
+JuliaSerano
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2906537919
+</td>
+<td style="text-align:left;">
+BPSSexualities
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1043866252224020480
+</td>
+<td style="text-align:left;">
+pupkasarianlan
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>If you set a code chunk option to <code>results='asis'</code>, you can pipe the glued text to <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to display it.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">unique_users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span>
+<span class="va">most_prolific</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span>
+<span class="va">most_prolific_n</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+
+<span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"There were {unique_users} unique accounts tweeting about Bisexual Awareness Week. {most_prolific} was the most prolific tweeter, with {most_prolific_n} tweets."</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>There were 1399 unique accounts tweeting about Bisexual Awareness Week. BRC_Central was the most prolific tweeter, with 25 tweets.</p>
+</div>
+<div id="filtering" class="section level3" number="7.1.3">
+<h3>
+<span class="header-section-number">7.1.3</span> Filtering<a class="anchor" aria-label="anchor" href="#filtering"><i class="fas fa-link"></i></a>
+</h3>
+<p>What was the most favourited tweets? Use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> to keep just the rows where the value in the <code>favorite_count</code> column is equal to its maximum value. Just in case there is a tie, choose a random one with <code>sample_n(size = 1)</code>.</p>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">most_fav</span> <span class="op">&lt;-</span> <span class="va">bi_tweets</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p>You can access the value in each column with the <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"
+The most favourited ({most_fav$favorite_count}) tweet was by 
+[{most_fav$screen_name}]({most_fav$status_url}):
+-----------------------
+{most_fav$text}
+![]({most_fav$media_url})
+-----------------------
+"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>The most favourited (2911) tweet was by
+<a href="https://twitter.com/cassieclare/status/1441073997744062467">cassieclare</a>:
+-----------------------
+Matthew would like to wish all bisexual Shadowhunters a very happy #BiWeek</p>
+<p>He will be celebrating you all day, today and every day 💕💕💕
+#CelebrateBisexualityDay</p>
+<p>Amazing Matthew image by <span class="citation">(<a href="#ref-WcLasq" role="doc-biblioref"><strong>WcLasq?</strong></a>)</span> <a href="https://t.co/cb1TcdOq83" class="uri">https://t.co/cb1TcdOq83</a>
+<img src="http://pbs.twimg.com/media/E_-3yJuXsAEGOqz.jpg">
+-----------------------</p>
+</div>
+<div id="summary-table" class="section level3" number="7.1.4">
+<h3>
+<span class="header-section-number">7.1.4</span> Summary Table<a class="anchor" aria-label="anchor" href="#summary-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let's make a table of the top ten hashtags used in conjunction with #BiVisibilityWeek, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
+<p>First, select just the relevant columns and expand the <code>hashtags</code> column. This is a column of lists, so you can create a row for each value using <code>unnest()</code>.</p>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">bi_tweets</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
+<p>Now, count the number of tweets for each hashtag using <code>count()</code>, then filter the top 10 values by the <code>n</code> column.</p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top10_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Use <code>group_by()</code> before you filter to select the most-liked tweet in each hashtag, rather than the one most-likes overall. Don't forget to <code>ungroup()</code> when you're done.</p>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Get the total number of likes per hashtag by grouping and summarising with <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Finally, put everything together using <code>left_join()</code>, <code>select()</code> the columns you want to keep in the right order, and print the table.</p>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top10</span> <span class="op">&lt;-</span> <span class="va">top10_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">n</span>, <span class="va">total_likes</span>, <span class="va">text</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 4
+##    hashtags                  n total_likes text                                 
+##    &lt;chr&gt;                 &lt;int&gt;       &lt;int&gt; &lt;chr&gt;                                
+##  1 BiWeek                 1377       35291 "Matthew would like to wish all bise…
+##  2 BisexualAwarenessWeek   336        7577 "As it's #BisexualAwarenessWeek, I'm…
+##  3 BiVisibilityDay         282        6967 "バイセクシュアルの娘の幸せと、向き… 
+##  4 bisexualawarenessweek   219        2523 "This #bisexualawarenessweek remembe…
+##  5 biweek                  185        2590 "You are valid 💗💜💙 art by @sheisr…
+##  6 bisexual                109        5364 "Did you know that #bisexuality is a…
+##  7 LGBTQ                    78         799 "Although bisexual+ people make up t…
+##  8 BiVisibilityWeek         66         613 "HI, PLEASE SPREAD THIS!\n\nI don't …
+##  9 BiWeek2021               62         347 "Happy Bi Visibility Week!\n\nI see …
+## 10 BiAwarenessWeek          58        2699 "As a bi women, I want to send a mes…</code></pre>
+<p>The table isn't great, aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables.</p>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">top10</span>, 
+      col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtag"</span>, <span class="st">"Total Tweets"</span>, <span class="st">"Total Likes"</span>, <span class="st">"Top Tweet"</span><span class="op">)</span>,
+      caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top 10 hashtags."</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: top;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: bottom;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>
+<span id="tab:unnamed-chunk-14">Table 7.1: </span>Stats and the top tweet for the top 10 hashtags.
+</caption>
+<thead><tr>
+<th style="text-align:left;vertical-align: bottom;">
+Hashtag
+</th>
+<th style="text-align:right;vertical-align: bottom;">
+Total Tweets
+</th>
+<th style="text-align:right;vertical-align: bottom;">
+Total Likes
+</th>
+<th style="text-align:left;vertical-align: bottom;">
+Top Tweet
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BiWeek
+</td>
+<td style="text-align:right;vertical-align: top;">
+1377
+</td>
+<td style="text-align:right;vertical-align: top;">
+35291
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>Matthew would like to wish all bisexual Shadowhunters a very happy #BiWeek</p>
+<p>He will be celebrating you all day, today and every day 💕💕💕
+#CelebrateBisexualityDay</p>
+Amazing Matthew image by <span class="citation">(<a href="#ref-WcLasq" role="doc-biblioref"><strong>WcLasq?</strong></a>)</span> <a href="https://t.co/cb1TcdOq83" class="uri">https://t.co/cb1TcdOq83</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BisexualAwarenessWeek
+</td>
+<td style="text-align:right;vertical-align: top;">
+336
+</td>
+<td style="text-align:right;vertical-align: top;">
+7577
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>As it's #BisexualAwarenessWeek, I'm taking a big personal step.</p>
+<p>I am bisexual.</p>
+#comingout
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BiVisibilityDay
+</td>
+<td style="text-align:right;vertical-align: top;">
+282
+</td>
+<td style="text-align:right;vertical-align: top;">
+6967
+</td>
+<td style="text-align:left;vertical-align: top;">
+バイセクシュアルの娘の幸せと、向き合おうと思った私の話　#パレットーク #Bisexualawarenessweek #BiVisibilityDay #Bivisibilityday2021 <a href="https://t.co/lYNduuXw2q" class="uri">https://t.co/lYNduuXw2q</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+bisexualawarenessweek
+</td>
+<td style="text-align:right;vertical-align: top;">
+219
+</td>
+<td style="text-align:right;vertical-align: top;">
+2523
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>This #bisexualawarenessweek remember these things!</p>
+<p>Bisexuality is not Transphobic</p>
+<p>It is valid no matter who you've been with</p>
+<p>You can have a preference and still be bi</p>
+It is up to the person and not you
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+biweek
+</td>
+<td style="text-align:right;vertical-align: top;">
+185
+</td>
+<td style="text-align:right;vertical-align: top;">
+2590
+</td>
+<td style="text-align:left;vertical-align: top;">
+You are valid 💗💜💙 art by <span class="citation">(<a href="#ref-sheisrecovering" role="doc-biblioref"><strong>sheisrecovering?</strong></a>)</span> 🎨
+If you're in crisis, we're here 24/7 to support you at: 866.488.7386 or text/chat <a href="https://t.co/hxtScqt870" class="uri">https://t.co/hxtScqt870</a> 📲
+#bi #biweek <a href="https://t.co/Ux23L1iIpC" class="uri">https://t.co/Ux23L1iIpC</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+bisexual
+</td>
+<td style="text-align:right;vertical-align: top;">
+109
+</td>
+<td style="text-align:right;vertical-align: top;">
+5364
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>Did you know that #bisexuality is a distinct sexual orientation? People who identify as #bisexual are not half-straight nor half-gay – they are all bi!
+#BiWeek #BiVisibility</p>
+Learn more about bisexuality:
+<a href="https://t.co/0N5G1uLigF" class="uri">https://t.co/0N5G1uLigF</a> <a href="https://t.co/whUBU6GVCw" class="uri">https://t.co/whUBU6GVCw</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+LGBTQ
+</td>
+<td style="text-align:right;vertical-align: top;">
+78
+</td>
+<td style="text-align:right;vertical-align: top;">
+799
+</td>
+<td style="text-align:left;vertical-align: top;">
+Although bisexual+ people make up the largest contingent of the #LGBTQ community, they are the least likely to come out of the closet. A new resource guide from the <span class="citation">(<a href="#ref-HRC" role="doc-biblioref"><strong>HRC?</strong></a>)</span> aims to change that. #BiWeek #BiVisibilityDay <a href="https://t.co/qsxnHXXYV8" class="uri">https://t.co/qsxnHXXYV8</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BiVisibilityWeek
+</td>
+<td style="text-align:right;vertical-align: top;">
+66
+</td>
+<td style="text-align:right;vertical-align: top;">
+613
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>HI, PLEASE SPREAD THIS!</p>
+<p>I don't know if im exactly allowed to post in these tags but the Unicode symbol for bisexual hasn't been added!</p>
+<p>This can also double as the mspec symbol! Please spread this!</p>
+#BiPrideMonth #BiVisibilityWeek #BiWeek #bitwt <a href="https://t.co/aScEMk9cZD" class="uri">https://t.co/aScEMk9cZD</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BiWeek2021
+</td>
+<td style="text-align:right;vertical-align: top;">
+62
+</td>
+<td style="text-align:right;vertical-align: top;">
+347
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>Happy Bi Visibility Week!</p>
+<p>I see you!</p>
+#BiWeek #BiWeek2021 <a href="https://t.co/7tvHvJHVzs" class="uri">https://t.co/7tvHvJHVzs</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top;">
+BiAwarenessWeek
+</td>
+<td style="text-align:right;vertical-align: top;">
+58
+</td>
+<td style="text-align:right;vertical-align: top;">
+2699
+</td>
+<td style="text-align:left;vertical-align: top;">
+<p>As a bi women, I want to send a message of solidarity this #BiAwarenessWeek.</p>
+<p>Sadly, so many people still face biphobia and inappropriate questions and assumptions about their sexuality and identity.</p>
+So happy #BiWeek - your annual reminder we exist✊🌈 <a href="https://t.co/6IGN5XQR1C" class="uri">https://t.co/6IGN5XQR1C</a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <script>
@@ -290,7 +699,14 @@ $( document ).ready(function() {
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#summary"><span class="header-section-number">7</span> Data Summaries</a></li>
-<li><a class="nav-link" href="#ilo-summary"><span class="header-section-number">7.1</span> Intended Learning Outcomes</a></li>
+<li>
+<a class="nav-link" href="#ilo-summary"><span class="header-section-number">7.1</span> Intended Learning Outcomes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#general-info"><span class="header-section-number">7.1.1</span> General info</a></li>
+<li><a class="nav-link" href="#summary-counts"><span class="header-section-number">7.1.2</span> Summary counts</a></li>
+<li><a class="nav-link" href="#filtering"><span class="header-section-number">7.1.3</span> Filtering</a></li>
+<li><a class="nav-link" href="#summary-table"><span class="header-section-number">7.1.4</span> Summary Table</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -308,7 +724,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-26.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

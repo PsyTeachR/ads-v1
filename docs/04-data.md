@@ -207,7 +207,7 @@ demo_gs4  <- googlesheets4::read_sheet(
 ```
 
 
-#### Column data types
+#### Column data types {#col_types}
 
 Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.
 
@@ -224,7 +224,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+## $ date      <date> 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …
 ```
 
 
@@ -240,7 +240,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+## $ date      <dttm> 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …
 ```
 
 
@@ -256,7 +256,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+## $ date      <date> 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …
 ```
 
 
@@ -367,7 +367,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …
+## $ date      <date> 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …
 ```
 
 

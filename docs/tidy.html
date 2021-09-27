@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 5 Data Tidying | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, mutate, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta name="description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Data Tidying | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/tidy.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, mutate, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta property="og:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 5 Data Tidying | Applied Data Skills">
-<meta name="twitter:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, mutate, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta name="twitter:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -88,11 +88,11 @@
 </h2>
 <ul>
 <li>Be able to change data between long and wide formats</li>
-<li>Separate, mutate, reorder, and rename columns</li>
+<li>Separate, add, change, reorder, and rename columns</li>
 <li>Use pipes to chain together functions</li>
 </ul>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># functions from tidyr, dplyr, readr, stringr, and pipes</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># for data wrangling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>    <span class="co"># for reading excel files</span></code></pre></div>
 </div>
 <div id="data-structure" class="section level2" number="5.2">
@@ -261,11 +261,11 @@ totalprice_2020
 <p>Let's say you wanted to calculate the total price per customer over the three years and the total number of items bought per customer. You can't perform mathematical operations on the <code>itemsprice_{year}</code> columns because they are <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a> <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a>.</p>
 <p>You would probably normally use Excel to</p>
 <ol style="list-style-type: decimal">
-<li>split <code>itemsprice_2018</code> columns into <code>item_2018</code> and <code>price_2018</code> columns</li>
-<li>split <code>itemsprice_2019</code> columns into <code>item_2019</code> and <code>price_2019</code> columns</li>
-<li>split <code>itemsprice_2020</code> columns into <code>item_2018</code> and <code>price_2020</code> columns</li>
-<li>add item_2018 + item_2019 + item_2020 to get the total number of items bought per customer</li>
-<li>add totalprice_2018 + totalprice_2019 + totalprice_2020 to get the total price per customer</li>
+<li>split <code>itemsprice_2018</code> column into <code>item_2018</code> and <code>price_2018</code> columns</li>
+<li>split <code>itemsprice_2019</code> column into <code>item_2019</code> and <code>price_2019</code> columns</li>
+<li>split <code>itemsprice_2020</code> column into <code>item_2018</code> and <code>price_2020</code> columns</li>
+<li>add <code>item_2018 + item_2019 + item_2020</code> to get the total number of items bought per customer</li>
+<li>add <code>totalprice_2018 + totalprice_2019 + totalprice_2020</code> to get the total price per customer</li>
 </ol>
 <div class="try">
 <p>Think about how many steps in Excel this would be if there were 10 years in the table, or a different number of years each time you encountered data like this.</p>
@@ -646,7 +646,7 @@ total_price
 <div class="info">
 <p>If there were 10 years in the table, or a different number of years each time you encountered data like this, the code for producing the table above never changes.</p>
 </div>
-<p>If you have control over how the data are recorded, it will make your life easier to record it in a tidy format from the start. However, we don't always have control, so this class will also teach you how to convert an untidy table into a tidy tables.</p>
+<p>If you have control over how the data are recorded, it will make your life easier to record it in a tidy format from the start. However, we don't always have control, so this class will also teach you how to convert untidy tables into tidy tables.</p>
 </div>
 </div>
 <div id="reshaping-data" class="section level2" number="5.3">
@@ -2467,7 +2467,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-6">Table 5.8: </span>The itemsprice column split into items and price_per_item using separate()
+<span id="tab:unnamed-chunk-6">Table 2.1: </span>The itemsprice column split into items and price_per_item using separate()
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -2765,7 +2765,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-7">Table 2.1: </span>Mutating data to remove the parentheses from price_per_item.
+<span id="tab:unnamed-chunk-7">Table 5.8: </span>Mutating data to remove the parentheses from price_per_item.
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -3058,11 +3058,11 @@ totalprice
 ## $ items          &lt;int&gt; 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
 ## $ price_per_item &lt;chr&gt; "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
 ## $ totalprice     &lt;chr&gt; "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…</code></pre>
-<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://readr.tidyverse.org/reference/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code></p>
+<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://readr.tidyverse.org/reference/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> (see Section @ref(col_types)).</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
   df <span class="op">=</span> <span class="va">mutated_data</span>,
-  trim_ws <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># removes spaces before and after values</span>
+  trim_ws <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># removes spaces before and after values</span>
 <span class="op">)</span>
 
 <span class="co"># check the data types</span>
@@ -3133,7 +3133,7 @@ totalprice
 
 <span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
   df <span class="op">=</span> <span class="va">mutated_data</span>,
-  trim_ws <span class="op">=</span> <span class="cn">TRUE</span>,
+  trim_ws <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
@@ -3142,7 +3142,7 @@ totalprice
 ##   totalprice = col_double()
 ## )</code></pre>
 <div class="warning">
-<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+<p>You <em>can</em> give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
 </div>
 <p>One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.</p>
 <div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
@@ -3150,6 +3150,7 @@ totalprice
 <p>But it gets extremely confusing for long chains:</p>
 <div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># do not ever do this!!!!!!</span>
+
 <span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
   df <span class="op">=</span> <span class="fu">mutate</span><span class="op">(</span>
     .data <span class="op">=</span> <span class="fu">separate</span><span class="op">(</span>
@@ -3179,7 +3180,7 @@ totalprice
       replacement <span class="op">=</span> <span class="st">""</span>
     <span class="op">)</span>
   <span class="op">)</span>,
-  trim_ws <span class="op">=</span> <span class="cn">TRUE</span>,
+  trim_ws <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p>The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects. By default, the result of the previous function becomes the first <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the next function. Most tidyverse functions take a data table as their first argument, so they pipe together easily.</p>
 <p>For example, instead of making a table called <code>untidy_data</code> by reading a csv file, and then making a new table called <code>totalprice_data</code> by selecting the <code>customer_id</code> and <code>totalprice_{year}</code> columns from <code>untidy_data</code>...</p>
@@ -3240,7 +3241,7 @@ totalprice
     <span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">type_convert</span><span class="op">(</span>
-    trim_ws <span class="op">=</span> <span class="cn">TRUE</span>,
+    trim_ws <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span></code></pre></div>
 <p>You can read the code above like this:</p>
 <ol style="list-style-type: decimal">
@@ -3999,7 +4000,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-26.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

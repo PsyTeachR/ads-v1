@@ -12,9 +12,9 @@ R.utils::copyDirectory(
   recursive = TRUE)
 
 # render the book
-browseURL(
-  xfun::in_dir("book", bookdown::render_book("index.Rmd"))
-)
+
+xfun::in_dir("book", bookdown::render_book("index.Rmd"))
+browseURL("docs/index.Rmd")
 
 # preview a chapter (wrecks sidebar links)
 # browseURL(

@@ -6,7 +6,7 @@
 * Be able to identify and handle common problems with data import
 * Be able to match related data from multiple tables
 
-```{r setup}
+```{r setup, message=FALSE}
 library(tidyverse)     # includes readr & tibble
 library(rio)           # for almost any data import/export
 library(haven)         # for SPSS, Stata,and SAS files
@@ -140,7 +140,7 @@ demo_gs4  <- googlesheets4::read_sheet(
 ```
 
 
-#### Column data types
+#### Column data types {#col_types}
 
 Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.
 

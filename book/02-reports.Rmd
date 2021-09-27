@@ -6,7 +6,7 @@
 * Be able to knit a simple reproducible report with R Markdown
 * Be able to edit Markdown to show/hide code and use inline coding
 
-```{r, message=FALSE}
+```{r setup, message=FALSE}
 library(tidyverse)  # various data manipulation functions
 library(knitr)      # for rendering a report from a script
 library(kableExtra) # for styling tables

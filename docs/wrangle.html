@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 6 Data Wrangling | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  6.2 Twitter...">
+<meta name="description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  # data...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 6 Data Wrangling | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/wrangle.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  6.2 Twitter...">
+<meta property="og:description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  # data...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 6 Data Wrangling | Applied Data Skills">
-<meta name="twitter:description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  6.2 Twitter...">
+<meta name="twitter:description" content="6.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to calculate row means library(tidyverse)  # data...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,8 @@
 <li>Be able to calculate row means</li>
 </ul>
 <div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># for handling dates and times</span></code></pre></div>
 </div>
 <div id="twitter-example" class="section level2" number="6.2">
 <h2>
@@ -117,7 +118,7 @@
 <h3>
 <span class="header-section-number">6.2.3</span> Select Relevant Data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">dplyr::starts_with()</a></code> to get all the columns that start with "promoted" and remove the by prefacing the function with <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. Now there should be 20 columns, which we can inspect with <code>glimpse()</code>.</p>
+<p>The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">dplyr::starts_with()</a></code> to get all the columns that start with "promoted" and remove them by prefacing the function with <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. Now there should be 20 columns, which we can inspect with <code>glimpse()</code>.</p>
 <div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -158,7 +159,12 @@
                date_labels <span class="op">=</span> <span class="st">"%d"</span>,
                expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Likes: August 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:likes-per-day-plot"></span>
+<img src="06-wrangle_files/figure-html/likes-per-day-plot-1.png" alt="Likes per day." width="100%"><p class="caption">
+Figure 6.1: Likes per day.
+</p>
+</div>
 </div>
 <div id="plot-multiple-engagements" class="section level3" number="6.2.5">
 <h3>
@@ -170,7 +176,92 @@
   <span class="fu">select</span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span>,
                names_to <span class="op">=</span> <span class="st">"engage_type"</span>,
-               values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></code></pre></div>
+               values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">long_tweets</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+engage_type
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2021-08-01
+</td>
+<td style="text-align:left;">
+likes
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-08-01
+</td>
+<td style="text-align:left;">
+retweets
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-08-01
+</td>
+<td style="text-align:left;">
+replies
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-08-02
+</td>
+<td style="text-align:left;">
+likes
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-08-02
+</td>
+<td style="text-align:left;">
+retweets
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-08-02
+</td>
+<td style="text-align:left;">
+replies
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 <p>Now we can plot the number of engagements per day by engagement type by making the line colour determined by the value of the <code>engage_type</code> column.</p>
 <div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">long_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">n</span>, colour <span class="op">=</span> <span class="va">engage_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -181,7 +272,12 @@
                date_labels <span class="op">=</span> <span class="st">"%d"</span>,
                expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"August 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:eng-per-day-plot"></span>
+<img src="06-wrangle_files/figure-html/eng-per-day-plot-1.png" alt="Engagements per day by engagement type." width="100%"><p class="caption">
+Figure 6.2: Engagements per day by engagement type.
+</p>
+</div>
 <p>When you have data on very different scales, such as likes, which are much higher than replies and retweets, it can sometimes help to change the y-axis to a log scale. <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">ggplot2::scale_y_continuous()</a></code> lets you transform the axis with the <code>trans</code> argument.</p>
 <div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">long_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">n</span>, colour <span class="op">=</span> <span class="va">engage_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -194,7 +290,12 @@
                      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">100</span>, <span class="fl">1000</span><span class="op">)</span>,
                      trans <span class="op">=</span> <span class="st">"pseudo_log"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"August 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:log-eng-plot"></span>
+<img src="06-wrangle_files/figure-html/log-eng-plot-1.png" alt="Engagements per day with a log-transformed y-axis." width="100%"><p class="caption">
+Figure 6.3: Engagements per day with a log-transformed y-axis.
+</p>
+</div>
 </div>
 <div id="multiple-data-files" class="section level3" number="6.2.6">
 <h3>
@@ -207,10 +308,10 @@
   pattern <span class="op">=</span> <span class="st">"daily_tweet_activity_metrics_LisaDeBruine"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
-<p>Then use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame (df) with all the combined data. Then we can pipe that to the <code>select()</code> function to get rid of the "promoted" columns.</p>
+<p>Then use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code>select()</code> function to get rid of the "promoted" columns.</p>
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now you can make your plot of likes per day for all of the months.</p>
 <div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -221,7 +322,7 @@
                date_labels <span class="op">=</span> <span class="st">"%B"</span>,
                expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Likes 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="info">
 <p>Notice that we changed the date breaks and labels for the x-axis. <code>%B</code> is the date code for the full month name. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for all of the date codes.</p>
 </div>
@@ -230,13 +331,98 @@
 <h3>
 <span class="header-section-number">6.2.7</span> Likes by Month<a class="anchor" aria-label="anchor" href="#likes-by-month"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you want to plot likes by month, first you need a column for the month. Use <code>mutate()</code> to make a new column, using <code><a href="http://lubridate.tidyverse.org/reference/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column. The group by the new <code>month</code> column and calculate the sum of <code>likes</code>.</p>
+<p>If you want to plot likes by month, first you need a column for the month. Use <code>mutate()</code> to make a new column, using <code><a href="http://lubridate.tidyverse.org/reference/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
+<p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code>group_by()</code> function causes all of the subsequent functions to operate inside of groups, until you call <code>ungroup()</code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
 <div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_by_month</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p>A column plot might make more sense than a line plot here.</p>
+  <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">likes_by_month</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+month
+</th>
+<th style="text-align:right;">
+total_likes
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Jan
+</td>
+<td style="text-align:right;">
+1981
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Feb
+</td>
+<td style="text-align:right;">
+1603
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mar
+</td>
+<td style="text-align:right;">
+2238
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Apr
+</td>
+<td style="text-align:right;">
+2912
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+May
+</td>
+<td style="text-align:right;">
+2083
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jun
+</td>
+<td style="text-align:right;">
+2303
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jul
+</td>
+<td style="text-align:right;">
+1534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aug
+</td>
+<td style="text-align:right;">
+3535
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>Make sure you call the <code>ungroup()</code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
+</div>
+<p>A column plot might make more sense than a line plot for this summary.</p>
 <div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">likes_by_month</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">total_likes</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -245,7 +431,12 @@
                      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10000</span>, <span class="fl">1000</span><span class="op">)</span>,
                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"K"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_discrete</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:likes-by-month-plot"></span>
+<img src="06-wrangle_files/figure-html/likes-by-month-plot-1.png" alt="Likes by month." width="100%"><p class="caption">
+Figure 6.4: Likes by month.
+</p>
+</div>
 </div>
 <div id="data-by-tweet" class="section level3" number="6.2.8">
 <h3>
@@ -262,26 +453,14 @@
 <p>First, let's open only the first file and see if we need to do anything to it.</p>
 <div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">tweet_files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p>If you look at the file in the Viewer, you can set that the <code>Tweet id</code> column is using scientific notation (<code>1.355500e+18</code>) instead of the full 18-digit tweet ID. We won't ever want to <em>add</em>, ID numbers, so it's safe to represent these as characters. Now we can set up the map over all the files, then get rid of all the promoted columns and add a <code>month</code> column (reading the date from the <code>time</code> column in these data).</p>
+<p>If you look at the file in the Viewer, you can set that the <code>Tweet id</code> column is using scientific notation (<code>1.355500e+18</code>) instead of the full 18-digit tweet ID. We won't ever want to <em>add</em> ID numbers, so it's safe to represent these as characters. Now we can set up the map over all the files, then get rid of all the promoted columns and add a <code>month</code> column (reading the date from the <code>time</code> column in these data).</p>
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span><span class="st">"Tweet id"</span> <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span>, <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details
-
-## Warning: One or more parsing issues, see `problems()` for details</code></pre>
 <p>Now we can look at the distribution of impressions per tweet for each month.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">impressions</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_violin</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span> <span class="op">+</span>
@@ -291,9 +470,14 @@
                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">100</span>, <span class="st">"1K"</span>, <span class="st">"10K"</span>, <span class="st">"100K"</span>, <span class="st">"1M"</span><span class="op">)</span>,
                      trans <span class="op">=</span> <span class="st">"pseudo_log"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Distribution of Twitter Impressions per Tweet in 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:imp-month-plot"></span>
+<img src="06-wrangle_files/figure-html/imp-month-plot-1.png" alt="Impressions per tweet per month." width="100%"><p class="caption">
+Figure 6.5: Impressions per tweet per month.
+</p>
+</div>
 <p>You can display Lisa's top tweet for the year.</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet</span> <span class="op">&lt;-</span> <span class="va">all_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">likes</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
@@ -315,8 +499,8 @@
 </tr>
 </tbody>
 </table></div>
-<p>Or you can make a word cloud of the top words you tweet about.</p>
-<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter <a href="custom.html#custom">8</a>).</p>
+<div class="inline-figure"><img src="06-wrangle_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -549,7 +733,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-26.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

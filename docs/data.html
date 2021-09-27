@@ -310,9 +310,9 @@ China
   ss <span class="op">=</span> <span class="st">"1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"</span>
 <span class="op">)</span></code></pre></div>
 </div>
-<div id="column-data-types" class="section level4" number="4.2.3.3">
+<div id="col_types" class="section level4" number="4.2.3.3">
 <h4>
-<span class="header-section-number">4.2.3.3</span> Column data types<a class="anchor" aria-label="anchor" href="#column-data-types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2.3.3</span> Column data types<a class="anchor" aria-label="anchor" href="#col_types"><i class="fas fa-link"></i></a>
 </h4>
 <p>Use <code>glimpse()</code> to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.</p>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
@@ -324,7 +324,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …</code></pre>
+## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -334,7 +334,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …</code></pre>
+## $ date      &lt;dttm&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -344,7 +344,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …</code></pre>
+## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -426,7 +426,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, 2021-09-22, …</code></pre>
+## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
 <div class="info">
 <p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
@@ -4087,7 +4087,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-26.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -4,3 +4,7 @@
 
 * Be familiar with a range of applications using R
 * Identify appropriate sources for continued learning
+
+```{r setup, message=FALSE}
+library(tidyverse)   # data wrangling functions
+```

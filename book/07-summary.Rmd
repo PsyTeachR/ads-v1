@@ -4,3 +4,167 @@
 
 * Summarise data by groups
 * Produce well-formatted tables
+
+```{r setup, message=FALSE}
+library(tidyverse)   # data wrangling functions
+library(rtweet) # for searching tweets
+library(kableExtra)  # for nice tables
+library(glue) # for pasting strings
+```
+
+We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #BisexualAwarenessWeek or #BiWeek. Some of these will be duplicates, so we'll combine them with `union()`.
+
+```{r, eval = FALSE}
+bi_aware <- search_tweets(q = "#BisexualAwarenessWeek", 
+                         n = 10000, 
+                         include_rts = FALSE)
+
+bi_week <- search_tweets(q = "#BiWeek", 
+                         n = 10000, 
+                         include_rts = FALSE)
+
+# combine, excluding duplicates
+bi_tweets <- union(bi_aware, bi_week)
+```
+
+```{r, echo = FALSE}
+# saveRDS(bi_tweets, file = "data/bi_tweets.rds")
+bi_tweets <- readRDS("data/bi_tweets.rds")
+```
+
+
+Now let's create a series of summary tables and plots with these data.
+
+### General info
+
+What date range is represented in these data? How many tweets were there? First, run `glimpse(bi_tweets)` to find out what information is in the downloaded data. 
+
+The `created_at` column should give us the date they were created. We can use the `min()` and `max()` functions to get the range of dates, and the `format()` function to format them for our report.
+
+```{r}
+n_tweets <- nrow(bi_tweets)
+date_from <- min(bi_tweets$created_at) %>% format("%d %B, %Y")
+date_to <- max(bi_tweets$created_at) %>% format("%d %B, %Y")
+```
+
+There are a few ways to insert those values into the text of a report. First, you can use `glue()` to create a block of text that uses the objects you just created.
+
+```{r}
+text <- glue("There were {n_tweets} tweets between {date_from} and {date_to}.")
+```
+
+Then you can display that text in an `r glossary("R Markdown")` report with inline r like this, `r backtick("r text")`, which will produce the following:
+
+> `r text`
+
+Or you can insert individual objects into markdown text with inline r:
+
+There were `r backtick("r n_tweets")` tweets between `r backtick("r date_from")` and `r backtick("r date_to")`.
+
+### Summary counts
+
+How many different accounts tweeted? Who tweeted most?
+
+You can count categories with the `count()` function. It looks like two accounts might have the same screen name, but they probably won't have the same user_id, so you can count both of those things. This will give you a new table with each combination of the counted columns and a column called `n` containing the number of observations from that group. Use `arrange(desc(n))` to sort the table by `n` in descending order.
+
+```{r}
+tweets_per_user <- count(bi_tweets, user_id, screen_name) %>%
+  arrange(desc(n))
+
+head(tweets_per_user)
+```
+
+If you set a code chunk option to `results='asis'`, you can pipe the glued text to `cat()` to display it.
+
+```{r, results='asis'}
+unique_users <- nrow(tweets_per_user)
+most_prolific <- slice(tweets_per_user, 1) %>% pull(screen_name)
+most_prolific_n <- slice(tweets_per_user, 1) %>% pull(n)
+
+glue("There were {unique_users} unique accounts tweeting about Bisexual Awareness Week. {most_prolific} was the most prolific tweeter, with {most_prolific_n} tweets.") %>% cat()
+```
+
+### Filtering
+
+What was the most favourited tweets? Use `filter()` to keep just the rows where the value in the `favorite_count` column is equal to its maximum value. Just in case there is a tie, choose a random one with `sample_n(size = 1)`.
+
+```{r}
+most_fav <- bi_tweets %>%
+  filter(favorite_count == max(favorite_count)) %>%
+  sample_n(size = 1)
+```
+
+You can access the value in each column with the `$` operator. 
+
+```{r, results='asis'}
+glue("
+The most favourited ({most_fav$favorite_count}) tweet was by 
+[{most_fav$screen_name}]({most_fav$status_url}):
+-----------------------
+{most_fav$text}
+![]({most_fav$media_url})
+-----------------------
+") %>% cat()
+```
+
+### Summary Table
+
+Let's make a table of the top ten hashtags used in conjunction with #BiVisibilityWeek, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
+
+First, select just the relevant columns and expand the `hashtags` column. This is a column of lists, so you can create a row for each value using `unnest()`.
+
+```{r}
+tweets_with_hashtags <- bi_tweets %>%
+  select(hashtags, text, favorite_count) %>%
+  unnest(cols = hashtags)
+```
+
+Now, count the number of tweets for each hashtag using `count()`, then filter the top 10 values by the `n` column.
+
+```{r}
+top10_hashtags <- tweets_with_hashtags %>%
+  count(hashtags) %>%
+  slice_max(order_by = n, n = 10)
+```
+
+Next, get the top tweet for each hashtag using `filter()`. Use `group_by()` before you filter to select the most-liked tweet in each hashtag, rather than the one most-likes overall. Don't forget to `ungroup()` when you're done.
+
+```{r}
+top_tweet_per_hashtag <- tweets_with_hashtags %>%
+  group_by(hashtags) %>%
+  filter(favorite_count == max(favorite_count)) %>%
+  sample_n(size = 1) %>%
+  ungroup()
+```
+
+Get the total number of likes per hashtag by grouping and summarising with `sum()`.
+
+```{r}
+likes_per_hashtag <- tweets_with_hashtags %>%
+  group_by(hashtags) %>%
+  summarise(total_likes = sum(favorite_count)) %>%
+  ungroup()
+```
+
+
+Finally, put everything together using `left_join()`, `select()` the columns you want to keep in the right order, and print the table.
+
+```{r}
+top10 <- top10_hashtags %>%
+  left_join(top_tweet_per_hashtag, by = "hashtags") %>%
+  left_join(likes_per_hashtag, by = "hashtags") %>%
+  select(hashtags, n, total_likes, text) %>%
+  print()
+```
+
+The table isn't great, aesthetically. The `r pkg("kableExtra")` package has functions that will improve the presentation of tables.
+
+```{r}
+kable(x = top10, 
+      col.names = c("Hashtag", "Total Tweets", "Total Likes", "Top Tweet"),
+      caption = "Stats and the top tweet for the top 10 hashtags.") %>%
+  column_spec(1:4, extra_css = "vertical-align: top;") %>%
+  row_spec(0, extra_css = "vertical-align: bottom;") %>%
+  kable_minimal()
+```
+

@@ -616,10 +616,10 @@ dens <- c(x = "geom_histogram", x = "geom_freqpoly", answer = "geom_density")
 # load data
 pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
                                skip = 16) %>%
-  dplyr::filter(Type == "Country/Area") %>%
+  filter(Type == "Country/Area") %>%
   select(country = 3, population = `2020`) %>%
   mutate(population = round(as.numeric(population) * 1000)) %>%
-  dplyr::filter(population < 1e6)
+  filter(population < 1e6)
   
 # make plots
 g <- ggplot(pop_data, aes(x = population)) +

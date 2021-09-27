@@ -111,13 +111,13 @@ include_graphics(c("images/reports/new_proj_1.png",
 
 <div class="figure" style="text-align: center">
 <img src="images/reports/new_proj_1.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2-1)Starting a new project.</p>
+<p class="caption">(\#fig:unnamed-chunk-1-1)Starting a new project.</p>
 </div><div class="figure" style="text-align: center">
 <img src="images/reports/new_proj_2.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2-2)Starting a new project.</p>
+<p class="caption">(\#fig:unnamed-chunk-1-2)Starting a new project.</p>
 </div><div class="figure" style="text-align: center">
 <img src="images/reports/new_proj_3.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2-3)Starting a new project.</p>
+<p class="caption">(\#fig:unnamed-chunk-1-3)Starting a new project.</p>
 </div>
 
 Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called `02-reports.Rproj`, which is a file that contains all of the project information.You can double-click on it to open up the project. 
@@ -382,7 +382,7 @@ kable(summary_table,
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-7)Number of sales per product line each year.</caption>
+<caption>(\#tab:unnamed-chunk-6)Number of sales per product line each year.</caption>
  <thead>
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="1"><div style="">Product Lines</div></th>

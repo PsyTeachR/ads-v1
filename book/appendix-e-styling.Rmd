@@ -296,13 +296,13 @@ themes <- c("theme_wsj", "theme_tufte", "theme_stata", "theme_gdocs", "theme_fiv
 
 plots <- lapply(themes, function(f) {
   scale_colour <- tryCatch({
-    get(gsub("theme_","scale_colour_", gsub("_2", "", f)))()
+    get(gsub("theme_","scale_colour_", gsub("_(2|white)", "", f)))()
   }, error = function(e) {
     return(NULL)
   })
   
   scale_fill <- tryCatch({
-    get(gsub("theme_","scale_fill_", gsub("_2", "", f)))()
+    get(gsub("theme_","scale_fill_", gsub("_(2|white)", "", f)))()
   }, error = function(e) {
     return(NULL)
   })

@@ -12,9 +12,128 @@ library(ggwordcloud) # for word clouds
 library(tidytext)    # for manipulating text for word clouds
 library(patchwork)   # for combining plots
 library(treemap)     # for treemap plots
+library(ggthemes)    # for themes
+
+theme_set(theme_light())
 ```
 
-## Treemap
+
+## Defaults
+
+The code below creates two familiar plots from Chapter\ \@ref(viz), using the default (light) theme and palettes
+
+```{r, message=FALSE}
+survey_data <- read_csv(file = "data/survey_data.csv")
+
+bar <- ggplot(data = survey_data, 
+              mapping = aes(x = issue_category,
+                            fill = issue_category)) +
+  geom_bar(show.legend = FALSE) +
+  ggtitle("Calls by Issue Category")
+
+point <- lm_plot <- ggplot(data = survey_data, 
+                           mapping = aes(x = wait_time, 
+                                         y = call_time,
+                                         color = issue_category)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = lm, formula = y~x) +
+  ggtitle("Wait Time by Call Time")
+```
+
+
+```{r, fig.cap="Default plot styles."}
+bar + point
+```
+
+## R Markdown Options
+
+### Image Size
+
+You can set the image size in the `r glossary("chunk")` headers.
+
+```{r, eval = FALSE, verbatim = "r, fig.width = 10, fig.height = 5"}
+bar + point
+```
+
+```{r, fig.width = 10, fig.height = 5, echo = FALSE, fig.cap="Image size altered to fig.width = 10, fig.height = 5"}
+bar + point
+```
+
+### Output 
+
+The option `out.width` controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with `fig.alig`.
+
+```{r, eval = FALSE, verbatim = "r, out.width = \"75%\", fig.align = \"center\""}
+bar
+```
+
+```{r, out.width = "75%", fig.align = "center", echo = FALSE, fig.cap = "Output display altered with out.width = \"75%\", fig.align = \"center\""}
+bar
+```
+
+### Captions
+
+Figures should usually get a caption with `fig.cap` and alt text to describe the figure to people with impaired vision using `fig.alt`.
+
+```{r, eval = FALSE, verbatim = "r, fig.cap = \"As wait time increases, so does call time.\", fig.alt = \"Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds.\""}
+point
+```
+
+```{r, echo = FALSE, fig.cap = "As wait time increases, so does call time.", fig.alt="Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds."}
+point
+```
+
+
+
+### Setup Chunk
+
+You can also set default values in the setup chunk like this.
+
+```{r, eval = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 5,
+  out.width = "75%",
+  fig.align = "center"
+)
+```
+
+::: {.warning data-latex=""}
+When you set the default figure width and height in the setup chunk, images you  make interactively while setting up your script will have the right aspect ratio, but you will only be able to see the `out.width`, `fig.align`, and `fig.cap` when you `r glossary("knit")` the file.
+:::
+
+
+## Themes and Colours
+
+```{r, fig.cap="Plots with the classic theme and Dark2 palette."}
+bar2 <- bar + 
+  theme_classic() + 
+  scale_fill_brewer(palette = "Dark2")
+
+point2 <- point + 
+  theme_classic() + 
+  scale_color_brewer(palette = "Dark2")
+
+bar2 + point2
+```
+
+You can download extra themes with packages like `r pkg("ggthemes")`.
+
+```{r, fig.cap="Plots with the economist styles from ggthemes."}
+bar_econ <- bar + 
+  theme_economist() +
+  scale_fill_economist()
+
+point_econ <- point + 
+  theme_economist() +
+  scale_color_economist()
+
+bar_econ + point_econ
+```
+
+## Other Plots
+
+### Treemap
 
 ```{r, fig.height = 10, fig.cap = "Treemap plot of 2020 population by country, for countries with more than 10M."}
 pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
@@ -35,7 +154,7 @@ treemap(pop_data,
 
 
 
-## Word Clouds
+### Word Clouds
 
 ```{r}
 # https://www.kaggle.com/sid321axn/amazon-alexa-reviews

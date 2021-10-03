@@ -462,7 +462,10 @@ avatar <- tribble(
   "Toph",   "earth", TRUE,
   "Sokka",  NA,      TRUE
 )
+```
 
+
+```r
 # export the data to a file
 rio::export(avatar, "data/avatar.csv")
 
@@ -474,14 +477,21 @@ Tabular data becomes especially important for when we talk about <a class='gloss
 
 #### Table info
 
-We can get information about the table using the functions <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of columns), <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='op'>)</span></code> (number of rows), <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='op'>)</span></code> (the number of rows and number of columns), and <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/name.html'>name</a></span><span class='op'>(</span><span class='op'>)</span></code> (the column names).
+We can get information about the table using the following functions.
+
+* `ncol()`: number of columns
+* `nrow()`: number of rows
+* `dim()`: the number of rows and number of columns 
+* `name()`: the column names
+* `glimpse()`: the column types
 
 
 ```r
-nrow(avatar) # how many rows?
-ncol(avatar) # how many columns?
-dim(avatar)  # what are the table dimensions?
-names(avatar) # what are the column names?
+nrow(avatar)
+ncol(avatar)
+dim(avatar)
+names(avatar)
+glimpse(avatar)
 ```
 
 ```
@@ -489,6 +499,11 @@ names(avatar) # what are the column names?
 ## [1] 3
 ## [1] 3 3
 ## [1] "name"     "bends"    "friendly"
+## Rows: 3
+## Columns: 3
+## $ name     <chr> "Katara", "Toph", "Sokka"
+## $ bends    <chr> "water", "earth", NA
+## $ friendly <lgl> TRUE, TRUE, TRUE
 ```
 
 #### Accessing rows and columns {#row-col-access}

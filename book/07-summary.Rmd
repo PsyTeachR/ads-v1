@@ -12,45 +12,48 @@ library(kableExtra)  # for nice tables
 library(glue) # for pasting strings
 ```
 
-We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #BisexualAwarenessWeek or #BiWeek. Some of these will be duplicates, so we'll combine them with `union()`.
+## Summary functions
+
+We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay or #BiWeek.
 
 ```{r, eval = FALSE}
-bi_aware <- search_tweets(q = "#BisexualAwarenessWeek", 
-                         n = 10000, 
-                         include_rts = FALSE)
-
-bi_week <- search_tweets(q = "#BiWeek", 
-                         n = 10000, 
-                         include_rts = FALSE)
-
-# combine, excluding duplicates
-bi_tweets <- union(bi_aware, bi_week)
+tweets <- search_tweets(q = "#NationalComingOutDay", 
+                          n = 10000)
 ```
 
 ```{r, echo = FALSE}
-# saveRDS(bi_tweets, file = "data/bi_tweets.rds")
-bi_tweets <- readRDS("data/bi_tweets.rds")
+# saveRDS(tweets, file = "data/tweets.rds")
+tweets <- readRDS("data/tweets.rds")
 ```
 
 
 Now let's create a series of summary tables and plots with these data.
 
-### General info
+### Summarising
 
-What date range is represented in these data? How many tweets were there? First, run `glimpse(bi_tweets)` to find out what information is in the downloaded data. 
+What date range is represented in these data? How many tweets were there? First, run `glimpse(tweets)` to find out what information is in the downloaded data. 
 
-The `created_at` column should give us the date they were created. We can use the `min()` and `max()` functions to get the range of dates, and the `format()` function to format them for our report.
+The `created_at` column should give us the date they were created. We can use the `min()` and `max()` functions to get the range of dates. The `n()` function counts the number of rows in the data.
 
 ```{r}
-n_tweets <- nrow(bi_tweets)
-date_from <- min(bi_tweets$created_at) %>% format("%d %B, %Y")
-date_to <- max(bi_tweets$created_at) %>% format("%d %B, %Y")
+tweet_summary <- tweets %>%
+  summarise(
+    n = n(),
+    min_date = min(created_at),
+    max_date = max(created_at)
+  )
+
+tweet_summary
 ```
 
-There are a few ways to insert those values into the text of a report. First, you can use `glue()` to create a block of text that uses the objects you just created.
+
+There are a few ways to insert those values into the text of a report. First, you can use `glue()` to create a block of text that uses the objects you just created. Use the `format()` function to format the dates for our report.
 
 ```{r}
-text <- glue("There were {n_tweets} tweets between {date_from} and {date_to}.")
+date_from <- tweet_summary$min_date %>% format("%d %B, %Y")
+date_to <- tweet_summary$max_date %>% format("%d %B, %Y")
+
+text <- glue("There were {tweet_summary$n} tweets between {date_from} and {date_to}.")
 ```
 
 Then you can display that text in an `r glossary("R Markdown")` report with inline r like this, `r backtick("r text")`, which will produce the following:
@@ -59,16 +62,68 @@ Then you can display that text in an `r glossary("R Markdown")` report with inli
 
 Or you can insert individual objects into markdown text with inline r:
 
-There were `r backtick("r n_tweets")` tweets between `r backtick("r date_from")` and `r backtick("r date_to")`.
+There were `r backtick("r tweet_summary$n")` tweets between `r backtick("r date_from")` and `r backtick("r date_to")`.
 
-### Summary counts
+```{r, echo=FALSE}
+mcq1 <- c(answer = "`tweets %>% summarise(max_retweets = max(retweets))`",
+          x = "`tweets %>% summarise(max = retweets)`",
+          x = "`tweets %>% summarise(max_retweets)`", 
+          x = "`tweets %>% max(retweets)`") %>%
+  sample() %>% longmcq()
+```
+
+
+::: {.try data-latex=""}
+* How would you find the largest number of retweets?
+    `r mcq1`
+:::
+
+
+### Grouping
+
+You can also create summary values by group. The `source` column tells us where the tweet came from. How did the average number of favourites and retweets differ by source?
+
+```{r}
+sources <- tweets %>%
+  group_by(source) %>%
+  summarise(mean_favs = mean(favorite_count),
+            mean_retweets = mean(retweet_count)) %>%
+  arrange(desc(mean_favs))
+
+head(sources)
+```
+
+```{r, echo = FALSE}
+mcq2 <- c(answer = "`summarise(width = mean(display_text_width))`",
+          x = "`width(mean(display_text_width))`",
+          x = "`summarise(display_text_width = mean)`",
+          x = "`group_by(display_text_width)`") %>%
+  sample() %>% longmcq()
+
+mcq3 <- c(answer = "`group_by(screen_name)`",
+          x = "`summarise(screen_name)`",
+          x = "`count(screen_name)`",
+          x = "`mean(screen_name)`") %>%
+  sample() %>% longmcq()
+```
+
+
+::: {.try data-latex=""}
+* How would you calculate the mean `display_text_width`? 
+    `r mcq2`
+* What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
+    `r mcq3`
+:::
+
+### Counting
 
 How many different accounts tweeted? Who tweeted most?
 
-You can count categories with the `count()` function. It looks like two accounts might have the same screen name, but they probably won't have the same user_id, so you can count both of those things. This will give you a new table with each combination of the counted columns and a column called `n` containing the number of observations from that group. Use `arrange(desc(n))` to sort the table by `n` in descending order.
+You can count categories with the `count()` function. Since each row is a tweet, you can count the number of rows per `screen_name` to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called `n` containing the number of observations from that group. Use `arrange(desc(n))` to sort the table by `n` in descending order.
 
 ```{r}
-tweets_per_user <- count(bi_tweets, user_id, screen_name) %>%
+tweets_per_user <- tweets %>%
+  count(screen_name) %>%
   arrange(desc(n))
 
 head(tweets_per_user)
@@ -81,40 +136,75 @@ unique_users <- nrow(tweets_per_user)
 most_prolific <- slice(tweets_per_user, 1) %>% pull(screen_name)
 most_prolific_n <- slice(tweets_per_user, 1) %>% pull(n)
 
-glue("There were {unique_users} unique accounts tweeting about Bisexual Awareness Week. {most_prolific} was the most prolific tweeter, with {most_prolific_n} tweets.") %>% cat()
+glue("There were {unique_users} unique accounts 
+     tweeting about #NationalComingOutDay. 
+     {most_prolific} was the most prolific tweeter, 
+     with {most_prolific_n} tweets.") %>% cat()
 ```
+
+
+```{r, echo = FALSE}
+mcq1 <- c(answer = "`tweets %>% count(is_quote, is_retweet)`", 
+          x = "`tweets %>% count(is_quote) %>% count(is_retweet)`", 
+          x = "`tweets %>% count(c(is_quote, is_retweet))`", 
+          x = "`tweets %>% select(is_quote, is_retweet) %>% count()`") %>%
+  sample() %>% longmcq()
+```
+
+::: {.try data-latex=""}
+* How would you count the number of tweets that are quotes or not and are retweets or not? 
+    `r mcq1`
+:::
 
 ### Filtering
 
-What was the most favourited tweets? Use `filter()` to keep just the rows where the value in the `favorite_count` column is equal to its maximum value. Just in case there is a tie, choose a random one with `sample_n(size = 1)`.
+What was the most favourited tweets? Use `filter()` to keep just the rows where the value in the `favorite_count` column is equal to its maximum value. Just in case there was a tie, choose a random one with `sample_n(size = 1)`.
 
 ```{r}
-most_fav <- bi_tweets %>%
+most_fav <- tweets %>%
   filter(favorite_count == max(favorite_count)) %>%
   sample_n(size = 1)
 ```
 
-You can access the value in each column with the `$` operator. 
+Remember that you can access the value in each column with the `$` operator. 
 
 ```{r, results='asis'}
 glue("
 The most favourited ({most_fav$favorite_count}) tweet was by 
 [{most_fav$screen_name}]({most_fav$status_url}):
------------------------
+
+--------------------------------------------------
 {most_fav$text}
-![]({most_fav$media_url})
------------------------
-") %>% cat()
+--------------------------------------------------
+") %>% 
+  # replace @ with \@ so @ doesn't trigger referencing
+  gsub("@", "\\\\@", .) %>%
+  # prints results into document, not code
+  cat()
 ```
 
-### Summary Table
+```{r, echo = FALSE}
+mcq1 <- c(answer = "`tweets %>% group_by(source) %>% filter(n() >= 10)`", 
+          x = "`tweets %>% group_by(source) %>% select(n() >= 10)`", 
+          x = "`tweets %>% group_by(source) %>% filter(count() >= 10)`", 
+          x = "`tweets %>% group_by(source) %>% select(count() >= 10)`") %>%
+  sample() %>% longmcq()
+```
+
+::: {.try data-latex=""}
+* How would you limit the results to sources with 10 or more rows?
+    `r mcq1`
+:::
+
+
+## Putting it together
 
 Let's make a table of the top ten hashtags used in conjunction with #BiVisibilityWeek, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
 
 First, select just the relevant columns and expand the `hashtags` column. This is a column of lists, so you can create a row for each value using `unnest()`.
 
 ```{r}
-tweets_with_hashtags <- bi_tweets %>%
+tweets_with_hashtags <- tweets %>%
   select(hashtags, text, favorite_count) %>%
   unnest(cols = hashtags)
 ```
@@ -153,8 +243,12 @@ Finally, put everything together using `left_join()`, `select()` the columns you
 top10 <- top10_hashtags %>%
   left_join(top_tweet_per_hashtag, by = "hashtags") %>%
   left_join(likes_per_hashtag, by = "hashtags") %>%
-  select(hashtags, n, total_likes, text) %>%
-  print()
+  # replace @ with \@ so @ doesn't trigger referencing
+  mutate(text = gsub("@", "\\\\@", text)) %>%
+  # put the columns you want to display in order
+  select(hashtags, n, total_likes, text)
+
+top10
 ```
 
 The table isn't great, aesthetically. The `r pkg("kableExtra")` package has functions that will improve the presentation of tables.

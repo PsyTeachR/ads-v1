@@ -4,7 +4,6 @@
 
 * Be able to select and filter data for relevance
 * Be able to create new columns and edit existing ones
-* Be able to calculate row means
 
 ```{r setup, message=FALSE}
 library(tidyverse)   # data wrangling functions
@@ -114,7 +113,7 @@ all_daily_tweets <- purrr::map_df(files, read_csv) %>%
   select(!starts_with("promoted"))
 ```
 
-Now you can make your plot of likes per day for all of the months.
+Now you can make a plot of likes per day for all of the months.
 
 ```{r}
 ggplot(all_daily_tweets, aes(x = Date, y = likes)) +
@@ -165,6 +164,34 @@ ggplot(likes_by_month, aes(x = month, y = total_likes, fill = month)) +
                      labels = paste0(0:10, "K")) +
   scale_x_discrete(name = "")
 ```
+
+
+::: {.try data-latex=""}
+How would you change the code in this section to plot the number of tweets published per week? 
+
+Hint: if the `r pkg("lubridate")` function for the month is `month()`, what is the function for getting the week likely to be?
+
+```{r, webex.hide="Summarise Data"}
+tweets_by_week <- all_daily_tweets %>%
+  mutate(week = week(Date)) %>%
+  group_by(week) %>%
+  summarise(start_date = min(Date),
+            total_tweets = sum(`Tweets published`)) %>%
+  ungroup()
+```
+
+```{r, webex.hide="Plot Data"}
+ggplot(tweets_by_week, aes(x = start_date, y = total_tweets)) +
+  geom_col(fill = "hotpink") +
+  scale_fill_brewer(palette = "Spectral") +
+  scale_y_continuous(name = "Total Tweets per Week") +
+  scale_x_date(name = "",
+               date_breaks = "1 month", 
+               date_labels = "%B")
+```
+
+:::
+
 
 ### Data by Tweet
 

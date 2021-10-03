@@ -654,7 +654,7 @@ total_price
 <span class="header-section-number">5.3</span> Reshaping Data<a class="anchor" aria-label="anchor" href="#reshaping-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Data tables can be in <a class="glossary" target="_blank" title="Data where all of the observations about one subject are in the same row" href="https://psyteachr.github.io/glossary/w#wide">wide</a> format or <a class="glossary" target="_blank" title="Data where each observation is on a separate row" href="https://psyteachr.github.io/glossary/l#long">long</a> format (or a mix of the two). Wide data are where all of the observations about one thing are in the same row, while long data are where each observation is on a separate row. You often need to convert between these formats to do different types of summaries or visualisation.</p>
-<p>Let's look again at just the <code>totalprice</code> data from the untidy table above. We can select just the columns we want using the <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or <code>new_name = old_name</code>. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.</p>
+<p>Let's look again at just the <code>totalprice</code> data from the untidy table above. We can select just the columns we want using the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">dplyr::select()</a></code> function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or <code>new_name = old_name</code>. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.</p>
 <div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select just the customer ID and 3 total price columns</span>
 <span class="va">untidy_price</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span>
@@ -2455,7 +2455,7 @@ totalprice
 <h3>
 <span class="header-section-number">5.4.3</span> One value per cell<a class="anchor" aria-label="anchor" href="#one-value-per-cell"><i class="fas fa-link"></i></a>
 </h3>
-<p>The cells in the <code>itemsprice</code> column actually contain two different values. We need to split it into two columns for the variables <code>items</code>, and <code>price_per_item</code>. You can split a column into parts with the function <code><a href="https://tidyr.tidyverse.org/reference/separate.html">tidyr::separate()</a></code>.</p>
+<p>The cells in the <code>itemsprice</code> column actually contain two different values. We need to split it into two columns for the variables <code>items</code>, and <code>price_per_item</code>. You can split a column into parts with the function <code><a href="https://rdrr.io/pkg/tidyr/man/separate.html">tidyr::separate()</a></code>.</p>
 <div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">split_data</span> <span class="op">&lt;-</span> <span class="fu">separate</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">wider_data</span>, 
@@ -2752,12 +2752,12 @@ totalprice
 <h3>
 <span class="header-section-number">5.4.4</span> Altering data<a class="anchor" aria-label="anchor" href="#altering-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>The column <code>price_per_item</code> is still a character column because it has parentheses. There are a few ways to fix this. You can use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> function to change a column or add a new one.</p>
-<p>Here, we'll use <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">stringr::str_replace_all()</a></code> to replace all of the "(" and ")" with "".</p>
+<p>The column <code>price_per_item</code> is still a character column because it has parentheses. There are a few ways to fix this. You can use the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">dplyr::mutate()</a></code> function to change a column or add a new one.</p>
+<p>Here, we'll use <code><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">stringr::str_replace_all()</a></code> to replace all of the "(" and ")" with "".</p>
 <div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
-  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
     pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
     replacement <span class="op">=</span> <span class="st">""</span>
@@ -3058,7 +3058,7 @@ totalprice
 ## $ items          &lt;int&gt; 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
 ## $ price_per_item &lt;chr&gt; "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
 ## $ totalprice     &lt;chr&gt; "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…</code></pre>
-<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://readr.tidyverse.org/reference/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> (see Section @ref(col_types)).</p>
+<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://rdrr.io/pkg/readr/man/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> (see Section @ref(col_types)).</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
   df <span class="op">=</span> <span class="va">mutated_data</span>,
@@ -3124,7 +3124,7 @@ totalprice
 
 <span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
-  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
     pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
     replacement <span class="op">=</span> <span class="st">""</span>
@@ -3174,7 +3174,7 @@ totalprice
       remove <span class="op">=</span> <span class="cn">TRUE</span>,
       convert <span class="op">=</span> <span class="cn">TRUE</span>
     <span class="op">)</span> ,
-    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
       string <span class="op">=</span> <span class="va">price_per_item</span>,
       pattern <span class="op">=</span> <span class="st">"[()]"</span>,
       replacement <span class="op">=</span> <span class="st">""</span>
@@ -3234,7 +3234,7 @@ totalprice
     convert <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>
-    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
       string <span class="op">=</span> <span class="va">price_per_item</span>, 
       pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
       replacement <span class="op">=</span> <span class="st">""</span>
@@ -3642,7 +3642,7 @@ Solution
 </button>
 <div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get the data with better column names</span>
-<span class="va">data_original</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>
+<span class="va">data_original</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/widgets_gadgets.xlsx"</span>,
   skip <span class="op">=</span> <span class="fl">2</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -3723,7 +3723,7 @@ Solution
 Solution
 </button>
 <div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/widgets_gadgets.xlsx"</span>,
   skip <span class="op">=</span> <span class="fl">2</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -4000,7 +4000,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

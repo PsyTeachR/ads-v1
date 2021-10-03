@@ -238,10 +238,10 @@ Figure 3.1: Data types are like the categories when you format cells in Excel.
 </h3>
 <p>Dates and times are a special case of variable. They can act like categorical or continuous variables, and there are special ways to plot them. Dates and times can be hard to work with, but the <code class="package"><a href="https://lubridate.tidyverse.org/" target="_blank">lubridate</a></code> package provides functions to help you with this.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2021-09-27"
-## [1] "2021-09-27 00:22:56 GMT"</code></pre>
+<code class="sourceCode R"><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2021-10-04"
+## [1] "2021-10-03 23:28:53 GMT"</code></pre>
 </div>
 <div id="test-your-understanding" class="section level3" number="3.2.4">
 <h3>
@@ -574,7 +574,7 @@ Figure 3.6: Adding a scatterplot with geom_point().
 <h3>
 <span class="header-section-number">3.3.6</span> Multiple Geoms<a class="anchor" aria-label="anchor" href="#multiple-geoms"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can add more than one geom. They display in the order you set them up. In the code below, we make two different plots and assign them to <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/o#object">objects</a> that we can add together using the <code><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout()</a></code> function from the <code class="package">patchwork</code> package.</p>
+<p>You can add more than one geom. They display in the order you set them up. In the code below, we make two different plots and assign them to <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/o#object">objects</a> that we can add together using the <code><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout()</a></code> function from the <code class="package">patchwork</code> package.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">point_first</span> <span class="op">&lt;-</span> 
   <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, mapping <span class="op">=</span> <span class="va">wait_vs_call</span><span class="op">)</span> <span class="op">+</span>
@@ -587,7 +587,7 @@ Figure 3.6: Adding a scatterplot with geom_point().
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="co"># scatterplot</span>
 
 <span class="co"># add plots together in 1 row</span>
-<span class="va">point_first</span> <span class="op">+</span> <span class="va">line_first</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<span class="va">point_first</span> <span class="op">+</span> <span class="va">line_first</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'
 ## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <div class="figure" style="text-align: center">
@@ -1066,7 +1066,7 @@ Figure 3.14: Histogram with custom styles.
 
 <span class="co"># put plots together</span>
 <span class="va">histogram_stack</span> <span class="op">+</span> <span class="va">area_plot</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-19"></span>
 <img src="03-viz_files/figure-html/unnamed-chunk-19-1.png" alt="Stacked histogram versus area plot." width="100%"><p class="caption">
@@ -1105,7 +1105,7 @@ Figure 3.15: Stacked histogram versus area plot.
 
 <span class="co"># put plots together</span>
 <span class="va">histogram_dodge</span> <span class="op">+</span> <span class="va">freqpoly_plot</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-20"></span>
 <img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%"><p class="caption">
@@ -1316,9 +1316,9 @@ Figure 3.22: Different ways to show the relationship between two continuous vari
 <h4>
 <span class="header-section-number">3.4.4.3</span> Dates<a class="anchor" aria-label="anchor" href="#dates"><i class="fas fa-link"></i></a>
 </h4>
-<p>The <code>call_start</code> column contains both a date and a time, so use the <code><a href="http://lubridate.tidyverse.org/reference/date.html">date()</a></code> function from <code class="package">lubridate</code> to convert it to just a date. We'll need it in this format to be able to transform the x-axis below.</p>
+<p>The <code>call_start</code> column contains both a date and a time, so use the <code><a href="https://rdrr.io/pkg/lubridate/man/date.html">date()</a></code> function from <code class="package">lubridate</code> to convert it to just a date. We'll need it in this format to be able to transform the x-axis below.</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">satisfaction_by_date</span> <span class="op">&lt;-</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/date.html">date</a></span><span class="op">(</span><span class="va">call_start</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">satisfaction_by_date</span> <span class="op">&lt;-</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/date.html">date</a></span><span class="op">(</span><span class="va">call_start</span><span class="op">)</span>,
                             y <span class="op">=</span> <span class="va">satisfaction</span><span class="op">)</span>
 
 <span class="co"># assign the base plot to a variable to use later</span>
@@ -1892,7 +1892,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

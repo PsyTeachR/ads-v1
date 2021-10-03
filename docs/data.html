@@ -124,7 +124,7 @@
 <span class="header-section-number">4.2.2</span> Looking at data<a class="anchor" aria-label="anchor" href="#looking-at-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.</p>
-<p>Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<p>Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
 <div id="view" class="section level4" number="4.2.2.1">
 <h4>
 <span class="header-section-number">4.2.2.1</span> View()<a class="anchor" aria-label="anchor" href="#view"><i class="fas fa-link"></i></a>
@@ -250,7 +250,7 @@ China
 <h4>
 <span class="header-section-number">4.2.2.3</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h4>
-<p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name.</p>
+<p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name.</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -298,15 +298,15 @@ China
 </h4>
 <p>However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo_tsv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
-<span class="va">demo_csv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
-<span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
-<span class="va">demo_sav</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">demo_tsv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
+<span class="va">demo_csv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
+<span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
+<span class="va">demo_sav</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
 <p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>. The code below imports data from a <a href="https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/" target="_blank">public sheet</a>.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
 
-<span class="va">demo_gs4</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span>
+<span class="va">demo_gs4</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span>
   ss <span class="op">=</span> <span class="st">"1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"</span>
 <span class="op">)</span></code></pre></div>
 </div>
@@ -324,7 +324,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
+## $ date      &lt;date&gt; 2021-10-04, 2021-10-03, 2021-10-02, 2021-10-01, 2021-09-30, …</code></pre>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -334,7 +334,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
+## $ date      &lt;dttm&gt; 2021-10-04, 2021-10-03, 2021-10-02, 2021-10-01, 2021-09-30, …</code></pre>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -344,7 +344,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
+## $ date      &lt;date&gt; 2021-10-04, 2021-10-03, 2021-10-02, 2021-10-01, 2021-09-30, …</code></pre>
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -357,7 +357,7 @@ China
 ## $ date      &lt;dttm&gt; 2021-09-01, 2021-08-31, 2021-08-30, 2021-08-29, 2021-08-28, …</code></pre>
 <p>The <code class="package">readr</code> functions display a message when you import data explaining what <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is.</p>
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6 Columns: 6</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
@@ -409,14 +409,14 @@ China
   date <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
 <div class="info">
 <p>For dates, you might need to set the format your dates are in. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. For example, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>31-Jan-21</code>.</p>
 </div>
-<p>The functions from <code class="package">readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code>mutate()</code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">6</a>, so most people let <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
-<p>The function <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> has an advantage over <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).</p>
+<p>The functions from <code class="package">readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code>mutate()</code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">6</a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
+<p>The function <code><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> has an advantage over <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).</p>
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
 
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -426,9 +426,9 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-09-27, 2021-09-26, 2021-09-25, 2021-09-24, 2021-09-23, …</code></pre>
+## $ date      &lt;date&gt; 2021-10-04, 2021-10-03, 2021-10-02, 2021-10-01, 2021-09-30, …</code></pre>
 <div class="info">
-<p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
+<p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
 </div>
 </div>
@@ -436,7 +436,7 @@ China
 <h3>
 <span class="header-section-number">4.2.4</span> Creating data<a class="anchor" aria-label="anchor" href="#creating-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you need to create a small data table from scratch, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
+<p>If you need to create a small data table from scratch, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
 <p>Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
 <p>If you don't know the value for one of the cells, you can enter <a class="glossary" target="_blank" title='A missing value that is "Not Available"' href="https://psyteachr.github.io/glossary/n#na">NA</a>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
@@ -498,7 +498,7 @@ TRUE
 </tbody>
 </table></div>
 </div>
-<p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
+<p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">avatar_by_row</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
   <span class="op">~</span><span class="va">name</span>,    <span class="op">~</span><span class="va">bends</span>,  <span class="op">~</span><span class="va">friendly</span>,
@@ -521,8 +521,8 @@ TRUE
 <p>Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account.</p>
 <p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this.</p>
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
-<span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
+<span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
 
 <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   character <span class="op">=</span> <span class="st">"Z"</span>,
@@ -532,8 +532,8 @@ TRUE
   date <span class="op">=</span> <span class="st">"01-Jan-00"</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/sheet_append.html">sheet_append</a></span><span class="op">(</span><span class="va">sheet_id</span>, <span class="va">new_data</span><span class="op">)</span>
-<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">sheet_id</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/sheet_append.html">sheet_append</a></span><span class="op">(</span><span class="va">sheet_id</span>, <span class="va">new_data</span><span class="op">)</span>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">sheet_id</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <ul>
 <li>Create a new table called <code>family</code> with the first name, last name, and age of your family members.</li>
@@ -577,7 +577,7 @@ Solution
 ## Stopped early on line 5. Expected 7 fields but found 0. Consider fill=TRUE
 ## and comment.char=. First discarded non-empty line: &lt;&lt;junk,missing,0.72,b,1,2 -
 ## 3,2020-01-2&gt;&gt;</code></pre>
-<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
+<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span></code>.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 27 Columns: 1</code></pre>
@@ -1668,7 +1668,7 @@ items
 <h3>
 <span class="header-section-number">4.3.1</span> Mutating Joins<a class="anchor" aria-label="anchor" href="#mutating-joins"><i class="fas fa-link"></i></a>
 </h3>
-<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code>mutate()</code> function in Chapter <a href="tidy.html#tidy">5</a>.)</p>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code>mutate()</code> function in Chapter <a href="tidy.html#tidy">5</a>.)</p>
 <p>All the mutating joins have this basic syntax:</p>
 <p><code>****_join(x, y, by = NULL, suffix = c(".x", ".y")</code></p>
 <ul>
@@ -2778,7 +2778,7 @@ KW15 1SE
 </table></div>
 </div>
 <p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
-<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://generics.r-lib.org/reference/setops.html">union()</a></code> (see below) to avoid duplicates.</p>
+<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> (see below) to avoid duplicates.</p>
 <div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
@@ -3069,9 +3069,9 @@ blue
 
 <span class="va">files</span></code></pre></div>
 <pre><code>## [1] "data/customers1.csv" "data/customers2.csv"</code></pre>
-<p>Now we can use <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a table with all the combined data.</p>
+<p>Now we can use <code><a href="https://rdrr.io/pkg/purrr/man/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a table with all the combined data.</p>
 <div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3249,7 +3249,7 @@ KW15 1SE
 <h4>
 <span class="header-section-number">4.3.4.1</span> intersect()<a class="anchor" aria-label="anchor" href="#intersect"><i class="fas fa-link"></i></a>
 </h4>
-<p><code><a href="https://generics.r-lib.org/reference/setops.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
+<p><code><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
 <div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
@@ -3257,7 +3257,7 @@ KW15 1SE
   city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tobermory"</span>, <span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3285,7 +3285,7 @@ PA75 6NR
 </table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has an <code><a href="https://generics.r-lib.org/reference/setops.html">intersect()</a></code> function. The error message can be confusing and looks something like this:</p>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has an <code><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect()</a></code> function. The error message can be confusing and looks something like this:</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## Error: Must subset rows with a valid subscript vector.
@@ -3297,9 +3297,9 @@ PA75 6NR
 <h4>
 <span class="header-section-number">4.3.4.2</span> union()<a class="anchor" aria-label="anchor" href="#union"><i class="fas fa-link"></i></a>
 </h4>
-<p><code><a href="https://generics.r-lib.org/reference/setops.html">union()</a></code> returns all the rows from both tables, removing duplicate rows.</p>
+<p><code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> returns all the rows from both tables, removing duplicate rows.</p>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3417,7 +3417,7 @@ KW15 1SE
 </table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://generics.r-lib.org/reference/setops.html">union()</a></code> function. You usually won't get an error message, but the output won't be what you expect.</p>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> function. You usually won't get an error message, but the output won't be what you expect.</p>
 <div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
@@ -3445,7 +3445,7 @@ KW15 1SE
 </h4>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3509,7 +3509,7 @@ AB38 7RY
 </div>
 <p>Order matters for <code>setdiff</code>.</p>
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">new_customers</span>, <span class="va">customers</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff</a></span><span class="op">(</span><span class="va">new_customers</span>, <span class="va">customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3572,7 +3572,7 @@ Kirkwall
 </table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://generics.r-lib.org/reference/setops.html">setdiff()</a></code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code><a href="https://generics.r-lib.org/reference/setops.html">setdiff()</a></code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff()</a></code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff()</a></code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
 <div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -4087,7 +4087,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-09-27.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

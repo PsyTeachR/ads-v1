@@ -14,7 +14,7 @@ R.utils::copyDirectory(
 # render the book
 
 xfun::in_dir("book", bookdown::render_book("index.Rmd"))
-browseURL("docs/index.Rmd")
+browseURL("docs/index.html")
 
 # preview a chapter (wrecks sidebar links)
 # browseURL(

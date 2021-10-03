@@ -4,7 +4,6 @@
 
 * Be able to select and filter data for relevance
 * Be able to create new columns and edit existing ones
-* Be able to calculate row means
 
 
 ```r
@@ -207,7 +206,7 @@ all_daily_tweets <- purrr::map_df(files, read_csv) %>%
   select(!starts_with("promoted"))
 ```
 
-Now you can make your plot of likes per day for all of the months.
+Now you can make a plot of likes per day for all of the months.
 
 
 ```r
@@ -315,6 +314,46 @@ ggplot(likes_by_month, aes(x = month, y = total_likes, fill = month)) +
 <p class="caption">(\#fig:likes-by-month-plot)Likes by month.</p>
 </div>
 
+
+::: {.try data-latex=""}
+How would you change the code in this section to plot the number of tweets published per week? 
+
+Hint: if the <code class='package'>lubridate</code> function for the month is `month()`, what is the function for getting the week likely to be?
+
+
+<div class='webex-solution'><button>Summarise Data</button>
+
+```r
+tweets_by_week <- all_daily_tweets %>%
+  mutate(week = week(Date)) %>%
+  group_by(week) %>%
+  summarise(start_date = min(Date),
+            total_tweets = sum(`Tweets published`)) %>%
+  ungroup()
+```
+
+
+</div>
+
+
+<div class='webex-solution'><button>Plot Data</button>
+
+```r
+ggplot(tweets_by_week, aes(x = start_date, y = total_tweets)) +
+  geom_col(fill = "hotpink") +
+  scale_fill_brewer(palette = "Spectral") +
+  scale_y_continuous(name = "Total Tweets per Week") +
+  scale_x_date(name = "",
+               date_breaks = "1 month", 
+               date_labels = "%B")
+```
+
+<img src="06-wrangle_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+</div>
+
+:::
+
+
 ### Data by Tweet
 
 You can also download your twitter data by tweet instead of by day. This usually takes a little longer to download. We can use the same pattern to read and combine all of the tweet data files.
@@ -392,7 +431,7 @@ https://t.co/FhR4DR38OU
 
 Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter\ \@ref(custom)).
 
-<img src="06-wrangle_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="06-wrangle_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 

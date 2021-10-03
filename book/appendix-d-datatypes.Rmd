@@ -311,7 +311,9 @@ avatar <- tribble(
   "Toph",   "earth", TRUE,
   "Sokka",  NA,      TRUE
 )
+```
 
+```{r, eval = FALSE}
 # export the data to a file
 rio::export(avatar, "data/avatar.csv")
 
@@ -323,20 +325,27 @@ Tabular data becomes especially important for when we talk about `r glossary("ti
 
 #### Table info
 
-We can get information about the table using the functions `r hl(ncol())` (number of columns), `r hl(nrow())` (number of rows), `r hl(dim())` (the number of rows and number of columns), and `r hl(name())` (the column names).
+We can get information about the table using the following functions.
 
-````{r}
-nrow(avatar) # how many rows?
-ncol(avatar) # how many columns?
-dim(avatar)  # what are the table dimensions?
-names(avatar) # what are the column names?
+* `ncol()`: number of columns
+* `nrow()`: number of rows
+* `dim()`: the number of rows and number of columns 
+* `name()`: the column names
+* `glimpse()`: the column types
+
+```{r}
+nrow(avatar)
+ncol(avatar)
+dim(avatar)
+names(avatar)
+glimpse(avatar)
 ```
 
 #### Accessing rows and columns {#row-col-access}
 
 There are various ways of accessing specific columns or rows from a table. The ones below are from `r glossary("base R")` and are useful to know about, but you'll be learning easier (and more readable) ways in Chapters\ \@ref(tidy) and \@ref(wrangle). Examples of these base R accessing functions are provided here for reference, since you might see them in other people's scripts.
 
-```{r dataframe-access}   
+```{r dataframe-access}
 katara     <- avatar[1, ] # first row
 type       <- avatar[, 2] # second column (bends)
 benders    <- avatar[c(1, 2), ] # selected rows (by number)

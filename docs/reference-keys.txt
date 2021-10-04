@@ -1,8 +1,7 @@
 fig:img-rstudio
-fig:unnamed-chunk-1-1
-fig:unnamed-chunk-1-2
-fig:unnamed-chunk-1-3
+fig:unnamed-chunk-1
 fig:img-bootswatch
+fig:visual-editor
 tab:unnamed-chunk-6
 fig:item-by-line-display
 fig:excel-format-cells

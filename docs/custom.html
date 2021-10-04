@@ -90,7 +90,7 @@
 <li>Customise plots with a consistent style</li>
 <li>Create high quality plots like BBC, NYT, 538</li>
 </ul>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lepennec/ggwordcloud">ggwordcloud</a></span><span class="op">)</span> <span class="co"># for word clouds</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span>    <span class="co"># for manipulating text for word clouds</span>
@@ -105,7 +105,7 @@
 <span class="header-section-number">8.2</span> Defaults<a class="anchor" aria-label="anchor" href="#defaults"><i class="fas fa-link"></i></a>
 </h2>
 <p>The code below creates two familiar plots from Chapter <a href="viz.html#viz">3</a>, using the default (light) theme and palettes</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/survey_data.csv"</span><span class="op">)</span>
 
 <span class="va">bar</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">survey_data</span>, 
@@ -121,7 +121,7 @@
   <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, formula <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Wait Time by Call Time"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bar</span> <span class="op">+</span> <span class="va">point</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-2"></span>
@@ -141,7 +141,7 @@ Figure 8.1: Default plot styles.
 <p>You can set the image size in the <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">chunk</a> headers.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 10, fig.height = 5}</code></pre>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bar</span> <span class="op">+</span> <span class="va">point</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -159,7 +159,7 @@ Figure 8.2: Image size altered to fig.width = 10, fig.height = 5
 <p>The option <code>out.width</code> controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with <code>fig.alig</code>.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, out.width = "75%", fig.align = "center"}</code></pre>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bar</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -177,7 +177,7 @@ Figure 8.3: Output display altered with out.width = "75%", fig.align = "center"
 <p>Figures should usually get a caption with <code>fig.cap</code> and alt text to describe the figure to people with impaired vision using <code>fig.alt</code>.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.cap = "As wait time increases, so does call time.", fig.alt = "Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds."}</code></pre>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">point</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -193,7 +193,7 @@ Figure 8.4: As wait time increases, so does call time.
 <span class="header-section-number">8.3.4</span> Setup Chunk<a class="anchor" aria-label="anchor" href="#setup-chunk"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can also set default values in the setup chunk like this.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
   fig.width <span class="op">=</span> <span class="fl">10</span>,
   fig.height <span class="op">=</span> <span class="fl">5</span>,
@@ -209,7 +209,7 @@ Figure 8.4: As wait time increases, so does call time.
 <h2>
 <span class="header-section-number">8.4</span> Themes and Colours<a class="anchor" aria-label="anchor" href="#themes-and-colours"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bar2</span> <span class="op">&lt;-</span> <span class="va">bar</span> <span class="op">+</span> 
   <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span>
@@ -226,7 +226,7 @@ Figure 8.5: Plots with the classic theme and Dark2 palette.
 </p>
 </div>
 <p>You can download extra themes with packages like <code class="package">ggthemes</code>.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bar_econ</span> <span class="op">&lt;-</span> <span class="va">bar</span> <span class="op">+</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_economist.html">scale_fill_economist</a></span><span class="op">(</span><span class="op">)</span>
@@ -251,7 +251,7 @@ Figure 8.6: Plots with the economist styles from ggthemes.
 <h3>
 <span class="header-section-number">8.5.1</span> Treemap<a class="anchor" aria-label="anchor" href="#treemap"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop_data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx"</span>,
                                skip <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">==</span> <span class="st">"Country/Area"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -277,14 +277,14 @@ Figure 8.7: Treemap plot of 2020 population by country, for countries with more 
 <h3>
 <span class="header-section-number">8.5.2</span> Word Clouds<a class="anchor" aria-label="anchor" href="#word-clouds"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># https://www.kaggle.com/sid321axn/amazon-alexa-reviews</span>
 <span class="co"># extracted from Amazon by Manu Siddhartha &amp; Anurag Bhatt</span>
 <span class="va">alexa</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/amazon_alexa.csv"</span><span class="op">)</span></code></pre></div>
 <p>Next, we need to make a table of the number of times each individual word appears per rating The function <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">tidytext::unnest_tokens()</a></code> does this for you by splitting the words in the <code>input</code> column into individual words in a new <code>output</code> column.</p>
 <p>Then we can get rid of common "stop words" and integers by filtering only words that are not in our <code>omitted</code> list.</p>
 <p>Then we group by rating and use <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">dplyr::slice_max()</a></code> to get the top 25 words, ordered by the column <code>n</code>.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">omitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">$</span><span class="va">word</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>
 
 <span class="va">words</span> <span class="op">&lt;-</span> <span class="va">alexa</span> <span class="op">%&gt;%</span>
@@ -295,7 +295,7 @@ Figure 8.7: Treemap plot of 2020 population by country, for countries with more 
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">25</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Now we can make two word clouds and paste them together (word clouds don't play well with facets). So we filter the <code>words</code> table to get one rating, then set up a ggplot with the aesthetics <code>label</code>, <code>colour</code>, and <code>size</code>. The <code>label</code> will come from the <code>word</code> column, while the <code>colour</code> will be different for each <code>word</code> and the <code>size</code> of the word will be proportional to <code>n</code>, the number of times the word appeared.</p>
 <p>The visualisation we'll use is <code><span class="fu">ggwordcloud</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span></code>. We can control how big the cloud is with <code><span class="fu">ggwordcloud</span><span class="fu">::</span><span class="fu">scale_size_area</span><span class="op">(</span><span class="op">)</span></code> (this usually takes some trial-and-error). Then add a title and a minimal theme to get rid of the axes and grid lines.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rating1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">words</span>, <span class="va">rating</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -303,7 +303,7 @@ Figure 8.7: Treemap plot of 2020 population by country, for countries with more 
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Rating = 1"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></code></pre></div>
 <p>Make another plot for a different rating and paste them together with <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rating5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">words</span>, <span class="va">rating</span> <span class="op">==</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span>, colour <span class="op">=</span> <span class="va">word</span>, size <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://lepennec.github.io/ggwordcloud/reference/geom_text_wordcloud.html">geom_text_wordcloud_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>

@@ -2,9 +2,9 @@
 
 ## Intended Learning Outcomes {#ilo-reports}
 
-* Be able to organise a project
+* Be able to structure a project
 * Be able to knit a simple reproducible report with R Markdown
-* Be able to edit Markdown to show/hide code and use inline coding
+* Be able to create code chunks, tables, images, and inline R in an R Markdown document
 
 
 ```r
@@ -20,7 +20,7 @@ First, we need to get organised. <a class='glossary' target='_blank' title='A wa
 
 ### File System
 
-Modern computers tend to hide the file system from users, but we need to understand a little bit about how files are stored on your computer in order to get a script to find your data. Your computer's file system is like a big box (or <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a>) that contains both files and smaller boxes, or "subdirectories". You can specify the location of a file with its name and the names of all the directories it is inside.
+Modern computers tend to hide the file system from users, but we need to understand a little bit about how files are stored on your computer in order for a script to be able to find your data. Your computer's file system is like a big box (or <a class='glossary' target='_blank' title='A collection or "folder" of files on a computer.' href='https://psyteachr.github.io/glossary/d#directory'>directory</a>) that contains both files and smaller boxes, or "subdirectories". You can specify the location of a file with its name and the names of all the directories it is inside.
 
 For example, if Lisa is looking for a file called `report.Rmd`on their Desktop, they can specify the full file <a class='glossary' target='_blank' title='A string representing the location of a file or directory.' href='https://psyteachr.github.io/glossary/p#path'>path</a> like this: `/Users/lisad/Desktop/report.Rmd`, because the `Desktop` directory is inside the `lisad` directory, which is inside the `Users` directory, which is located at the base of the whole file system. If that file was on *your* desktop, you would probably have a different path unless your user directory is also called `lisad`. You can also use the `~` shortcut to represent the user directory of the person who is currently logged in, like this: `~/Desktop/report.Rmd`.
 
@@ -102,22 +102,9 @@ First, make a new <a class='glossary' target='_blank' title='A collection or "fo
 
 Next, choose **`New Project...`** under the **`File`** menu to create a new project called <code class='path'>02-reports</code>. Make sure you save it inside the directory you just made. RStudio will restart itself and open with this new project directory as the working directory. 
 
-
-```r
-include_graphics(c("images/reports/new_proj_1.png",
-                   "images/reports/new_proj_2.png",
-                   "images/reports/new_proj_3.png"))
-```
-
 <div class="figure" style="text-align: center">
-<img src="images/reports/new_proj_1.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1-1)Starting a new project.</p>
-</div><div class="figure" style="text-align: center">
-<img src="images/reports/new_proj_2.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1-2)Starting a new project.</p>
-</div><div class="figure" style="text-align: center">
-<img src="images/reports/new_proj_3.png" alt="Starting a new project." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1-3)Starting a new project.</p>
+<img src="images/reports/new_proj_1.png" alt="Starting a new project." width="32%" /><img src="images/reports/new_proj_2.png" alt="Starting a new project." width="32%" /><img src="images/reports/new_proj_3.png" alt="Starting a new project." width="32%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Starting a new project.</p>
 </div>
 
 Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called `02-reports.Rproj`, which is a file that contains all of the project information.You can double-click on it to open up the project. 
@@ -244,7 +231,15 @@ We'll frequently use functions from the package <code class='package'>tidyverse<
 
 ### Markdown {#markdown}
 
-You can use the visual <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a> editor if you have RStudio version 1.4 or higher. This will be a button at the top of the source pane with a pen tip. This is useful for complex styling, but you can also use these common plain-text style markups:
+You can use the visual <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a> editor if you have RStudio version 1.4 or higher. This will be a button at the top of the source pane with a pen tip. 
+
+<div class="figure" style="text-align: center">
+<img src="images/reports/visual-editor.png" alt="The visual editor." width="100%" />
+<p class="caption">(\#fig:visual-editor)The visual editor.</p>
+</div>
+
+
+This is useful for complex styling, but you can also use these common plain-text style markups:
 
 -   Headers are created by prefacing subtitles with one or more hashes (`#`). If you include a table of contents (`toc`) in the YAML, it is created from your document headers.
 -   Format text with *italics* or **bold** by surrounding the text with one or two asterisks or underscores.
@@ -259,11 +254,11 @@ Delete the default text and add some structure to your document by creating head
 
 ### Code Chunks {#code-chunks}
 
-You can include <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. A code block starts and ends with three backtick symbols in a row. After the first three backticks, there is some information about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document).
+You can include <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. A code chunk starts and ends with three backtick symbols in a row. After the first three backticks, there is some information about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document).
 
 Let's start by loading some data.
 
-First, create a code chunk in your document. This code loads some data from the web. You can type in the backticks and chunk header manually, or use a keyboard shortcut (alt-cmd-I). 
+First, create a code chunk in your document. This code loads some data from the web. You can type in the backticks and chunk header manually, or use a keyboard shortcut (<span class=\"apple\">Cmd-Option-I</span> or <span class=\"windows\">Ctrl-Alt-I</span>). 
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r}</code></pre>
 
@@ -275,7 +270,8 @@ sales <- read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
-You can add comments inside R chunks with the hash symbol (`#`). The R interpreter will ignore characters from the hash to the end of the line.
+
+You can add comments inside R chunks with the hash symbol (`#`). R will ignore characters from the hash to the end of the line.
 
 
 ```r
@@ -296,6 +292,8 @@ Next, create a code chunk where you want to display a summary table. We'll use t
 
 
 ```r
+# make a table with the number of each product sold per year
+
 summary_table <- sales %>%
   group_by(YEAR_ID, PRODUCTLINE) %>%
   count() %>%
@@ -365,6 +363,8 @@ The table above is OK, but it could be more reader-friendly by changing the colu
 
 
 ```r
+# format the table
+
 kable(summary_table, 
       col.names = c("", "2003", "2004", "2005"),
       caption = "Number of sales per product line each year.") %>%
@@ -454,15 +454,20 @@ Notice how the figure caption is formatted in the chunk options.
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r item-by-line, fig.cap="Items by product line."}</code></pre>
 
 ```r
+# plot the distribution of sales per order by country
 ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
   geom_violin(alpha = 0.5, show.legend = FALSE) +
   xlab("") +
-  scale_y_continuous(name = "Sales per order", 
-                     breaks = seq(0, 14000, 2000), 
-                     labels = paste0("£", seq(0, 14, 2), "K")) +
+  scale_y_continuous(
+    name = "Sales per order", 
+    breaks = seq(0, 14000, 2000), 
+    labels = paste0("£", seq(0, 14, 2), "K")
+  ) +
   scale_fill_viridis_d() +
-  theme(text = element_text(size = 20, family = "Times"),
-        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+  theme(
+    text = element_text(size = 20, family = "Times"),
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)
+  )
 ```
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
@@ -475,13 +480,13 @@ ggplot(sales, aes(x = COUNTRY, y = SALES, fill = COUNTRY)) +
 
 You can also include images that you did not create in R using the markdown syntax for images:
 
-    ![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
+    ![by Hyperbole and a Half](images/memes/x-all-the-things.png)
 
-![All the Things by Hyperbole and a Half](images/memes/x-all-the-things.png)
+![by Hyperbole and a Half](images/memes/x-all-the-things.png)
 
 ### Inline R {#rmd-inline-r}
 
-Sometimes you just need to insert a number from the data into some text in your report. Inline R code lets you do that. First, we'll calculate the total number of sales per year in a code block. This block can be hidden in the final report.
+Sometimes you just need to insert a number from the data into some text in your report. Inline R code lets you do that. First, we'll calculate the total number of sales per year in a code block. This block can be hidden in the final report  by setting `echo = TRUE` in the chunk header..
 
 
 ```r

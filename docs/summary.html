@@ -90,7 +90,7 @@
 <li>Summarise data by groups</li>
 <li>Produce well-formatted tables</li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span> <span class="co"># for searching tweets</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span>
@@ -101,7 +101,7 @@
 <span class="header-section-number">7.2</span> Summary functions<a class="anchor" aria-label="anchor" href="#summary-functions"><i class="fas fa-link"></i></a>
 </h2>
 <p>We'll use the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function from <code class="package">rtweet</code> to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay or #BiWeek.</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
                           n <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></code></pre></div>
 <p>Now let's create a series of summary tables and plots with these data.</p>
@@ -111,7 +111,7 @@
 </h3>
 <p>What date range is represented in these data? How many tweets were there? First, run <code>glimpse(tweets)</code> to find out what information is in the downloaded data.</p>
 <p>The <code>created_at</code> column should give us the date they were created. We can use the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> functions to get the range of dates. The <code>n()</code> function counts the number of rows in the data.</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_summary</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>
     n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
@@ -147,7 +147,7 @@ max_date
 </table></div>
 </div>
 <p>There are a few ways to insert those values into the text of a report. First, you can use <code><a href="https://rdrr.io/pkg/glue/man/glue.html">glue()</a></code> to create a block of text that uses the objects you just created. Use the <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> function to format the dates for our report.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">date_from</span> <span class="op">&lt;-</span> <span class="va">tweet_summary</span><span class="op">$</span><span class="va">min_date</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
 <span class="va">date_to</span> <span class="op">&lt;-</span> <span class="va">tweet_summary</span><span class="op">$</span><span class="va">max_date</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
 
@@ -161,8 +161,8 @@ max_date
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_KKEDPKMEJW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KKEDPKMEJW" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KKEDPKMEJW" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_KKEDPKMEJW" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KKEDPKMEJW" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label>
+<div id="radio_YKTJUIAGLG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label>
 </div>
 </li>
 </ul>
@@ -173,7 +173,7 @@ max_date
 <span class="header-section-number">7.2.2</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can also create summary values by group. The <code>source</code> column tells us where the tweet came from. How did the average number of favourites and retweets differ by source?</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sources</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">source</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
@@ -267,13 +267,13 @@ Twitter for iPhone
 <div class="try">
 <ul>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_VQBYRTDGNC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VQBYRTDGNC" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_VQBYRTDGNC" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_VQBYRTDGNC" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VQBYRTDGNC" value="x"><span><code>group_by(display_text_width)</code></span></label>
+<div id="radio_SACECRQTXU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"><span><code>summarise(display_text_width = mean)</code></span></label>
 </div>
 </li>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>source</code>?
-<div id="radio_KDSGQBDFZL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KDSGQBDFZL" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KDSGQBDFZL" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_KDSGQBDFZL" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KDSGQBDFZL" value="x"><span><code>count(screen_name)</code></span></label>
+<div id="radio_NSQPBPOPMH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"><span><code>summarise(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
@@ -285,7 +285,7 @@ Twitter for iPhone
 </h3>
 <p>How many different accounts tweeted? Who tweeted most?</p>
 <p>You can count categories with the <code>count()</code> function. Since each row is a tweet, you can count the number of rows per <code>screen_name</code> to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group. Use <code>arrange(desc(n))</code> to sort the table by <code>n</code> in descending order.</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_per_user</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
@@ -354,7 +354,7 @@ chefded
 </table></div>
 </div>
 <p>If you set a code chunk option to <code>results='asis'</code>, you can pipe the glued text to <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to display it.</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unique_users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span>
 <span class="va">most_prolific</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span>
 <span class="va">most_prolific_n</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
@@ -370,8 +370,8 @@ with 33 tweets.</p>
 <div class="try">
 <ul>
 <li>How would you count the number of tweets that are quotes or not and are retweets or not?
-<div id="radio_YKXMHRXUFP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YKXMHRXUFP" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKXMHRXUFP" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKXMHRXUFP" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKXMHRXUFP" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label>
+<div id="radio_HNYMGNTSKA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label>
 </div>
 </li>
 </ul>
@@ -382,12 +382,12 @@ with 33 tweets.</p>
 <span class="header-section-number">7.2.4</span> Filtering<a class="anchor" aria-label="anchor" href="#filtering"><i class="fas fa-link"></i></a>
 </h3>
 <p>What was the most favourited tweets? Use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> to keep just the rows where the value in the <code>favorite_count</code> column is equal to its maximum value. Just in case there was a tie, choose a random one with <code>sample_n(size = 1)</code>.</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">most_fav</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p>Remember that you can access the value in each column with the <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"
 The most favourited ({most_fav$favorite_count}) tweet was by 
 [{most_fav$screen_name}]({most_fav$status_url}):
@@ -409,8 +409,8 @@ The most favourited ({most_fav$favorite_count}) tweet was by
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_TUFFDZTJZB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TUFFDZTJZB" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TUFFDZTJZB" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TUFFDZTJZB" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TUFFDZTJZB" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label>
+<div id="radio_CKGTBWQZTO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>
@@ -423,30 +423,30 @@ The most favourited ({most_fav$favorite_count}) tweet was by
 </h2>
 <p>Let's make a table of the top ten hashtags used in conjunction with #BiVisibilityWeek, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
 <p>First, select just the relevant columns and expand the <code>hashtags</code> column. This is a column of lists, so you can create a row for each value using <code>unnest()</code>.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
 <p>Now, count the number of tweets for each hashtag using <code>count()</code>, then filter the top 10 values by the <code>n</code> column.</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top10_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>. Use <code>group_by()</code> before you filter to select the most-liked tweet in each hashtag, rather than the one most-likes overall. Don't forget to <code>ungroup()</code> when you're done.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Get the total number of likes per hashtag by grouping and summarising with <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Finally, put everything together using <code>left_join()</code>, <code>select()</code> the columns you want to keep in the right order, and print the table.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top10</span> <span class="op">&lt;-</span> <span class="va">top10_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">left_join</span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">left_join</span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -621,7 +621,7 @@ OCT 11 is #NationalComingOutDay. Celebrate #PRIDE and #CreativeSelfSovereignty! 
 </table></div>
 </div>
 <p>The table isn't great, aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables.</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">top10</span>, 
       col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtag"</span>, <span class="st">"Total Tweets"</span>, <span class="st">"Total Likes"</span>, <span class="st">"Top Tweet"</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top 10 hashtags."</span><span class="op">)</span> <span class="op">%&gt;%</span>

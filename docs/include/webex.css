@@ -20,6 +20,18 @@
     background-color: #c0edc2;
     border-radius: 0.25em;
 }
+
+.webex-incorrect span::before,
+.webex-incorrect + .webex-icon::after {
+  content: "\274C  ";
+}
+
+.webex-correct span::before,
+.webex-correct + .webex-icon::after {
+  content: "\2705  ";
+}
+
+
 /* styles for hidden solutions */
 .webex-solution {
     height: 2.5em;
@@ -40,9 +52,8 @@
     color: white;
     padding: 0 0.5em;
 }
-.webex-solution > pre,
-.webex-solution > div.sourceCode {
-    margin: 0.5em;
+.webex-solution pre.sourceCode {
+    border-color: var(--green);
 }
 
 .webex-radiogroup label {

@@ -91,7 +91,7 @@ There were <code>&#096;r tweet_summary\$n&#096;</code> tweets between <code>&#09
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_YKTJUIAGLG'><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTJUIAGLG" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_ZROIBKOUWN'><label><input type="radio" autocomplete="off" name="radio_ZROIBKOUWN" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_ZROIBKOUWN" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_ZROIBKOUWN" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_ZROIBKOUWN" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
 
 :::
 
@@ -162,10 +162,10 @@ head(sources)
 
 ::: {.try data-latex=""}
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_SACECRQTXU'><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_SACECRQTXU" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_SSQDNXPWJF'><label><input type="radio" autocomplete="off" name="radio_SSQDNXPWJF" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_SSQDNXPWJF" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_SSQDNXPWJF" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_SSQDNXPWJF" value="x"></input> <span>`width(mean(display_text_width))`</span></label></div>
 
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
-    <div class='webex-radiogroup' id='radio_NSQPBPOPMH'><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_NSQPBPOPMH" value="x"></input> <span>`summarise(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_BYXWOSTTLM'><label><input type="radio" autocomplete="off" name="radio_BYXWOSTTLM" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_BYXWOSTTLM" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_BYXWOSTTLM" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_BYXWOSTTLM" value="x"></input> <span>`count(screen_name)`</span></label></div>
 
 :::
 
@@ -247,7 +247,7 @@ with 33 tweets.
 
 ::: {.try data-latex=""}
 * How would you count the number of tweets that are quotes or not and are retweets or not? 
-    <div class='webex-radiogroup' id='radio_HNYMGNTSKA'><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label><label><input type="radio" autocomplete="off" name="radio_HNYMGNTSKA" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label></div>
+    <div class='webex-radiogroup' id='radio_OKBRDHJDWD'><label><input type="radio" autocomplete="off" name="radio_OKBRDHJDWD" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_OKBRDHJDWD" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_OKBRDHJDWD" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_OKBRDHJDWD" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
 
 :::
 
@@ -291,7 +291,7 @@ Celebrate #NationalComingOutDay with \@TrevellAnderson and \@JarrettHill. https:
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_CKGTBWQZTO'><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CKGTBWQZTO" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_IPMSWFSCOU'><label><input type="radio" autocomplete="off" name="radio_IPMSWFSCOU" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_IPMSWFSCOU" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_IPMSWFSCOU" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_IPMSWFSCOU" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label></div>
 
 :::
 
@@ -398,9 +398,11 @@ top10
    <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 16 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> We are thrilled to announce the panelists of our upcoming virtual discussion &quot;Coming Out: A Conversation&quot;. 
-
-Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp; programming centered on identity, expression, and what it means to share yourself with the world. https://t.co/rb7eYbxryp </td>
+   <td style="text-align:left;"> 🇫🇷 Je vous invite à plonger avec moi dans l'univers onirique d'Envoie Valser dans exactement une semaine !  🤿
+. 
+🎨 &amp;gt; \@Yllogique + \@julio_piratier
+. 
+#auteurcompositeurinterprete #independant #folk #pop #indie #alternative #francais #mauricien #lgbt #queer #nationalcomingoutday https://t.co/QefTA5x3n7 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> electionday </td>
@@ -491,9 +493,11 @@ kable(x = top10,
    <td style="text-align:left;vertical-align: top;"> NA </td>
    <td style="text-align:right;vertical-align: top;"> 16 </td>
    <td style="text-align:right;vertical-align: top;"> 0 </td>
-   <td style="text-align:left;vertical-align: top;"> We are thrilled to announce the panelists of our upcoming virtual discussion "Coming Out: A Conversation". 
-
-Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp; programming centered on identity, expression, and what it means to share yourself with the world. https://t.co/rb7eYbxryp </td>
+   <td style="text-align:left;vertical-align: top;"> 🇫🇷 Je vous invite à plonger avec moi dans l'univers onirique d'Envoie Valser dans exactement une semaine !  🤿
+. 
+🎨 &amp;gt; \@Yllogique + \@julio_piratier
+. 
+#auteurcompositeurinterprete #independant #folk #pop #indie #alternative #francais #mauricien #lgbt #queer #nationalcomingoutday https://t.co/QefTA5x3n7 </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> electionday </td>

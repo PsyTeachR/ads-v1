@@ -37,9 +37,13 @@ Imports:
     patchwork,
     grDevices,
     ggthemes,
+    plotly,
     ggwordcloud,
     tidytext,
     treemap,
+    sf,
+    rnaturalearth,
+    rnaturalearthdata, 
     glue,
     flexdashboard
 Remotes: 

@@ -49,6 +49,7 @@ fig:unnamed-chunk-6
 fig:unnamed-chunk-8
 fig:unnamed-chunk-10
 fig:unnamed-chunk-11
+fig:plotly
 fig:unnamed-chunk-12
 fig:settings-general
 fig:settings-code
@@ -239,8 +240,10 @@ captions
 setup-chunk
 themes-and-colours
 other-plots
+interactive-plots
 treemap
 word-clouds
+maps
 present
 ilo-present
 resources-present

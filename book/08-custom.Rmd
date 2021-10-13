@@ -11,8 +11,12 @@ library(tidyverse)   # data wrangling functions
 library(ggwordcloud) # for word clouds
 library(tidytext)    # for manipulating text for word clouds
 library(patchwork)   # for combining plots
+library(plotly)      # for interactive plots
 library(treemap)     # for treemap plots
 library(ggthemes)    # for themes
+library(sf)          # for mapping geoms
+library(rnaturalearth) # for map data
+library(rnaturalearthdata) # extra mapping data
 
 theme_set(theme_light())
 ```
@@ -58,6 +62,10 @@ bar + point
 ```{r, fig.width = 10, fig.height = 5, echo = FALSE, fig.cap="Image size altered to fig.width = 10, fig.height = 5"}
 bar + point
 ```
+
+::: {.warning data-latex=""}
+If you're using a MacBook with a Retina display, you may notice that the figures you see in RStudio when you're editing interactively are different from what you see when you render the file. This is an annoying but known bug in [RStudio](https://github.com/rstudio/rstudio/issues/4521){target="_blank"}. Until it's fixed, you can set fig.width and fig.height to their value/2 when checking a plot, and set it back before you knit.
+:::
 
 ### Output 
 
@@ -133,6 +141,18 @@ bar_econ + point_econ
 
 ## Other Plots
 
+### Interactive Plots
+
+You can use the `r pkg("plotly")` package to make interactive graphs. Just assign your ggplot to a variable and use the function `ggplotly()`.
+
+```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
+ggplotly(point_econ)
+```
+
+::: {.info data-latex=""}
+Hover over the data points above and click on the legend items.
+:::
+
 ### Treemap
 
 ```{r, fig.height = 10, fig.cap = "Treemap plot of 2020 population by country, for countries with more than 10M."}
@@ -206,6 +226,87 @@ rating5 <- filter(words, rating == 5) %>%
 rating1 + rating5
 ```
 
+### Maps
+
+Working with maps can be tricky. The `r pkg("sf")` package provides functions that work with `r pkg("ggplot2")`, such as `geom_sf()`. The `r pkg("rnaturalearth")` package (and associated data packages that you may be prompted to download) provide high-quality mapping coordinates.
+
+```{r map-world, fig.width = 7, fig.height = 3.4}
+# get the world map coordinates
+world_sf <- ne_countries(returnclass = "sf", scale = "medium")
+
+# plot them on a light blue background
+ggplot() + 
+  geom_sf(data = world_sf, size = 0.2) +
+  theme(panel.background = element_rect(fill = "lightskyblue2"))
+```
+
+You can combine multiple countries using `bind_rows()` and visualise them with different colours for each country.
+
+```{r map-islands, fig.width = 6, fig.height = 6}
+# get and bind country data
+uk_sf <- ne_states(country = "united kingdom", returnclass = "sf")
+ireland_sf <- ne_states(country = "ireland", returnclass = "sf")
+islands <- bind_rows(uk_sf, ireland_sf) %>%
+  filter(!is.na(geonunit))
+
+# set colours
+country_colours <- c("Scotland" = "#0962BA",
+                     "Wales" = "#00AC48",
+                     "England" = "#FF0000",
+                     "Northern Ireland" = "#FFCD2C",
+                     "Ireland" = "#F77613")
+
+ggplot() + 
+  geom_sf(data = islands,
+          mapping = aes(fill = geonunit),
+          colour = NA,
+          alpha = 0.75) +
+  coord_sf(crs = sf::st_crs(4326),
+           xlim = c(-10.7, 2.1), 
+           ylim = c(49.7, 61)) +
+  scale_fill_manual(name = "Country", 
+                    values = country_colours)
+```
+
+
+You can join data to the map table to visualise data on the map using colours or labels.
+
+```{r map-scotland, fig.width = 5, fig.height = 7}
+# load map data
+scotland_sf <- ne_states(geounit = "Scotland", returnclass = "sf")
+# load population data from
+# https://www.indexmundi.com/facts/united-kingdom/quick-facts/scotland/population
+scotpop <- read_csv("data/scottish_population.csv", show_col_types = FALSE)
+
+# join data and fix typo in the map
+scotmap_pop <- scotland_sf %>%
+  mutate(name = ifelse(name == "North Ayshire", "North Ayrshire", name)) %>%
+  left_join(scotpop, by = "name") %>%
+  select(name, population, geometry)
+
+# plot
+ggplot() + 
+  geom_sf(data = scotmap_pop,
+          mapping = aes(fill = population),
+          color = "white", 
+          size = .1) +
+  coord_sf(xlim = c(-8, 0), ylim = c(54, 61)) +
+  scale_fill_viridis_c(name = "Population",
+                       breaks = seq(0, 6e5, 1e5), 
+                       limits = c(0, 6e5),
+                       labels = paste0(0:6, "00 K")) +
+  theme(legend.position = c(0.16, 0.84))
+```
 
 
 
+## Further Resources {#resources-viz}
+
+* [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
+* [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)
+* [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
+* [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+* [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/) by Winston Chang
+* [ggplot extensions](https://www.ggplot2-exts.org/)
+* [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
+* [Drawing Beautiful Maps Programmatically](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)

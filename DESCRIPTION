@@ -25,6 +25,7 @@ Imports:
     bookdown,
     knitr,
     downlit,
+    renv,
     xfun,
     faux,
     tinytex,
@@ -44,9 +45,11 @@ Imports:
     sf,
     rnaturalearth,
     rnaturalearthdata, 
+    rnaturalearthhires,
     glue,
     flexdashboard
 Remotes: 
-    psyteachr/glossary
+    psyteachr/glossary,
+    ropensci/rnaturalearthhires
 Depends: 
     tidyverse

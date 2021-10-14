@@ -91,7 +91,7 @@ There were <code>&#096;r tweet_summary\$n&#096;</code> tweets between <code>&#09
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_EXUWDHMJJZ'><label><input type="radio" autocomplete="off" name="radio_EXUWDHMJJZ" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_EXUWDHMJJZ" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_EXUWDHMJJZ" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_EXUWDHMJJZ" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_PASZIMEVRU'><label><input type="radio" autocomplete="off" name="radio_PASZIMEVRU" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_PASZIMEVRU" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_PASZIMEVRU" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_PASZIMEVRU" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label></div>
 
 :::
 
@@ -162,10 +162,10 @@ head(sources)
 
 ::: {.try data-latex=""}
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_WUTVYVFKQQ'><label><input type="radio" autocomplete="off" name="radio_WUTVYVFKQQ" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_WUTVYVFKQQ" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_WUTVYVFKQQ" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_WUTVYVFKQQ" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_JXGZLLRDFF'><label><input type="radio" autocomplete="off" name="radio_JXGZLLRDFF" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_JXGZLLRDFF" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_JXGZLLRDFF" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_JXGZLLRDFF" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label></div>
 
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
-    <div class='webex-radiogroup' id='radio_SYCUHRSXJS'><label><input type="radio" autocomplete="off" name="radio_SYCUHRSXJS" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_SYCUHRSXJS" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_SYCUHRSXJS" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_SYCUHRSXJS" value="x"></input> <span>`count(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_JZBNSHZSNU'><label><input type="radio" autocomplete="off" name="radio_JZBNSHZSNU" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_JZBNSHZSNU" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_JZBNSHZSNU" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_JZBNSHZSNU" value="x"></input> <span>`mean(screen_name)`</span></label></div>
 
 :::
 
@@ -247,7 +247,7 @@ with 33 tweets.
 
 ::: {.try data-latex=""}
 * How would you count the number of tweets that are quotes or not and are retweets or not? 
-    <div class='webex-radiogroup' id='radio_UKNNRFXDOL'><label><input type="radio" autocomplete="off" name="radio_UKNNRFXDOL" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_UKNNRFXDOL" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_UKNNRFXDOL" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_UKNNRFXDOL" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
+    <div class='webex-radiogroup' id='radio_UPRQBTLFRE'><label><input type="radio" autocomplete="off" name="radio_UPRQBTLFRE" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_UPRQBTLFRE" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_UPRQBTLFRE" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label><label><input type="radio" autocomplete="off" name="radio_UPRQBTLFRE" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label></div>
 
 :::
 
@@ -291,7 +291,7 @@ Celebrate #NationalComingOutDay with \@TrevellAnderson and \@JarrettHill. https:
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_SEONDHNYGH'><label><input type="radio" autocomplete="off" name="radio_SEONDHNYGH" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_SEONDHNYGH" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_SEONDHNYGH" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_SEONDHNYGH" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_CDMCSHXPUH'><label><input type="radio" autocomplete="off" name="radio_CDMCSHXPUH" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CDMCSHXPUH" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CDMCSHXPUH" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_CDMCSHXPUH" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label></div>
 
 :::
 
@@ -386,27 +386,25 @@ top10
    <td style="text-align:left;"> pridemonth </td>
    <td style="text-align:right;"> 36 </td>
    <td style="text-align:right;"> 11 </td>
-   <td style="text-align:left;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
+   <td style="text-align:left;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth &lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt; justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> pridemonth2021 </td>
    <td style="text-align:right;"> 17 </td>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
+   <td style="text-align:left;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth &lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt; justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:right;"> 16 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> We are thrilled to announce the panelists of our upcoming virtual discussion &quot;Coming Out: A Conversation&quot;. 
-
-Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp; programming centered on identity, expression, and what it means to share yourself with the world. https://t.co/rb7eYbxryp </td>
+   <td style="text-align:left;"> Join the LGBTQ Advisory Council (a subcommittee of the Des Moines Civil &amp;amp; Human Rights Commission) for a National Coming Out Day celebration! Monday, October 11th, 5:30-6:30 pm at the Pappajohn Sculpture Park - Keith Haring Sculpture #NationalComingOutDay #LGBTQ https://t.co/D4nHNjnArl </td>
   </tr>
   <tr>
    <td style="text-align:left;"> electionday </td>
    <td style="text-align:right;"> 15 </td>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸 </td>
+   <td style="text-align:left;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc &lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt; </td>
   </tr>
   <tr>
    <td style="text-align:left;"> LGBTQ </td>
@@ -418,7 +416,7 @@ Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp;
    <td style="text-align:left;"> NationalVoterRegistrationDay </td>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸 </td>
+   <td style="text-align:left;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc &lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt; </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CreativeSelfSovereignty </td>
@@ -479,27 +477,25 @@ kable(x = top10,
    <td style="text-align:left;vertical-align: top;"> pridemonth </td>
    <td style="text-align:right;vertical-align: top;"> 36 </td>
    <td style="text-align:right;vertical-align: top;"> 11 </td>
-   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
+   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth &lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt; justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> pridemonth2021 </td>
    <td style="text-align:right;vertical-align: top;"> 17 </td>
    <td style="text-align:right;vertical-align: top;"> 6 </td>
-   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth 🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈🏳️‍🌈 justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
+   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday  for canada for #pridemonth2021 #pridemonth &lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt; justin tredeau of ultra https://t.co/yT3rUb3e60 </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> NA </td>
    <td style="text-align:right;vertical-align: top;"> 16 </td>
    <td style="text-align:right;vertical-align: top;"> 0 </td>
-   <td style="text-align:left;vertical-align: top;"> We are thrilled to announce the panelists of our upcoming virtual discussion "Coming Out: A Conversation". 
-
-Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp; programming centered on identity, expression, and what it means to share yourself with the world. https://t.co/rb7eYbxryp </td>
+   <td style="text-align:left;vertical-align: top;"> Join the LGBTQ Advisory Council (a subcommittee of the Des Moines Civil &amp;amp; Human Rights Commission) for a National Coming Out Day celebration! Monday, October 11th, 5:30-6:30 pm at the Pappajohn Sculpture Park - Keith Haring Sculpture #NationalComingOutDay #LGBTQ https://t.co/D4nHNjnArl </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> electionday </td>
    <td style="text-align:right;vertical-align: top;"> 15 </td>
    <td style="text-align:right;vertical-align: top;"> 2 </td>
-   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸 </td>
+   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc &lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt; </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> LGBTQ </td>
@@ -511,7 +507,7 @@ Join us at 8PM on #NationalComingOutDay for an evening of conversation &amp;amp;
    <td style="text-align:left;vertical-align: top;"> NationalVoterRegistrationDay </td>
    <td style="text-align:right;vertical-align: top;"> 10 </td>
    <td style="text-align:right;vertical-align: top;"> 1 </td>
-   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸 </td>
+   <td style="text-align:left;vertical-align: top;"> #nationalcomingoutday #pridemonth #pride2021 #pridemonth #electionday #electionday2021 #NationalVoterRegistrationDay  #voteready #vote2021 #electionday #Debates #Debates2021 #nycc2021 #nycc &lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt;&lt;U+0001F1FA&gt;&lt;U+0001F1F8&gt; </td>
   </tr>
   <tr>
    <td style="text-align:left;vertical-align: top;"> CreativeSelfSovereignty </td>

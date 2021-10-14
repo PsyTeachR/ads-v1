@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>E Styling Plots | Applied Data Skills</title>
+<title>F Styling Plots | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="E.1 Aesthetics  E.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
+<meta name="description" content="F.1 Aesthetics  F.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="E Styling Plots | Applied Data Skills">
+<meta property="og:title" content="F Styling Plots | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/plotstyle.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="E.1 Aesthetics  E.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
+<meta property="og:description" content="F.1 Aesthetics  F.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="E Styling Plots | Applied Data Skills">
-<meta name="twitter:description" content="E.1 Aesthetics  E.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
+<meta name="twitter:title" content="F Styling Plots | Applied Data Skills">
+<meta name="twitter:description" content="F.1 Aesthetics  F.1.1 Colour/Fill The colour argument changes the point and line colour, while the fill argument changes the interior colour of shapes. Type colours() into the console to see a...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -67,10 +67,11 @@
 <li><a class="" href="next.html"><span class="header-section-number">10</span> What's Next</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
-<li><a class="" href="symbols.html"><span class="header-section-number">B</span> Symbols</a></li>
-<li><a class="" href="conventions.html"><span class="header-section-number">C</span> Conventions</a></li>
-<li><a class="" href="data-types.html"><span class="header-section-number">D</span> Data Types</a></li>
-<li><a class="active" href="plotstyle.html"><span class="header-section-number">E</span> Styling Plots</a></li>
+<li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
+<li><a class="" href="symbols.html"><span class="header-section-number">C</span> Symbols</a></li>
+<li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
+<li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
+<li><a class="active" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -80,17 +81,17 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="plotstyle" class="section level1" number="15">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="plotstyle" class="section level1" number="16">
 <h1>
-<span class="header-section-number">E</span> Styling Plots<a class="anchor" aria-label="anchor" href="#plotstyle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F</span> Styling Plots<a class="anchor" aria-label="anchor" href="#plotstyle"><i class="fas fa-link"></i></a>
 </h1>
-<div id="aesthetics" class="section level2" number="15.1">
+<div id="aesthetics" class="section level2" number="16.1">
 <h2>
-<span class="header-section-number">E.1</span> Aesthetics<a class="anchor" aria-label="anchor" href="#aesthetics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.1</span> Aesthetics<a class="anchor" aria-label="anchor" href="#aesthetics"><i class="fas fa-link"></i></a>
 </h2>
-<div id="colourfill" class="section level3" number="15.1.1">
+<div id="colourfill" class="section level3" number="16.1.1">
 <h3>
-<span class="header-section-number">E.1.1</span> Colour/Fill<a class="anchor" aria-label="anchor" href="#colourfill"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.1.1</span> Colour/Fill<a class="anchor" aria-label="anchor" href="#colourfill"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>colour</code> argument changes the point and line colour, while the <code>fill</code> argument changes the interior colour of shapes. Type <code><a href="https://rdrr.io/r/grDevices/colors.html">colours()</a></code> into the console to see a list of all the named colours in R. Alternatively, you can use hexadecimal colours like <code>"#FF8000"</code> or the <code><a href="https://rdrr.io/r/grDevices/rgb.html">rgb()</a></code> function to set red, green, and blue values on a scale from 0 to 1.</p>
 <p>Hover over a colour to see its R name.</p>
@@ -1625,67 +1626,67 @@
 </li>
 </ul>
 </div>
-<div id="alpha" class="section level3" number="15.1.2">
+<div id="alpha" class="section level3" number="16.1.2">
 <h3>
-<span class="header-section-number">E.1.2</span> Alpha<a class="anchor" aria-label="anchor" href="#alpha"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.1.2</span> Alpha<a class="anchor" aria-label="anchor" href="#alpha"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>alpha</code> argument changes transparency (0 = totally transparent, 1 = totally opaque).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:alpha-demo"></span>
-<img src="appendix-e-styling_files/figure-html/alpha-demo-1.png" alt="Varying alpha values." width="100%"><p class="caption">
-Figure E.1: Varying alpha values.
+<img src="appendix-f-styling_files/figure-html/alpha-demo-1.png" alt="Varying alpha values." width="100%"><p class="caption">
+Figure F.1: Varying alpha values.
 </p>
 </div>
 </div>
-<div id="shape" class="section level3" number="15.1.3">
+<div id="shape" class="section level3" number="16.1.3">
 <h3>
-<span class="header-section-number">E.1.3</span> Shape<a class="anchor" aria-label="anchor" href="#shape"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.1.3</span> Shape<a class="anchor" aria-label="anchor" href="#shape"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>shape</code> argument changes the shape of points.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:shape-demo"></span>
-<img src="appendix-e-styling_files/figure-html/shape-demo-1.png" alt="The 25 shape values" width="100%"><p class="caption">
-Figure E.2: The 25 shape values
+<img src="appendix-f-styling_files/figure-html/shape-demo-1.png" alt="The 25 shape values" width="100%"><p class="caption">
+Figure F.2: The 25 shape values
 </p>
 </div>
 </div>
-<div id="linetype" class="section level3" number="15.1.4">
+<div id="linetype" class="section level3" number="16.1.4">
 <h3>
-<span class="header-section-number">E.1.4</span> Linetype<a class="anchor" aria-label="anchor" href="#linetype"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.1.4</span> Linetype<a class="anchor" aria-label="anchor" href="#linetype"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can probably guess what the <code>linetype</code> argument does.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:linetype-demo"></span>
-<img src="appendix-e-styling_files/figure-html/linetype-demo-1.png" alt="The 6 linetype values at different sizes." width="100%"><p class="caption">
-Figure E.3: The 6 linetype values at different sizes.
+<img src="appendix-f-styling_files/figure-html/linetype-demo-1.png" alt="The 6 linetype values at different sizes." width="100%"><p class="caption">
+Figure F.3: The 6 linetype values at different sizes.
 </p>
 </div>
 </div>
 </div>
-<div id="palettes" class="section level2" number="15.2">
+<div id="palettes" class="section level2" number="16.2">
 <h2>
-<span class="header-section-number">E.2</span> Palettes<a class="anchor" aria-label="anchor" href="#palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2</span> Palettes<a class="anchor" aria-label="anchor" href="#palettes"><i class="fas fa-link"></i></a>
 </h2>
 <p>Discrete palettes change depending on the number of categories.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Default discrete palette with different numbers of levels." width="100%"><p class="caption">
-Figure E.4: Default discrete palette with different numbers of levels.
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-3-1.png" alt="Default discrete palette with different numbers of levels." width="100%"><p class="caption">
+Figure F.4: Default discrete palette with different numbers of levels.
 </p>
 </div>
-<div id="viridis-palettes" class="section level3" number="15.2.1">
+<div id="viridis-palettes" class="section level3" number="16.2.1">
 <h3>
-<span class="header-section-number">E.2.1</span> Viridis Palettes<a class="anchor" aria-label="anchor" href="#viridis-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.1</span> Viridis Palettes<a class="anchor" aria-label="anchor" href="#viridis-palettes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Viridis palettes are very good for colourblind-safe and greyscale-safe plots. The work with any number of categories, but are best for larger numbers of categories or continuous colours.</p>
-<div id="discrete-viridis-palettes" class="section level4" number="15.2.1.1">
+<div id="discrete-viridis-palettes" class="section level4" number="16.2.1.1">
 <h4>
-<span class="header-section-number">E.2.1.1</span> Discrete Viridis Palettes<a class="anchor" aria-label="anchor" href="#discrete-viridis-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.1.1</span> Discrete Viridis Palettes<a class="anchor" aria-label="anchor" href="#discrete-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
 <p>Set <a class="glossary" target="_blank" title="Data that can only take certain values, such as integers." href="https://psyteachr.github.io/glossary/d#discrete">discrete</a> viridis colours with <code>scale_colour_viridis_d()</code> or <code>scale_fill_viridis_d()</code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Discrete viridis palettes." width="100%"><p class="caption">
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-4-1.png" alt="Discrete viridis palettes." width="100%"><p class="caption">
 Figure 8.2: Discrete viridis palettes.
 </p>
 </div>
@@ -1693,81 +1694,81 @@ Figure 8.2: Discrete viridis palettes.
 <p>If the end colour is too light for your plot or the start colour too dark, you can set the <code>begin</code> and <code>end</code> arguments to values between 0 and 1, such as <code><span class="fu">scale_colour_viridis_c</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code>.</p>
 </div>
 </div>
-<div id="continuous-viridis-palettes" class="section level4" number="15.2.1.2">
+<div id="continuous-viridis-palettes" class="section level4" number="16.2.1.2">
 <h4>
-<span class="header-section-number">E.2.1.2</span> Continuous Viridis Palettes<a class="anchor" aria-label="anchor" href="#continuous-viridis-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.1.2</span> Continuous Viridis Palettes<a class="anchor" aria-label="anchor" href="#continuous-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
 <p>Set <a class="glossary" target="_blank" title="Data that can take on any values between other existing values." href="https://psyteachr.github.io/glossary/c#continuous">continuous</a> viridis colours with <code>scale_colour_viridis_c()</code> or <code>scale_fill_viridis_c()</code> and set the <code>option</code> argument to one of the options below. Set <code>direction = -1</code> to reverse the order of colours.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Continuous viridis palettes." width="100%"><p class="caption">
-Figure E.5: Continuous viridis palettes.
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-5-1.png" alt="Continuous viridis palettes." width="100%"><p class="caption">
+Figure F.5: Continuous viridis palettes.
 </p>
 </div>
 </div>
 </div>
-<div id="brewer-palettes" class="section level3" number="15.2.2">
+<div id="brewer-palettes" class="section level3" number="16.2.2">
 <h3>
-<span class="header-section-number">E.2.2</span> Brewer Palettes<a class="anchor" aria-label="anchor" href="#brewer-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.2</span> Brewer Palettes<a class="anchor" aria-label="anchor" href="#brewer-palettes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Brewer palettes give you a lot of control over plot colour and fill. You set them with <code>scale_color_brewer()</code> or <code>scale_fill_brewer()</code> and set the <code>palette</code> argument to one of the palettes below. Set <code>direction = -1</code> to reverse the order of colours.</p>
-<div id="qualitative-brewer-palettes" class="section level4" number="15.2.2.1">
+<div id="qualitative-brewer-palettes" class="section level4" number="16.2.2.1">
 <h4>
-<span class="header-section-number">E.2.2.1</span> Qualitative Brewer Palettes<a class="anchor" aria-label="anchor" href="#qualitative-brewer-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.2.1</span> Qualitative Brewer Palettes<a class="anchor" aria-label="anchor" href="#qualitative-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
 <p>These palettes are good for <a class="glossary" target="_blank" title="Data that can only take certain values, such as types of pet." href="https://psyteachr.github.io/glossary/c#categorical">categorical</a> data with up to 8 categories (some palettes can handle up to 12). The "Paired" palette is useful if your categories are arranged in pairs.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Qualitative brewer palettes." width="100%"><p class="caption">
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-6-1.png" alt="Qualitative brewer palettes." width="100%"><p class="caption">
 Figure 8.3: Qualitative brewer palettes.
 </p>
 </div>
 </div>
-<div id="sequential-brewer-palettes" class="section level4" number="15.2.2.2">
+<div id="sequential-brewer-palettes" class="section level4" number="16.2.2.2">
 <h4>
-<span class="header-section-number">E.2.2.2</span> Sequential Brewer Palettes<a class="anchor" aria-label="anchor" href="#sequential-brewer-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.2.2</span> Sequential Brewer Palettes<a class="anchor" aria-label="anchor" href="#sequential-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
 <p>These palettes are good for up to 9 <a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as number of legs" href="https://psyteachr.github.io/glossary/o#ordinal">ordinal</a> categories with a lot of categories.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Sequential brewer palettes." width="100%"><p class="caption">
-Figure E.6: Sequential brewer palettes.
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-7-1.png" alt="Sequential brewer palettes." width="100%"><p class="caption">
+Figure F.6: Sequential brewer palettes.
 </p>
 </div>
 </div>
-<div id="diverging-brewer-palettes" class="section level4" number="15.2.2.3">
+<div id="diverging-brewer-palettes" class="section level4" number="16.2.2.3">
 <h4>
-<span class="header-section-number">E.2.2.3</span> Diverging Brewer Palettes<a class="anchor" aria-label="anchor" href="#diverging-brewer-palettes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.2.2.3</span> Diverging Brewer Palettes<a class="anchor" aria-label="anchor" href="#diverging-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
 <p>These palettes are good for <a class="glossary" target="_blank" title="Discrete variables that have an inherent order, such as number of legs" href="https://psyteachr.github.io/glossary/o#ordinal">ordinal</a> categories with up to 11 levels where the centre level is a neutral or baseline category and the levels above and below it differ in an important way, such as agree versus disagree options.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-8"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-8-1.png" alt="Diverging brewer palettes." width="100%"><p class="caption">
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-8-1.png" alt="Diverging brewer palettes." width="100%"><p class="caption">
 Figure 8.4: Diverging brewer palettes.
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="themes-1" class="section level2" number="15.3">
+<div id="themes-1" class="section level2" number="16.3">
 <h2>
-<span class="header-section-number">E.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes-1"><i class="fas fa-link"></i></a>
 </h2>
 <p><code class="package">ggplot2</code> has 8 built-in themes that you can add to a plot like <code>plot + theme_bw()</code> or set as the default theme at the top of your script like <code>theme_set(theme_bw())</code>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-9"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-9-1.png" alt="{ggplot2} themes." width="100%"><p class="caption">
-Figure E.7: {ggplot2} themes.
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-9-1.png" alt="{ggplot2} themes." width="100%"><p class="caption">
+Figure F.7: {ggplot2} themes.
 </p>
 </div>
-<div id="ggthemes" class="section level3" number="15.3.1">
+<div id="ggthemes" class="section level3" number="16.3.1">
 <h3>
-<span class="header-section-number">E.3.1</span> ggthemes<a class="anchor" aria-label="anchor" href="#ggthemes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.3.1</span> ggthemes<a class="anchor" aria-label="anchor" href="#ggthemes"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can get more themes from add-on packages, like <code class="package"><a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/" target="_blank">ggthemes</a></code>. Most of the themes also have custom <code>scale_</code> functions like <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_economist.html">scale_colour_economist()</a></code>. Their website has extensive examples and instructions for alternate or dark versions of these themes.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="appendix-e-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%"><p class="caption">
+<img src="appendix-f-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%"><p class="caption">
 Figure 8.5: {ggthemes} themes.
 </p>
 </div>
@@ -1970,35 +1971,35 @@ $( document ).ready(function() {
   window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
-<div class="prev"><a href="data-types.html"><span class="header-section-number">D</span> Data Types</a></div>
+<div class="prev"><a href="data-types.html"><span class="header-section-number">E</span> Data Types</a></div>
 <div class="next"><a href="license.html">License</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#plotstyle"><span class="header-section-number">E</span> Styling Plots</a></li>
+<li><a class="nav-link" href="#plotstyle"><span class="header-section-number">F</span> Styling Plots</a></li>
 <li>
-<a class="nav-link" href="#aesthetics"><span class="header-section-number">E.1</span> Aesthetics</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#colourfill"><span class="header-section-number">E.1.1</span> Colour/Fill</a></li>
-<li><a class="nav-link" href="#alpha"><span class="header-section-number">E.1.2</span> Alpha</a></li>
-<li><a class="nav-link" href="#shape"><span class="header-section-number">E.1.3</span> Shape</a></li>
-<li><a class="nav-link" href="#linetype"><span class="header-section-number">E.1.4</span> Linetype</a></li>
+<a class="nav-link" href="#aesthetics"><span class="header-section-number">F.1</span> Aesthetics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#colourfill"><span class="header-section-number">F.1.1</span> Colour/Fill</a></li>
+<li><a class="nav-link" href="#alpha"><span class="header-section-number">F.1.2</span> Alpha</a></li>
+<li><a class="nav-link" href="#shape"><span class="header-section-number">F.1.3</span> Shape</a></li>
+<li><a class="nav-link" href="#linetype"><span class="header-section-number">F.1.4</span> Linetype</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#palettes"><span class="header-section-number">E.2</span> Palettes</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#viridis-palettes"><span class="header-section-number">E.2.1</span> Viridis Palettes</a></li>
-<li><a class="nav-link" href="#brewer-palettes"><span class="header-section-number">E.2.2</span> Brewer Palettes</a></li>
+<a class="nav-link" href="#palettes"><span class="header-section-number">F.2</span> Palettes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viridis-palettes"><span class="header-section-number">F.2.1</span> Viridis Palettes</a></li>
+<li><a class="nav-link" href="#brewer-palettes"><span class="header-section-number">F.2.2</span> Brewer Palettes</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#themes-1"><span class="header-section-number">E.3</span> Themes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ggthemes"><span class="header-section-number">E.3.1</span> ggthemes</a></li></ul>
+<a class="nav-link" href="#themes-1"><span class="header-section-number">F.3</span> Themes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ggthemes"><span class="header-section-number">F.3.1</span> ggthemes</a></li></ul>
 </li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/appendix-e-styling.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/appendix-e-styling.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/appendix-f-styling.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/appendix-f-styling.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -2010,7 +2011,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-13.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

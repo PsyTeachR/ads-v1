@@ -1,0 +1,333 @@
+# Data Relations {#joins}
+
+## Intended Learning Outcomes {#ilo-joins}
+
+* Be able to match related data from multiple tables
+
+```{r setup, message=FALSE}
+library(tidyverse)     # includes readr & tibble
+library(rio)           # for almost any data import/export
+library(haven)         # for SPSS, Stata,and SAS files
+library(readxl)        # for Excel files
+library(googlesheets4) # for Google Sheets
+```
+
+
+The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
+
+For this demo, first we'll create two small data tables. 
+
+`customer` has id, city and postcode for customers 1-5. City and postcode are missing for customer 3.
+
+```{r subject}
+customers <- tibble(
+  id = 1:5,
+  city = c("Port Ellen", "Dufftown", NA, "Aberlour", "Tobermory"),
+  postcode = c("PA42 7DU", "AB55 4DH", NA, "AB38 7RY", "PA75 6NR")
+)
+```
+
+`r knitr::kable(customers)`
+
+`orders` has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.
+
+```{r orders}
+orders <- tibble(
+  id = c(2, 3, 4, 4, 5, 5, 6, 6, 7),
+  items = c(10, 18, 21, 23, 9, 11, 11, 12, 3)
+)
+```
+
+`r knitr::kable(orders)`
+
+
+### Mutating Joins
+
+`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
+
+All the mutating joins have this basic syntax:
+
+`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
+
+* `x` = the first (left) table
+* `y` = the second (right) table
+* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
+* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+
+::: {.info data-latex=""}
+You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
+:::
+
+#### left_join() {#left_join}
+
+<div class="join"><img src="images/joins/left_join.png" /></div>
+
+A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
+
+```{r left_join}
+left_join(customers, orders, by = "id")
+```
+
+<div class="join"><img src="images/joins/left_join_rev.png" /></div>
+
+The order of tables is swapped here, so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
+
+```{r left_join-2}
+left_join(orders, customers, by = "id")
+```
+
+#### right_join() {#right_join}
+
+<div class="join"><img src="images/joins/right_join.png" /></div>
+
+A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
+
+```{r right_join}
+right_join(customers, orders, by = "id")
+```
+
+::: {.info data-latex=""}
+This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
+:::
+
+#### inner_join() {#inner_join}
+
+<div class="join"><img src="images/joins/inner_join.png" /></div>
+
+An `inner_join` returns all the rows that have a match in the other table.
+
+```{r inner_join}
+inner_join(customers, orders, by = "id")
+```
+
+
+#### full_join() {#full_join}
+
+<div class="join"><img src="images/joins/full_join.png" /></div>
+
+A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
+
+```{r full_join}
+full_join(customers, orders, by = "id")
+```
+
+
+### Filtering Joins
+
+`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter\ \@ref(wrangle).)
+
+#### semi_join() {#semi_join}
+
+<div class="join"><img src="images/joins/semi_join.png" /></div>
+
+A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
+
+```{r semi_join}
+semi_join(customers, orders, by = "id")
+```
+
+::: {.info data-latex=""}
+Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
+:::
+
+<div class="join"><img src="images/joins/semi_join_rev.png" /></div>
+
+Order matters in a semi join.
+
+```{r semi_join-2}
+semi_join(orders, customers, by = "id")
+```
+
+#### anti_join() {#anti_join}
+
+<div class="join"><img src="images/joins/anti_join.png" /></div>
+
+An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
+
+```{r anti_join}
+anti_join(customers, orders, by = "id")
+```
+
+<div class="join"><img src="images/joins/anti_join_rev.png" /></div>
+
+Order matters in an anti join.
+
+```{r anti_join-2}
+anti_join(orders, customers, by = "id")
+```
+
+### Binding Joins
+
+`r glossary("Binding joins")` bind one table to another by adding their rows or columns together.
+
+#### bind_rows() {#bind_rows}
+
+You can combine the rows of two tables with `bind_rows`.
+
+Here we'll add customer data for customers 6-9 and bind that to the original customer table.
+
+```{r bind_rows}
+new_customers <- tibble(
+  id = 6:9,
+  city = c("Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
+  postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
+)
+
+bind_rows(customers, new_customers)
+```
+
+The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
+
+If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use `union()` (see below) to avoid duplicates.
+
+```{r bind-rows-union}
+new_customers <- tibble(
+  id = 5:9,
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
+  new = c(1,2,3,4,5)
+)
+
+bind_rows(customers, new_customers)
+```
+
+#### bind_cols() {#bind_cols}
+
+You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
+
+```{r bind_cols}
+new_info <- tibble(
+  colour = c("red", "orange", "yellow", "green", "blue")
+)
+
+bind_cols(customers, new_info)
+```
+
+#### Importing folders
+
+If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
+
+```{r}
+# write our data to a new folder for the demo
+write_csv(x = customers, file = "data/customers1.csv")
+write_csv(x = new_customers, file = "data/customers2.csv")
+
+files <- list.files(
+  path = "data", 
+  pattern = "customers",
+  full.names = TRUE
+)
+
+files
+```
+
+Now we can use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a table with all the combined data.
+
+```{r, message=FALSE}
+purrr::map_df(files, read_csv)
+```
+
+```{r, inlcude=FALSE}
+# clean up temporary files
+file.remove("data/customers1.csv")
+file.remove("data/customers2.csv")
+```
+
+
+
+### Set Operations
+
+`r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
+
+#### intersect() {#intersect}
+
+`intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
+
+```{r intersect}
+new_customers <- tibble(
+  id = 5:9,
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
+)
+
+intersect(customers, new_customers)
+
+```
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has an `intersect()` function. The error message can be confusing and looks something like this:
+
+```{r base-intersect, error = TRUE}
+base::intersect(customers, new_customers)
+```
+:::
+
+#### union() {#union}
+
+`union()` returns all the rows from both tables, removing duplicate rows.
+
+```{r union}
+union(customers, new_customers)
+```
+
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `union()` function. You usually won't get an error message, but the output won't be what you expect.
+
+```{r base-union}
+base::union(customers, new_customers)
+```
+:::
+
+#### setdiff() {#setdiff}
+
+`setdiff` returns rows that are in the first table, but not in the second table.
+
+```{r setdiff}
+setdiff(customers, new_customers)
+```
+
+Order matters for `setdiff`.
+
+```{r setdiff-order}
+setdiff(new_customers, customers)
+```
+
+::: {.warning data-latex=""}
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
+
+```{r base-setdiff}
+base::setdiff(customers, new_customers)
+```
+:::
+
+
+
+## Glossary {#glossary-joins}
+
+`r glossary_table()`
+
+## Further resources {#resources-joins}
+
+* [Data transformation cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+
+* [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
+
+
+
+
+
+
+
+
+
+
+
+```{r, include = FALSE}
+# clean up temp datasets
+files <- c("data/avatar_na.csv", "data/family.csv")
+
+file.exists(files) %>%
+  `[`(files, .) %>%
+  file.remove()
+```

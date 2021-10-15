@@ -1,10 +1,9 @@
-# Data Import and Relations {#data}
+# Data Import {#data}
 
 ## Intended Learning Outcomes {#ilo-data}
 
 * Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
-* Be able to match related data from multiple tables
 
 ```{r setup, message=FALSE}
 library(tidyverse)     # includes readr & tibble
@@ -14,11 +13,8 @@ library(readxl)        # for Excel files
 library(googlesheets4) # for Google Sheets
 ```
 
-## Data Import
 
-For this lesson, please download a [directory of data files used in this class](data/data.zip).
-
-### Built-in data {#builtin}
+## Built-in data {#builtin}
 
 R comes with built-in datasets. Some packages, like `r pkg("tidyr")`, also contain data. The `r hl(data())` function lists the datasets available in a `r glossary("package")`.
 
@@ -41,13 +37,13 @@ data("table1")
 ```
 
 
-### Looking at data
+## Looking at data
 
 Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.
 
 Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: `r hl(View())`, `r hl(print())`, `r hl(tibble::glimpse())`. 
 
-#### View() 
+### View() 
 
 A familiar way to look at the table is given by `r hl(View())` (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the  `r glossary("panes", "environment pane")`. You can close the tab when you're done looking at it; it won't remove the object.
 
@@ -56,7 +52,7 @@ View(table1)
 ```
 
 
-#### print() 
+### print() 
 
 The `r hl(print())` method can be run explicitly, but is more commonly called by just typing the variable name on a blank line. The default is not to print the entire table, but just the first 10 rows. 
 
@@ -66,7 +62,7 @@ Let's look at the `table1` table that we loaded above. Depending on how wide you
 table1
 ```
 
-#### glimpse() 
+### glimpse() 
 
 The function `r hl(tibble::glimpse())` gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the `r glossary("data type")` of each column in angled brackets after each column name. 
 
@@ -74,7 +70,7 @@ The function `r hl(tibble::glimpse())` gives a sideways version of the table. Th
 glimpse(table1)
 ```
 
-#### summary() {#summary-function}
+### summary() {#summary-function}
 
 You can get a quick summary of a dataset with the `r hl(summary())` function.
 
@@ -83,9 +79,11 @@ summary(table1)
 ```
 
 
-### Importing data {#import_data}
+## Importing data {#import_data}
 
 Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter `r glossary("extension")` following a period at the end of the file name. 
+
+Please download a [directory of data files used in this class](data/data.zip) and save the `data` directory in the same directory that your Rmd file is in.
 
 ```{r importing-data-setup, include=FALSE}
 demo <- tibble(
@@ -106,7 +104,7 @@ export(demo, "data/demo.json")
 ```
 
 
-#### rio::import()  
+### rio::import()  
 
 The `r pkg("rio")` package has very straightforward functions for reading and saving data: `r hl(rio::import())` and `r hl(rio::export())`.
 
@@ -118,7 +116,7 @@ demo_sav  <- import("data/demo.sav")  # SPSS format
 ```
 
 
-#### File type specific import 
+### File type specific import 
 
 However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
 
@@ -140,7 +138,7 @@ demo_gs4  <- googlesheets4::read_sheet(
 ```
 
 
-#### Column data types {#col_types}
+### Column data types {#col_types}
 
 Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.
 
@@ -216,7 +214,7 @@ The way you specify column types for `r pkg("googlesheets4")` is a little differ
 :::
 
 
-### Creating data 
+## Creating data 
 
 If you need to create a small data table from scratch, use the `r hl(tibble::tibble())` function, and type the data right in. The `tibble` package is part of the `r glossary("tidyverse")` package that we loaded at the start of this chapter. 
 
@@ -250,7 +248,7 @@ avatar_by_row <- tribble(
 You don't have to line up the columns in a tribble, but it can make it easier to spot errors.
 :::
 
-### Writing data
+## Writing data
 
 If you have data that you want to save to a CSV file, use `r hl(rio::export())`, as follows.
 
@@ -309,7 +307,7 @@ family <- import("data/family.csv")
 We'll be working with `r glossary("tabular data")` a lot in this class, but tabular data is made up of `r glossary("vector", "vectors")`, which groups together data with the same basic `r glossary("data type")`. Appendix\ \@ref(data-types) explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.
 
 
-### Troubleshooting
+## Troubleshooting
 
 What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like `r hl(1.2)` get represented as `r hl("1.2")`, which will cause very weird errors like `"100" < "9" == TRUE`. You can catch this by using `r hl(glimpse())` to check your data.
 
@@ -322,11 +320,13 @@ mess <- import("data/mess.csv")
 When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is `r hl(readr::read_csv)`.
 
 ```{r}
-mess <- read_csv("data/mess.csv")
+# lazy = FALSE loads the data right away so you can see error messages
+# this default changed in late 2021 and might change back soon
+mess <- read_csv("data/mess.csv", lazy = FALSE)
 ```
 
 
-You'll get a warning with many parsing errors and `mess` is just a single row. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
+You'll get a warning with many parsing errors and the data table is just a single column. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
 
 ```
 This is my messy dataset
@@ -344,8 +344,10 @@ junk,4,2.03,d,T,4 - 5,2020-01-4
 First, the file starts with a note: "This is my messy dataset". We want to skip the first two lines. You can do this with the argument `skip` in `read_csv()`.
 
 ```{r mess}
-mess <- read_csv("data/mess.csv", skip = 2)
-mess
+mess <- read_csv("data/mess.csv", 
+                 skip = 2,
+                 lazy = FALSE)
+glimpse(mess)
 ```
 
 OK, that's a little better, but this table is still a serious mess in several ways:
@@ -357,7 +359,7 @@ OK, that's a little better, but this table is still a serious mess in several wa
 * `min_max` contains two pieces of numeric information, but is a character column
 * `date` should be a date column
 
-We'll learn how to deal with this mess in Chapters\ \@ref(tidy) and \@ref(wrangle), but we can fix a few things by setting the `col_types` argument in `r hl(read_csv())` to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument `col_types` takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like `r hl(col_double())` or the abbreviation, like `r hl("l")`. Omitted column names are guessed.
+We'll learn how to deal with this mess in Chapters\ \@ref(tidy) and \@ref(wrangle), but we can fix a few things by setting the `col_types` argument in `read_csv()` to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument `col_types` takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like `col_double()` or the abbreviation, like `r hl("l")`. Omitted column names are guessed.
 
 | function | |abbreviation | type |
 |:---------|:--------------|:-----|
@@ -385,23 +387,25 @@ ct <- list(
 
 tidier <- read_csv("data/mess.csv", 
                    skip = 2,
-                   col_types = ct)
+                   col_types = ct,
+                   lazy = FALSE)
 ```
 
-You will get a message about "parsing failures" when you run this. Warnings look scary at first, but always start by reading the message.
+You will get a message about parsing issues when you run this that tells you to run the `problems()` function to see a table of the problems. Warnings look scary at first, but always start by reading the message.
 
 ```{r}
 problems()
 ```
 
 
-The table tells you what row (`3`) and column (`2`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`r hl("missing")`). If you specifically tell `r hl(read_csv())` to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
+The table tells you what row (`3`) and column (`2`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`missing`). If you specifically tell `read_csv()` to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as `NA`. You can manually set what the missing values were recorded as with the `na` argument.
 
 ```{r}
 tidiest <- read_csv("data/mess.csv", 
                    skip = 2,
                    na = "missing",
-                   col_types = ct)
+                   col_types = ct,
+                   lazy = FALSE)
 ```
 
 
@@ -411,295 +415,6 @@ Now `order` is an integer where "missing" is now `NA`, `good` is a logical value
 head(tidiest)
 ```
 
-## Data Relations
-
-The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
-
-For this demo, first we'll create two small data tables. 
-
-`customer` has id, city and postcode for customers 1-5. City and postcode are missing for customer 3.
-
-```{r subject}
-customers <- tibble(
-  id = 1:5,
-  city = c("Port Ellen", "Dufftown", NA, "Aberlour", "Tobermory"),
-  postcode = c("PA42 7DU", "AB55 4DH", NA, "AB38 7RY", "PA75 6NR")
-)
-```
-
-`r knitr::kable(customers)`
-
-`orders` has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.
-
-```{r orders}
-orders <- tibble(
-  id = c(2, 3, 4, 4, 5, 5, 6, 6, 7),
-  items = c(10, 18, 21, 23, 9, 11, 11, 12, 3)
-)
-```
-
-`r knitr::kable(orders)`
-
-
-### Mutating Joins
-
-`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
-
-All the mutating joins have this basic syntax:
-
-`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-* `x` = the first (left) table
-* `y` = the second (right) table
-* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
-* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
-
-::: {.info data-latex=""}
-You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
-:::
-
-#### left_join() {#left_join}
-
-<div class="join"><img src="images/joins/left_join.png" /></div>
-
-A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
-
-```{r left_join}
-left_join(customers, orders, by = "id")
-```
-
-<div class="join"><img src="images/joins/left_join_rev.png" /></div>
-
-The order of tables is swapped here, so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
-
-```{r left_join-2}
-left_join(orders, customers, by = "id")
-```
-
-#### right_join() {#right_join}
-
-<div class="join"><img src="images/joins/right_join.png" /></div>
-
-A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
-
-```{r right_join}
-right_join(customers, orders, by = "id")
-```
-
-::: {.info data-latex=""}
-This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
-:::
-
-#### inner_join() {#inner_join}
-
-<div class="join"><img src="images/joins/inner_join.png" /></div>
-
-An `inner_join` returns all the rows that have a match in the other table.
-
-```{r inner_join}
-inner_join(customers, orders, by = "id")
-```
-
-
-#### full_join() {#full_join}
-
-<div class="join"><img src="images/joins/full_join.png" /></div>
-
-A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
-
-```{r full_join}
-full_join(customers, orders, by = "id")
-```
-
-
-### Filtering Joins
-
-`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter\ \@ref(wrangle).)
-
-#### semi_join() {#semi_join}
-
-<div class="join"><img src="images/joins/semi_join.png" /></div>
-
-A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
-
-```{r semi_join}
-semi_join(customers, orders, by = "id")
-```
-
-::: {.info data-latex=""}
-Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
-:::
-
-<div class="join"><img src="images/joins/semi_join_rev.png" /></div>
-
-Order matters in a semi join.
-
-```{r semi_join-2}
-semi_join(orders, customers, by = "id")
-```
-
-#### anti_join() {#anti_join}
-
-<div class="join"><img src="images/joins/anti_join.png" /></div>
-
-An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
-
-```{r anti_join}
-anti_join(customers, orders, by = "id")
-```
-
-<div class="join"><img src="images/joins/anti_join_rev.png" /></div>
-
-Order matters in an anti join.
-
-```{r anti_join-2}
-anti_join(orders, customers, by = "id")
-```
-
-### Binding Joins
-
-`r glossary("Binding joins")` bind one table to another by adding their rows or columns together.
-
-#### bind_rows() {#bind_rows}
-
-You can combine the rows of two tables with `bind_rows`.
-
-Here we'll add customer data for customers 6-9 and bind that to the original customer table.
-
-```{r bind_rows}
-new_customers <- tibble(
-  id = 6:9,
-  city = c("Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
-  postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
-)
-
-bind_rows(customers, new_customers)
-```
-
-The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
-
-If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use `union()` (see below) to avoid duplicates.
-
-```{r bind-rows-union}
-new_customers <- tibble(
-  id = 5:9,
-  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
-  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall"),
-  new = c(1,2,3,4,5)
-)
-
-bind_rows(customers, new_customers)
-```
-
-#### bind_cols() {#bind_cols}
-
-You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
-
-```{r bind_cols}
-new_info <- tibble(
-  colour = c("red", "orange", "yellow", "green", "blue")
-)
-
-bind_cols(customers, new_info)
-```
-
-#### Importing folders
-
-If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
-
-```{r}
-# write our data to a new folder for the demo
-write_csv(x = customers, file = "data/customers1.csv")
-write_csv(x = new_customers, file = "data/customers2.csv")
-
-files <- list.files(
-  path = "data", 
-  pattern = "customers",
-  full.names = TRUE
-)
-
-files
-```
-
-Now we can use `purrr::map_df()` to map over the list of file paths, open them with `read_csv()`, and return a table with all the combined data.
-
-```{r, message=FALSE}
-purrr::map_df(files, read_csv)
-```
-
-```{r, inlcude=FALSE}
-# clean up temporary files
-file.remove("data/customers1.csv")
-file.remove("data/customers2.csv")
-```
-
-
-
-### Set Operations
-
-`r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
-
-#### intersect() {#intersect}
-
-`intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
-
-```{r intersect}
-new_customers <- tibble(
-  id = 5:9,
-  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
-  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
-)
-
-intersect(customers, new_customers)
-
-```
-
-::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has an `intersect()` function. The error message can be confusing and looks something like this:
-
-```{r base-intersect, error = TRUE}
-base::intersect(customers, new_customers)
-```
-:::
-
-#### union() {#union}
-
-`union()` returns all the rows from both tables, removing duplicate rows.
-
-```{r union}
-union(customers, new_customers)
-```
-
-
-::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `union()` function. You usually won't get an error message, but the output won't be what you expect.
-
-```{r base-union}
-base::union(customers, new_customers)
-```
-:::
-
-#### setdiff() {#setdiff}
-
-`setdiff` returns rows that are in the first table, but not in the second table.
-
-```{r setdiff}
-setdiff(customers, new_customers)
-```
-
-Order matters for `setdiff`.
-
-```{r setdiff-order}
-setdiff(new_customers, customers)
-```
-
-::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
-
-```{r base-setdiff}
-base::setdiff(customers, new_customers)
-```
-:::
 
 
 
@@ -710,15 +425,7 @@ base::setdiff(customers, new_customers)
 ## Further resources {#resources-data}
 
 * [Data import cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
-* [Data transformation heatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
-* [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
-
-## Exercises {#exercises-data}
-
-
-
-
 
 
 

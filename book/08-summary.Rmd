@@ -14,16 +14,17 @@ library(glue) # for pasting strings
 
 ## Summary functions
 
-We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay or #BiWeek.
+We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay.
 
 ```{r, eval = FALSE}
 tweets <- search_tweets(q = "#NationalComingOutDay", 
-                          n = 10000)
+                        n = 10000, 
+                        include_rts = FALSE)
 ```
 
 ```{r, echo = FALSE}
-# saveRDS(tweets, file = "data/tweets.rds")
-tweets <- readRDS("data/tweets.rds")
+# saveRDS(tweets, file = "data/ncod_tweets.rds")
+tweets <- readRDS("data/ncod_tweets.rds")
 ```
 
 
@@ -175,11 +176,13 @@ The most favourited ({most_fav$favorite_count}) tweet was by
 
 --------------------------------------------------
 {most_fav$text}
+
+![]({most_fav$ext_media_url}){{width='100%'}}
 --------------------------------------------------
 ") %>% 
   # replace @ with \@ so @ doesn't trigger referencing
   gsub("@", "\\\\@", .) %>%
-  # prints results into document, not code
+  # prints results into document, not as code
   cat()
 ```
 
@@ -199,7 +202,7 @@ mcq1 <- c(answer = "`tweets %>% group_by(source) %>% filter(n() >= 10)`",
 
 ## Putting it together
 
-Let's make a table of the top ten hashtags used in conjunction with #BiVisibilityWeek, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
+Let's make a table of the top ten hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
 
 First, select just the relevant columns and expand the `hashtags` column. This is a column of lists, so you can create a row for each value using `unnest()`.
 
@@ -214,6 +217,7 @@ Now, count the number of tweets for each hashtag using `count()`, then filter th
 ```{r}
 top10_hashtags <- tweets_with_hashtags %>%
   count(hashtags) %>%
+  filter(!is.na(hashtags)) %>%  # get rid of the blank value
   slice_max(order_by = n, n = 10)
 ```
 

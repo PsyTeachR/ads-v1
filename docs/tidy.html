@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Data Tidying | Applied Data Skills</title>
+<title>Chapter 6 Data Tidying | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta name="description" content="6.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Data Tidying | Applied Data Skills">
+<meta property="og:title" content="Chapter 6 Data Tidying | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/tidy.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta property="og:description" content="6.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 5 Data Tidying | Applied Data Skills">
-<meta name="twitter:description" content="5.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
+<meta name="twitter:title" content="Chapter 6 Data Tidying | Applied Data Skills">
+<meta name="twitter:description" content="6.1 Intended Learning Outcomes Be able to change data between long and wide formats Separate, add, change, reorder, and rename columns Use pipes to chain together functions library(tidyverse) #...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -58,13 +58,13 @@
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
 <li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
-<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import and Relations</a></li>
-<li><a class="active" href="tidy.html"><span class="header-section-number">5</span> Data Tidying</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">6</span> Data Wrangling</a></li>
-<li><a class="" href="summary.html"><span class="header-section-number">7</span> Data Summaries</a></li>
-<li><a class="" href="custom.html"><span class="header-section-number">8</span> Customising Visualisations</a></li>
-<li><a class="" href="present.html"><span class="header-section-number">9</span> Dashboards, Reports, and Presentations</a></li>
-<li><a class="" href="next.html"><span class="header-section-number">10</span> What's Next</a></li>
+<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">5</span> Data Relations</a></li>
+<li><a class="active" href="tidy.html"><span class="header-section-number">6</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">7</span> Data Wrangling</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">8</span> Data Summaries</a></li>
+<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
+<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -81,26 +81,26 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy" class="section level1" number="5">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy" class="section level1" number="6">
 <h1>
-<span class="header-section-number">5</span> Data Tidying<a class="anchor" aria-label="anchor" href="#tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6</span> Data Tidying<a class="anchor" aria-label="anchor" href="#tidy"><i class="fas fa-link"></i></a>
 </h1>
-<div id="ilo-tidy" class="section level2" number="5.1">
+<div id="ilo-tidy" class="section level2" number="6.1">
 <h2>
-<span class="header-section-number">5.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-tidy"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Be able to change data between long and wide formats</li>
 <li>Separate, add, change, reorder, and rename columns</li>
 <li>Use pipes to chain together functions</li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># for data wrangling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>    <span class="co"># for reading excel files</span></code></pre></div>
 </div>
-<div id="data-structure" class="section level2" number="5.2">
+<div id="data-structure" class="section level2" number="6.2">
 <h2>
-<span class="header-section-number">5.2</span> Data Structure<a class="anchor" aria-label="anchor" href="#data-structure"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2</span> Data Structure<a class="anchor" aria-label="anchor" href="#data-structure"><i class="fas fa-link"></i></a>
 </h2>
 <p>An <a class="glossary" target="_blank" title="All of the data about a single trial or question." href="https://psyteachr.github.io/glossary/o#observation">observation</a> is all the information about a single "thing" at a single point in time. These things can be customers, sales, orders, feedback questionnaires, tweets, or really anything. Observations should have a way to identify them, such as a unique ID or combination of variable values.</p>
 <p>A <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/v#variable">variable</a> is one type of information about the observation. For example, if the observation is a sale, the variables you might have about the sale are the sale ID, the customer's ID, the date of the sale, the price paid, and method of payment.</p>
@@ -111,14 +111,14 @@
 <li>Each variable must have its own column</li>
 <li>Each value must have its own cell</li>
 </ul>
-<div id="untidy-data" class="section level3" number="5.2.1">
+<div id="untidy-data" class="section level3" number="6.2.1">
 <h3>
-<span class="header-section-number">5.2.1</span> Untidy data<a class="anchor" aria-label="anchor" href="#untidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.1</span> Untidy data<a class="anchor" aria-label="anchor" href="#untidy-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The table below has three observations per row (one customer's orders from 2018, 2019, and 2020) and the <code>itemsprice_{year}</code> columns contain two values (number of items and price per item).</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-1">Table 5.1: </span>Untidy table
+<span id="tab:unnamed-chunk-1">Table 6.1: </span>Untidy table
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -274,14 +274,14 @@ totalprice_2020
 <p>Think about how many steps in Excel this would be if there were 10 years in the table, or a different number of years each time you encountered data like this.</p>
 </div>
 </div>
-<div id="tidy-data" class="section level3" number="5.2.2">
+<div id="tidy-data" class="section level3" number="6.2.2">
 <h3>
-<span class="header-section-number">5.2.2</span> Tidy data<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.2</span> Tidy data<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>This is the tidy version, where each row is a customer's orders in a particular year. The number of items (<code>items</code>) and price per item (<code>price_per_item</code>) are in separate columns, so now you can perform mathematical operations on them.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-1">Table 5.1: </span>Tidy table
+<span id="tab:unnamed-chunk-1">Table 6.1: </span>Tidy table
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -564,13 +564,13 @@ totalprice
 <li>sum the <code>items</code> column to get the total number of items bought per customer</li>
 <li>sum the <code>totalprice</code> column to get the total price per customer</li>
 </ol>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/tidy_data.csv"</span><span class="op">)</span>
 
 <span class="co"># we'll learn about these functions later</span>
 <span class="va">tidy_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">customer_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">customer_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
     total_items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">items</span><span class="op">)</span>,
     total_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">totalprice</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
@@ -652,15 +652,15 @@ total_price
 <p>If you have control over how the data are recorded, it will make your life easier to record it in a tidy format from the start. However, we don't always have control, so this class will also teach you how to convert untidy tables into tidy tables.</p>
 </div>
 </div>
-<div id="reshaping-data" class="section level2" number="5.3">
+<div id="reshaping-data" class="section level2" number="6.3">
 <h2>
-<span class="header-section-number">5.3</span> Reshaping Data<a class="anchor" aria-label="anchor" href="#reshaping-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3</span> Reshaping Data<a class="anchor" aria-label="anchor" href="#reshaping-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Data tables can be in <a class="glossary" target="_blank" title="Data where all of the observations about one subject are in the same row" href="https://psyteachr.github.io/glossary/w#wide">wide</a> format or <a class="glossary" target="_blank" title="Data where each observation is on a separate row" href="https://psyteachr.github.io/glossary/l#long">long</a> format (or a mix of the two). Wide data are where all of the observations about one thing are in the same row, while long data are where each observation is on a separate row. You often need to convert between these formats to do different types of summaries or visualisation.</p>
-<p>Let's look again at just the <code>totalprice</code> data from the untidy table above. We can select just the columns we want using the <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or <code>new_name = old_name</code>. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.</p>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<p>Let's look again at just the <code>totalprice</code> data from the untidy table above. We can select just the columns we want using the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">dplyr::select()</a></code> function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or <code>new_name = old_name</code>. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select just the customer ID and 3 total price columns</span>
-<span class="va">untidy_price</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+<span class="va">untidy_price</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">untidy_data</span>,
   <span class="va">customer_id</span>, 
   `2018` <span class="op">=</span> <span class="va">totalprice_2018</span>,
@@ -669,7 +669,7 @@ total_price
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:wide-data">Table 5.2: </span>Wide data
+<span id="tab:wide-data">Table 6.2: </span>Wide data
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -762,7 +762,7 @@ customer_id
 <p>The same data can be represented in a long format by creating a new column that specifies what <code>item</code> the observation is from and a new column that specifies the <code>value</code> of that observation. This is easier to use to make summaries and plots.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:long-data">Table 5.3: </span>Long data
+<span id="tab:long-data">Table 6.3: </span>Long data
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -1001,9 +1001,9 @@ Answer
 </div>
 </div>
 <p>The pivot functions allow you to transform a data table from wide to long or long to wide.</p>
-<div id="wide-to-long" class="section level4" number="5.3.0.1">
+<div id="wide-to-long" class="section level4" number="6.3.0.1">
 <h4>
-<span class="header-section-number">5.3.0.1</span> Wide to long<a class="anchor" aria-label="anchor" href="#wide-to-long"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3.0.1</span> Wide to long<a class="anchor" aria-label="anchor" href="#wide-to-long"><i class="fas fa-link"></i></a>
 </h4>
 <p>The function <code>pivot_longer()</code> converts a wide data table to a longer format by converting the headers from specified columns into the values of new columns, and combining the values of those columns into a new condensed column.</p>
 <p>This function has several arguments:</p>
@@ -1017,7 +1017,7 @@ Answer
 <code>values_to</code>: what you want to call the new column that contains the values in the <code>cols</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">untidy_price_long</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">untidy_price</span>, 
   cols <span class="op">=</span> <span class="va">`2018`</span><span class="op">:</span><span class="va">`2020`</span>, <span class="co"># columns to make long </span>
@@ -1026,7 +1026,7 @@ Answer
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:pivot-longer">Table 5.4: </span>Data made longer with pivot_longer()
+<span id="tab:pivot-longer">Table 6.4: </span>Data made longer with pivot_longer()
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -1208,9 +1208,9 @@ totalprice
 </tbody>
 </table></div>
 </div>
-<div id="long-to-wide" class="section level4" number="5.3.0.2">
+<div id="long-to-wide" class="section level4" number="6.3.0.2">
 <h4>
-<span class="header-section-number">5.3.0.2</span> Long to wide<a class="anchor" aria-label="anchor" href="#long-to-wide"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3.0.2</span> Long to wide<a class="anchor" aria-label="anchor" href="#long-to-wide"><i class="fas fa-link"></i></a>
 </h4>
 <p>We can also go from long to wide format using the <code>pivot_wider()</code> function.</p>
 <ul>
@@ -1221,7 +1221,7 @@ totalprice
 <li>
 <code>names_sep</code>:the character string used to join names if <code>names_from</code> is more than one column.</li>
 </ul>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">untidy_price_wide</span> <span class="op">&lt;-</span> <span class="fu">pivot_wider</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">untidy_price_long</span>,
   names_from <span class="op">=</span> <span class="va">year</span>,
@@ -1229,7 +1229,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:pivot-wider">Table 5.5: </span>Data made wider with pivot_wider()
+<span id="tab:pivot-wider">Table 6.5: </span>Data made wider with pivot_wider()
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -1320,9 +1320,9 @@ customer_id
 </table></div>
 </div>
 </div>
-<div id="multi-step-tidying" class="section level2" number="5.4">
+<div id="multi-step-tidying" class="section level2" number="6.4">
 <h2>
-<span class="header-section-number">5.4</span> Multi-step tidying<a class="anchor" aria-label="anchor" href="#multi-step-tidying"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4</span> Multi-step tidying<a class="anchor" aria-label="anchor" href="#multi-step-tidying"><i class="fas fa-link"></i></a>
 </h2>
 <p>You often need to go from wide, to long, to an intermediate shape in order to get your data into a format that is useful for plotting, where there is a column for each variable that you want to represent with an aesthetic.</p>
 <p>Our full <code>untidy_data</code> table has seven columns: a customer ID, three columns for <code>itemsprice</code> and 3 columns for <code>totalprice</code>.</p>
@@ -1749,13 +1749,13 @@ totalprice
 </tbody>
 </table></div>
 </div>
-<div id="one-observation-per-row" class="section level3" number="5.4.1">
+<div id="one-observation-per-row" class="section level3" number="6.4.1">
 <h3>
-<span class="header-section-number">5.4.1</span> One observation per row<a class="anchor" aria-label="anchor" href="#one-observation-per-row"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.1</span> One observation per row<a class="anchor" aria-label="anchor" href="#one-observation-per-row"><i class="fas fa-link"></i></a>
 </h3>
 <p>The original table has observations from each customer over three years. This is too many observations per row, so first we'll start by making the table long. We need to make 6 rows for each customer, one for each variable-year combo, with columns for the customer ID, year, variable, and value.</p>
 <p>Because we'll be combining columns with numeric and character data type, we need to make the new <code>value</code> column a character data type using <code>values_transform</code>, since numbers can be represented as characters (like <code><span class="st">"3.5"</span></code>), but character strings can't be represented as numbers.</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">longer_data</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">untidy_data</span>, 
   cols <span class="op">=</span> <span class="va">itemsprice_2018</span><span class="op">:</span><span class="va">totalprice_2020</span>, <span class="co"># columns to make long </span>
@@ -1770,7 +1770,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-4">Table 5.6: </span>Untidy data converted from wide to long.
+<span id="tab:unnamed-chunk-4">Table 6.6: </span>Untidy data converted from wide to long.
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -2210,12 +2210,12 @@ totalprice
 </tbody>
 </table></div>
 </div>
-<div id="one-variable-per-column" class="section level3" number="5.4.2">
+<div id="one-variable-per-column" class="section level3" number="6.4.2">
 <h3>
-<span class="header-section-number">5.4.2</span> One variable per column<a class="anchor" aria-label="anchor" href="#one-variable-per-column"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.2</span> One variable per column<a class="anchor" aria-label="anchor" href="#one-variable-per-column"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now the <code>value</code> column contains data from two different variables. We need to make the table wider, but not as wide as before. We want to keep the <code>year</code> column and make new columns called <code>itemsprice</code> and <code>totalprice</code> with the relevant customer's <code>value</code> for that variable and year.</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wider_data</span> <span class="op">&lt;-</span> <span class="fu">pivot_wider</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">longer_data</span>,
   id_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">customer_id</span>, <span class="va">year</span><span class="op">)</span>,
@@ -2224,7 +2224,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-5">Table 5.7: </span>Data converted from long to an intermediate shape.
+<span id="tab:unnamed-chunk-5">Table 6.7: </span>Data converted from long to an intermediate shape.
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -2454,12 +2454,12 @@ totalprice
 </tbody>
 </table></div>
 </div>
-<div id="one-value-per-cell" class="section level3" number="5.4.3">
+<div id="one-value-per-cell" class="section level3" number="6.4.3">
 <h3>
-<span class="header-section-number">5.4.3</span> One value per cell<a class="anchor" aria-label="anchor" href="#one-value-per-cell"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.3</span> One value per cell<a class="anchor" aria-label="anchor" href="#one-value-per-cell"><i class="fas fa-link"></i></a>
 </h3>
-<p>The cells in the <code>itemsprice</code> column actually contain two different values. We need to split it into two columns for the variables <code>items</code>, and <code>price_per_item</code>. You can split a column into parts with the function <code><a href="https://tidyr.tidyverse.org/reference/separate.html">tidyr::separate()</a></code>.</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<p>The cells in the <code>itemsprice</code> column actually contain two different values. We need to split it into two columns for the variables <code>items</code>, and <code>price_per_item</code>. You can split a column into parts with the function <code><a href="https://rdrr.io/pkg/tidyr/man/separate.html">tidyr::separate()</a></code>.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">split_data</span> <span class="op">&lt;-</span> <span class="fu">separate</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">wider_data</span>, 
   col <span class="op">=</span> <span class="va">itemsprice</span>, <span class="co"># the column to split</span>
@@ -2751,16 +2751,16 @@ totalprice
 <p>If the new columns should have a different <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> from the old column, set <code>convert = TRUE</code> to automatically fix them. This is common when you have columns that contain multiple numbers, separated by commas or semicolons. These are character types before they are separated, but should be numeric types after so that you can do mathematical operations like sum them.</p>
 </div>
 </div>
-<div id="altering-data" class="section level3" number="5.4.4">
+<div id="altering-data" class="section level3" number="6.4.4">
 <h3>
-<span class="header-section-number">5.4.4</span> Altering data<a class="anchor" aria-label="anchor" href="#altering-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.4</span> Altering data<a class="anchor" aria-label="anchor" href="#altering-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>The column <code>price_per_item</code> is still a character column because it has parentheses. There are a few ways to fix this. You can use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> function to change a column or add a new one.</p>
-<p>Here, we'll use <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">stringr::str_replace_all()</a></code> to replace all of the "(" and ")" with "".</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+<p>The column <code>price_per_item</code> is still a character column because it has parentheses. There are a few ways to fix this. You can use the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">dplyr::mutate()</a></code> function to change a column or add a new one.</p>
+<p>Here, we'll use <code><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">stringr::str_replace_all()</a></code> to replace all of the "(" and ")" with "".</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
-  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
     pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
     replacement <span class="op">=</span> <span class="st">""</span>
@@ -2768,7 +2768,7 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-7">Table 5.8: </span>Mutating data to remove the parentheses from price_per_item.
+<span id="tab:unnamed-chunk-7">Table 6.8: </span>Mutating data to remove the parentheses from price_per_item.
 </caption>
 <thead><tr>
 <th style="text-align:right;">
@@ -3046,23 +3046,23 @@ totalprice
 </tbody>
 </table></div>
 </div>
-<div id="fixing-data-types" class="section level3" number="5.4.5">
+<div id="fixing-data-types" class="section level3" number="6.4.5">
 <h3>
-<span class="header-section-number">5.4.5</span> Fixing data types<a class="anchor" aria-label="anchor" href="#fixing-data-types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.5</span> Fixing data types<a class="anchor" aria-label="anchor" href="#fixing-data-types"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>price_per_item</code> and <code>totalprice</code> columns are still characters, so you can't do things like calculate the sum of <code>totalprice</code>.</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># check the data types</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">mutated_data</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 15
 ## Columns: 5
 ## $ customer_id    &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           &lt;int&gt; 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
+## $ year           &lt;int&gt; 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
 ## $ items          &lt;int&gt; 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item &lt;chr&gt; "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",~
-## $ totalprice     &lt;chr&gt; "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6~</code></pre>
-<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://readr.tidyverse.org/reference/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> (see Section @ref(col_types)).</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+## $ price_per_item &lt;chr&gt; "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
+## $ totalprice     &lt;chr&gt; "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…</code></pre>
+<p>Once the data are clean and tidy, you can fix all of your column data types in one step using <code><a href="https://rdrr.io/pkg/readr/man/type_convert.html">readr::type_convert()</a></code>. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> (see Section @ref(col_types)).</p>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
   df <span class="op">=</span> <span class="va">mutated_data</span>,
   trim_ws <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># removes spaces before and after values</span>
@@ -3073,32 +3073,32 @@ totalprice
 <pre><code>## Rows: 15
 ## Columns: 5
 ## $ customer_id    &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           &lt;int&gt; 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
+## $ year           &lt;int&gt; 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
 ## $ items          &lt;int&gt; 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item &lt;dbl&gt; 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3~
-## $ totalprice     &lt;dbl&gt; 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27~</code></pre>
+## $ price_per_item &lt;dbl&gt; 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3…
+## $ totalprice     &lt;dbl&gt; 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27…</code></pre>
 </div>
 </div>
-<div id="pipes" class="section level2" number="5.5">
+<div id="pipes" class="section level2" number="6.5">
 <h2>
-<span class="header-section-number">5.5</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes"><i class="fas fa-link"></i></a>
 </h2>
 <div style="width: 200px; float: right;">
 <img src="images/tidy/pipe_sticker.png" style="width: 100%">
 </div>
 <p>Pipes are a way to order your code in a more readable format.</p>
 <p>You can always create a new object at every step and use that object in the next step, like we did above. This is pretty clear, but you've created several unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">untidy_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5 Columns: 7</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
 ## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">longer_data</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">untidy_data</span>,
   cols <span class="op">=</span> <span class="va">itemsprice_2018</span><span class="op">:</span><span class="va">totalprice_2020</span>,
@@ -3125,9 +3125,9 @@ totalprice
   convert <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span> 
 
-<span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+<span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
-  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+  price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
     pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
     replacement <span class="op">=</span> <span class="st">""</span>
@@ -3139,7 +3139,7 @@ totalprice
   trim_ws <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## 
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   price_per_item = col_double(),
 ##   totalprice = col_double()
@@ -3148,14 +3148,14 @@ totalprice
 <p>You <em>can</em> give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
 </div>
 <p>One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mean_total_price</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tidy_data</span><span class="op">$</span><span class="va">totalprice</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p>But it gets extremely confusing for long chains:</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># do not ever do this!!!!!!</span>
 
 <span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
-  df <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+  df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
     .data <span class="op">=</span> <span class="fu">separate</span><span class="op">(</span>
       data <span class="op">=</span> <span class="fu">pivot_wider</span><span class="op">(</span>
         data <span class="op">=</span> <span class="fu">pivot_longer</span><span class="op">(</span>
@@ -3177,7 +3177,7 @@ totalprice
       remove <span class="op">=</span> <span class="cn">TRUE</span>,
       convert <span class="op">=</span> <span class="cn">TRUE</span>
     <span class="op">)</span> ,
-    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
       string <span class="op">=</span> <span class="va">price_per_item</span>,
       pattern <span class="op">=</span> <span class="st">"[()]"</span>,
       replacement <span class="op">=</span> <span class="st">""</span>
@@ -3187,34 +3187,34 @@ totalprice
 <span class="op">)</span></code></pre></div>
 <p>The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects. By default, the result of the previous function becomes the first <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the next function. Most tidyverse functions take a data table as their first argument, so they pipe together easily.</p>
 <p>For example, instead of making a table called <code>untidy_data</code> by reading a csv file, and then making a new table called <code>totalprice_data</code> by selecting the <code>customer_id</code> and <code>totalprice_{year}</code> columns from <code>untidy_data</code>...</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">untidy_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span>
 
-<span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+<span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">untidy_data</span>,
   <span class="va">customer_id</span>, 
   <span class="fu">starts_with</span><span class="op">(</span><span class="st">"totalprice"</span><span class="op">)</span> <span class="co"># selects all columns that start with a string</span>
 <span class="op">)</span></code></pre></div>
-<p>... you can just make one table called <code>totalprice_data</code> by reading the csv file and <strong>piping</strong> the resulting table into the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function.</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<p>... you can just make one table called <code>totalprice_data</code> by reading the csv file and <strong>piping</strong> the resulting table into the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> function.</p>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
     <span class="va">customer_id</span>, 
     <span class="fu">starts_with</span><span class="op">(</span><span class="st">"totalprice"</span><span class="op">)</span> 
   <span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5 Columns: 7</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
 ## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="info">
 <p>Notice how we no longer need to specify the <code>.data</code> argument. Add it back in and see what happens. This is a common error when you're converting code from using separate variables to using a pipeline, but you'll learn to identify it quickly.</p>
 </div>
 <p>For longer series of steps like the one above, using pipes can eliminate many intermediate objects. This also makes it easier to add an intermediate step to your process without having to think of a new table name and edit the table input to the next step.</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>
     cols <span class="op">=</span> <span class="va">itemsprice_2018</span><span class="op">:</span><span class="va">totalprice_2020</span>,
@@ -3236,8 +3236,8 @@ totalprice
     remove <span class="op">=</span> <span class="cn">TRUE</span>, 
     convert <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
+    price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
       string <span class="op">=</span> <span class="va">price_per_item</span>, 
       pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
       replacement <span class="op">=</span> <span class="st">""</span>
@@ -3298,7 +3298,7 @@ totalprice
 </li>
 </ul>
 </li>
-<li>Change a column (<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>)
+<li>Change a column (<code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>)
 <ul>
 <li>
 <code>price_per_item</code>: replace the existing column <code>price_per_item</code> with the result of a search and replace:
@@ -3325,9 +3325,9 @@ totalprice
 <p>You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?</p>
 </div>
 </div>
-<div id="glossary-tidy" class="section level2" number="5.6">
+<div id="glossary-tidy" class="section level2" number="6.6">
 <h2>
-<span class="header-section-number">5.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-tidy"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -3406,9 +3406,9 @@ Data where all of the observations about one subject are in the same row
 </tbody>
 </table></div>
 </div>
-<div id="resources-tidy" class="section level2" number="5.7">
+<div id="resources-tidy" class="section level2" number="6.7">
 <h2>
-<span class="header-section-number">5.7</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-tidy"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="http://vita.had.co.nz/papers/tidy-data.html">Tidy Data</a></li>
@@ -3421,9 +3421,9 @@ Data where all of the observations about one subject are in the same row
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling cheat sheet</a></li>
 </ul>
 </div>
-<div id="exercises-tidy" class="section level2" number="5.8">
+<div id="exercises-tidy" class="section level2" number="6.8">
 <h2>
-<span class="header-section-number">5.8</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-tidy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-tidy"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let's say you have a <a href="data/widgets_gadgets.xlsx">small Excel table</a> with 10 customer IDs, and how many widgets and gadgets each purchased in 2020 and 2021.</p>
 <div class="inline-table"><table class="table table-sm">
@@ -3634,18 +3634,18 @@ Customer ID
 </tbody>
 </table></div>
 <p>You want to calculate the total number of items purchased per year to make a table sorted by the total number of items purchased.</p>
-<div id="load-the-data" class="section level3" number="5.8.1">
+<div id="load-the-data" class="section level3" number="6.8.1">
 <h3>
-<span class="header-section-number">5.8.1</span> Load the data<a class="anchor" aria-label="anchor" href="#load-the-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8.1</span> Load the data<a class="anchor" aria-label="anchor" href="#load-the-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The data file (<a href="data/widgets_gadgets.xlsx"><code class="path">widgets_gadgets.xlsx</code></a>) has multiple header columns, so you'll need to skip some rows when you import the data and set your own column names: <code>customer_id</code>, <code>widgets_2020</code>,<code>widgets_2021</code>, gadgets_2020<code>and</code>gadgets_2021`.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get the data with better column names</span>
-<span class="va">data_original</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>
+<span class="va">data_original</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/widgets_gadgets.xlsx"</span>,
   skip <span class="op">=</span> <span class="fl">2</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -3658,16 +3658,16 @@ Solution
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="reshape-the-data-longer" class="section level3" number="5.8.2">
+<div id="reshape-the-data-longer" class="section level3" number="6.8.2">
 <h3>
-<span class="header-section-number">5.8.2</span> Reshape the data longer<a class="anchor" aria-label="anchor" href="#reshape-the-data-longer"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8.2</span> Reshape the data longer<a class="anchor" aria-label="anchor" href="#reshape-the-data-longer"><i class="fas fa-link"></i></a>
 </h3>
 <p>These data are in wide format, with a customer's number of widgets and gadgets across two years in the same row. Convert the data shape so that each row is one customer's order for one item type for one year. This table should have 40 rows for the combination of 10 customers times 2 item types times 2 years, and 4 columns: <code>custmer_id</code>, <code>item</code>, <code>year</code>, and <code>number</code>.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_longer</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">data_original</span>,
   cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,
@@ -3677,16 +3677,16 @@ Solution
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="reshape-the-data-wider" class="section level3" number="5.8.3">
+<div id="reshape-the-data-wider" class="section level3" number="6.8.3">
 <h3>
-<span class="header-section-number">5.8.3</span> Reshape the data wider<a class="anchor" aria-label="anchor" href="#reshape-the-data-wider"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8.3</span> Reshape the data wider<a class="anchor" aria-label="anchor" href="#reshape-the-data-wider"><i class="fas fa-link"></i></a>
 </h3>
 <p>Convert the data shape so that each row is one customer's order of widgets and gadgets for one year. This table should have 20 rows for the combination of 10 customers times 2 years, and 4 columns: <code>custmer_id</code>, <code>year</code>, <code>widgets</code> and <code>gadgets</code>.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_wider</span> <span class="op">&lt;-</span> <span class="fu">pivot_wider</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">data_longer</span>,
   id_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">customer_id</span>, <span class="va">year</span><span class="op">)</span>,
@@ -3695,19 +3695,19 @@ Solution
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="rename-and-reorder" class="section level3" number="5.8.4">
+<div id="rename-and-reorder" class="section level3" number="6.8.4">
 <h3>
-<span class="header-section-number">5.8.4</span> Rename and reorder<a class="anchor" aria-label="anchor" href="#rename-and-reorder"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8.4</span> Rename and reorder<a class="anchor" aria-label="anchor" href="#rename-and-reorder"><i class="fas fa-link"></i></a>
 </h3>
 <p>Change the order of columns and their names so that the column headers are <code>Year</code>, Customer ID<code>,</code>Gadgets<code>, and</code>Widgets` .</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># column names with special characters have to be inside backticks</span>
 <span class="co"># you can put all column names inside backticks if you want</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">data_wider</span>,
   Year <span class="op">=</span> <span class="va">year</span>,
   `Customer ID` <span class="op">=</span> <span class="va">customer_id</span>,
@@ -3716,17 +3716,17 @@ Solution
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="put-in-a-pipeline" class="section level3" number="5.8.5">
+<div id="put-in-a-pipeline" class="section level3" number="6.8.5">
 <h3>
-<span class="header-section-number">5.8.5</span> Put in a pipeline<a class="anchor" aria-label="anchor" href="#put-in-a-pipeline"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.8.5</span> Put in a pipeline<a class="anchor" aria-label="anchor" href="#put-in-a-pipeline"><i class="fas fa-link"></i></a>
 </h3>
 <p>Put the four steps above into a single pipeline. Practice reading the code from top to bottom.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/widgets_gadgets.xlsx"</span>,
   skip <span class="op">=</span> <span class="fl">2</span>,
   col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -3748,7 +3748,7 @@ Solution
     names_from <span class="op">=</span> <span class="va">item</span>,
     values_from <span class="op">=</span> <span class="va">number</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
     Year <span class="op">=</span> <span class="va">year</span>,
     `Customer ID` <span class="op">=</span> <span class="va">customer_id</span>,
     Gadgets <span class="op">=</span> <span class="va">gadgets</span>,
@@ -3954,47 +3954,47 @@ $( document ).ready(function() {
   window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
-<div class="prev"><a href="data.html"><span class="header-section-number">4</span> Data Import and Relations</a></div>
-<div class="next"><a href="wrangle.html"><span class="header-section-number">6</span> Data Wrangling</a></div>
+<div class="prev"><a href="joins.html"><span class="header-section-number">5</span> Data Relations</a></div>
+<div class="next"><a href="wrangle.html"><span class="header-section-number">7</span> Data Wrangling</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tidy"><span class="header-section-number">5</span> Data Tidying</a></li>
-<li><a class="nav-link" href="#ilo-tidy"><span class="header-section-number">5.1</span> Intended Learning Outcomes</a></li>
+<li><a class="nav-link" href="#tidy"><span class="header-section-number">6</span> Data Tidying</a></li>
+<li><a class="nav-link" href="#ilo-tidy"><span class="header-section-number">6.1</span> Intended Learning Outcomes</a></li>
 <li>
-<a class="nav-link" href="#data-structure"><span class="header-section-number">5.2</span> Data Structure</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#untidy-data"><span class="header-section-number">5.2.1</span> Untidy data</a></li>
-<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">5.2.2</span> Tidy data</a></li>
+<a class="nav-link" href="#data-structure"><span class="header-section-number">6.2</span> Data Structure</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#untidy-data"><span class="header-section-number">6.2.1</span> Untidy data</a></li>
+<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">6.2.2</span> Tidy data</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#reshaping-data"><span class="header-section-number">5.3</span> Reshaping Data</a></li>
+<li><a class="nav-link" href="#reshaping-data"><span class="header-section-number">6.3</span> Reshaping Data</a></li>
 <li>
-<a class="nav-link" href="#multi-step-tidying"><span class="header-section-number">5.4</span> Multi-step tidying</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#one-observation-per-row"><span class="header-section-number">5.4.1</span> One observation per row</a></li>
-<li><a class="nav-link" href="#one-variable-per-column"><span class="header-section-number">5.4.2</span> One variable per column</a></li>
-<li><a class="nav-link" href="#one-value-per-cell"><span class="header-section-number">5.4.3</span> One value per cell</a></li>
-<li><a class="nav-link" href="#altering-data"><span class="header-section-number">5.4.4</span> Altering data</a></li>
-<li><a class="nav-link" href="#fixing-data-types"><span class="header-section-number">5.4.5</span> Fixing data types</a></li>
+<a class="nav-link" href="#multi-step-tidying"><span class="header-section-number">6.4</span> Multi-step tidying</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#one-observation-per-row"><span class="header-section-number">6.4.1</span> One observation per row</a></li>
+<li><a class="nav-link" href="#one-variable-per-column"><span class="header-section-number">6.4.2</span> One variable per column</a></li>
+<li><a class="nav-link" href="#one-value-per-cell"><span class="header-section-number">6.4.3</span> One value per cell</a></li>
+<li><a class="nav-link" href="#altering-data"><span class="header-section-number">6.4.4</span> Altering data</a></li>
+<li><a class="nav-link" href="#fixing-data-types"><span class="header-section-number">6.4.5</span> Fixing data types</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#pipes"><span class="header-section-number">5.5</span> Pipes</a></li>
-<li><a class="nav-link" href="#glossary-tidy"><span class="header-section-number">5.6</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-tidy"><span class="header-section-number">5.7</span> Further resources</a></li>
+<li><a class="nav-link" href="#pipes"><span class="header-section-number">6.5</span> Pipes</a></li>
+<li><a class="nav-link" href="#glossary-tidy"><span class="header-section-number">6.6</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-tidy"><span class="header-section-number">6.7</span> Further resources</a></li>
 <li>
-<a class="nav-link" href="#exercises-tidy"><span class="header-section-number">5.8</span> Exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#load-the-data"><span class="header-section-number">5.8.1</span> Load the data</a></li>
-<li><a class="nav-link" href="#reshape-the-data-longer"><span class="header-section-number">5.8.2</span> Reshape the data longer</a></li>
-<li><a class="nav-link" href="#reshape-the-data-wider"><span class="header-section-number">5.8.3</span> Reshape the data wider</a></li>
-<li><a class="nav-link" href="#rename-and-reorder"><span class="header-section-number">5.8.4</span> Rename and reorder</a></li>
-<li><a class="nav-link" href="#put-in-a-pipeline"><span class="header-section-number">5.8.5</span> Put in a pipeline</a></li>
+<a class="nav-link" href="#exercises-tidy"><span class="header-section-number">6.8</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#load-the-data"><span class="header-section-number">6.8.1</span> Load the data</a></li>
+<li><a class="nav-link" href="#reshape-the-data-longer"><span class="header-section-number">6.8.2</span> Reshape the data longer</a></li>
+<li><a class="nav-link" href="#reshape-the-data-wider"><span class="header-section-number">6.8.3</span> Reshape the data wider</a></li>
+<li><a class="nav-link" href="#rename-and-reorder"><span class="header-section-number">6.8.4</span> Rename and reorder</a></li>
+<li><a class="nav-link" href="#put-in-a-pipeline"><span class="header-section-number">6.8.5</span> Put in a pipeline</a></li>
 </ul>
 </li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/05-tidy.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/05-tidy.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/06-tidy.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/06-tidy.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -4006,7 +4006,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-14.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

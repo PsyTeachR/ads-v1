@@ -52,6 +52,7 @@ fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:plotly
 fig:unnamed-chunk-12
+fig:img-flx-template
 fig:settings-general
 fig:settings-code
 fig:img-updaterstudio
@@ -166,7 +167,6 @@ glossary-viz
 resources-viz
 data
 ilo-data
-data-import
 builtin
 looking-at-data
 view
@@ -180,7 +180,10 @@ col_types
 creating-data
 writing-data
 troubleshooting
-data-relations
+glossary-data
+resources-data
+joins
+ilo-joins
 mutating-joins
 left_join
 right_join
@@ -197,9 +200,8 @@ set-operations
 intersect
 union
 setdiff
-glossary-data
-resources-data
-exercises-data
+glossary-joins
+resources-joins
 tidy
 ilo-tidy
 data-structure
@@ -258,9 +260,10 @@ word-clouds
 maps
 present
 ilo-present
+reports-1
+presentations
+dashboards
 resources-present
-next
-ilo-next
 installing-r
 installing-base-r
 installing-rstudio

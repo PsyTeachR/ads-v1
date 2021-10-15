@@ -1,0 +1,62 @@
+# Advanced Reports  {#present}
+
+## Intended Learning Outcomes {#ilo-present}
+
+* Structure data in report, dashboard, and presentation formats
+* Include table of contents, figure and table captions, and references in longer reports
+
+```{r setup, message=FALSE}
+library(tidyverse)     # data wrangling functions
+library(flexdashboard) # for dashboards
+```
+
+
+## Reports
+
+
+## Presentations
+
+
+## Dashboards
+
+After you install `r pkg("flexdashboard")`, you can choose a flexdashboard template when you create a new RMarkdown document. 
+
+```{r img-flx-template, echo=FALSE, fig.cap="Flexdashbard RMarkdown template."}
+knitr::include_graphics("images/present/flexdashboard-template.png")
+```
+
+
+````
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+```{r}
+
+```
+
+````
+
+
+
+
+## Resources {#resources-present}
+
+* [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
+* [Flexdashboard](https://pkgs.rstudio.com/flexdashboard/)
+

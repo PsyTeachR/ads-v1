@@ -43,7 +43,7 @@ fig:eng-per-day-plot
 fig:log-eng-plot
 fig:likes-by-month-plot
 fig:imp-month-plot
-tab:unnamed-chunk-19
+tab:unnamed-chunk-20
 fig:unnamed-chunk-2
 fig:unnamed-chunk-4
 fig:unnamed-chunk-6
@@ -258,6 +258,7 @@ interactive-plots
 treemap
 word-clouds
 maps
+resources-custom
 present
 ilo-present
 reports-1

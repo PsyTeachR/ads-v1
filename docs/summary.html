@@ -103,11 +103,15 @@
 <h2>
 <span class="header-section-number">8.2</span> Summary functions<a class="anchor" aria-label="anchor" href="#summary-functions"><i class="fas fa-link"></i></a>
 </h2>
-<p>We'll use the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function from <code class="package">rtweet</code> to find the last (up to) 10K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay.</p>
+<p>We'll use the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function from <code class="package">rtweet</code> to find the last (up to) 30K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay.</p>
 <div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
-                        n <span class="op">=</span> <span class="fl">10000</span>, 
-                        include_rts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+                        n <span class="op">=</span> <span class="fl">30000</span>, 
+                        include_rts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co"># saveRDS(tweets, file = "data/ncod_tweets.rds")</span></code></pre></div>
+<p>This is mainly interesting around October 11th, so we've provided the relevant data for you that we scraped then, although you can follow along with any hashtag that interests you.</p>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
 <p>Now let's create a series of summary tables and plots with these data.</p>
 <div id="summarising" class="section level3" number="8.2.1">
 <h3>
@@ -115,7 +119,7 @@
 </h3>
 <p>What date range is represented in these data? How many tweets were there? First, run <code>glimpse(tweets)</code> to find out what information is in the downloaded data.</p>
 <p>The <code>created_at</code> column should give us the date they were created. We can use the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> functions to get the range of dates. The <code>n()</code> function counts the number of rows in the data.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_summary</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
     n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
@@ -139,10 +143,10 @@ max_date
 </tr></thead>
 <tbody><tr>
 <td style="text-align:right;">
-9988
+28626
 </td>
 <td style="text-align:left;">
-2021-10-11 21:36:57
+2021-10-10 00:10:02
 </td>
 <td style="text-align:left;">
 2021-10-12 20:12:27
@@ -151,22 +155,27 @@ max_date
 </table></div>
 </div>
 <p>There are a few ways to insert those values into the text of a report. First, you can use <code><a href="https://rdrr.io/pkg/glue/man/glue.html">glue()</a></code> to create a block of text that uses the objects you just created. Use the <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> function to format the dates for our report.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">date_from</span> <span class="op">&lt;-</span> <span class="va">tweet_summary</span><span class="op">$</span><span class="va">min_date</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
 <span class="va">date_to</span> <span class="op">&lt;-</span> <span class="va">tweet_summary</span><span class="op">$</span><span class="va">max_date</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
 
 <span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"There were {tweet_summary$n} tweets between {date_from} and {date_to}."</span><span class="op">)</span></code></pre></div>
 <p>Then you can display that text in an <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> report with inline r like this, <code>`r text`</code>, which will produce the following:</p>
 <blockquote>
-<p>There were 9988 tweets between 11 October, 2021 and 12 October, 2021.</p>
+<p>There were 28626 tweets between 10 October, 2021 and 12 October, 2021.</p>
 </blockquote>
 <p>Or you can insert individual objects into markdown text with inline r:</p>
 <p>There were <code>`r tweet_summary$n`</code> tweets between <code>`r date_from`</code> and <code>`r date_to`</code>.</p>
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_ILVTGTQNDQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ILVTGTQNDQ" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_ILVTGTQNDQ" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ILVTGTQNDQ" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ILVTGTQNDQ" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label>
+<div id="radio_EBSNEDYGEN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EBSNEDYGEN" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_EBSNEDYGEN" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_EBSNEDYGEN" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_EBSNEDYGEN" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label>
+</div>
+</li>
+<li>How would you calculate the mean <code>display_text_width</code>?
+<div id="radio_CIEWARBUUD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CIEWARBUUD" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(display_text_width)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_CIEWARBUUD" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_CIEWARBUUD" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(display_text_width = mean)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_CIEWARBUUD" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(width = mean(display_text_width))</a></code></span></label>
 </div>
 </li>
 </ul>
@@ -177,7 +186,7 @@ max_date
 <span class="header-section-number">8.2.2</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can also create summary values by group. The <code>source</code> column tells us where the tweet came from. How did the average number of favourites and retweets differ by source?</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sources</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">source</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
@@ -201,13 +210,24 @@ mean_retweets
 <tbody>
 <tr>
 <td style="text-align:left;">
+Twitter Media Studio
+</td>
+<td style="text-align:right;">
+388.97561
+</td>
+<td style="text-align:right;">
+66.92683
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Khoros Publishing App
 </td>
 <td style="text-align:right;">
-787.00000
+139.08333
 </td>
 <td style="text-align:right;">
-109.000000
+19.83333
 </td>
 </tr>
 <tr>
@@ -215,54 +235,43 @@ Khoros Publishing App
 SocialFlow
 </td>
 <td style="text-align:right;">
-229.00000
+115.58824
 </td>
 <td style="text-align:right;">
-38.250000
+25.47059
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TweetDeck
+Emplifi
 </td>
 <td style="text-align:right;">
-58.06897
+109.33333
 </td>
 <td style="text-align:right;">
-6.793103
+9.00000
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Twitter Media Studio
+TW Blue
 </td>
 <td style="text-align:right;">
-49.60000
+90.00000
 </td>
 <td style="text-align:right;">
-8.600000
+9.00000
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-SocialNewsDesk
+Sprinklr
 </td>
 <td style="text-align:right;">
-46.00000
+88.98438
 </td>
 <td style="text-align:right;">
-12.000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Twitter for iPad
-</td>
-<td style="text-align:right;">
-33.58333
-</td>
-<td style="text-align:right;">
-2.715278
+12.60938
 </td>
 </tr>
 </tbody>
@@ -270,14 +279,9 @@ Twitter for iPad
 </div>
 <div class="try">
 <ul>
-<li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_SDGYLOSCTM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SDGYLOSCTM" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_SDGYLOSCTM" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(display_text_width)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_SDGYLOSCTM" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(width = mean(display_text_width))</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_SDGYLOSCTM" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(display_text_width = mean)</a></code></span></label>
-</div>
-</li>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>source</code>?
-<div id="radio_FPEIVYZBKV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FPEIVYZBKV" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_FPEIVYZBKV" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_FPEIVYZBKV" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_FPEIVYZBKV" value="x"><span><code>count(screen_name)</code></span></label>
+<div id="radio_OCDCSKAVMC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OCDCSKAVMC" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_OCDCSKAVMC" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_OCDCSKAVMC" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_OCDCSKAVMC" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label>
 </div>
 </li>
 </ul>
@@ -288,11 +292,10 @@ Twitter for iPad
 <span class="header-section-number">8.2.3</span> Counting<a class="anchor" aria-label="anchor" href="#counting"><i class="fas fa-link"></i></a>
 </h3>
 <p>How many different accounts tweeted? Who tweeted most?</p>
-<p>You can count categories with the <code>count()</code> function. Since each row is a tweet, you can count the number of rows per <code>screen_name</code> to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group. Use <code><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange(desc(n))</a></code> to sort the table by <code>n</code> in descending order.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<p>You can count categories with the <code>count()</code> function. Since each row is a tweet, you can count the number of rows per <code>screen_name</code> to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group. Set <code>sort = TRUE</code> to sort the table by <code>n</code> in descending order.</p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_per_user</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu">count</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">screen_name</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -306,6 +309,14 @@ n
 </th>
 </tr></thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+interest_outfit
+</td>
+<td style="text-align:right;">
+35
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 LeoShir2
@@ -324,6 +335,14 @@ dr_stack
 </tr>
 <tr>
 <td style="text-align:left;">
+NRArchway
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 bhavna_95
 </td>
 <td style="text-align:right;">
@@ -332,33 +351,17 @@ bhavna_95
 </tr>
 <tr>
 <td style="text-align:left;">
-KatieZakrzewsk1
+WipeHomophobia
 </td>
 <td style="text-align:right;">
-20
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-JacDArcher
-</td>
-<td style="text-align:right;">
-14
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ManoharKrSingh6
-</td>
-<td style="text-align:right;">
-13
+23
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>If you set a code chunk option to <code>results='asis'</code>, you can pipe the glued text to <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to display it.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unique_users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span>
 <span class="va">most_prolific</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span>
 <span class="va">most_prolific_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
@@ -367,15 +370,15 @@ ManoharKrSingh6
      tweeting about #NationalComingOutDay. 
      {most_prolific} was the most prolific tweeter, 
      with {most_prolific_n} tweets."</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>There were 9178 unique accounts
+<p>There were 25189 unique accounts
 tweeting about #NationalComingOutDay.
-LeoShir2 was the most prolific tweeter,
-with 33 tweets.</p>
+interest_outfit was the most prolific tweeter,
+with 35 tweets.</p>
 <div class="try">
 <ul>
 <li>How would you count the number of tweets that are quotes or not and are retweets or not?
-<div id="radio_XGRCQSRZMV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XGRCQSRZMV" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGRCQSRZMV" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGRCQSRZMV" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGRCQSRZMV" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label>
+<div id="radio_ZQTCEILGAD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZQTCEILGAD" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ZQTCEILGAD" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ZQTCEILGAD" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_ZQTCEILGAD" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label>
 </div>
 </li>
 </ul>
@@ -385,13 +388,13 @@ with 33 tweets.</p>
 <h3>
 <span class="header-section-number">8.2.4</span> Filtering<a class="anchor" aria-label="anchor" href="#filtering"><i class="fas fa-link"></i></a>
 </h3>
-<p>What was the most favourited tweets? Use <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> to keep just the rows where the value in the <code>favorite_count</code> column is equal to its maximum value. Just in case there was a tie, choose a random one with <code>sample_n(size = 1)</code>.</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<p>What was the most favourited tweet? Use <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> to keep just the rows where the value in the <code>favorite_count</code> column is equal to its maximum value. Just in case there was a tie, choose a random one with <code>sample_n(size = 1)</code>.</p>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">most_fav</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p>Remember that you can access the value in each column with the <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"
 The most favourited ({most_fav$favorite_count}) tweet was by 
 [{most_fav$screen_name}]({most_fav$status_url}):
@@ -406,30 +409,25 @@ The most favourited ({most_fav$favorite_count}) tweet was by
   <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"@"</span>, <span class="st">"\\\\@"</span>, <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># prints results into document, not as code</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>The most favourited (22769) tweet was by
-<a href="https://twitter.com/AustinOnTwitter/status/1447700087988101120">AustinOnTwitter</a>:</p>
+<p>The most favourited (22935) tweet was by
+<a href="https://twitter.com/jackrooke/status/1447541093260795904">jackrooke</a>:</p>
 <div class="inline-table"><table style="width:71%;" class="table table-sm">
 <colgroup><col width="70%"></colgroup>
 <tbody>
 <tr class="odd">
-<td align="left">Happy #NationalComingOutDay 🏳️‍🌈</td>
+<td>it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+</td>
 </tr>
 <tr class="even">
-<td align="left">It’s been a year and half since I came out &amp; am so happy that I did. There was a time when I thought I’d NEVER tell ANYBODY but here I am blasting my homosexuality on twitter</td>
-</tr>
-<tr class="odd">
-<td align="left">Come out on your own time, don’t feel pressured by anybody! ❤️</td>
-</tr>
-<tr class="even">
-<td align="left"><img src="NA" style="width:100.0%"></td>
+<td><img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" style="width:100.0%"></td>
 </tr>
 </tbody>
 </table></div>
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_VTCDEZJTID" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VTCDEZJTID" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VTCDEZJTID" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VTCDEZJTID" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VTCDEZJTID" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label>
+<div id="radio_UFDECNITVX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UFDECNITVX" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UFDECNITVX" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UFDECNITVX" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UFDECNITVX" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>
@@ -440,42 +438,162 @@ The most favourited ({most_fav$favorite_count}) tweet was by
 <h2>
 <span class="header-section-number">8.3</span> Putting it together<a class="anchor" aria-label="anchor" href="#putting-it-together"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let's make a table of the top ten hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
+<p>Let's make a table of the top five hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
 <p>First, select just the relevant columns and expand the <code>hashtags</code> column. This is a column of lists, so you can create a row for each value using <code>unnest()</code>.</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
-<p>Now, count the number of tweets for each hashtag using <code>count()</code>, then filter the top 10 values by the <code>n</code> column.</p>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top10_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
+<p>Now, count the number of tweets for each hashtag using <code>count()</code>, then get the top five values using <code>slice_max()</code> and ordering by the <code>n</code> column.</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># get rid of the blank value</span>
-  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>. Use <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> before you filter to select the most-liked tweet in each hashtag, rather than the one most-likes overall. Don't forget to <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> when you're done.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+
+<span class="va">top5_hashtags</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+hashtags
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+NationalComingOutDay
+</td>
+<td style="text-align:right;">
+27308
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nationalcomingoutday
+</td>
+<td style="text-align:right;">
+1343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LGBTQ
+</td>
+<td style="text-align:right;">
+829
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IndigenousPeoplesDay
+</td>
+<td style="text-align:right;">
+811
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ComingOutDay
+</td>
+<td style="text-align:right;">
+613
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>Two of the hashtags are the same, but with different case. We can fix this by grouping by the lowercase version of the hashtag instead, using the <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code> function.</p>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># get rid of the blank value</span>
+  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+
+<span class="va">top5_hashtags</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+hashtags
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+nationalcomingoutday
+</td>
+<td style="text-align:right;">
+28698
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lgbtq
+</td>
+<td style="text-align:right;">
+1036
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+indigenouspeoplesday
+</td>
+<td style="text-align:right;">
+837
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+comingoutday
+</td>
+<td style="text-align:right;">
+676
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+loveislove
+</td>
+<td style="text-align:right;">
+396
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>. Use <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> before you filter to select the most-liked tweet in each hashtag, rather than the one with most likes overall. Don't forget to group by the lowercase version and <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> when you're done.</p>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Get the total number of likes per hashtag by grouping and summarising with <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Finally, put everything together using <code>left_join()</code>, <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> the columns you want to keep in the right order, and print the table.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top10</span> <span class="op">&lt;-</span> <span class="va">top10_hashtags</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op">%&gt;%</span>
   <span class="fu">left_join</span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">left_join</span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># replace @ with \@ so @ doesn't trigger referencing</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"@"</span>, <span class="st">"\\\\@"</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># media_url can be a list if there is more than one image</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">media_url</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># put the columns you want to display in order</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">n</span>, <span class="va">total_likes</span>, <span class="va">text</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">n</span>, <span class="va">total_likes</span>, <span class="va">text</span>, <span class="va">image</span><span class="op">)</span>
 
-<span class="va">top10</span></code></pre></div>
+<span class="va">top5</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -491,362 +609,211 @@ total_likes
 <th style="text-align:left;">
 text
 </th>
+<th style="text-align:left;">
+image
+</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-NationalComingOutDay
-</td>
-<td style="text-align:right;">
-9571
-</td>
-<td style="text-align:right;">
-210793
-</td>
-<td style="text-align:left;">
-<p>Happy #NationalComingOutDay 🏳️‍🌈</p>
-<p>It’s been a year and half since I came out &amp;amp; am so happy that I did. There was a time when I thought I’d NEVER tell ANYBODY but here I am blasting my homosexuality on twitter</p>
-Come out on your own time, don’t feel pressured by anybody! ❤️
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 nationalcomingoutday
 </td>
 <td style="text-align:right;">
-426
+28698
 </td>
 <td style="text-align:right;">
-13394
+851510
 </td>
 <td style="text-align:left;">
-come out, come out, wherever you are ✨🌈 #nationalcomingoutday <a href="https://t.co/obQhslJNOf" class="uri">https://t.co/obQhslJNOf</a>
+it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" class="uri">http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ComingOutDay
+lgbtq
 </td>
 <td style="text-align:right;">
-247
+1036
 </td>
 <td style="text-align:right;">
-1039
+13691
 </td>
 <td style="text-align:left;">
-<p>Ladies and Gentlemen? Literally.</p>
-<p>I'm officially coming out as Bisexual, support or not!</p>
-<p>Thanks for the courage 💙✨</p>
-#ComingOutDay #NationalComingOutDay <a href="https://t.co/IKXTqU5kTg" class="uri">https://t.co/IKXTqU5kTg</a>
+It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready &amp;amp; can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay <a href="https://t.co/dr61oyhR3L" class="uri">https://t.co/dr61oyhR3L</a>
+</td>
+<td style="text-align:left;">
+<a href="http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg" class="uri">http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-LGBTQ
+indigenouspeoplesday
 </td>
 <td style="text-align:right;">
-233
+837
 </td>
 <td style="text-align:right;">
-1959
-</td>
-<td style="text-align:left;">
-Thank you, Madam @VP, for joining us! Proud to serve alongside so many dedicated #LGBTQ+ colleagues in the most pro-equality administration in American history! To anyone thinking about coming out, please know that it does get better. #NationalComingOutDay 🇺🇸🏳️‍🌈🏳️‍⚧️ <a href="https://t.co/PMvrn4O5Rc" class="uri">https://t.co/PMvrn4O5Rc</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-IndigenousPeoplesDay
-</td>
-<td style="text-align:right;">
-209
-</td>
-<td style="text-align:right;">
-8517
+14073
 </td>
 <td style="text-align:left;">
 To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay <a href="https://t.co/KsZ5F3gBKO" class="uri">https://t.co/KsZ5F3gBKO</a>
 </td>
-</tr>
-<tr>
 <td style="text-align:left;">
-ViratKohli
-</td>
-<td style="text-align:right;">
-122
-</td>
-<td style="text-align:right;">
-192
-</td>
-<td style="text-align:left;">
-#tuesdaymotivations #Durgashtami #DurgaPuja2021
-#ENHYPEN
-#ViratKohli #NationalComingOutDay
-Can Durga Ji forgive Sins?
-To know more, Get free book "Gyan Ganga".
-Send is your Name, Address &amp;amp; Content Number.
-@NeerajDasi1 @Being__kajal <a href="https://t.co/VSQ4kbQnpF" class="uri">https://t.co/VSQ4kbQnpF</a>
+<a href="http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg" class="uri">http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg</a>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-viratkholi
+comingoutday
 </td>
 <td style="text-align:right;">
-102
+676
 </td>
 <td style="text-align:right;">
-79
+6977
 </td>
 <td style="text-align:left;">
-السلام علیکم ورحمتہ اللہ وبرکاتہ 🌷
-#goodmorning #Asslamu_Alaikum
-#viratkholi #captaincy
-#24hoursinpolicecustody
-#NationalComingOutDay
-#صباح_Iلخير
-#السلام_عليكم #عمان_عظيمة_بشعبها
-#شاهين #الهند_تقتل_المسلمين
-#السلطان_هيثم_بن_طارق
-#Mossad #Congratulationsbibi
-#ayeshaakramexposed <a href="https://t.co/YC5aWicIg1" class="uri">https://t.co/YC5aWicIg1</a>
+<p>K—I’m out. Bi 👋🏼</p>
+#ComingOutDay #NationalComingOutDay
+</td>
+<td style="text-align:left;">
+NA
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-LGBTQIA
+loveislove
 </td>
 <td style="text-align:right;">
-98
+396
 </td>
 <td style="text-align:right;">
-3995
+4033
 </td>
 <td style="text-align:left;">
-#NationalComingOutDay I am a 44 year old, Black, Jewish, openly #gay man. I have been out since I was 16 years old. I came out in my high school newspaper. This path has not been easy but know this...I am here. To all my #LGBTQIA family, lets celebrate each other today. <a href="https://t.co/UfD1819rPC" class="uri">https://t.co/UfD1819rPC</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RCBvsKKR
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-64
+<p>HAPPY NATIONAL COMING OUT DAY!!</p>
+<p>🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</p>
+@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a>
 </td>
 <td style="text-align:left;">
-<p>Actually, that's a common misconception. Clownfish are no funnier than any other fish.</p>
-#Viral #TrendingNow #Altcoins #BANGYEDAM #BiggBoss15 #Dhoni #ENHYPEN2ndComeback_DDAY #HAECHAN #Iran #JayBhanushali #konka #KundaliBhagya #NationalComingOutDay #OnMyBlock #Qatar2022 #RCBvsKKR <a href="https://t.co/1pCpEy0ZtL" class="uri">https://t.co/1pCpEy0ZtL</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-konka
-</td>
-<td style="text-align:right;">
-91
-</td>
-<td style="text-align:right;">
-68
-</td>
-<td style="text-align:left;">
-<p>Actually, that's a common misconception. Clownfish are no funnier than any other fish.</p>
-#Viral #TrendingNow #Altcoins #BANGYEDAM #BiggBoss15 #Dhoni #ENHYPEN2ndComeback_DDAY #HAECHAN #Iran #JayBhanushali #konka #KundaliBhagya #NationalComingOutDay #OnMyBlock #Qatar2022 #RCBvsKKR <a href="https://t.co/1pCpEy0ZtL" class="uri">https://t.co/1pCpEy0ZtL</a>
+<a href="http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg" class="uri">http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg</a>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<p>The table isn't great, aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">top10</span>, 
-      col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtag"</span>, <span class="st">"Total Tweets"</span>, <span class="st">"Total Likes"</span>, <span class="st">"Top Tweet"</span><span class="op">)</span>,
-      caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top 10 hashtags."</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: top;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<p>The table isn't great, aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables. First, we'll combine the first three columns into a single column and add some <a class="glossary" target="_blank" title="Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages." href="https://psyteachr.github.io/glossary/h#html">HTML</a> formatting to make the hashtag bold (<code>&lt;strong&gt;</code>) and insert line breaks (<code>&lt;br&gt;</code>). We'll also change the image column to display the image using html if there is an image.</p>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;#{hashtags}&lt;/strong&gt;
+                     &lt;br&gt;
+                     tweets: {n}
+                     &lt;br&gt;
+                     likes: {total_likes}"</span><span class="op">)</span>,
+         img <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">image</span><span class="op">)</span>,
+                      <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;img src='{image}' width='200px' /&gt;"</span><span class="op">)</span>,
+                      <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">col1</span>, <span class="va">text</span>, <span class="va">img</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+    escape <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># allows HTML in the table</span>
+    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtag"</span>, <span class="st">"Top Tweet"</span>, <span class="st">""</span><span class="op">)</span>,
+    caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top five hashtags."</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: top;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: bottom;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_paper</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
 <caption>
-<span id="tab:unnamed-chunk-19">Table 8.1: </span>Stats and the top tweet for the top 10 hashtags.
+<span id="tab:unnamed-chunk-20">Table 8.1: </span>Stats and the top tweet for the top five hashtags.
 </caption>
 <thead><tr>
 <th style="text-align:left;vertical-align: bottom;">
 Hashtag
 </th>
-<th style="text-align:right;vertical-align: bottom;">
-Total Tweets
-</th>
-<th style="text-align:right;vertical-align: bottom;">
-Total Likes
-</th>
 <th style="text-align:left;vertical-align: bottom;">
 Top Tweet
+</th>
+<th style="text-align:left;vertical-align: bottom;">
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;vertical-align: top;">
-NationalComingOutDay
-</td>
-<td style="text-align:right;vertical-align: top;">
-9571
-</td>
-<td style="text-align:right;vertical-align: top;">
-210793
+<strong>#nationalcomingoutday</strong>
+<br>
+tweets: 28698
+<br>
+likes: 851510
 </td>
 <td style="text-align:left;vertical-align: top;">
-<p>Happy #NationalComingOutDay 🏳️‍🌈</p>
-<p>It’s been a year and half since I came out &amp;amp; am so happy that I did. There was a time when I thought I’d NEVER tell ANYBODY but here I am blasting my homosexuality on twitter</p>
-Come out on your own time, don’t feel pressured by anybody! ❤️
+it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+</td>
+<td style="text-align:left;">
+<img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" width="200px">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: top;">
-nationalcomingoutday
-</td>
-<td style="text-align:right;vertical-align: top;">
-426
-</td>
-<td style="text-align:right;vertical-align: top;">
-13394
+<strong>#lgbtq</strong>
+<br>
+tweets: 1036
+<br>
+likes: 13691
 </td>
 <td style="text-align:left;vertical-align: top;">
-come out, come out, wherever you are ✨🌈 #nationalcomingoutday <a href="https://t.co/obQhslJNOf" class="uri">https://t.co/obQhslJNOf</a>
+It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready &amp; can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay <a href="https://t.co/dr61oyhR3L" class="uri">https://t.co/dr61oyhR3L</a>
+</td>
+<td style="text-align:left;">
+<img src="http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg" width="200px">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: top;">
-ComingOutDay
-</td>
-<td style="text-align:right;vertical-align: top;">
-247
-</td>
-<td style="text-align:right;vertical-align: top;">
-1039
-</td>
-<td style="text-align:left;vertical-align: top;">
-<p>Ladies and Gentlemen? Literally.</p>
-<p>I'm officially coming out as Bisexual, support or not!</p>
-<p>Thanks for the courage 💙✨</p>
-#ComingOutDay #NationalComingOutDay <a href="https://t.co/IKXTqU5kTg" class="uri">https://t.co/IKXTqU5kTg</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top;">
-LGBTQ
-</td>
-<td style="text-align:right;vertical-align: top;">
-233
-</td>
-<td style="text-align:right;vertical-align: top;">
-1959
-</td>
-<td style="text-align:left;vertical-align: top;">
-Thank you, Madam @VP, for joining us! Proud to serve alongside so many dedicated #LGBTQ+ colleagues in the most pro-equality administration in American history! To anyone thinking about coming out, please know that it does get better. #NationalComingOutDay 🇺🇸🏳️‍🌈🏳️‍⚧️ <a href="https://t.co/PMvrn4O5Rc" class="uri">https://t.co/PMvrn4O5Rc</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top;">
-IndigenousPeoplesDay
-</td>
-<td style="text-align:right;vertical-align: top;">
-209
-</td>
-<td style="text-align:right;vertical-align: top;">
-8517
+<strong>#indigenouspeoplesday</strong>
+<br>
+tweets: 837
+<br>
+likes: 14073
 </td>
 <td style="text-align:left;vertical-align: top;">
 To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay <a href="https://t.co/KsZ5F3gBKO" class="uri">https://t.co/KsZ5F3gBKO</a>
 </td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top;">
-ViratKohli
-</td>
-<td style="text-align:right;vertical-align: top;">
-122
-</td>
-<td style="text-align:right;vertical-align: top;">
-192
-</td>
-<td style="text-align:left;vertical-align: top;">
-#tuesdaymotivations #Durgashtami #DurgaPuja2021
-#ENHYPEN
-#ViratKohli #NationalComingOutDay
-Can Durga Ji forgive Sins?
-To know more, Get free book "Gyan Ganga".
-Send is your Name, Address &amp;amp; Content Number.
-@NeerajDasi1 @Being__kajal <a href="https://t.co/VSQ4kbQnpF" class="uri">https://t.co/VSQ4kbQnpF</a>
+<td style="text-align:left;">
+<img src="http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg" width="200px">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: top;">
-viratkholi
-</td>
-<td style="text-align:right;vertical-align: top;">
-102
-</td>
-<td style="text-align:right;vertical-align: top;">
-79
+<strong>#comingoutday</strong>
+<br>
+tweets: 676
+<br>
+likes: 6977
 </td>
 <td style="text-align:left;vertical-align: top;">
-السلام علیکم ورحمتہ اللہ وبرکاتہ 🌷
-#goodmorning #Asslamu_Alaikum
-#viratkholi #captaincy
-#24hoursinpolicecustody
-#NationalComingOutDay
-#صباح_Iلخير
-#السلام_عليكم #عمان_عظيمة_بشعبها
-#شاهين #الهند_تقتل_المسلمين
-#السلطان_هيثم_بن_طارق
-#Mossad #Congratulationsbibi
-#ayeshaakramexposed <a href="https://t.co/YC5aWicIg1" class="uri">https://t.co/YC5aWicIg1</a>
+<p>K—I’m out. Bi 👋🏼</p>
+#ComingOutDay #NationalComingOutDay
+</td>
+<td style="text-align:left;">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: top;">
-LGBTQIA
-</td>
-<td style="text-align:right;vertical-align: top;">
-98
-</td>
-<td style="text-align:right;vertical-align: top;">
-3995
+<strong>#loveislove</strong>
+<br>
+tweets: 396
+<br>
+likes: 4033
 </td>
 <td style="text-align:left;vertical-align: top;">
-#NationalComingOutDay I am a 44 year old, Black, Jewish, openly #gay man. I have been out since I was 16 years old. I came out in my high school newspaper. This path has not been easy but know this...I am here. To all my #LGBTQIA family, lets celebrate each other today. <a href="https://t.co/UfD1819rPC" class="uri">https://t.co/UfD1819rPC</a>
+<p>HAPPY NATIONAL COMING OUT DAY!!</p>
+<p>🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</p>
+@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a>
 </td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top;">
-RCBvsKKR
-</td>
-<td style="text-align:right;vertical-align: top;">
-95
-</td>
-<td style="text-align:right;vertical-align: top;">
-64
-</td>
-<td style="text-align:left;vertical-align: top;">
-<p>Actually, that's a common misconception. Clownfish are no funnier than any other fish.</p>
-#Viral #TrendingNow #Altcoins #BANGYEDAM #BiggBoss15 #Dhoni #ENHYPEN2ndComeback_DDAY #HAECHAN #Iran #JayBhanushali #konka #KundaliBhagya #NationalComingOutDay #OnMyBlock #Qatar2022 #RCBvsKKR <a href="https://t.co/1pCpEy0ZtL" class="uri">https://t.co/1pCpEy0ZtL</a>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top;">
-konka
-</td>
-<td style="text-align:right;vertical-align: top;">
-91
-</td>
-<td style="text-align:right;vertical-align: top;">
-68
-</td>
-<td style="text-align:left;vertical-align: top;">
-<p>Actually, that's a common misconception. Clownfish are no funnier than any other fish.</p>
-#Viral #TrendingNow #Altcoins #BANGYEDAM #BiggBoss15 #Dhoni #ENHYPEN2ndComeback_DDAY #HAECHAN #Iran #JayBhanushali #konka #KundaliBhagya #NationalComingOutDay #OnMyBlock #Qatar2022 #RCBvsKKR <a href="https://t.co/1pCpEy0ZtL" class="uri">https://t.co/1pCpEy0ZtL</a>
+<td style="text-align:left;">
+<img src="http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg" width="200px">
 </td>
 </tr>
 </tbody>
@@ -1081,7 +1048,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-15.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

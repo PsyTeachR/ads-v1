@@ -28,25 +28,46 @@ After you install <code class='package'>flexdashboard</code>, you can choose a f
 </div>
 
 
-````
+<code style='font-size: smaller;'><pre>
+---
+title: "Demo"
+output: 
+  flexdashboard::flex_dashboard:
+    social: [ "twitter", "facebook", "linkedin", "pinterest" ]
+    source_code: embed
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Chart A
 
+```{r}
 
+```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Chart B
 
+```{r}
 
+```
 
 ### Chart C
 
+```{r}
 
-````
+```
+
+</pre></code>
 
 
 
@@ -55,4 +76,8 @@ Column {data-width=350}
 
 * [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
 * [Flexdashboard](https://pkgs.rstudio.com/flexdashboard/)
+
+
+
+
 

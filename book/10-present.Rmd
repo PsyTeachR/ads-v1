@@ -26,31 +26,12 @@ knitr::include_graphics("images/present/flexdashboard-template.png")
 ```
 
 
-````
-Column {data-width=650}
------------------------------------------------------------------------
-
-### Chart A
-
-```{r}
-
+```{r, echo = FALSE, results='asis'}
+readLines("demos/flexdashboard.Rmd") %>% 
+  paste(collapse = "\n") %>%
+  paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
+  cat()
 ```
-
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-```
-
-### Chart C
-```{r}
-
-```
-
-````
 
 
 
@@ -59,4 +40,8 @@ Column {data-width=350}
 
 * [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
 * [Flexdashboard](https://pkgs.rstudio.com/flexdashboard/)
+
+
+
+
 

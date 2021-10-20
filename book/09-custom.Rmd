@@ -300,7 +300,7 @@ ggplot() +
 
 
 
-## Further Resources {#resources-viz}
+## Further Resources {#resources-custom}
 
 * [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
 * [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)

@@ -93,7 +93,7 @@
 <li>Structure data in report, dashboard, and presentation formats</li>
 <li>Include table of contents, figure and table captions, and references in longer reports</li>
 </ul>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rmarkdown.rstudio.com/flexdashboard">flexdashboard</a></span><span class="op">)</span> <span class="co"># for dashboards</span></code></pre></div>
 </div>
@@ -118,23 +118,48 @@
 Figure 10.1: Flexdashbard RMarkdown template.
 </p>
 </div>
-<pre><code>Column {data-width=650}
+<code style="font-size: smaller;">
+<pre>
+---
+title: "Demo"
+output: 
+  flexdashboard::flex_dashboard:
+    social: [ "twitter", "facebook", "linkedin", "pinterest" ]
+    source_code: embed
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Chart A
 
+```{r}
 
+```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Chart B
 
+```{r}
 
+```
 
 ### Chart C
 
-</code></pre>
+```{r}
+
+```
+
+</pre>
+<p></p></code>
 </div>
 <div id="resources-present" class="section level2" number="10.5">
 <h2>
@@ -374,7 +399,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-15.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

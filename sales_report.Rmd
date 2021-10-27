@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+author: "Emily Nordmann"
+date: "26/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Data from https://www.kaggle.com/kyanyoga/sample-sales-data
+library(tidyverse)
+sales_online <- readr::read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv")
+```
+
+```{r}
+sales_counts<- sales_online %>%
+  filter(PRODUCTLINE %in% c("Planes", "Motorcycles", "Classic Cars")) %>%
+  group_by(PRODUCTLINE) %>%
+  count()
+```
+
+# Sample sales report
+
+This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data)
+
+## Sales by type
+
+The *total* number of **planes** sold was `r sales_counts$n[3]`
+
+The *total* number of **classic cars** sold was `r sales_counts$n[1]`.

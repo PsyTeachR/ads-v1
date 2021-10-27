@@ -1,4 +1,4 @@
-source("renv/activate.R")
+# source("renv/activate.R")
 library(stats)
 source("book/R/psyteachr_setup.R")
 

@@ -69,7 +69,7 @@ If you have the above settings configured correctly, when you open up RStudio an
 
 Try doing each of these now. Additionally, now would be a good time to create a notebook where you can keep a record of useful hints and tips and things to try when your code isn't working. Add "restart R session" to this notebook as your first item. 
 
-## Base R vs add-on packages {#packages}
+## Packages and functions {#packages}
 
 When you install R you will have access to a range of functions including options for data wrangling and statistical analysis. The functions that are included in the default installation are typically referred to as `r glossary("base R")` and you can think of them like the default apps that come pre-loaded on your phone. 
 

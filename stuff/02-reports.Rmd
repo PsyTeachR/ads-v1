@@ -1,0 +1,59 @@
+
+
+
+### YAML Header {#yaml}
+
+The `r glossary("YAML")` header is where you can set several options.
+
+    ---
+    title: "My Demo Document"
+    author: "Me"
+    output:
+      html_document:
+        df_print: kable
+        theme: 
+          version: 4
+          bootswatch: yeti
+        toc: true
+        toc_float:
+          collapsed: false
+          smooth_scroll: false
+        toc_depth: 3
+        number_sections: false
+    ---
+
+::: {.info data-latex=""}
+Try changing the values from `false` to `true` to see what the options do.
+:::
+
+The `df_print: kable` option prints data frames using `knitr::kable`. You'll learn below how to further customise tables.
+
+The built-in bootswatch themes are: default, cerulean, cosmo, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, spacelab, united, and yeti. You can [view and download more themes](https://bootswatch.com/4/).
+
+```{r img-bootswatch, echo=FALSE, fig.cap="Light themes in versions 3 and 4."}
+knitr::include_graphics("images/reports/bootswatch.png")
+```
+
+::: {.warning data-latex=""}
+YAML headers can be very picky about spaces and semicolons (the rest of R Markdown is much more forgiving). For example, if you put a space before "author", you will get an error that looks like:
+
+```
+Error in yaml::yaml.load(..., eval.expr = TRUE) : 
+  Parser error: while parsing a block mapping at line 1, column 1 did not find expected key at line 2, column 2
+```
+
+The error message will tell you exactly where the problem is (the second character of the second line of the YAML header), and it's usually a matter of fixing typos or making sure that the indenting is exactly right.
+:::
+
+
+
+
+
+
+
+
+### Output Formats
+
+You can knit your file to PDF or Word if you have the right packages installed on your computer, although you'll lose some of the interactivity that an HTML report provides. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
+
+

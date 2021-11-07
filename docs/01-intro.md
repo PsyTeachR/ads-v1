@@ -21,7 +21,7 @@ R is a programming language that you will write code in and RStudio is an Integr
 
 ## Installing R and RStudio {#intro-installing-r}
 
-Appendix\ \@ref(installing-r) has technical details on installing R and RStudio on your computer. If you need any help installing R, please ask on Teams or attend office hours. Once you have installed R and RStudio come back to this chapter. If you already had R and.or RStudio installed, we recommend updating to the latest version before you work through this course and Appendix\ \@ref(appendix-updating-r) has more details on how to do that. Here, we'll concentrate on introducing you to RStudio's interface and getting it configured.
+Appendix\ \@ref(installing-r) has technical details on installing R and RStudio on your computer. If you need any help installing R, please ask on Teams or attend office hours. Once you have installed R and RStudio come back to this chapter. If you already had R and/or RStudio installed, we recommend updating to the latest version before you work through this course. Appendix\ \@ref(appendix-updating-r) has more details on how to do that. Here, we'll concentrate on introducing you to RStudio's interface and getting it configured.
 
 ### RStudio {#rstudio_ide}
 
@@ -36,9 +36,9 @@ By default, the upper left pane is the **source pane**, where you view, write, a
 
 The lower left pane is the **console pane**, where you can type in commands and view output messages. You can write code in the console to test it out, but it won't save anywhere. 
 
-The right panes have several different tabs that show you information about your code. The most common tabs in the upper right pane are the **Environment** tab and the **Help** tab. The environment tab lists some information about the <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/o#object'>objects</a> that you have defined in your code. We'll learn more about the Help tab in Section\ \@ref(function-help). 
+The right panes have several different tabs that show you information about your code. The most used tabs in the upper right pane are the **Environment** tab and the **Help** tab. The environment tab lists some information about the <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/o#object'>objects</a> that you have defined in your code. We'll learn more about the Help tab in Section\ \@ref(function-help). 
 
-In the lower right pane, the most used tabs are the **Files** tab for directory structure, the **Plots** tab for plots made in a script, the **Packages** tab for managing add-on packages (see Section\ \@ref(packages)), and the **Viewer*** tab to display reports created by your scripts. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+In the lower right pane, the most used tabs are the **Files** tab for directory structure, the **Plots** tab for plots made in a script, the **Packages** tab for managing add-on packages (see Section\ \@ref(packages)), and the **Viewer** tab to display reports created by your scripts. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
 
 ### Reproducibility {#intro-reproducibility}
 
@@ -60,7 +60,7 @@ You can customise how R Studio looks to make it work for you. Click `Tools` - `G
 
 ## Sessions {#intro-sessions}
 
-If you have the above settings configured correctly, when you open up RStudio and start writing code, loading packages, and creating objects, you will be doing so in a new session and your Environment tab should be completely empty. If you find that your code isn't working and you can't figure out why, it might be worth starting restarting your R session. This will clear the environment and detach all loaded packages - think of it like restarting your phone. There are several ways that you can restart R:
+If you have the above settings configured correctly, when you open up RStudio and start writing code, loading packages, and creating objects, you will be doing so in a new session and your Environment tab should be completely empty. If you find that your code isn't working and you can't figure out why, it might be worth restarting your R session. This will clear the environment and detach all loaded packages - think of it like restarting your phone. There are several ways that you can restart R:
 
 * Menu: Session > Restart R
 * <span class=\"apple\">Cmd-Shift-F10</span> or <span class=\"windows\">Ctl-Shift-F10</span>
@@ -68,13 +68,13 @@ If you have the above settings configured correctly, when you open up RStudio an
 
 Try doing each of these now. Additionally, now would be a good time to create a notebook where you can keep a record of useful hints and tips and things to try when your code isn't working. Add "restart R session" to this notebook as your first item. 
 
-## Base R vs add-on packages {#packages}
+## Packages and functions {#packages}
 
-When you install R you will have access to a range of functions including options for data wrangling and statistical analysis. The functions that are included in the default installation are typically referred to as Base R and you can think of them like the default apps that come pre-loaded on your phone. 
+When you install R you will have access to a range of functions including options for data wrangling and statistical analysis. The functions that are included in the default installation are typically referred to as <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> and you can think of them like the default apps that come pre-loaded on your phone. 
 
-One of the great things about R, howevr, is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
+One of the great things about R, however, is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
 
-Add-on packages are not distributed with <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a>, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone. The main repository where packages reside is called <a class='glossary' target='_blank' title='The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.' href='https://psyteachr.github.io/glossary/c#cran'>CRAN</a>, the Comprehensive R Archive Network.
+Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone. The main repository where packages reside is called <a class='glossary' target='_blank' title='The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.' href='https://psyteachr.github.io/glossary/c#cran'>CRAN</a>, the Comprehensive R Archive Network.
 
 There is an important distinction between **installing** a package and **loading** a package.
 
@@ -129,7 +129,7 @@ library(esquisse)
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function
@@ -149,6 +149,27 @@ If you see the error message: `Error in esquisser(data = ggplot2::diamonds) : co
 A <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> is a name that refers to some code you can reuse. We'll start by using functions that are provided for you in packages, but you can also write your own functions. After the function name, there is a pair of parentheses, which contain zero or more <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a>. These are options that you can set. In the example above, the `data` argument is set to `ggplot2::diamonds`, which refers to a built-in dataset `diamonds` from the <code class='package'>ggplot2</code> package.
 
 If you type a function into the console pane, it will run as soon as you hit enter. If you put the function in a <a class='glossary' target='_blank' title='A plain-text file that contains commands in a coding language, such as R.' href='https://psyteachr.github.io/glossary/s#script'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> document in the <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>source pane</a>, it won't run until you run the script, <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> the R Markdown file, or run a code <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a>. You'll learn more about this in Chapter\ \@ref(reports).
+
+### Tidyverse
+
+<code class='package'>tidyverse</code>is a meta-package that loads several packages we'll be using in almost every chapter in this book:
+
+- <code class='package'>ggplot2</code>, for data visualisation (Chapter\ \@ref(viz))
+- <code class='package'>readr</code>, for data import (Chapter\ \@ref(data))
+- <code class='package'>tibble</code>, for tables (Chapter\ \@ref(data))
+- <code class='package'>tidyr</code>, for data tidying (Chapter\ \@ref(tidy))
+- <code class='package'>dplyr</code>, for data manipulation (Chapter\ \@ref(wrangle))
+- <code class='package'>stringr</code>, for <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>strings</a>
+- <code class='package'>forcats</code>, for <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factors</a>
+- <code class='package'>purrr</code>, for repeating things
+
+When you install <code class='package'>tidyverse</code>, it also installs some other useful packages that you can load individually. You can get the full list using `tidyverse_packages()`, but the packages we'll be using in this book are:
+
+- <code class='package'>googlesheets4</code>, for working with Google spreadsheets
+- <code class='package'>readxl</code>, for Excel files
+- <code class='package'>lubridate</code>, for working with dates
+- <code class='package'>hms</code>, for working with times
+- <code class='package'>rvest</code>, for web scraping
 
 ### Function Help
 
@@ -182,105 +203,87 @@ Function help is always organised in the same way. For example, look at the help
 :::
 
 
-### Tidyverse
 
-<code class='package'>tidyverse</code>is a meta-package that loads several packages we'll be using in almost every chapter in this book:
-
-- <code class='package'>ggplot2</code>, for data visualisation (Chapter\ \@ref(viz))
-- <code class='package'>readr</code>, for data import (Chapter\ \@ref(data))
-- <code class='package'>tibble</code>, for tables (Chapter\ \@ref(data))
-- <code class='package'>tidyr</code>, for data tidying (Chapter\ \@ref(tidy))
-- <code class='package'>dplyr</code>, for data manipulation (Chapter\ \@ref(wrangle))
-- <code class='package'>stringr</code>, for <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>strings</a>
-- <code class='package'>forcats</code>, for <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factors</a>
-- <code class='package'>purrr</code>, for repeating things
-
-When you install <code class='package'>tidyverse</code>, it also installs some other useful packages that you can load individually. You can get the full list using `tidyverse_packages()`, but the packages we'll be using in this book are:
-
-- <code class='package'>googlesheets4</code>, for working with Google spreadsheets
-- <code class='package'>readxl</code>, for Excel files
-- <code class='package'>lubridate</code>, for working with dates
-- <code class='package'>hms</code>, for working with times
-- <code class='package'>rvest</code>, for web scraping
 
 ### Arguments
 
 You can look up the arguments/options that a function has by using the help documentation. Some arguments are required, and some are optional. Optional arguments will often use a default (normally specified in the help documentation) if you do not enter any value.
 
-As an example, look at the help documentation for the function `rnorm()` which randomly generates a set of numbers with a normal distribution. 
+As an example, look at the help documentation for the function `sample()` which randomly samples items from a list. 
 
 
 ```r
-?rnorm
+?sample
 ```
 
-The help documentation for `rnorm()` should appear in the bottom right help panel. In the usage section, we see that `rnorm()` takes the following form:
+The help documentation for `sample()` should appear in the bottom right help panel. In the usage section, we see that `sample()` takes the following form:
 
 
 ```r
-rnorm(n, mean = 0, sd = 1)
+sample(x, size, replace = FALSE, prob = NULL)
 ```
 
-In the arguments section, there are explanations for each of the arguments. `n` is the number of observations we want to create, `mean` is the mean of the data points we will create and `sd` is the standard deviation of the set. In the details section it notes that if no values are entered for `mean` and `sd` it will use a default of 0 and 1 for these values. Because there is no default value for `n` it must be specified otherwise the code won't run.
+In the arguments section, there are explanations for each of the arguments. `x` is the list of items we want to choose from, `size` is the number of items we want to choose, `replace` is whether or not the chosen item should be "replaced" into the pool so that each item might be selected more than once, and `prob` gives the probability that each item is chosen. In the details section it notes that if no values are entered for `replace` or `prob` it will use defaults of `FALSE` (items can only be chosen once) and `NULL` (all items will have equal probability of being chosen). Because there is no default value for `x` or `size`, they must be specified otherwise the code won't run.
 
-Let's try an example and just change the required argument `n` to ask R to produce 5 random numbers. 
+Let's try an example and just change the required arguments to `x` and `size` to ask R to choose 5 random letters (`letters` is a built-in <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of the 26 lower-case Latin letters). 
+
+
 
 
 ```r
-rnorm(n = 5)
+sample(x = letters, size = 5)
 ```
 
 ```
-## [1] -0.2896163 -0.6428964  0.5829221 -0.3286728 -0.5110101
+## [1] "z" "v" "y" "w" "j"
 ```
 
-These numbers have a mean of 0 and an SD of 1. 
+
+<div class='webex-solution'><button>Why are my letters different to your letters?</button>
 
 
-<div class='webex-solution'><button>Why are my numbers different to your numbers?</button>
-
-
-`rnorm()` generates random numbers. Each time you run the code, you'll generate a different set of random numbers (try it). The function `set.seed()` controls the random number generator - if you're using any functions that generate numbers randomly (such as `rnorm()`), running `set.seed()` will ensure that you get the same result (in many cases this may not be what you want to do).To get the same numbers we do, run `set.seed(1242016)` in the console, and then run `rnorm(n = 5)` again.
+`sample()` generates a random sample. Each time you run the code, you'll generate a different set of random letters (try it). The function `set.seed()` controls the random number generator - if you're using any functions that use randomness (such as `sample()`), running `set.seed()` will ensure that you get the same result (in many cases this may not be what you want to do). To get the same numbers we do, run `set.seed(1242016)` in the console, and then run `sample(x = letters, size = 5)` again.
 
 
 </div>
 
 
-Now we can change the additional arguments to produce a different set of numbers.
+Now we can change the default value for the `replace` argument to produce a set of letters that is allowed to have duplicates.
 
 
 ```r
-rnorm(n = 5, mean = 10, sd = 2)
+set.seed(8675309)
+sample(x = letters, size = 5, replace = TRUE)
 ```
 
 ```
-## [1] 13.320853  9.377956 10.235461  9.811793 13.019102
+## [1] "t" "k" "j" "k" "m"
 ```
 
-This time R has still produced 5 random numbers, but now this set of numbers has a mean of 10 and an sd of 2 as specified. Always remember to use the help documentation to help you understand what arguments a function requires.
+This time R has still produced 5 random letters, but now this set of letters has two instances of "k". Always remember to use the help documentation to help you understand what arguments a function requires.
 
 ### Argument names
 
-In the above examples, we have written out the argument names in our code (i.e., `n`, `mean`, `sd`), however, this is not strictly necessary. The following two lines of code would both produce the same result (although each time you run `rnorm()` it will produce a slightly different set of numbers, because it's random, but they would still work the same):
+In the above examples, we have written out the argument names in our code (i.e., `x`, `size`, `replace`), however, this is not strictly necessary. The following two lines of code would both produce the same result (although each time you run `sample()` it will produce a slightly different result, because it's random, but they would still work the same):
 
 
 ```r
-rnorm(n = 6, mean = 3, sd = 1)
-rnorm(6, 3, 1)
+sample(x = letters, size = 5, replace = TRUE)
+sample(letters, 5, TRUE)
 ```
 
-Importantly, if you do not write out the argument names, R will use the default order of arguments. That is for `rnorm` it will assume that the first number you enter is `n`. the second number is `mean` and the third number is `sd`. 
+Importantly, if you do not write out the argument names, R will use the default order of arguments. That is for `sample` it will assume that the first value you enter is `x`. the second value is `size` and the third value is `replace`. 
 
 If you write out the argument names then you can write the arguments in whatever order you like:
 
 
 ```r
-rnorm(sd = 1, n = 6, mean = 3)
+sample(size = 5, replace = TRUE, x = letters)
 ```
 
-When you are first learning R, you may find it useful to write out the argument names as it can help you remember and understand what each part of the function is doing. However, as your skills progress you may find it quicker to omit the argument names and you will also see examples of code online that do not use argument names so it is important to be able to understand which argument each bit of code is referring to (or look up the help documentation to check).
+When you are first learning R, you may find it useful to write out the argument names as it can help you remember and understand what each part of the function is doing. However, as your skills progress you may find it quicker to omit the argument names and you will also see examples of code online that do not use argument names, so it is important to be able to understand which argument each bit of code is referring to (or look up the help documentation to check).
 
-In this course, we will always write out the argument names the first time we use each function, however, in subsequent uses they may be omitted.
+In this course, we will always write out the argument names the first time we use each function. However, in subsequent uses they may be omitted.
 
 ### Tab auto-complete
 
@@ -293,7 +296,7 @@ One very useful feature of R Studio is  tab auto-complete for functions (see Fig
 
 ## Objects
 
-A large part of your coding will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses.You assign content to an object using `<-`.
+A large part of your coding will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses. You assign content to an object using `<-`.
 
 Run the following code in the console, but change the values of `name` and `age` to your own details and change `christmas` to a holiday or date you care about.
 
@@ -307,14 +310,14 @@ christmas <- as.Date("2022-12-25")
 
 You'll see that four objects now appear in the environment pane:
 
-* `name` is character (text) data. In order for R to recognise it as character data, it **must** be enclosed in double quotation marks `" "`.
-* `age` is numeric data. In order for R to recognise this as a number, it **must not** be enclosed in quotation marks.
-* `today` stores the result of the function `Sys.Date()`. This function returns your computer system's date. Unlike `name` and `age` which are hard-coded (i.e., they will always return the values you enter), the contents of the object `today` will change dynamically with the date. That is, if you run that function tomorrow, it will update the date to tomorrow's date.
-* `christmas` is also a date but it's hard-coded as a very specific date. It's wrapped within the `as.Date()` function that tells R to interpret the character string you provide as date rather than a real number. Because it's not a real number, the date should be in quotation marks. 
+* `name` is <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> (text) data. In order for R to recognise it as character data, it **must** be enclosed in double quotation marks `" "`.
+* `age` is <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> data. In order for R to recognise this as a number, it **must not** be enclosed in quotation marks.
+* `today` stores the result of the function `Sys.Date()`. This function returns your computer system's date. Unlike `name` and `age`, which are hard-coded (i.e., they will always return the values you enter), the contents of the object `today` will change dynamically with the date. That is, if you run that function tomorrow, it will update the date to tomorrow's date.
+* `christmas` is also a date but it's hard-coded as a very specific date. It's wrapped within the `as.Date()` function that tells R to interpret the character string you provide as date rather than text.
 
 ::: {.try data-latex=""}
 
-To print the contents of an object, you can simply type the object's name in the console and press enter. Try printing all four objects now.
+To print the contents of an object, type the object's name in the console and press enter. Try printing all four objects now.
 
 :::
 
@@ -323,7 +326,7 @@ Finally, a key concept to understand is that objects can interact and you can sa
 
 ```r
 decade <- age + 10
-full_name <- c(name, "Nordmann") # c = combine
+full_name <- paste(name, "Nordmann")
 how_long <- christmas - today
 ```
 
@@ -432,6 +435,10 @@ vignette("ggplot2-specs", package = "ggplot2")
   <tr>
    <td style="text-align:left;"> [string](https://psyteachr.github.io/glossary/s.html#string){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A piece of text inside of quotes. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [vector](https://psyteachr.github.io/glossary/v.html#vector){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A type of data structure that collects values with the same data type, like T/F values, numbers, or strings. </td>
   </tr>
 </tbody>
 </table>

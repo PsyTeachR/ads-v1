@@ -105,23 +105,18 @@
 <span class="header-section-number">2.2</span> Organising a project<a class="anchor" aria-label="anchor" href="#projects"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before we write any code, first, we need to get organised. <a class="glossary" target="_blank" title="A way to organise related files in RStudio" href="https://psyteachr.github.io/glossary/p#project">Projects</a> in RStudio are a way to group all the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images.</p>
-<p>First, make a new folder on your computer where you will keep all of your materials for this class, we'd suggest renaming it something like <code>ADS-22</code>. The folder that R will look in by default to find and save files is known as the <a class="glossary" target="_blank" title="The filepath where R is currently reading and writing files." href="https://psyteachr.github.io/glossary/w#working-directory">working directory</a>. You can set the working directory manually to the folder you want to work in:</p>
+<p>First, make a new folder on your computer where you will keep all of your materials for this class, we'd suggest renaming it something like <code>ADS-22</code>. The folder that R will look in by default to find and save files is known as the <a class="glossary" target="_blank" title="The filepath where R is currently reading and writing files." href="https://psyteachr.github.io/glossary/w#working-directory">working directory</a>. You can set the working directory manually to the folder you want to work in with menu commands:</p>
 <ul>
-<li><code>Session</code></li>
-<li><code>Set Working Directory</code></li>
-<li><code>Choose Directory</code></li>
+<li><strong><code>Session &gt; Set Working Directory &gt; Choose Directory...</code></strong></li>
 </ul>
 <p>However, there's a better way of organising your files by using Projects in RStudio.</p>
 <div id="project-start" class="section level3" number="2.2.1">
 <h3>
 <span class="header-section-number">2.2.1</span> Start a Project<a class="anchor" aria-label="anchor" href="#project-start"><i class="fas fa-link"></i></a>
 </h3>
-<p>To create a new project for the work we'll do in this chapter click:</p>
+<p>To create a new project for the work we'll do in this chapter:</p>
 <ul>
-<li>Click <code>File</code>
-</li>
-<li>Then <code>New project</code>
-</li>
+<li><strong><code>File &gt; New Project...</code></strong></li>
 <li>Name the project <code class="path">02-reports</code>
 </li>
 <li>Save it inside the directory you just made.</li>
@@ -133,7 +128,7 @@
 Figure 2.1: Starting a new project.
 </p>
 </div>
-<p>Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called <code>02-reports.Rproj</code>, which is a file that contains all of the project information.You can double-click on it to open up the project.</p>
+<p>Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called <code>02-reports.Rproj</code>, which is a file that contains all of the project information. You can double-click on it to open up the project.</p>
 <div class="info">
 <p>Depending on your settings, you may also see a directory called <code>.Rproj.user</code>, which contains your specific user settings. You can ignore this and other "invisible" files that start with a full stop.</p>
 </div>
@@ -142,11 +137,11 @@ Figure 2.1: Starting a new project.
 <h3>
 <span class="header-section-number">2.2.2</span> Naming Things<a class="anchor" aria-label="anchor" href="#naming"><i class="fas fa-link"></i></a>
 </h3>
-<p>Before we start creating new files, it's important to review how to name your files. This might seem a bit pedantic, but following clear naming rules so that both people and computers can easily find things will make your life much easier in the long-run. Here are some important principles:</p>
+<p>Before we start creating new files, it's important to review how to name your files. This might seem a bit pedantic, but following clear naming rules so that both people and computers can easily find things will make your life much easier in the long run. Here are some important principles:</p>
 <ul>
 <li>file and directory names should only contain letters, numbers, dashes, and underscores, with a full stop (<code>.</code>) between the file name and <a class="glossary" target="_blank" title="The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd)." href="https://psyteachr.github.io/glossary/e#extension">extension</a> (that means no spaces!)</li>
 <li>be consistent with capitalisation (set a rule to make it easy to remember, like always use lowercase)</li>
-<li>use underscores (<code>_</code>) to separate parts of the file name, and dashes (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) to separate words in each part</li>
+<li>use underscores (<code>_</code>) to separate parts of the file name, like the title and date, and dashes (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) to separate words in each part (e.g., <code>social-media-report_2021-10.Rmd</code>)</li>
 <li>name files with a pattern that alphabetises in a sensible order and makes it easy for you to find the file you're looking for</li>
 <li>prefix a file name with an underscore to move it to the top of the list, or prefix all files with numbers to control their order</li>
 </ul>
@@ -186,12 +181,10 @@ Figure 2.1: Starting a new project.
 <p>Throughout this course we will use <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using <a class="glossary" target="_blank" title="A way to specify formatting, such as headers, paragraphs, lists, bolding, and links." href="https://psyteachr.github.io/glossary/m#markdown">markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
 <p>To open a new R Markdown document click:</p>
 <ul>
-<li><strong><code>File</code></strong></li>
-<li><strong><code>New file</code></strong></li>
-<li><strong><code>R Markdown</code></strong></li>
+<li><strong><code>File &gt; New File &gt; R Markdown</code></strong></li>
 </ul>
-<p>You will be prompted to give it a title, call the document <code>important_info</code>. You can also change the author name. Keep the output format as HTML.</p>
-<p>Once you've opened a new document be sure to save it by clicking <code>File</code> -&gt; <code>Save as</code>. You should also name this file <code>important_info</code>. This file will automatically be saved in your project folder, i.e., your working directory, so you should now see this file appear in your file viewer pane.</p>
+<p>You will be prompted to give it a title; call the document <code>Important Info</code>. You can also change the author name. Keep the output format as HTML.</p>
+<p>Once you've opened a new document be sure to save it by clicking <strong><code>File &gt; Save As...</code></strong>. You should name this file <code>important_info</code> (if you are on a Mac and can see the file <a class="glossary" target="_blank" title="The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd)." href="https://psyteachr.github.io/glossary/e#extension">extension</a>, name it <code>important_info.Rmd</code>). This file will automatically be saved in your project folder, i.e., your working directory, so you should now see this file appear in your file viewer pane.</p>
 <div id="code-chunks" class="section level3" number="2.3.1">
 <h3>
 <span class="header-section-number">2.3.1</span> Using R Markdown for the first time<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
@@ -206,7 +199,7 @@ Figure 2.2: New R Markdown text
 <p>Do the following steps:</p>
 <ul>
 <li>Delete <strong>everything</strong> from line 12 onwards</li>
-<li>On line 12 type "# Important information" (with the hashtag but without the quotation marks)<br>
+<li>On line 12 type "## My info" (with the hashtags but without the quotation marks)<br>
 </li>
 <li>Click the insert new code menu (a green box with a C and a plus sign) then <strong><code>R</code></strong>
 </li>
@@ -218,7 +211,7 @@ Figure 2.2: New R Markdown text
 Figure 2.3: New R chunk
 </p>
 </div>
-<p>What you have created is a <strong>code chunk</strong>. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code (the actual colours will depend on which theme you have applied but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.</p>
+<p>What you have created is a subtitle and a <strong>code chunk</strong>. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code (the actual colours will depend on which theme you have applied but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.</p>
 <div class="dangerous">
 <p>When you create a new code chunk you should notice that the grey box starts and ends with three back ticks ```. One common mistake is to accidentally delete these back ticks. Remember, code chunks are grey and text entry is white - if the colour of certain parts of your Markdown doesn't look right, check that you haven't deleted the back ticks.</p>
 </div>
@@ -239,11 +232,11 @@ Figure 2.3: New R chunk
 <span class="header-section-number">2.3.3</span> Running code in R Markdown<a class="anchor" aria-label="anchor" href="#running-code-in-r-markdown"><i class="fas fa-link"></i></a>
 </h3>
 <p>When you're working in an R Markdown document, there are several ways to run your lines of code.</p>
-<p>First, you can highlight the code you want to run and then click <code>Run</code> -&gt; <code>Run Selected Line(s)</code>, however this is very slow.</p>
+<p>First, you can highlight the code you want to run and then click <code>Run</code> -&gt; <code>Run Selected Line(s)</code>, however this is tedious and can cause problems if you don't highlight <em>exactly</em> the code you want to run.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-run1"></span>
-<img src="images/reports/run1.gif" alt="Slow method of running code" width="100%"><p class="caption">
-Figure 2.4: Slow method of running code
+<img src="images/reports/run1.gif" alt="Tedious method of running code" width="100%"><p class="caption">
+Figure 2.4: Tedious method of running code
 </p>
 </div>
 <p>Alternatively, you can press the green "play" button at the top-right of the code chunk and this will run <strong>all</strong> lines of code in that chunk.</p>
@@ -254,7 +247,7 @@ Figure 2.5: Slightly better method of running code
 </p>
 </div>
 <p>Even better is to learn some of the keyboard short cuts for R Studio. To run a single line of code, make sure that the cursor is in the line of code you want to run (it can be anywhere) and press <code>ctrl + enter</code> or <code>Cmd + enter</code> if you're on a Mac. If you want to run all of the code in the code chunk, press <code>ctrl/cmd + shift + enter</code>. Learn these short cuts, they will make your life easier!</p>
-<p>Run your code using one of the methods above. You should see the variables <code>name</code>, <code>age</code>, <code>today</code>, and <code>christmas</code> appear in the environment pane.</p>
+<p>Run your code using each of the methods above. You should see the variables <code>name</code>, <code>age</code>, <code>today</code>, and <code>christmas</code> appear in the environment pane.</p>
 </div>
 <div id="rmd-inline-r" class="section level3" number="2.3.4">
 <h3>
@@ -262,25 +255,26 @@ Figure 2.5: Slightly better method of running code
 </h3>
 <p>We keep talking about using R Markdown for reproducible reports but it's easier to show you than tell you why this is so powerful and to give you an insight into how this course will (hopefully!) change the way you work with data forever!</p>
 <p>One important feature of R Markdown is that you can combine text and code to insert values into your writing using <strong>inline coding</strong>. If you've ever had to copy and paste a value or text from one file to another, you'll know how easy it can be to make mistakes. Inline code avoids this. Again it's easier to show you what inline code does rather than to explain it so let's have a go.</p>
-<p>First, copy and paste this text to the <strong>white space underneath</strong> your code chunk. If you used a different variable name than <code>christmas</code> you should update this with the name of the object you created but otherwise don't change anything else.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="reports.html#cb19-1" aria-hidden="true" tabindex="-1"></a>My name is <span class="st">`</span><span class="at">r name</span><span class="st">`</span> and I am <span class="st">`</span><span class="at">r age</span><span class="st">`</span> years old. It is <span class="st">`</span><span class="at">r christmas - today</span><span class="st">`</span> days until Christmas which is my favourite holiday.</span></code></pre></div>
+<p>First, copy and paste this text to the <strong>white space underneath</strong> your code chunk. If you used a different variable name than <code>christmas</code> you should update this with the name of the object you created, but otherwise don't change anything else.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="reports.html#cb19-1" aria-hidden="true" tabindex="-1"></a>My name is <span class="st">`</span><span class="at">r name</span><span class="st">`</span> and I am <span class="st">`</span><span class="at">r age</span><span class="st">`</span> years old. </span>
+<span id="cb19-2"><a href="reports.html#cb19-2" aria-hidden="true" tabindex="-1"></a>It is <span class="st">`</span><span class="at">r christmas - today</span><span class="st">`</span> days until Christmas, </span>
+<span id="cb19-3"><a href="reports.html#cb19-3" aria-hidden="true" tabindex="-1"></a>which is my favourite holiday.</span></code></pre></div>
 </div>
 <div id="rmd-knit" class="section level3" number="2.3.5">
 <h3>
 <span class="header-section-number">2.3.5</span> Knitting your file<a class="anchor" aria-label="anchor" href="#rmd-knit"><i class="fas fa-link"></i></a>
 </h3>
-<p>Now we are going to <a class="glossary" target="_blank" title="To create an HTML, PDF, or Word document from an R Markdown (Rmd) document" href="https://psyteachr.github.io/glossary/k#knit">knit</a>, or compile, the file into a document type of our choosing. In this case we'll create a default html file but you will learn how to create other files like Word and PDF throughout this course. To knit your file click:</p>
+<p>Now we are going to <a class="glossary" target="_blank" title="To create an HTML, PDF, or Word document from an R Markdown (Rmd) document" href="https://psyteachr.github.io/glossary/k#knit">knit</a>, or compile, the file into a document type of our choosing. In this case we'll create a default html file, but you will learn how to create other files like Word and PDF throughout this course. To knit your file click:</p>
 <ul>
-<li><strong><code>Knit</code></strong></li>
-<li><strong><code>Knit to HMTL</code></strong></li>
+<li><strong><code>Knit &gt; Knit to HMTL</code></strong></li>
 </ul>
-<p>R Markdown will create a new HTML document which it will display, but it will also automatically save this file in your working directory.</p>
+<p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 423 days until Christmas which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 413 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
-<p>You can also type the following code into the console (substituting your specific file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
+<p>You can also type the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"file.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"important_info.Rmd"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -289,7 +283,7 @@ Figure 2.5: Slightly better method of running code
 <span class="header-section-number">2.4</span> Loading data<a class="anchor" aria-label="anchor" href="#loading-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.</p>
-<p>Save and close your <code>important_info.Rmd</code> document and open and save a new Markdown document, this time named <code>sales_data</code>. You can again get rid of everything from line 12 onwards.</p>
+<p>Save and close your <code>important_info.Rmd</code> document. Then open and save a new Markdown document, this time named <code>sales_data.Rmd</code>. You can again get rid of everything from line 12 onwards.</p>
 <div id="loading-online" class="section level3" number="2.4.1">
 <h3>
 <span class="header-section-number">2.4.1</span> Loading data from an online source<a class="anchor" aria-label="anchor" href="#loading-online"><i class="fas fa-link"></i></a>
@@ -297,7 +291,7 @@ Figure 2.5: Slightly better method of running code
 <p>First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.</p>
 <ul>
 <li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> function to load it in.</li>
-<li>The package <code>readr</code> is part of the <code>tidyverse</code> that you installed in Chapter <span class="citation">(<a href="#ref-ref" role="doc-biblioref"><strong>ref?</strong></a>)</span>(install-package) and we load this package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><br>
+<li>The package <code>readr</code> is part of the <code>tidyverse</code> that you installed in Chapter <a href="intro.html#intro">1</a> and we load this package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><br>
 </li>
 <li>Note that the url is contained within double quotation marks - it won't work without this.</li>
 </ul>
@@ -323,7 +317,7 @@ Figure 2.5: Slightly better method of running code
 <div class="try">
 <p>In your <code class="path">02-reports</code> directory, create a new folder named <code class="path">data</code>, then, <a href="https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv">download a copy of the sales data file</a> and save it in this new subdirectory.</p>
 </div>
-<p>To load in data from a local file, again we can use the <code>read_csv()</code> function but this time rather than specifying a url, we simply give it the subdirectory and file name.</p>
+<p>To load in data from a local file, again we can use the <code>read_csv()</code> function but this time rather than specifying a url, give it the subdirectory and file name.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_local</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/sales_data_sample.csv"</span><span class="op">)</span> </code></pre></div>
 <p>Things to note:</p>
@@ -331,7 +325,7 @@ Figure 2.5: Slightly better method of running code
 <li>You must include the file extension (in this case <code>.csv</code>)</li>
 <li>The subdirectory folder name (<code>data</code>) and the file name are separated by a forward slash <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>
 </li>
-<li>Precision is important, if you have a typo in the file name it won't be able to find your file and remember that R is case sensitive - <code>Sales_Data.csv</code> is a completely different file to <code>sales_data.csv</code> as far as R is concerned.</li>
+<li>Precision is important, if you have a typo in the file name it won't be able to find your file; remember that R is case sensitive - <code>Sales_Data.csv</code> is a completely different file to <code>sales_data.csv</code> as far as R is concerned.</li>
 </ul>
 <div class="try">
 <p>Run <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, and <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> on <code>sales_local</code> to confirm that the data is the same as <code>sales_online</code>.</p>
@@ -342,19 +336,23 @@ Figure 2.5: Slightly better method of running code
 <h2>
 <span class="header-section-number">2.5</span> Writing a report<a class="anchor" aria-label="anchor" href="#writing-a-report"><i class="fas fa-link"></i></a>
 </h2>
-<p>We're going to write a basic report for this sales dataset using Markdown to show you some of the features. We'll be expanding on almost every bit of what we're about to show you throughout this course, the most important outcome is that you start to get comfortable with how R Markdown works and what you can use it to do.</p>
+<p>We're going to write a basic report for this sales dataset using R Markdown to show you some of the features. We'll be expanding on almost every bit of what we're about to show you throughout this course; the most important outcome is that you start to get comfortable with how R Markdown works and what you can use it to do.</p>
 <div id="data-analysis" class="section level3" number="2.5.1">
 <h3>
 <span class="header-section-number">2.5.1</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"><i class="fas fa-link"></i></a>
 </h3>
-<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter {#summary}, for now, see if you can follow the logic of what the code is doing via the code comments.</p>
+<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter @ref(#summary). For now, see if you can follow the logic of what the code is doing via the code comments.</p>
 <p>Create a new code chunk, then copy, paste and run the following code and then view <code>sales_counts</code> by clicking on the object in the environment pane.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sales_counts</span><span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> <span class="co"># take the sale_online data and then</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># just keep the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># group it by type of vehicle and then</span>
-  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="co"># count how many are in each group</span></code></pre></div>
-<p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle, it just counts the number of rows in each group.</p>
+<code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
+<span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
+  <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="co"># group it by type of vehicle and then</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="co"># count how many are in each group</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
 <th style="text-align:center;">
@@ -405,7 +403,7 @@ Figure 2.6: The visual editor.
 </div>
 <p>This is useful for complex styling, but you can also use these common plain-text style markups:</p>
 <ul>
-<li>Headers are created by prefacing subtitles with one or more hashes (<code>#</code>). If you include a table of contents, this will be created from your document headers.</li>
+<li>Headers are created by prefacing subtitles with one or more hashes (<code>#</code>) and a space (do not exclude the space). If you include a table of contents, this will be created from your document headers.</li>
 <li>Format text with <em>italics</em> or <strong>bold</strong> by surrounding the text with one or two asterisks or underscores.</li>
 <li>Make lists using numbers, asterisks or dashes before items. Indent items to make nested lists.</li>
 <li>Make links like this: <code>[psyTeachR](https://psyteachr.github.io/)</code>
@@ -413,21 +411,20 @@ Figure 2.6: The visual editor.
 <li>Download the <a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheat Sheet</a> to learn more.</li>
 </ul>
 <p>Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.</p>
-<pre><code>
-\# Sample sales report
+<pre><code>## Sample sales report
 
-This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data)
+This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
 
-\#\# Sales by type
+### Sales by type
 
-The \*total\* number of \*\*\planes** sold was 306
+The *total* number of **planes** sold was `r sales_counts$n[3]`
 
-The *total* number of **classic cars** sold was 967.
-</code></pre>
+The *total* number of **classic cars** sold was `r sales_counts$n[1]`.</code></pre>
 <p>Try and match up the inline code with what is in the <code>sales_counts</code> table. Of note:</p>
 <ul>
 <li>The <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> sign is used to indicate specific variables (or columns) in an object using the <code>object$variable</code> syntax.</li>
-<li>Square brackets with a number e.g., [3] indicate a particular observation so in this case, we ask the inline code to display the third observation of the variable <code>n</code> in the dataset <code>sales_online</code>.</li>
+<li>Square brackets with a number e.g., <code>[3]</code> indicate a particular observation</li>
+<li>So <code>sales_counts$n[3]</code> asks the inline code to display the third observation of the variable <code>n</code> in the dataset <code>sales_online</code>.</li>
 </ul>
 <div class="try">
 <p>Add another line that reports the total numbers of <strong>motorcycles</strong> using inline code. Using either the visual editor or text markups, add in bold and italics so that it matches the others.</p>
@@ -436,9 +433,7 @@ The *total* number of **classic cars** sold was 967.
 <button>
 Solution
 </button>
-<pre><code>
-The *total* number of **motorcycles** sold was 331.
-</code></pre>
+<pre><code>The *total* number of **motorcycles** sold was `r sales_counts$n[2]`.</code></pre>
 </div>
 </div>
 <div id="comments" class="section level3" number="2.5.3">
@@ -462,6 +457,8 @@ The *total* number of **motorcycles** sold was 331.
 <p>As the saying goes, a picture paints a thousand words and sometimes you will want to communicate your data using visualisations.</p>
 <p>Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to make a simple bar chart that represents the sales data - focus on trying to follow how bits of the code map on to the plot that is created.</p>
 <p>Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document. Notice how the figure caption is formatted in the chunk options.</p>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r, fig.cap= "Sales visualisation"}</code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -470,9 +467,11 @@ The *total* number of **motorcycles** sold was 331.
        y <span class="op">=</span> <span class="st">"Number of sales"</span>,
        title <span class="op">=</span> <span class="st">"Sales by vehicle type"</span>,
        subtitle <span class="op">=</span> <span class="st">"2003 - 2005"</span><span class="op">)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-7"></span>
-<img src="02-reports_files/figure-html/unnamed-chunk-7-1.png" alt="Sales visualisation" width="100%"><p class="caption">
+<span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" alt="Sales visualisation" width="100%"><p class="caption">
 Figure 2.7: Sales visualisation
 </p>
 </div>
@@ -492,47 +491,16 @@ Figure 2.7: Sales visualisation
 <p>First, let's see what the table looks like if we don't make any edits. Simply write the name of the table you want to display in the code chunk (in our case <code>sales_counts</code>) and then click knit to see what it looks like.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_counts</span></code></pre></div>
-<div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-PRODUCTLINE
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Classic Cars
-</td>
-<td style="text-align:right;">
-967
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Motorcycles
-</td>
-<td style="text-align:right;">
-331
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Planes
-</td>
-<td style="text-align:right;">
-306
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
+<pre><code>## # A tibble: 3 × 2
+## # Groups:   PRODUCTLINE [3]
+##   PRODUCTLINE      n
+##   &lt;chr&gt;        &lt;int&gt;
+## 1 Classic Cars   967
+## 2 Motorcycles    331
+## 3 Planes         306</code></pre>
 <p>It's just about readable but it's not great. To customise tables we're going to use the function <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> from the <code>kableExtra</code> package.</p>
 <p>Amend your code to load the <code>kableExtra</code> package and apply the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> function to the table. Once you've done this, knit the file again to see the output.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span> <span class="co"># load the package</span>
 <span class="va">sales_counts</span> <span class="op">%&gt;%</span> <span class="co"># start with the sales_count table and then</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># apply the kable function</span></code></pre></div>
@@ -575,7 +543,7 @@ Planes
 <p>It's better, but it's still not amazing. So let's make a few adjustments. We can change the names of the columns, add a caption, and also change the alignment of the cell contents using arguments to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code>.</p>
 <p>We can also add a theme which changes the overall style. In this example we've used <code>kable_classic</code> but there are 5 others: <code>kable_paper</code>, <code>kable_classic_2</code>, <code>kable_minimal</code>, <code>kable_material</code> and <code>kable_material_dark</code>. Try them all and see which one you prefer.</p>
 <p>Finally, we can change the formatting of the first row using <code>row_spec</code>. Look up the help documentation for <code>row_spec</code> to see what other options are available.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_counts</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Product"</span>, <span class="st">"Sales"</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Number of sales per product line."</span>, 
@@ -584,7 +552,7 @@ Planes
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="co"># try changing these values</span></code></pre></div>
 <div class="inline-table"><table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
 <caption>
-<span id="tab:unnamed-chunk-11">Table 2.1: </span>Number of sales per product line.
+<span id="tab:unnamed-chunk-14">Table 2.1: </span>Number of sales per product line.
 </caption>
 <thead><tr>
 <th style="text-align:center;font-weight: bold;color: red !important;">
@@ -635,7 +603,7 @@ Planes
 <p>Let's finish by tidying up the report and organising our code a bit better. When you create a new R Markdown file in RStudio, a setup chunk is automatically created - we've ignored this chunk until now.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -649,7 +617,7 @@ Planes
 </ul>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
   echo       <span class="op">=</span> <span class="cn">FALSE</span>,     <span class="co"># whether to show code chunks</span>
   message    <span class="op">=</span> <span class="cn">FALSE</span>,     <span class="co"># whether to show messages from your code</span>
@@ -664,7 +632,7 @@ Planes
 <p>For example, by default you might want to hide your code but there might be an occasion where you want to show the code you used to analyse your data. You can set <code>echo = FALSE</code> in your setup chunk to make hiding code the default but in the individual code chunk for your plot set <code>echo = TRUE</code>. Try this now and knit the file to see the results.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo = TRUE}</code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -677,13 +645,13 @@ Planes
 <p>Additionally, you can also override the default image size.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, out.width='25%'}</code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://cdn.britannica.com/q:60/69/155469-131-14083F59/airplane-flight.jpg"</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 10, fig.height = 20}</code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -842,7 +810,7 @@ A structured format for information
 <h2>
 <span class="header-section-number">2.10</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-reports"><i class="fas fa-link"></i></a>
 </h2>
-<p>Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful but spreading out your practice will help you learn more in the long-run.</p>
+<p>Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful but spreading out your practice will help you learn more in the long run.</p>
 <div id="exercises-reports-project" class="section level3" number="2.10.1">
 <h3>
 <span class="header-section-number">2.10.1</span> New project<a class="anchor" aria-label="anchor" href="#exercises-reports-project"><i class="fas fa-link"></i></a>
@@ -891,7 +859,7 @@ and teaching computational skills.
 <span class="header-section-number">2.10.4</span> Tables<a class="anchor" aria-label="anchor" href="#exercises-reports-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use the following code to load a small table of tasks [<a href="reports.html#code-chunks">2.3.1</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
   <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
@@ -904,12 +872,12 @@ and teaching computational skills.
 Solution
 </button>
 <p>You can set the default to <code>echo = FALSE</code> in the setup chunk at the top of the script.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>To set visibility for a specific code chunk, put <code>echo = FALSE</code> inside the curly brackets.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo=FALSE}</code></pre>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code to hide</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -919,7 +887,7 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
@@ -1010,7 +978,7 @@ Solution
 Solution
 </button>
 <p>Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"job.Rmd"</span><span class="op">)</span></code></pre></div>
 </div>
 
@@ -1286,7 +1254,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-10-28.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

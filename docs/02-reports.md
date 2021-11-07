@@ -19,20 +19,17 @@ library(kableExtra) # for styling tables
 
 Before we write any code, first, we need to get organised. <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images.
 
-First, make a new folder on your computer where you will keep all of your materials for this class, we'd suggest renaming it something like `ADS-22`. The folder that R will look in by default to find and save files is known as the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a>. You can set the working directory manually to the folder you want to work in:
+First, make a new folder on your computer where you will keep all of your materials for this class, we'd suggest renaming it something like `ADS-22`. The folder that R will look in by default to find and save files is known as the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a>. You can set the working directory manually to the folder you want to work in with menu commands:
 
--   `Session`
--   `Set Working Directory`
--   `Choose Directory`
+-   **`Session > Set Working Directory > Choose Directory...`**
 
 However, there's a better way of organising your files by using Projects in RStudio.
 
 ### Start a Project {#project-start}
 
-To create a new project for the work we'll do in this chapter click:
+To create a new project for the work we'll do in this chapter:
 
--   Click `File`
--   Then `New project`
+-   **`File > New Project...`**
 -   Name the project <code class='path'>02-reports</code>
 -   Save it inside the directory you just made.
 
@@ -43,7 +40,7 @@ RStudio will restart itself and open with this new project directory as the work
 <p class="caption">(\#fig:unnamed-chunk-1)Starting a new project.</p>
 </div>
 
-Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called `02-reports.Rproj`, which is a file that contains all of the project information.You can double-click on it to open up the project.
+Click on the Files tab in the lower right pane to see the contents of the project directory. You will see a file called `02-reports.Rproj`, which is a file that contains all of the project information. You can double-click on it to open up the project.
 
 ::: {.info data-latex=""}
 Depending on your settings, you may also see a directory called `.Rproj.user`, which contains your specific user settings. You can ignore this and other "invisible" files that start with a full stop.
@@ -51,11 +48,11 @@ Depending on your settings, you may also see a directory called `.Rproj.user`, w
 
 ### Naming Things {#naming}
 
-Before we start creating new files, it's important to review how to name your files. This might seem a bit pedantic, but following clear naming rules so that both people and computers can easily find things will make your life much easier in the long-run. Here are some important principles:
+Before we start creating new files, it's important to review how to name your files. This might seem a bit pedantic, but following clear naming rules so that both people and computers can easily find things will make your life much easier in the long run. Here are some important principles:
 
 -   file and directory names should only contain letters, numbers, dashes, and underscores, with a full stop (`.`) between the file name and <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> (that means no spaces!)
 -   be consistent with capitalisation (set a rule to make it easy to remember, like always use lowercase)
--   use underscores (`_`) to separate parts of the file name, and dashes (`-`) to separate words in each part
+-   use underscores (`_`) to separate parts of the file name, like the title and date, and dashes (`-`) to separate words in each part (e.g., `social-media-report_2021-10.Rmd`)
 -   name files with a pattern that alphabetises in a sensible order and makes it easy for you to find the file you're looking for
 -   prefix a file name with an underscore to move it to the top of the list, or prefix all files with numbers to control their order
 
@@ -89,13 +86,11 @@ Throughout this course we will use <a class='glossary' target='_blank' title='Th
 
 To open a new R Markdown document click:
 
--   **`File`**
--   **`New file`**
--   **`R Markdown`**
+-   **`File > New File > R Markdown`**
 
-You will be prompted to give it a title, call the document `important_info`. You can also change the author name. Keep the output format as HTML.
+You will be prompted to give it a title; call the document `Important Info`. You can also change the author name. Keep the output format as HTML.
 
-Once you've opened a new document be sure to save it by clicking `File` -> `Save as`. You should also name this file `important_info`. This file will automatically be saved in your project folder, i.e., your working directory, so you should now see this file appear in your file viewer pane.
+Once you've opened a new document be sure to save it by clicking **`File > Save As...`**. You should name this file `important_info` (if you are on a Mac and can see the file <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a>, name it `important_info.Rmd`). This file will automatically be saved in your project folder, i.e., your working directory, so you should now see this file appear in your file viewer pane.
 
 ### Using R Markdown for the first time {#code-chunks}
 
@@ -109,7 +104,7 @@ When you first open a new R Markdown document you will see a bunch of welcome te
 Do the following steps:
 
 -   Delete **everything** from line 12 onwards
--   On line 12 type "# Important information" (with the hashtag but without the quotation marks)\
+-   On line 12 type "## My info" (with the hashtags but without the quotation marks)\
 -   Click the insert new code menu (a green box with a C and a plus sign) then **`R`**
 
 Your Markdown document should now look something like this:
@@ -119,7 +114,7 @@ Your Markdown document should now look something like this:
 <p class="caption">(\#fig:img-new-chunk)New R chunk</p>
 </div>
 
-What you have created is a **code chunk**. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code (the actual colours will depend on which theme you have applied but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.
+What you have created is a subtitle and a **code chunk**. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code (the actual colours will depend on which theme you have applied but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.
 
 ::: {.dangerous data-latex=""}
 When you create a new code chunk you should notice that the grey box starts and ends with three back ticks \`\`\`. One common mistake is to accidentally delete these back ticks. Remember, code chunks are grey and text entry is white - if the colour of certain parts of your Markdown doesn't look right, check that you haven't deleted the back ticks.
@@ -141,11 +136,11 @@ christmas <- as.Date("2022-12-25")
 
 When you're working in an R Markdown document, there are several ways to run your lines of code.
 
-First, you can highlight the code you want to run and then click `Run` -> `Run Selected Line(s)`, however this is very slow.
+First, you can highlight the code you want to run and then click `Run` -> `Run Selected Line(s)`, however this is tedious and can cause problems if you don't highlight *exactly* the code you want to run.
 
 <div class="figure" style="text-align: center">
-<img src="images/reports/run1.gif" alt="Slow method of running code" width="100%" />
-<p class="caption">(\#fig:img-run1)Slow method of running code</p>
+<img src="images/reports/run1.gif" alt="Tedious method of running code" width="100%" />
+<p class="caption">(\#fig:img-run1)Tedious method of running code</p>
 </div>
 
 Alternatively, you can press the green "play" button at the top-right of the code chunk and this will run **all** lines of code in that chunk.
@@ -157,7 +152,7 @@ Alternatively, you can press the green "play" button at the top-right of the cod
 
 Even better is to learn some of the keyboard short cuts for R Studio. To run a single line of code, make sure that the cursor is in the line of code you want to run (it can be anywhere) and press `ctrl + enter` or `Cmd + enter` if you're on a Mac. If you want to run all of the code in the code chunk, press `ctrl/cmd + shift + enter`. Learn these short cuts, they will make your life easier!
 
-Run your code using one of the methods above. You should see the variables `name`, `age`, `today`, and `christmas` appear in the environment pane.
+Run your code using each of the methods above. You should see the variables `name`, `age`, `today`, and `christmas` appear in the environment pane.
 
 ### Inline code {#rmd-inline-r }
 
@@ -165,32 +160,33 @@ We keep talking about using R Markdown for reproducible reports but it's easier 
 
 One important feature of R Markdown is that you can combine text and code to insert values into your writing using **inline coding**. If you've ever had to copy and paste a value or text from one file to another, you'll know how easy it can be to make mistakes. Inline code avoids this. Again it's easier to show you what inline code does rather than to explain it so let's have a go.
 
-First, copy and paste this text to the **white space underneath** your code chunk. If you used a different variable name than `christmas` you should update this with the name of the object you created but otherwise don't change anything else.
+First, copy and paste this text to the **white space underneath** your code chunk. If you used a different variable name than `christmas` you should update this with the name of the object you created, but otherwise don't change anything else.
 
 
 ```r
-My name is `r name` and I am `r age` years old. It is `r christmas - today` days until Christmas which is my favourite holiday.
+My name is `r name` and I am `r age` years old. 
+It is `r christmas - today` days until Christmas, 
+which is my favourite holiday.
 ```
 
 ### Knitting your file {#rmd-knit}
 
-Now we are going to <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a>, or compile, the file into a document type of our choosing. In this case we'll create a default html file but you will learn how to create other files like Word and PDF throughout this course. To knit your file click:
+Now we are going to <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a>, or compile, the file into a document type of our choosing. In this case we'll create a default html file, but you will learn how to create other files like Word and PDF throughout this course. To knit your file click:
 
--   **`Knit`**
--   **`Knit to HMTL`**
+-   **`Knit > Knit to HMTL`**
 
-R Markdown will create a new HTML document which it will display, but it will also automatically save this file in your working directory.
+R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 423 days until Christmas which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 413 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
-You can also type the following code into the console (substituting your specific file name). Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
+You can also type the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
 
 
 ```r
-knitr::knit2html("file.Rmd")
+knitr::knit2html("important_info.Rmd")
 ```
 :::
 
@@ -198,14 +194,14 @@ knitr::knit2html("file.Rmd")
 
 Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.
 
-Save and close your `important_info.Rmd` document and open and save a new Markdown document, this time named `sales_data`. You can again get rid of everything from line 12 onwards.
+Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything from line 12 onwards.
 
 ### Loading data from an online source {#loading-online}
 
 First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.
 
 -   The data is stored in a `.csv` file so we're going to use the `readr::read_csv()` function to load it in.
--   The package `readr` is part of the `tidyverse` that you installed in Chapter @ref(install-package) and we load this package with `library()`\
+-   The package `readr` is part of the `tidyverse` that you installed in Chapter\ \@ref(intro) and we load this package with `library()`\
 -   Note that the url is contained within double quotation marks - it won't work without this.
 
 
@@ -233,7 +229,7 @@ But you can also organise files in subdirectories inside this main project direc
 In your <code class='path'>02-reports</code> directory, create a new folder named <code class='path'>data</code>, then, [download a copy of the sales data file](https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv) and save it in this new subdirectory.
 :::
 
-To load in data from a local file, again we can use the `read_csv()` function but this time rather than specifying a url, we simply give it the subdirectory and file name.
+To load in data from a local file, again we can use the `read_csv()` function but this time rather than specifying a url, give it the subdirectory and file name.
 
 
 ```r
@@ -244,7 +240,7 @@ Things to note:
 
 -   You must include the file extension (in this case `.csv`)
 -   The subdirectory folder name (`data`) and the file name are separated by a forward slash `/`
--   Precision is important, if you have a typo in the file name it won't be able to find your file and remember that R is case sensitive - `Sales_Data.csv` is a completely different file to `sales_data.csv` as far as R is concerned.
+-   Precision is important, if you have a typo in the file name it won't be able to find your file; remember that R is case sensitive - `Sales_Data.csv` is a completely different file to `sales_data.csv` as far as R is concerned.
 
 ::: {.try data-latex=""}
 Run `head()`, `summary()`, `str()`, and `View()` on `sales_local` to confirm that the data is the same as `sales_online`.
@@ -252,23 +248,27 @@ Run `head()`, `summary()`, `str()`, and `View()` on `sales_local` to confirm tha
 
 ## Writing a report
 
-We're going to write a basic report for this sales dataset using Markdown to show you some of the features. We'll be expanding on almost every bit of what we're about to show you throughout this course, the most important outcome is that you start to get comfortable with how R Markdown works and what you can use it to do. 
+We're going to write a basic report for this sales dataset using R Markdown to show you some of the features. We'll be expanding on almost every bit of what we're about to show you throughout this course; the most important outcome is that you start to get comfortable with how R Markdown works and what you can use it to do. 
 
 ### Data analysis
 
-For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter {#summary}, for now, see if you can follow the logic of what the code is doing via the code comments.
+For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter\ \@ref(#summary). For now, see if you can follow the logic of what the code is doing via the code comments.
 
 Create a new code chunk, then copy, paste and run the following code and then view `sales_counts` by clicking on the object in the environment pane.
 
 
 ```r
-sales_counts<- sales_online %>% # take the sale_online data and then
-  filter(PRODUCTLINE %in% c("Planes", "Motorcycles", "Classic Cars")) %>% # just keep the data from planes, motorcycles, and cars and then
-  group_by(PRODUCTLINE) %>% # group it by type of vehicle and then
-  count() # count how many are in each group
+# start with the sale_online data and then
+sales_counts <- sales_online %>% 
+  # keep only the data from planes, motorcycles, and cars and then
+  filter(PRODUCTLINE %in% c("Planes", "Motorcycles", "Classic Cars")) %>% 
+  # group it by type of vehicle and then
+  group_by(PRODUCTLINE) %>% 
+  # count how many are in each group
+  count() 
 ```
 
-Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle, it just counts the number of rows in each group.
+Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.
 
 <table>
  <thead>
@@ -304,7 +304,7 @@ You can use the visual <a class='glossary' target='_blank' title='A way to speci
 
 This is useful for complex styling, but you can also use these common plain-text style markups:
 
--   Headers are created by prefacing subtitles with one or more hashes (`#`). If you include a table of contents, this will be created from your document headers.
+-   Headers are created by prefacing subtitles with one or more hashes (`#`) and a space (do not exclude the space). If you include a table of contents, this will be created from your document headers.
 -   Format text with *italics* or **bold** by surrounding the text with one or two asterisks or underscores.
 -   Make lists using numbers, asterisks or dashes before items. Indent items to make nested lists.
 -   Make links like this: `[psyTeachR](https://psyteachr.github.io/)`
@@ -312,22 +312,22 @@ This is useful for complex styling, but you can also use these common plain-text
 
 Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.
 
-<pre><code>
-\# Sample sales report
+<pre><code>## Sample sales report
 
-This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data)
+This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
 
-\#\# Sales by type
+### Sales by type
 
-The \*total\* number of \*\*\planes** sold was 306
+The *total* number of **planes** sold was `r sales_counts$n[3]`
 
-The *total* number of **classic cars** sold was 967.
-</code></pre>
+The *total* number of **classic cars** sold was `r sales_counts$n[1]`.</code></pre>
+
 
 Try and match up the inline code with what is in the `sales_counts` table. Of note:
 
 * The `$` sign is used to indicate specific variables (or columns)  in an object using the `object$variable` syntax. 
-* Square brackets with a number e.g., [3] indicate a particular observation so in this case, we ask the inline code to display the third observation of the variable `n` in the dataset `sales_online`.
+* Square brackets with a number e.g., `[3]` indicate a particular observation
+* So `sales_counts$n[3]` asks the inline code to display the third observation of the variable `n` in the dataset `sales_online`.
 
 ::: {.try data-latex=""}
 Add another line that reports the total numbers of **motorcycles** using inline code. Using either the visual editor or text markups, add in bold and italics so that it matches the others.
@@ -335,13 +335,8 @@ Add another line that reports the total numbers of **motorcycles** using inline 
 
 
 <div class='webex-solution'><button>Solution</button>
-
-<pre><code>
-The *total* number of **motorcycles** sold was 331.
-</code></pre>
-
+<pre><code>The *total* number of **motorcycles** sold was `r sales_counts$n[2]`.</code></pre>
 </div>
-
 
 ### Code comments {#comments}
 
@@ -368,6 +363,7 @@ Create a code chunk to display a graph of the data in your document after the te
 
 Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document. Notice how the figure caption is formatted in the chunk options.
 
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, fig.cap= "Sales visualisation"}</code></pre>
 
 ```r
 ggplot(data = sales_counts, 
@@ -379,9 +375,11 @@ ggplot(data = sales_counts,
        subtitle = "2003 - 2005")
 ```
 
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
 <div class="figure" style="text-align: center">
-<img src="02-reports_files/figure-html/unnamed-chunk-7-1.png" alt="Sales visualisation" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-7)Sales visualisation</p>
+<img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" alt="Sales visualisation" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-10)Sales visualisation</p>
 </div>
 
 You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using `knitr::include_graphics()`.
@@ -406,32 +404,15 @@ First, let's see what the table looks like if we don't make any edits. Simply wr
 sales_counts
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> PRODUCTLINE </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Classic Cars </td>
-   <td style="text-align:right;"> 967 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Motorcycles </td>
-   <td style="text-align:right;"> 331 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Planes </td>
-   <td style="text-align:right;"> 306 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
+```
+## # A tibble: 3 × 2
+## # Groups:   PRODUCTLINE [3]
+##   PRODUCTLINE      n
+##   <chr>        <int>
+## 1 Classic Cars   967
+## 2 Motorcycles    331
+## 3 Planes         306
+```
 
 It's just about readable but it's not great. To customise tables we're going to use the function `kable()` from the `kableExtra` package.
 
@@ -484,7 +465,7 @@ sales_counts %>%
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-11)Number of sales per product line.</caption>
+<caption>(\#tab:unnamed-chunk-14)Number of sales per product line.</caption>
  <thead>
   <tr>
    <th style="text-align:center;font-weight: bold;color: red !important;"> Product </th>
@@ -700,7 +681,7 @@ As you continue to work through the book you will learn how to wrangle and analy
 
 ## Exercises {#exercises-reports}
 
-Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful but spreading out your practice will help you learn more in the long-run.
+Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful but spreading out your practice will help you learn more in the long run.
 
 ### New project {#exercises-reports-project}
 

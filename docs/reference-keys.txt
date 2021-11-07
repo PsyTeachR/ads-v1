@@ -6,8 +6,8 @@ fig:img-new-chunk
 fig:img-run1
 fig:img-run2
 fig:visual-editor
-fig:unnamed-chunk-7
-tab:unnamed-chunk-11
+fig:unnamed-chunk-10
+tab:unnamed-chunk-14
 fig:img-bootswatch
 fig:excel-format-cells
 fig:layers
@@ -53,7 +53,6 @@ fig:unnamed-chunk-2
 fig:unnamed-chunk-4
 fig:unnamed-chunk-6
 fig:unnamed-chunk-8
-fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:plotly
 fig:unnamed-chunk-12
@@ -68,6 +67,7 @@ fig:shape-demo
 fig:linetype-demo
 fig:unnamed-chunk-3
 fig:unnamed-chunk-5
+fig:unnamed-chunk-7
 fig:unnamed-chunk-9
 structure-of-the-course
 how-to-learn-data-skills
@@ -84,8 +84,8 @@ packages
 install-package
 loading-a-package
 using-a-function
-function-help
 tidyverse
+function-help
 arguments
 argument-names
 tab-auto-complete

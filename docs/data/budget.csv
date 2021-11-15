@@ -1,0 +1,9 @@
+region,product,sales_2019,sales_2020,expenses_2019,expenses_2020
+North,widgets,12029,9383,10722,9003
+North,gadgets,5673,5027,5987,6065
+South,widgets,11023,8450,10904,10572
+South,gadgets,6972,4005,4340,5150
+East,widgets,9172,9849,9099,9558
+East,gadgets,4527,4596,5044,6986
+West,widgets,10533,10690,10683,9585
+West,gadgets,6154,5376,5383,4814

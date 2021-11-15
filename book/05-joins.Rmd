@@ -2,9 +2,10 @@
 
 ## Intended Learning Outcomes {#ilo-joins}
 
-* Be able to match related data from multiple tables
+* Be able to match related data across multiple tables
+* Be able to combine data from multiple files
 
-```{r setup, message=FALSE}
+```{r setup-joins, message=FALSE}
 library(tidyverse)     # includes readr & tibble
 library(rio)           # for almost any data import/export
 library(haven)         # for SPSS, Stata,and SAS files

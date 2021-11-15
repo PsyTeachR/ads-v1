@@ -2,7 +2,8 @@
 
 ## Intended Learning Outcomes {#ilo-joins}
 
-* Be able to match related data from multiple tables
+* Be able to match related data across multiple tables
+* Be able to combine data from multiple files
 
 
 ```r

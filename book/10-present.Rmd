@@ -5,7 +5,7 @@
 * Structure data in report, dashboard, and presentation formats
 * Include table of contents, figure and table captions, and references in longer reports
 
-```{r setup, message=FALSE}
+```{r setup-present, message=FALSE}
 library(tidyverse)     # data wrangling functions
 library(flexdashboard) # for dashboards
 ```

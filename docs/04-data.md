@@ -2,6 +2,7 @@
 
 ## Intended Learning Outcomes {#ilo-data}
 
+* Be able to inspect data
 * Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
 

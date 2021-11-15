@@ -8,7 +8,7 @@
 
 For reference, here are the packages we will use in this chapter.
 
-```{r setup, message=FALSE}
+```{r setup-reports, message=FALSE}
 library(tidyverse)  # various data manipulation functions
 library(knitr)      # for rendering a report from a script
 library(kableExtra) # for styling tables

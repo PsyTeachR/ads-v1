@@ -6,7 +6,7 @@ Data can be numbers, words, true/false values or combinations of these. The basi
 
 <div class="figure" style="text-align: center">
 <img src="images/appx/excel-format-cells.png" alt="Data types are like the categories when you format cells in Excel." width="100%" />
-<p class="caption">(\#fig:excel-format-cells)Data types are like the categories when you format cells in Excel.</p>
+<p class="caption">(\#fig:excel-format-cells-e)Data types are like the categories when you format cells in Excel.</p>
 </div>
 
 

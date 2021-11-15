@@ -4,7 +4,7 @@
 
 Data can be numbers, words, true/false values or combinations of these. The basic `r glossary("data type", "data types")` in R are: `r glossary("numeric")`, `r glossary("character")`, and `r glossary("logical")`, as well as the special classes of `r glossary("factor")` and date/times.
 
-```{r excel-format-cells, echo = FALSE, fig.cap="Data types are like the categories when you format cells in Excel."}
+```{r excel-format-cells-e, echo = FALSE, fig.cap="Data types are like the categories when you format cells in Excel."}
 include_graphics("images/appx/excel-format-cells.png")
 ```
 

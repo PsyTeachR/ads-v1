@@ -6,7 +6,7 @@
 * Create high quality plots like BBC, NYT, 538
 
 
-```{r setup, message=FALSE}
+```{r setup-custom, message=FALSE}
 library(tidyverse)   # data wrangling functions
 library(ggwordcloud) # for word clouds
 library(tidytext)    # for manipulating text for word clouds

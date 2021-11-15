@@ -5,7 +5,7 @@
 * Summarise data by groups
 * Produce well-formatted tables
 
-```{r setup, message=FALSE}
+```{r setup-summary, message=FALSE}
 library(tidyverse)   # data wrangling functions
 library(rtweet) # for searching tweets
 library(kableExtra)  # for nice tables

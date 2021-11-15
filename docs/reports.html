@@ -347,9 +347,9 @@ Figure 2.5: Slightly better method of running code
 <code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
 <span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
   <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># group it by type of vehicle and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># count how many are in each group</span>
   <span class="fu">count</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>

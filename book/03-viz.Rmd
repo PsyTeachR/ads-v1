@@ -6,7 +6,7 @@
 * Create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
-```{r setup, message=FALSE}
+```{r setup-viz, message=FALSE}
 library(tidyverse) # includes ggplot2
 library(patchwork) # for multi-part plots
 library(ggthemes)  # for plot themes

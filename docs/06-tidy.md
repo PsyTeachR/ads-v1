@@ -2,14 +2,13 @@
 
 ## Intended Learning Outcomes {#ilo-tidy}
 
-* Be able to change data between long and wide formats
-* Separate, add, change, reorder, and rename columns
+* Be able to reshape data between long and wide formats
+* Separate, change, reorder, and rename columns
 * Use pipes to chain together functions
 
 
 ```r
 library(tidyverse) # for data wrangling
-library(readxl)    # for reading excel files
 ```
 
 
@@ -307,7 +306,12 @@ If you have control over how the data are recorded, it will make your life easie
 
 ## Reshaping Data
 
-Data tables can be in <a class='glossary' target='_blank' title='Data where all of the observations about one subject are in the same row' href='https://psyteachr.github.io/glossary/w#wide'>wide</a> format or <a class='glossary' target='_blank' title='Data where each observation is on a separate row' href='https://psyteachr.github.io/glossary/l#long'>long</a> format (or a mix of the two). Wide data are where all of the observations about one thing are in the same row, while long data are where each observation is on a separate row. You often need to convert between these formats to do different types of summaries or visualisation.
+Data tables can be in <a class='glossary' target='_blank' title='Data where all of the observations about one subject are in the same row' href='https://psyteachr.github.io/glossary/w#wide'>wide</a> format or <a class='glossary' target='_blank' title='Data where each observation is on a separate row' href='https://psyteachr.github.io/glossary/l#long'>long</a> format (or a mix of the two). Wide data are where all of the observations about one thing are in the same row, while long data are where each observation is on a separate row. You often need to convert between these formats to do different types of summaries or visualisation. You may have done something similar using pivot tables in Excel.
+
+<div class="figure" style="text-align: center">
+<img src="images/tidy/excel_pivot_table.png" alt="Converting between wide and long formats using pivot tables in Excel." width="100%" />
+<p class="caption">(\#fig:img-pivot-table)Converting between wide and long formats using pivot tables in Excel.</p>
+</div>
 
 Let's look again at just the `totalprice` data from the untidy table above. We can select just the columns we want using the `dplyr::select()` function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or `new_name = old_name`. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.
 
@@ -369,7 +373,7 @@ untidy_price <- select(
 
 This is in wide format, where each row is a customer, and represents the data from several years. This is a really intuitive way for humans to read a table, but it's not as easy for a computer to process it.
 
-The same data can be represented in a long format by creating a new column that specifies what `item` the observation is from and a new column that specifies the `value` of that observation. This is easier to use to make summaries and plots.
+The same data can be represented in a long format by creating a new column that specifies what `year` the observation is from and a new column that specifies the `totalprice` of that observation. This is easier to use to make summaries and plots.
 
 <table>
 <caption>(\#tab:long-data)Long data</caption>
@@ -461,12 +465,13 @@ The same data can be represented in a long format by creating a new column that 
 
 ::: {.try data-latex=""}
 
-Create a long version of the following table. You don't need to use code, just sketch it in a notebook or make a table in a spreadsheet.
+Create a long version of the following table of how many million followers each band has on different social media platforms. You don't need to use code, just sketch it in a notebook or make a table in a spreadsheet.
 
-| id     | twitter_followers | instagram_followers |
-|:-------|:------------------|:--------------------|
-| Emily  | 3487              | 120                 |
-| Lisa   | 9110              | 110                 |
+| band               | twitter | instagram |
+|:-------------------|:--------|:----------|
+| The Beatles        | 3.8     | 3.8       |
+| The Rolling Stones | 3.4     | 3.1       |
+| One Direction      | 31.3    | 22.8      |
 
 
 
@@ -474,12 +479,14 @@ Create a long version of the following table. You don't need to use code, just s
 
 Your answer doesn't need to have the same column headers or be in the same order.
 
-| id     | social_media | followers |
-|:-------|:-------------|:----------|
-| Emily  | twitter      | 3487      |
-| Emily  | instagram    | 120       |
-| Lisa   | twitter      | 9110      | 
-| Lisa   | instagram    | 110       |
+| account            | social_media | followers |
+|:-------------------|:-------------|:----------|
+| The Beatles        | twitter      | 3.8       |
+| The Beatles        | instagram    | 3.8       |
+| The Rolling Stones | twitter      | 3.4       | 
+| The Rolling Stones | instagram    | 3.1       |
+| One Direction      | twitter      | 31.3      | 
+| One Direction      | instagram    | 322.8     |
 
 
 </div>
@@ -664,7 +671,7 @@ untidy_price_wide <- pivot_wider(
 
 
 
-## Multi-step tidying
+## Multi-step tidying {#multistep}
 
 You often need to go from wide, to long, to an intermediate shape in order to get your data into a format that is useful for plotting, where there is a column for each variable that you want to represent with an aesthetic.
 
@@ -1502,7 +1509,7 @@ glimpse(mutated_data)
 ## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
 ```
 
-Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Section\ \@ref(col_types)).
+Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter\ \@ref(data)).
 
 
 ```r
@@ -1532,31 +1539,53 @@ glimpse(tidy_data)
 
 Pipes are a way to order your code in a more readable format. 
 
-You can always create a new object at every step and use that object in the next step, like we did above. This is pretty clear, but you've created several unnecessary data objects in your environment. This can get confusing in very long scripts. 
+A pipe takes the result of the previous function and sends it to the next function as its first argument. For example, instead of first calculating the sum and then using that in the `paste()` function...
+
+
+```r
+my_sum <- sum(1:5)
+paste(my_sum, "is the sum of 1:5.")
+```
+
+```
+## [1] "15 is the sum of 1:5."
+```
+
+...instead you can pipe the result of `sum(1:5)` to the next function. Remember to remove `my_sum` from the `paste()` function, since it is being piped in.
+
+
+```r
+sum(1:5) %>%
+  paste("is the sum of 1:5.")
+```
+
+```
+## [1] "15 is the sum of 1:5."
+```
+
+If the result of the previous function isn't the first argument of the next function, you can use the `.` "pronoun" to represent it.
+
+
+```r
+sum(1:5) %>%
+  paste("The sum of 1:5 is", .)
+```
+
+```
+## [1] "The sum of 1:5 is 15"
+```
+
+This doesn't seem very useful for the simple example above, but this method is very useful when you are cleaning and reshaping data tables
+
+
+### Multi-step pipes
+
+You can always create a new object at every step and use that object in the next step, like we did in Section\ \@ref(multistep). This is pretty clear, but you've created several unnecessary data objects in your environment. This can get confusing in longer scripts. 
 
 
 ```r
 untidy_data <- read_csv(file = "data/untidy_data.csv")
-```
 
-```
-## Rows: 5 Columns: 7
-```
-
-```
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
-## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020
-```
-
-```
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-```r
 longer_data <- pivot_longer(
   data = untidy_data,
   cols = itemsprice_2018:totalprice_2020,
@@ -1598,25 +1627,20 @@ tidy_data <- type_convert(
 )
 ```
 
-```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   price_per_item = col_double(),
-##   totalprice = col_double()
-## )
-```
-
 
 ::: {.warning data-latex=""}
-You *can* give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+You *can* give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but it makes debugging code much harder.
 :::
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
 
 
 ```r
-mean_total_price <- round(mean(tidy_data$totalprice), 2)
+paste("The sum of 1:5 is", sum(1:5))
+```
+
+```
+## [1] "The sum of 1:5 is 15"
 ```
 
 But it gets extremely confusing for long chains:
@@ -1683,23 +1707,6 @@ totalprice_data <- read_csv(file = "data/untidy_data.csv") %>%
     customer_id, 
     starts_with("totalprice") 
   )
-```
-
-```
-## Rows: 5 Columns: 7
-```
-
-```
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (3): itemsprice_2018, itemsprice_2019, itemsprice_2020
-## dbl (4): customer_id, totalprice_2018, totalprice_2019, totalprice_2020
-```
-
-```
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ::: {.info data-latex=""}
@@ -1833,228 +1840,4 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 * [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
 * [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
 * [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
-
-## Exercises {#exercises-tidy}
-
-Let's say you have a [small Excel table](data/widgets_gadgets.xlsx) with 10 customer IDs, and how many widgets and gadgets each purchased in 2020 and 2021. 
-
-<table>
- <thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Widgets</div></th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Gadgets</div></th>
-</tr>
-  <tr>
-   <th style="text-align:right;"> Customer ID </th>
-   <th style="text-align:right;"> 2020 </th>
-   <th style="text-align:right;"> 2021 </th>
-   <th style="text-align:right;"> 2020 </th>
-   <th style="text-align:right;"> 2021 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table>
-
-You want to calculate the total number of items purchased per year to make a table sorted by the total number of items purchased.
-
-### Load the data
-
-The data file  ([<code class='path'>widgets_gadgets.xlsx</code>](data/widgets_gadgets.xlsx)) has multiple header columns, so you'll need to skip some rows when you import the data and set your own column names: `customer_id`, `widgets_2020`,`widgets_2021`, gadgets_2020` and `gadgets_2021`.
-
-
-<div class='webex-solution'><button>Solution</button>
-
-```r
-# get the data with better column names
-data_original <- readxl::read_excel(
-  path = "data/widgets_gadgets.xlsx",
-  skip = 2,
-  col_names = c(
-    "customer_id",
-    "widgets_2020",
-    "widgets_2021",
-    "gadgets_2020",
-    "gadgets_2021"
-  )
-)
-```
-
-
-</div>
-
-### Reshape the data longer
-
-These data are in wide format, with a customer's number of widgets and gadgets across two years in the same row. Convert the data shape so that each row is one customer's order for one item type for one year. This table should have 40 rows for the combination of 10 customers times 2 item types times 2 years, and 4 columns: `custmer_id`, `item`, `year`, and `number`.
-
-
-<div class='webex-solution'><button>Solution</button>
-
-```r
-data_longer <- pivot_longer(
-  data = data_original,
-  cols = 2:5,
-  names_to = c("item", "year"),
-  names_sep = "_",
-  values_to = "number"
-)
-```
-
-
-</div>
-
-
-### Reshape the data wider
-
-Convert the data shape so that each row is one customer's order of widgets and gadgets for one year. This table should have 20 rows for the combination of 10 customers times 2 years, and 4 columns: `custmer_id`, `year`, `widgets` and `gadgets`.
-
-
-<div class='webex-solution'><button>Solution</button>
-
-```r
-data_wider <- pivot_wider(
-  data = data_longer,
-  id_cols = c(customer_id, year),
-  names_from = item,
-  values_from = number
-)
-```
-
-
-</div>
-
-
-### Rename and reorder
-
-Change the order of columns and their names so that the column headers are `Year`, Customer ID`, `Gadgets`, and `Widgets` .
-
-
-<div class='webex-solution'><button>Solution</button>
-
-```r
-# column names with special characters have to be inside backticks
-# you can put all column names inside backticks if you want
-data <- select(
-  .data = data_wider,
-  Year = year,
-  `Customer ID` = customer_id,
-  Gadgets = gadgets,
-  Widgets = widgets
-)
-```
-
-
-</div>
-
-### Put in a pipeline
-
-Put the four steps above into a single pipeline. Practice reading the code from top to bottom.
-
-
-<div class='webex-solution'><button>Solution</button>
-
-```r
-data <- readxl::read_excel(
-  path = "data/widgets_gadgets.xlsx",
-  skip = 2,
-  col_names = c(
-    "customer_id",
-    "widgets_2020",
-    "widgets_2021",
-    "gadgets_2020",
-    "gadgets_2021"
-  )
-) %>%
-  pivot_longer(
-    cols = 2:5,
-    names_to = c("item", "year"),
-    names_sep = "_",
-    values_to = "number"
-  ) %>%
-  pivot_wider(
-    id_cols = c(customer_id, year),
-    names_from = item,
-    values_from = number
-  ) %>%
-  select(
-    Year = year,
-    `Customer ID` = customer_id,
-    Gadgets = gadgets,
-    Widgets = widgets
-  )
-```
-
-
-</div>
 

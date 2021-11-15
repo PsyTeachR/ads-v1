@@ -1,0 +1,120 @@
+## Exercises {#exercises-tidy}
+
+Let's say you have a [small Excel table](data/widgets_gadgets.xlsx) with 10 customer IDs, and how many widgets and gadgets each purchased in 2020 and 2021. 
+
+```{r, echo = FALSE}
+set.seed(90210)
+data_original <- tibble(
+  customer_id = 1:10,
+  widgets_2020 = sample(0:6, 10, T),
+  widgets_2021 = sample(0:6, 10, T),
+  gadgets_2020 = sample(0:6, 10, T),
+  gadgets_2021 = sample(0:6, 10, T)
+)
+
+kable(data_original, col.names = c("Customer ID", "2020", "2021", "2020", "2021")) %>%
+  add_header_above(c(" " = 1, "Widgets" = 2, "Gadgets" = 2))
+```
+
+You want to calculate the total number of items purchased per year to make a table sorted by the total number of items purchased.
+
+### Load the data
+
+The data file  ([`r path("widgets_gadgets.xlsx")`](data/widgets_gadgets.xlsx)) has multiple header columns, so you'll need to skip some rows when you import the data and set your own column names: `customer_id`, `widgets_2020`,`widgets_2021`, gadgets_2020` and `gadgets_2021`.
+
+```{r, webex.hide="Solution"}
+# get the data with better column names
+data_original <- readxl::read_excel(
+  path = "data/widgets_gadgets.xlsx",
+  skip = 2,
+  col_names = c(
+    "customer_id",
+    "widgets_2020",
+    "widgets_2021",
+    "gadgets_2020",
+    "gadgets_2021"
+  )
+)
+```
+
+### Reshape the data longer
+
+These data are in wide format, with a customer's number of widgets and gadgets across two years in the same row. Convert the data shape so that each row is one customer's order for one item type for one year. This table should have 40 rows for the combination of 10 customers times 2 item types times 2 years, and 4 columns: `custmer_id`, `item`, `year`, and `number`.
+
+```{r, webex.hide="Solution"}
+data_longer <- pivot_longer(
+  data = data_original,
+  cols = 2:5,
+  names_to = c("item", "year"),
+  names_sep = "_",
+  values_to = "number"
+)
+```
+
+
+### Reshape the data wider
+
+Convert the data shape so that each row is one customer's order of widgets and gadgets for one year. This table should have 20 rows for the combination of 10 customers times 2 years, and 4 columns: `custmer_id`, `year`, `widgets` and `gadgets`.
+
+```{r, webex.hide="Solution"}
+data_wider <- pivot_wider(
+  data = data_longer,
+  id_cols = c(customer_id, year),
+  names_from = item,
+  values_from = number
+)
+```
+
+
+### Rename and reorder
+
+Change the order of columns and their names so that the column headers are `Year`, Customer ID`, `Gadgets`, and `Widgets` .
+
+```{r, webex.hide="Solution"}
+# column names with special characters have to be inside backticks
+# you can put all column names inside backticks if you want
+data <- select(
+  .data = data_wider,
+  Year = year,
+  `Customer ID` = customer_id,
+  Gadgets = gadgets,
+  Widgets = widgets
+)
+```
+
+### Put in a pipeline
+
+Put the four steps above into a single pipeline. Practice reading the code from top to bottom.
+
+```{r, webex.hide="Solution"}
+data <- readxl::read_excel(
+  path = "data/widgets_gadgets.xlsx",
+  skip = 2,
+  col_names = c(
+    "customer_id",
+    "widgets_2020",
+    "widgets_2021",
+    "gadgets_2020",
+    "gadgets_2021"
+  )
+) %>%
+  pivot_longer(
+    cols = 2:5,
+    names_to = c("item", "year"),
+    names_sep = "_",
+    values_to = "number"
+  ) %>%
+  pivot_wider(
+    id_cols = c(customer_id, year),
+    names_from = item,
+    values_from = number
+  ) %>%
+  select(
+    Year = year,
+    `Customer ID` = customer_id,
+    Gadgets = gadgets,
+    Widgets = widgets
+  )
+  
+```
+

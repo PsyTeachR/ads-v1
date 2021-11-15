@@ -93,37 +93,1094 @@
 <li>Be able to select and filter data for relevance</li>
 <li>Be able to create new columns and edit existing ones</li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># for handling dates and times</span></code></pre></div>
 </div>
-<div id="twitter-example" class="section level2" number="7.2">
+<div id="six-main-dplyr-verbs" class="section level2" number="7.2">
 <h2>
-<span class="header-section-number">7.2</span> Twitter Example<a class="anchor" aria-label="anchor" href="#twitter-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> Six main dplyr verbs<a class="anchor" aria-label="anchor" href="#six-main-dplyr-verbs"><i class="fas fa-link"></i></a>
 </h2>
-<div id="export-data" class="section level3" number="7.2.1">
+<p>Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">6</a> and these six functions: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>.</p>
+<p>We'll use a small example table with the sales and expenses for two years from four regions over two products.</p>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/budget.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+sales_2019
+</th>
+<th style="text-align:right;">
+sales_2020
+</th>
+<th style="text-align:right;">
+expenses_2019
+</th>
+<th style="text-align:right;">
+expenses_2020
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+12029
+</td>
+<td style="text-align:right;">
+9383
+</td>
+<td style="text-align:right;">
+10722
+</td>
+<td style="text-align:right;">
+9003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+5673
+</td>
+<td style="text-align:right;">
+5027
+</td>
+<td style="text-align:right;">
+5987
+</td>
+<td style="text-align:right;">
+6065
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+11023
+</td>
+<td style="text-align:right;">
+8450
+</td>
+<td style="text-align:right;">
+10904
+</td>
+<td style="text-align:right;">
+10572
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+6972
+</td>
+<td style="text-align:right;">
+4005
+</td>
+<td style="text-align:right;">
+4340
+</td>
+<td style="text-align:right;">
+5150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+9172
+</td>
+<td style="text-align:right;">
+9849
+</td>
+<td style="text-align:right;">
+9099
+</td>
+<td style="text-align:right;">
+9558
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+4527
+</td>
+<td style="text-align:right;">
+4596
+</td>
+<td style="text-align:right;">
+5044
+</td>
+<td style="text-align:right;">
+6986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+10533
+</td>
+<td style="text-align:right;">
+10690
+</td>
+<td style="text-align:right;">
+10683
+</td>
+<td style="text-align:right;">
+9585
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+6154
+</td>
+<td style="text-align:right;">
+5376
+</td>
+<td style="text-align:right;">
+5383
+</td>
+<td style="text-align:right;">
+4814
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="select" class="section level3" number="7.2.1">
 <h3>
-<span class="header-section-number">7.2.1</span> Export Data<a class="anchor" aria-label="anchor" href="#export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2.1</span> select()<a class="anchor" aria-label="anchor" href="#select"><i class="fas fa-link"></i></a>
+</h3>
+<p>Select columns by name or number.</p>
+<p>You can select each column individually, separated by commas (e.g., <code>region, sales_2019</code>). You can also select all columns between two columns by separating them with a colon (e.g., <code>sales_2019:expenses_2020</code>).</p>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2020</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">region</span>, <span class="va">sales_2020</span>, <span class="va">expenses_2020</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">budget2020</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "region"        "sales_2020"    "expenses_2020"</code></pre>
+<p>You can select columns by number, which is useful when the column names are long or complicated.</p>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">regions</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "region"        "sales_2019"    "sales_2020"    "expenses_2019"
+## [5] "expenses_2020"</code></pre>
+<p>You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., <code>-(sales_2019:expenses_2020)</code>, not <code>-sales_2019:expenses_2020</code>).</p>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">expenses_2019</span><span class="op">:</span><span class="va">expenses_2020</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "region"     "product"    "sales_2019" "sales_2020"</code></pre>
+<p>You can select columns based on criteria about the column names.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>function</th>
+<th>definition</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>starts_with()</code></td>
+<td>select columns that start with a character string</td>
+</tr>
+<tr class="even">
+<td><code>ends_with()</code></td>
+<td>elect columns that end with a character string</td>
+</tr>
+<tr class="odd">
+<td><code>contains()</code></td>
+<td>select columns that contain a character string</td>
+</tr>
+<tr class="even">
+<td><code>num_range()</code></td>
+<td>select columns with a name that matches the pattern <code>prefix</code>
+</td>
+</tr>
+</tbody>
+</table></div>
+<div class="info">
+<p>Use <code>width</code> to set the number of digits with leading
+zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects columns <code>var_08</code>, <code>var_09</code>, and <code>var_10</code>.</p>
+</div>
+<div class="try">
+<p>What are the resulting columns for these four examples?</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="40%">
+<col width="60%">
+</colgroup>
+<thead><tr class="header">
+<th>code</th>
+<th>columns</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>budget %&gt;% select(starts_with("sales"))</code></td>
+<td><select class="webex-select"><option value="blank"></option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
+<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2020, expenses_2020</option>
+<option value="answer">sales_2019, sales_2020</option></select></td>
+</tr>
+<tr class="even">
+<td><code>budget %&gt;% select(ends_with("2020"))</code></td>
+<td><select class="webex-select"><option value="blank"></option>
+<option value="x">sales_2019, sales_2020</option>
+<option value="answer">sales_2020, expenses_2020</option>
+<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select></td>
+</tr>
+<tr class="odd">
+<td><code>budget %&gt;% select(contains("_"))</code></td>
+<td><select class="webex-select"><option value="blank"></option>
+<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2020, expenses_2020</option>
+<option value="x">sales_2019, sales_2020</option>
+<option value="answer">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select></td>
+</tr>
+<tr class="even">
+<td><code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code></td>
+<td><select class="webex-select"><option value="blank"></option>
+<option value="answer">expenses_2019, expenses_2020</option>
+<option value="x">sales_2019, sales_2020</option>
+<option value="x">sales_2020, expenses_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="filter" class="section level3" number="7.2.2">
+<h3>
+<span class="header-section-number">7.2.2</span> filter()<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
+</h3>
+<p>Select rows by matching column criteria.</p>
+<p>Select all rows from the North region.</p>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+sales_2019
+</th>
+<th style="text-align:right;">
+sales_2020
+</th>
+<th style="text-align:right;">
+expenses_2019
+</th>
+<th style="text-align:right;">
+expenses_2020
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+12029
+</td>
+<td style="text-align:right;">
+9383
+</td>
+<td style="text-align:right;">
+10722
+</td>
+<td style="text-align:right;">
+9003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+5673
+</td>
+<td style="text-align:right;">
+5027
+</td>
+<td style="text-align:right;">
+5987
+</td>
+<td style="text-align:right;">
+6065
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>Remember to use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> and not <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> to check if two things are equivalent. A single <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> assigns the righthand value to the lefthand variable and (usually) evaluates to <code>TRUE</code>.</p>
+</div>
+<p>You can select on multiple criteria by separating them with commas.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
+  <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span>,
+  <span class="va">product</span> <span class="op">==</span> <span class="st">"widgets"</span>
+<span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+sales_2019
+</th>
+<th style="text-align:right;">
+sales_2020
+</th>
+<th style="text-align:right;">
+expenses_2019
+</th>
+<th style="text-align:right;">
+expenses_2020
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+12029
+</td>
+<td style="text-align:right;">
+9383
+</td>
+<td style="text-align:right;">
+10722
+</td>
+<td style="text-align:right;">
+9003
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<p>You can use the symbols <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>, <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, and <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> to mean "and", "or", and "not". You can also use other operators to make equations.</p>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># regions and products with profit in 2019 or 2020</span>
+<span class="va">profit_either</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
+    <span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="va">expenses_2019</span> <span class="op">|</span>
+    <span class="va">sales_2020</span> <span class="op">&gt;</span> <span class="va">expenses_2020</span>
+  <span class="op">)</span>
+
+<span class="co"># regions and products with profit in both 2019 and 2020</span>
+<span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
+    <span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="va">expenses_2019</span> <span class="op">&amp;</span>
+    <span class="va">sales_2020</span> <span class="op">&gt;</span> <span class="va">expenses_2020</span>
+  <span class="op">)</span>
+
+<span class="co"># everything but the North</span>
+<span class="va">not_north</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">!=</span> <span class="st">"North"</span><span class="op">)</span>
+
+<span class="co"># 2020 profit greater than 1000</span>
+<span class="va">profit_1000</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2020</span> <span class="op">-</span> <span class="va">expenses_2020</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<div id="match-operator" class="section level4" number="7.2.2.1">
+<h4>
+<span class="header-section-number">7.2.2.1</span> Match operator (%in%)<a class="anchor" aria-label="anchor" href="#match-operator"><i class="fas fa-link"></i></a>
+</h4>
+<p>The match operator (<code><a href="https://rdrr.io/r/base/match.html">%in%</a></code>) is useful here for testing if a column value is in a list.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span><span class="op">)</span> <span class="op">&amp;</span>
+           <span class="va">product</span> <span class="op">==</span> <span class="st">"widgets"</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+sales_2019
+</th>
+<th style="text-align:right;">
+sales_2020
+</th>
+<th style="text-align:right;">
+expenses_2019
+</th>
+<th style="text-align:right;">
+expenses_2020
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+12029
+</td>
+<td style="text-align:right;">
+9383
+</td>
+<td style="text-align:right;">
+10722
+</td>
+<td style="text-align:right;">
+9003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+11023
+</td>
+<td style="text-align:right;">
+8450
+</td>
+<td style="text-align:right;">
+10904
+</td>
+<td style="text-align:right;">
+10572
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="arrange" class="section level3" number="7.2.3">
+<h3>
+<span class="header-section-number">7.2.3</span> arrange()<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sort your dataset using <code>arrange()</code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But <code>arrange()</code> can be useful when preparing data from display in tables. Reverse the order using <code>desc()</code>.</p>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">product</span>, <span class="fu">desc</span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+sales_2019
+</th>
+<th style="text-align:right;">
+sales_2020
+</th>
+<th style="text-align:right;">
+expenses_2019
+</th>
+<th style="text-align:right;">
+expenses_2020
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+6154
+</td>
+<td style="text-align:right;">
+5376
+</td>
+<td style="text-align:right;">
+5383
+</td>
+<td style="text-align:right;">
+4814
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+6972
+</td>
+<td style="text-align:right;">
+4005
+</td>
+<td style="text-align:right;">
+4340
+</td>
+<td style="text-align:right;">
+5150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+5673
+</td>
+<td style="text-align:right;">
+5027
+</td>
+<td style="text-align:right;">
+5987
+</td>
+<td style="text-align:right;">
+6065
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+4527
+</td>
+<td style="text-align:right;">
+4596
+</td>
+<td style="text-align:right;">
+5044
+</td>
+<td style="text-align:right;">
+6986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+10533
+</td>
+<td style="text-align:right;">
+10690
+</td>
+<td style="text-align:right;">
+10683
+</td>
+<td style="text-align:right;">
+9585
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+11023
+</td>
+<td style="text-align:right;">
+8450
+</td>
+<td style="text-align:right;">
+10904
+</td>
+<td style="text-align:right;">
+10572
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+12029
+</td>
+<td style="text-align:right;">
+9383
+</td>
+<td style="text-align:right;">
+10722
+</td>
+<td style="text-align:right;">
+9003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+9172
+</td>
+<td style="text-align:right;">
+9849
+</td>
+<td style="text-align:right;">
+9099
+</td>
+<td style="text-align:right;">
+9558
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="mutate" class="section level3" number="7.2.4">
+<h3>
+<span class="header-section-number">7.2.4</span> mutate()<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
+</h3>
+<p>Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., <code>profit</code> below).</p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
+    sales <span class="op">=</span> <span class="va">sales_2019</span> <span class="op">+</span> <span class="va">sales_2020</span>,
+    expenses <span class="op">=</span> <span class="va">expenses_2019</span> <span class="op">+</span> <span class="va">expenses_2020</span>,
+    profit <span class="op">=</span> <span class="va">sales</span> <span class="op">-</span> <span class="va">expenses</span>,
+    region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">region</span>, <span class="st">"Office"</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<div class="warning">
+<p>You can overwrite a column by giving a new column the same name as the old column (see `region``) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.</p>
+</div>
+</div>
+<div id="summarise" class="section level3" number="7.2.5">
+<h3>
+<span class="header-section-number">7.2.5</span> summarise()<a class="anchor" aria-label="anchor" href="#summarise"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create summary statistics for the dataset. Check the <a href="https://www.rstudio.org/links/data_wrangling_cheat_sheet">Data Wrangling Cheat Sheet</a> or the <a href="https://www.rstudio.org/links/data_transformation_cheat_sheet">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>, <code>n()</code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
+    count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
+    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">profit</span>, <span class="fl">.50</span><span class="op">)</span>,
+    average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span>,
+    minimum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span>,
+    maximum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:right;">
+count
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+average
+</th>
+<th style="text-align:right;">
+minimum
+</th>
+<th style="text-align:right;">
+maximum
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+659.5
+</td>
+<td style="text-align:right;">
+-54.5
+</td>
+<td style="text-align:right;">
+-2907
+</td>
+<td style="text-align:right;">
+1687
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="info">
+<p><a class="glossary" target="_blank" title="Cutoffs dividing the range of a distribution into continuous intervals with equal probabilities." href="https://psyteachr.github.io/glossary/q#quantile">Quantiles</a> are like percentiles. Use <code><a href="https://rdrr.io/r/stats/quantile.html">quantile(x, .50)</a></code> to find the median (the number where 50% of values in <code>x</code> are above it and 50% are below it).</p>
+</div>
+</div>
+<div id="group_by" class="section level3" number="7.2.6">
+<h3>
+<span class="header-section-number">7.2.6</span> group_by()<a class="anchor" aria-label="anchor" href="#group_by"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create subsets of the data. You can use this to create summaries,
+like the total profit for each region.</p>
+<div class="warning">
+<p>Make sure you call the <code>ungroup()</code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
+</div>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
+    n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
+    <span class="st">"Two-year profit"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+Two-year profit
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+East Office
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-2543
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North Office
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+335
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South Office
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-516
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Office
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2288
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="warning">
+<p>If you get the following message: "<code>summarise()</code> ungrouping output (override with <code>.groups</code> argument)", please update tidyverse.</p>
+</div>
+<p>You can use <code>filter</code> after <code>group_by</code>. The following example returns the highest profit region for each product (i.e., the row where the value in the column <code>profit</code> is equivalent to the maximum value for that group).</p>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">product</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">profit</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">product</span>, <span class="va">region</span>, <span class="va">profit</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:right;">
+profit
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:left;">
+North Office
+</td>
+<td style="text-align:right;">
+1687
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:left;">
+South Office
+</td>
+<td style="text-align:right;">
+1487
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>You can also use <code>mutate</code> after <code>group_by</code>. This doesn't return just one row per group, like <code>summarise()</code>, but lets you make calculations using grouped values, like the product-specific mean profit.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">region</span>, <span class="va">product</span>, <span class="va">profit</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">product</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>adjusted_profit <span class="op">=</span> <span class="va">profit</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">profit</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="kable-table">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+product
+</th>
+<th style="text-align:right;">
+profit
+</th>
+<th style="text-align:right;">
+adjusted_profit
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+North Office
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+1687
+</td>
+<td style="text-align:right;">
+1436.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+North Office
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+-1352
+</td>
+<td style="text-align:right;">
+-992.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South Office
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+-2003
+</td>
+<td style="text-align:right;">
+-2253.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+South Office
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+1487
+</td>
+<td style="text-align:right;">
+1846.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East Office
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+364
+</td>
+<td style="text-align:right;">
+113.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East Office
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+-2907
+</td>
+<td style="text-align:right;">
+-2547.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Office
+</td>
+<td style="text-align:left;">
+widgets
+</td>
+<td style="text-align:right;">
+955
+</td>
+<td style="text-align:right;">
+704.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Office
+</td>
+<td style="text-align:left;">
+gadgets
+</td>
+<td style="text-align:right;">
+1333
+</td>
+<td style="text-align:right;">
+1692.75
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div id="twitter-example" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Twitter Example<a class="anchor" aria-label="anchor" href="#twitter-example"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section takes a problem-based approach to teach you how to use the functions above, in combination with functions you learned in previous chapters, to summarise and visualise twitter data.</p>
+<div id="export-data" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Export Data<a class="anchor" aria-label="anchor" href="#export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can export your organisations' twitter data from <a href="https://analytics.twitter.com/" class="uri">https://analytics.twitter.com/</a>. Go to the Tweets tab, choose a time period, and export the last month's data by day (or use the files from the class data).</p>
 </div>
-<div id="import-data" class="section level3" number="7.2.2">
+<div id="import-data" class="section level3" number="7.3.2">
 <h3>
-<span class="header-section-number">7.2.2</span> Import Data<a class="anchor" aria-label="anchor" href="#import-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.2</span> Import Data<a class="anchor" aria-label="anchor" href="#import-data"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"data/tweets/daily_tweet_activity_metrics_LisaDeBruine_20210801_20210901_en.csv"</span>
 
-<span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></code></pre></div>
+<span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="select-relevant-data" class="section level3" number="7.2.3">
+<div id="select-relevant-data" class="section level3" number="7.3.3">
 <h3>
-<span class="header-section-number">7.2.3</span> Select Relevant Data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.3</span> Select Relevant Data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">dplyr::starts_with()</a></code> to get all the columns that start with "promoted" and remove them by prefacing the function with <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. Now there should be 20 columns, which we can inspect with <code>glimpse()</code>.</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 31
 ## Columns: 20
@@ -148,12 +1205,12 @@
 ## $ `media views`         &lt;dbl&gt; 2, 2, 25, 710, 1187, 4474, 9356, 1176, 582, 334,…
 ## $ `media engagements`   &lt;dbl&gt; 1, 0, 0, 661, 1173, 4464, 9353, 1174, 582, 327, …</code></pre>
 </div>
-<div id="plot-likes-per-day" class="section level3" number="7.2.4">
+<div id="plot-likes-per-day" class="section level3" number="7.3.4">
 <h3>
-<span class="header-section-number">7.2.4</span> Plot Likes per Day<a class="anchor" aria-label="anchor" href="#plot-likes-per-day"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.4</span> Plot Likes per Day<a class="anchor" aria-label="anchor" href="#plot-likes-per-day"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now let's plot likes per day. The <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">ggplot2::scale_x_date()</a></code> function lets you formats an x-axis with dates.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>, 
@@ -168,14 +1225,14 @@ Figure 7.1: Likes per day.
 </p>
 </div>
 </div>
-<div id="plot-multiple-engagements" class="section level3" number="7.2.5">
+<div id="plot-multiple-engagements" class="section level3" number="7.3.5">
 <h3>
-<span class="header-section-number">7.2.5</span> Plot Multiple Engagements<a class="anchor" aria-label="anchor" href="#plot-multiple-engagements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.5</span> Plot Multiple Engagements<a class="anchor" aria-label="anchor" href="#plot-multiple-engagements"><i class="fas fa-link"></i></a>
 </h3>
 <p>What if we want to plot likes, retweets, and replies on the same plot? We need to get all of the numbers in the same columns so we have a column that contains the "engagement type" that we can use to determine different line colours. When you have data in different columns that you need to get into the same column, it's wide and you need to pivot the data longer.</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">long_tweets</span> <span class="op">&lt;-</span> <span class="va">daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span>,
                names_to <span class="op">=</span> <span class="st">"engage_type"</span>,
                values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
@@ -265,7 +1322,7 @@ replies
 </table></div>
 </div>
 <p>Now we can plot the number of engagements per day by engagement type by making the line colour determined by the value of the <code>engage_type</code> column.</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">long_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">n</span>, colour <span class="op">=</span> <span class="va">engage_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Likes per Day"</span><span class="op">)</span> <span class="op">+</span> 
@@ -280,42 +1337,24 @@ replies
 Figure 7.2: Engagements per day by engagement type.
 </p>
 </div>
-<p>When you have data on very different scales, such as likes, which are much higher than replies and retweets, it can sometimes help to change the y-axis to a log scale. <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">ggplot2::scale_y_continuous()</a></code> lets you transform the axis with the <code>trans</code> argument.</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">long_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">n</span>, colour <span class="op">=</span> <span class="va">engage_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>, 
-               date_breaks <span class="op">=</span> <span class="st">"1 day"</span>,
-               date_labels <span class="op">=</span> <span class="st">"%d"</span>,
-               expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Number per Day"</span>,
-                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">100</span>, <span class="fl">1000</span><span class="op">)</span>,
-                     trans <span class="op">=</span> <span class="st">"pseudo_log"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"August 2021"</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:log-eng-plot"></span>
-<img src="07-wrangle_files/figure-html/log-eng-plot-1.png" alt="Engagements per day with a log-transformed y-axis." width="100%"><p class="caption">
-Figure 7.3: Engagements per day with a log-transformed y-axis.
-</p>
 </div>
-</div>
-<div id="multiple-data-files" class="section level3" number="7.2.6">
+<div id="multiple-data-files" class="section level3" number="7.3.6">
 <h3>
-<span class="header-section-number">7.2.6</span> Multiple Data Files<a class="anchor" aria-label="anchor" href="#multiple-data-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.6</span> Multiple Data Files<a class="anchor" aria-label="anchor" href="#multiple-data-files"><i class="fas fa-link"></i></a>
 </h3>
 <p>Maybe now you want to compare the data from several months. First, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
   pattern <span class="op">=</span> <span class="st">"daily_tweet_activity_metrics_LisaDeBruine"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
-<p>Then use <code><a href="https://rdrr.io/pkg/purrr/man/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> function to get rid of the "promoted" columns.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<p>Then use <code><a href="https://rdrr.io/pkg/purrr/man/map.html">purrr::map_df()</a></code> to map over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code>select()</code> function to get rid of the "promoted" columns.</p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now you can make a plot of likes per day for all of the months.</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Likes per Day"</span><span class="op">)</span> <span class="op">+</span> 
@@ -324,23 +1363,23 @@ Figure 7.3: Engagements per day with a log-transformed y-axis.
                date_labels <span class="op">=</span> <span class="st">"%B"</span>,
                expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span>add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Likes 2021"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="info">
 <p>Notice that we changed the date breaks and labels for the x-axis. <code>%B</code> is the date code for the full month name. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for all of the date codes.</p>
 </div>
 </div>
-<div id="likes-by-month" class="section level3" number="7.2.7">
+<div id="likes-by-month" class="section level3" number="7.3.7">
 <h3>
-<span class="header-section-number">7.2.7</span> Likes by Month<a class="anchor" aria-label="anchor" href="#likes-by-month"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.7</span> Likes by Month<a class="anchor" aria-label="anchor" href="#likes-by-month"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you want to plot likes by month, first you need a column for the month. Use <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to make a new column, using <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
-<p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> function causes all of the subsequent functions to operate inside of groups, until you call <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<p>If you want to plot likes by month, first you need a column for the month. Use <code>mutate()</code> to make a new column, using <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
+<p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code>group_by()</code> function causes all of the subsequent functions to operate inside of groups, until you call <code>ungroup()</code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_by_month</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">likes_by_month</span></code></pre></div>
 <div class="kable-table">
@@ -418,16 +1457,29 @@ Aug
 3535
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Sep
+</td>
+<td style="text-align:right;">
+2480
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oct
+</td>
+<td style="text-align:right;">
+2196
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
-<div class="warning">
-<p>Make sure you call the <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
-</div>
 <p>A column plot might make more sense than a line plot for this summary.</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">likes_by_month</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">total_likes</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Total Likes per Month"</span>,
                      breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10000</span>, <span class="fl">1000</span><span class="op">)</span>,
@@ -436,7 +1488,7 @@ Aug
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:likes-by-month-plot"></span>
 <img src="07-wrangle_files/figure-html/likes-by-month-plot-1.png" alt="Likes by month." width="100%"><p class="caption">
-Figure 7.4: Likes by month.
+Figure 7.3: Likes by month.
 </p>
 </div>
 <div class="try">
@@ -446,19 +1498,19 @@ Figure 7.4: Likes by month.
 <button>
 Summarise Data
 </button>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_by_week</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>start_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span>,
+  <span class="fu">mutate</span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>start_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span>,
             total_tweets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">`Tweets published`</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="webex-solution">
 <button>
 Plot Data
 </button>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">tweets_by_week</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_date</span>, y <span class="op">=</span> <span class="va">total_tweets</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"hotpink"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span> <span class="op">+</span>
@@ -466,33 +1518,33 @@ Plot Data
   <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>,
                date_breaks <span class="op">=</span> <span class="st">"1 month"</span>, 
                date_labels <span class="op">=</span> <span class="st">"%B"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 </div>
 </div>
-<div id="data-by-tweet" class="section level3" number="7.2.8">
+<div id="data-by-tweet" class="section level3" number="7.3.8">
 <h3>
-<span class="header-section-number">7.2.8</span> Data by Tweet<a class="anchor" aria-label="anchor" href="#data-by-tweet"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.8</span> Data by Tweet<a class="anchor" aria-label="anchor" href="#data-by-tweet"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can also download your twitter data by tweet instead of by day. This usually takes a little longer to download. We can use the same pattern to read and combine all of the tweet data files.</p>
 <p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> at the start of the pattern means that the file name has to start with this. This means it won't match the "daily_tweet..." files.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
   pattern <span class="op">=</span> <span class="st">"^tweet_activity_metrics_LisaDeBruine"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p>First, let's open only the first file and see if we need to do anything to it.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">tweet_files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p>If you look at the file in the Viewer, you can set that the <code>Tweet id</code> column is using scientific notation (<code>1.355500e+18</code>) instead of the full 18-digit tweet ID. We won't ever want to <em>add</em> ID numbers, so it's safe to represent these as characters. Now we can set up the map over all the files, then get rid of all the promoted columns and add a <code>month</code> column (reading the date from the <code>time</code> column in these data).</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span><span class="st">"Tweet id"</span> <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span>, <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we can look at the distribution of impressions per tweet for each month.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">impressions</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_violin</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span> <span class="op">+</span>
@@ -505,11 +1557,14 @@ Plot Data
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:imp-month-plot"></span>
 <img src="07-wrangle_files/figure-html/imp-month-plot-1.png" alt="Impressions per tweet per month." width="100%"><p class="caption">
-Figure 7.5: Impressions per tweet per month.
+Figure 7.4: Impressions per tweet per month.
 </p>
 </div>
+<div class="try">
+<p>The y-axis has been transformed to "pseudo_log" to show very skewed data more clearly (most tweets get a few hundred impressions, but some a few can get thousands). See what the plot looks like if you change the y-axis transformation.</p>
+</div>
 <p>You can display Lisa's top tweet for the year.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet</span> <span class="op">&lt;-</span> <span class="va">all_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">likes</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
@@ -532,7 +1587,7 @@ Figure 7.5: Impressions per tweet per month.
 </tbody>
 </table></div>
 <p>Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter <a href="custom.html#custom">9</a>).</p>
-<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;"></div>
 
 </div>
 </div>
@@ -740,15 +1795,25 @@ $( document ).ready(function() {
 <li><a class="nav-link" href="#wrangle"><span class="header-section-number">7</span> Data Wrangling</a></li>
 <li><a class="nav-link" href="#ilo-wrangle"><span class="header-section-number">7.1</span> Intended Learning Outcomes</a></li>
 <li>
-<a class="nav-link" href="#twitter-example"><span class="header-section-number">7.2</span> Twitter Example</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#export-data"><span class="header-section-number">7.2.1</span> Export Data</a></li>
-<li><a class="nav-link" href="#import-data"><span class="header-section-number">7.2.2</span> Import Data</a></li>
-<li><a class="nav-link" href="#select-relevant-data"><span class="header-section-number">7.2.3</span> Select Relevant Data</a></li>
-<li><a class="nav-link" href="#plot-likes-per-day"><span class="header-section-number">7.2.4</span> Plot Likes per Day</a></li>
-<li><a class="nav-link" href="#plot-multiple-engagements"><span class="header-section-number">7.2.5</span> Plot Multiple Engagements</a></li>
-<li><a class="nav-link" href="#multiple-data-files"><span class="header-section-number">7.2.6</span> Multiple Data Files</a></li>
-<li><a class="nav-link" href="#likes-by-month"><span class="header-section-number">7.2.7</span> Likes by Month</a></li>
-<li><a class="nav-link" href="#data-by-tweet"><span class="header-section-number">7.2.8</span> Data by Tweet</a></li>
+<a class="nav-link" href="#six-main-dplyr-verbs"><span class="header-section-number">7.2</span> Six main dplyr verbs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#select"><span class="header-section-number">7.2.1</span> select()</a></li>
+<li><a class="nav-link" href="#filter"><span class="header-section-number">7.2.2</span> filter()</a></li>
+<li><a class="nav-link" href="#arrange"><span class="header-section-number">7.2.3</span> arrange()</a></li>
+<li><a class="nav-link" href="#mutate"><span class="header-section-number">7.2.4</span> mutate()</a></li>
+<li><a class="nav-link" href="#summarise"><span class="header-section-number">7.2.5</span> summarise()</a></li>
+<li><a class="nav-link" href="#group_by"><span class="header-section-number">7.2.6</span> group_by()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#twitter-example"><span class="header-section-number">7.3</span> Twitter Example</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#export-data"><span class="header-section-number">7.3.1</span> Export Data</a></li>
+<li><a class="nav-link" href="#import-data"><span class="header-section-number">7.3.2</span> Import Data</a></li>
+<li><a class="nav-link" href="#select-relevant-data"><span class="header-section-number">7.3.3</span> Select Relevant Data</a></li>
+<li><a class="nav-link" href="#plot-likes-per-day"><span class="header-section-number">7.3.4</span> Plot Likes per Day</a></li>
+<li><a class="nav-link" href="#plot-multiple-engagements"><span class="header-section-number">7.3.5</span> Plot Multiple Engagements</a></li>
+<li><a class="nav-link" href="#multiple-data-files"><span class="header-section-number">7.3.6</span> Multiple Data Files</a></li>
+<li><a class="nav-link" href="#likes-by-month"><span class="header-section-number">7.3.7</span> Likes by Month</a></li>
+<li><a class="nav-link" href="#data-by-tweet"><span class="header-section-number">7.3.8</span> Data by Tweet</a></li>
 </ul>
 </li>
 </ul>

@@ -106,73 +106,43 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2021-11-07"
-## [1] "2021-11-07 13:46:06 GMT"
+## [1] "2021-11-15"
+## [1] "2021-11-15 11:06:13 GMT"
 ```
 
 ### Test your understanding
 
-Coming back to the pets dataset, what type of variable is in each column?
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> name </th>
-   <th style="text-align:left;"> owner </th>
-   <th style="text-align:left;"> species </th>
-   <th style="text-align:left;"> birthdate </th>
-   <th style="text-align:right;"> weight </th>
-   <th style="text-align:left;"> rating </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Darwin </td>
-   <td style="text-align:left;"> Lisa </td>
-   <td style="text-align:left;"> ferret </td>
-   <td style="text-align:left;"> 1998-04-02 </td>
-   <td style="text-align:right;"> 1.2 </td>
-   <td style="text-align:left;"> a little evil </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oy </td>
-   <td style="text-align:left;"> Lisa </td>
-   <td style="text-align:left;"> ferret </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 2.9 </td>
-   <td style="text-align:left;"> very good </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Khaleesi </td>
-   <td style="text-align:left;"> Emily </td>
-   <td style="text-align:left;"> cat </td>
-   <td style="text-align:left;"> 2014-10-01 </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> very good </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bernie </td>
-   <td style="text-align:left;"> Phil </td>
-   <td style="text-align:left;"> dog </td>
-   <td style="text-align:left;"> 2017-06-01 </td>
-   <td style="text-align:right;"> 32.0 </td>
-   <td style="text-align:left;"> very good </td>
-  </tr>
-</tbody>
-</table>
+Coming back to the pets dataset, what type of variable is in each column? You can use the function `glimpse()` to show a list of the column names, their data types, and the first few values in each column.
 
 
+```r
+glimpse(pets)
+```
+
+```
+## Rows: 4
+## Columns: 6
+## $ name      <chr> "Darwin", "Oy", "Khaleesi", "Bernie"
+## $ owner     <chr> "Lisa", "Lisa", "Emily", "Phil"
+## $ species   <fct> ferret, ferret, cat, dog
+## $ birthdate <date> 1998-04-02, NA, 2014-10-01, 2017-06-01
+## $ weight    <dbl> 1.2, 2.9, 4.5, 32.0
+## $ rating    <fct> a little evil, very good, very good, very good
+```
 
 ::: {.try data-latex=""}
 
 
 
-* `name` <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
-* `owner` <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
-* `species` <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select>
-* `birthdate` <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='answer'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='answer'>date</option></select>
-* `weight` <select class='webex-select'><option value='blank'></option><option value='answer'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='answer'>numeric</option><option value='x'>character</option><option value='x'>factor</option><option value='x'>date</option></select>
-* `rating` <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='answer'>ordinal</option><option value='x'>date</option></select> <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select>
+| Column      | Variable type | Data type     |
+|:------------|:--------------|:--------------|
+| `name`      | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select>  | <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>  |
+| `owner`     | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select>  | <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='answer'>character</option><option value='x'>factor</option><option value='x'>date</option></select>  |
+| `species`   | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='answer'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select>  | <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select> |
+| `birthdate` | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='answer'>date</option></select> | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='answer'>date</option></select> |
+| `weight`    | <select class='webex-select'><option value='blank'></option><option value='answer'>continuous</option><option value='x'>nominal</option><option value='x'>ordinal</option><option value='x'>date</option></select> | <select class='webex-select'><option value='blank'></option><option value='answer'>numeric</option><option value='x'>character</option><option value='x'>factor</option><option value='x'>date</option></select>  |
+| `rating`    | <select class='webex-select'><option value='blank'></option><option value='x'>continuous</option><option value='x'>nominal</option><option value='answer'>ordinal</option><option value='x'>date</option></select>  | <select class='webex-select'><option value='blank'></option><option value='x'>numeric</option><option value='x'>character</option><option value='answer'>factor</option><option value='x'>date</option></select> |
+
 :::
 
 
@@ -186,79 +156,12 @@ Coming back to the pets dataset, what type of variable is in each column?
 
 Figure\ \@ref(fig:layers) displays the evolution of a simple scatterplot using this layered approach. First, the plot space is built (layer 1); the variables are specified (layer 2); the type of visualisation (known as a `geom`) that is desired for these variables is specified (layer 3) - in this case `geom_point()` is called to visualise individual data points; a second geom is added to include a line of best fit (layer 4), the axis labels are edited for readability (layer 5), and finally, a theme is applied to change the overall appearance of the plot (layer 6).
 
-
-```
-## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-## found in Windows font database
-
-## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-## found in Windows font database
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-```
-
-```
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-```
-
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/layers-1.png" alt="Evolution of a layered plot" width="100%" />
 <p class="caption">(\#fig:layers)Evolution of a layered plot</p>
 </div>
 
 Importantly, each layer is independent and independently customisable. For example, the size, colour and position of each component can be adjusted, or one could, for example, remove the first geom (the data points) to only visualise the line of best fit, simply by removing the layer that draws the data points (Figure\ \@ref(fig:remove-layer)). The use of layers makes it easy to build up complex plots step-by-step, and to adapt or extend plots from existing code.
-
-
-```
-## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-## found in Windows font database
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-```
-
-```
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-```
 
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/remove-layer-1.png" alt="Plot with scatterplot layer removed." width="100%" />
@@ -279,7 +182,7 @@ survey_data <- read_csv(file = "data/survey_data.csv")
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
@@ -288,8 +191,8 @@ survey_data <- read_csv(file = "data/survey_data.csv")
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.
@@ -360,7 +263,7 @@ ggplot(data = survey_data)
 
 The next <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a> to `ggplot()` is the `mapping`. This tells the plot which columns in the data should be represented by different "aesthetics" of the plot, such as the x-axis, y-axis, line colour, object fill, or line style.
 
-The `mapping` argument requires an `aes()` function that can take the arguments `x` and `y`. Set those to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.
+The `mapping` argument requires the result of an `aes()` function. We can define the mapping first and then use that <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/o#object'>object</a> in the `ggplot()` function. Set the arguments `x` and `y` to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.
 
 
 ```r
@@ -435,11 +338,6 @@ line_first <-
 
 # add plots together in 1 row
 point_first + line_first + plot_layout(nrow = 1)
-```
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -560,20 +458,14 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   theme_gdocs(base_size = 11, base_family = "Times")
 ```
 
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-```
-
-```
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-```
-
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/build-plot-theme-1.png" alt="Changing the theme." width="100%" />
 <p class="caption">(\#fig:build-plot-theme)Changing the theme.</p>
 </div>
+
+::: {.warning data-latex=""}
+If you don't that the font "Times" on your computer, you'll get an error message. Try another font that you do have installed.
+:::
 
 ### Theme Tweaks
 
@@ -596,16 +488,6 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
   theme_gdocs(base_size = 11, base_family = "Times") +
   theme(axis.line.x = element_blank(),
         plot.background = element_blank())
-```
-
-```
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-## family not found in Windows font database
-```
-
-```
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
 ```
 
 <div class="figure" style="text-align: center">
@@ -635,7 +517,7 @@ ggplot(data = survey_data, mapping = count_issues) +
   geom_bar()
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
 
 ::: {.try data-latex=""}
 
@@ -732,7 +614,7 @@ ggplot(data = count_data, mapping = count_mapping) +
   geom_col()
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 #### Pie Chart
@@ -782,8 +664,8 @@ ggplot(data = survey_data, mapping = aes(x = wait_time)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of wait times." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-14)Histogram of wait times.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-15-1.png" alt="Histogram of wait times." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-15)Histogram of wait times.</p>
 </div>
 
 You should always set the `binwidth` or number of `bins` to something meaningful for your data (otherwise you get that annoying message). You might need to try a few options before you find something that looks good and conveys the meaning of your plot; `binwidth = 15` seems to work well here. 
@@ -812,8 +694,8 @@ g + wait_x +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-15-1.png" alt="Histogram with custom styles." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-15)Histogram with custom styles.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-16-1.png" alt="Histogram with custom styles." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-16)Histogram with custom styles.</p>
 </div>
 
 #### Frequency Plot
@@ -827,7 +709,7 @@ g + wait_x +
                 color = "black")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 #### Density Plot
@@ -840,7 +722,7 @@ g + wait_x +
   geom_density(fill = "purple", color = "black")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
 
 #### Test your understanding
 
@@ -892,8 +774,8 @@ histogram_stack + area_plot +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-19-1.png" alt="Stacked histogram versus area plot." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-19)Stacked histogram versus area plot.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Stacked histogram versus area plot." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-20)Stacked histogram versus area plot.</p>
 </div>
 
 ::: {.warning data-latex=""}
@@ -932,8 +814,8 @@ histogram_dodge + freqpoly_plot +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-20-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-20)Different ways to plot the distribution of a continuous variable for multiple groups.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-21-1.png" alt="Different ways to plot the distribution of a continuous variable for multiple groups." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-21)Different ways to plot the distribution of a continuous variable for multiple groups.</p>
 </div>
 
 #### Violin Plot
@@ -989,17 +871,17 @@ g <- ggplot(data = survey_data, mapping = wait_by_issue) +
   coord_cartesian(ylim = c(0, 360)) +
   guides(fill = "none", colour = "none") # remove legends
 
-median <- g + geom_violin(alpha = 0.5, draw_quantiles = 0.5) +
+median <- g + geom_violin(alpha = 0.4, draw_quantiles = 0.5) +
   ggtitle("Median line (default trim)")
 
-mean_point <- g + geom_violin(alpha = 0.5, trim = FALSE) + 
+mean_point <- g + geom_violin(alpha = 0.4, trim = FALSE) + 
  stat_summary(fun = mean, geom = "point", size = 2) +
   ggtitle("Mean point (no trim)")
   
-violinbox <- g + geom_violin(alpha = 0.5) + 
+violinbox <- g + geom_violin(alpha = 0.4) + 
   geom_boxplot(width = 0.25, 
                fill = "white", 
-               alpha = 0.5, 
+               alpha = 0.75, 
                outlier.alpha = 0) +
   ggtitle("ViolinBox")
 
@@ -1012,6 +894,9 @@ median + mean_point + violinbox
 </div>
 
 ::: {.dangerous data-latex=""}
+
+The column plot below demonstrates just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+
 
 ```r
 # stat_summary applies a function ("mean") to the data 
@@ -1026,8 +911,6 @@ g + stat_summary(fun = "mean", geom = "col", alpha = 0.5) +
 <img src="03-viz_files/figure-html/col-plot-bad-1.png" alt="Don't plot continuous data with column plots." width="100%" />
 <p class="caption">(\#fig:col-plot-bad)Don't plot continuous data with column plots.</p>
 </div>
-
-The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
 :::
 
 #### Test your understanding
@@ -1092,8 +975,8 @@ lm_plot + loess_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-viz_files/figure-html/unnamed-chunk-22-1.png" alt="Different ways to show the relationship between two continuous variables." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-22)Different ways to show the relationship between two continuous variables.</p>
+<img src="03-viz_files/figure-html/unnamed-chunk-23-1.png" alt="Different ways to show the relationship between two continuous variables." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-23)Different ways to show the relationship between two continuous variables.</p>
 </div>
 
 ::: {.warning data-latex=""}
@@ -1116,7 +999,7 @@ g <- ggplot(data = survey_data, mapping = satisfaction_by_date)
 g + geom_smooth(method = lm, formula = y~x)
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
 
 We can use `scale_x_date()` to set the `date_breaks` to be "1 month" apart. The `date_labels` use a code for different date formats, which you can see in the help for `?strptime`. For example, you can change the dates to a format like "2020/01/31" with the formatting string `"%Y/%m/%d"`.
 
@@ -1130,7 +1013,7 @@ g + geom_smooth(method = lm,  formula = y~x) +
   ggtitle("2020 Caller Satisfaction")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
 
 ::: {.try data-latex=""}
 It looks like customer satisfaction declined across the year, but is this change meaningful? See what the plot looks like when the y-axis spans the full range of possible satisfaction values from 1 to 5. You can also plot the individual data points to emphasise the range of values. 
@@ -1151,7 +1034,7 @@ g +
   ggtitle("2020 Caller Satisfaction")
 ```
 
-<img src="03-viz_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="03-viz_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
 </div>
 
 :::
@@ -1190,7 +1073,7 @@ g + geom_jitter(width = 0, height = .2, alpha = 0.5)
 
 #### Facets
 
-Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction. Note that the `fill` will use continuous colours if `satisfaction` is a numeric data type, but you can convert it to a factor to use categorical colours.
+Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction.
 
 
 ```r

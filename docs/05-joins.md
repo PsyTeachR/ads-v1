@@ -128,9 +128,9 @@ orders <- tibble(
 
 
 
-### Mutating Joins
+## Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -145,7 +145,7 @@ All the mutating joins have this basic syntax:
 You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
 :::
 
-#### left_join() {#left_join}
+### left_join() {#left_join}
 
 <div class="join"><img src="images/joins/left_join.png" /></div>
 
@@ -295,7 +295,7 @@ left_join(orders, customers, by = "id")
 
 </div>
 
-#### right_join() {#right_join}
+### right_join() {#right_join}
 
 <div class="join"><img src="images/joins/right_join.png" /></div>
 
@@ -381,7 +381,7 @@ right_join(customers, orders, by = "id")
 This table has the same information as `left_join(orders, customers, by = "id")`, but the columns are in a different order (left table, then right table).
 :::
 
-#### inner_join() {#inner_join}
+### inner_join() {#inner_join}
 
 <div class="join"><img src="images/joins/inner_join.png" /></div>
 
@@ -446,7 +446,7 @@ inner_join(customers, orders, by = "id")
 </div>
 
 
-#### full_join() {#full_join}
+### full_join() {#full_join}
 
 <div class="join"><img src="images/joins/full_join.png" /></div>
 
@@ -535,11 +535,11 @@ full_join(customers, orders, by = "id")
 </div>
 
 
-### Filtering Joins
+## Filtering Joins
 
 <a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter\ \@ref(wrangle).)
 
-#### semi_join() {#semi_join}
+### semi_join() {#semi_join}
 
 <div class="join"><img src="images/joins/semi_join.png" /></div>
 
@@ -638,7 +638,7 @@ semi_join(orders, customers, by = "id")
 
 </div>
 
-#### anti_join() {#anti_join}
+### anti_join() {#anti_join}
 
 <div class="join"><img src="images/joins/anti_join.png" /></div>
 
@@ -706,11 +706,11 @@ anti_join(orders, customers, by = "id")
 
 </div>
 
-### Binding Joins
+## Binding Joins
 
 <a class='glossary' target='_blank' title='Joins that bind one table to another by adding their rows or columns together.' href='https://psyteachr.github.io/glossary/b#binding-joins'>Binding joins</a> bind one table to another by adding their rows or columns together.
 
-#### bind_rows() {#bind_rows}
+### bind_rows() {#bind_rows}
 
 You can combine the rows of two tables with `bind_rows`.
 
@@ -881,7 +881,7 @@ bind_rows(customers, new_customers)
 
 </div>
 
-#### bind_cols() {#bind_cols}
+### bind_cols() {#bind_cols}
 
 You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
 
@@ -941,7 +941,7 @@ bind_cols(customers, new_info)
 
 </div>
 
-#### Importing folders
+### Importing folders
 
 If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
 
@@ -1062,11 +1062,11 @@ file.remove("data/customers2.csv")
 
 
 
-### Set Operations
+## Set Operations
 
 <a class='glossary' target='_blank' title='Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).' href='https://psyteachr.github.io/glossary/s#set-operations'>Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
 
-#### intersect() {#intersect}
+### intersect() {#intersect}
 
 `intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
 
@@ -1112,12 +1112,12 @@ base::intersect(customers, new_customers)
 
 ```
 ## Error: Must subset rows with a valid subscript vector.
-## i Logical subscripts must match the size of the indexed input.
+## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
 
-#### union() {#union}
+### union() {#union}
 
 `union()` returns all the rows from both tables, removing duplicate rows.
 
@@ -1217,7 +1217,7 @@ base::union(customers, new_customers)
 ```
 :::
 
-#### setdiff() {#setdiff}
+### setdiff() {#setdiff}
 
 `setdiff` returns rows that are in the first table, but not in the second table.
 

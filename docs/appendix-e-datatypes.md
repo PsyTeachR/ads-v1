@@ -225,7 +225,7 @@ typeof(mixed)
 :::
 
 ::: {.warning data-latex=""}
-You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will "coerce" them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so `10` would turn into "10".
+You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will <a class='glossary' target='_blank' title='Changing the data type of values in a vector to a single compatible type.' href='https://psyteachr.github.io/glossary/c#coercion'>coerce</a> them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so `r `hl(10)` would turn into <code><span class='st'>"10"</span></code>.
 :::
 
 #### Selecting values from a vector
@@ -536,6 +536,10 @@ friendly   <- avatar$friendly  # by column name
   <tr>
    <td style="text-align:left;"> [character](https://psyteachr.github.io/glossary/c.html#character){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A data type representing strings of text. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [coercion](https://psyteachr.github.io/glossary/c.html#coercion){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> Changing the data type of values in a vector to a single compatible type. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [data type](https://psyteachr.github.io/glossary/d.html#data-type){class="glossary" target="_blank"} </td>

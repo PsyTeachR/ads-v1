@@ -72,9 +72,11 @@ lubridate::now(tzone = "GMT")
 
 ### Test your understanding
 
-Coming back to the pets dataset, what type of variable is in each column?
+Coming back to the pets dataset, what type of variable is in each column? You can use the function `glimpse()` to show a list of the column names, their data types, and the first few values in each column.
 
-`r kable(pets)`
+```{r}
+glimpse(pets)
+```
 
 ::: {.try data-latex=""}
 
@@ -90,12 +92,15 @@ ord <- c(x = "continuous", x = "nominal", answer = "ordinal", x = "date")
 date <- c(x = "continuous", x = "nominal", x = "ordinal", answer = "date")
 ```
 
-* `name` `r mcq(nom)` `r mcq(chr)`
-* `owner` `r mcq(nom)` `r mcq(chr)`
-* `species` `r mcq(nom)` `r mcq(fctr)`
-* `birthdate` `r mcq(date)` `r mcq(date)`
-* `weight` `r mcq(cont)` `r mcq(num)`
-* `rating` `r mcq(ord)` `r mcq(fctr)`
+| Column      | Variable type | Data type     |
+|:============|:--------------|:--------------|
+| `name`      | `r mcq(nom)`  | `r mcq(chr)`  |
+| `owner`     | `r mcq(nom)`  | `r mcq(chr)`  |
+| `species`   | `r mcq(nom)`  | `r mcq(fctr)` |
+| `birthdate` | `r mcq(date)` | `r mcq(date)` |
+| `weight`    | `r mcq(cont)` | `r mcq(num)`  |
+| `rating`    | `r mcq(ord)`  | `r mcq(fctr)` |
+
 :::
 
 
@@ -153,7 +158,8 @@ write_csv(survey_data, "data/survey_data.csv")
 Figure\ \@ref(fig:layers) displays the evolution of a simple scatterplot using this layered approach. First, the plot space is built (layer 1); the variables are specified (layer 2); the type of visualisation (known as a `geom`) that is desired for these variables is specified (layer 3) - in this case `geom_point()` is called to visualise individual data points; a second geom is added to include a line of best fit (layer 4), the axis labels are edited for readability (layer 5), and finally, a theme is applied to change the overall appearance of the plot (layer 6).
 
 ```{r layers, fig.cap="Evolution of a layered plot", echo = FALSE, message=FALSE}
-survey_data <- read_csv(file = "data/survey_data.csv")
+survey_data <- read_csv(file = "data/survey_data.csv",
+                        show_col_types = FALSE)
 
 x_breaks <- seq(from = 0, to = 600, by = 60)
 y_breaks <- seq(from = 0, to = 600, by = 30)
@@ -187,7 +193,7 @@ ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   scale_x_continuous(name = "Wait Time (seconds)", breaks = x_breaks) +
   scale_y_continuous(name = "Call time (seconds)", breaks = y_breaks) + 
   coord_cartesian(xlim = c(0, 360), ylim = c(0, 180)) +
-  theme_minimal(base_family = "Times") + 
+  theme_minimal(base_family = "Arial") + 
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -247,7 +253,7 @@ ggplot(data = survey_data)
 
 The next `r glossary("argument")` to `ggplot()` is the `mapping`. This tells the plot which columns in the data should be represented by different "aesthetics" of the plot, such as the x-axis, y-axis, line colour, object fill, or line style.
 
-The `mapping` argument requires an `aes()` function that can take the arguments `x` and `y`. Set those to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.
+The `mapping` argument requires the result of an `aes()` function. We can define the mapping first and then use that `r glossary("object")` in the `ggplot()` function. Set the arguments `x` and `y` to the names of the columns you want to be plotted on those axes. Here, we want to plot the wait time on the x-axis and the call time on the y-axis.
 
 ```{r build-plot-mapping, fig.cap = "A blank plot with x- and y- axes mapped."}
 # set up the mapping
@@ -290,7 +296,7 @@ g <- ggplot(data = survey_data, mapping = wait_vs_call)
 
 You can add more than one geom. They display in the order you set them up. In the code below, we make two different plots and assign them to `r glossary("object", "objects")` that we can add together using the `plot_layout()` function from the `r pkg("patchwork")` package.
 
-```{r build-plot-geom2, fig.cap="Points first versus line first."}
+```{r build-plot-geom2, fig.cap="Points first versus line first.", message = FALSE}
 point_first <- 
   ggplot(data = survey_data, mapping = wait_vs_call) +
   geom_point() + # scatterplot
@@ -398,6 +404,10 @@ ggplot(data = survey_data, mapping = wait_vs_call) +
                   ylim = c(0, 180)) +
   theme_gdocs(base_size = 11, base_family = "Times")
 ```
+
+::: {.warning data-latex=""}
+If you don't that the font "Times" on your computer, you'll get an error message. Try another font that you do have installed.
+:::
 
 ### Theme Tweaks
 
@@ -745,7 +755,7 @@ g + geom_boxplot()
 
 Violin plots are frequently layered with other geoms that represent the mean or median values in the data.
 
-```{r violin-combos, fig.height = 2, fig.cap="Violin plots combined with different methods to represent means and medians."}
+```{r violin-combos, fig.height = 3/2, fig.width=12/2, fig.cap="Violin plots combined with different methods to represent means and medians."}
 # add fill and colour to the mapping
 wait_by_issue <- aes(x = issue_category, 
                      y = wait_time,
@@ -760,17 +770,17 @@ g <- ggplot(data = survey_data, mapping = wait_by_issue) +
   coord_cartesian(ylim = c(0, 360)) +
   guides(fill = "none", colour = "none") # remove legends
 
-median <- g + geom_violin(alpha = 0.5, draw_quantiles = 0.5) +
+median <- g + geom_violin(alpha = 0.4, draw_quantiles = 0.5) +
   ggtitle("Median line (default trim)")
 
-mean_point <- g + geom_violin(alpha = 0.5, trim = FALSE) + 
+mean_point <- g + geom_violin(alpha = 0.4, trim = FALSE) + 
  stat_summary(fun = mean, geom = "point", size = 2) +
   ggtitle("Mean point (no trim)")
   
-violinbox <- g + geom_violin(alpha = 0.5) + 
+violinbox <- g + geom_violin(alpha = 0.4) + 
   geom_boxplot(width = 0.25, 
                fill = "white", 
-               alpha = 0.5, 
+               alpha = 0.75, 
                outlier.alpha = 0) +
   ggtitle("ViolinBox")
 
@@ -778,6 +788,9 @@ median + mean_point + violinbox
 ```
 
 ::: {.dangerous data-latex=""}
+
+The column plot below demonstrates just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
+
 ```{r col-plot-bad, message=FALSE, fig.cap="Don't plot continuous data with column plots."}
 # stat_summary applies a function ("mean") to the data 
 # and plots the results using the specified geom ("col")
@@ -786,8 +799,6 @@ g + stat_summary(fun = "mean", geom = "col", alpha = 0.5) +
   # sets the y-axis limits automatically
   coord_cartesian(ylim = NULL) 
 ```
-
-The column plot is included above to demonstrate just how misleading this common type of plot is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
 :::
 
 #### Test your understanding
@@ -947,7 +958,7 @@ g + geom_jitter(width = 0, height = .2, alpha = 0.5)
 
 #### Facets
 
-Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction. Note that the `fill` will use continuous colours if `satisfaction` is a numeric data type, but you can convert it to a factor to use categorical colours.
+Alternatively, you can use `facet_wrap()` to create a separate plot for each level of satisfaction.
 
 ```{r fact-plot, fig.height = 8, fig.cap = "A histogram with facets."}
 ggplot(data = survey_data, mapping = aes(x = call_time)) +

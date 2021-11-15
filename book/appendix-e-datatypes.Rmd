@@ -155,7 +155,7 @@ typeof(mixed)
 :::
 
 ::: {.warning data-latex=""}
-You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will "coerce" them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so `10` would turn into "10".
+You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will `r glossary("coercion", "coerce")` them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so `r `hl(10)` would turn into `r hl("10")`.
 :::
 
 #### Selecting values from a vector

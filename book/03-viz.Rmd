@@ -93,7 +93,7 @@ date <- c(x = "continuous", x = "nominal", x = "ordinal", answer = "date")
 ```
 
 | Column      | Variable type | Data type     |
-|:============|:--------------|:--------------|
+|:------------|:--------------|:--------------|
 | `name`      | `r mcq(nom)`  | `r mcq(chr)`  |
 | `owner`     | `r mcq(nom)`  | `r mcq(chr)`  |
 | `species`   | `r mcq(nom)`  | `r mcq(fctr)` |

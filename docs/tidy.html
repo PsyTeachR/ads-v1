@@ -569,8 +569,8 @@ totalprice
 
 <span class="co"># we'll learn about these functions later</span>
 <span class="va">tidy_data</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">customer_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarise</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">customer_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
     total_items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">items</span><span class="op">)</span>,
     total_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">totalprice</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
@@ -666,7 +666,7 @@ Figure 6.1: Converting between wide and long formats using pivot tables in Excel
 <p>Let's look again at just the <code>totalprice</code> data from the untidy table above. We can select just the columns we want using the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">dplyr::select()</a></code> function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or <code>new_name = old_name</code>. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns.</p>
 <div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select just the customer ID and 3 total price columns</span>
-<span class="va">untidy_price</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span>
+<span class="va">untidy_price</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">untidy_data</span>,
   <span class="va">customer_id</span>, 
   `2018` <span class="op">=</span> <span class="va">totalprice_2018</span>,
@@ -2779,7 +2779,7 @@ totalprice
 <p>The column <code>price_per_item</code> is still a character column because it has parentheses. There are a few ways to fix this. You can use the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">dplyr::mutate()</a></code> function to change a column or add a new one.</p>
 <p>Here, we'll use <code><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">stringr::str_replace_all()</a></code> to replace all of the "(" and ")" with "".</p>
 <div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
   price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
@@ -3158,7 +3158,7 @@ totalprice
   convert <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span> 
 
-<span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span>
+<span class="va">mutated_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">split_data</span>,
   price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
     string <span class="op">=</span> <span class="va">price_per_item</span>, 
@@ -3183,7 +3183,7 @@ totalprice
 <code class="sourceCode R"><span class="co"># do not ever do this!!!!!!</span>
 
 <span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="fu">type_convert</span><span class="op">(</span>
-  df <span class="op">=</span> <span class="fu">mutate</span><span class="op">(</span>
+  df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
     .data <span class="op">=</span> <span class="fu">separate</span><span class="op">(</span>
       data <span class="op">=</span> <span class="fu">pivot_wider</span><span class="op">(</span>
         data <span class="op">=</span> <span class="fu">pivot_longer</span><span class="op">(</span>
@@ -3218,15 +3218,15 @@ totalprice
 <div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">untidy_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span>
 
-<span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span>
+<span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
   .data <span class="op">=</span> <span class="va">untidy_data</span>,
   <span class="va">customer_id</span>, 
   <span class="fu">starts_with</span><span class="op">(</span><span class="st">"totalprice"</span><span class="op">)</span> <span class="co"># selects all columns that start with a string</span>
 <span class="op">)</span></code></pre></div>
-<p>... you can just make one table called <code>totalprice_data</code> by reading the csv file and <strong>piping</strong> the resulting table into the <code>select()</code> function.</p>
+<p>... you can just make one table called <code>totalprice_data</code> by reading the csv file and <strong>piping</strong> the resulting table into the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> function.</p>
 <div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totalprice_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/untidy_data.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>
     <span class="va">customer_id</span>, 
     <span class="fu">starts_with</span><span class="op">(</span><span class="st">"totalprice"</span><span class="op">)</span> 
   <span class="op">)</span></code></pre></div>
@@ -3256,7 +3256,7 @@ totalprice
     remove <span class="op">=</span> <span class="cn">TRUE</span>, 
     convert <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
     price_per_item <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_replace.html">str_replace_all</a></span><span class="op">(</span>
       string <span class="op">=</span> <span class="va">price_per_item</span>, 
       pattern <span class="op">=</span> <span class="st">"[()]"</span>, 
@@ -3318,7 +3318,7 @@ totalprice
 </li>
 </ul>
 </li>
-<li>Change a column (<code>mutate()</code>)
+<li>Change a column (<code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>)
 <ul>
 <li>
 <code>price_per_item</code>: replace the existing column <code>price_per_item</code> with the result of a search and replace:

@@ -1,0 +1,71 @@
+# Alluvial Plots
+
+Alluvial plots are complex, but represent categories or transitions.
+
+```{r, fig.width = 6/2, fig.height = 8/2}
+survey_data %>%
+  count(employee_id, satisfaction) %>%
+  mutate(satisfaction = factor(satisfaction)) %>%
+  ggplot(aes(y = n, axis1 = employee_id, axis2 = satisfaction)) +
+  geom_alluvium(aes(fill = satisfaction)) +
+  geom_stratum(width = 1/4, fill = "black", color = "white") +
+  geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Employee", "Rating"), expand = c(.05, .05)) +
+  scale_y_continuous(name = "Number of Calls") +
+  scale_fill_brewer(palette = "Spectral") +
+  guides(fill = "none")
+```
+
+
+```{r}
+food <- xml2::read_xml("data/glasgow_food_safety.xml") %>%
+  xml2::xml_find_all(".//EstablishmentDetail") %>%
+  map(xml2::as_list)
+
+food2 <- food %>%
+  map(function(x) {
+    c(name = x$BusinessName[[1]],
+      year = substr(x$RatingDate, 0, 4),
+      rating = x$RatingValue[[1]]
+     )
+  }) %>%
+  do.call(bind_rows, .) %>%
+  mutate(name = gsub(" +", " ", name),
+         rating = case_when(
+           rating == "Pass and Eat Safe" ~ "Pass",
+           TRUE ~ rating
+         )) %>%
+  group_by(name) %>% 
+  filter(n() > 1) %>%
+  ungroup() %>%
+  mutate(year_grp = floor(as.integer(year)/5) * 5) %>%
+  group_by(name, year_grp) %>%
+  slice_min(order_by = year, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(-year) %>%
+  pivot_wider(names_from = year_grp,
+              values_from = rating) %>%
+  count(`2010`, `2015`, `2020`) %>%
+  filter(is.na(`2010`) + is.na(`2015`) + is.na(`2020`)  == 0) %>%
+  mutate(name = row_number()) %>%
+  pivot_longer(cols = `2010`:`2020`,
+               names_to = "year_grp",
+               values_to = "rating") %>%
+  mutate(year_grp = recode(year_grp,
+                           `2010` = "2006-2010",
+                           `2015` = "2011-2015",
+                           `2020` = "2016-2020"),
+         rating = gsub(" ", "\n", rating))
+  
+
+ggplot(food2,
+       aes(x = year_grp, stratum = rating, alluvium = name,
+           y = n,
+           fill = rating, label = rating)) +
+  scale_x_discrete(expand = c(.1, .1)) +
+  geom_flow() +
+  geom_stratum(alpha = .5) +
+  geom_text(stat = "stratum", size = 3) +
+  labs(x = "") +
+  theme(legend.position = "none")
+```

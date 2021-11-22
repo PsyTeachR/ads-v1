@@ -35,7 +35,9 @@ bar <- ggplot(data = survey_data,
               mapping = aes(x = issue_category,
                             fill = issue_category)) +
   geom_bar(show.legend = FALSE) +
-  ggtitle("Calls by Issue Category")
+  labs(x = "Issue Category", 
+       y = "Count",
+       title = "Calls by Issue Category")
 
 point <- lm_plot <- ggplot(data = survey_data, 
                            mapping = aes(x = wait_time, 
@@ -43,7 +45,10 @@ point <- lm_plot <- ggplot(data = survey_data,
                                          color = issue_category)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = lm, formula = y~x) +
-  ggtitle("Wait Time by Call Time")
+  labs(x = "Wait Time",
+       y = "Call Time",
+       color = "Issue Category",
+       title = "Wait Time by Call Time")
 ```
 
 
@@ -115,6 +120,8 @@ When you set the default figure width and height in the setup chunk, images you 
 
 ## Themes and Colours
 
+Use the scale functions to customise fill and colour. Appendix\ \@ref(plotstyle) has more extensive detail on this.
+
 ```{r, fig.cap="Plots with the classic theme and Dark2 palette."}
 bar2 <- bar + 
   theme_classic() + 
@@ -136,7 +143,8 @@ bar_econ <- bar +
 
 point_econ <- point + 
   theme_economist() +
-  scale_color_economist()
+  scale_color_economist() +
+  guides(color = "none")
 
 bar_econ + point_econ
 ```
@@ -145,7 +153,7 @@ bar_econ + point_econ
 
 ### Interactive Plots
 
-You can use the `r pkg("plotly")` package to make interactive graphs. Just assign your ggplot to a variable and use the function `ggplotly()`.
+Use the `r pkg("plotly")` package to make interactive graphs. Assign your ggplot to a variable and use the function `ggplotly()`.
 
 ```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
 ggplotly(point_econ)
@@ -157,7 +165,16 @@ Hover over the data points above and click on the legend items.
 
 ### Waffle Plots
 
-In Chapter\ \@ref(viz), we mentioned that pie charts are such a poor way to visualise proportions that we refused to even show you how to make one. Waffle plots are a delicious alternative. Use `r pkg("waffle")` by [hrbrmstr on GitHub](https://github.com/hrbrmstr/waffle/), not the one on CRAN.
+In Chapter\ \@ref(viz), we mentioned that pie charts are such a poor way to visualise proportions that we refused to even show you how to make one. Waffle plots are a delicious alternative. 
+
+::: {.warning data-latex=""}
+Use `r pkg("waffle")` by [hrbrmstr on GitHub](https://github.com/hrbrmstr/waffle/), not the one on CRAN.
+
+```{r, eval = FALSE}
+devtools::install_github("hrbrmstr/waffle")
+```
+
+:::
 
 ```{r, fig.cap = "Waffle plot."}
 survey_data %>% 
@@ -171,7 +188,7 @@ survey_data %>%
     radius = grid::unit(0.1, "npc") # set to 0.5 for circles
   ) +
   theme_enhance_waffle() + # gets rid of axes
-  scale_fill_economist(name = "")
+  scale_fill_colorblind(name = "Issue Category")
 ```
 
 You can also make the boxes into icons using `geom_pictogram()`. Use `fa_list()` to browse the available icons.
@@ -218,34 +235,40 @@ survey_data %>%
              stroke = 4,
              fill = "white",
              show.legend = FALSE) +
+  geom_text(aes(label = issue_category), 
+            y = 1, hjust = 0, size = 6, 
+            position = position_nudge(x = 0.2)) +
+  scale_x_discrete(labels = NULL) +
+  scale_color_colorblind() +
   labs(x = "", y = "") +
   coord_flip(ylim = c(0, 400))
   
 ```
 
+The example above uses `geom_text()` to put the labels on the plot and removes the default axis labels with `scale_x_discrete(labels = NULL)` (remember the labels are on the x-axis before the coordinates are flipped).
 
 ### Treemap
 
-```{r, fig.height = 10, fig.cap = "Treemap plot of 2020 population by country, for countries with more than 10M."}
-pop_data <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx",
-                               skip = 16) %>%
-  filter(Type == "Country/Area") %>%
-  select(country = 3, population = `2020`) %>%
-  mutate(population = round(as.numeric(population) * 1000)) %>%
-  filter(population > 10000000)
+Treemap plots are another way to visualise proportions. Like the waffle plots, you need to count the data by category first. You can use any brewer palette for the fill.
 
-treemap(pop_data,
-  index="country",
-  vSize="population",
-  title = "",
-  palette = "BuPu",
-  inflate.labels = TRUE
-)
+```{r, fig.cap = "Treemap plot."}
+survey_data %>% 
+  count(issue_category) %>%
+  treemap(
+    index="issue_category",
+    vSize="n",
+    title = "",
+    palette = "BuPu",
+    inflate.labels = TRUE
+  )
 ```
 
 
 
+
 ### Word Clouds
+
+Word clouds are an interesting way to summarise qualitative data. First, load some data from Amazon Alexa reviews.
 
 ```{r}
 # https://www.kaggle.com/sid321axn/amazon-alexa-reviews
@@ -253,11 +276,11 @@ treemap(pop_data,
 alexa <- rio::import("data/amazon_alexa.csv")
 ```
 
-Next, we need to make a table of the number of times each individual word appears per rating  The function `tidytext::unnest_tokens()` does this for you by splitting the words in the `input` column into individual words in a new `output` column.
+Next, make a table of the number of times each individual word appears per rating  The function `tidytext::unnest_tokens()` does this for you by splitting the words in the `input` column into individual words in a new `output` column.
 
-Then we can get rid of common "stop words" and integers by filtering only words that are not in our `omitted` list.
+Then get rid of common "stop words" and integers by filtering only words that are not in our `omitted` list.
 
-Then we group by rating and use `dplyr::slice_max()` to get the top 25 words, ordered by the column `n`. 
+To get the top 25 words, group by rating and use `dplyr::slice_max()`, ordered by the column `n`. 
 
 
 ```{r}
@@ -271,9 +294,9 @@ words <- alexa %>%
   slice_max(order_by = n, n = 25, with_ties = FALSE)
 ```
 
-Now we can make two word clouds and paste them together (word clouds don't play well with facets). So we filter the `words` table to get one rating, then set up a ggplot with the aesthetics `label`, `colour`, and `size`. The `label` will come from the `word` column, while the `colour` will be different for each `word` and the `size` of the word will be proportional to `n`, the number of times the word appeared.
+Now make two word clouds and paste them together (word clouds don't play well with facets). Filter the `words` table to get one rating, then set up a ggplot with the aesthetics `label`, `colour`, and `size`. The `label` will come from the `word` column, while the `colour` will be different for each `word` and the `size` of the word will be proportional to `n`, the number of times the word appeared.
 
-The visualisation we'll use is `r hl(ggwordcloud::geom_text_wordcloud_area())`. We can control how big the cloud is with `r hl(ggwordcloud::scale_size_area())` (this usually takes some trial-and-error). Then add a title and a minimal theme to get rid of the axes and grid lines. 
+The visualisation geom is `r hl(ggwordcloud::geom_text_wordcloud_area())`. Control how big the cloud is with `r hl(ggwordcloud::scale_size_area())` (this usually takes some trial-and-error). Then add a title and a minimal theme to get rid of the axes and grid lines. 
 
 ```{r}
 rating1 <- filter(words, rating == 1) %>%
@@ -286,7 +309,7 @@ rating1 <- filter(words, rating == 1) %>%
 
 Make another plot for a different rating and paste them together with `+`.
 
-```{r, fig.height = 3}
+```{r, fig.height = 3, fig.cap="Word cloud."}
 rating5 <- filter(words, rating == 5) %>%
   ggplot(aes(label = word, colour = word, size = n)) +
   geom_text_wordcloud_area() +
@@ -296,6 +319,7 @@ rating5 <- filter(words, rating == 5) %>%
 
 rating1 + rating5
 ```
+
 
 ### Maps
 
@@ -313,7 +337,7 @@ ggplot() +
 
 You can combine multiple countries using `bind_rows()` and visualise them with different colours for each country.
 
-```{r map-islands, fig.width = 6, fig.height = 6}
+```{r map-islands, fig.width = 6, fig.height = 6, fig.cap="Map coloured by country."}
 # get and bind country data
 uk_sf <- ne_states(country = "united kingdom", returnclass = "sf")
 ireland_sf <- ne_states(country = "ireland", returnclass = "sf")
@@ -342,19 +366,32 @@ ggplot() +
 
 You can join data to the map table to visualise data on the map using colours or labels.
 
-```{r map-scotland, fig.width = 5, fig.height = 7}
+```{r}
 # load map data
-scotland_sf <- ne_states(geounit = "Scotland", returnclass = "sf")
+scotland_sf <- ne_states(geounit = "Scotland", 
+                         returnclass = "sf")
+
 # load population data from
 # https://www.indexmundi.com/facts/united-kingdom/quick-facts/scotland/population
-scotpop <- read_csv("data/scottish_population.csv", show_col_types = FALSE)
+scotpop <- read_csv("data/scottish_population.csv", 
+                    show_col_types = FALSE)
 
 # join data and fix typo in the map
 scotmap_pop <- scotland_sf %>%
-  mutate(name = ifelse(name == "North Ayshire", "North Ayrshire", name)) %>%
+  mutate(name = ifelse(name == "North Ayshire", 
+                       yes = "North Ayrshire", 
+                       no = name)) %>%
   left_join(scotpop, by = "name") %>%
   select(name, population, geometry)
+```
 
+::: {.warning data-latex=""}
+There is a typo in the data from `r pkg("rnaturalearth")`, so you need to change "North Ayshire" to "North Ayrshire" before you join the population data.
+:::
+
+Set the fill to population in `geom_sf()`. Customise the colours with `scale_fill_viridis_c()`, setting the breaks every 100K (1e5 in scientific notation) and making the scale span 0 to 600K. Set the labels to "000 K" through "600 K" to make the legend easier to read. Finally, move the position of the legend into the sea.
+
+```{r map-scotland, fig.width = 5, fig.height = 7, fig.cap="Map coloured by population."}
 # plot
 ggplot() + 
   geom_sf(data = scotmap_pop,
@@ -369,10 +406,13 @@ ggplot() +
   theme(legend.position = c(0.16, 0.84))
 ```
 
-There are many more options for data visualisation in R than we have time to cover here. The following resources will get you started on your journey to informative, intuitive visualisations.
+
+
 
 
 ## Further Resources {#resources-custom}
+
+There are so many more options for data visualisation in R than we have time to cover here. The following resources will get you started on your journey to informative, intuitive visualisations.
 
 * [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
 * [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)

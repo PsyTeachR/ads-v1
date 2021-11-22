@@ -72,6 +72,7 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
+<li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -103,7 +104,7 @@
 <p>For this demo, first we'll create two small data tables.</p>
 <p><code>customer</code> has id, city and postcode for customers 1-5. City and postcode are missing for customer 3.</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
   city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Port Ellen"</span>, <span class="st">"Dufftown"</span>, <span class="cn">NA</span>, <span class="st">"Aberlour"</span>, <span class="st">"Tobermory"</span><span class="op">)</span>,
   postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA42 7DU"</span>, <span class="st">"AB55 4DH"</span>, <span class="cn">NA</span>, <span class="st">"AB38 7RY"</span>, <span class="st">"PA75 6NR"</span><span class="op">)</span>
@@ -180,7 +181,7 @@ PA75 6NR
 </table></div>
 <p><code>orders</code> has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.</p>
 <div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">orders</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">orders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,
   items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">18</span>, <span class="fl">21</span>, <span class="fl">23</span>, <span class="fl">9</span>, <span class="fl">11</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
@@ -273,7 +274,7 @@ items
 <h2>
 <span class="header-section-number">5.2</span> Mutating Joins<a class="anchor" aria-label="anchor" href="#mutating-joins"><i class="fas fa-link"></i></a>
 </h2>
-<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code>mutate()</code> function in Chapter <a href="tidy.html#tidy">6</a>.)</p>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> function in Chapter <a href="tidy.html#tidy">6</a>.)</p>
 <p>All the mutating joins have this basic syntax:</p>
 <p><code>****_join(x, y, by = NULL, suffix = c(".x", ".y")</code></p>
 <ul>
@@ -1021,7 +1022,7 @@ NA
 <h2>
 <span class="header-section-number">5.3</span> Filtering Joins<a class="anchor" aria-label="anchor" href="#filtering-joins"><i class="fas fa-link"></i></a>
 </h2>
-<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table." href="https://psyteachr.github.io/glossary/f#filtering-joins">Filtering joins</a> act like the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function in Chapter <a href="wrangle.html#wrangle">7</a>.)</p>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table." href="https://psyteachr.github.io/glossary/f#filtering-joins">Filtering joins</a> act like the <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> function in Chapter <a href="wrangle.html#wrangle">7</a>.)</p>
 <div id="semi_join" class="section level3" number="5.3.1">
 <h3>
 <span class="header-section-number">5.3.1</span> semi_join()<a class="anchor" aria-label="anchor" href="#semi_join"><i class="fas fa-link"></i></a>
@@ -1259,7 +1260,7 @@ items
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
 <p>Here we'll add customer data for customers 6-9 and bind that to the original customer table.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">9</span>,
   city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>,
   postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>
@@ -1385,7 +1386,7 @@ KW15 1SE
 <p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
 <p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> (see below) to avoid duplicates.</p>
 <div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
   postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA75 6NR"</span>, <span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>,
   city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tobermory"</span>, <span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>,
@@ -1560,7 +1561,7 @@ KW15 1SE
 </h3>
 <p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.</p>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_info</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">new_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>
 <span class="op">)</span>
 
@@ -1856,7 +1857,7 @@ KW15 1SE
 </h3>
 <p><code><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
   postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA75 6NR"</span>, <span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>,
   city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tobermory"</span>, <span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>
@@ -2571,7 +2572,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-15.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

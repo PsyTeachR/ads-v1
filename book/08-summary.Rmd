@@ -12,6 +12,7 @@ library(kableExtra)  # for nice tables
 library(glue) # for pasting strings
 ```
 
+
 ## Summary functions
 
 We'll use the `search_tweets()` function from `r pkg("rtweet")` to find the last (up to) 30K tweets from the past 6-9 days (this depends on Twitter) with the hashtag #NationalComingOutDay.
@@ -29,26 +30,37 @@ This is mainly interesting around October 11th, so we've provided the relevant d
 tweets <- readRDS("data/ncod_tweets.rds")
 ```
 
+First, run `glimpse(tweets)` to find out what information is in the downloaded data. Now let's create a series of summary tables and plots with these data.
 
-Now let's create a series of summary tables and plots with these data.
+### Summarise
 
-### Summarising
+The `summarise()` function creates summary statistics for the data table. Check the [Data Transformation Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf) for various summary functions. Some common ones are: `n()`, `min()`, `max()`, `sum()`, `mean()`, and `quantile()`.
 
-What date range is represented in these data? How many tweets were there? First, run `glimpse(tweets)` to find out what information is in the downloaded data. 
+This function can be used to answer questions like: How many tweets were there? What date range is represented in these data? What are the mean and median number of favourites per tweet?
 
-The `created_at` column should give us the date they were created. We can use the `min()` and `max()` functions to get the range of dates. The `n()` function counts the number of rows in the data.
+The `n()` function counts the number of rows in the data. The `created_at` column gives us the date each tweet were created, so we can use the `min()` and `max()` functions to get the range of dates. The `favorite_count` column gives us the number of times each tweet was favourited.
 
 ```{r}
 tweet_summary <- tweets %>%
   summarise(
     n = n(),
     min_date = min(created_at),
-    max_date = max(created_at)
+    max_date = max(created_at),
+    avg_favs = mean(favorite_count),
+    median_favs = quantile(favorite_count, .5)
   )
 
-tweet_summary
+glimpse(tweet_summary)
 ```
 
+::: {.info data-latex=""}
+`r glossary("quantile", "Quantiles")` are like percentiles. Use `quantile(x, .50)` to find the median (the number where 50% of values in `x` are above it and 50% are below it). This can be useful when you need a value like "90% of tweets get *X* favourites or fewer".
+
+```{r}
+quantile(tweets$favorite_count, 0.90)
+```
+
+:::
 
 There are a few ways to insert those values into the text of a report. First, you can use `glue()` to create a block of text that uses the objects you just created. Use the `format()` function to format the dates for our report.
 
@@ -87,35 +99,6 @@ mcq2 <- c(answer = "`summarise(width = mean(display_text_width))`",
     `r mcq1`
 * How would you calculate the mean `display_text_width`? 
     `r mcq2`
-:::
-
-
-### Grouping
-
-You can also create summary values by group. The `source` column tells us where the tweet came from. How did the average number of favourites and retweets differ by source?
-
-```{r}
-sources <- tweets %>%
-  group_by(source) %>%
-  summarise(mean_favs = mean(favorite_count),
-            mean_retweets = mean(retweet_count)) %>%
-  arrange(desc(mean_favs))
-
-head(sources)
-```
-
-```{r, echo = FALSE}
-mcq3 <- c(answer = "`group_by(screen_name)`",
-          x = "`summarise(screen_name)`",
-          x = "`count(screen_name)`",
-          x = "`mean(screen_name)`") %>%
-  sample() %>% longmcq()
-```
-
-
-::: {.try data-latex=""}
-* What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
-    `r mcq3`
 :::
 
 ### Counting
@@ -158,31 +141,95 @@ mcq1 <- c(answer = "`tweets %>% count(is_quote, is_retweet)`",
     `r mcq1`
 :::
 
+### Grouping
+
+You can also create other summary values by group. 
+
+The `lang` column tells us what language the tweet was in. How did the average number of favourites and retweets differ by language?
+
+```{r}
+lang <- tweets %>%
+  group_by(lang) %>%
+  summarise(count = n(),
+            mean_favs = mean(favorite_count),
+            mean_retweets = mean(retweet_count)) %>%
+  ungroup() %>%
+  arrange(desc(mean_favs))
+
+head(lang)
+```
+
+::: {.warning data-latex=""}
+If you get the following message, please update tidyverse.
+
+> `summarise()` ungrouping output (override with `.groups` argument)
+:::
+
+
+```{r, echo = FALSE}
+mcq3 <- c(answer = "`group_by(screen_name)`",
+          x = "`summarise(screen_name)`",
+          x = "`count(screen_name)`",
+          x = "`mean(screen_name)`") %>%
+  sample() %>% longmcq()
+```
+
+
+::: {.try data-latex=""}
+* What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
+    `r mcq3`
+:::
+
+You can use functions like `filter()` or `mutate()` after `group_by`. 
+
+
+
 ### Filtering
 
-What was the most favourited tweet? Use `filter()` to keep just the rows where the value in the `favorite_count` column is equal to its maximum value. Just in case there was a tie, choose a random one with `sample_n(size = 1)`.
+What was the most favourited original and quoted tweet? Group by `is_quote` and use `filter()` to keep just the rows where the value in the `favorite_count` column is equal to its maximum value. Just in case there was a tie, choose a random one with `sample_n(size = 1)`.
 
 ```{r}
 most_fav <- tweets %>%
+  group_by(is_quote) %>%
   filter(favorite_count == max(favorite_count)) %>%
-  sample_n(size = 1)
+  sample_n(size = 1) %>%
+  ungroup()
 ```
+
+::: {.warning data-latex=""}
+Make sure you call the `ungroup()` function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.
+:::
 
 Remember that you can access the value in each column with the `$` operator. 
 
 ```{r, results='asis'}
+orig <- filter(most_fav, !is_quote)
+
 glue("
-The most favourited ({most_fav$favorite_count}) tweet was by 
-[{most_fav$screen_name}]({most_fav$status_url}):
+The most favourited ({orig$favorite_count}) original tweet was by 
+[{orig$screen_name}]({orig$status_url}):
 
 --------------------------------------------------
-{most_fav$text}
+{orig$text}
 
-![]({most_fav$ext_media_url}){{width='100%'}}
+![]({orig$ext_media_url}){{width='100%'}}
 --------------------------------------------------
 ") %>% 
-  # replace @ with \@ so @ doesn't trigger referencing
-  gsub("@", "\\\\@", .) %>%
+  # prints results into document, not as code
+  cat()
+```
+
+```{r, results='asis'}
+quote <- filter(most_fav, is_quote)
+
+glue("
+The most favourited ({quote$favorite_count}) quote tweet was by 
+[{quote$screen_name}]({quote$status_url}):
+
+--------------------------------------------------
+{quote$text}
+--------------------------------------------------
+") %>% 
   # prints results into document, not as code
   cat()
 ```
@@ -202,7 +249,7 @@ mcq1 <- c(answer = "`tweets %>% group_by(source) %>% filter(n() >= 10)`",
 :::
 
 
-## Putting it together
+## Putting it together {#together-summary}
 
 Let's make a table of the top five hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
 
@@ -295,3 +342,11 @@ top5 %>%
   kable_paper()
 ```
 
+## Glossary {#glossary-summary}
+
+`r glossary_table()`
+
+## Further resources {#resources-summary}
+
+* [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+* [Chapter 5: Data Transformation ](http://r4ds.had.co.nz/transform.html) in *R for Data Science*

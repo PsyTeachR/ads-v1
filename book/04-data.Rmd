@@ -128,13 +128,13 @@ demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav <- haven::read_sav("data/demo.sav")
 ```
 
-If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/){target="_blank"}.
+If you keep data in Google Sheets, you can access it directly from R using `r pkg("googlesheets4", "https://googlesheets4.tidyverse.org/")`. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI){target="_blank"}.
 
 ```{r, message = FALSE}
 gs4_deauth() # skip authorisation for public data
 
 demo_gs4  <- googlesheets4::read_sheet(
-  ss = "1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"
+  ss = "16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI"
 )
 ```
 

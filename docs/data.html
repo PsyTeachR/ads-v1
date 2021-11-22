@@ -72,6 +72,7 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
+<li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -301,12 +302,12 @@ China
 <span class="va">demo_csv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
 <span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
 <span class="va">demo_sav</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
-<p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>. The code below imports data from a <a href="https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/" target="_blank">public sheet</a>.</p>
+<p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>. The code below imports data from a <a href="https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI" target="_blank">public sheet</a>.</p>
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
 
 <span class="va">demo_gs4</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span>
-  ss <span class="op">=</span> <span class="st">"1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"</span>
+  ss <span class="op">=</span> <span class="st">"16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI"</span>
 <span class="op">)</span></code></pre></div>
 </div>
 <div id="col_types" class="section level3" number="4.4.3">
@@ -323,7 +324,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …</code></pre>
+## $ date      &lt;date&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -333,7 +334,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …</code></pre>
+## $ date      &lt;dttm&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -343,7 +344,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …</code></pre>
+## $ date      &lt;date&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -351,9 +352,9 @@ China
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
 ## $ factor    &lt;chr&gt; "high", "low", "med", "high", "low", "med"
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
-## $ number    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2021-09-01, 2021-08-31, 2021-08-30, 2021-08-29, 2021-08-28, …</code></pre>
+## $ date      &lt;dttm&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <p>The <code class="package">readr</code> functions display a message when you import data explaining what <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
@@ -412,7 +413,7 @@ China
 <div class="info">
 <p>For dates, you might need to set the format your dates are in. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. For example, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>31-Jan-21</code>.</p>
 </div>
-<p>The functions from <code class="package">readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code>mutate()</code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">7</a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
+<p>The functions from <code class="package">readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">7</a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
 <p>The function <code><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> has an advantage over <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).</p>
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
@@ -425,7 +426,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …</code></pre>
+## $ date      &lt;date&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <div class="info">
 <p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
@@ -439,7 +440,7 @@ China
 <p>Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
 <p>If you don't know the value for one of the cells, you can enter <a class="glossary" target="_blank" title='A missing value that is "Not Available"' href="https://psyteachr.github.io/glossary/n#na">NA</a>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
 <div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Katara"</span>, <span class="st">"Toph"</span>, <span class="st">"Sokka"</span><span class="op">)</span>,
   bends <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"water"</span>, <span class="st">"earth"</span>, <span class="cn">NA</span><span class="op">)</span>,
   friendly <span class="op">=</span> <span class="cn">TRUE</span>
@@ -523,7 +524,7 @@ TRUE
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
 <span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
 
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
+<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tibble.html">tibble</a></span><span class="op">(</span>
   character <span class="op">=</span> <span class="st">"Z"</span>,
   integer <span class="op">=</span> <span class="fl">0L</span>,
   double <span class="op">=</span> <span class="fl">0.5</span>,
@@ -1268,7 +1269,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-15.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

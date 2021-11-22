@@ -1836,8 +1836,9 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 
 ## Further resources {#resources-tidy}
 
+* [Data tidying cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
 * [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
 * [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
 * [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
-* [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
 

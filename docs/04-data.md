@@ -194,14 +194,14 @@ demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav <- haven::read_sav("data/demo.sav")
 ```
 
-If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY/){target="_blank"}.
+If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI){target="_blank"}.
 
 
 ```r
 gs4_deauth() # skip authorisation for public data
 
 demo_gs4  <- googlesheets4::read_sheet(
-  ss = "1yhAPP0hk6fNssL9UdpJ7m_vx00VY5PQKHspx6DNQNSY"
+  ss = "16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI"
 )
 ```
 
@@ -223,7 +223,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …
+## $ date      <date> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 
@@ -239,7 +239,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …
+## $ date      <dttm> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 
@@ -255,7 +255,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …
+## $ date      <date> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 
@@ -269,9 +269,9 @@ glimpse(demo_gs4)
 ## $ character <chr> "A", "B", "C", "D", "E", "F"
 ## $ factor    <chr> "high", "low", "med", "high", "low", "med"
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
-## $ number    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2021-09-01, 2021-08-31, 2021-08-30, 2021-08-29, 2021-08-28, …
+## $ date      <dttm> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 The <code class='package'>readr</code> functions display a message when you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.
@@ -366,7 +366,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2021-11-15, 2021-11-14, 2021-11-13, 2021-11-12, 2021-11-11, …
+## $ date      <date> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 

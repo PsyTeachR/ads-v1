@@ -107,7 +107,7 @@ lubridate::now(tzone = "GMT")
 
 ```
 ## [1] "2021-11-22"
-## [1] "2021-11-22 14:39:14 GMT"
+## [1] "2021-11-22 16:45:06 GMT"
 ```
 
 ### Test your understanding
@@ -619,7 +619,7 @@ ggplot(data = count_data, mapping = count_mapping) +
 
 #### Pie Chart
 
-Pie charts are a [misleading form of data visualisation](https://www.data-to-viz.com/caveat/pie.html){target="_blank"}, so we won't cover them. We'll cover options for visualising proportions, like lollipop and treemap plots, in Chapter\ \@ref(custom).
+Pie charts are a [misleading form of data visualisation](https://www.data-to-viz.com/caveat/pie.html){target="_blank"}, so we won't cover them. We'll cover options for visualising proportions, like waffle, lollipop and treemap plots, in Chapter\ \@ref(custom).
 
 
 #### Test your understanding

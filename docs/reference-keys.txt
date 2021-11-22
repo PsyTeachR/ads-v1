@@ -52,6 +52,8 @@ fig:unnamed-chunk-8
 fig:unnamed-chunk-11
 fig:plotly
 fig:unnamed-chunk-12
+fig:unnamed-chunk-13
+fig:unnamed-chunk-14
 fig:img-flx-template
 fig:settings-general
 fig:settings-code
@@ -264,6 +266,8 @@ setup-chunk
 themes-and-colours
 other-plots
 interactive-plots
+waffle-plots
+lollipop-plots
 treemap
 word-clouds
 maps

@@ -12,6 +12,8 @@ library(ggwordcloud) # for word clouds
 library(tidytext)    # for manipulating text for word clouds
 library(patchwork)   # for combining plots
 library(plotly)      # for interactive plots
+# devtools::install_github("hrbrmstr/waffle")
+library(waffle)      # for waffle plots
 library(treemap)     # for treemap plots
 library(ggthemes)    # for themes
 library(sf)          # for mapping geoms
@@ -152,6 +154,75 @@ ggplotly(point_econ)
 ::: {.info data-latex=""}
 Hover over the data points above and click on the legend items.
 :::
+
+### Waffle Plots
+
+In Chapter\ \@ref(viz), we mentioned that pie charts are such a poor way to visualise proportions that we refused to even show you how to make one. Waffle plots are a delicious alternative. Use `r pkg("waffle")` by [hrbrmstr on GitHub](https://github.com/hrbrmstr/waffle/), not the one on CRAN.
+
+```{r, fig.cap = "Waffle plot."}
+survey_data %>% 
+  count(issue_category) %>%
+  ggplot(aes(fill = issue_category, values = n)) +
+  geom_waffle(
+    n_rows = 23,
+    size = 0.33,       # line size
+    colour = "white",  # line colour
+    flip = FALSE,      # bottom-top or left-right
+    radius = grid::unit(0.1, "npc") # set to 0.5 for circles
+  ) +
+  theme_enhance_waffle() + # gets rid of axes
+  scale_fill_economist(name = "")
+```
+
+You can also make the boxes into icons using `geom_pictogram()`. Use `fa_list()` to browse the available icons.
+
+```{r, fig.cap = "Waffle plot with pictograms."}
+survey_data %>% 
+  count(issue_category) %>%
+  ggplot(aes(label = issue_category, 
+             values = n, 
+             color = issue_category)) +
+  geom_pictogram(n_rows = 23,
+                 size = 3) +
+  scale_label_pictogram(
+    name = NULL,
+    values = c("asterisk", 
+               "recycle", 
+               "pound-sign", 
+               "calculator")
+  ) +
+  scale_color_manual(
+    name = NULL,
+    values = c("darkorchid3", 
+               "dodgerblue2", 
+               "springgreen4", 
+               "darkred")
+  ) +
+  theme_enhance_waffle() # gets rid of axes
+  
+```
+
+### Lollipop Plots
+
+Lollipop plots are another sweet alternative to pie charts for representing relative counts. They're just a combination of `geom_linerange()` and `geom_point()`. Use `coord_flip()` to make them horizontal.
+
+```{r, fig.cap = "Lollipop plot."}
+survey_data %>% 
+  count(issue_category) %>%
+  ggplot(aes(x = issue_category)) +
+  geom_linerange(mapping = aes(ymin = 0, ymax = n),
+                 size = 2) +
+  geom_point(mapping = aes(y = n, colour = issue_category),
+             shape = 21,
+             size = 8,
+             stroke = 4,
+             fill = "white",
+             show.legend = FALSE) +
+  labs(x = "", y = "") +
+  coord_flip(ylim = c(0, 400))
+  
+```
+
 
 ### Treemap
 
@@ -298,6 +369,7 @@ ggplot() +
   theme(legend.position = c(0.16, 0.84))
 ```
 
+There are many more options for data visualisation in R than we have time to cover here. The following resources will get you started on your journey to informative, intuitive visualisations.
 
 
 ## Further Resources {#resources-custom}

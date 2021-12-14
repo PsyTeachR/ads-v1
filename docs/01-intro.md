@@ -111,8 +111,16 @@ install.packages(
   "patchwork",      # for multi-part plots
   "ggthemes",       # for themed plots
   "glue",           # for text manipulation
-  "flexdashboard"   # for dashboard presentations
+  "flexdashboard",  # for dashboard presentations
+  "treemap",        # for treemap plots
+  "sf",             # for mapping geoms
+  "rnaturalearth",  # for map data
+  "rnatrualearthdata" # extra mapping data
 )
+
+# install waffle package 
+
+devtools::install_github("hrbrmstr/waffle")
 ```
 
 ### Loading a package
@@ -129,7 +137,7 @@ library(esquisse)
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function

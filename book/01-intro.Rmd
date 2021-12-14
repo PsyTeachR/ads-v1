@@ -110,8 +110,16 @@ install.packages(
   "patchwork",      # for multi-part plots
   "ggthemes",       # for themed plots
   "glue",           # for text manipulation
-  "flexdashboard"   # for dashboard presentations
+  "flexdashboard",  # for dashboard presentations
+  "treemap",        # for treemap plots
+  "sf",             # for mapping geoms
+  "rnaturalearth",  # for map data
+  "rnatrualearthdata" # extra mapping data
 )
+
+# install waffle package 
+
+devtools::install_github("hrbrmstr/waffle")
 ```
 
 ### Loading a package

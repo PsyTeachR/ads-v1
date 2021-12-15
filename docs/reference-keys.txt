@@ -186,7 +186,7 @@ ordinal-variables
 jitter-plot
 facets
 r-markdown-exercises
-new-markdown-exercises-new-rmd
+exercises-new-rmd
 summary
 presenting-plots
 combining-plots
@@ -197,6 +197,7 @@ glossary-viz
 resources-viz
 data
 ilo-data
+set-up-1
 builtin
 looking-at-data
 view
@@ -210,6 +211,13 @@ col_types
 creating-data
 writing-data
 troubleshooting
+working-with-real-data
+r-markdown-exercises-1
+exercises-load
+convert-column-types
+exercises-plots
+make-it-look-nice
+share-your-work-1
 glossary-data
 resources-data
 joins

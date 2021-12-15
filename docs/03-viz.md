@@ -119,8 +119,8 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2021-12-14"
-## [1] "2021-12-14 22:00:16 GMT"
+## [1] "2021-12-15"
+## [1] "2021-12-15 17:23:02 GMT"
 ```
 
 ### Test your understanding
@@ -1267,7 +1267,7 @@ These are not, by any means, all the plot types that you can make in R. This cha
 
 For the final step in this chapter, we will create a report of data visualisations. You may need to refer back to Chapter\ \@ref(reports) to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
 
-#### New Markdown {exercises-new-rmd}
+### New Markdown {#exercises-new-rmd}
 
 Create and save a new R Markdown document named `plots_report.Rmd` and give it the title "Customer satisfaction report".Remove the default template text and then in the set-up code chunk, load the packages and code below:
 
@@ -1283,11 +1283,11 @@ library(kableExtra)
 survey_data <- read_csv("https://raw.githubusercontent.com/PsyTeachR/ads-v1/master/book/data/survey_data.csv")
 ```
 
-#### Summary
+### Summary
 
 Create a level 1 heading titled "Overview". Underneath this heading, write a short summary of what the data set contains and what each of the variables means (you can use the information from Section\ \@ref(plots-loading-data) if you like).
 
-#### Presenting plots
+### Presenting plots
 
 Pick your two favourites plots from all the examples we've made in this chapter. For each plot:
 
@@ -1297,7 +1297,7 @@ Pick your two favourites plots from all the examples we've made in this chapter.
 * Make sure each plot has a figure caption (either by adding this to the `ggplot()` code or adding it to the code chunk options).
 * Organise your Markdown so that the plots are shown **after** the text summary.
 
-#### Combining plots
+### Combining plots
 
 Now, pick your two least favourite plots:
 
@@ -1306,7 +1306,7 @@ Now, pick your two least favourite plots:
 * Write a short summary that explains why you think these plots are so bad.
 * Organise your Markdown so that the plots are shown **after** the text summary.
 
-#### Editing your Markdown display
+### Editing your Markdown display
 
 Adjust the set-up of your Markdown so that your knitted report does not show any code, messages, or warnings, and all figures are 8 x 5 (see Chapter\ \@ref(rmd-setup)).
 
@@ -1328,12 +1328,11 @@ Once you've done this, update your YAML heading to include the following:
     author: "Your name"
     output:
       pdf_document:
-    mainfont: Times
     ---
 
-This will knit a PDF document with the font set to Times New Roman. You will likely encounter errors - knitting to pdf really is the seventh circle of hell. If this happens, ask on Teams for help.
+This will knit a PDF document. You will likely encounter errors - knitting to pdf really is the seventh circle of hell. If this happens, ask on Teams for help.
 
-As an alternative, you can also knit to a Word document. Note that the `mainfont` option only works for PDF. You can style fonts etc. when knitting to Word, by [using a template](https://rmarkdown.rstudio.com/articles_docx.html) although we won't cover that in this course.
+As an alternative, you can also knit to a Word document.
 
     ---
     title: "Customer Satisfaction Report"
@@ -1342,7 +1341,7 @@ As an alternative, you can also knit to a Word document. Note that the `mainfont
       word_document:
     ---
 
-#### Share your work
+### Share your work
 
 Once you've completed this activity, post it in the Week 3 channel on Teams so that you can compare which plots you chose and visual style with other learners on the course.
 

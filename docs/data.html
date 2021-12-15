@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 4 Data Import | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import library(tidyverse)   #...">
+<meta name="description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import In this chapter we'll use the...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Data Import | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/data.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import library(tidyverse)   #...">
+<meta property="og:description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import In this chapter we'll use the...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Data Import | Applied Data Skills">
-<meta name="twitter:description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import library(tidyverse)   #...">
+<meta name="twitter:description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import In this chapter we'll use the...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -95,6 +95,7 @@
 <li>Be able to import data from a range of sources</li>
 <li>Be able to identify and handle common problems with data import</li>
 </ul>
+<p>In this chapter we'll use the following packages:</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># includes readr &amp; tibble</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span>           <span class="co"># for almost any data import/export</span>
@@ -102,15 +103,26 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>        <span class="co"># for Excel files</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org">googlesheets4</a></span><span class="op">)</span> <span class="co"># for Google Sheets</span></code></pre></div>
 </div>
-<div id="builtin" class="section level2" number="4.2">
+<div id="set-up-1" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">4.2</span> Built-in data<a class="anchor" aria-label="anchor" href="#builtin"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>R comes with built-in datasets. Some packages, like <code class="package">tidyr</code>, also contain data. The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function lists the datasets available in a <a class="glossary" target="_blank" title="A group of R functions." href="https://psyteachr.github.io/glossary/p#package">package</a>.</p>
+<p>Create a new project for the work we'll do in this chapter named <code class="path">04-data</code>:</p>
+<p>Then, create and save a new R Markdown document named <code>data.Rmd</code>, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message <code>Error in library(x) : there is no package called ‘x’</code>, please refer to Chapter <a href="intro.html#install-package">1.6.1</a>.</p>
+<p>We'd recommend making a new code for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.</p>
+</div>
+<div id="builtin" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Built-in data<a class="anchor" aria-label="anchor" href="#builtin"><i class="fas fa-link"></i></a>
+</h2>
+<p>You'll likely want to import you own data to work with, however, Base R also comes with built-in datasets and these can be very useful for learning new functions and packages. Additionally, some packages, like <code class="package">tidyr</code>, also contain data. The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function lists the datasets available.</p>
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># lists datasets in tidyr</span>
+<code class="sourceCode R"><span class="co"># list datasets built in to base R</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># lists datasets in a specific package</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"tidyr"</span><span class="op">)</span></code></pre></div>
-<p>Type the name of a dataset into the <a class="glossary" target="_blank" title="The pane in RStudio where you can type in commands and view output messages." href="https://psyteachr.github.io/glossary/c#console">console</a> to see the data. Type <code>?table1</code> into the console to see the dataset description.</p>
+<p>Type the name of a dataset into the <a class="glossary" target="_blank" title="The pane in RStudio where you can type in commands and view output messages." href="https://psyteachr.github.io/glossary/c#console">console</a> to see the data. For example, type <code>?table1</code> into the console to see the dataset description for <code>table1</code> which is a dataset included with <code class="package">tidyr</code>.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">table1</span></code></pre></div>
 <pre><code>## starting httpd help server ... done</code></pre>
@@ -119,28 +131,32 @@
 <code class="sourceCode R"><span class="co"># loads table1 into the environment</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"table1"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="looking-at-data" class="section level2" number="4.3">
+<div id="looking-at-data" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">4.3</span> Looking at data<a class="anchor" aria-label="anchor" href="#looking-at-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Looking at data<a class="anchor" aria-label="anchor" href="#looking-at-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the objects listed, along with their number of observations (rows) and variables (columns). This is your first check that everything went OK.</p>
-<p>Always, always, always, look at your data once you've created or loaded a table. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
-<div id="view" class="section level3" number="4.3.1">
+<p>Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the object <code>table1</code> listed, along with the number of observations (rows) and variables (columns). This is your first check that everything went OK.</p>
+<p><strong>Always, always, always, look at your data once you've created or loaded a table</strong>. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<div id="view" class="section level3" number="4.4.1">
 <h3>
-<span class="header-section-number">4.3.1</span> View()<a class="anchor" aria-label="anchor" href="#view"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4.1</span> View()<a class="anchor" aria-label="anchor" href="#view"><i class="fas fa-link"></i></a>
 </h3>
-<p>A familiar way to look at the table is given by <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code> (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the <a class="glossary" target="_blank" title='RStudio is arranged with four window "panes".' href="https://psyteachr.github.io/glossary/p#panes">environment pane</a>. You can close the tab when you're done looking at it; it won't remove the object.</p>
+<p>A familiar way to look at the table is given by <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code> (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the <a class="glossary" target="_blank" title='RStudio is arranged with four window "panes".' href="https://psyteachr.github.io/glossary/p#panes">environment pane</a> - just be aware that if you table is very large and has a lot of columns it might not show all of them. You can close the tab when you're done looking at it; it won't remove the object.</p>
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="print" class="section level3" number="4.3.2">
+<div id="print" class="section level3" number="4.4.2">
 <h3>
-<span class="header-section-number">4.3.2</span> print()<a class="anchor" aria-label="anchor" href="#print"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4.2</span> print()<a class="anchor" aria-label="anchor" href="#print"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on a blank line. The default is not to print the entire table, but just the first 10 rows.</p>
 <p>Let's look at the <code>table1</code> table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column.</p>
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table1</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># call print explicitly</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span>
+
+<span class="co"># more common method of just calling object name</span>
+<span class="va">table1</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -246,9 +262,9 @@ China
 </table></div>
 </div>
 </div>
-<div id="glimpse" class="section level3" number="4.3.3">
+<div id="glimpse" class="section level3" number="4.4.3">
 <h3>
-<span class="header-section-number">4.3.3</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4.3</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h3>
 <p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name.</p>
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
@@ -260,11 +276,12 @@ China
 ## $ cases      &lt;int&gt; 745, 2666, 37737, 80488, 212258, 213766
 ## $ population &lt;int&gt; 19987071, 20595360, 172006362, 174504898, 1272915272, 12804~</code></pre>
 </div>
-<div id="summary-function" class="section level3" number="4.3.4">
+<div id="summary-function" class="section level3" number="4.4.4">
 <h3>
-<span class="header-section-number">4.3.4</span> summary()<a class="anchor" aria-label="anchor" href="#summary-function"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4.4</span> summary()<a class="anchor" aria-label="anchor" href="#summary-function"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can get a quick summary of a dataset with the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></code> function.</p>
+<p>You can get a quick summary of a dataset with the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></code> function which can be useful for spotting things like if the minimum or maximum values are clearly wrong, or if R thinks that a nominal variable is numeric. For example, if you had labelled gender as 1, 2, and 3 rather than male, female, non-binary, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> would calculate a mean and median even though this isn't appropriate for the data. This can be a useful flag that you need to take further steps to correct your data.</p>
+<p>Note that because <code>population</code> is a very, very large number, R will use <a href="https://courses.lumenlearning.com/waymakerintermediatealgebra/chapter/read-writing-scientific-notation-2/">scientific notation</a>.</p>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 <pre><code>##    country               year          cases          population       
@@ -276,26 +293,26 @@ China
 ##                     Max.   :2000   Max.   :213766   Max.   :1.280e+09</code></pre>
 </div>
 </div>
-<div id="import_data" class="section level2" number="4.4">
+<div id="import_data" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">4.4</span> Importing data<a class="anchor" aria-label="anchor" href="#import_data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Importing data<a class="anchor" aria-label="anchor" href="#import_data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <a class="glossary" target="_blank" title="The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd)." href="https://psyteachr.github.io/glossary/e#extension">extension</a> following a period at the end of the file name.</p>
-<p>Please download a <a href="data/data.zip">directory of data files used in this class</a> and save the <code>data</code> directory in the same directory that your Rmd file is in.</p>
-<div id="rioimport" class="section level3" number="4.4.1">
+<p>Download this <a href="data/data.zip">directory of data files</a>, unzip the folder, and save the <code>data</code> directory in the same directory that your Rmd file is in.</p>
+<div id="rioimport" class="section level3" number="4.5.1">
 <h3>
-<span class="header-section-number">4.4.1</span> rio::import()<a class="anchor" aria-label="anchor" href="#rioimport"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.1</span> rio::import()<a class="anchor" aria-label="anchor" href="#rioimport"><i class="fas fa-link"></i></a>
 </h3>
-<p>The <code class="package">rio</code> package has very straightforward functions for reading and saving data: <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span></code> and <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<p>The type of data files you have to work with will likely depend on the software that you typically use in your workflow but the <code class="package">rio</code> package has very straightforward functions for reading and saving data in most common formats: <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span></code> and <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>  <span class="co"># tab-separated values</span>
 <span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>  <span class="co"># comma-separated values</span>
 <span class="va">demo_xls</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span> <span class="co"># Excel format</span>
 <span class="va">demo_sav</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span>  <span class="co"># SPSS format</span></code></pre></div>
 </div>
-<div id="file-type-specific-import" class="section level3" number="4.4.2">
+<div id="file-type-specific-import" class="section level3" number="4.5.2">
 <h3>
-<span class="header-section-number">4.4.2</span> File type specific import<a class="anchor" aria-label="anchor" href="#file-type-specific-import"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.2</span> File type specific import<a class="anchor" aria-label="anchor" href="#file-type-specific-import"><i class="fas fa-link"></i></a>
 </h3>
 <p>However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
@@ -311,11 +328,11 @@ China
   ss <span class="op">=</span> <span class="st">"16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI"</span>
 <span class="op">)</span></code></pre></div>
 </div>
-<div id="col_types" class="section level3" number="4.4.3">
+<div id="col_types" class="section level3" number="4.5.3">
 <h3>
-<span class="header-section-number">4.4.3</span> Column data types<a class="anchor" aria-label="anchor" href="#col_types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5.3</span> Column data types<a class="anchor" aria-label="anchor" href="#col_types"><i class="fas fa-link"></i></a>
 </h3>
-<p>Use <code>glimpse()</code> to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently.</p>
+<p>Use <code>glimpse()</code> to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently. For example, SPSS only stores numbers, so the factor displays as containing the values 1, 2, 3 rather than <code>low</code>, `<code>med</code>, <code>high</code>.</p>
 <div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_csv</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -325,7 +342,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, 2021-12-10, ~</code></pre>
+## $ date      &lt;date&gt; 2021-12-15, 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, ~</code></pre>
 <div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -335,7 +352,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, 2021-12-10, ~</code></pre>
+## $ date      &lt;dttm&gt; 2021-12-15, 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, ~</code></pre>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -345,7 +362,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, 2021-12-10, ~</code></pre>
+## $ date      &lt;date&gt; 2021-12-15, 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, ~</code></pre>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -388,7 +405,8 @@ China
 <li>
 <code>dttm</code>: date/time</li>
 </ul>
-<p>If it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types. Copy the code that is printed when you run <code><a href="https://rdrr.io/r/stats/spectrum.html">spec(demo)</a></code>, and make any changes you need.</p>
+<p><code>read_csv()</code> will guess what type of data each variable is and normally it is pretty good at this. However, if it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types.</p>
+<p>First, run <code><a href="https://rdrr.io/r/stats/spectrum.html">spec()</a></code> on the dataset which will give you the full column specification that you can copy and paste:</p>
 <div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/spectrum.html">spec</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></code></pre></div>
 <pre><code>## cols(
@@ -399,9 +417,10 @@ China
 ##   logical = col_logical(),
 ##   date = col_date(format = "")
 ## )</code></pre>
-<p>Factor columns will always import as character data types, so you have to set their data type manually with <code>col_factor()</code> and set the order of levels with the <code>levels</code> argument. Otherwise, the order defaults to the order they appear in the dataset.</p>
+<p>Then, we create an object using the code we just copied that lists the correct column types. Factor columns will always import as character data types, so you have to set their data type manually with <code>col_factor()</code> and set the order of levels with the <code>levels</code> argument. Otherwise, the order defaults to the order they appear in the dataset. For our <code>demo</code> dataset, we will tell R that the <code>factor</code> variable is a factor by using <code>col_factor()</code> and we can also specify the order of the levels so that they don't just appear alphabetically. Additionally, we can also specify exactly what format our <code>date</code> variable is in using <code>%Y-%m-%d</code>.</p>
+<p>We then save this column specification to an object, and then add this to the <code>col_types</code> argument when we call <code>read_csv()</code>.</p>
 <div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
   character <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>,
   factor <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span>levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"med"</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span>,
   integer <span class="op">=</span> <span class="fu">col_integer</span><span class="op">(</span><span class="op">)</span>,
@@ -410,12 +429,12 @@ China
   date <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span></code></pre></div>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
 <div class="info">
 <p>For dates, you might need to set the format your dates are in. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. For example, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>31-Jan-21</code>.</p>
 </div>
-<p>The functions from <code class="package">readxl</code> have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code>mutate()</code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">7</a>, so most people let <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
-<p>The function <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> has an advantage over <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> for factor data, which will just read the numeric values of factors and not their labels. However, you then have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).</p>
+<p>The functions from <code class="package">readxl</code> for loading <code>.xlsx</code> sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code>mutate()</code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">7</a>, so most people let <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
+<p>For SPSS data, whilst <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> will just read the numeric values of factors and not their labels, the function <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> reads both, however, you have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).</p>
 <div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
 
@@ -427,18 +446,18 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, 2021-12-10, ~</code></pre>
+## $ date      &lt;date&gt; 2021-12-15, 2021-12-14, 2021-12-13, 2021-12-12, 2021-12-11, ~</code></pre>
 <div class="info">
 <p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
 </div>
 </div>
-<div id="creating-data" class="section level2" number="4.5">
+<div id="creating-data" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">4.5</span> Creating data<a class="anchor" aria-label="anchor" href="#creating-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Creating data<a class="anchor" aria-label="anchor" href="#creating-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>If you need to create a small data table from scratch, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
-<p>Let's create a small table with the names of three Avatar characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
+<p>If you need to create a small data table from scratch in R, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
+<p>Let's create a small table with the names of three <a href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender">Avatar</a> characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
 <p>If you don't know the value for one of the cells, you can enter <a class="glossary" target="_blank" title='A missing value that is "Not Available"' href="https://psyteachr.github.io/glossary/n#na">NA</a>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
 <div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
@@ -510,19 +529,20 @@ TRUE
 <div class="info">
 <p>You don't have to line up the columns in a tribble, but it can make it easier to spot errors.</p>
 </div>
+<p>You may not need to do this very often if you are primarily working with data that you import from spreadsheets etc., but it is useful to know how to do it anyway.</p>
 </div>
-<div id="writing-data" class="section level2" number="4.6">
+<div id="writing-data" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">4.6</span> Writing data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Writing data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>If you have data that you want to save to a CSV file, use <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>, as follows.</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">avatar</span>, <span class="st">"data/avatar.csv"</span><span class="op">)</span></code></pre></div>
 <p>This will save the data in CSV format to your working directory.</p>
 <p>Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account.</p>
-<p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this.</p>
+<p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this (if you never use Google Sheets feel free to skip this step).</p>
 <div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"debruine@gmail.com"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"myemail@gmail.com"</span><span class="op">)</span>
 <span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_create.html">gs4_create</a></span><span class="op">(</span><span class="st">"demo-file"</span>, sheets <span class="op">=</span> <span class="va">demo</span><span class="op">)</span>
 
 <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
@@ -537,7 +557,7 @@ TRUE
 <span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="va">sheet_id</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <ul>
-<li>Create a new table called <code>family</code> with the first name, last name, and age of your family members.</li>
+<li>Create a new table called <code>family</code> with the first name, last name, and age of your family members (biological, adopted, or chosen).</li>
 <li>Save it to a CSV file called "family.csv".</li>
 <li>Clear the object from your environment by restarting R or with the code <code><a href="https://rdrr.io/r/base/rm.html">remove(family)</a></code>.</li>
 <li>Load the data back in and view it.</li>
@@ -566,9 +586,9 @@ Solution
 </div>
 <p>We'll be working with <a class="glossary" target="_blank" title="Data in a rectangular table format, where each row has an entry for each column." href="https://psyteachr.github.io/glossary/t#tabular-data">tabular data</a> a lot in this class, but tabular data is made up of <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a>, which groups together data with the same basic <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a>. Appendix <a href="data-types.html#data-types">E</a> explains some of this terminology to help you understand the functions we'll be learning to process and analyse data.</p>
 </div>
-<div id="troubleshooting" class="section level2" number="4.7">
+<div id="troubleshooting" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">4.7</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"><i class="fas fa-link"></i></a>
 </h2>
 <p>What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like <code><span class="fl">1.2</span></code> get represented as <code><span class="st">"1.2"</span></code>, which will cause very weird errors like <code>"100" &lt; "9" == TRUE</code>. You can catch this by using <code><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code> to check your data.</p>
 <p>The data directory you downloaded contains a file called "mess.csv". Let's try loading this dataset.</p>
@@ -578,7 +598,7 @@ Solution
 ## Stopped early on line 5. Expected 7 fields but found 0. Consider fill=TRUE
 ## and comment.char=. First discarded non-empty line: &lt;&lt;junk,missing,0.72,b,1,2 -
 ## 3,2020-01-2&gt;&gt;</code></pre>
-<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
+<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type (e.g., use <code>read_csv()</code> rather than <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code>. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># lazy = FALSE loads the data right away so you can see error messages</span>
 <span class="co"># this default changed in late 2021 and might change back soon</span>
@@ -602,7 +622,7 @@ junk,missing,0.72,b,1,2 - 3,2020-01-2
 junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
 
 junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
-<p>First, the file starts with a note: "This is my messy dataset". We want to skip the first two lines. You can do this with the argument <code>skip</code> in <code>read_csv()</code>.</p>
+<p>First, the file starts with a note: "This is my messy dataset" and then a blank line. The first line of data should be the column headings, so we want to skip the first two lines. You can do this with the argument <code>skip</code> in <code>read_csv()</code>.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                  skip <span class="op">=</span> <span class="fl">2</span>,
@@ -641,7 +661,7 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <li>
 <code>date</code> should be a date column</li>
 </ul>
-<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">6</a> and <a href="wrangle.html#wrangle">7</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code>read_csv()</code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code>col_double()</code> or the abbreviation, like <code><span class="st">"l"</span></code>. Omitted column names are guessed.</p>
+<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">6</a> and <a href="wrangle.html#wrangle">7</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code>read_csv()</code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code>col_double()</code> or the abbreviation, like <code><span class="st">"l"</span></code>, for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th align="left">function</th>
@@ -709,10 +729,10 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># omitted values are guessed</span>
 <span class="co"># ?col_date for format options</span>
-<span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  junk <span class="op">=</span> <span class="st">"-"</span>, <span class="co"># skip this column</span>
-  order <span class="op">=</span> <span class="st">"i"</span>,
-  good <span class="op">=</span> <span class="st">"l"</span>,
+<span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
+  junk <span class="op">=</span> <span class="fu">col_skip</span><span class="op">(</span><span class="op">)</span>, <span class="co"># skip this column</span>
+  order <span class="op">=</span> <span class="fu">col_integer</span><span class="op">(</span><span class="op">)</span>,
+  good <span class="op">=</span> <span class="fu">col_logical</span><span class="op">(</span><span class="op">)</span>,
   date <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="op">)</span>
 
@@ -724,14 +744,14 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <p>You will get a message about parsing issues when you run this that tells you to run the <code>problems()</code> function to see a table of the problems. Warnings look scary at first, but always start by reading the message.</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">problems</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>The table tells you what row (<code>3</code>) and column (<code>2</code>) the error was found in, what kind of data was expected (<code>integer</code>), and what the actual value was (<code>missing</code>). If you specifically tell <code>read_csv()</code> to import a column as an integer, any characters in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what the missing values were recorded as with the <code>na</code> argument.</p>
+<p>The output of <code>problems()</code> tells you what row (<code>3</code>) and column (<code>2</code>) the error was found in, what kind of data was expected (<code>integer</code>), and what the actual value was (<code>missing</code>). If you specifically tell <code>read_csv()</code> to import a column as an integer, any characters (i.e., not numbers) in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what missing values are recorded as with the <code>na</code> argument.</p>
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tidiest</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                    skip <span class="op">=</span> <span class="fl">2</span>,
                    na <span class="op">=</span> <span class="st">"missing"</span>,
                    col_types <span class="op">=</span> <span class="va">ct</span>,
                    lazy <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>Now <code>order</code> is an integer where "missing" is now <code>NA</code>, <code>good</code> is a logical value, where <code><span class="fl">0</span></code> and <code><span class="cn">F</span></code> are converted to <code><span class="cn">FALSE</span></code> and <code><span class="fl">1</span></code> and <code><span class="cn">T</span></code> are converted to <code><span class="cn">TRUE</span></code>, and <code>date</code> is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the <code>min_max</code> column containing two different types of data.</p>
+<p>Now <code>order</code> is an integer variable where any empty cells are labelled "missing". The variable <code>good</code> is a logical value, where <code><span class="fl">0</span></code> and <code><span class="cn">F</span></code> are converted to <code><span class="cn">FALSE</span></code> and <code><span class="fl">1</span></code> and <code><span class="cn">T</span></code> are converted to <code><span class="cn">TRUE</span></code>, and <code>date</code> is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the <code>min_max</code> column containing two different types of data.</p>
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tidiest</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -881,9 +901,142 @@ FALSE
 </table></div>
 </div>
 </div>
-<div id="glossary-data" class="section level2" number="4.8">
+<div id="working-with-real-data" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">4.8</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Working with real data<a class="anchor" aria-label="anchor" href="#working-with-real-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>It's worth highlighting at this point that working with real data can be difficult because each dataset can be messy in its own way. Throughout this course we will show you common errors and how to fix them but be prepared that when you start with working your own data, you'll likely come across problems we don't cover in the course and that's just part of joy of learning programming. You'll also get better at looking up solutions using sites like <a href="https://stackoverflow.com/">Stack Overflow</a> and there's a fantastic <a href="https://twitter.com/hashtag/rstats?src=hashtag_click">#rstats</a> community on Twitter you can ask for help.</p>
+<p>You may also be tempted to fix messy datasets by e.g., opening up Excel and editing them there. Whilst this might seem easier in the short-term there's two serious issues with doing this. First, you will likely work with datasets that have recurring messy problems. By taking the time to solve these problems with code, you can apply the same solutions to a large number of future datasets so it's more efficient in the long-run. Second, if you edit the spreadsheet there's no record of what you did. By solving these problems with code you do so reproducibly and you don't edit the original data file which means if you make an error, there's</p>
+</div>
+<div id="r-markdown-exercises-1" class="section level2" number="4.10">
+<h2>
+<span class="header-section-number">4.10</span> R Markdown exercises<a class="anchor" aria-label="anchor" href="#r-markdown-exercises-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>For the final step in this chapter, we will create a report using one of the in-built datasets to practice the skills you have used so far. You may need to refer back to previous to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.</p>
+<div id="exercises-new-rmd" class="section level3" number="4.10.1">
+<h3>
+<span class="header-section-number">4.10.1</span> New Markdown<a class="anchor" aria-label="anchor" href="#exercises-new-rmd"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create and save a new R Markdown document named <code>starwars_report.Rmd</code>. In the set-up code chunk load the <code>tidyverse</code> and <code>rio</code>.</p>
+<p>We're going to use the built-in <code>starwars</code> dataset that contains data about Star Wars characters. You can learn more about the dataset by using the <code><a href="https://rdrr.io/r/utils/help.html">?help</a></code> function.</p>
+</div>
+<div id="exercises-load" class="section level3" number="4.10.2">
+<h3>
+<span class="header-section-number">4.10.2</span> Import and export the dataset<a class="anchor" aria-label="anchor" href="#exercises-load"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>First, load the in-built dataset into the environment. Type and run the code to do this in the console, do not save it in your Markdown.<br>
+</li>
+<li>Then, export the dataset to a .csv file and save it in your <code>data</code> directory. Again, do this in the console.</li>
+<li>Finally, import this version of the dataset using <code>read_csv()</code> to an object named <code>starwars</code> - you can put this code in your Markdown.</li>
+</ul>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="st">"data/starwars.csv"</span><span class="op">)</span>
+<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/starwars.csv"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="convert-column-types" class="section level3" number="4.10.3">
+<h3>
+<span class="header-section-number">4.10.3</span> Convert column types<a class="anchor" aria-label="anchor" href="#convert-column-types"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Check the column specification of <code>starwars</code>.</li>
+<li>Create a new column specification that lists the following columns as factors: <code>hair_color</code>, <code>skin_color</code>, <code>eye_color</code>, <code>sex</code>, <code>gender</code>, <code>homeworld</code>, and <code>species</code> and skips the following columns: <code>films</code>, <code>vehicles</code>, and <code>starships</code> (this is because these columns contain multiple values and are stored as lists which we haven't covered how to work with). You do not have to set the factor orders (although you can if you wish).</li>
+<li>Re-import the dataset, this time with the corrected column types.</li>
+</ul>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/spectrum.html">spec</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>
+<span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span>,
+  height <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
+  mass <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
+  hair_color <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  skin_color <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  eye_color <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  birth_year <span class="op">=</span> <span class="fu">col_double</span><span class="op">(</span><span class="op">)</span>,
+  sex <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  gender <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  homeworld <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  species <span class="op">=</span> <span class="fu">col_factor</span><span class="op">(</span><span class="op">)</span>,
+  films <span class="op">=</span> <span class="fu">col_skip</span><span class="op">(</span><span class="op">)</span>,
+  vehicles <span class="op">=</span> <span class="fu">col_skip</span><span class="op">(</span><span class="op">)</span>,
+  starships <span class="op">=</span> <span class="fu">col_skip</span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/starwars.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="exercises-plots" class="section level3" number="4.10.4">
+<h3>
+<span class="header-section-number">4.10.4</span> Plots<a class="anchor" aria-label="anchor" href="#exercises-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Produce the following plots and one plot of your own choosing and write a brief summary of what the plots show and any conclusions you might reach from the data.</p>
+<div class="inline-figure"><img src="04-data_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;"></div>
+<pre><code>## Warning: Removed 28 rows containing non-finite values (stat_bin).</code></pre>
+<div class="inline-figure"><img src="04-data_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="04-data_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">starwars</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_density</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Height (cm) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">50</span>, to <span class="op">=</span> <span class="fl">300</span>, by <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">starwars</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Weight (kg) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2000</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">starwars</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gender</span>, fill <span class="op">=</span> <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_bar</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_discrete</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Gender of character"</span>, labels <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Masculine"</span>, <span class="st">"Feminine"</span>, <span class="st">"Missing"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Number of Star Wars characters of each gender"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="make-it-look-nice" class="section level3" number="4.10.5">
+<h3>
+<span class="header-section-number">4.10.5</span> Make it look nice<a class="anchor" aria-label="anchor" href="#make-it-look-nice"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Add at least one Star Wars related image from an online source</li>
+<li>Hide the code and any messages from the knitted output</li>
+<li>Resize any images as you see fit</li>
+</ul>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://cdn.sisense.com/wp-content/uploads/StarWars_356x237.jpg"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="https://cdn.sisense.com/wp-content/uploads/StarWars_356x237.jpg" width="100%" style="display: block; margin: auto;"></div>
+</div>
+</div>
+<div id="share-your-work-1" class="section level3" number="4.10.6">
+<h3>
+<span class="header-section-number">4.10.6</span> Share your work<a class="anchor" aria-label="anchor" href="#share-your-work-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Once you're done, share your knitted html file on the Week 4 Teams channel so other learners on the course can see how you approached the task.</p>
+</div>
+</div>
+<div id="glossary-data" class="section level2" number="4.11">
+<h2>
+<span class="header-section-number">4.11</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-data"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -977,14 +1130,6 @@ A missing value that is "Not Available"
 </tr>
 <tr>
 <td style="text-align:left;">
-<a href="https://psyteachr.github.io/glossary/p.html#package" class="glossary" target="_blank">package</a>
-</td>
-<td style="text-align:left;">
-A group of R functions.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 <a href="https://psyteachr.github.io/glossary/p.html#panes" class="glossary" target="_blank">panes</a>
 </td>
 <td style="text-align:left;">
@@ -1018,9 +1163,9 @@ A type of data structure that collects values with the same data type, like T/F 
 </tbody>
 </table></div>
 </div>
-<div id="resources-data" class="section level2" number="4.9">
+<div id="resources-data" class="section level2" number="4.12">
 <h2>
-<span class="header-section-number">4.9</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-data"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">Data import cheatsheet</a></li>
@@ -1232,27 +1377,39 @@ $( document ).ready(function() {
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#data"><span class="header-section-number">4</span> Data Import</a></li>
 <li><a class="nav-link" href="#ilo-data"><span class="header-section-number">4.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#builtin"><span class="header-section-number">4.2</span> Built-in data</a></li>
+<li><a class="nav-link" href="#set-up-1"><span class="header-section-number">4.2</span> Set-up</a></li>
+<li><a class="nav-link" href="#builtin"><span class="header-section-number">4.3</span> Built-in data</a></li>
 <li>
-<a class="nav-link" href="#looking-at-data"><span class="header-section-number">4.3</span> Looking at data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#view"><span class="header-section-number">4.3.1</span> View()</a></li>
-<li><a class="nav-link" href="#print"><span class="header-section-number">4.3.2</span> print()</a></li>
-<li><a class="nav-link" href="#glimpse"><span class="header-section-number">4.3.3</span> glimpse()</a></li>
-<li><a class="nav-link" href="#summary-function"><span class="header-section-number">4.3.4</span> summary()</a></li>
+<a class="nav-link" href="#looking-at-data"><span class="header-section-number">4.4</span> Looking at data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#view"><span class="header-section-number">4.4.1</span> View()</a></li>
+<li><a class="nav-link" href="#print"><span class="header-section-number">4.4.2</span> print()</a></li>
+<li><a class="nav-link" href="#glimpse"><span class="header-section-number">4.4.3</span> glimpse()</a></li>
+<li><a class="nav-link" href="#summary-function"><span class="header-section-number">4.4.4</span> summary()</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#import_data"><span class="header-section-number">4.4</span> Importing data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rioimport"><span class="header-section-number">4.4.1</span> rio::import()</a></li>
-<li><a class="nav-link" href="#file-type-specific-import"><span class="header-section-number">4.4.2</span> File type specific import</a></li>
-<li><a class="nav-link" href="#col_types"><span class="header-section-number">4.4.3</span> Column data types</a></li>
+<a class="nav-link" href="#import_data"><span class="header-section-number">4.5</span> Importing data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rioimport"><span class="header-section-number">4.5.1</span> rio::import()</a></li>
+<li><a class="nav-link" href="#file-type-specific-import"><span class="header-section-number">4.5.2</span> File type specific import</a></li>
+<li><a class="nav-link" href="#col_types"><span class="header-section-number">4.5.3</span> Column data types</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#creating-data"><span class="header-section-number">4.5</span> Creating data</a></li>
-<li><a class="nav-link" href="#writing-data"><span class="header-section-number">4.6</span> Writing data</a></li>
-<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.7</span> Troubleshooting</a></li>
-<li><a class="nav-link" href="#glossary-data"><span class="header-section-number">4.8</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-data"><span class="header-section-number">4.9</span> Further resources</a></li>
+<li><a class="nav-link" href="#creating-data"><span class="header-section-number">4.6</span> Creating data</a></li>
+<li><a class="nav-link" href="#writing-data"><span class="header-section-number">4.7</span> Writing data</a></li>
+<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.8</span> Troubleshooting</a></li>
+<li><a class="nav-link" href="#working-with-real-data"><span class="header-section-number">4.9</span> Working with real data</a></li>
+<li>
+<a class="nav-link" href="#r-markdown-exercises-1"><span class="header-section-number">4.10</span> R Markdown exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises-new-rmd"><span class="header-section-number">4.10.1</span> New Markdown</a></li>
+<li><a class="nav-link" href="#exercises-load"><span class="header-section-number">4.10.2</span> Import and export the dataset</a></li>
+<li><a class="nav-link" href="#convert-column-types"><span class="header-section-number">4.10.3</span> Convert column types</a></li>
+<li><a class="nav-link" href="#exercises-plots"><span class="header-section-number">4.10.4</span> Plots</a></li>
+<li><a class="nav-link" href="#make-it-look-nice"><span class="header-section-number">4.10.5</span> Make it look nice</a></li>
+<li><a class="nav-link" href="#share-your-work-1"><span class="header-section-number">4.10.6</span> Share your work</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#glossary-data"><span class="header-section-number">4.11</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-data"><span class="header-section-number">4.12</span> Further resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1270,7 +1427,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-14.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

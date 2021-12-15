@@ -94,7 +94,7 @@
 <li>Be able to select and filter data for relevance</li>
 <li>Be able to create new columns and edit existing ones</li>
 </ul>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># for handling dates and times</span></code></pre></div>
 </div>
@@ -102,9 +102,9 @@
 <h2>
 <span class="header-section-number">7.2</span> Wrangling functions<a class="anchor" aria-label="anchor" href="#wrangling-functions"><i class="fas fa-link"></i></a>
 </h2>
-<p>Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">6</a> and these six functions: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>. We'll cover the first four in this chapter, and the last two in Chapter <a href="viz.html#summary">3.6.0.2</a>.</p>
+<p>Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">6</a> and these six functions: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>. We'll cover the first four in this chapter, and the last two in Chapter <a href="viz.html#summary">3.6.2</a>.</p>
 <p>We'll use a small example table with the sales and expenses for two years from four regions over two products.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/budget.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -298,18 +298,18 @@ gadgets
 </h3>
 <p>Select columns by name or number.</p>
 <p>You can select each column individually, separated by commas (e.g., <code>region, sales_2019</code>). You can also select all columns between two columns by separating them with a colon (e.g., <code>sales_2019:expenses_2020</code>).</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget2020</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">region</span>, <span class="va">sales_2020</span>, <span class="va">expenses_2020</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">budget2020</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "region"        "sales_2020"    "expenses_2020"</code></pre>
 <p>You can select columns by number, which is useful when the column names are long or complicated.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">regions</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "region"        "sales_2019"    "sales_2020"    "expenses_2019"
 ## [5] "expenses_2020"</code></pre>
 <p>You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first, e.g., <code>-(sales_2019:expenses_2020)</code>, not <code>-sales_2019:expenses_2020</code>.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">expenses_2019</span><span class="op">:</span><span class="va">expenses_2020</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "region"     "product"    "sales_2019" "sales_2020"</code></pre>
@@ -386,7 +386,7 @@ zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects column
 <span class="header-section-number">7.2.2</span> Filter<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
 </h3>
 <p>Select rows by matching column criteria.</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select all rows from the North region</span>
 <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -459,7 +459,7 @@ gadgets
 <p>Remember to use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> and not <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> to check if two things are equivalent. A single <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> assigns the righthand value to the lefthand variable and (usually) evaluates to <code>TRUE</code>.</p>
 </div>
 <p>You can select on multiple criteria by separating them with commas.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
   <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span>,
   <span class="va">product</span> <span class="op">==</span> <span class="st">"widgets"</span>
@@ -509,7 +509,7 @@ widgets
 </table></div>
 </div>
 <p>You can use the symbols <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>, <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, and <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> to mean "and", "or", and "not". You can also use other operators to make equations. The equation is checked for each row, and if the result is FALSE, the row is removed.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># regions and products with profit in both 2019 and 2020</span>
 <span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
@@ -532,7 +532,7 @@ widgets
 <span class="va">profit_1000</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2020</span> <span class="op">-</span> <span class="va">expenses_2020</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
 <p>The <a class="glossary" target="_blank" title="A binary operator (%in%) that returns a logical vector indicating if there is a match or not for its left operand." href="https://psyteachr.github.io/glossary/m#match-operator">match operator</a> (<code><a href="https://rdrr.io/r/base/match.html">%in%</a></code>) is useful here for testing if a column value is in a list.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span><span class="op">)</span> <span class="op">&amp;</span>
            <span class="va">product</span> <span class="op">==</span> <span class="st">"widgets"</span><span class="op">)</span></code></pre></div>
@@ -608,7 +608,7 @@ widgets
 <span class="header-section-number">7.2.3</span> Arrange<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
 </h3>
 <p>Sort your dataset using <code>arrange()</code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But <code>arrange()</code> can be useful when preparing data for display in tables. Reverse the order using <code>desc()</code>.</p>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="va">product</span>, <span class="fu">desc</span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -799,7 +799,7 @@ widgets
 </div>
 <div class="try">
 <p>If you want to sort categories in a specific order, turn the column into a <a class="glossary" target="_blank" title="A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter" href="https://psyteachr.github.io/glossary/f#factor">factor</a> and set the <code>levels</code> in the desired order.</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">==</span> <span class="st">"gadgets"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -917,7 +917,7 @@ gadgets
 <span class="header-section-number">7.2.4</span> Mutate<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., <code>profit</code> below).</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>
     sales <span class="op">=</span> <span class="va">sales_2019</span> <span class="op">+</span> <span class="va">sales_2020</span>,
@@ -929,7 +929,7 @@ gadgets
 <p>You can overwrite a column by giving a new column the same name as the old column (see <code>region</code>) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.</p>
 </div>
 <p>Load some data about the population of the Scottish counties.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scotpop</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/scottish_population.csv"</span>,
                     show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order <code>population</code> (in K) then <code>county</code>, and show only the counties with populations greater than 200K.</p>
@@ -1018,7 +1018,7 @@ Aberdeen
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scotpop</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">population</span> <span class="op">&gt;</span> <span class="fl">200000</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1033,17 +1033,17 @@ Solution
 <span class="header-section-number">7.3</span> Putting it together<a class="anchor" aria-label="anchor" href="#together-wrangle"><i class="fas fa-link"></i></a>
 </h2>
 <p>Load some demo data we first used in Chapter <a href="data.html#data">4</a>. Use <code>glimpse()</code> or another method to get familiar with the data set.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
 <span class="va">sales</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/sales_data_sample.csv"</span>,
                   show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Double check that the <code>SALES</code> column does equal the <code>QUANTITYORDERED</code> column times the <code>PRICEEACH</code>. You can select just the columns you need and rename them when selecting to make the code more readable.</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_check</span> <span class="op">&lt;-</span> <span class="va">sales</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">SALES</span>, n <span class="op">=</span> <span class="va">QUANTITYORDERED</span>, price <span class="op">=</span> <span class="va">PRICEEACH</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="va">n</span> <span class="op">*</span> <span class="va">price</span><span class="op">)</span></code></pre></div>
 <p>Make a table of any rows where the value of <code>total</code> doesn't equal <code>SALES</code>.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">errors</span> <span class="op">&lt;-</span> <span class="va">sales_check</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">SALES</span> <span class="op">!=</span> <span class="va">total</span><span class="op">)</span>
 
@@ -1155,7 +1155,7 @@ total
 <p>If you check the <code>errors</code> table, you'll see that 1697 of the original 2823 rows have "errors", even though many of the values in the <code>SALES</code> and <code>sales_check</code> columns look identical. You can fix this by rounding the value of <code>total</code> to 2 decimal places.</p>
 <div class="info">
 <p>This is due to the way values with decimal places are represented by a computer. You use base 10 to count, and have to represent some numbers with a repeating decimal, like 1/3 is .0333 repeating, while a computer uses binary to count, and has to represent different numbers using repeats. This can lead to very small differences when you divide or multiply some numbers.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>scipen <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="co"># avoids scientific notation</span>
 <span class="va">x</span> <span class="op">=</span> <span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">49</span> <span class="op">*</span> <span class="fl">49</span><span class="op">)</span>
 <span class="va">x</span> <span class="co"># prints as 1</span>
@@ -1163,17 +1163,17 @@ total
 <pre><code>## [1] 1
 ## [1] 0.0000000000000001110223</code></pre>
 </div>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">errors</span> <span class="op">&lt;-</span> <span class="va">sales_check</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">SALES</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">total</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>There are still 1304 errors! Lets look at the 10 smallest. We can do this by calculating the difference, arranging from smallest to largest, and filtering for the first 10 rows.</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">errors</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>diff <span class="op">=</span> <span class="va">SALES</span> <span class="op">-</span> <span class="va">total</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="va">diff</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">row_number</span><span class="op">(</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, we can use a <code>slice</code> function.</p>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">errors</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>diff <span class="op">=</span> <span class="va">SALES</span> <span class="op">-</span> <span class="va">total</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">slice_min</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">diff</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
@@ -1371,14 +1371,14 @@ diff
 </table></div>
 </div>
 <p>If we plot the data, it looks like all of the errors are in one direction.</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">errors</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">SALES</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_abline</span><span class="op">(</span>slope <span class="op">=</span> <span class="fl">1</span>, intercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">coord_cartesian</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Let's have a look at the data separately for products with a price of exactly 100 versus other products.</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_check</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>price100 <span class="op">=</span> <span class="va">price</span> <span class="op">==</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">SALES</span>, y <span class="op">=</span> <span class="va">total</span>, color <span class="op">=</span> <span class="va">price100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
@@ -1387,11 +1387,11 @@ diff
   <span class="fu">coord_cartesian</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="07-wrangle_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>It looks like that's the problem with this dataset: the <code>PRICEEACH</code> column doesn't go above 100. Let's fix that by dividing the total sale price by the quantity ordered.</p>
-<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fixed_sales</span> <span class="op">&lt;-</span> <span class="va">sales</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>PRICEEACH <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">SALES</span> <span class="op">/</span> <span class="va">QUANTITYORDERED</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we can re-run the code from before to find any errors.</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_check</span> <span class="op">&lt;-</span> <span class="va">fixed_sales</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">SALES</span>, n <span class="op">=</span> <span class="va">QUANTITYORDERED</span>, price <span class="op">=</span> <span class="va">PRICEEACH</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>total <span class="op">=</span> <span class="va">n</span> <span class="op">*</span> <span class="va">price</span><span class="op">)</span>
@@ -1775,7 +1775,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-14.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

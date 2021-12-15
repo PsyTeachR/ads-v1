@@ -1,7 +1,7 @@
 character	factor	integer	double	logical	date
-A	high	1	1.5	TRUE	2021-11-22
-B	low	2	2.5	TRUE	2021-11-21
-C	med	3	3.5	FALSE	2021-11-20
-D	high	4	4.5	FALSE	2021-11-19
-E	low	5	5.5		2021-11-18
-F	med	6	6.5	TRUE	2021-11-17
+A	high	1	1.5	TRUE	2021-12-15
+B	low	2	2.5	TRUE	2021-12-14
+C	med	3	3.5	FALSE	2021-12-13
+D	high	4	4.5	FALSE	2021-12-12
+E	low	5	5.5		2021-12-11
+F	med	6	6.5	TRUE	2021-12-10

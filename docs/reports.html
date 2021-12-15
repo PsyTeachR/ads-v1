@@ -19,11 +19,11 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -271,7 +271,7 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 398 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 375 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also type the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -291,7 +291,7 @@ Figure 2.5: Slightly better method of running code
 </h3>
 <p>First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.</p>
 <ul>
-<li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> function to load it in.</li>
+<li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> function to load it in.</li>
 <li>The package <code>readr</code> is part of the <code>tidyverse</code> that you installed in Chapter <a href="intro.html#intro">1</a> and we load this package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><br>
 </li>
 <li>Note that the url is contained within double quotation marks - it won't work without this.</li>
@@ -299,7 +299,7 @@ Figure 2.5: Slightly better method of running code
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Data from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
 <p>This dataset is simulated sales data for different types of vehicles where each line of data is a single order. There are multiple ways to view and check a dataset in R. Do each of the following and make a note of what information each approach seems to give you. If you'd like more information about each of these functions, you can look up the help documentation with <code>?function</code>:</p>
 <ul>
 <li>Click on the <code>sales_online</code> object in the environment pane</li>
@@ -348,9 +348,9 @@ Figure 2.5: Slightly better method of running code
 <code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
 <span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
   <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># group it by type of vehicle and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># count how many are in each group</span>
   <span class="fu">count</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>
@@ -861,7 +861,7 @@ and teaching computational skills.
 </h3>
 <p>Use the following code to load a small table of tasks [<a href="reports.html#code-chunks">2.3.1</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
   <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
   <span class="st">"Create a twitter poll"</span>, <span class="st">"social media"</span>, <span class="st">"weekly"</span>,
@@ -961,7 +961,7 @@ Solution
 <h3>
 <span class="header-section-number">2.10.6</span> Inline R<a class="anchor" aria-label="anchor" href="#exercises-reports-inline"><i class="fas fa-link"></i></a>
 </h3>
-<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
+<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
 <div class="webex-solution">
 <button>
 Solution
@@ -1255,7 +1255,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-11-22.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

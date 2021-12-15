@@ -1,0 +1,55 @@
+---
+title: "Customer satisfaction report"
+author: "Emily Nordmann"
+output: 
+  word_document:
+mainfont: Times
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo       = FALSE,     # whether to show code chunks
+  message    = FALSE,     # whether to show messages from your code
+  warning    = FALSE,     # whether to show warnings from your code
+  fig.width  = 8,         # figure width in inches (at 96 dpi)
+  fig.height = 5         # figure height in inches (at 96 dpi)
+)
+
+library(tidyverse) 
+library(patchwork) 
+library(ggthemes)  
+library(lubridate) 
+library(knitr)
+library(kableExtra)
+
+survey_data <- read_csv("https://raw.githubusercontent.com/PsyTeachR/ads-v1/master/book/data/survey_data.csv")
+```
+
+# Overview
+
+This report presents the results of the annual customer satisfaction survey at Goggles Inc.
+
+
+* `caller_id` is a unique ID for each caller
+* `employee_id` is a unique ID for each employee taking calls
+* `call_start` is the date and time that the call arrived
+* `wait_time` is the number of seconds the caller had to wait
+* `call_time` is the number of seconds the call lasted after the employee picked up
+* `satisfaction` is the customer satisfaction rating on a scale from 1 (very unsatisfied) to 5 (very satisfied)
+
+## Call time versus wait time
+
+This plot shows the relationship between how long a caller waits for their call to be picked up (shown on the x-axis) and how long their call lasted once the person taking the call picked up (show on the y-axis). The plot shows that there is a positive relationship between wait time and call time, that is, the longer people have to wait, the longer they then tend to spend on the call.  
+
+```{r fig.cap = "Relationship between length of wait and subsequent call time"}
+ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
+  geom_point() + 
+  geom_smooth(method = lm, 
+              formula = y~x) +
+  scale_x_continuous(name = "Wait Time (seconds)", 
+                     breaks = seq(from = 0, to = 600, by = 60)) +
+  scale_y_continuous(name = "Call time (seconds)",
+                     breaks = seq(from = 0, to = 600, by = 30)) +
+  theme_gdocs()
+```
+

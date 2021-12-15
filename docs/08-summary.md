@@ -105,10 +105,10 @@ There were <code>&#096;r tweet_summary\$n&#096;</code> tweets between <code>&#09
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_OCDBZISJOB'><label><input type="radio" autocomplete="off" name="radio_OCDBZISJOB" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_OCDBZISJOB" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_OCDBZISJOB" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_OCDBZISJOB" value="x"></input> <span>`tweets %>% max(retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_WCSOALEIJS'><label><input type="radio" autocomplete="off" name="radio_WCSOALEIJS" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_WCSOALEIJS" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_WCSOALEIJS" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_WCSOALEIJS" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
 
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_BKOIVLFWIG'><label><input type="radio" autocomplete="off" name="radio_BKOIVLFWIG" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_BKOIVLFWIG" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_BKOIVLFWIG" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_BKOIVLFWIG" value="x"></input> <span>`width(mean(display_text_width))`</span></label></div>
+    <div class='webex-radiogroup' id='radio_MJSPTBKVTB'><label><input type="radio" autocomplete="off" name="radio_MJSPTBKVTB" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_MJSPTBKVTB" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_MJSPTBKVTB" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_MJSPTBKVTB" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label></div>
 
 :::
 
@@ -189,7 +189,7 @@ with 35 tweets.
 
 ::: {.try data-latex=""}
 * How would you count the number of tweets that are quotes or not and are retweets or not? 
-    <div class='webex-radiogroup' id='radio_IPROTSGFLR'><label><input type="radio" autocomplete="off" name="radio_IPROTSGFLR" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_IPROTSGFLR" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label><label><input type="radio" autocomplete="off" name="radio_IPROTSGFLR" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_IPROTSGFLR" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_OJCKBSGJRR'><label><input type="radio" autocomplete="off" name="radio_OJCKBSGJRR" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_OJCKBSGJRR" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_OJCKBSGJRR" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label><label><input type="radio" autocomplete="off" name="radio_OJCKBSGJRR" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label></div>
 
 :::
 
@@ -277,7 +277,7 @@ If you get the following message, please update tidyverse.
 
 ::: {.try data-latex=""}
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `source`? 
-    <div class='webex-radiogroup' id='radio_PPLCAONSSI'><label><input type="radio" autocomplete="off" name="radio_PPLCAONSSI" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPLCAONSSI" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPLCAONSSI" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPLCAONSSI" value="answer"></input> <span>`group_by(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_MOEZDJVTKO'><label><input type="radio" autocomplete="off" name="radio_MOEZDJVTKO" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MOEZDJVTKO" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MOEZDJVTKO" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MOEZDJVTKO" value="x"></input> <span>`count(screen_name)`</span></label></div>
 
 :::
 
@@ -326,7 +326,7 @@ The most favourited (22935) original tweet was by
 [jackrooke](https://twitter.com/jackrooke/status/1447541093260795904):
 
 --------------------------------------------------
-it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4
+it’s #nationalcomingoutday <U+0001F389> here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4
 
 ![](http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg){width='100%'}
 --------------------------------------------------
@@ -359,7 +359,7 @@ I’ve been a comic book geek since pretty much the time I could first read. Thi
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_DWGSZJHHRJ'><label><input type="radio" autocomplete="off" name="radio_DWGSZJHHRJ" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_DWGSZJHHRJ" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_DWGSZJHHRJ" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_DWGSZJHHRJ" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_LRDYRKHRWT'><label><input type="radio" autocomplete="off" name="radio_LRDYRKHRWT" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_LRDYRKHRWT" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_LRDYRKHRWT" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_LRDYRKHRWT" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label></div>
 
 :::
 
@@ -528,7 +528,7 @@ top5
    <td style="text-align:left;"> nationalcomingoutday </td>
    <td style="text-align:right;"> 28698 </td>
    <td style="text-align:right;"> 851510 </td>
-   <td style="text-align:left;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
+   <td style="text-align:left;"> it’s #nationalcomingoutday &lt;U+0001F389&gt; here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
    <td style="text-align:left;"> http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg </td>
   </tr>
   <tr>
@@ -549,7 +549,7 @@ top5
    <td style="text-align:left;"> comingoutday </td>
    <td style="text-align:right;"> 676 </td>
    <td style="text-align:right;"> 6977 </td>
-   <td style="text-align:left;"> K—I’m out. Bi 👋🏼
+   <td style="text-align:left;"> K—I’m out. Bi &lt;U+0001F44B&gt;&lt;U+0001F3FC&gt;
 
 #ComingOutDay #NationalComingOutDay </td>
    <td style="text-align:left;"> NA </td>
@@ -560,7 +560,7 @@ top5
    <td style="text-align:right;"> 4033 </td>
    <td style="text-align:left;"> HAPPY NATIONAL COMING OUT DAY!! 
 
-🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
+&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+2764&gt;&lt;U+FE0F&gt;&lt;U+0001F9E1&gt;&lt;U+0001F49B&gt;&lt;U+0001F49A&gt;&lt;U+0001F499&gt;&lt;U+0001F49C&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;
 
 \@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
    <td style="text-align:left;"> http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg </td>
@@ -609,7 +609,8 @@ top5 %>%
 tweets: 28698
 <br>
 likes: 851510 </td>
-   <td style="text-align:left;vertical-align: top;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
+   <td style="text-align:left;vertical-align: top;"> it’s #nationalcomingoutday <u> here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </u>
+</td>
    <td style="text-align:left;"> <img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" width="200px"> </td>
   </tr>
   <tr>
@@ -636,9 +637,10 @@ likes: 14073 </td>
 tweets: 676
 <br>
 likes: 6977 </td>
-   <td style="text-align:left;vertical-align: top;"> K—I’m out. Bi 👋🏼
+   <td style="text-align:left;vertical-align: top;"> K—I’m out. Bi <u><u>
 
-#ComingOutDay #NationalComingOutDay </td>
+#ComingOutDay #NationalComingOutDay </u></u>
+</td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -649,9 +651,10 @@ tweets: 396
 likes: 4033 </td>
    <td style="text-align:left;vertical-align: top;"> HAPPY NATIONAL COMING OUT DAY!! 
 
-🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
+<u><u><u><u><u><u><u><u><u><u><u><u><u><u><u>
 
-\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
+\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </u></u></u></u></u></u></u></u></u></u></u></u></u></u></u>
+</td>
    <td style="text-align:left;"> <img src="http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg" width="200px"> </td>
   </tr>
 </tbody>

@@ -35,7 +35,7 @@ knitr::include_graphics("images/appx/rstudio_settings_code.png")
 
 ## Installing LaTeX
 
-You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. This course will not require you to make PDFs. To generate PDF reports, you will additionally need to install `r pkg("tinytex")` [@R-tinytex] and run the following code:
+You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. To generate PDF reports, you will additionally need to install `r pkg("tinytex")` [@R-tinytex] and run the following code:
 
 ```{r eval=FALSE}
 # run this in the console

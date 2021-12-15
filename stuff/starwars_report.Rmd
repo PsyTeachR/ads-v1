@@ -1,0 +1,65 @@
+---
+title: "Untitled"
+author: "Emily Nordmann"
+date: "15/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(rio)
+data(starwars)
+export(starwars, "starwars.csv")
+starwars <- read_csv("starwars.csv")
+
+spec(starwars)
+corrected_cols <- cols(
+  name = col_character(),
+  height = col_double(),
+  mass = col_double(),
+  hair_color = col_factor(),
+  skin_color = col_factor(),
+  eye_color = col_factor(),
+  birth_year = col_double(),
+  sex = col_factor(),
+  gender = col_factor(),
+  homeworld = col_factor(),
+  species = col_factor(),
+  films = col_skip(),
+  vehicles = col_skip(),
+  starships = col_skip()
+)
+
+starwars <- read_csv("starwars.csv", col_types = corrected_cols)
+
+```
+
+```{r echo  = FALSE}
+ggplot(starwars, aes(height)) +
+  geom_density(colour = "black", alpha = .3) +
+  labs(title = "Height (cm) distribution of Star Wars Characters") +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(from = 50, to = 300, by = 25))
+```
+
+```{r echo = FALSE}
+ggplot(starwars, aes(mass)) +
+  geom_histogram(colour = "black", binwidth = 10) +
+  labs(title = "Weight (kg) distribution of Star Wars Characters") +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(from = 0, to = 2000, by = 100))
+```
+
+```{r echo  = FALSE}
+ggplot(starwars, aes(x = gender, fill = gender)) +
+  geom_bar(show.legend = FALSE, colour = "black") +
+  scale_x_discrete(name = "Gender of character", labels = (c("Masculine", "Feminine", "Missing"))) +
+  scale_fill_brewer(palette = 2) +
+  theme_bw() +
+  labs(title = "Number of Star Wars characters of each gender")
+```
+
+```{r eval = TRUE}
+knitr::include_graphics("https://cdn.sisense.com/wp-content/uploads/StarWars_356x237.jpg")
+```

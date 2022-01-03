@@ -19,11 +19,11 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -94,7 +94,7 @@
 <li>Structure data in report, dashboard, and presentation formats</li>
 <li>Include table of contents, figure and table captions, and references in longer reports</li>
 </ul>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rmarkdown.rstudio.com/flexdashboard">flexdashboard</a></span><span class="op">)</span> <span class="co"># for dashboards</span></code></pre></div>
 </div>
@@ -119,69 +119,52 @@
 Figure 10.1: Flexdashbard RMarkdown template.
 </p>
 </div>
-<div class="inline-table"><table class="table table-sm">
-<thead><tr class="header">
-<th><code style="font-size: smaller;"></code></th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>title: "Demo"</td>
-</tr>
-<tr class="even">
-<td>output:</td>
-</tr>
-<tr class="odd">
-<td>flexdashboard::flex_dashboard:</td>
-</tr>
-<tr class="even">
-<td>social: [ "twitter", "facebook", "linkedin", "pinterest" ]</td>
-</tr>
-<tr class="odd">
-<td>source_code: embed</td>
-</tr>
-<tr class="even">
-<td>orientation: columns</td>
-</tr>
-<tr class="odd">
-<td>vertical_layout: fill</td>
-</tr>
-</tbody>
-</table></div>
-<p><code>{r setup, include=FALSE} library(flexdashboard)</code></p>
-</div>
-<div id="column" class="section level2" number="10.5" data-width="650">
-<h2>
-<span class="header-section-number">10.5</span> Column<a class="anchor" aria-label="anchor" href="#column"><i class="fas fa-link"></i></a>
-</h2>
-<div id="chart-a" class="section level3" number="10.5.1">
-<h3>
-<span class="header-section-number">10.5.1</span> Chart A<a class="anchor" aria-label="anchor" href="#chart-a"><i class="fas fa-link"></i></a>
-</h3>
-<pre class="{r}"><code></code></pre>
-</div>
-</div>
-<div id="column-1" class="section level2" number="10.6" data-width="350">
-<h2>
-<span class="header-section-number">10.6</span> Column<a class="anchor" aria-label="anchor" href="#column-1"><i class="fas fa-link"></i></a>
-</h2>
-<div id="chart-b" class="section level3" number="10.6.1">
-<h3>
-<span class="header-section-number">10.6.1</span> Chart B<a class="anchor" aria-label="anchor" href="#chart-b"><i class="fas fa-link"></i></a>
-</h3>
-<pre class="{r}"><code></code></pre>
-</div>
-<div id="chart-c" class="section level3" number="10.6.2">
-<h3>
-<span class="header-section-number">10.6.2</span> Chart C<a class="anchor" aria-label="anchor" href="#chart-c"><i class="fas fa-link"></i></a>
-</h3>
-<pre class="{r}"><code></code></pre>
+<code style="font-size: smaller;">
+<pre>
+---
+title: "Demo"
+output: 
+  flexdashboard::flex_dashboard:
+    social: [ "twitter", "facebook", "linkedin", "pinterest" ]
+    source_code: embed
+    orientation: columns
+    vertical_layout: fill
+---
 
-<p></p>
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
+</pre>
+<p></p></code>
 </div>
-</div>
-<div id="resources-present" class="section level2" number="10.7">
+<div id="resources-present" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">10.7</span> Resources<a class="anchor" aria-label="anchor" href="#resources-present"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> Resources<a class="anchor" aria-label="anchor" href="#resources-present"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://rmarkdown.rstudio.com/formats.html">RStudio Formats</a></li>
@@ -203,16 +186,7 @@ Figure 10.1: Flexdashbard RMarkdown template.
 <li><a class="nav-link" href="#reports-1"><span class="header-section-number">10.2</span> Reports</a></li>
 <li><a class="nav-link" href="#presentations"><span class="header-section-number">10.3</span> Presentations</a></li>
 <li><a class="nav-link" href="#dashboards"><span class="header-section-number">10.4</span> Dashboards</a></li>
-<li>
-<a class="nav-link" href="#column"><span class="header-section-number">10.5</span> Column</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#chart-a"><span class="header-section-number">10.5.1</span> Chart A</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#column-1"><span class="header-section-number">10.6</span> Column</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chart-b"><span class="header-section-number">10.6.1</span> Chart B</a></li>
-<li><a class="nav-link" href="#chart-c"><span class="header-section-number">10.6.2</span> Chart C</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#resources-present"><span class="header-section-number">10.7</span> Resources</a></li>
+<li><a class="nav-link" href="#resources-present"><span class="header-section-number">10.5</span> Resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -426,7 +400,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2021-12-15.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

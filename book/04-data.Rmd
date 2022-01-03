@@ -454,7 +454,7 @@ You may also be tempted to fix messy datasets by e.g., opening up Excel and edit
 
 For the final step in this chapter, we will create a report using one of the in-built datasets to practice the skills you have used so far. You may need to refer back to previous to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
 
-### New Markdown {#exercises-new-rmd}
+### New Markdown {#exercises-new-rmd-4}
 
 Create and save a new R Markdown document named `starwars_report.Rmd`. In the set-up code chunk load the `tidyverse` and `rio`.
 

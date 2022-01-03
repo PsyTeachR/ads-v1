@@ -1021,7 +1021,7 @@ These are not, by any means, all the plot types that you can make in R. This cha
 
 For the final step in this chapter, we will create a report of data visualisations. You may need to refer back to Chapter\ \@ref(reports) to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
 
-### New Markdown {#exercises-new-rmd}
+### New Markdown {#exercises-new-rmd-3}
 
 Create and save a new R Markdown document named `plots_report.Rmd` and give it the title "Customer satisfaction report".Remove the default template text and then in the set-up code chunk, load the packages and code below:
 

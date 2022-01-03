@@ -8,6 +8,9 @@ fig:img-run2
 fig:visual-editor
 fig:unnamed-chunk-10
 tab:unnamed-chunk-14
+fig:img-full-100
+fig:img-half-100
+fig:img-half-50
 fig:img-bootswatch
 fig:excel-format-cells
 fig:layers
@@ -111,14 +114,14 @@ projects
 project-start
 naming
 rmarkdown
+new-document
 code-chunks
-writing-code-in-r-markdown
-running-code-in-r-markdown
+running-code
 rmd-inline-r
 rmd-knit
 loading-data
 loading-online
-loading-data-from-your-computer
+local-data-files
 writing-a-report
 data-analysis
 markdown
@@ -127,6 +130,8 @@ rmd-images
 rmd-tables
 refining-your-report
 rmd-setup
+override-defaults
+loading-packages
 yaml
 chapter-summary
 glossary-reports
@@ -186,7 +191,7 @@ ordinal-variables
 jitter-plot
 facets
 r-markdown-exercises
-exercises-new-rmd
+exercises-new-rmd-3
 summary
 presenting-plots
 combining-plots
@@ -213,6 +218,7 @@ writing-data
 troubleshooting
 working-with-real-data
 r-markdown-exercises-1
+exercises-new-rmd-4
 exercises-load
 convert-column-types
 exercises-plots
@@ -299,11 +305,6 @@ ilo-present
 reports-1
 presentations
 dashboards
-column
-chart-a
-column-1
-chart-b
-chart-c
 resources-present
 installing-r
 installing-base-r

@@ -84,6 +84,8 @@ Think of other ways to name the files above. Look at some of your own project fi
 
 Throughout this course we will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports with a table of contents, text, tables, images, and code. The text can be written using <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
+### New document
+
 To open a new R Markdown document click:
 
 -   **`File > New File > R Markdown`**
@@ -91,8 +93,6 @@ To open a new R Markdown document click:
 You will be prompted to give it a title; call the document `Important Info`. You can also change the author name. Keep the output format as HTML.
 
 Once you've opened a new document be sure to save it by clicking **`File > Save As...`**. You should name this file `important_info` (if you are on a Mac and can see the file <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a>, name it `important_info.Rmd`). This file will automatically be saved in your project folder, i.e., your working directory, so you should now see this file appear in your file viewer pane.
-
-### Using R Markdown for the first time {#code-chunks}
 
 When you first open a new R Markdown document you will see a bunch of welcome text that looks like this:
 
@@ -114,15 +114,16 @@ Your Markdown document should now look something like this:
 <p class="caption">(\#fig:img-new-chunk)New R chunk</p>
 </div>
 
-What you have created is a subtitle and a **code chunk**. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code (the actual colours will depend on which theme you have applied but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.
+### Code chunks {#code-chunks}
+
+What you have created is a subtitle and a **code chunk**. In R Markdown, anything written in a grey code chunk is assumed to be code, and anything written in the white space (between the code chunks) is regarded as normal text (the actual colours will depend on which theme you have applied, but we will refer to the default white and grey). This makes it easy to combine both text and code in one document.
 
 ::: {.dangerous data-latex=""}
-When you create a new code chunk you should notice that the grey box starts and ends with three back ticks \`\`\`. One common mistake is to accidentally delete these back ticks. Remember, code chunks are grey and text entry is white - if the colour of certain parts of your Markdown doesn't look right, check that you haven't deleted the back ticks.
+When you create a new code chunk you should notice that the grey box starts and ends with three back ticks \`\`\`. One common mistake is to accidentally delete these back ticks. Remember, code chunks and text entry are different colours - if the colour of certain parts of your Markdown doesn't look right, check that you haven't deleted the back ticks.
 :::
 
-### Writing code in R Markdown
 
-In your code chunk, write the code you created in Chapter  \@ref(objects).
+In your code chunk, write the code you created in Chapter\ \@ref(objects).
 
 
 ```r
@@ -132,7 +133,7 @@ today <- Sys.Date()
 christmas <- as.Date("2022-12-25")
 ```
 
-### Running code in R Markdown
+### Running code
 
 When you're working in an R Markdown document, there are several ways to run your lines of code.
 
@@ -179,10 +180,10 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 375 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 356 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
-You can also type the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
+You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
 
 
 ```r
@@ -196,7 +197,7 @@ Now let's try another example of using Markdown but this time rather than using 
 
 Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything from line 12 onwards.
 
-### Loading data from an online source {#loading-online}
+### Online sources {#loading-online}
 
 First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.
 
@@ -219,7 +220,7 @@ This dataset is simulated sales data for different types of vehicles where each 
 -   Run `str(sales_online)` in the console
 -   Run `View(sales_online)` in the console
 
-### Loading data from your computer
+### Local data files
 
 More commonly, you will be working from data files that are stored locally on your computer. But where should you put all of your files? You usually want to have all your scripts and data files for a single project inside one folder on your computer, the <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a>, and we have already set up the main directory <code class='path'>02-reports</code>for this chapter.
 
@@ -252,7 +253,7 @@ We're going to write a basic report for this sales dataset using R Markdown to s
 
 ### Data analysis
 
-For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter\ \@ref(#summary). For now, see if you can follow the logic of what the code is doing via the code comments.
+For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter\ \@ref(summary). For now, see if you can follow the logic of what the code is doing via the code comments.
 
 Create a new code chunk, then copy, paste and run the following code and then view `sales_counts` by clicking on the object in the environment pane.
 
@@ -262,10 +263,8 @@ Create a new code chunk, then copy, paste and run the following code and then vi
 sales_counts <- sales_online %>% 
   # keep only the data from planes, motorcycles, and cars and then
   filter(PRODUCTLINE %in% c("Planes", "Motorcycles", "Classic Cars")) %>% 
-  # group it by type of vehicle and then
-  group_by(PRODUCTLINE) %>% 
-  # count how many are in each group
-  count() 
+  # count how many are in each PRODUCTLINE
+  count(PRODUCTLINE)
 ```
 
 Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.
@@ -347,8 +346,8 @@ In the above code we've used code **comments** and it's important to highlight h
 # important numbers
 
 n <- nrow(sales_online) # the total number of sales (number of rows)
-first <- min(sales_online$YEAR_ID) # the first (minimum) year in the table
-last <- max(sales_online$YEAR_ID) # the last (maximum) year in the table
+first <- min(sales_online$YEAR_ID) # the first (minimum) year
+last <- max(sales_online$YEAR_ID) # the last (maximum) year
 ```
 
 It's usually good practice to start a code chunk with a comment that explains what you're doing there, especially if the code is not explained in the text of the report.
@@ -384,12 +383,18 @@ ggplot(data = sales_counts,
 
 You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using `knitr::include_graphics()`.
 
-Create a new code chunk underneath each of the sales figures for planes, classic cars, and motorcycles and add in an image from Google for each (right click on an image and select copy image address to get a url). We will resize them in the final section of this chapter.
+Create a new code chunk underneath each of the sales figures for planes, classic cars, and motorcycles and add in an image from Google or Wikipedia for each (right click on an image and select copy image address to get a url). See the section on [chunk defaults](#rmd-setup) to see how to change the display size.
 
 
 ```r
-knitr::include_graphics("https://cdn.britannica.com/q:60/69/155469-131-14083F59/airplane-flight.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/3f/P-51_Mustang_edit1.jpg")
 ```
+
+::: {.info data-latex=""}
+Most images on Wikipedia are public domain or have an open license. You can search for images by license on Google Images by clicking on the **`Tools`** button and choosing "Creative Commons licenses" from the "Usage Rights" menu.
+
+<img src="images/reports/google-images.png" title="Screenshot of Google Images interface with Usage Rights selections open." alt="Screenshot of Google Images interface with Usage Rights selections open." width="100%" style="display: block; margin: auto;" />
+:::
 
 ### Tables {#rmd-tables}
 
@@ -420,7 +425,8 @@ Amend your code to load the `kableExtra` package and apply the `kable()` functio
 
 
 ```r
-library(kableExtra) # load the package
+library(kableExtra) # for table display
+
 sales_counts %>% # start with the sales_count table and then
   kable() # apply the kable function
 ```
@@ -450,18 +456,18 @@ sales_counts %>% # start with the sales_count table and then
 
 It's better, but it's still not amazing. So let's make a few adjustments. We can change the names of the columns, add a caption, and also change the alignment of the cell contents using arguments to `kable()`. 
 
-We can also add a theme which changes the overall style. In this example we've used `kable_classic` but there are 5 others: `kable_paper`, `kable_classic_2`, `kable_minimal`, `kable_material` and `kable_material_dark`. Try them all and see which one you prefer.
+We can also add a theme to change the overall style. In this example we've used `kable_classic` but there are 5 others: `kable_paper`, `kable_classic_2`, `kable_minimal`, `kable_material` and `kable_material_dark`. Try them all and see which one you prefer.
 
-Finally, we can change the formatting of the first row using `row_spec`. Look up the help documentation for `row_spec` to see what other options are available.
+Finally, we can change the formatting of the first row using `row_spec`. Look up the help documentation for `row_spec` to see what other options are available. Try changing the value of  any of the arguments below to figure out what they do.
 
 
 ```r
 sales_counts %>%
   kable(col.names = c("Product", "Sales"),
       caption = "Number of sales per product line.", 
-      align = "c") %>% #try changing this to l or r
-  kable_classic(full_width = FALSE) %>% # try changing this to true
-  row_spec(row = 0, bold = TRUE, color = "red") # try changing these values
+      align = "c") %>% 
+  kable_classic(full_width = FALSE) %>% 
+  row_spec(row = 0, bold = TRUE, color = "red") 
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
@@ -488,11 +494,16 @@ sales_counts %>%
 </tbody>
 </table>
 
+::: {.info data-latex=""}
+The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page `html_document`, while this book uses the `bs4_book` style from the <code class='package'>bookdown</code> package. You'll learn more about other document output types in Chapter\ \@ref(present).
+:::
+
+
 If you're feeling confident with what we have covered so far, the [kableExtra vignette](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html){target="_blank"} gives a lot more detail on how you can edit your tables using `kableExtra`. 
 
 ## Refining your report
 
-### Adjusting the default setup {#rmd-setup}
+### Chunk defaults {#rmd-setup}
 
 Let's finish by tidying up the report and organising our code a bit better. When you create a new R Markdown file in RStudio, a setup chunk is automatically created - we've ignored this chunk until now.
 
@@ -506,10 +517,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 You can set more default options for your document here. Type `str(knitr::opts_chunk$get())` into the console to see the full list of options that you can set and their default values, however, the most useful and common options to change for the purposes of writing reports revolve around whether you want to show your code and the size of your images.
 
-Replace the code in your setup chunk with the below code and then try changing each option from `FALSE` to `TRUE` and changing the numeric values then knit the file again to see the difference it makes. To note:
-
-* `fig.width` and `fig.height` only control the size of images generated by R, i.e., plots.
-* `out.width` controls the size of both existing images and figures generated by R.
+Replace the code in your setup chunk with the below code and then try changing each option from `FALSE` to `TRUE` and changing the numeric values then knit the file again to see the difference it makes.
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r setup, include=FALSE}</code></pre>
 
@@ -520,11 +528,33 @@ knitr::opts_chunk$set(
   warning    = FALSE,     # whether to show warnings from your code
   fig.width  = 8,         # figure width in inches (at 96 dpi)
   fig.height = 5,         # figure height in inches (at 96 dpi)
-  out.width = "50%"      # figures/images should take up 100% of the page width
+  out.width = "50%"      # figures/images span 50% of the page width
 )
 ```
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
+::: {.warning data-latex=""}
+Note that `fig.width` and `fig.height` control the original size and aspect ratio of images generated by R, such as plots. This will affect the relative size of text and other elements in plots. It does not affect the size of existing images at all. However, `out.width` controls the **display** size of both existing images and figures generated by R. This is usually set as a percentage  of the page width.
+
+<div class="figure" style="text-align: center">
+<img src="02-reports_files/figure-html/img-full-100-1.png" alt="A plot with the default values of fig.width = 8, fig.height = 5, out.width = &quot;100%&quot;" width="100%" />
+<p class="caption">(\#fig:img-full-100)A plot with the default values of fig.width = 8, fig.height = 5, out.width = "100%"</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="02-reports_files/figure-html/img-half-100-1.png" alt="The same plot with half the default width and height: fig.width = 4, fig.height = 2.5, out.width = &quot;100%&quot;" width="100%" />
+<p class="caption">(\#fig:img-half-100)The same plot with half the default width and height: fig.width = 4, fig.height = 2.5, out.width = "100%"</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="02-reports_files/figure-html/img-half-50-1.png" alt="The same plot as above at half the output width: fig.width = 4, fig.height = 2.5, out.width = &quot;50%&quot;" width="50%" />
+<p class="caption">(\#fig:img-half-50)The same plot as above at half the output width: fig.width = 4, fig.height = 2.5, out.width = "50%"</p>
+</div>
+
+:::
+
+### Override defaults
 
 These setup options change the behaviour for the entire document, however, you can override the behaviour for individual code chunks. 
 
@@ -544,12 +574,12 @@ ggplot(data = sales_counts,
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
-Additionally, you can also override the default image size.
+Additionally, you can also override the default image display size or dimensions.
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, out.width='25%'}</code></pre>
 
 ```r
-knitr::include_graphics("https://cdn.britannica.com/q:60/69/155469-131-14083F59/airplane-flight.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/3f/P-51_Mustang_edit1.jpg")
 ```
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
@@ -568,15 +598,17 @@ ggplot(data = sales_counts,
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
+### Loading packages
+
 You can also add the packages you need in your setup chunk using <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span></code>. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>package_I_need</span><span class='op'>)</span></code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.
 
 ::: {.try data-latex=""}
 Move the code that loads the `tidyverse` and `kableExtra` to the setup chunk.
 :::
 
-### YAML Header {#yaml}
+### YAML header {#yaml}
 
-Finally, the <a class='glossary' target='_blank' title='A structured format for information' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is the bit at the very top of your Markdown document and you can set several options here as well. 
+Finally, the <a class='glossary' target='_blank' title='A structured format for information' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is the bit at the very top of your Markdown document. You can set several options here as well. 
 
     ---
     title: "Sales Data Report"
@@ -671,25 +703,27 @@ As you continue to work through the book you will learn how to wrangle and analy
 ## Further Resources {#resources-reports}
 
 -   [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet)
--   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+<!--
 -   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+-->
 -   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
 -   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
 -   [Chapter 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html) of *R for Data Science*
 -   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
 -   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
+-   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
 
 ## Exercises {#exercises-reports}
 
-Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful but spreading out your practice will help you learn more in the long run.
+Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful, but spreading out your practice will help you learn more in the long run.
 
 ### New project {#exercises-reports-project}
 
 Create a new project called "demo_report" [\@ref(projects)]
 
-### Set up an R Markdown script {#exercises-reports-setup}
+### New script {#exercises-reports-setup}
 
-In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [\@ref(rmarkdown)]. Edit the YAML header to output tables using kable. Set a custom theme. [\@ref(yaml)]
+In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [\@ref(rmarkdown)]. Edit the YAML header to output tables using kable and set a custom theme [\@ref(yaml)].
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -833,7 +867,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>

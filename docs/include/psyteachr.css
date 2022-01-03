@@ -48,6 +48,8 @@
 .package::before { content: "{"; }
 .package::after { content: "}"; }
 
+.inline-figure { border: none; }
+
 .small_right, .small_left {
   display: inline-block;
   width: 25%;

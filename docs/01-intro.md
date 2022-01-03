@@ -80,7 +80,9 @@ There is an important distinction between **installing** a package and **loading
 
 ### Installing a package {#install-package}
 
+<!--
 <div class="small_right"><img src="images/memes/pokemon.gif" /></div>
+-->
 
 This is done using <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='op'>)</span></code>. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store; you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 

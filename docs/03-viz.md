@@ -120,7 +120,7 @@ lubridate::now(tzone = "GMT")
 
 ```
 ## [1] "2022-01-03"
-## [1] "2022-01-03 13:26:14 GMT"
+## [1] "2022-01-03 13:50:45 GMT"
 ```
 
 ### Test your understanding

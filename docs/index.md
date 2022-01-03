@@ -41,20 +41,26 @@ This book accompanies a 10-week course, covering one chapter per week. Each chap
 
 ## How to learn data skills
 
+<!--
 ::: {.small_right}
 <img src="images/memes/gym_sleep.jpg" alt="top text: Me: gonna get to the gym early today, set myself on a regimen, get gains. Also me:; Photo: Man sleeping on gym equipment"/>
 :::
+-->
 
 Learning data skills is kind of like having a gym membership (thanks to [Phil McAleer](https://twitter.com/McAleerP) for the analogy). You'll be given state-of-the-art equipment to use and instructions for how to use them, but your data skills won't get any stronger unless you practice.
 
+<!--
 ::: {.small_left}
 <img src="images/memes/forgetting.jpg" alt="top text: Not sure if I have a bad memory; photo: Fry from Futurama squinting; bottom text: Or a bad memory"/>
 :::
+-->
 
 Data skills do not require you to memorise lots of code. You will be introduced to many different functions, but the main skill to learn is how to efficiently find the information you need. This will require getting used to the structure of help files and [cheat sheets](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}, learning how to Goggle your problem and choose a helpful solution, and learning how to read error messages.
 
+<!--
 ::: {.small_right}
 <img src="images/memes/typos.jpg" alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon"/>
 :::
+-->
 
 Learning to code involves making a **lot** of mistakes. These mistakes are completely essential to the process, so try not to feel too frustrated. Many of the chapter exercises will give you broken code to fix so you get experience seeing what common errors look like. As you become a more experienced coder, you might not make fewer errors, but you'll recover from them much faster.

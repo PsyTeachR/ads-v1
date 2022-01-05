@@ -21,9 +21,7 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -57,14 +55,6 @@
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
 <li><a class="active" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
-<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
-<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
-<li><a class="" href="joins.html"><span class="header-section-number">5</span> Data Relations</a></li>
-<li><a class="" href="tidy.html"><span class="header-section-number">6</span> Data Tidying</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">7</span> Data Wrangling</a></li>
-<li><a class="" href="summary.html"><span class="header-section-number">8</span> Data Summaries</a></li>
-<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
-<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -271,7 +261,7 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 356 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 354 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -342,13 +332,13 @@ Figure 2.5: Slightly better method of running code
 <h3>
 <span class="header-section-number">2.5.1</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"><i class="fas fa-link"></i></a>
 </h3>
-<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter <a href="viz.html#summary">3.6.2</a>. For now, see if you can follow the logic of what the code is doing via the code comments.</p>
+<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter <a href="#summary"><strong>??</strong></a>. For now, see if you can follow the logic of what the code is doing via the code comments.</p>
 <p>Create a new code chunk, then copy, paste and run the following code and then view <code>sales_counts</code> by clicking on the object in the environment pane.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
 <span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
   <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># count how many are in each PRODUCTLINE</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span></code></pre></div>
 <p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>
@@ -454,7 +444,7 @@ Solution
 <span class="header-section-number">2.5.4</span> Images<a class="anchor" aria-label="anchor" href="#rmd-images"><i class="fas fa-link"></i></a>
 </h3>
 <p>As the saying goes, a picture paints a thousand words and sometimes you will want to communicate your data using visualisations.</p>
-<p>Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to make a simple bar chart that represents the sales data - focus on trying to follow how bits of the code map on to the plot that is created.</p>
+<p>Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter <a href="#viz"><strong>??</strong></a> to make a simple bar chart that represents the sales data - focus on trying to follow how bits of the code map on to the plot that is created.</p>
 <p>Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document. Notice how the figure caption is formatted in the chunk options.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.cap= "Sales visualisation"}</code></pre>
@@ -594,7 +584,7 @@ Planes
 </tbody>
 </table></div>
 <div class="info">
-<p>The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page <code>html_document</code>, while this book uses the <code>bs4_book</code> style from the <code class="package">bookdown</code> package. You'll learn more about other document output types in Chapter <a href="present.html#present">10</a>.</p>
+<p>The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page <code>html_document</code>, while this book uses the <code>bs4_book</code> style from the <code class="package">bookdown</code> package. You'll learn more about other document output types in Chapter <a href="#present"><strong>??</strong></a>.</p>
 </div>
 <p>If you're feeling confident with what we have covered so far, the <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" target="_blank">kableExtra vignette</a> gives a lot more detail on how you can edit your tables using <code>kableExtra</code>.</p>
 </div>
@@ -1021,6 +1011,80 @@ Solution
 </div>
 </div>
 </div>
+
+
+
+<div class="chapter-nav">
+<div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></div>
+<div class="next"><a href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#reports"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
+<li><a class="nav-link" href="#ilo-reports"><span class="header-section-number">2.1</span> Intended Learning Outcomes</a></li>
+<li>
+<a class="nav-link" href="#projects"><span class="header-section-number">2.2</span> Organising a project</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#project-start"><span class="header-section-number">2.2.1</span> Start a Project</a></li>
+<li><a class="nav-link" href="#naming"><span class="header-section-number">2.2.2</span> Naming Things</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#rmarkdown"><span class="header-section-number">2.3</span> R Markdown</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#new-document"><span class="header-section-number">2.3.1</span> New document</a></li>
+<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.3.2</span> Code chunks</a></li>
+<li><a class="nav-link" href="#running-code"><span class="header-section-number">2.3.3</span> Running code</a></li>
+<li><a class="nav-link" href="#rmd-inline-r"><span class="header-section-number">2.3.4</span> Inline code</a></li>
+<li><a class="nav-link" href="#rmd-knit"><span class="header-section-number">2.3.5</span> Knitting your file</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#loading-data"><span class="header-section-number">2.4</span> Loading data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#loading-online"><span class="header-section-number">2.4.1</span> Online sources</a></li>
+<li><a class="nav-link" href="#local-data-files"><span class="header-section-number">2.4.2</span> Local data files</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#writing-a-report"><span class="header-section-number">2.5</span> Writing a report</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#data-analysis"><span class="header-section-number">2.5.1</span> Data analysis</a></li>
+<li><a class="nav-link" href="#markdown"><span class="header-section-number">2.5.2</span> Text formatting</a></li>
+<li><a class="nav-link" href="#comments"><span class="header-section-number">2.5.3</span> Code comments</a></li>
+<li><a class="nav-link" href="#rmd-images"><span class="header-section-number">2.5.4</span> Images</a></li>
+<li><a class="nav-link" href="#rmd-tables"><span class="header-section-number">2.5.5</span> Tables</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#refining-your-report"><span class="header-section-number">2.6</span> Refining your report</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rmd-setup"><span class="header-section-number">2.6.1</span> Chunk defaults</a></li>
+<li><a class="nav-link" href="#override-defaults"><span class="header-section-number">2.6.2</span> Override defaults</a></li>
+<li><a class="nav-link" href="#loading-packages"><span class="header-section-number">2.6.3</span> Loading packages</a></li>
+<li><a class="nav-link" href="#yaml"><span class="header-section-number">2.6.4</span> YAML header</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#chapter-summary"><span class="header-section-number">2.7</span> Chapter summary</a></li>
+<li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.8</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-reports"><span class="header-section-number">2.9</span> Further Resources</a></li>
+<li>
+<a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.10</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.10.1</span> New project</a></li>
+<li><a class="nav-link" href="#exercises-reports-setup"><span class="header-section-number">2.10.2</span> New script</a></li>
+<li><a class="nav-link" href="#exercises-reports-rmarkdown"><span class="header-section-number">2.10.3</span> R Markdown</a></li>
+<li><a class="nav-link" href="#exercises-reports-tables"><span class="header-section-number">2.10.4</span> Tables</a></li>
+<li><a class="nav-link" href="#exercises-reports-images"><span class="header-section-number">2.10.5</span> Images</a></li>
+<li><a class="nav-link" href="#exercises-reports-inline"><span class="header-section-number">2.10.6</span> Inline R</a></li>
+<li><a class="nav-link" href="#exercises-reports-knit"><span class="header-section-number">2.10.7</span> Knit</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/02-reports.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/02-reports.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+</div>
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1215,84 +1279,15 @@ $( document ).ready(function() {
   move_sidebar();
   window.onresize = move_sidebar;
 });
-</script><div class="chapter-nav">
-<div class="prev"><a href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></div>
-<div class="next"><a href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#reports"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
-<li><a class="nav-link" href="#ilo-reports"><span class="header-section-number">2.1</span> Intended Learning Outcomes</a></li>
-<li>
-<a class="nav-link" href="#projects"><span class="header-section-number">2.2</span> Organising a project</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#project-start"><span class="header-section-number">2.2.1</span> Start a Project</a></li>
-<li><a class="nav-link" href="#naming"><span class="header-section-number">2.2.2</span> Naming Things</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#rmarkdown"><span class="header-section-number">2.3</span> R Markdown</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#new-document"><span class="header-section-number">2.3.1</span> New document</a></li>
-<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.3.2</span> Code chunks</a></li>
-<li><a class="nav-link" href="#running-code"><span class="header-section-number">2.3.3</span> Running code</a></li>
-<li><a class="nav-link" href="#rmd-inline-r"><span class="header-section-number">2.3.4</span> Inline code</a></li>
-<li><a class="nav-link" href="#rmd-knit"><span class="header-section-number">2.3.5</span> Knitting your file</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#loading-data"><span class="header-section-number">2.4</span> Loading data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#loading-online"><span class="header-section-number">2.4.1</span> Online sources</a></li>
-<li><a class="nav-link" href="#local-data-files"><span class="header-section-number">2.4.2</span> Local data files</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#writing-a-report"><span class="header-section-number">2.5</span> Writing a report</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#data-analysis"><span class="header-section-number">2.5.1</span> Data analysis</a></li>
-<li><a class="nav-link" href="#markdown"><span class="header-section-number">2.5.2</span> Text formatting</a></li>
-<li><a class="nav-link" href="#comments"><span class="header-section-number">2.5.3</span> Code comments</a></li>
-<li><a class="nav-link" href="#rmd-images"><span class="header-section-number">2.5.4</span> Images</a></li>
-<li><a class="nav-link" href="#rmd-tables"><span class="header-section-number">2.5.5</span> Tables</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#refining-your-report"><span class="header-section-number">2.6</span> Refining your report</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rmd-setup"><span class="header-section-number">2.6.1</span> Chunk defaults</a></li>
-<li><a class="nav-link" href="#override-defaults"><span class="header-section-number">2.6.2</span> Override defaults</a></li>
-<li><a class="nav-link" href="#loading-packages"><span class="header-section-number">2.6.3</span> Loading packages</a></li>
-<li><a class="nav-link" href="#yaml"><span class="header-section-number">2.6.4</span> YAML header</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#chapter-summary"><span class="header-section-number">2.7</span> Chapter summary</a></li>
-<li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.8</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-reports"><span class="header-section-number">2.9</span> Further Resources</a></li>
-<li>
-<a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.10</span> Exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.10.1</span> New project</a></li>
-<li><a class="nav-link" href="#exercises-reports-setup"><span class="header-section-number">2.10.2</span> New script</a></li>
-<li><a class="nav-link" href="#exercises-reports-rmarkdown"><span class="header-section-number">2.10.3</span> R Markdown</a></li>
-<li><a class="nav-link" href="#exercises-reports-tables"><span class="header-section-number">2.10.4</span> Tables</a></li>
-<li><a class="nav-link" href="#exercises-reports-images"><span class="header-section-number">2.10.5</span> Images</a></li>
-<li><a class="nav-link" href="#exercises-reports-inline"><span class="header-section-number">2.10.6</span> Inline R</a></li>
-<li><a class="nav-link" href="#exercises-reports-knit"><span class="header-section-number">2.10.7</span> Knit</a></li>
-</ul>
-</li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/02-reports.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/02-reports.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
-</div>
-    </nav>
-</div>
+</script>
 
 </div>
-</div> <!-- .container -->
+ <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-03.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

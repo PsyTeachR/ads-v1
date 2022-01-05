@@ -486,93 +486,93 @@ slice_sample(sun_tweets, n = 10)
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 2021-10-29 11:21:00 </td>
-   <td style="text-align:left;"> 2021-10-29 </td>
-   <td style="text-align:left;"> 11 </td>
-   <td style="text-align:right;"> 11.350000 </td>
-   <td style="text-align:right;"> 7.256 </td>
-   <td style="text-align:right;"> 16.719 </td>
+   <td style="text-align:left;"> 2021-09-17 16:05:00 </td>
+   <td style="text-align:left;"> 2021-09-17 </td>
+   <td style="text-align:left;"> 16 </td>
+   <td style="text-align:right;"> 16.083333 </td>
+   <td style="text-align:right;"> 5.867 </td>
+   <td style="text-align:right;"> 18.459 </td>
    <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-08-21 14:02:00 </td>
-   <td style="text-align:left;"> 2021-08-21 </td>
-   <td style="text-align:left;"> 14 </td>
-   <td style="text-align:right;"> 14.033333 </td>
-   <td style="text-align:right;"> 5.008 </td>
-   <td style="text-align:right;"> 19.605 </td>
+   <td style="text-align:left;"> 2021-04-30 08:01:00 </td>
+   <td style="text-align:left;"> 2021-04-30 </td>
+   <td style="text-align:left;"> 8 </td>
+   <td style="text-align:right;"> 8.016667 </td>
+   <td style="text-align:right;"> 4.599 </td>
+   <td style="text-align:right;"> 19.862 </td>
    <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-02-08 10:49:00 </td>
-   <td style="text-align:left;"> 2021-02-08 </td>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:right;"> 10.816667 </td>
-   <td style="text-align:right;"> 7.910 </td>
-   <td style="text-align:right;"> 17.108 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-09-21 15:40:00 </td>
-   <td style="text-align:left;"> 2021-09-21 </td>
+   <td style="text-align:left;"> 2021-05-29 15:47:00 </td>
+   <td style="text-align:left;"> 2021-05-29 </td>
    <td style="text-align:left;"> 15 </td>
-   <td style="text-align:right;"> 15.666667 </td>
-   <td style="text-align:right;"> 5.995 </td>
-   <td style="text-align:right;"> 18.285 </td>
+   <td style="text-align:right;"> 15.783333 </td>
+   <td style="text-align:right;"> 3.742 </td>
+   <td style="text-align:right;"> 20.720 </td>
    <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-04-19 07:10:00 </td>
-   <td style="text-align:left;"> 2021-04-19 </td>
-   <td style="text-align:left;"> 7 </td>
-   <td style="text-align:right;"> 7.166667 </td>
-   <td style="text-align:right;"> 5.026 </td>
-   <td style="text-align:right;"> 19.498 </td>
+   <td style="text-align:left;"> 2021-05-06 12:36:00 </td>
+   <td style="text-align:left;"> 2021-05-06 </td>
+   <td style="text-align:left;"> 12 </td>
+   <td style="text-align:right;"> 12.600000 </td>
+   <td style="text-align:right;"> 4.384 </td>
+   <td style="text-align:right;"> 20.057 </td>
    <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-06-19 23:37:00 </td>
-   <td style="text-align:left;"> 2021-06-19 </td>
-   <td style="text-align:left;"> 23 </td>
-   <td style="text-align:right;"> 23.616667 </td>
-   <td style="text-align:right;"> 3.545 </td>
-   <td style="text-align:right;"> 21.037 </td>
-   <td style="text-align:left;"> night </td>
+   <td style="text-align:left;"> 2021-09-24 06:25:00 </td>
+   <td style="text-align:left;"> 2021-09-24 </td>
+   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:right;"> 6.416667 </td>
+   <td style="text-align:right;"> 6.090 </td>
+   <td style="text-align:right;"> 18.154 </td>
+   <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-03-28 12:17:00 </td>
-   <td style="text-align:left;"> 2021-03-28 </td>
+   <td style="text-align:left;"> 2021-09-30 12:36:00 </td>
+   <td style="text-align:left;"> 2021-09-30 </td>
+   <td style="text-align:left;"> 12 </td>
+   <td style="text-align:right;"> 12.600000 </td>
+   <td style="text-align:right;"> 6.283 </td>
+   <td style="text-align:right;"> 17.894 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-02-16 09:47:00 </td>
+   <td style="text-align:left;"> 2021-02-16 </td>
+   <td style="text-align:left;"> 9 </td>
+   <td style="text-align:right;"> 9.783333 </td>
+   <td style="text-align:right;"> 7.620 </td>
+   <td style="text-align:right;"> 17.395 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-02-12 13:50:00 </td>
+   <td style="text-align:left;"> 2021-02-12 </td>
+   <td style="text-align:left;"> 13 </td>
+   <td style="text-align:right;"> 13.833333 </td>
+   <td style="text-align:right;"> 7.769 </td>
+   <td style="text-align:right;"> 17.252 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-07-19 12:17:00 </td>
+   <td style="text-align:left;"> 2021-07-19 </td>
    <td style="text-align:left;"> 12 </td>
    <td style="text-align:right;"> 12.283333 </td>
-   <td style="text-align:right;"> 5.953 </td>
-   <td style="text-align:right;"> 18.766 </td>
+   <td style="text-align:right;"> 4.007 </td>
+   <td style="text-align:right;"> 20.720 </td>
    <td style="text-align:left;"> day </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2021-08-09 16:50:00 </td>
-   <td style="text-align:left;"> 2021-08-09 </td>
-   <td style="text-align:left;"> 16 </td>
-   <td style="text-align:right;"> 16.833333 </td>
-   <td style="text-align:right;"> 4.627 </td>
-   <td style="text-align:right;"> 20.067 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-04-29 19:27:00 </td>
-   <td style="text-align:left;"> 2021-04-29 </td>
-   <td style="text-align:left;"> 19 </td>
-   <td style="text-align:right;"> 19.450000 </td>
-   <td style="text-align:right;"> 4.637 </td>
-   <td style="text-align:right;"> 19.829 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-07-12 12:58:00 </td>
-   <td style="text-align:left;"> 2021-07-12 </td>
-   <td style="text-align:left;"> 12 </td>
-   <td style="text-align:right;"> 12.966667 </td>
-   <td style="text-align:right;"> 3.837 </td>
-   <td style="text-align:right;"> 20.871 </td>
+   <td style="text-align:left;"> 2021-02-07 10:14:00 </td>
+   <td style="text-align:left;"> 2021-02-07 </td>
+   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:right;"> 10.233333 </td>
+   <td style="text-align:right;"> 7.945 </td>
+   <td style="text-align:right;"> 17.072 </td>
    <td style="text-align:left;"> day </td>
   </tr>
 </tbody>

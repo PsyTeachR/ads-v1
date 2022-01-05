@@ -1,0 +1,30 @@
+book_filename: ads-v1
+new_session: yes
+output_dir: ../docs
+rmd_files:
+- index.Rmd
+- 01-intro.Rmd
+before_chapter_script:
+- R/psyteachr_setup.R
+- R/webex.R
+- R/my_setup.R
+delete_merged_file: yes
+clean: []
+language:
+  ui:
+    chapter_name: 'Chapter '
+  label:
+    fig: 'Figure '
+    tab: 'Table '
+    eq: 'Equation '
+    thm: 'Theorem '
+    lem: 'Lemma '
+    cor: 'Corollary '
+    prp: 'Proposition '
+    cnj: 'Conjecture '
+    def: 'Definition '
+    exm: 'Example '
+    exr: 'Exercise '
+    proof: 'Proof. '
+    remark: 'Remark. '
+    solution: 'Solution. '

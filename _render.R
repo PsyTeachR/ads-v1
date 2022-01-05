@@ -11,9 +11,13 @@ R.utils::copyDirectory(
   overwrite = TRUE,
   recursive = TRUE)
 
-# render the book
+# render the full draft book
+xfun::in_dir("book", bookdown::render_book(config_file = "_bookdown_draft.yml"))
+browseURL("docs/draft/index.html")
 
-xfun::in_dir("book", bookdown::render_book("index.Rmd"))
+# render only completed chapters
+# edit _bookdown_v1.yml to add chapters to rmd_files:
+xfun::in_dir("book", bookdown::render_book(config_file = "_bookdown_v1.yml"))
 browseURL("docs/index.html")
 
 # preview a chapter (wrecks sidebar links)

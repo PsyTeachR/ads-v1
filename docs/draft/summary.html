@@ -73,6 +73,7 @@
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
 <li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -161,13 +162,13 @@
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_BGLOSWTSJB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BGLOSWTSJB" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_BGLOSWTSJB" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BGLOSWTSJB" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BGLOSWTSJB" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label>
+<div id="radio_FGPEBEAWPC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FGPEBEAWPC" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FGPEBEAWPC" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FGPEBEAWPC" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FGPEBEAWPC" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label>
 </div>
 </li>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_RUXZKLRCVU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RUXZKLRCVU" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUXZKLRCVU" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUXZKLRCVU" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUXZKLRCVU" value="x"><span><code>width(mean(display_text_width))</code></span></label>
+<div id="radio_CRXZPIFUHG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CRXZPIFUHG" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_CRXZPIFUHG" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CRXZPIFUHG" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_CRXZPIFUHG" value="x"><span><code>group_by(display_text_width)</code></span></label>
 </div>
 </li>
 </ul>
@@ -263,8 +264,8 @@ with 35 tweets.</p>
 <div class="try">
 <ul>
 <li>How would you count the number of tweets that are quotes or not and are retweets or not?
-<div id="radio_WSFQKFVQJQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WSFQKFVQJQ" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WSFQKFVQJQ" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WSFQKFVQJQ" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_WSFQKFVQJQ" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label>
+<div id="radio_EIZOJDMBGO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EIZOJDMBGO" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_EIZOJDMBGO" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label><label><input type="radio" autocomplete="off" name="radio_EIZOJDMBGO" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_EIZOJDMBGO" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label>
 </div>
 </li>
 </ul>
@@ -399,8 +400,8 @@ ja
 <div class="try">
 <ul>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>source</code>?
-<div id="radio_PGVVFQDJWE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PGVVFQDJWE" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_PGVVFQDJWE" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_PGVVFQDJWE" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_PGVVFQDJWE" value="x"><span><code>count(screen_name)</code></span></label>
+<div id="radio_CCQSQQLDOY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CCQSQQLDOY" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CCQSQQLDOY" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CCQSQQLDOY" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_CCQSQQLDOY" value="answer"><span><code>group_by(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
@@ -473,8 +474,8 @@ The most favourited ({quote$favorite_count}) quote tweet was by
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_CJRIWANLAQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CJRIWANLAQ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJRIWANLAQ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJRIWANLAQ" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJRIWANLAQ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label>
+<div id="radio_UGSCICLNBU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UGSCICLNBU" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UGSCICLNBU" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UGSCICLNBU" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UGSCICLNBU" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>

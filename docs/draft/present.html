@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 10 Advanced Reports | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="10.1 Intended Learning Outcomes Structure data in report, dashboard, and presentation formats Include table of contents, figure and table captions, and references in longer reports...">
+<meta name="description" content="10.1 Intended Learning Outcomes Structure data in report, presentation, and dashboard formats Include linked figure and table captions in longer reports library(tidyverse)   # data wrangling...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Advanced Reports | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/present.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="10.1 Intended Learning Outcomes Structure data in report, dashboard, and presentation formats Include table of contents, figure and table captions, and references in longer reports...">
+<meta property="og:description" content="10.1 Intended Learning Outcomes Structure data in report, presentation, and dashboard formats Include linked figure and table captions in longer reports library(tidyverse)   # data wrangling...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Advanced Reports | Applied Data Skills">
-<meta name="twitter:description" content="10.1 Intended Learning Outcomes Structure data in report, dashboard, and presentation formats Include table of contents, figure and table captions, and references in longer reports...">
+<meta name="twitter:description" content="10.1 Intended Learning Outcomes Structure data in report, presentation, and dashboard formats Include linked figure and table captions in longer reports library(tidyverse)   # data wrangling...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -73,6 +73,7 @@
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
 <li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -91,38 +92,216 @@
 <span class="header-section-number">10.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-present"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
-<li>Structure data in report, dashboard, and presentation formats</li>
-<li>Include table of contents, figure and table captions, and references in longer reports</li>
+<li>Structure data in report, presentation, and dashboard formats</li>
+<li>Include linked figure and table captions in longer reports</li>
 </ul>
 <div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># data wrangling functions</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rmarkdown.rstudio.com/flexdashboard">flexdashboard</a></span><span class="op">)</span> <span class="co"># for dashboards</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/bookdown">bookdown</a></span><span class="op">)</span>      <span class="co"># for chaptered reports</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rmarkdown.rstudio.com/flexdashboard">flexdashboard</a></span><span class="op">)</span> <span class="co"># for dashboards</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span>            <span class="co"># for interactive tables</span></code></pre></div>
+<p>Until now, we've only used the default <code>html_document</code> output format in an <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R markdown</a> report, but there are several other <a href="https://rmarkdown.rstudio.com/formats.html" target="_blank">output formats</a> that you can try.</p>
 </div>
 <div id="reports-1" class="section level2" number="10.2">
 <h2>
 <span class="header-section-number">10.2</span> Reports<a class="anchor" aria-label="anchor" href="#reports-1"><i class="fas fa-link"></i></a>
 </h2>
+<div id="word-documents" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Word documents<a class="anchor" aria-label="anchor" href="#word-documents"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header of an R Markdown document, you can change output to <code>word_document</code> to create a Microsoft Word file. Make sure you carefully check your file; images and tables can often look odd or page breaks can happen in strange ways.</p>
+<p>You can add page breaks by adding <code>\newpage</code> on a line by itself with blank lines above and below.</p>
+</div>
+<div id="pdf-documents" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> PDF documents<a class="anchor" aria-label="anchor" href="#pdf-documents"><i class="fas fa-link"></i></a>
+</h3>
+<p>If you have a latex installation (see Appendix <a href="installing-r.html#installing-r">A</a>), you can create a PDF by setting output to <code>pdf_document</code>.</p>
+<p>Note that this can sometimes cause problems with <code class="package">kableExtra</code> tables and you can't use some elements like interactive plots. Additionally, the figures and tables are likely to shift from their position in text to the top or bottom of pages.</p>
+<p>See the <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html" target="_blank">PDF section</a> of <em>R Markdown: The Definitive Guide</em> <span class="citation">(<a href="references.html#ref-rmarkdown_definitive" role="doc-biblioref">Xie et al., 2018</a>)</span> for more advanced customisation options.</p>
+</div>
+<div id="linked-documents" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Linked documents<a class="anchor" aria-label="anchor" href="#linked-documents"><i class="fas fa-link"></i></a>
+</h3>
+<p>If you need to create longer reports with links between sections, you can use one of the bookdown formats. <code><a href="https://rdrr.io/pkg/bookdown/man/html_document2.html">bookdown::html_document2</a></code> is a useful one that adds figure and table numbers automatically to any figures or tables with a caption and allows you to link to these by reference.</p>
+<p>Refer to figures and tables like the code below. Figures start with "fig:" and tables with "tab:", then the code <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">chunk</a> name that created the figure or table.</p>
+<pre><code>See Table\ \@ref(tab:table-name) or Figure\ \@ref(fig:fig-name).</code></pre>
+<div class="warning">
+<p>The code chunk names can only contain letters, numbers and dashes. If they contain other characters like spaces or underscores, the referencing will not work.</p>
+</div>
+<p>The code below shows how to link text to figures or tables. You can see the <a href="demos/html_document2.html">HTML output here</a>.</p>
+<div class="webex-solution">
+<button>
+Linked Document Code
+</button>
+<code style="font-size: smaller;">
+<pre>
+---
+title: "Linked Document Demo"
+output: 
+  bookdown::html_document2:
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(tidyverse)
+library(kableExtra)
+theme_set(theme_minimal())
+```
+
+Diamond price depends on many features, such as:
+
+- cut (See Table\ \@ref(tab:by-cut))
+- colour (See Table\ \@ref(tab:by-colour))
+- clarity (See Figure\ \@ref(fig:by-clarity))
+- carats (See Figure\ \@ref(fig:by-carat))
+
+## Tables
+
+### Cut
+
+```{r by-cut}
+diamonds %&gt;%
+  group_by(cut) %&gt;%
+  summarise(avg = mean(price),
+            .groups = "drop") %&gt;%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by cut.") %&gt;%
+  kable_material()
+```
+
+### Colour
+
+```{r by-colour}
+diamonds %&gt;%
+  group_by(color) %&gt;%
+  summarise(avg = mean(price),
+            .groups = "drop") %&gt;%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by colour.") %&gt;%
+  kable_material()
+```
+
+## Plots
+
+### Clarity
+
+```{r by-clarity, fig.cap = "Diamond price by clarity"}
+ggplot(diamonds, aes(x = clarity, y = price)) +
+  geom_boxplot() 
+```
+
+### Carats
+
+```{r by-carat, fig.cap = "Diamond price by carat"}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  stat_smooth()
+```
+
+</pre>
+<p></p></code>
+</div>
+<p>This format defaults to numbered sections, so set <code>number_sections: false</code> in the <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header if you don't want this.</p>
+</div>
 </div>
 <div id="presentations" class="section level2" number="10.3">
 <h2>
 <span class="header-section-number">10.3</span> Presentations<a class="anchor" aria-label="anchor" href="#presentations"><i class="fas fa-link"></i></a>
 </h2>
+<p>You can choose a presentation template when you create a new R Markdown document. We'll use ioslides for this example, but the other formats work similarly.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-ioslides-template"></span>
+<img src="images/present/new-ioslides.png" alt="Ioslides RMarkdown template." width="100%"><p class="caption">
+Figure 10.1: Ioslides RMarkdown template.
+</p>
+</div>
+<p>The main differences between this and the Rmd files you've been working with until now are that the <code>output</code> type in the <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header is <code>ioslides_presentation</code> instead of <code>html_document</code> and this format requires a specific title structure. Each slide starts with a level-2 header.</p>
+<p>The template provides you with examples of text, bullet point, code, and plot slides. You can knit this template to create an <a class="glossary" target="_blank" title="Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages." href="https://psyteachr.github.io/glossary/h#html">HTML</a> document with your presentation. It often looks odd in the RStudio built-in browser, so click the button to open it in a web browser. You can use the space bar or arrow keys to advance slides.</p>
+<p>The code below shows how to load some packages and display text, a table, and a plot. You can see the <a href="demos/ioslides.html">HTML output here</a>.</p>
+<div class="webex-solution">
+<button>
+Slide Code
+</button>
+<code style="font-size: smaller;">
+<pre>
+---
+title: "Presentation Demo"
+author: "Lisa DeBruine"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(kableExtra)
+```
+
+## Slide with Markdown
+
+The following slides will present some data from the `diamonds` dataset from **ggplot2**.
+
+Diamond price depends on many features, such as:
+
+- cut
+- colour
+- clarity
+- carats
+
+## Slide with a Table
+
+```{r}
+diamonds %&gt;%
+  group_by(cut, color) %&gt;%
+  summarise(avg_price = mean(price),
+            .groups = "drop") %&gt;%
+  pivot_wider(names_from = cut, values_from = avg_price) %&gt;%
+  kable(digits = 0, caption = "Mean diamond price by cut and colour.") %&gt;%
+  kable_material()
+```
+
+## Slide with a Plot
+
+```{r pressure}
+ggplot(diamonds, aes(x = cut, y = price, color = color)) +
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(aes(x = as.integer(cut)), 
+               fun = mean, geom = "line") +
+  scale_x_discrete(position = "top") +
+  scale_color_viridis_d(guide = guide_legend(reverse = TRUE)) +
+  theme_minimal() 
+```
+
+</pre>
+<p></p></code>
+</div>
 </div>
 <div id="dashboards" class="section level2" number="10.4">
 <h2>
 <span class="header-section-number">10.4</span> Dashboards<a class="anchor" aria-label="anchor" href="#dashboards"><i class="fas fa-link"></i></a>
 </h2>
-<p>After you install <code class="package">flexdashboard</code>, you can choose a flexdashboard template when you create a new RMarkdown document.</p>
+<p>Dashboards are a way to display text, tables, and plots with dynamic formatting. After you install <code class="package">flexdashboard</code>, you can choose a flexdashboard template when you create a new R Markdown document.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-flx-template"></span>
-<img src="images/present/flexdashboard-template.png" alt="Flexdashbard RMarkdown template." width="100%"><p class="caption">
-Figure 10.1: Flexdashbard RMarkdown template.
+<img src="images/present/flexdashboard-template.png" alt="Flexdashboard RMarkdown template." width="100%"><p class="caption">
+Figure 10.2: Flexdashboard RMarkdown template.
 </p>
 </div>
+<p>The code below shows how to load some packages, display two tables in a tabset, and display two plots in a column. You can see the <a href="demos/flexdashboard.html">HTML output here</a>.</p>
+<div class="webex-solution">
+<button>
+Dashboard Code
+</button>
 <code style="font-size: smaller;">
 <pre>
 ---
-title: "Demo"
+title: "Flexdashboard Demo"
 output: 
   flexdashboard::flex_dashboard:
     social: [ "twitter", "facebook", "linkedin", "pinterest" ]
@@ -133,42 +312,113 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tidyverse)
+library(kableExtra)
+library(DT) # for interactive tables
+theme_set(theme_minimal())
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
+Column {data-width=350, .tabset}
+--------------------------------
 
-### Chart A
+### By Cut
+
+This table uses `kableExtra` to render the table with a specific theme.
 
 ```{r}
+diamonds %&gt;%
+  group_by(cut) %&gt;%
+  summarise(avg = mean(price),
+            .groups = "drop") %&gt;%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by cut.") %&gt;%
+  kable_classic()
+```
 
+### By Colour
+
+This table uses `DT::datatable()` to render the table with a searchable interface.
+
+```{r}
+diamonds %&gt;%
+  group_by(color) %&gt;%
+  summarise(avg = mean(price),
+            .groups = "drop") %&gt;%
+  DT::datatable(colnames = c("Colour", "Average Price"), 
+                caption = "Mean diamond price by colour",
+                options = list(pageLength = 5),
+                rownames = FALSE) %&gt;%
+  DT::formatRound(columns=2, digits=0)
 ```
 
 Column {data-width=350}
------------------------------------------------------------------------
+-----------------------
 
-### Chart B
+### By Clarity
 
-```{r}
-
+```{r by-clarity, fig.cap = "Diamond price by clarity"}
+ggplot(diamonds, aes(x = clarity, y = price)) +
+  geom_boxplot() 
 ```
 
-### Chart C
 
-```{r}
+### By Carats
 
+```{r by-carat, fig.cap = "Diamond price by carat"}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  stat_smooth()
 ```
 
 </pre>
 <p></p></code>
 </div>
-<div id="resources-present" class="section level2" number="10.5">
+<p>Change the size of your web browser to see how the boxes, tables and figures change.</p>
+<p>The best way to figure out how to format a dashboard is trial and error, but you can also look at some <a href="https://pkgs.rstudio.com/flexdashboard/articles/layouts.html" target="_blank">sample layouts</a>.</p>
+</div>
+<div id="other-formats" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">10.5</span> Resources<a class="anchor" aria-label="anchor" href="#resources-present"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> Other formats<a class="anchor" aria-label="anchor" href="#other-formats"><i class="fas fa-link"></i></a>
+</h2>
+<div id="books" class="section level3" number="10.5.1">
+<h3>
+<span class="header-section-number">10.5.1</span> Books<a class="anchor" aria-label="anchor" href="#books"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can create online books with <code class="package">bookdown</code>. In fact, the book you're reading was created using bookdown. After you download the package, start a new project and choose "Book project using bookdown" from the list of project templates.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:img-bookdown-template"></span>
+<img src="images/present/bookdown.png" alt="Bookdown project template." width="100%"><p class="caption">
+Figure 10.3: Bookdown project template.
+</p>
+</div>
+<p>Each chapter is written in a separate .Rmd file and the general book settings can be changed in the <code>_bookdown.yml</code> and <code>_output.yml</code> files.</p>
+</div>
+<div id="websites" class="section level3" number="10.5.2">
+<h3>
+<span class="header-section-number">10.5.2</span> Websites<a class="anchor" aria-label="anchor" href="#websites"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can create a simple website the same way you create any R Markdown document. Choose "Simple R Markdown Website" from the project templates to get started. See Appendix <a href="webpages.html#webpages">H</a> for a step-by-step tutorial.</p>
+<p>For more complex, blog-style websites, you can investigate <a href="https://bookdown.org/yihui/blogdown/"><code class="package">blogdown</code></a>. After you install this package, you will also be able to crate template blogdown projects to get you started.</p>
+</div>
+<div id="shiny" class="section level3" number="10.5.3">
+<h3>
+<span class="header-section-number">10.5.3</span> Shiny<a class="anchor" aria-label="anchor" href="#shiny"><i class="fas fa-link"></i></a>
+</h3>
+<p>To get truly interactive, you can take your R coding to the next level and learn Shiny. Shiny apps let your R code react to user input. You can do things like <a href="https://shiny.psy.gla.ac.uk/debruine/wordcloud/">make a word cloud</a>, <a href="https://shiny.psy.gla.ac.uk/debruine/seen/">search a google spreadsheet</a>, or <a href="https://shiny.psy.gla.ac.uk/debruine/question/">conduct a survey</a>.</p>
+<p>This is well outside the scope of this class, but the skills you've learned here provide a good start. The free book <a href="https://debruine.github.io/shinyintro/">Building Web Apps with R Shiny</a> by one of the authors of this book can get you started creating shiny apps.</p>
+</div>
+</div>
+<div id="resources-present" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> Resources<a class="anchor" aria-label="anchor" href="#resources-present"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://rmarkdown.rstudio.com/formats.html">RStudio Formats</a></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown-cookbook">R Markdown Cookbook</a></li>
 <li><a href="https://pkgs.rstudio.com/flexdashboard/">Flexdashboard</a></li>
+<li><a href="https://bookdown.org/yihui/bookdown/">Bookdown</a></li>
+<li><a href="https://bookdown.org/yihui/blogdown/">Blogdown</a></li>
+<li><a href="https://shiny.rstudio.com/">Shiny</a></li>
 </ul>
 </div>
 </div>
@@ -183,10 +433,23 @@ Column {data-width=350}
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#present"><span class="header-section-number">10</span> Advanced Reports</a></li>
 <li><a class="nav-link" href="#ilo-present"><span class="header-section-number">10.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#reports-1"><span class="header-section-number">10.2</span> Reports</a></li>
+<li>
+<a class="nav-link" href="#reports-1"><span class="header-section-number">10.2</span> Reports</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#word-documents"><span class="header-section-number">10.2.1</span> Word documents</a></li>
+<li><a class="nav-link" href="#pdf-documents"><span class="header-section-number">10.2.2</span> PDF documents</a></li>
+<li><a class="nav-link" href="#linked-documents"><span class="header-section-number">10.2.3</span> Linked documents</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#presentations"><span class="header-section-number">10.3</span> Presentations</a></li>
 <li><a class="nav-link" href="#dashboards"><span class="header-section-number">10.4</span> Dashboards</a></li>
-<li><a class="nav-link" href="#resources-present"><span class="header-section-number">10.5</span> Resources</a></li>
+<li>
+<a class="nav-link" href="#other-formats"><span class="header-section-number">10.5</span> Other formats</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#books"><span class="header-section-number">10.5.1</span> Books</a></li>
+<li><a class="nav-link" href="#websites"><span class="header-section-number">10.5.2</span> Websites</a></li>
+<li><a class="nav-link" href="#shiny"><span class="header-section-number">10.5.3</span> Shiny</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#resources-present"><span class="header-section-number">10.6</span> Resources</a></li>
 </ul>
 
       <div class="book-extra">

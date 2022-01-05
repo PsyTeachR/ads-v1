@@ -1,0 +1,47 @@
+---
+title: "Presentation Demo"
+author: "Lisa DeBruine"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(kableExtra)
+```
+
+## Slide with Markdown
+
+The following slides will present some data from the `diamonds` dataset from **ggplot2**.
+
+Diamond price depends on many features, such as:
+
+- cut
+- colour
+- clarity
+- carats
+
+## Slide with a Table
+
+```{r}
+diamonds %>%
+  group_by(cut, color) %>%
+  summarise(avg_price = mean(price),
+            .groups = "drop") %>%
+  pivot_wider(names_from = cut, values_from = avg_price) %>%
+  kable(digits = 0, caption = "Mean diamond price by cut and colour.") %>%
+  kable_material()
+```
+
+## Slide with a Plot
+
+```{r pressure}
+ggplot(diamonds, aes(x = cut, y = price, color = color)) +
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(aes(x = as.integer(cut)), 
+               fun = mean, geom = "line") +
+  scale_x_discrete(position = "top") +
+  scale_color_viridis_d(guide = guide_legend(reverse = TRUE)) +
+  theme_minimal() 
+```
+

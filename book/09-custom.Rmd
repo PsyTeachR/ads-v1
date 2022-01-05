@@ -76,7 +76,7 @@ If you're using a MacBook with a Retina display, you may notice that the figures
 
 ### Output 
 
-The option `out.width` controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with `fig.alig`.
+The option `out.width` controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with `fig.align`.
 
 ```{r, eval = FALSE, verbatim = "r, out.width = \"75%\", fig.align = \"center\""}
 bar
@@ -153,7 +153,7 @@ bar_econ + point_econ
 
 ### Interactive Plots
 
-Use the `r pkg("plotly")` package to make interactive graphs. Assign your ggplot to a variable and use the function `ggplotly()`.
+Use the `r pkg("plotly")` package to make interactive graphs. Assign your ggplot to a variable and use the function `ggplotly()`. Interactive plots only work in HTML files, not PDFs or Word files.
 
 ```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
 ggplotly(point_econ)

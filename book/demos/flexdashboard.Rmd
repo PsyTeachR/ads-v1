@@ -1,5 +1,5 @@
 ---
-title: "Demo"
+title: "Flexdashboard Demo"
 output: 
   flexdashboard::flex_dashboard:
     social: [ "twitter", "facebook", "linkedin", "pinterest" ]
@@ -10,29 +10,61 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tidyverse)
+library(kableExtra)
+library(DT) # for interactive tables
+theme_set(theme_minimal())
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
+Column {data-width=350, .tabset}
+--------------------------------
 
-### Chart A
+### By Cut
+
+This table uses `kableExtra` to render the table with a specific theme.
 
 ```{r}
+diamonds %>%
+  group_by(cut) %>%
+  summarise(avg = mean(price),
+            .groups = "drop") %>%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by cut.") %>%
+  kable_classic()
+```
 
+### By Colour
+
+This table uses `DT::datatable()` to render the table with a searchable interface.
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(avg = mean(price),
+            .groups = "drop") %>%
+  DT::datatable(colnames = c("Colour", "Average Price"), 
+                caption = "Mean diamond price by colour",
+                options = list(pageLength = 5),
+                rownames = FALSE) %>%
+  DT::formatRound(columns=2, digits=0)
 ```
 
 Column {data-width=350}
------------------------------------------------------------------------
+-----------------------
 
-### Chart B
+### By Clarity
 
-```{r}
-
+```{r by-clarity, fig.cap = "Diamond price by clarity"}
+ggplot(diamonds, aes(x = clarity, y = price)) +
+  geom_boxplot() 
 ```
 
-### Chart C
 
-```{r}
+### By Carats
 
+```{r by-carat, fig.cap = "Diamond price by carat"}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  stat_smooth()
 ```
 

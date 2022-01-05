@@ -1,0 +1,67 @@
+---
+title: "Linked Document Demo"
+output: 
+  bookdown::html_document2:
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(tidyverse)
+library(kableExtra)
+theme_set(theme_minimal())
+```
+
+Diamond price depends on many features, such as:
+
+- cut (See Table\ \@ref(tab:by-cut))
+- colour (See Table\ \@ref(tab:by-colour))
+- clarity (See Figure\ \@ref(fig:by-clarity))
+- carats (See Figure\ \@ref(fig:by-carat))
+
+## Tables
+
+### Cut
+
+```{r by-cut}
+diamonds %>%
+  group_by(cut) %>%
+  summarise(avg = mean(price),
+            .groups = "drop") %>%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by cut.") %>%
+  kable_material()
+```
+
+### Colour
+
+```{r by-colour}
+diamonds %>%
+  group_by(color) %>%
+  summarise(avg = mean(price),
+            .groups = "drop") %>%
+  kable(digits = 0, 
+        col.names = c("Cut", "Average Price"),
+        caption = "Mean diamond price by colour.") %>%
+  kable_material()
+```
+
+## Plots
+
+### Clarity
+
+```{r by-clarity, fig.cap = "Diamond price by clarity"}
+ggplot(diamonds, aes(x = clarity, y = price)) +
+  geom_boxplot() 
+```
+
+### Carats
+
+```{r by-carat, fig.cap = "Diamond price by carat"}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  stat_smooth()
+```
+

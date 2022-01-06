@@ -308,9 +308,16 @@ reports-1
 word-documents
 pdf-documents
 linked-documents
+references
+creating-a-bibtex-file
+adding-references
+citing-references
+citation-styles
+reference-section
+interactive-tables
+other-formats
 presentations
 dashboards
-other-formats
 books
 websites
 shiny

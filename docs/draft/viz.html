@@ -23,7 +23,10 @@
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -75,7 +78,7 @@
 <li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
 <li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -114,8 +117,8 @@
 </li>
 <li>Save it inside your ADS directory.</li>
 </ul>
-<p>Then, create and save a new R Markdown document named <code>plots.Rmd</code>, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message <code>Error in library(x) : there is no package called ‘x’</code>, please refer to Chapter <a href="intro.html#install-package">1.6.1</a>.</p>
-<p>We'd recommend making a new code for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.</p>
+<p>Then, create and save a new <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a> document named <code>plots.Rmd</code>, get rid of the default template text, and load the above packages in the set-up code <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">chunk</a>. You should have all of these packages installed already, but if you get the message <code>Error in library(x) : there is no package called ‘x’</code>, please refer to Chapter <a href="intro.html#install-package">1.6.1</a>.</p>
+<p>We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.</p>
 </div>
 <div id="variable-types" class="section level2" number="3.3">
 <h2>
@@ -260,8 +263,8 @@ Figure 3.1: Data types are like the categories when you format cells in Excel.
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-05"
-## [1] "2022-01-05 16:34:29 GMT"</code></pre>
+<pre><code>## [1] "2022-01-06"
+## [1] "2022-01-06 12:24:42 GMT"</code></pre>
 </div>
 <div id="test-your-understanding" class="section level3" number="3.3.4">
 <h3>
@@ -1462,7 +1465,7 @@ Figure 3.27: A histogram with facets.
 <h3>
 <span class="header-section-number">3.6.6</span> Change the output<a class="anchor" aria-label="anchor" href="#change-the-output"><i class="fas fa-link"></i></a>
 </h3>
-<p>So far we've just knitted to html. To generate PDF reports, you need to install <code class="package">tinytex</code> <span class="citation">(<a href="references.html#ref-R-tinytex" role="doc-biblioref">Xie, 2021</a>)</span> and run the following code:</p>
+<p>So far we've just knitted to html. To generate PDF reports, you need to install <code class="package">tinytex</code> <span class="citation">(<a href="references-1.html#ref-R-tinytex" role="doc-biblioref">Xie, 2021</a>)</span> and run the following code:</p>
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># run this in the console</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span>
@@ -1526,6 +1529,14 @@ Data that can only take certain values, such as types of pet.
 </td>
 <td style="text-align:left;">
 A data type representing strings of text.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/c.html#chunk" class="glossary" target="_blank">chunk</a>
+</td>
+<td style="text-align:left;">
+A section of code in an R Markdown file
 </td>
 </tr>
 <tr>
@@ -1650,6 +1661,14 @@ A data point that is extremely distant from most of the other data points
 </tr>
 <tr>
 <td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/r.html#r-markdown" class="glossary" target="_blank">r markdown</a>
+</td>
+<td style="text-align:left;">
+The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://psyteachr.github.io/glossary/s.html#string" class="glossary" target="_blank">string</a>
 </td>
 <td style="text-align:left;">
@@ -1689,7 +1708,7 @@ A type of data structure that collects values with the same data type, like T/F 
 </h2>
 <ul>
 <li>
-<a href="https://psyteachr.github.io/introdataviz/">Data visualisation using R, for researchers who don't use R</a> <span class="citation">(<a href="references.html#ref-nordmann_2021" role="doc-biblioref">Nordmann et al., 2021</a>)</span>
+<a href="https://psyteachr.github.io/introdataviz/">Data visualisation using R, for researchers who don't use R</a> <span class="citation">(<a href="references-1.html#ref-nordmann_2021" role="doc-biblioref">Nordmann et al., 2021</a>)</span>
 </li>
 <li>
 <a href="http://r4ds.had.co.nz/data-visualisation.html">Chapter 3: Data Visualisation</a> of <em>R for Data Science</em>
@@ -1971,7 +1990,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-05.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -55,8 +55,131 @@ readLines("demos/html_document2.Rmd") %>%
 
 This format defaults to numbered sections, so set `number_sections: false` in the `r glossary("YAML")` header if you don't want this.
 
+### References
 
-## Presentations
+There are several ways to do in-text references and automatically generate a [bibliography](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html){target="_blank"} in R Markdown. Markdown files need to link to a BibTex file (a plain text file with references in a specific format) that contains the references you need to cite. You specify the name of this file in the YAML header, like `bibliography: filename.bib` and cite references in text using an at symbol and a shortname, like `[@tidyverse]`.
+
+#### Creating a BibTeX file
+
+Most reference software like EndNote, Zotero or Mendeley have exporting options that can export to BibTeX format. You just need to check the shortnames in the resulting file.
+
+You can also make a BibTeX file and add references manually. In RStudio, go to **`File`** > **`New File...`** > **`Text File`** and save the file as "bibliography.bib".
+
+Next, add the line `bibliography: bibliography.bib` to your YAML header.
+
+#### Adding references
+
+You can add references to a journal article in the following format:
+
+```
+@article{shortname,
+  author = {Author One and Author Two and Author Three},
+  title = {Paper Title},
+  journal = {Journal Title},
+  volume = {vol},
+  number = {issue},
+  pages = {startpage--endpage},
+  year = {year},
+  doi = {doi}
+}
+```
+
+See [A complete guide to the BibTeX format](https://www.bibtex.com/g/bibtex-format/){target="_blank"} for instructions on citing books, techincal reports, and more.
+
+You can get the reference for an R package using the functions `citation()` and `toBibtex()`. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., "ggplot2") before the first comma to refer to the reference.
+
+```{r}
+citation(package="ggplot2") %>% toBibtex()
+```
+
+
+[Google Scholar](https://scholar.google.com/) entries have a BibTeX citation option. This is usually the easiest way to get the relevant values, although you have to add the DOI yourself. You can keep the suggested shortname or change it to something that makes more sense to you.
+
+#### Citing references
+
+You can cite references in text like this: 
+
+```
+This tutorial uses several R packages [@tidyverse;@rmarkdown].
+```
+
+This tutorial uses several R packages [@tidyverse;@rmarkdown].
+
+Put a minus in front of the @ if you just want the year:
+
+```
+Franconeri and colleagues [-@franconeri2021science] review research-backed guidelines for creating effective and intuitive visualizations.
+```
+
+Franconeri and colleagues [-@franconeri2021science] review research-backed guidelines for creating effective and intuitive visualizations.
+
+
+If you want to add an item to the reference section without citing it, add it to the YAML header like this:
+
+```
+nocite: |
+  @ref1, @ref2, @ref3
+```
+
+Or add all of the items in the .bib file like this:
+
+```
+nocite: '@*'
+```
+
+#### Citation styles
+
+You can search a [list of style files](https://www.zotero.org/styles){target="_blank"} (e.g., APA, MLA, Harvard) and download a file that will format your bibliography. You'll need to add the line `csl: filename.csl` to your YAML header. 
+
+#### Reference section
+
+By default, the reference section is added to the end of the document. If you want to change the position (e.g., to add figures and tables after the references), include `<div id="refs"></div>` where you want the references. 
+
+### Interactive tables
+
+One way to make your reports more exciting is to use interactive tables. The `DT::datatable()` function displays a table with some extra interactive elements to allow readers to search and reorder the data, as well as controlling the number of rows shown at once. This can be especially helpful. This only works with HTML output types. The [DT website](https://rstudio.github.io/DT/){target="_blank"} has extensive tutorials, but we'll cover the basics here.
+
+```{r}
+library(DT)
+
+scotpop <- read_csv("data/scottish_population.csv", 
+                    show_col_types = FALSE)
+
+datatable(data = scotpop)
+```
+
+
+You can customise the display, such as changing column names, adding a caption, moving the location of the filter boxes, removing row names, applying [classes](https://datatables.net/manual/styling/classes){target="_blank"} to change table appearance, and applying [advanced options](https://datatables.net/reference/option/){target="_blank"}.
+
+```{r}
+# https://datatables.net/reference/option/
+my_options <- list(
+  pageLength = 5, # how many rows are displayed
+  lengthChange = FALSE, # whether pageLength can change
+  info = TRUE, # text with the total number of rows
+  paging = TRUE, # if FALSE, the whole table displays
+  ordering = FALSE, # whether you can reorder columns
+  searching = FALSE # whether you can search the table
+)
+
+datatable(
+  data = scotpop,
+  colnames = c("County", "Population"),
+  caption = "The population of Scottish counties.",
+  filter = "none", # "none", "bottom" or "top"
+  rownames = FALSE, # removes the number at the left
+  class = "cell-border hover stripe", # default is "display"
+  options = my_options
+)
+```
+
+
+
+## Other formats
+
+You can create more than just reports with R Markdown. You can also create presentations, interactive dashboards, books, websites, and web applications.
+
+### Presentations
 
 You can choose a presentation template when you create a new R Markdown document. We'll use ioslides for this example, but the other formats work similarly.
 
@@ -78,7 +201,7 @@ readLines("demos/ioslides.Rmd") %>%
 ```
 
 
-## Dashboards
+### Dashboards
 
 Dashboards are a way to display text, tables, and plots with dynamic formatting. After you install `r pkg("flexdashboard")`, you can choose a flexdashboard template when you create a new R Markdown document. 
 
@@ -98,8 +221,6 @@ readLines("demos/flexdashboard.Rmd") %>%
 Change the size of your web browser to see how the boxes, tables and figures change.
 
 The best way to figure out how to format a dashboard is trial and error, but you can also look at some [sample layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html){target="_blank"}.
-
-## Other formats
 
 ### Books
 
@@ -123,15 +244,16 @@ To get truly interactive, you can take your R coding to the next level and learn
 
 This is well outside the scope of this class, but the skills you've learned here provide a good start. The free book [Building Web Apps with R Shiny](https://debruine.github.io/shinyintro/) by one of the authors of this book can get you started creating shiny apps.
 
-## Resources {#resources-present}
+## Further resources {#resources-present}
 
 * [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
 * [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook)
+* [DT](https://rstudio.github.io/DT/)
 * [Flexdashboard](https://pkgs.rstudio.com/flexdashboard/)
 * [Bookdown](https://bookdown.org/yihui/bookdown/)
 * [Blogdown](https://bookdown.org/yihui/blogdown/)
 * [Shiny](https://shiny.rstudio.com/)
-
+* [Building Web Apps with R Shiny](https://debruine.github.io/shinyintro/)
 
 
 

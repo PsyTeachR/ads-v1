@@ -1,7 +1,7 @@
 character,factor,integer,double,logical,date
-A,high,1,1.5,TRUE,2022-01-05
-B,low,2,2.5,TRUE,2022-01-04
-C,med,3,3.5,FALSE,2022-01-03
-D,high,4,4.5,FALSE,2022-01-02
-E,low,5,5.5,,2022-01-01
-F,med,6,6.5,TRUE,2021-12-31
+A,high,1,1.5,TRUE,2022-01-06
+B,low,2,2.5,TRUE,2022-01-05
+C,med,3,3.5,FALSE,2022-01-04
+D,high,4,4.5,FALSE,2022-01-03
+E,low,5,5.5,,2022-01-02
+F,med,6,6.5,TRUE,2022-01-01

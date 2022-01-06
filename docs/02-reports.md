@@ -180,7 +180,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 354 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 353 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -501,6 +501,10 @@ The appearance and placement of the table caption depends on the type of documen
 
 If you're feeling confident with what we have covered so far, the [kableExtra vignette](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html){target="_blank"} gives a lot more detail on how you can edit your tables using `kableExtra`. 
 
+::: {.try data-latex=""}
+You can also explore the [gt](https://gt.rstudio.com/){target="_blank"} package, which is complex, but allows you to create beautiful customised tables. [Riding tables with {gt} and {gtExtras}](https://bjnnowak.netlify.app/2021/10/04/r-beautiful-tables-with-gt-and-gtextras/){target="_blank"} is an outstanding tutorial.
+:::
+
 ## Refining your report
 
 ### Chunk defaults {#rmd-setup}
@@ -712,6 +716,7 @@ As you continue to work through the book you will learn how to wrangle and analy
 -   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
 -   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
 -   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+-   [gt](https://gt.rstudio.com/)
 
 ## Exercises {#exercises-reports}
 

@@ -24,9 +24,9 @@ Create a new project for the work we'll do in this chapter:
 -   Name the project <code class='path'>03-visualisation</code>
 -   Save it inside your ADS directory.
 
-Then, create and save a new R Markdown document named `plots.Rmd`, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
+Then, create and save a new <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> document named `plots.Rmd`, get rid of the default template text, and load the above packages in the set-up code <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a>. You should have all of these packages installed already, but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
 
-We'd recommend making a new code for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
+We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 
 ## Variable Types
 
@@ -119,8 +119,8 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2022-01-05"
-## [1] "2022-01-05 16:34:29 GMT"
+## [1] "2022-01-06"
+## [1] "2022-01-06 12:24:42 GMT"
 ```
 
 ### Test your understanding
@@ -1281,6 +1281,10 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
    <td style="text-align:left;"> A data type representing strings of text. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [chunk](https://psyteachr.github.io/glossary/c.html#chunk){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A section of code in an R Markdown file </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [continuous](https://psyteachr.github.io/glossary/c.html#continuous){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Data that can take on any values between other existing values. </td>
   </tr>
@@ -1339,6 +1343,10 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
   <tr>
    <td style="text-align:left;"> [outlier](https://psyteachr.github.io/glossary/o.html#outlier){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A data point that is extremely distant from most of the other data points </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [r markdown](https://psyteachr.github.io/glossary/r.html#r-markdown){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [string](https://psyteachr.github.io/glossary/s.html#string){class="glossary" target="_blank"} </td>

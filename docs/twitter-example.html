@@ -106,7 +106,7 @@
 <p>The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper <code>starts_with()</code> to get all the columns that start with <code><span class="st">"promoted"</span></code> and remove them by prefacing the function with <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. Now there should be 20 columns, which we can inspect with <code>glimpse()</code>.</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 31
 ## Columns: 20
@@ -158,7 +158,7 @@ Figure G.1: Likes per day.
 <p>What if we want to plot likes, retweets, and replies on the same plot? We need to get all of the numbers in the same column and a column that contains the "engagement type" that we can use to determine different line colours. When you have data in different columns that you need to get into the same column, it's wide and you need to pivot the data longer.</p>
 <div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">long_tweets</span> <span class="op">&lt;-</span> <span class="va">daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span>,
                names_to <span class="op">=</span> <span class="st">"engage_type"</span>,
                values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
@@ -279,10 +279,10 @@ Figure G.2: Engagements per day by engagement type.
   pattern <span class="op">=</span> <span class="st">"daily_tweet_activity_metrics"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
-<p>Then use <code>map_df()</code> to iterate over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> function to get rid of the "promoted" columns.</p>
+<p>Then use <code>map_df()</code> to iterate over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code>select()</code> function to get rid of the "promoted" columns.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now you can make a plot of likes per day for all of the months.</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -301,14 +301,14 @@ Figure G.2: Engagements per day by engagement type.
 <h3>
 <span class="header-section-number">G.2.1</span> Likes by Month<a class="anchor" aria-label="anchor" href="#likes-by-month"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you want to plot likes by month, first you need a column for the month. Use <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to make a new column, using <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
-<p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> function causes all of the subsequent functions to operate inside of groups, until you call <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
+<p>If you want to plot likes by month, first you need a column for the month. Use <code>mutate()</code> to make a new column, using <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
+<p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code>group_by()</code> function causes all of the subsequent functions to operate inside of groups, until you call <code>ungroup()</code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_by_month</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">likes_by_month</span></code></pre></div>
 <div class="kable-table">
@@ -429,11 +429,11 @@ Summarise Data
 </button>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_by_week</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>start_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span>,
+  <span class="fu">mutate</span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>start_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span>,
             total_tweets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">`Tweets published`</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="webex-solution">
 <button>
@@ -470,8 +470,8 @@ Plot Data
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span><span class="st">"Tweet id"</span> <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">map_df</span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  <span class="fu">select</span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
          hour <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div id="impressions-per-tweet" class="section level3" number="9.3.1">
 <h3>
@@ -550,13 +550,13 @@ Figure G.4: Impressions per tweet per month.
 <p>Then join the <code>sun</code> table and create a <code>timeofday</code> column that equals "day" if the sun is up and "night" if the sun has set.</p>
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sun_tweets</span> <span class="op">&lt;-</span> <span class="va">all_tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>Day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/date.html">date</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span>,
+  <span class="fu">select</span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>Day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/date.html">date</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span>,
          hour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span>, 
                        levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span><span class="op">:</span><span class="fl">23</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>,
          tweet_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">left_join</span><span class="op">(</span><span class="va">sun</span>, by <span class="op">=</span> <span class="st">"Day"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>timeofday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">tweet_time</span><span class="op">&gt;</span><span class="va">RiseTime</span> <span class="op">&amp;</span> 
+  <span class="fu">mutate</span><span class="op">(</span>timeofday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">tweet_time</span><span class="op">&gt;</span><span class="va">RiseTime</span> <span class="op">&amp;</span> 
                             <span class="va">tweet_time</span><span class="op">&lt;</span><span class="va">SetTime</span>, 
                             yes <span class="op">=</span> <span class="st">"day"</span>, 
                             no <span class="op">=</span> <span class="st">"night"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -591,22 +591,22 @@ timeofday
 <tbody>
 <tr>
 <td style="text-align:left;">
-2021-09-17 16:05:00
+2021-07-12 12:58:00
 </td>
 <td style="text-align:left;">
-2021-09-17
+2021-07-12
 </td>
 <td style="text-align:left;">
-16
+12
 </td>
 <td style="text-align:right;">
-16.083333
+12.966667
 </td>
 <td style="text-align:right;">
-5.867
+3.837
 </td>
 <td style="text-align:right;">
-18.459
+20.871
 </td>
 <td style="text-align:left;">
 day
@@ -614,22 +614,45 @@ day
 </tr>
 <tr>
 <td style="text-align:left;">
-2021-04-30 08:01:00
+2021-03-26 11:34:00
 </td>
 <td style="text-align:left;">
-2021-04-30
+2021-03-26
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+11.566667
+</td>
+<td style="text-align:right;">
+6.039
+</td>
+<td style="text-align:right;">
+18.700
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-07-27 08:58:00
+</td>
+<td style="text-align:left;">
+2021-07-27
 </td>
 <td style="text-align:left;">
 8
 </td>
 <td style="text-align:right;">
-8.016667
+8.966667
 </td>
 <td style="text-align:right;">
-4.599
+4.229
 </td>
 <td style="text-align:right;">
-19.862
+20.501
 </td>
 <td style="text-align:left;">
 day
@@ -637,22 +660,22 @@ day
 </tr>
 <tr>
 <td style="text-align:left;">
-2021-05-29 15:47:00
+2021-04-27 15:33:00
 </td>
 <td style="text-align:left;">
-2021-05-29
+2021-04-27
 </td>
 <td style="text-align:left;">
 15
 </td>
 <td style="text-align:right;">
-15.783333
+15.550000
 </td>
 <td style="text-align:right;">
-3.742
+4.712
 </td>
 <td style="text-align:right;">
-20.720
+19.763
 </td>
 <td style="text-align:left;">
 day
@@ -660,22 +683,22 @@ day
 </tr>
 <tr>
 <td style="text-align:left;">
-2021-05-06 12:36:00
+2021-04-15 08:32:00
 </td>
 <td style="text-align:left;">
-2021-05-06
+2021-04-15
 </td>
 <td style="text-align:left;">
-12
+8
 </td>
 <td style="text-align:right;">
-12.600000
+8.533333
 </td>
 <td style="text-align:right;">
-4.384
+5.190
 </td>
 <td style="text-align:right;">
-20.057
+19.365
 </td>
 <td style="text-align:left;">
 day
@@ -683,22 +706,45 @@ day
 </tr>
 <tr>
 <td style="text-align:left;">
-2021-09-24 06:25:00
+2021-08-04 20:23:00
 </td>
 <td style="text-align:left;">
-2021-09-24
+2021-08-04
 </td>
 <td style="text-align:left;">
-6
+20
 </td>
 <td style="text-align:right;">
-6.416667
+20.383333
 </td>
 <td style="text-align:right;">
-6.090
+4.470
 </td>
 <td style="text-align:right;">
-18.154
+20.244
+</td>
+<td style="text-align:left;">
+night
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-10-24 10:32:00
+</td>
+<td style="text-align:left;">
+2021-10-24
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+10.533333
+</td>
+<td style="text-align:right;">
+7.084
+</td>
+<td style="text-align:right;">
+16.906
 </td>
 <td style="text-align:left;">
 day
@@ -706,114 +752,68 @@ day
 </tr>
 <tr>
 <td style="text-align:left;">
-2021-09-30 12:36:00
+2021-08-28 09:53:00
+</td>
+<td style="text-align:left;">
+2021-08-28
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+9.883333
+</td>
+<td style="text-align:right;">
+5.232
+</td>
+<td style="text-align:right;">
+19.318
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-05 15:26:00
+</td>
+<td style="text-align:left;">
+2021-06-05
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:right;">
+15.433333
+</td>
+<td style="text-align:right;">
+3.627
+</td>
+<td style="text-align:right;">
+20.868
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-09-30 07:38:00
 </td>
 <td style="text-align:left;">
 2021-09-30
 </td>
 <td style="text-align:left;">
-12
+7
 </td>
 <td style="text-align:right;">
-12.600000
+7.633333
 </td>
 <td style="text-align:right;">
 6.283
 </td>
 <td style="text-align:right;">
 17.894
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-02-16 09:47:00
-</td>
-<td style="text-align:left;">
-2021-02-16
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:right;">
-9.783333
-</td>
-<td style="text-align:right;">
-7.620
-</td>
-<td style="text-align:right;">
-17.395
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-02-12 13:50:00
-</td>
-<td style="text-align:left;">
-2021-02-12
-</td>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:right;">
-13.833333
-</td>
-<td style="text-align:right;">
-7.769
-</td>
-<td style="text-align:right;">
-17.252
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-07-19 12:17:00
-</td>
-<td style="text-align:left;">
-2021-07-19
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:right;">
-12.283333
-</td>
-<td style="text-align:right;">
-4.007
-</td>
-<td style="text-align:right;">
-20.720
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-02-07 10:14:00
-</td>
-<td style="text-align:left;">
-2021-02-07
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-10.233333
-</td>
-<td style="text-align:right;">
-7.945
-</td>
-<td style="text-align:right;">
-17.072
 </td>
 <td style="text-align:left;">
 day
@@ -1093,7 +1093,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-05.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

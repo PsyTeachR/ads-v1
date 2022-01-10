@@ -85,9 +85,7 @@ rmd-setup
 override-defaults
 loading-packages
 yaml
-chapter-summary
-glossary-reports
-resources-reports
+summary
 exercises-reports
 exercises-reports-project
 exercises-reports-setup
@@ -96,6 +94,8 @@ exercises-reports-tables
 exercises-reports-images
 exercises-reports-inline
 exercises-reports-knit
+glossary-reports
+resources-reports
 installing-r
 installing-base-r
 installing-rstudio

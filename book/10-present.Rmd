@@ -3,7 +3,7 @@
 ## Intended Learning Outcomes {#ilo-present}
 
 * Structure data in report, presentation, and dashboard formats
-* Include linked figure and table captions in longer reports
+* Include linked figures, tables, and references
 
 ```{r setup-present, message=FALSE}
 library(tidyverse)     # data wrangling functions

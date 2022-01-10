@@ -357,7 +357,7 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Further Resources {#resources-intro}
 
-* [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+* [RStudio IDE Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf)
 * [RStudio Cloud](https://rstudio.cloud/){target="_blank"}
 
 

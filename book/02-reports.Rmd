@@ -562,29 +562,11 @@ Error in yaml::yaml.load(..., eval.expr = TRUE) :
 The error message will tell you exactly where the problem is (the second character of the second line of the YAML header), and it's usually a matter of fixing typos or making sure that the indenting is exactly right.
 :::
 
-## Chapter summary
+### Summary
 
-This chapter covered a lot but hopefully now you have a much better idea of what Markdown is able to do. Whilst working in Markdown takes longer in the initial set-up stage, once you have a fully reproducible report you can plug in new data each week or month and simply click knit, reducing duplication of effort, and the human error that comes with it.
+This chapter has covered a lot but hopefully now you have a much better idea of what Markdown is able to do. Whilst working in Markdown takes longer in the initial set-up stage, once you have a fully reproducible report you can plug in new data each week or month and simply click knit, reducing duplication of effort, and the human error that comes with it.
 
 As you continue to work through the book you will learn how to wrangle and analyse your data and how to use Markdown to present it. We'll slowly build on the available customisation options so over the course of next few weeks, you'll find your Markdown reports start to look more polished and professional.
-
-## Glossary {#glossary-reports}
-
-`r glossary_table()`
-
-## Further Resources {#resources-reports}
-
--   [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet)
-<!--
--   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
--->
--   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
--   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
--   [Chapter 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html) of *R for Data Science*
--   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
--   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
--   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
--   [gt](https://gt.rstudio.com/)
 
 ## Exercises {#exercises-reports}
 
@@ -710,6 +692,23 @@ knitr::knit2html("job.Rmd")
 
 `r unhide()`
 
+## Glossary {#glossary-reports}
+
+`r glossary_table()`
+
+## Further Resources {#resources-reports}
+
+-   [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet)
+<!--
+-   [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+-->
+-   [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+-   [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, & Garrett Grolemund
+-   [Chapter 27: R Markdown](https://r4ds.had.co.nz/r-markdown.html) of *R for Data Science*
+-   [Project Structure](https://slides.djnavarro.net/project-structure/) by Danielle Navarro
+-   [How to name files](https://speakerdeck.com/jennybc/how-to-name-files) by Jenny Bryan
+-   [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+-   [gt](https://gt.rstudio.com/)
 
 
 

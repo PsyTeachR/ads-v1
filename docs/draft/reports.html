@@ -19,11 +19,11 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
@@ -275,7 +275,7 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 353 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 349 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -295,7 +295,7 @@ Figure 2.5: Slightly better method of running code
 </h3>
 <p>First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.</p>
 <ul>
-<li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> function to load it in.</li>
+<li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> function to load it in.</li>
 <li>The package <code>readr</code> is part of the <code>tidyverse</code> that you installed in Chapter <a href="intro.html#intro">1</a> and we load this package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><br>
 </li>
 <li>Note that the url is contained within double quotation marks - it won't work without this.</li>
@@ -303,7 +303,7 @@ Figure 2.5: Slightly better method of running code
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Data from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
 <p>This dataset is simulated sales data for different types of vehicles where each line of data is a single order. There are multiple ways to view and check a dataset in R. Do each of the following and make a note of what information each approach seems to give you. If you'd like more information about each of these functions, you can look up the help documentation with <code>?function</code>:</p>
 <ul>
 <li>Click on the <code>sales_online</code> object in the environment pane</li>
@@ -346,13 +346,13 @@ Figure 2.5: Slightly better method of running code
 <h3>
 <span class="header-section-number">2.5.1</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"><i class="fas fa-link"></i></a>
 </h3>
-<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter <a href="viz.html#summary">3.6.2</a>. For now, see if you can follow the logic of what the code is doing via the code comments.</p>
+<p>For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter <a href="reports.html#summary">2.6.5</a>. For now, see if you can follow the logic of what the code is doing via the code comments.</p>
 <p>Create a new code chunk, then copy, paste and run the following code and then view <code>sales_counts</code> by clicking on the object in the environment pane.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
 <span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
   <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># count how many are in each PRODUCTLINE</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span></code></pre></div>
 <p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>
@@ -744,13 +744,190 @@ Figure 2.11: Light themes in versions 3 and 4.
 <p>The error message will tell you exactly where the problem is (the second character of the second line of the YAML header), and it's usually a matter of fixing typos or making sure that the indenting is exactly right.</p>
 </div>
 </div>
-</div>
-<div id="chapter-summary" class="section level2" number="2.7">
-<h2>
-<span class="header-section-number">2.7</span> Chapter summary<a class="anchor" aria-label="anchor" href="#chapter-summary"><i class="fas fa-link"></i></a>
-</h2>
-<p>This chapter covered a lot but hopefully now you have a much better idea of what Markdown is able to do. Whilst working in Markdown takes longer in the initial set-up stage, once you have a fully reproducible report you can plug in new data each week or month and simply click knit, reducing duplication of effort, and the human error that comes with it.</p>
+<div id="summary" class="section level3" number="2.6.5">
+<h3>
+<span class="header-section-number">2.6.5</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h3>
+<p>This chapter has covered a lot but hopefully now you have a much better idea of what Markdown is able to do. Whilst working in Markdown takes longer in the initial set-up stage, once you have a fully reproducible report you can plug in new data each week or month and simply click knit, reducing duplication of effort, and the human error that comes with it.</p>
 <p>As you continue to work through the book you will learn how to wrangle and analyse your data and how to use Markdown to present it. We'll slowly build on the available customisation options so over the course of next few weeks, you'll find your Markdown reports start to look more polished and professional.</p>
+</div>
+</div>
+<div id="exercises-reports" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-reports"><i class="fas fa-link"></i></a>
+</h2>
+<p>Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful, but spreading out your practice will help you learn more in the long run.</p>
+<div id="exercises-reports-project" class="section level3" number="2.7.1">
+<h3>
+<span class="header-section-number">2.7.1</span> New project<a class="anchor" aria-label="anchor" href="#exercises-reports-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a new project called "demo_report" [<a href="reports.html#projects">2.2</a>]</p>
+</div>
+<div id="exercises-reports-setup" class="section level3" number="2.7.2">
+<h3>
+<span class="header-section-number">2.7.2</span> New script<a class="anchor" aria-label="anchor" href="#exercises-reports-setup"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [<a href="reports.html#rmarkdown">2.3</a>]. Edit the YAML header to output tables using kable and set a custom theme [<a href="reports.html#yaml">2.6.4</a>].</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<pre><code>---
+title: "My Job"
+author: "Me"
+output:
+  html_document:
+    df_print: kable
+    theme: 
+      version: 4
+      bootswatch: sandstone
+---</code></pre>
+</div>
+</div>
+<div id="exercises-reports-rmarkdown" class="section level3" number="2.7.3">
+<h3>
+<span class="header-section-number">2.7.3</span> R Markdown<a class="anchor" aria-label="anchor" href="#exercises-reports-rmarkdown"><i class="fas fa-link"></i></a>
+</h3>
+<p>Write a short paragraph describing your job or a job you might like to have in the future [<a href="reports.html#markdown">2.5.2</a>]. Include a bullet-point list of links to websites that are useful for that job [<a href="reports.html#markdown">2.5.2</a>].</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<pre><code>I am a research psychologist who is interested in open science 
+and teaching computational skills.
+
+* [psyTeachR books](https://psyteachr.github.io/)
+* [Google Scholar](https://scholar.google.com/)</code></pre>
+</div>
+</div>
+<div id="exercises-reports-tables" class="section level3" number="2.7.4">
+<h3>
+<span class="header-section-number">2.7.4</span> Tables<a class="anchor" aria-label="anchor" href="#exercises-reports-tables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use the following code to load a small table of tasks [<a href="reports.html#code-chunks">2.3.2</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
+  <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
+  <span class="st">"Create a twitter poll"</span>, <span class="st">"social media"</span>, <span class="st">"weekly"</span>,
+  <span class="st">"Make the sales report"</span>, <span class="st">"reporting"</span>,    <span class="st">"montly"</span>
+<span class="op">)</span></code></pre></div>
+<p>Figure out how to make it so that code chunks don't show in your knitted document [<a href="reports.html#rmd-setup">2.6.1</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>You can set the default to <code>echo = FALSE</code> in the setup chunk at the top of the script.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>To set visibility for a specific code chunk, put <code>echo = FALSE</code> inside the curly brackets.</p>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r, echo=FALSE}</code></pre>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># code to hide</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
+</div>
+<p>Display the table with purple italic column headers. Try different styles using <code class="package">kableExtra</code> [<a href="reports.html#rmd-tables">2.5.5</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<thead><tr>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+task
+</th>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+category
+</th>
+<th style="text-align:left;font-style: italic;color: purple !important;">
+frequency
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Respond to tweets
+</td>
+<td style="text-align:left;">
+social media
+</td>
+<td style="text-align:left;">
+daily
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Create a twitter poll
+</td>
+<td style="text-align:left;">
+social media
+</td>
+<td style="text-align:left;">
+weekly
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Make the sales report
+</td>
+<td style="text-align:left;">
+reporting
+</td>
+<td style="text-align:left;">
+montly
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="exercises-reports-images" class="section level3" number="2.7.5">
+<h3>
+<span class="header-section-number">2.7.5</span> Images<a class="anchor" aria-label="anchor" href="#exercises-reports-images"><i class="fas fa-link"></i></a>
+</h3>
+<p>Add an image of anything relevant [<a href="reports.html#rmd-images">2.5.4</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>You can add an image from the web using its URL:</p>
+<p><code>![Applied Data Skills](https://psyteachr.github.io/ads-v1/images/logos/logo.png)</code></p>
+<p>Or save an image into your project directory (e.g., in the images folder) and add it using the relative path:</p>
+<p><code>![Applied Data Skills](images/logos/logo.png)</code></p>
+</div>
+</div>
+<div id="exercises-reports-inline" class="section level3" number="2.7.6">
+<h3>
+<span class="header-section-number">2.7.6</span> Inline R<a class="anchor" aria-label="anchor" href="#exercises-reports-inline"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>This report was created using <code>`r R.version.string`</code>.</p>
+</div>
+</div>
+<div id="exercises-reports-knit" class="section level3" number="2.7.7">
+<h3>
+<span class="header-section-number">2.7.7</span> Knit<a class="anchor" aria-label="anchor" href="#exercises-reports-knit"><i class="fas fa-link"></i></a>
+</h3>
+<p>Knit this document to html [<a href="reports.html#rmd-knit">2.3.5</a>]</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"job.Rmd"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
 </div>
 <div id="glossary-reports" class="section level2" number="2.8">
 <h2>
@@ -849,184 +1026,6 @@ A structured format for information
 <li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">kableExtra</a></li>
 <li><a href="https://gt.rstudio.com/">gt</a></li>
 </ul>
-</div>
-<div id="exercises-reports" class="section level2" number="2.10">
-<h2>
-<span class="header-section-number">2.10</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-reports"><i class="fas fa-link"></i></a>
-</h2>
-<p>Below are some additional exercises that will let you apply what you have learned in this chapter. We would suggest taking a break before you do these - it might feel slightly more effortful, but spreading out your practice will help you learn more in the long run.</p>
-<div id="exercises-reports-project" class="section level3" number="2.10.1">
-<h3>
-<span class="header-section-number">2.10.1</span> New project<a class="anchor" aria-label="anchor" href="#exercises-reports-project"><i class="fas fa-link"></i></a>
-</h3>
-<p>Create a new project called "demo_report" [<a href="reports.html#projects">2.2</a>]</p>
-</div>
-<div id="exercises-reports-setup" class="section level3" number="2.10.2">
-<h3>
-<span class="header-section-number">2.10.2</span> New script<a class="anchor" aria-label="anchor" href="#exercises-reports-setup"><i class="fas fa-link"></i></a>
-</h3>
-<p>In the "demo_report" project, create a new Rmarkdown document called "job.Rmd" [<a href="reports.html#rmarkdown">2.3</a>]. Edit the YAML header to output tables using kable and set a custom theme [<a href="reports.html#yaml">2.6.4</a>].</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<pre><code>---
-title: "My Job"
-author: "Me"
-output:
-  html_document:
-    df_print: kable
-    theme: 
-      version: 4
-      bootswatch: sandstone
----</code></pre>
-</div>
-</div>
-<div id="exercises-reports-rmarkdown" class="section level3" number="2.10.3">
-<h3>
-<span class="header-section-number">2.10.3</span> R Markdown<a class="anchor" aria-label="anchor" href="#exercises-reports-rmarkdown"><i class="fas fa-link"></i></a>
-</h3>
-<p>Write a short paragraph describing your job or a job you might like to have in the future [<a href="reports.html#markdown">2.5.2</a>]. Include a bullet-point list of links to websites that are useful for that job [<a href="reports.html#markdown">2.5.2</a>].</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<pre><code>I am a research psychologist who is interested in open science 
-and teaching computational skills.
-
-* [psyTeachR books](https://psyteachr.github.io/)
-* [Google Scholar](https://scholar.google.com/)</code></pre>
-</div>
-</div>
-<div id="exercises-reports-tables" class="section level3" number="2.10.4">
-<h3>
-<span class="header-section-number">2.10.4</span> Tables<a class="anchor" aria-label="anchor" href="#exercises-reports-tables"><i class="fas fa-link"></i></a>
-</h3>
-<p>Use the following code to load a small table of tasks [<a href="reports.html#code-chunks">2.3.2</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span>
-  <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
-  <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
-  <span class="st">"Create a twitter poll"</span>, <span class="st">"social media"</span>, <span class="st">"weekly"</span>,
-  <span class="st">"Make the sales report"</span>, <span class="st">"reporting"</span>,    <span class="st">"montly"</span>
-<span class="op">)</span></code></pre></div>
-<p>Figure out how to make it so that code chunks don't show in your knitted document [<a href="reports.html#rmd-setup">2.6.1</a>]</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<p>You can set the default to <code>echo = FALSE</code> in the setup chunk at the top of the script.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>To set visibility for a specific code chunk, put <code>echo = FALSE</code> inside the curly brackets.</p>
-<div class="verbatim">
-<pre class="sourceCode r"><code class="sourceCode R">```{r, echo=FALSE}</code></pre>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># code to hide</span></code></pre></div>
-<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
-</div>
-</div>
-<p>Display the table with purple italic column headers. Try different styles using <code class="package">kableExtra</code> [<a href="reports.html#rmd-tables">2.5.5</a>]</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
-<div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
-<thead><tr>
-<th style="text-align:left;font-style: italic;color: purple !important;">
-task
-</th>
-<th style="text-align:left;font-style: italic;color: purple !important;">
-category
-</th>
-<th style="text-align:left;font-style: italic;color: purple !important;">
-frequency
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Respond to tweets
-</td>
-<td style="text-align:left;">
-social media
-</td>
-<td style="text-align:left;">
-daily
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Create a twitter poll
-</td>
-<td style="text-align:left;">
-social media
-</td>
-<td style="text-align:left;">
-weekly
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Make the sales report
-</td>
-<td style="text-align:left;">
-reporting
-</td>
-<td style="text-align:left;">
-montly
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
-<div id="exercises-reports-images" class="section level3" number="2.10.5">
-<h3>
-<span class="header-section-number">2.10.5</span> Images<a class="anchor" aria-label="anchor" href="#exercises-reports-images"><i class="fas fa-link"></i></a>
-</h3>
-<p>Add an image of anything relevant [<a href="reports.html#rmd-images">2.5.4</a>]</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<p>You can add an image from the web using its URL:</p>
-<p><code>![Applied Data Skills](https://psyteachr.github.io/ads-v1/images/logos/logo.png)</code></p>
-<p>Or save an image into your project directory (e.g., in the images folder) and add it using the relative path:</p>
-<p><code>![Applied Data Skills](images/logos/logo.png)</code></p>
-</div>
-</div>
-<div id="exercises-reports-inline" class="section level3" number="2.10.6">
-<h3>
-<span class="header-section-number">2.10.6</span> Inline R<a class="anchor" aria-label="anchor" href="#exercises-reports-inline"><i class="fas fa-link"></i></a>
-</h3>
-<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<p>This report was created using <code>`r R.version.string`</code>.</p>
-</div>
-</div>
-<div id="exercises-reports-knit" class="section level3" number="2.10.7">
-<h3>
-<span class="header-section-number">2.10.7</span> Knit<a class="anchor" aria-label="anchor" href="#exercises-reports-knit"><i class="fas fa-link"></i></a>
-</h3>
-<p>Knit this document to html [<a href="reports.html#rmd-knit">2.3.5</a>]</p>
-<div class="webex-solution">
-<button>
-Solution
-</button>
-<p>Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"job.Rmd"</span><span class="op">)</span></code></pre></div>
-</div>
-
-</div>
 </div>
 </div>
 <script>
@@ -1267,22 +1266,22 @@ $( document ).ready(function() {
 <li><a class="nav-link" href="#override-defaults"><span class="header-section-number">2.6.2</span> Override defaults</a></li>
 <li><a class="nav-link" href="#loading-packages"><span class="header-section-number">2.6.3</span> Loading packages</a></li>
 <li><a class="nav-link" href="#yaml"><span class="header-section-number">2.6.4</span> YAML header</a></li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">2.6.5</span> Summary</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#chapter-summary"><span class="header-section-number">2.7</span> Chapter summary</a></li>
+<li>
+<a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.7</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.7.1</span> New project</a></li>
+<li><a class="nav-link" href="#exercises-reports-setup"><span class="header-section-number">2.7.2</span> New script</a></li>
+<li><a class="nav-link" href="#exercises-reports-rmarkdown"><span class="header-section-number">2.7.3</span> R Markdown</a></li>
+<li><a class="nav-link" href="#exercises-reports-tables"><span class="header-section-number">2.7.4</span> Tables</a></li>
+<li><a class="nav-link" href="#exercises-reports-images"><span class="header-section-number">2.7.5</span> Images</a></li>
+<li><a class="nav-link" href="#exercises-reports-inline"><span class="header-section-number">2.7.6</span> Inline R</a></li>
+<li><a class="nav-link" href="#exercises-reports-knit"><span class="header-section-number">2.7.7</span> Knit</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#glossary-reports"><span class="header-section-number">2.8</span> Glossary</a></li>
 <li><a class="nav-link" href="#resources-reports"><span class="header-section-number">2.9</span> Further Resources</a></li>
-<li>
-<a class="nav-link" href="#exercises-reports"><span class="header-section-number">2.10</span> Exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercises-reports-project"><span class="header-section-number">2.10.1</span> New project</a></li>
-<li><a class="nav-link" href="#exercises-reports-setup"><span class="header-section-number">2.10.2</span> New script</a></li>
-<li><a class="nav-link" href="#exercises-reports-rmarkdown"><span class="header-section-number">2.10.3</span> R Markdown</a></li>
-<li><a class="nav-link" href="#exercises-reports-tables"><span class="header-section-number">2.10.4</span> Tables</a></li>
-<li><a class="nav-link" href="#exercises-reports-images"><span class="header-section-number">2.10.5</span> Images</a></li>
-<li><a class="nav-link" href="#exercises-reports-inline"><span class="header-section-number">2.10.6</span> Inline R</a></li>
-<li><a class="nav-link" href="#exercises-reports-knit"><span class="header-section-number">2.10.7</span> Knit</a></li>
-</ul>
-</li>
 </ul>
 
       <div class="book-extra">
@@ -1300,7 +1299,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-06.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -17,7 +17,7 @@ This book will use the following conventions:
 * Menu/interface options: **`New File...`**
 * Quiz question: I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value=''>FALSE</option></select>
 
-* What is a p-value? <div class='webex-radiogroup' id='radio_WQHRMJQZPA'><label><input type="radio" autocomplete="off" name="radio_WQHRMJQZPA" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WQHRMJQZPA" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WQHRMJQZPA" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_FAWOZYGJPI'><label><input type="radio" autocomplete="off" name="radio_FAWOZYGJPI" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_FAWOZYGJPI" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_FAWOZYGJPI" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 

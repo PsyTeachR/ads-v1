@@ -3,7 +3,7 @@
 ## Intended Learning Outcomes {#ilo-present}
 
 * Structure data in report, presentation, and dashboard formats
-* Include linked figure and table captions in longer reports
+* Include linked figures, tables, and references
 
 
 ```r
@@ -229,8 +229,8 @@ datatable(data = scotpop)
 ```
 
 ```{=html}
-<div id="htmlwidget-bd776cd839598a5dfd55" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bd776cd839598a5dfd55">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"],["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2b56213ed8089523c2cf" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2b56213ed8089523c2cf">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"],["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 ```
 
 
@@ -260,8 +260,8 @@ datatable(
 ```
 
 ```{=html}
-<div id="htmlwidget-17e961b2d2055d031fee" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-17e961b2d2055d031fee">{"x":{"filter":"none","vertical":false,"caption":"<caption>The population of Scottish counties.<\/caption>","data":[["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"cell-border hover stripe\">\n  <thead>\n    <tr>\n      <th>County<\/th>\n      <th>Population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"lengthChange":false,"info":true,"paging":true,"ordering":false,"searching":false,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-18d08bc0923229cab1e5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-18d08bc0923229cab1e5">{"x":{"filter":"none","vertical":false,"caption":"<caption>The population of Scottish counties.<\/caption>","data":[["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"cell-border hover stripe\">\n  <thead>\n    <tr>\n      <th>County<\/th>\n      <th>Population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"lengthChange":false,"info":true,"paging":true,"ordering":false,"searching":false,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 ```
 
 

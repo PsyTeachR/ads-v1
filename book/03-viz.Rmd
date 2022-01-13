@@ -29,7 +29,7 @@ We'd recommend making a new code chunk for each different activity, and using th
 
 ## Variable Types
 
-If a spreadsheet is in a ` r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use built-in datasets with the right format.
+If a spreadsheet is in a `r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use built-in datasets with the right format.
 
 For example, the table below lists pets owned by members of the psyTeachR team. Each row is an observation of one pet. There are 6 variables for each pet, their `name`, `owner`, `species`, `birthdate`, `weight` (in kg), and `rating` (on a 5-point scale from "very evil" to "very good").
 
@@ -218,7 +218,7 @@ Let's build up the plot above, layer by layer. First we need to get the data. We
 When you load the data `read_csv()` will produce a message that gives you information about the data it has imported and what assumptions it has made. The "column specification" tells you what each column is named and what type of data R has categorised each variable as. The abbreviation "chr" is for `r glossary("character")` columns, "dbl" is for `r glossary("double")` columns, and "dttm" is a date/time column.
 
 ```{r}
-survey_data <- read_csv("https://raw.githubusercontent.com/PsyTeachR/ads-v1/master/book/data/survey_data.csv")
+survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv")
 ```
 
 This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.
@@ -254,14 +254,23 @@ survey_col_types <- cols(
 )
 
 # re-import data with correct column  types
-survey_data <- read_csv("https://raw.githubusercontent.com/PsyTeachR/ads-v1/master/book/data/survey_data.csv",
+survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv",
                         col_types = survey_col_types)
+```
+
+
+### Default theme
+
+Plots in this book use the black-and-white theme, not the default grey theme, so set your default theme to the same so your plots will look like the examples below. At the top of your script, in the setup chunk after you've loaded the tidyverse package, add the following code and run it. You'll learn more ways to [customise your theme](#themess) below.
+
+```{r}
+theme_set(theme_bw()) # set the default theme
 ```
 
 
 ### Plot setup
 
-Every plot starts with the `ggplot()` function and a data table. If your data are not loaded or you have a typo in your code, this will give you an error message. It's best to check your plot after each step so you can figure out where errors are more easily.
+Every plot starts with the `ggplot()` function and a data table. If your data are not loaded or you have a typo in your code, this will give you an error message. It's best to check your plot after each step, so that you can figure out where errors are more easily.
 
 ```{r build-plot-setup, fig.cap = "A blank ggplot."}
 ggplot(data = survey_data)
@@ -362,10 +371,7 @@ point_first + line_first + plot_layout(nrow = 1) # try changing nrow to 2
 
 ### Styling Geoms
 
-We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom (not use it to represent different levels of a variable), you can set arguments inside the geom function. 
-
-There are many different values that you can set `colour`, `alpha`, `shape`, `size` and `linetype` to and Appendix\ \@ref(plotstyle) gives details of these.
-
+We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom, you can set the arguments `colour`, `alpha`, `shape`, `size` and `linetype` inside the geom function. There are many different values that you can set these to; Appendix\ \@ref(plotstyle) gives details of these.
 
 ```{r build-plot-style, fig.cap="Changing geom styles."}
 ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
@@ -379,6 +385,9 @@ ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
               linetype = 3) 
 ```
 
+::: {.info data-latex=""}
+This method is only for changing the style of all the object made with that geom. If you want, for example, points to have different colours depending on which issue category they are from, you set the argument `colour = issue_category` inside the `aes()` function for the mapping.
+:::
 
 ::: {.try data-latex=""}
 Play around with different values for the aesthetics above. Figure out what the default values are for `shape` and `size`. 

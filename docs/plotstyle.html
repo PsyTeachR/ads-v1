@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
@@ -55,6 +55,7 @@
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
 <li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
+<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -63,6 +64,7 @@
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="active" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
 <li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -72,15 +74,15 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="plotstyle" class="section level1" number="8">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="plotstyle" class="section level1" number="9">
 <h1>
 <span class="header-section-number">F</span> Styling Plots<a class="anchor" aria-label="anchor" href="#plotstyle"><i class="fas fa-link"></i></a>
 </h1>
-<div id="aesthetics" class="section level2" number="8.1">
+<div id="aesthetics" class="section level2" number="9.1">
 <h2>
 <span class="header-section-number">F.1</span> Aesthetics<a class="anchor" aria-label="anchor" href="#aesthetics"><i class="fas fa-link"></i></a>
 </h2>
-<div id="colourfill" class="section level3" number="8.1.1">
+<div id="colourfill" class="section level3" number="9.1.1">
 <h3>
 <span class="header-section-number">F.1.1</span> Colour/Fill<a class="anchor" aria-label="anchor" href="#colourfill"><i class="fas fa-link"></i></a>
 </h3>
@@ -1617,7 +1619,7 @@
 </li>
 </ul>
 </div>
-<div id="alpha" class="section level3" number="8.1.2">
+<div id="alpha" class="section level3" number="9.1.2">
 <h3>
 <span class="header-section-number">F.1.2</span> Alpha<a class="anchor" aria-label="anchor" href="#alpha"><i class="fas fa-link"></i></a>
 </h3>
@@ -1629,7 +1631,7 @@ Figure F.1: Varying alpha values.
 </p>
 </div>
 </div>
-<div id="shape" class="section level3" number="8.1.3">
+<div id="shape" class="section level3" number="9.1.3">
 <h3>
 <span class="header-section-number">F.1.3</span> Shape<a class="anchor" aria-label="anchor" href="#shape"><i class="fas fa-link"></i></a>
 </h3>
@@ -1641,7 +1643,7 @@ Figure F.2: The 25 shape values
 </p>
 </div>
 </div>
-<div id="linetype" class="section level3" number="8.1.4">
+<div id="linetype" class="section level3" number="9.1.4">
 <h3>
 <span class="header-section-number">F.1.4</span> Linetype<a class="anchor" aria-label="anchor" href="#linetype"><i class="fas fa-link"></i></a>
 </h3>
@@ -1654,7 +1656,7 @@ Figure F.3: The 6 linetype values at different sizes.
 </div>
 </div>
 </div>
-<div id="palettes" class="section level2" number="8.2">
+<div id="palettes" class="section level2" number="9.2">
 <h2>
 <span class="header-section-number">F.2</span> Palettes<a class="anchor" aria-label="anchor" href="#palettes"><i class="fas fa-link"></i></a>
 </h2>
@@ -1665,12 +1667,12 @@ Figure F.3: The 6 linetype values at different sizes.
 Figure F.4: Default discrete palette with different numbers of levels.
 </p>
 </div>
-<div id="viridis-palettes" class="section level3" number="8.2.1">
+<div id="viridis-palettes" class="section level3" number="9.2.1">
 <h3>
 <span class="header-section-number">F.2.1</span> Viridis Palettes<a class="anchor" aria-label="anchor" href="#viridis-palettes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Viridis palettes are very good for colourblind-safe and greyscale-safe plots. The work with any number of categories, but are best for larger numbers of categories or continuous colours.</p>
-<div id="discrete-viridis-palettes" class="section level4" number="8.2.1.1">
+<div id="discrete-viridis-palettes" class="section level4" number="9.2.1.1">
 <h4>
 <span class="header-section-number">F.2.1.1</span> Discrete Viridis Palettes<a class="anchor" aria-label="anchor" href="#discrete-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
@@ -1685,7 +1687,7 @@ Figure F.5: Discrete viridis palettes.
 <p>If the end colour is too light for your plot or the start colour too dark, you can set the <code>begin</code> and <code>end</code> arguments to values between 0 and 1, such as <code><span class="fu">scale_colour_viridis_c</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code>.</p>
 </div>
 </div>
-<div id="continuous-viridis-palettes" class="section level4" number="8.2.1.2">
+<div id="continuous-viridis-palettes" class="section level4" number="9.2.1.2">
 <h4>
 <span class="header-section-number">F.2.1.2</span> Continuous Viridis Palettes<a class="anchor" aria-label="anchor" href="#continuous-viridis-palettes"><i class="fas fa-link"></i></a>
 </h4>
@@ -1698,12 +1700,12 @@ Figure F.6: Continuous viridis palettes.
 </div>
 </div>
 </div>
-<div id="brewer-palettes" class="section level3" number="8.2.2">
+<div id="brewer-palettes" class="section level3" number="9.2.2">
 <h3>
 <span class="header-section-number">F.2.2</span> Brewer Palettes<a class="anchor" aria-label="anchor" href="#brewer-palettes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Brewer palettes give you a lot of control over plot colour and fill. You set them with <code>scale_color_brewer()</code> or <code>scale_fill_brewer()</code> and set the <code>palette</code> argument to one of the palettes below. Set <code>direction = -1</code> to reverse the order of colours.</p>
-<div id="qualitative-brewer-palettes" class="section level4" number="8.2.2.1">
+<div id="qualitative-brewer-palettes" class="section level4" number="9.2.2.1">
 <h4>
 <span class="header-section-number">F.2.2.1</span> Qualitative Brewer Palettes<a class="anchor" aria-label="anchor" href="#qualitative-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
@@ -1715,7 +1717,7 @@ Figure F.7: Qualitative brewer palettes.
 </p>
 </div>
 </div>
-<div id="sequential-brewer-palettes" class="section level4" number="8.2.2.2">
+<div id="sequential-brewer-palettes" class="section level4" number="9.2.2.2">
 <h4>
 <span class="header-section-number">F.2.2.2</span> Sequential Brewer Palettes<a class="anchor" aria-label="anchor" href="#sequential-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
@@ -1727,7 +1729,7 @@ Figure F.8: Sequential brewer palettes.
 </p>
 </div>
 </div>
-<div id="diverging-brewer-palettes" class="section level4" number="8.2.2.3">
+<div id="diverging-brewer-palettes" class="section level4" number="9.2.2.3">
 <h4>
 <span class="header-section-number">F.2.2.3</span> Diverging Brewer Palettes<a class="anchor" aria-label="anchor" href="#diverging-brewer-palettes"><i class="fas fa-link"></i></a>
 </h4>
@@ -1741,9 +1743,9 @@ Figure F.9: Diverging brewer palettes.
 </div>
 </div>
 </div>
-<div id="themes" class="section level2" number="8.3">
+<div id="themes-appendix" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">F.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">F.3</span> Themes<a class="anchor" aria-label="anchor" href="#themes-appendix"><i class="fas fa-link"></i></a>
 </h2>
 <p><code class="package">ggplot2</code> has 8 built-in themes that you can add to a plot like <code>plot + theme_bw()</code> or set as the default theme at the top of your script like <code>theme_set(theme_bw())</code>.</p>
 <div class="figure" style="text-align: center">
@@ -1752,7 +1754,7 @@ Figure F.9: Diverging brewer palettes.
 Figure F.10: {ggplot2} themes.
 </p>
 </div>
-<div id="ggthemes" class="section level3" number="8.3.1">
+<div id="ggthemes" class="section level3" number="9.3.1">
 <h3>
 <span class="header-section-number">F.3.1</span> ggthemes<a class="anchor" aria-label="anchor" href="#ggthemes"><i class="fas fa-link"></i></a>
 </h3>
@@ -1761,6 +1763,81 @@ Figure F.10: {ggplot2} themes.
 <span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="appendix-f-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%"><p class="caption">
 Figure 2.7: {ggthemes} themes.
+</p>
+</div>
+</div>
+<div id="fonts" class="section level3" number="9.3.2">
+<h3>
+<span class="header-section-number">F.3.2</span> Fonts<a class="anchor" aria-label="anchor" href="#fonts"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can customise the fonts used in themes. All computers should be able to recognise the families "sans", "serif", and "mono", and some computers will be able to access other installed fonts by name.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sans</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Sans"</span><span class="op">)</span>
+<span class="va">serif</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Serif"</span><span class="op">)</span>
+<span class="va">mono</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"mono"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Mono"</span><span class="op">)</span>
+<span class="va">font</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Comic Sans MS"</span><span class="op">)</span>
+
+<span class="va">sans</span> <span class="op">+</span> <span class="va">serif</span> <span class="op">+</span> <span class="va">mono</span> <span class="op">+</span> <span class="va">font</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:theme-font-demo"></span>
+<img src="appendix-f-styling_files/figure-html/theme-font-demo-1.png" alt="Different fonts." width="100%"><p class="caption">
+Figure F.11: Different fonts.
+</p>
+</div>
+<p>However, you may have to add fonts first, especially if you're using Windows. The <code class="package">showtext</code> package is a flexible way to add fonts.</p>
+<p>If you have a .ttf file from a font site, like <a href="https://www.fontsquirrel.com" target="_blank">Font Squirrel</a>, you can load the file directly using <code>font_add()</code>. Set <code>regular</code> as the path to the file for the regular version of the font, and optionally add other versions. Set the <code>family</code> to the name you want to use for the font. You will need to include any local font files if you are sharing your script with others.</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
+
+<span class="co"># font from https://www.fontsquirrel.com/fonts/SF-Cartoonist-Hand</span>
+
+<span class="fu">font_add</span><span class="op">(</span>
+  regular <span class="op">=</span> <span class="st">"fonts/cartoonist/SF_Cartoonist_Hand.ttf"</span>,
+  bold <span class="op">=</span> <span class="st">"fonts/cartoonist/SF_Cartoonist_Hand_Bold.ttf"</span>,
+  italic <span class="op">=</span> <span class="st">"fonts/cartoonist/SF_Cartoonist_Hand_Italic.ttf"</span>,
+  bolditalic <span class="op">=</span> <span class="st">"fonts/cartoonist/SF_Cartoonist_Hand_Bold_Italic.ttf"</span>,
+  family <span class="op">=</span> <span class="st">"cartoonist"</span> 
+<span class="op">)</span></code></pre></div>
+<p>To download fonts directly from <a href="https://fonts.google.com/" target="_blank">Google fonts</a>, use the function <code>font_add_google()</code>, set the <code>name</code> to the exact name from the site, and the <code>family</code> to the name you want to use for the font.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># download fonts from Google</span>
+<span class="fu">font_add_google</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Courgette"</span>, family <span class="op">=</span> <span class="st">"courgette"</span><span class="op">)</span>
+<span class="fu">font_add_google</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Poiret One"</span>, family <span class="op">=</span> <span class="st">"poiret"</span><span class="op">)</span></code></pre></div>
+<p>After you've added fonts from local files or Google, you need to make them available to R using <code><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto()</a></code>. You will have to do these steps in each script where you want to use the custom fonts.</p>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># load the fonts</span></code></pre></div>
+<p>To change the fonts used overall in a plot, use the <code>theme()</code> function and set <code>text</code> to <code>element_text(family = "new_font_family")</code>.</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"courgette"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Courgette"</span><span class="op">)</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"cartoonist"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Cartoonist Hand"</span><span class="op">)</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"poiret"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Poiret One"</span><span class="op">)</span>
+
+<span class="va">a</span> <span class="op">+</span> <span class="va">b</span> <span class="op">+</span> <span class="va">c</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:font-demo"></span>
+<img src="appendix-f-styling_files/figure-html/font-demo-1.png" alt="Custom Fonts." width="100%"><p class="caption">
+Figure F.12: Custom Fonts.
+</p>
+</div>
+<p>To set the fonts for individual elements in the plot, you need to find the specific argument for that element. You can use the argument <code>face</code> to choose "bold", "italic", or "bolditalic" versions, if they are available.</p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">g</span> <span class="op">+</span> <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Cartoonist Hand"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>
+    title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"cartoonist"</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+    strip.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"cartoonist"</span>, face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,
+    axis.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:demo-multi-text"></span>
+<img src="appendix-f-styling_files/figure-html/demo-multi-text-1.png" alt="Multiple custom fonts on the same plot." width="100%"><p class="caption">
+Figure F.13: Multiple custom fonts on the same plot.
 </p>
 </div>
 
@@ -1983,7 +2060,10 @@ $( document ).ready(function() {
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#themes"><span class="header-section-number">F.3</span> Themes</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ggthemes"><span class="header-section-number">F.3.1</span> ggthemes</a></li></ul>
+<a class="nav-link" href="#themes-appendix"><span class="header-section-number">F.3</span> Themes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggthemes"><span class="header-section-number">F.3.1</span> ggthemes</a></li>
+<li><a class="nav-link" href="#fonts"><span class="header-section-number">F.3.2</span> Fonts</a></li>
+</ul>
 </li>
 </ul>
 
@@ -2002,7 +2082,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-10.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

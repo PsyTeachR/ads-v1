@@ -91,7 +91,7 @@
 <span class="header-section-number">G</span> Twitter Example<a class="anchor" aria-label="anchor" href="#twitter-example"><i class="fas fa-link"></i></a>
 </h1>
 <p>This section takes a problem-based approach to teach you how to use the functions above, in combination with functions you learned in previous chapters, to summarise and visualise twitter data.</p>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># for handling dates and times</span></code></pre></div>
 <div id="single-data-file" class="section level2" number="17.1">
@@ -108,7 +108,7 @@
 <h3>
 <span class="header-section-number">G.1.2</span> Import Data<a class="anchor" aria-label="anchor" href="#import-data"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"data/tweets/daily_tweet_activity_metrics_LisaDeBruine_20210801_20210901_en.csv"</span>
 
 <span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
@@ -118,7 +118,7 @@
 <span class="header-section-number">G.1.3</span> Select Relevant Data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The file contains a bunch of columns about "promoted" tweets that will be blank unless your organisation pays for those. Let's get rid of them. We can use the select helper <code>starts_with()</code> to get all the columns that start with <code><span class="st">"promoted"</span></code> and remove them by prefacing the function with <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. Now there should be 20 columns, which we can inspect with <code>glimpse()</code>.</p>
-<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -150,7 +150,7 @@
 <span class="header-section-number">G.1.4</span> Plot Likes per Day<a class="anchor" aria-label="anchor" href="#plot-likes-per-day"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now let's plot likes per day. The <code>scale_x_date()</code> function lets you formats an x-axis with dates.</p>
-<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>, 
@@ -170,7 +170,7 @@ Figure G.1: Likes per day.
 <span class="header-section-number">G.1.5</span> Plot Multiple Engagements<a class="anchor" aria-label="anchor" href="#plot-multiple-engagements"><i class="fas fa-link"></i></a>
 </h3>
 <p>What if we want to plot likes, retweets, and replies on the same plot? We need to get all of the numbers in the same column and a column that contains the "engagement type" that we can use to determine different line colours. When you have data in different columns that you need to get into the same column, it's wide and you need to pivot the data longer.</p>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">long_tweets</span> <span class="op">&lt;-</span> <span class="va">daily_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">likes</span>, <span class="va">retweets</span>, <span class="va">replies</span><span class="op">)</span>,
@@ -262,7 +262,7 @@ replies
 </table></div>
 </div>
 <p>Now we can plot the number of engagements per day by engagement type by making the line colour determined by the value of the <code>engage_type</code> column.</p>
-<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">long_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">n</span>, colour <span class="op">=</span> <span class="va">engage_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>, 
@@ -287,18 +287,18 @@ Figure G.2: Engagements per day by engagement type.
 <span class="header-section-number">G.2</span> Multiple Data Files<a class="anchor" aria-label="anchor" href="#multiple-data-files"><i class="fas fa-link"></i></a>
 </h2>
 <p>Maybe now you want to compare the data from several months. First, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
   pattern <span class="op">=</span> <span class="st">"daily_tweet_activity_metrics"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p>Then use <code>map_df()</code> to iterate over the list of file paths, open them with <code>read_csv()</code>, and return a big data frame with all the combined data. Then we can pipe that to the <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> function to get rid of the "promoted" columns.</p>
-<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_daily_tweets</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now you can make a plot of likes per day for all of the months.</p>
-<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_daily_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">likes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_line</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"dodgerblue"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Likes per Day"</span><span class="op">)</span> <span class="op">+</span> 
@@ -317,7 +317,7 @@ Figure G.2: Engagements per day by engagement type.
 </h3>
 <p>If you want to plot likes by month, first you need a column for the month. Use <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to make a new column, using <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">lubridate::month()</a></code> to extract the month name from the <code>Date</code> column.</p>
 <p>Then group by the new <code>month</code> column and calculate the sum of <code>likes</code>. The <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> function causes all of the subsequent functions to operate inside of groups, until you call <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code>. In the example below, the <code><a href="https://rdrr.io/r/base/sum.html">sum(likes)</a></code> function calculates the sum total of the <code>likes</code> column separately for each month.</p>
-<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_by_month</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">Date</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -420,7 +420,7 @@ Oct
 </table></div>
 </div>
 <p>A column plot might make more sense than a line plot for this summary.</p>
-<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">likes_by_month</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">total_likes</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_discrete</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
@@ -441,7 +441,7 @@ Figure G.3: Likes by month.
 <button>
 Summarise Data
 </button>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_by_week</span> <span class="op">&lt;-</span> <span class="va">all_daily_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -453,7 +453,7 @@ Summarise Data
 <button>
 Plot Data
 </button>
-<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">tweets_by_week</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_date</span>, y <span class="op">=</span> <span class="va">total_tweets</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"hotpink"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_date</span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span>,
@@ -471,17 +471,17 @@ Plot Data
 </h2>
 <p>You can also download your twitter data by tweet instead of by day. This usually takes a little longer to download. We can use the same pattern to read and combine all of the tweet data files.</p>
 <p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> at the start of the pattern means that the file name has to start with this. This means it won't match the "daily_tweet..." files.</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
   pattern <span class="op">=</span> <span class="st">"^tweet_activity_metrics"</span>,
   full.names <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p>First, let's open only the first file and see if we need to do anything to it.</p>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">tweet_files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p>If you look at the file in the Viewer, you can set that the <code>Tweet id</code> column is using scientific notation (<code>1.355500e+18</code>) instead of the full 18-digit tweet ID, which gives different IDs the same value. We won't ever want to <em>add</em> ID numbers,so it's safe to represent these as characters. Set up the map over all the files with the <code>col_types</code> specified, then get rid of all the promoted columns and add <code>month</code> and <code>hour</code> columns (reading the date from the <code>time</code> column in these data).</p>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">cols</span><span class="op">(</span><span class="st">"Tweet id"</span> <span class="op">=</span> <span class="fu">col_character</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">all_tweets</span> <span class="op">&lt;-</span> <span class="fu">map_df</span><span class="op">(</span><span class="va">tweet_files</span>, <span class="va">read_csv</span>, col_types <span class="op">=</span> <span class="va">ct</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -492,7 +492,7 @@ Plot Data
 <span class="header-section-number">G.3.1</span> Impressions per Tweet<a class="anchor" aria-label="anchor" href="#impressions-per-tweet"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now we can look at the distribution of impressions per tweet for each month.</p>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">all_tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">impressions</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_violin</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_fill_brewer</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Spectral"</span><span class="op">)</span> <span class="op">+</span>
@@ -517,7 +517,7 @@ Figure G.4: Impressions per tweet per month.
 <span class="header-section-number">G.3.2</span> Top Tweet<a class="anchor" aria-label="anchor" href="#top-tweet"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can display Lisa's top tweet for the year.</p>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet</span> <span class="op">&lt;-</span> <span class="va">all_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">likes</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
@@ -553,7 +553,7 @@ Figure G.4: Impressions per tweet per month.
 </h3>
 <p>In order to make a plot of tweets by hour, colouring the data by wherther or not the sun is up, we can join data from a table of sunrise and sunset times by day for Glasgow (or <a href="https://www.schoolsobservatory.org/learn/astro/nightsky/sunrs_set" target="_blank">download the table for your region</a>).</p>
 <p>The <code>Day</code> column originally read in as a character column, so convert it to a date on import using the <code>col_types</code> argument.</p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sun</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/sunfact2021.csv"</span>, 
                 col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span>
                   Day <span class="op">=</span> <span class="fu">col_date</span><span class="op">(</span>format<span class="op">=</span><span class="st">"%d/%m/%Y"</span><span class="op">)</span>,
@@ -562,7 +562,7 @@ Figure G.4: Impressions per tweet per month.
                 <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Create a matching <code>Day</code> column for <code>all_tweets</code>, plus an <code>hour</code> column for plotting (the factor structure starts the day at 8:00), and a <code>tweet_time</code> column for comparing to the <code>RiseTime</code> and <code>SetTime</code> columns, which are decimal hours.</p>
 <p>Then join the <code>sun</code> table and create a <code>timeofday</code> column that equals "day" if the sun is up and "night" if the sun has set.</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sun_tweets</span> <span class="op">&lt;-</span> <span class="va">all_tweets</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>Day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/date.html">date</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span>,
@@ -575,7 +575,7 @@ Figure G.4: Impressions per tweet per month.
                             yes <span class="op">=</span> <span class="st">"day"</span>, 
                             no <span class="op">=</span> <span class="st">"night"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Check a few random rows to make sure you did everything correctly.</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">slice_sample</span><span class="op">(</span><span class="va">sun_tweets</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -605,239 +605,239 @@ timeofday
 <tbody>
 <tr>
 <td style="text-align:left;">
-2021-08-08 19:47:00
+2021-03-19 17:08:00
 </td>
 <td style="text-align:left;">
-2021-08-08
-</td>
-<td style="text-align:left;">
-19
-</td>
-<td style="text-align:right;">
-19.783333
-</td>
-<td style="text-align:right;">
-4.595
-</td>
-<td style="text-align:right;">
-20.103
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-08-10 13:22:00
-</td>
-<td style="text-align:left;">
-2021-08-10
-</td>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:right;">
-13.366667
-</td>
-<td style="text-align:right;">
-4.658
-</td>
-<td style="text-align:right;">
-20.030
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-08-12 08:48:00
-</td>
-<td style="text-align:left;">
-2021-08-12
-</td>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:right;">
-8.800000
-</td>
-<td style="text-align:right;">
-4.722
-</td>
-<td style="text-align:right;">
-19.956
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-04-26 07:40:00
-</td>
-<td style="text-align:left;">
-2021-04-26
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:right;">
-7.666667
-</td>
-<td style="text-align:right;">
-4.750
-</td>
-<td style="text-align:right;">
-19.730
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-09-18 13:09:00
-</td>
-<td style="text-align:left;">
-2021-09-18
-</td>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:right;">
-13.150000
-</td>
-<td style="text-align:right;">
-5.899
-</td>
-<td style="text-align:right;">
-18.416
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-09-13 11:37:00
-</td>
-<td style="text-align:left;">
-2021-09-13
-</td>
-<td style="text-align:left;">
-11
-</td>
-<td style="text-align:right;">
-11.616667
-</td>
-<td style="text-align:right;">
-5.740
-</td>
-<td style="text-align:right;">
-18.633
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-10-16 12:54:00
-</td>
-<td style="text-align:left;">
-2021-10-16
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:right;">
-12.900000
-</td>
-<td style="text-align:right;">
-6.811
-</td>
-<td style="text-align:right;">
-17.222
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-02-08 10:49:00
-</td>
-<td style="text-align:left;">
-2021-02-08
-</td>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:right;">
-10.816667
-</td>
-<td style="text-align:right;">
-7.910
-</td>
-<td style="text-align:right;">
-17.108
-</td>
-<td style="text-align:left;">
-day
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-01-13 21:46:00
-</td>
-<td style="text-align:left;">
-2021-01-13
-</td>
-<td style="text-align:left;">
-21
-</td>
-<td style="text-align:right;">
-21.766667
-</td>
-<td style="text-align:right;">
-8.605
-</td>
-<td style="text-align:right;">
-16.228
-</td>
-<td style="text-align:left;">
-night
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2021-10-30 17:23:00
-</td>
-<td style="text-align:left;">
-2021-10-30
+2021-03-19
 </td>
 <td style="text-align:left;">
 17
 </td>
 <td style="text-align:right;">
-17.383333
+17.133333
 </td>
 <td style="text-align:right;">
-7.291
+6.342
 </td>
 <td style="text-align:right;">
-16.682
+18.467
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-04-23 08:56:00
+</td>
+<td style="text-align:left;">
+2021-04-23
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+8.933333
+</td>
+<td style="text-align:right;">
+4.867
+</td>
+<td style="text-align:right;">
+19.631
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-09-19 22:20:00
+</td>
+<td style="text-align:left;">
+2021-09-19
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+22.333333
+</td>
+<td style="text-align:right;">
+5.931
+</td>
+<td style="text-align:right;">
+18.372
 </td>
 <td style="text-align:left;">
 night
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-05-28 15:57:00
+</td>
+<td style="text-align:left;">
+2021-05-28
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:right;">
+15.950000
+</td>
+<td style="text-align:right;">
+3.762
+</td>
+<td style="text-align:right;">
+20.697
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-03-03 17:40:00
+</td>
+<td style="text-align:left;">
+2021-03-03
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:right;">
+17.666667
+</td>
+<td style="text-align:right;">
+7.022
+</td>
+<td style="text-align:right;">
+17.923
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-19 23:17:00
+</td>
+<td style="text-align:left;">
+2021-06-19
+</td>
+<td style="text-align:left;">
+23
+</td>
+<td style="text-align:right;">
+23.283333
+</td>
+<td style="text-align:right;">
+3.545
+</td>
+<td style="text-align:right;">
+21.037
+</td>
+<td style="text-align:left;">
+night
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-07-10 16:18:00
+</td>
+<td style="text-align:left;">
+2021-07-10
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:right;">
+16.300000
+</td>
+<td style="text-align:right;">
+3.794
+</td>
+<td style="text-align:right;">
+20.907
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-06-10 14:17:00
+</td>
+<td style="text-align:left;">
+2021-06-10
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+14.283333
+</td>
+<td style="text-align:right;">
+3.574
+</td>
+<td style="text-align:right;">
+20.950
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-01-10 16:10:00
+</td>
+<td style="text-align:left;">
+2021-01-10
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:right;">
+16.166667
+</td>
+<td style="text-align:right;">
+8.651
+</td>
+<td style="text-align:right;">
+16.142
+</td>
+<td style="text-align:left;">
+night
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2021-09-01 10:11:00
+</td>
+<td style="text-align:left;">
+2021-09-01
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+10.183333
+</td>
+<td style="text-align:right;">
+5.359
+</td>
+<td style="text-align:right;">
+19.150
+</td>
+<td style="text-align:left;">
+day
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <p>Plot the <code>hour</code> along the x-axis and set the fill and colour by <code>timeofday</code>. Use <code>scale_*_manual()</code> functions to set custom colours for day and night.</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hour</span>, 
            fill <span class="op">=</span> <span class="va">timeofday</span>, 
            colour <span class="op">=</span> <span class="va">timeofday</span><span class="op">)</span>
@@ -1107,7 +1107,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-11.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

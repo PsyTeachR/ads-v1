@@ -180,7 +180,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 348 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 345 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.

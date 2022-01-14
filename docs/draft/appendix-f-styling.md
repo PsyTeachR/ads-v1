@@ -639,7 +639,7 @@ These palettes are good for <a class='glossary' target='_blank' title='Discrete 
 <p class="caption">(\#fig:unnamed-chunk-8)Diverging brewer palettes.</p>
 </div>
 
-## Themes
+## Themes {#themes-appendix}
 
 <code class='package'>ggplot2</code> has 8 built-in themes that you can add to a plot like `plot + theme_bw()` or set as the default theme at the top of your script like `theme_set(theme_bw())`.
 
@@ -656,3 +656,97 @@ You can get more themes from add-on packages, like <code class='package'><a href
 <img src="appendix-f-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%" />
 <p class="caption">(\#fig:unnamed-chunk-10){ggthemes} themes.</p>
 </div>
+
+
+### Fonts
+
+You can customise the fonts used in themes. All computers should be able to recognise the families "sans", "serif", and "mono", and some computers will be able to access other installed fonts by name.
+
+
+```r
+sans <- g + theme_bw(base_family = "sans") + 
+  ggtitle("Sans")
+serif <- g + theme_bw(base_family = "serif") + 
+  ggtitle("Serif")
+mono <- g + theme_bw(base_family = "mono") + 
+  ggtitle("Mono")
+font <- g + theme_bw(base_family = "Comic Sans MS") + 
+  ggtitle("Comic Sans MS")
+
+sans + serif + mono + font + plot_layout(nrow = 1)
+```
+
+<div class="figure" style="text-align: center">
+<img src="appendix-f-styling_files/figure-html/theme-font-demo-1.png" alt="Different fonts." width="100%" />
+<p class="caption">(\#fig:theme-font-demo)Different fonts.</p>
+</div>
+
+However, you may have to add fonts first, especially if you're using Windows. The <code class='package'>showtext</code> package is a flexible way to add fonts.
+
+If you have a .ttf file from a font site, like [Font Squirrel](https://www.fontsquirrel.com){target="_blank"}, you can load the file directly using `font_add()`. Set `regular` as the path to the file for the regular version of the font, and optionally add other versions. Set the `family` to the name you want to use for the font. You will need to include any local font files if you are sharing your script with others.
+
+
+```r
+library(showtext)
+
+# font from https://www.fontsquirrel.com/fonts/SF-Cartoonist-Hand
+
+font_add(
+  regular = "fonts/cartoonist/SF_Cartoonist_Hand.ttf",
+  bold = "fonts/cartoonist/SF_Cartoonist_Hand_Bold.ttf",
+  italic = "fonts/cartoonist/SF_Cartoonist_Hand_Italic.ttf",
+  bolditalic = "fonts/cartoonist/SF_Cartoonist_Hand_Bold_Italic.ttf",
+  family = "cartoonist" 
+)
+```
+
+To download fonts directly from [Google fonts](https://fonts.google.com/){target="_blank"}, use the function `font_add_google()`, set the `name` to the exact name from the site, and the `family` to the name you want to use for the font.
+
+
+```r
+# download fonts from Google
+font_add_google(name = "Courgette", family = "courgette")
+font_add_google(name = "Poiret One", family = "poiret")
+```
+
+After you've added fonts from local files or Google, you need to make them available to R using `showtext_auto()`. You will have to do these steps in each script where you want to use the custom fonts.
+
+
+```r
+showtext_auto() # load the fonts
+```
+
+To change the fonts used overall in a plot, use the `theme()` function and set `text` to `element_text(family = "new_font_family")`.
+
+
+```r
+a <- g + theme(text = element_text(family = "courgette")) +
+  ggtitle("Courgette")
+b <- g + theme(text = element_text(family = "cartoonist")) +
+  ggtitle("Cartoonist Hand")
+c <- g + theme(text = element_text(family = "poiret")) +
+  ggtitle("Poiret One")
+
+a + b + c
+```
+
+<div class="figure" style="text-align: center">
+<img src="appendix-f-styling_files/figure-html/font-demo-1.png" alt="Custom Fonts." width="100%" />
+<p class="caption">(\#fig:font-demo)Custom Fonts.</p>
+</div>
+
+
+```r
+g + ggtitle("Cartoonist Hand") +
+  theme(
+    title = element_text(family = "cartoonist", face = "bold"),
+    strip.text = element_text(family = "cartoonist", face = "italic"),
+    axis.text = element_text(family = "sans")
+  )
+```
+
+<div class="figure" style="text-align: center">
+<img src="appendix-f-styling_files/figure-html/demo-multi-text-1.png" alt="Multiple custom fonts on the same plot." width="100%" />
+<p class="caption">(\#fig:demo-multi-text)Multiple custom fonts on the same plot.</p>
+</div>
+

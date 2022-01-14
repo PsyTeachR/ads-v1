@@ -3,7 +3,8 @@
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  message = FALSE
 )
 library(ggthemes)
 ```
@@ -195,7 +196,7 @@ If the end colour is too light for your plot or the start colour too dark, you c
 
 Set `r glossary("continuous")` viridis colours with `scale_colour_viridis_c()` or `scale_fill_viridis_c()` and set the `option` argument to one of the options below. Set `direction = -1` to reverse the order of colours.
 
-```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Continuous viridis palettes."}
+```{r, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Continuous viridis palettes."}
 options <- list("magma", "inferno", "plasma", "viridis", "cividis")
 
 set.seed(8675309)
@@ -232,7 +233,7 @@ Brewer palettes give you a lot of control over plot colour and fill. You set the
 
 These palettes are good for `r glossary("categorical")` data with up to 8 categories (some palettes can handle up to 12). The "Paired" palette is useful if your categories are arranged in pairs.
 
-```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Qualitative brewer palettes."}
+```{r, echo = FALSE, fig.width = 8, fig.height = 8, fig.cap="Qualitative brewer palettes."}
 palettes <- list("Accent", "Dark2", "Paired", "Pastel1", "Pastel2", "Set1", "Set2", "Set3")
 
 g <- palette_demo(12)
@@ -262,7 +263,7 @@ wrap_plots(plots, ncol = 2)
 
 These palettes are good for `r glossary("ordinal")` categories with up to 11 levels where the centre level is a neutral or baseline category and the levels above and below it differ in an important way, such as agree versus disagree options.
 
-```{r, warning=FALSE, echo = FALSE, fig.width = 8, fig.height = 10, fig.cap="Diverging brewer palettes."}
+```{r, fig.width = 8, fig.height = 10, fig.cap="Diverging brewer palettes."}
 palettes <- c("BrBG", "PiYG", "PRGn", "PuOr", "RdBu", "RdGy", "RdYlBu", "RdYlGn", "Spectral")
 
 g <- palette_demo(11)
@@ -270,7 +271,7 @@ plots <- lapply(palettes, palette_plot, g = g)
 wrap_plots(plots, ncol = 2)
 ```
 
-## Themes
+## Themes {#themes-appendix}
 
 `r pkg("ggplot2")` has 8 built-in themes that you can add to a plot like `plot + theme_bw()` or set as the default theme at the top of your script like `theme_set(theme_bw())`.
 
@@ -321,24 +322,24 @@ wrap_plots(plots, ncol = 2)
 
 You can customise the fonts used in themes. All computers should be able to recognise the families "sans", "serif", and "mono", and some computers will be able to access other installed fonts by name.
 
-```{r theme-font-demo, warning = FALSE, fig.width = 10, fig.height = 2.5, fig.cap="Different fonts."}
+```{r theme-font-demo, echo = TRUE, fig.width = 10, fig.height = 2.5, fig.cap="Different fonts."}
 sans <- g + theme_bw(base_family = "sans") + 
   ggtitle("Sans")
 serif <- g + theme_bw(base_family = "serif") + 
   ggtitle("Serif")
 mono <- g + theme_bw(base_family = "mono") + 
   ggtitle("Mono")
-fira <- g + theme_bw(base_family = "Fira Code") + 
-  ggtitle("FiraCode")
+font <- g + theme_bw(base_family = "Comic Sans MS") + 
+  ggtitle("Comic Sans MS")
 
-sans + serif + mono + fira + plot_layout(nrow = 1)
+sans + serif + mono + font + plot_layout(nrow = 1)
 ```
 
 However, you may have to add fonts first, especially if you're using Windows. The `r pkg("showtext")` package is a flexible way to add fonts.
 
-If you have a .ttf file from a font site, like [Font Squirrel](https://www.fontsquirrel.com){target="_blank"}, you can load the file directly using `font_add()`. Set `regular` as the path to the file for the regular version of the font, and optionally add other versions. Set the `family` to the name you want to use for the font.  You will need to include any local font files if you are sharing your script with others.
+If you have a .ttf file from a font site, like [Font Squirrel](https://www.fontsquirrel.com){target="_blank"}, you can load the file directly using `font_add()`. Set `regular` as the path to the file for the regular version of the font, and optionally add other versions. Set the `family` to the name you want to use for the font. You will need to include any local font files if you are sharing your script with others.
 
-```{r}
+```{r, echo = TRUE}
 library(showtext)
 
 # font from https://www.fontsquirrel.com/fonts/SF-Cartoonist-Hand
@@ -354,7 +355,7 @@ font_add(
 
 To download fonts directly from [Google fonts](https://fonts.google.com/){target="_blank"}, use the function `font_add_google()`, set the `name` to the exact name from the site, and the `family` to the name you want to use for the font.
 
-```{r}
+```{r, echo = TRUE}
 # download fonts from Google
 font_add_google(name = "Courgette", family = "courgette")
 font_add_google(name = "Poiret One", family = "poiret")
@@ -362,13 +363,13 @@ font_add_google(name = "Poiret One", family = "poiret")
 
 After you've added fonts from local files or Google, you need to make them available to R using `showtext_auto()`. You will have to do these steps in each script where you want to use the custom fonts.
 
-```{r}
+```{r, echo = TRUE}
 showtext_auto() # load the fonts
 ```
 
 To change the fonts used overall in a plot, use the `theme()` function and set `text` to `element_text(family = "new_font_family")`.
 
-```{r font-demo, warning = FALSE, fig.width = 8, fig.height = 2.5, fig.cap="Custom Fonts."}
+```{r, echo = TRUE, font-demo, fig.width = 8, fig.height = 2.5, fig.cap="Custom Fonts."}
 a <- g + theme(text = element_text(family = "courgette")) +
   ggtitle("Courgette")
 b <- g + theme(text = element_text(family = "cartoonist")) +
@@ -379,7 +380,9 @@ c <- g + theme(text = element_text(family = "poiret")) +
 a + b + c
 ```
 
-```{r demo-multi-text, warning = FALSE, fig.width = 6, fig.height = 2.5, fig.cap="Multiple custom fonts on the same plot."}
+To set the fonts for individual elements in the plot, you need to find the specific argument for that element. You can use the argument `face` to choose "bold", "italic",  or "bolditalic" versions, if they are available.
+
+```{r, echo = TRUE, demo-multi-text, fig.width = 6, fig.height = 2.5, fig.cap="Multiple custom fonts on the same plot."}
 g + ggtitle("Cartoonist Hand") +
   theme(
     title = element_text(family = "cartoonist", face = "bold"),

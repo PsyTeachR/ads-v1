@@ -29,7 +29,7 @@ We'd recommend making a new code chunk for each different activity, and using th
 
 ## Variable Types
 
-If a spreadsheet is in a `r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use built-in datasets with the right format.
+If a spreadsheet is in a `r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use datasets with the right format.
 
 For example, the table below lists pets owned by members of the psyTeachR team. Each row is an observation of one pet. There are 6 variables for each pet, their `name`, `owner`, `species`, `birthdate`, `weight` (in kg), and `rating` (on a 5-point scale from "very evil" to "very good").
 
@@ -72,14 +72,17 @@ Categorical data can have a `r glossary("character")` data type, also called `r 
 
 Categorical data can also be `r glossary("factor", "factors")`, a specific type of integer that lets you specify the category names and their order. This is useful for making plots display with categories in the order you want (otherwise they default to alphabetical order). The factor data type is best for categories that have a specific number of levels.
 
-Sometimes people represent categorical variables with numbers that correspond to names, like 0 = "no" and 1 = "yes", but values in between don't have a clear interpretation. If you have control over how the data are recorded, it's better to use the character names for clarity, but you'll learn how to recode columns in Chapter\ \@ref(wrangle).
+Sometimes people represent categorical variables with numbers that correspond to names, like 0 = "no" and 1 = "yes", but values in between don't have a clear interpretation. If you have control over how the data are recorded, it's better to use the character names for clarity. You'll learn how to recode columns in Chapter\ \@ref(wrangle).
 
 ### Dates and Times
 
 Dates and times are a special case of variable. They can act like categorical or continuous variables, and there are special ways to plot them. Dates and times can be hard to work with, but the `r pkg("lubridate", "https://lubridate.tidyverse.org/")` package provides functions to help you with this.
 
 ```{r}
+# the current date
 lubridate::today()
+
+# the current date and time in the GMT timezone
 lubridate::now(tzone = "GMT")
 ```
 
@@ -120,7 +123,9 @@ date <- c(x = "continuous", x = "nominal", x = "ordinal", answer = "date")
 
 ## Building Plots
 
-```{r sim-survey, include = FALSE}
+```{r sim-survey, include = FALSE, eval = FALSE}
+# code for simulating the data used in this chapter
+# hidden from students and not run on every knit, just here for reference
 library(faux)
 set.seed(8765309)
 
@@ -189,11 +194,11 @@ e <- d + scale_x_continuous(name = "Wait Time (seconds)", breaks = x_breaks) +
   scale_y_continuous(name = "Call time (seconds)", breaks = y_breaks) + 
   coord_cartesian(xlim = c(0, 360), ylim = c(0, 180)) +
   labs(subtitle = "Layer 5")
-f <- e + ggthemes::theme_gdocs(base_size = 11, base_family = "Times") + 
+f <- e + ggthemes::theme_gdocs(base_size = 11) + 
   theme(axis.line.x = element_blank(),
         plot.background = element_blank()) +
   labs(subtitle = "Layer 6") +
-  theme(plot.subtitle =  element_text(family = "Arial", color = "black"))
+  theme(plot.subtitle =  element_text(color = "black"))
 
 a + b + c + d + e + f + plot_layout(nrow = 2)
 ```
@@ -261,7 +266,7 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 
 ### Default theme
 
-Plots in this book use the black-and-white theme, not the default grey theme, so set your default theme to the same so your plots will look like the examples below. At the top of your script, in the setup chunk after you've loaded the tidyverse package, add the following code and run it. You'll learn more ways to [customise your theme](#themess) below.
+Plots in this book use the black-and-white theme, not the default grey theme, so set your default theme to the same so your plots will look like the examples below. At the top of your script, in the setup chunk after you've loaded the tidyverse package, add the following code and run it. You'll learn more ways to customise your theme in Section\ \@ref(themes)
 
 ```{r}
 theme_set(theme_bw()) # set the default theme
@@ -307,7 +312,7 @@ ggplot(data = survey_data, aes(x = wait_time, y = call_time))
 
 ### Multiple Geoms
 
-Part of the power of `r pkg("ggplot2")` is that you can add more than one geom to a plot by adding on extra layers and so it quickly becomes possible to make complex and informative visualisation. Importantly, the layers display in the order you set them up. The code below uses the same geoms to produce a scatterplot with a line of best fit but orders them differently, we make two different plots and assign them to `r glossary("object", "objects")` that we can add together using the `plot_layout()` function from the `r pkg("patchwork")` package.
+Part of the power of `r pkg("ggplot2")` is that you can add more than one geom to a plot by adding on extra layers and so it quickly becomes possible to make complex and informative visualisation. Importantly, the layers display in the order you set them up. The code below uses the same geoms to produce a scatterplot with a line of best fit but orders them differently.
 
 ```{r build-plot-geom2-code, eval = FALSE}
 
@@ -341,7 +346,7 @@ point_first + line_first + plot_layout(nrow = 1)
 
 ### Saving and combining plots
 
-Just like you can save numbers and data tables to objects, you can also save the output of `ggplot()` . The below code produces the same plots we created above but saves them to objects named `point_first` and `line_first`. If you run this code, the plots won't display like they have done before, instead, you'll see the object names appear in the environment pane. To view the plots, call the objects by name.
+Just like you can save numbers and data tables to objects, you can also save the output of `ggplot()`. The code below produces the same plots we created above but saves them to objects named `point_first` and `line_first`. If you run this code, the plots won't display like they have done before. Instead, you'll see the object names appear in the environment pane. To view the plots, call the objects by name.
 
 ```{r build-plot-geom2b, fig.cap="Points first versus line first.", message = FALSE}
 point_first <- 
@@ -362,7 +367,7 @@ line_first
 
 ```
 
-One of the reasons to save your plots to object is so that you can combine multiple plots using functions from the `patchwork` package. The below code produces the above plot by combining the two plots with `+` and then specifying that  we want the plots produced on a single row with the `nrow` argument in `plot_layout()`. 
+One of the reasons to save your plots to objects is so that you can combine multiple plots using functions from the `patchwork` package. The below code produces the above plot by combining the two plots with `+` and then specifying that we want the plots produced on a single row with the `nrow` argument in `plot_layout()`. 
 
 ```{r}
 # add plots together in 1 row
@@ -371,26 +376,23 @@ point_first + line_first + plot_layout(nrow = 1) # try changing nrow to 2
 
 ### Styling Geoms
 
-We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom, you can set the arguments `colour`, `alpha`, `shape`, `size` and `linetype` inside the geom function. There are many different values that you can set these to; Appendix\ \@ref(plotstyle) gives details of these.
+We should definitely put the line in front of the points, but the points are still a bit dark. If you want to change the overall style of a geom, you can set the arguments `colour`, `alpha`, `shape`, `size` and `linetype` inside the geom function. There are many different values that you can set these to; Appendix\ \@ref(plotstyle) gives details of these. Play around with different values below and figure out what the `r glossary("default value", "default values")` are for `shape` and `size`. 
 
 ```{r build-plot-style, fig.cap="Changing geom styles."}
 ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
   geom_point(colour = "dodgerblue", 
-             alpha = 0.2, #transparency
-             shape = 18,
+             alpha = 0.2, # 20% transparency
+             shape = 18,  # solid diamond
              size = 2) + 
   geom_smooth(method = lm, 
-              formula = y~x, # formula used to draw line, default value but avoids annoying message
+              formula = y~x, # formula used to draw line, 
+              # setting the default formula avoids an annoying message
               colour = rgb(0, .5, .8),
               linetype = 3) 
 ```
 
-::: {.info data-latex=""}
-This method is only for changing the style of all the object made with that geom. If you want, for example, points to have different colours depending on which issue category they are from, you set the argument `colour = issue_category` inside the `aes()` function for the mapping.
-:::
-
-::: {.try data-latex=""}
-Play around with different values for the aesthetics above. Figure out what the default values are for `shape` and `size`. 
+::: {.warning data-latex=""}
+This method is only for changing the style of *all* the shapes made with that geom. If you want, for example, points to have different colours depending on which issue category they are from, you set the argument `colour = issue_category` inside the `aes()` function for the mapping. You can customise the colours used with `scale_` functions, which you will learn about below and in Chapter\ \@ref(themes-and-colours).
 :::
 
 ### Format Axes
@@ -420,7 +422,7 @@ Check the help for `?scale_x_continuous` to see how you would set the minor unit
 
 ### Axis Limits
 
-If you want to change the minimum and maximum values on an axis, use the `coord_cartesian()` function. Many plots make more sense if the minimum and maximum values represent the range of possible values, even if those values aren't present in the data. Here, wait and call times can't be less than 0 seconds, so we'll set the minimum values to 0 and the maximum values to the first breaks above the maximum values.
+If you want to change the minimum and maximum values on an axis, use the `coord_cartesian()` function. Many plots make more sense if the minimum and maximum values represent the range of possible values, even if those values aren't present in the data. Here, wait and call times can't be less than 0 seconds, so we'll set the minimum values to 0 and the maximum values to the first break above the highest value.
 
 ```{r build-plot-limits, fig.cap="Changing the axis limits."}
 ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
@@ -443,7 +445,7 @@ You can also set the `limits` argument inside  the `scale_` functions, but this 
 
 ### Themes
 
-`r pkg("ggplot2")` comes with several built-in themes, such as `theme_minimal()` and `theme_bw()`, but the `r pkg("ggthemes", "https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/")` package provides even more themes that match different software, such as GoogleDocs or Stata, or publications, such as the Economist or the Wall Street Journal. Let's add the GoogleDocs theme, but change the font size to 11 with the `base_size` argument and change the font to "Times" with the `base_family` argument.
+`r pkg("ggplot2")` comes with several built-in themes, such as `theme_minimal()` and `theme_bw()`, but the `r pkg("ggthemes", "https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/")` package provides even more themes that match different software, such as GoogleDocs or Stata, or publications, such as the Economist or the Wall Street Journal. Let's add the GoogleDocs theme, but change the font size to 11 with the `base_size` argument.
 
 It's also worth highlighting that this code is starting to look quite complicated because of the number of layers but because we've built it up slowly it should (hopefully!) make sense - if you see examples of `r pkg("ggplot2")` code online that you'd like to adapt, build the plot up layer by layer and it will make it easier to understand what each layer adds.
 
@@ -455,17 +457,15 @@ ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
               formula = y~x, 
               colour = rgb(0, .5, .8)) +
   scale_x_continuous(name = "Wait Time (seconds)", 
-                     breaks = x_breaks) +
+                     breaks = seq(from = 0, to = 600, by = 60)) +
   scale_y_continuous(name = "Call time (seconds)",
-                     breaks = y_breaks) +
+                     breaks = seq(from = 0, to = 600, by = 30)) +
   coord_cartesian(xlim = c(0, 360), 
                   ylim = c(0, 180)) +
-  theme_gdocs(base_size = 11, base_family = "Times")
+  ggthemes::theme_gdocs(base_size = 11)
 ```
 
-::: {.warning data-latex=""}
-If you don't that the font "Times" on your computer, you'll get an error message. Try another font that you do have installed.
-:::
+
 
 ### Theme Tweaks
 
@@ -492,7 +492,7 @@ ggplot(data = survey_data, mapping = aes(x = wait_time, y = call_time)) +
 
 ## Appropriate Plots
 
-The [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) is a great resource to help you find plots appropriate to your data, based on how many variables you're plotting and what type they are. The examples below all use the same customer satisfaction data, but each plot communicates something different. 
+The [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) is a great resource to help you find plots appropriate to your data, based on how many variables you're plotting and what type they are. The examples below all use the same customer satisfaction data, but each plot communicates something different. 
 
 We don't expect you to memorise all of the plot types or the methods for customising them, but it will be helpful to try out the code in the examples below for yourself, changing values to test your understanding.
 
@@ -550,7 +550,8 @@ count_data <- count(x = survey_data, issue_category)
 The mapping for `geom_col()` requires you to set both the `x` and `y` aesthetics. Set `y = n` because we want to plot the number of issues in each category, and that information is in the column called `n`.
 
 ```{r}
-ggplot(data = count_data, mapping = aes(x = issue_category, y = n)) +
+ggplot(data = count_data, 
+       mapping = aes(x = issue_category, y = n)) +
   geom_col()
 ```
 
@@ -613,7 +614,7 @@ ggplot(data = survey_data, mapping = aes(x = wait_time)) +
   geom_histogram()
 ```
 
-You should always set the `binwidth` or number of `bins` to something meaningful for your data (otherwise you get that annoying message). You might need to try a few options before you find something that looks good and conveys the meaning of your plot - try changing the values of `binwidth` and `bins` below to see what works best.
+You should always set the `binwidth` or number of `bins` to something meaningful for your data (otherwise you get an annoying message). You might need to try a few options before you find something that looks good and conveys the meaning of your plot -- try changing the values of `binwidth` and `bins` below to see what works best.
 
 ```{r eval = FALSE}
 # adjust width of each bar
@@ -813,7 +814,7 @@ ggplot(data = survey_data, mapping = aes(x = issue_category, y = wait_time)) +
 
 Violin plots are frequently layered with other geoms that represent the mean or median values in the data. This is a lot of code, to help your understanding a) run it layer by layer to see how it builds up and b) change the values throughout the code
 
-```{r violin-combos, fig.height = 3/2, fig.width=12/2, fig.cap="Violin plots combined with different methods to represent means and medians."}
+```{r violin-combos, fig.height = 3, fig.width=10, fig.cap="Violin plots combined with different methods to represent means and medians."}
 # add fill and colour to the mapping
 
 ggplot(data = survey_data, 
@@ -842,8 +843,8 @@ ggplot(data = survey_data,
 
 A very common type of plot is to produce a bar chart of means, however, the example below demonstrates just how misleading this is. It communicates the mean value for each category, but the bars hide the distribution of the actual data. You can't tell if most wait times are close to 3 minutes, or spread from 0 to 6 minutes, or if the vast majority are less than 2 minutes, but the mean is pulled up by some very high outliers.
 
-```{r col-plot-bad, message=FALSE, fig.cap="Don't plot continuous data with column plots."}
-ggplot(data = survey_data, 
+```{r col-plot-bad, message=FALSE, echo = FALSE, fig.cap="Don't plot continuous data with column plots. They are only appropriate for count data."}
+tall_col <- ggplot(data = survey_data, 
        mapping = aes(x = issue_category, 
                      y = wait_time,
                      fill = issue_category)) +
@@ -853,7 +854,16 @@ ggplot(data = survey_data,
   guides(fill = "none", colour = "none") +
   stat_summary(fun = "mean", 
                geom = "col") # draws a column representing the mean
+
+short_col <- tall_col +
+  scale_y_continuous(name = "Wait Time (seconds)",
+                     breaks = seq(0, 600, 1)) +
+  coord_cartesian(ylim = c(185, 189))
+
+tall_col + short_col
 ```
+
+Column plots can also be very misleading. The plot on the left starts the y-axis at 0, which makes the bar heights proportional, showing almost no difference in average wait times. Since the differences are hard to see, you may be tempted to start the y-axis higher, but that makes it look like the average wait time for returns is double that for tech.
 :::
 
 #### Test your understanding
@@ -924,12 +934,14 @@ In Figure\ \@ref(fig:layers), we emphasised the relationship between wait time a
 
 ```{r, fig.cap="Different ways to show the relationship between two continuous variables."}
 
-lm_plot <- g +
+lm_plot <- ggplot(data = survey_data,
+                  mapping = aes(x = wait_time, y = call_time)) +
   geom_point(alpha = 0.2) +
   geom_smooth(method = lm, formula = y~x) +
   ggtitle("method = lm")
 
-loess_plot <- g +
+loess_plot <- ggplot(data = survey_data,
+                     mapping = aes(x = wait_time, y = call_time)) +
   geom_point(alpha = 0.2) +
   geom_smooth(method = "loess", formula = y~x) +
   ggtitle("method = loess")
@@ -1028,7 +1040,7 @@ These are not, by any means, all the plot types that you can make in R. This cha
 
 ## R Markdown exercises
 
-For the final step in this chapter, we will create a report of data visualisations. You may need to refer back to Chapter\ \@ref(reports) to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
+For the final step in this chapter, we will create a report of data visualisations. You may need to refer back to Chapter\ \@ref(reports) to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you `r glossary("knit")` at every step so that you can see how your output changes.
 
 ### New Markdown {#exercises-new-rmd-3}
 
@@ -1042,7 +1054,7 @@ library(lubridate)
 library(knitr)
 library(kableExtra)
 
-survey_data <- read_csv("https://raw.githubusercontent.com/PsyTeachR/ads-v1/master/book/data/survey_data.csv")
+survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv")
 ```
 
 ### Summary
@@ -1114,7 +1126,7 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
 
 * [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) [@nordmann_2021]
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
-* [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+* [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 * [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)
 * [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 * [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students

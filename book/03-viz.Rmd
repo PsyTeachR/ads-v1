@@ -207,6 +207,12 @@ a + b + c + d + e + f + plot_layout(nrow = 2)
 
 Importantly, each layer is independent and independently customisable. For example, the size, colour and position of each component can be adjusted, or one could, for example, remove the first geom (the data points) to only visualise the line of best fit, simply by removing the layer that draws the data points (Figure\ \@ref(fig:remove-layer)). The use of layers makes it easy to build up complex plots step-by-step, and to adapt or extend plots from existing code.
 
+```{r echo = FALSE}
+windowsFonts(Arial=windowsFont("TT Arial"))
+windowsFonts(Times=windowsFont("TT Times New Roman"))
+```
+
+
 ```{r remove-layer, fig.cap="Plot with scatterplot layer removed.", echo = FALSE}
 ggplot(survey_data, aes(x = wait_time, y = call_time)) + 
   #geom_point(alpha = 0.15, color = "dodgerblue") +
@@ -217,6 +223,14 @@ ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   theme_minimal(base_family = "Arial") + 
   theme(panel.grid.minor = element_blank())
 ```
+
+::: {.warning data-latex=""}
+If you are working on a Windows machine and get the error "font family not found in Windows font database", you may need to explicitly map the fonts. In your setup code chunk, add the following code which should fixed the error. You may need to do this for any fonts that you specify.
+
+```{r, eval = FALSE}
+windowsFonts(Arial=windowsFont("TT Arial"))
+```
+:::
 
 ### Plot Data {#plots-loading-data}
 

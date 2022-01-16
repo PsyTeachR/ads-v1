@@ -450,7 +450,7 @@ It's worth highlighting at this point that working with real data can be difficu
 
 You may also be tempted to fix messy datasets by e.g., opening up Excel and editing them there. Whilst this might seem easier in the short-term there's two serious issues with doing this. First, you will likely work with datasets that have recurring messy problems. By taking the time to solve these problems with code, you can apply the same solutions to a large number of future datasets so it's more efficient in the long-run. Second, if you edit the spreadsheet there's no record of what you did. By solving these problems with code you do so reproducibly and you don't edit the original data file which means if you make an error, there's
 
-## R Markdown exercises
+## Exercises
 
 For the final step in this chapter, we will create a report using one of the in-built datasets to practice the skills you have used so far. You may need to refer back to previous to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
 

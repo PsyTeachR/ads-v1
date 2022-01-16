@@ -19,11 +19,11 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
@@ -1774,7 +1774,7 @@ Figure F.7: {ggplot2} themes.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="appendix-f-styling_files/figure-html/unnamed-chunk-10-1.png" alt="{ggthemes} themes." width="100%"><p class="caption">
-Figure 2.7: {ggthemes} themes.
+Figure 9.5: {ggthemes} themes.
 </p>
 </div>
 </div>
@@ -1783,7 +1783,7 @@ Figure 2.7: {ggthemes} themes.
 <span class="header-section-number">F.3.2</span> Fonts<a class="anchor" aria-label="anchor" href="#fonts"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can customise the fonts used in themes. All computers should be able to recognise the families "sans", "serif", and "mono", and some computers will be able to access other installed fonts by name.</p>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sans</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Sans"</span><span class="op">)</span>
 <span class="va">serif</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span> <span class="op">+</span> 
@@ -1793,7 +1793,7 @@ Figure 2.7: {ggthemes} themes.
 <span class="va">font</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Comic Sans MS"</span><span class="op">)</span>
 
-<span class="va">sans</span> <span class="op">+</span> <span class="va">serif</span> <span class="op">+</span> <span class="va">mono</span> <span class="op">+</span> <span class="va">font</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/patchwork/man/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<span class="va">sans</span> <span class="op">+</span> <span class="va">serif</span> <span class="op">+</span> <span class="va">mono</span> <span class="op">+</span> <span class="va">font</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:theme-font-demo"></span>
 <img src="appendix-f-styling_files/figure-html/theme-font-demo-1.png" alt="Different fonts." width="100%"><p class="caption">
@@ -1802,7 +1802,7 @@ Figure F.8: Different fonts.
 </div>
 <p>However, you may have to add fonts first, especially if you're using Windows. The <code class="package">showtext</code> package is a flexible way to add fonts.</p>
 <p>If you have a .ttf file from a font site, like <a href="https://www.fontsquirrel.com" target="_blank">Font Squirrel</a>, you can load the file directly using <code>font_add()</code>. Set <code>regular</code> as the path to the file for the regular version of the font, and optionally add other versions. Set the <code>family</code> to the name you want to use for the font. You will need to include any local font files if you are sharing your script with others.</p>
-<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
 
 <span class="co"># font from https://www.fontsquirrel.com/fonts/SF-Cartoonist-Hand</span>
@@ -1815,15 +1815,15 @@ Figure F.8: Different fonts.
   family <span class="op">=</span> <span class="st">"cartoonist"</span> 
 <span class="op">)</span></code></pre></div>
 <p>To download fonts directly from <a href="https://fonts.google.com/" target="_blank">Google fonts</a>, use the function <code>font_add_google()</code>, set the <code>name</code> to the exact name from the site, and the <code>family</code> to the name you want to use for the font.</p>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># download fonts from Google</span>
 <span class="fu">font_add_google</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Courgette"</span>, family <span class="op">=</span> <span class="st">"courgette"</span><span class="op">)</span>
 <span class="fu">font_add_google</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Poiret One"</span>, family <span class="op">=</span> <span class="st">"poiret"</span><span class="op">)</span></code></pre></div>
 <p>After you've added fonts from local files or Google, you need to make them available to R using <code><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto()</a></code>. You will have to do these steps in each script where you want to use the custom fonts.</p>
-<div class="sourceCode" id="cb373"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># load the fonts</span></code></pre></div>
 <p>To change the fonts used overall in a plot, use the <code>theme()</code> function and set <code>text</code> to <code>element_text(family = "new_font_family")</code>.</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"courgette"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Courgette"</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="va">g</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"cartoonist"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -1838,7 +1838,8 @@ Figure F.8: Different fonts.
 Figure F.9: Custom Fonts.
 </p>
 </div>
-<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<p>To set the fonts for individual elements in the plot, you need to find the specific argument for that element. You can use the argument <code>face</code> to choose "bold", "italic", or "bolditalic" versions, if they are available.</p>
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">g</span> <span class="op">+</span> <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Cartoonist Hand"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">theme</span><span class="op">(</span>
     title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"cartoonist"</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
@@ -2093,7 +2094,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-14.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

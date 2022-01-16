@@ -735,6 +735,8 @@ a + b + c
 <p class="caption">(\#fig:font-demo)Custom Fonts.</p>
 </div>
 
+To set the fonts for individual elements in the plot, you need to find the specific argument for that element. You can use the argument `face` to choose "bold", "italic",  or "bolditalic" versions, if they are available.
+
 
 ```r
 g + ggtitle("Cartoonist Hand") +

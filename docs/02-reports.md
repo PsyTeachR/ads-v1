@@ -180,7 +180,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 345 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 344 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -360,9 +360,8 @@ As the saying goes, a picture paints a thousand words and sometimes you will wan
 
 Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter\ \@ref(viz) to make a simple bar chart that represents the sales data -  focus on trying to follow how bits of the code map on to the plot that is created.
 
-Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document. Notice how the figure caption is formatted in the chunk options.
+Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document.
 
-<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, fig.cap= "Sales visualisation"}</code></pre>
 
 ```r
 ggplot(data = sales_counts, 
@@ -374,12 +373,7 @@ ggplot(data = sales_counts,
        subtitle = "2003 - 2005")
 ```
 
-<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
-
-<div class="figure" style="text-align: center">
-<img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" alt="Sales visualisation" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-10)Sales visualisation</p>
-</div>
+<img src="02-reports_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
 
 You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using `knitr::include_graphics()`.
 
@@ -471,7 +465,7 @@ sales_counts %>%
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-14)Number of sales per product line.</caption>
+<caption>(\#tab:unnamed-chunk-13)Number of sales per product line.</caption>
  <thead>
   <tr>
    <th style="text-align:center;font-weight: bold;color: red !important;"> Product </th>
@@ -562,7 +556,7 @@ Note that `fig.width` and `fig.height` control the original size and aspect rati
 
 These setup options change the behaviour for the entire document, however, you can override the behaviour for individual code chunks. 
 
-For example, by default you might want to hide your code but there might be an occasion where you want to show the code you used to analyse your data. You can set `echo = FALSE` in your setup chunk to make hiding code the default but in the individual code chunk for your plot set `echo = TRUE`. Try this now and knit the file to see the results.
+For example, by default you might want to hide your code but there also might be an occasion where you want to show the code you used to analyse your data. You can set `echo = FALSE` in your setup chunk to make hiding code the default but in the individual code chunk for your plot set `echo = TRUE`. Try this now and knit the file to see the results.
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, echo = TRUE}</code></pre>
 
@@ -819,7 +813,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>

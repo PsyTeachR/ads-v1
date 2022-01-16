@@ -339,19 +339,9 @@ As the saying goes, a picture paints a thousand words and sometimes you will wan
 
 Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter\ \@ref(viz) to make a simple bar chart that represents the sales data -  focus on trying to follow how bits of the code map on to the plot that is created.
 
-Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document. Notice how the figure caption is formatted in the chunk options.
+Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document.
 
-```{r, eval = FALSE, verbatim = "r, fig.cap= \"Sales visualisation\""}
-ggplot(data = sales_counts, 
-       mapping = aes(x = PRODUCTLINE, y = n, fill = PRODUCTLINE)) +
-  geom_bar(stat = "identity", show.legend = FALSE) +
-  labs(x = "Type of vehicle",
-       y = "Number of sales",
-       title = "Sales by vehicle type",
-       subtitle = "2003 - 2005")
-```
-
-```{r, echo = FALSE, fig.cap= "Sales visualisation"}
+```{r}
 ggplot(data = sales_counts, 
        mapping = aes(x = PRODUCTLINE, y = n, fill = PRODUCTLINE)) +
   geom_bar(stat = "identity", show.legend = FALSE) +
@@ -482,7 +472,7 @@ ggplot(diamonds, aes(color, fill = cut)) + geom_bar()
 
 These setup options change the behaviour for the entire document, however, you can override the behaviour for individual code chunks. 
 
-For example, by default you might want to hide your code but there might be an occasion where you want to show the code you used to analyse your data. You can set `echo = FALSE` in your setup chunk to make hiding code the default but in the individual code chunk for your plot set `echo = TRUE`. Try this now and knit the file to see the results.
+For example, by default you might want to hide your code but there also might be an occasion where you want to show the code you used to analyse your data. You can set `echo = FALSE` in your setup chunk to make hiding code the default but in the individual code chunk for your plot set `echo = TRUE`. Try this now and knit the file to see the results.
 
 ```{r show-code, eval=FALSE, verbatim = "r, echo = TRUE"}
 ggplot(data = sales_counts, 

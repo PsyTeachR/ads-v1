@@ -6,8 +6,7 @@ fig:img-new-chunk
 fig:img-run1
 fig:img-run2
 fig:visual-editor
-fig:unnamed-chunk-10
-tab:unnamed-chunk-14
+tab:unnamed-chunk-13
 fig:img-full-100
 fig:img-half-100
 fig:img-half-50
@@ -55,6 +54,7 @@ fig:unnamed-chunk-6
 fig:unnamed-chunk-7
 fig:unnamed-chunk-8
 fig:unnamed-chunk-9
+fig:unnamed-chunk-10
 fig:theme-font-demo
 fig:font-demo
 fig:demo-multi-text
@@ -175,7 +175,7 @@ dates
 ordinal-variables
 jitter-plot
 facets
-r-markdown-exercises
+exercises
 exercises-new-rmd-3
 summary-1
 presenting-plots

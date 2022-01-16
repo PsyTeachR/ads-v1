@@ -119,7 +119,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2022-01-14"
+## [1] "2022-01-15"
 ```
 
 
@@ -129,7 +129,7 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2022-01-14 17:52:58 GMT"
+## [1] "2022-01-15 20:40:42 GMT"
 ```
 
 ### Test your understanding
@@ -184,6 +184,40 @@ Figure\ \@ref(fig:layers) displays the evolution of a simple scatterplot using t
 
 Importantly, each layer is independent and independently customisable. For example, the size, colour and position of each component can be adjusted, or one could, for example, remove the first geom (the data points) to only visualise the line of best fit, simply by removing the layer that draws the data points (Figure\ \@ref(fig:remove-layer)). The use of layers makes it easy to build up complex plots step-by-step, and to adapt or extend plots from existing code.
 
+
+```
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
+## found in Windows font database
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
+## found in Windows font database
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/remove-layer-1.png" alt="Plot with scatterplot layer removed." width="100%" />
 <p class="caption">(\#fig:remove-layer)Plot with scatterplot layer removed.</p>
@@ -205,7 +239,7 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 ```
 
 ```
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
@@ -214,8 +248,8 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 
 ```
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.
@@ -562,6 +596,16 @@ ggplot(survey_data, aes(x = wait_time, y = call_time)) +
         plot.background = element_blank())
 ```
 
+```
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
+## found in Windows font database
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
 <div class="figure" style="text-align: center">
 <img src="03-viz_files/figure-html/build-plot-custom-theme-1.png" alt="Customising the theme." width="100%" />
 <p class="caption">(\#fig:build-plot-custom-theme)Customising the theme.</p>
@@ -705,9 +749,9 @@ England             | 56,550,138      | Great Britain
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? <select class='webex-select'><option value='blank'></option><option value='x'>geom_bar</option><option value='answer'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_CHGKPABCJF'><label><input type="radio" autocomplete="off" name="radio_CHGKPABCJF" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_CHGKPABCJF" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_CHGKPABCJF" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_CHGKPABCJF" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_CHGKPABCJF" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_BLUEZWERPF'><label><input type="radio" autocomplete="off" name="radio_BLUEZWERPF" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_BLUEZWERPF" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_BLUEZWERPF" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_BLUEZWERPF" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_BLUEZWERPF" value="x"></input> <span>aes(y = population)</span></label></div>
 * What geom would you use to plot the number of countries on each island? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_bar</option><option value='x'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_TCFZVTMGUE'><label><input type="radio" autocomplete="off" name="radio_TCFZVTMGUE" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_TCFZVTMGUE" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TCFZVTMGUE" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TCFZVTMGUE" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_TCFZVTMGUE" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_ZVSCRHDSSH'><label><input type="radio" autocomplete="off" name="radio_ZVSCRHDSSH" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_ZVSCRHDSSH" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_ZVSCRHDSSH" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_ZVSCRHDSSH" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_ZVSCRHDSSH" value="x"></input> <span>aes(y = population)</span></label></div>
 :::
 
 ### One continuous variable
@@ -817,7 +861,7 @@ Imagine you have a table of the [population for each country in the world](https
 * What kind of plot is A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='answer'>geom_density</option></select>
 * What kind of plot is B? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='x'>geom_density</option></select>
 * What kind of plot is C? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='answer'>geom_freqpoly</option><option value='x'>geom_density</option></select>
-* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_ONFYGELRZM'><label><input type="radio" autocomplete="off" name="radio_ONFYGELRZM" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_ONFYGELRZM" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_ONFYGELRZM" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_ONFYGELRZM" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
+* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_VGJUPVYODG'><label><input type="radio" autocomplete="off" name="radio_VGJUPVYODG" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_VGJUPVYODG" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_VGJUPVYODG" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_VGJUPVYODG" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
 * What is the `binwidth` of the histogram? <select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>100</option><option value='answer'>100K</option><option value=''>1M</option></select>
 :::
 
@@ -1016,7 +1060,7 @@ Column plots can also be very misleading. The plot on the left starts the y-axis
 ::: {.try data-latex=""}
 * How would you create plot A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='x'>geom_boxplot()</option><option value='answer'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
 * How would you create plot B? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='answer'>geom_boxplot()</option><option value='x'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
-* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_NCMGPJWPPP'><label><input type="radio" autocomplete="off" name="radio_NCMGPJWPPP" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_NCMGPJWPPP" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_NCMGPJWPPP" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_NCMGPJWPPP" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label></div>
+* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_KONHXPSUAD'><label><input type="radio" autocomplete="off" name="radio_KONHXPSUAD" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_KONHXPSUAD" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_KONHXPSUAD" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_KONHXPSUAD" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label></div>
 
 * Which employee tends to have the longest calls? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='answer'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='x'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
 * Which employee has the record longest call? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='x'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='answer'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
@@ -1188,7 +1232,7 @@ ggplot(survey_data, aes(x = call_time)) +
 These are not, by any means, all the plot types that you can make in R. This chapter just gave you a basic overview, and we will go into more detail in Chapter\ \@ref(custom). The [further resources](#resources-viz) section at the end of this chapter lists many resources, but the [R Graph Gallery](http://www.r-graph-gallery.com/){target="_blank"} is an especially useful one to get inspiration for the kinds of beautiful plots you can make in R. 
 :::
 
-## R Markdown exercises
+## Exercises
 
 For the final step in this chapter, we will create a report of data visualisations. You may need to refer back to Chapter\ \@ref(reports) to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> at every step so that you can see how your output changes.
 

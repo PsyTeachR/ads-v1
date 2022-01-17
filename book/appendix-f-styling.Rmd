@@ -322,6 +322,12 @@ wrap_plots(plots, ncol = 2)
 
 You can customise the fonts used in themes. All computers should be able to recognise the families "sans", "serif", and "mono", and some computers will be able to access other installed fonts by name.
 
+```{r, include = FALSE}
+if (.Platform$OS.type == "windows") {
+  windowsFonts("Comic Sans MS" = windowsFont("Comic Sans MS"))
+}
+```
+
 ```{r theme-font-demo, echo = TRUE, fig.width = 10, fig.height = 2.5, fig.cap="Different fonts."}
 sans <- g + theme_bw(base_family = "sans") + 
   ggtitle("Sans")
@@ -335,7 +341,17 @@ font <- g + theme_bw(base_family = "Comic Sans MS") +
 sans + serif + mono + font + plot_layout(nrow = 1)
 ```
 
-However, you may have to add fonts first, especially if you're using Windows. The `r pkg("showtext")` package is a flexible way to add fonts.
+
+::: {.warning data-latex=""}
+If you are working on a Windows machine and get the error "font family not found in Windows font database", you may need to explicitly map the fonts. In your setup code chunk, add the following code, which should fix the error. You may need to do this for any fonts that you specify.
+
+```{r, eval = FALSE}
+windowsFonts("Comic Sans MS" = windowsFont("Comic Sans MS"))
+```
+:::
+
+
+The `r pkg("showtext")` package is a flexible way to add fonts.
 
 If you have a .ttf file from a font site, like [Font Squirrel](https://www.fontsquirrel.com){target="_blank"}, you can load the file directly using `font_add()`. Set `regular` as the path to the file for the regular version of the font, and optionally add other versions. Set the `family` to the name you want to use for the font. You will need to include any local font files if you are sharing your script with others.
 

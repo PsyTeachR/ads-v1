@@ -19,11 +19,9 @@ library(googlesheets4) # for Google Sheets
 
 ## Set-up
 
-Create a new project for the work we'll do in this chapter named <code class='path'>04-data</code>:
+Create a new project for the work we'll do in this chapter named <code class='path'>04-data</code>. Then, create and save a new R Markdown document named `data.Rmd`, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
 
-Then, create and save a new R Markdown document named `data.Rmd`, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
-
-We'd recommend making a new code for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
+We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 
 ## Built-in data {#builtin}
 
@@ -38,7 +36,7 @@ data()
 data(package = "tidyr")
 ```
 
-Type the name of a dataset into the <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a> to see the data. For example, type `?table1` into the console to see the dataset description for `table1` which is a dataset included with <code class='package'>tidyr</code>.
+Type the name of a dataset into the <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a> to see the data. For example, type `?table1` into the console to see the dataset description for `table1`, which is a dataset included with <code class='package'>tidyr</code>.
 
 
 ```r
@@ -62,7 +60,7 @@ Now that you've loaded some data, look the upper right hand window of RStudio, u
 
 ### View() 
 
-A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'), which opens a data table up in a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. Or you can click on an object in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> - just be aware that if you table is very large and has a lot of columns it might not show all of them. You can close the tab when you're done looking at it; it won't remove the object.
+A familiar way to look at the table is given by <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code> (uppercase 'V'), which opens up a data table in the console pane using a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. You can also click on an object in the  <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>environment pane</a> to open it in the same interface. You can close the tab when you're done looking at it; it won't remove the object.
 
 
 ```r
@@ -140,7 +138,7 @@ table1
 
 ### glimpse() 
 
-The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/pillar/man/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. 
+The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/pillar/man/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't easily see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. 
 
 
 ```r
@@ -158,7 +156,7 @@ glimpse(table1)
 
 ### summary() {#summary-function}
 
-You can get a quick summary of a dataset with the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function which can be useful for spotting things like if the minimum or maximum values are clearly wrong, or if R thinks that a nominal variable is numeric. For example, if you had labelled gender as 1, 2, and 3 rather than male, female, non-binary, `summary()` would calculate a mean and median even though this isn't appropriate for the data. This can be a useful flag that you need to take further steps to correct your data. 
+You can get a quick summary of a dataset with the <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></code> function, which can be useful for spotting things like if the minimum or maximum values are clearly wrong, or if R thinks that a <a class='glossary' target='_blank' title='Categorical variables that don&#39;t have an inherent order, such as types of animal.' href='https://psyteachr.github.io/glossary/n#nominal'>nominal</a> variable is <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>. For example, if you had labelled gender as 1, 2, and 3 rather than male, female, and non-binary, `summary()` would calculate a mean and median even though this isn't appropriate for the data. This can be a useful flag that you need to take further steps to correct your data. 
 
 Note that because `population` is a very, very large number, R will use [scientific notation](https://courses.lumenlearning.com/waymakerintermediatealgebra/chapter/read-writing-scientific-notation-2/). 
 
@@ -180,16 +178,16 @@ summary(table1)
 
 ## Importing data {#import_data}
 
-Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> following a period at the end of the file name. 
+Built-in data are nice for examples, but you're probably more interested in your own data. There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three-letter <a class='glossary' target='_blank' title='The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).' href='https://psyteachr.github.io/glossary/e#extension'>extension</a> following a period at the end of the file name (e.g., `.xls`). 
 
-Download this [directory of data files](data/data.zip), unzip the folder, and save the `data` directory in the same directory that your Rmd file is in.
+Download this [directory of data files](data/data.zip), unzip the folder, and save the `data` directory in the `04-data` project directory.
 
 
 
 
 ### rio::import()  
 
-The type of data files you have to work with will likely depend on the software that you typically use in your workflow but the <code class='package'>rio</code> package has very straightforward functions for reading and saving data in most common formats: <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/import.html'>import</a></span><span class='op'>(</span><span class='op'>)</span></code> and <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
+The type of data files you have to work with will likely depend on the software that you typically use in your workflow. The <code class='package'>rio</code> package has very straightforward functions for reading and saving data in most common formats: <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/import.html'>import</a></span><span class='op'>(</span><span class='op'>)</span></code> and <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
 
 
 ```r
@@ -202,7 +200,7 @@ demo_sav  <- import("data/demo.sav")  # SPSS format
 
 ### File type specific import 
 
-However, it is also useful to know the specific functions that are used to import different file types because they tend to have more features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
+However, it is also useful to know the specific functions that are used to import different file types because it is easier to discover features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.
 
 
 ```r
@@ -212,7 +210,11 @@ demo_xls <- readxl::read_excel("data/demo.xlsx")
 demo_sav <- haven::read_sav("data/demo.sav")
 ```
 
-If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI){target="_blank"}.
+::: {.try data-latex=""}
+Look at the help for each function above and read through the Arguments section to see how you can customise import.
+:::
+
+If you keep data in Google Sheets, you can access it directly from R using <code class='package'><a href='https://googlesheets4.tidyverse.org/' target='_blank'>googlesheets4</a></code>. The code below imports data from a [public sheet](https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI){target="_blank"}. You can set the `ss` argument to the entire <a class='glossary' target='_blank' title='' href='https://psyteachr.github.io/glossary/u#url'>URL</a> for the target sheet, or just the section after "https://docs.google.com/spreadsheets/d/".
 
 
 ```r
@@ -226,7 +228,7 @@ demo_gs4  <- googlesheets4::read_sheet(
 
 ### Column data types {#col_types}
 
-Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently. For example, SPSS only stores numbers, so the factor displays as containing the values 1, 2, 3 rather than `low`, ``med`, `high`.
+Use `glimpse()` to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently. For example, SPSS stores factors as numbers, so the `factor` column contains the values 1, 2, 3 rather than `low`, `med`, `high`. It also stores <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> values as 0 and 1 instead or TRUE and FALSE.
 
 
 ```r
@@ -241,7 +243,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-01-03, 2022-01-02, 2022-01-01, 2021-12-31, 2021-12-30, …
+## $ date      <date> 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …
 ```
 
 
@@ -257,7 +259,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-01-03, 2022-01-02, 2022-01-01, 2021-12-31, 2021-12-30, …
+## $ date      <dttm> 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …
 ```
 
 
@@ -273,7 +275,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-01-03, 2022-01-02, 2022-01-01, 2021-12-31, 2021-12-30, …
+## $ date      <date> 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …
 ```
 
 
@@ -371,7 +373,7 @@ For dates, you might need to set the format your dates are in. See `?strptime` f
 
 The functions from <code class='package'>readxl</code> for loading `.xlsx` sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using `mutate()`, which you'll learn about in Chapter\ \@ref(wrangle), so most people let `read_excel()` guess data types and don't set the `col_types` argument.
 
-For SPSS data, whilst `rio::import()` will just read the numeric values of factors and not their labels, the function `read_sav()` from <code class='package'>haven</code> reads both, however, you have to convert factors from a haven-specific "labelled double" to a factor (I have no idea why haven doesn't do this for you).
+For SPSS data, whilst `rio::import()` will just read the numeric values of factors and not their labels, the function `read_sav()` from <code class='package'>haven</code> reads both. However, you have to convert factors from a haven-specific "labelled double" to a factor (we have no idea why haven doesn't do this for you).
 
 
 ```r
@@ -388,7 +390,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-01-03, 2022-01-02, 2022-01-01, 2021-12-31, 2021-12-30, …
+## $ date      <date> 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …
 ```
 
 
@@ -463,11 +465,11 @@ avatar_by_row <- tribble(
 You don't have to line up the columns in a tribble, but it can make it easier to spot errors.
 :::
 
-You may not need to do this very often if you are primarily working with data that you import from spreadsheets etc., but it is useful to know how to do it anyway.     
+You may not need to do this very often if you are primarily working with data that you import from spreadsheets, but it is useful to know how to do it anyway.
 
 ## Writing data
 
-If you have data that you want to save to a CSV file, use <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>, as follows.
+If you have data that you want to save, use <code><span class='fu'>rio</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/rio/man/export.html'>export</a></span><span class='op'>(</span><span class='op'>)</span></code>, as follows.
 
 
 ```r
@@ -476,25 +478,47 @@ export(avatar, "data/avatar.csv")
 
 This will save the data in CSV format to your working directory.
 
-Writing to Google Sheets is a little trickier. Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account. 
+Writing to Google Sheets is a little trickier (if you never use Google Sheets feel free to skip this section). Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account. 
 
-You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this (if you never use Google Sheets feel free to skip this step).
+You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this. If you don't tick the checkbox authorising it to "See, edit, create, and delete all your Google Sheets spreadsheets", the next steps will fail.
 
 
 ```r
+# authorise your account 
+# this only needs to be done once per script
 gs4_auth(email = "myemail@gmail.com")
-sheet_id <- gs4_create("demo-file", sheets = demo)
 
-new_data <- tibble(
-  character = "Z",
-  integer = 0L,
-  double = 0.5,
-  logical = FALSE,
-  date = "01-Jan-00"
+# create a new sheet
+sheet_id <- gs4_create(name = "demo-file", 
+                       sheets = "letters")
+
+# define the data table to save
+letter_data <- tibble(
+  character = LETTERS[1:5],
+  integer = 1:5,
+  double = c(1.1, 2.2, 3.3, 4.4, 5.5),
+  logical = c(T, F, T, F, T),
+  date = lubridate::today()
 )
 
-sheet_append(sheet_id, new_data)
-demo <- read_sheet(sheet_id)
+write_sheet(data = letter_data, 
+            ss = sheet_id, 
+            sheet = "letters")
+
+## append some data
+new_data <- tibble(
+  character = "F",
+  integer = 6L,
+  double = 6.6,
+  logical = FALSE,
+  date = lubridate::today()
+)
+sheet_append(data = new_data,
+             ss = sheet_id,
+             sheet = "letters")
+
+# read the data
+demo <- read_sheet(ss = sheet_id, sheet = "letters")
 ```
 
 
@@ -540,7 +564,7 @@ The data directory you downloaded contains a file called "mess.csv". Let's try l
 
 
 ```r
-mess <- import("data/mess.csv")
+mess <- rio::import("data/mess.csv")
 ```
 
 ```
@@ -579,7 +603,39 @@ mess <- read_csv("data/mess.csv", lazy = FALSE)
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-You'll get a warning with many parsing errors and the data table is just a single column. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> This is my messy dataset </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> junk,order,score,letter,good,min_max,date </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,1,-1,a,1,1 - 2,2020-01-1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,missing,0.72,b,1,2 - 3,2020-01-2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,3,-0.62,c,FALSE,3 - 4,2020-01-3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,4,2.03,d,T,4 - 5,2020-01-4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,5,NA,e,1,5 - 6,2020-01-5 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+You'll get a warning about parsing issues and the data table is just a single column. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
 
 ```
 This is my messy dataset
@@ -645,7 +701,7 @@ OK, that's a little better, but this table is still a serious mess in several wa
 * `min_max` contains two pieces of numeric information, but is a character column
 * `date` should be a date column
 
-We'll learn how to deal with this mess in Chapters\ \@ref(tidy) and \@ref(wrangle), but we can fix a few things by setting the `col_types` argument in `read_csv()` to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument `col_types` takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like `col_double()` or the abbreviation, like <code><span class='st'>"l"</span></code>, for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.
+We'll learn how to deal with this mess in Chapters\ \@ref(tidy) and \@ref(wrangle), but we can fix a few things by setting the `col_types` argument in `read_csv()` to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument `col_types` takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like `col_double()` or the abbreviation, like <code><span class='st'>"d"</span></code>; for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.
 
 | function | |abbreviation | type |
 |:---------|:--------------|:-----|
@@ -690,7 +746,33 @@ problems()
 ```
 
 
-The output of `problems()` tells you what row (`3`) and column (`2`) the error was found in, what kind of data was expected (`integer`), and what the actual value was (`missing`). If you specifically tell `read_csv()` to import a column as an integer, any characters (i.e., not numbers) in the column will produce a warning like this and then be recorded as `NA`. You can manually set what missing values are recorded as with the `na` argument.
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> row </th>
+   <th style="text-align:right;"> col </th>
+   <th style="text-align:left;"> expected </th>
+   <th style="text-align:left;"> actual </th>
+   <th style="text-align:left;"> file </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> an integer </td>
+   <td style="text-align:left;"> missing </td>
+   <td style="text-align:left;"> data/mess.csv </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+
+The output of `problems()` tells you what row (3) and column (2) the error was found in, what kind of data was expected (an integer), and what the actual value was (missing). If you specifically tell `read_csv()` to import a column as an integer, any characters (i.e., not numbers) in the column will produce a warning like this and then be recorded as `NA`. You can manually set what missing values are recorded as with the `na` argument.
 
 
 ```r
@@ -702,12 +784,7 @@ tidiest <- read_csv("data/mess.csv",
 ```
 
 
-Now `order` is an integer variable where any empty cells are labelled "missing". The variable `good` is a logical value, where <code><span class='fl'>0</span></code> and <code><span class='cn'>F</span></code> are converted to <code><span class='cn'>FALSE</span></code> and <code><span class='fl'>1</span></code> and <code><span class='cn'>T</span></code> are converted to <code><span class='cn'>TRUE</span></code>, and `date` is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the `min_max` column containing two different types of data.
-
-
-```r
-head(tidiest)
-```
+Now `order` is an integer variable where any empty cells contain `NA`. The variable `good` is a logical value, where <code><span class='fl'>0</span></code> and <code><span class='cn'>F</span></code> are converted to <code><span class='cn'>FALSE</span></code> and <code><span class='fl'>1</span></code> and <code><span class='cn'>T</span></code> are converted to <code><span class='cn'>TRUE</span></code>. The variable `date` is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the `min_max` column containing two different types of data.
 
 <div class="kable-table">
 
@@ -779,23 +856,23 @@ head(tidiest)
 
 ## Working with real data
 
-It's worth highlighting at this point that working with real data can be difficult because each dataset can be messy in its own way. Throughout this course we will show you common errors and how to fix them but be prepared that when you start with working your own data, you'll likely come across problems we don't cover in the course and that's just part of joy of learning programming. You'll also get better at looking up solutions using sites like [Stack Overflow](https://stackoverflow.com/) and there's a fantastic [#rstats](https://twitter.com/hashtag/rstats?src=hashtag_click) community on Twitter you can ask for help.
+It's worth highlighting at this point that working with real data can be difficult because each dataset can be messy in its own way. Throughout this course we will show you common errors and how to fix them, but be prepared that when you start with working your own data, you'll likely come across problems we don't cover in the course and that's just part of joy of learning programming. You'll also get better at looking up solutions using sites like [Stack Overflow](https://stackoverflow.com/) and there's a fantastic [#rstats](https://twitter.com/hashtag/rstats) community on Twitter you can ask for help.
 
-You may also be tempted to fix messy datasets by e.g., opening up Excel and editing them there. Whilst this might seem easier in the short-term there's two serious issues with doing this. First, you will likely work with datasets that have recurring messy problems. By taking the time to solve these problems with code, you can apply the same solutions to a large number of future datasets so it's more efficient in the long-run. Second, if you edit the spreadsheet there's no record of what you did. By solving these problems with code you do so reproducibly and you don't edit the original data file which means if you make an error, there's
+You may also be tempted to fix messy datasets by, for example, opening up Excel and editing them there. Whilst this might seem easier in the short term, there's two serious issues with doing this. First, you will likely work with datasets that have recurring messy problems. By taking the time to solve these problems with code, you can apply the same solutions to a large number of future datasets so it's more efficient in the long run. Second, if you edit the spreadsheet, there's no record of what you did. By solving these problems with code, you do so reproducibly and you don't edit the original data file. This means that if you make an error, you haven't lost the original data and can recover.
 
-## R Markdown exercises
+## Exercises
 
-For the final step in this chapter, we will create a report using one of the in-built datasets to practice the skills you have used so far. You may need to refer back to previous to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
+For the final step in this chapter, we will create a report using one of the in-built datasets to practice the skills you have used so far. You may need to refer back to previous chapters to help you complete these exercises and you may also want to take a break before you work through this section. We'd also recommend you knit at every step so that you can see how your output changes.
 
 ### New Markdown {#exercises-new-rmd-4}
 
-Create and save a new R Markdown document named `starwars_report.Rmd`. In the set-up code chunk load the `tidyverse` and `rio`.
+Create and save a new R Markdown document named `starwars_report.Rmd`. In the set-up code chunk load the packages `tidyverse` and `rio`.
 
 We're going to use the built-in `starwars` dataset that contains data about Star Wars characters. You can learn more about the dataset by using the `?help` function.
 
 ### Import and export the dataset {#exercises-load}
 
-* First, load the in-built dataset into the environment. Type and run the code to do this in the console, do not save it in your Markdown.  
+* First, load the in-built dataset into the environment. Type and run the code to do this in the console; do not save it in your Markdown.  
 * Then, export the dataset to a .csv file and save it in your `data` directory. Again, do this in the console.
 * Finally, import this version of the dataset using `read_csv()` to an object named `starwars` - you can put this code in your Markdown.
 
@@ -817,7 +894,7 @@ starwars <- read_csv("data/starwars.csv")
 ### Convert column types
 
 * Check the column specification of `starwars`.
-* Create a new column specification that lists the following columns as factors: `hair_color`, `skin_color`, `eye_color`, `sex`, `gender`, `homeworld`, and `species` and skips the following columns: `films`, `vehicles`, and `starships` (this is because these columns contain multiple values and are stored as lists which we haven't covered how to work with). You do not have to set the factor orders (although you can if you wish).
+* Create a new column specification that lists the following columns as factors: `hair_color`, `skin_color`, `eye_color`, `sex`, `gender`, `homeworld`, and `species` and skips the following columns: `films`, `vehicles`, and `starships` (this is because these columns contain multiple values and are stored as lists, which we haven't covered how to work with). You do not have to set the factor orders (although you can if you wish).
 * Re-import the dataset, this time with the corrected column types.
 
 
@@ -853,18 +930,13 @@ starwars <- read_csv("data/starwars.csv", col_types = corrected_cols)
 
 ### Plots {#exercises-plots}
 
-Produce the following plots and one plot of your own choosing and write a brief summary of what the plots show and any conclusions you might reach from the data. 
-
-<img src="04-data_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
-
-
-```
-## Warning: Removed 28 rows containing non-finite values (stat_bin).
-```
+Produce the following plots and one plot of your own choosing. Write a brief summary of what each plot shows and any conclusions you might reach from the data. 
 
 <img src="04-data_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
 
 <img src="04-data_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
+
+<img src="04-data_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -873,18 +945,18 @@ Produce the following plots and one plot of your own choosing and write a brief 
 ```r
 ggplot(starwars, aes(height)) +
   geom_density(colour = "black", alpha = .3) +
+  scale_x_continuous(breaks = seq(from = 50, to = 300, by = 25)) +
   labs(title = "Height (cm) distribution of Star Wars Characters") +
-  theme_classic() +
-  scale_x_continuous(breaks = seq(from = 50, to = 300, by = 25))
+  theme_classic()
 ```
 
 
 ```r
 ggplot(starwars, aes(mass)) +
   geom_histogram(colour = "black", binwidth = 10) +
+  scale_x_continuous(breaks = seq(from = 0, to = 2000, by = 100)) +
   labs(title = "Weight (kg) distribution of Star Wars Characters") +
-  theme_classic() +
-  scale_x_continuous(breaks = seq(from = 0, to = 2000, by = 100))
+  theme_classic()
 ```
 
 
@@ -893,8 +965,8 @@ ggplot(starwars, aes(x = gender, fill = gender)) +
   geom_bar(show.legend = FALSE, colour = "black") +
   scale_x_discrete(name = "Gender of character", labels = (c("Masculine", "Feminine", "Missing"))) +
   scale_fill_brewer(palette = 2) +
-  theme_bw() +
-  labs(title = "Number of Star Wars characters of each gender")
+  labs(title = "Number of Star Wars characters of each gender") +
+  theme_bw()
 ```
 
 
@@ -911,11 +983,19 @@ ggplot(starwars, aes(x = gender, fill = gender)) +
 <div class='webex-solution'><button>Solution</button>
 
 
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, echo = FALSE, out.width = "50%", fig.cap="Adaptation of Star Wars logo created by Weweje; original logo by Suzy Rice, 1976. CC-BY-3.0"}</code></pre>
+
 ```r
-knitr::include_graphics("https://cdn.sisense.com/wp-content/uploads/StarWars_356x237.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/2880px-Star_wars2.svg.png")
 ```
 
-<img src="https://cdn.sisense.com/wp-content/uploads/StarWars_356x237.jpg" width="100%" style="display: block; margin: auto;" />
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/2880px-Star_wars2.svg.png" alt="Adaptation of Star Wars logo created by Weweje; original logo by Suzy Rice, 1976. CC-BY-3.0" width="50%" />
+<p class="caption">(\#fig:unnamed-chunk-32)Adaptation of Star Wars logo created by Weweje; original logo by Suzy Rice, 1976. CC-BY-3.0</p>
+</div>
+
 
 
 </div>
@@ -924,6 +1004,7 @@ knitr::include_graphics("https://cdn.sisense.com/wp-content/uploads/StarWars_356
 ### Share your work
 
 Once you're done, share your knitted html file on the Week 4 Teams channel so other learners on the course can see how you approached the task. 
+
 
 
 ## Glossary {#glossary-data}
@@ -977,6 +1058,14 @@ Once you're done, share your knitted html file on the Week 4 Teams channel so ot
    <td style="text-align:left;"> A missing value that is "Not Available" </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [nominal](https://psyteachr.github.io/glossary/n.html#nominal){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> Categorical variables that don&#39;t have an inherent order, such as types of animal. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [numeric](https://psyteachr.github.io/glossary/n.html#numeric){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing a real decimal number or integer. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [panes](https://psyteachr.github.io/glossary/p.html#panes){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> RStudio is arranged with four window "panes". </td>
   </tr>
@@ -987,6 +1076,10 @@ Once you're done, share your knitted html file on the Week 4 Teams channel so ot
   <tr>
    <td style="text-align:left;"> [tidyverse](https://psyteachr.github.io/glossary/t.html#tidyverse){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A set of R packages that help you create and work with tidy data </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [url](https://psyteachr.github.io/glossary/u.html#url){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [vector](https://psyteachr.github.io/glossary/v.html#vector){class="glossary" target="_blank"} </td>
@@ -1001,6 +1094,7 @@ Once you're done, share your knitted html file on the Week 4 Teams channel so ot
 
 * [Data import cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
+* [Multi-row headers](https://psyteachr.github.io/tutorials/multi-row-headers.html)
 
 
 

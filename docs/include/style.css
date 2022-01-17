@@ -37,7 +37,10 @@ div.sourceCode {
   text-indent: -2em ;
 }
 
-.package { font-weight: 600; }
+.package {
+  font-weight: 600;
+  background-color: transparent;
+}
 .package::before { content: "{"; }
 .package::after { content: "}"; }
 

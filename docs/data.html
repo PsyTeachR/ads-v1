@@ -21,7 +21,12 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -57,6 +62,12 @@
 <li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="active" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
+<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
+<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -64,10 +75,11 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
-<li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">G</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">H</span> Twitter Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">I</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -336,7 +348,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …</code></pre>
+## $ date      &lt;date&gt; 2022-01-19, 2022-01-18, 2022-01-17, 2022-01-16, 2022-01-15, …</code></pre>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -346,7 +358,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …</code></pre>
+## $ date      &lt;dttm&gt; 2022-01-19, 2022-01-18, 2022-01-17, 2022-01-16, 2022-01-15, …</code></pre>
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -356,7 +368,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …</code></pre>
+## $ date      &lt;date&gt; 2022-01-19, 2022-01-18, 2022-01-17, 2022-01-16, 2022-01-15, …</code></pre>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
@@ -427,7 +439,7 @@ China
 <div class="info">
 <p>For dates, you might need to set the format your dates are in. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. For example, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>31-Jan-21</code>.</p>
 </div>
-<p>The functions from <code class="package">readxl</code> for loading <code>.xlsx</code> sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>, which you'll learn about in Chapter <a href="#wrangle"><strong>??</strong></a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
+<p>The functions from <code class="package">readxl</code> for loading <code>.xlsx</code> sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">8</a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
 <p>For SPSS data, whilst <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> will just read the numeric values of factors and not their labels, the function <code><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> reads both. However, you have to convert factors from a haven-specific "labelled double" to a factor (we have no idea why haven doesn't do this for you).</p>
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
@@ -440,7 +452,7 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2022-01-17, 2022-01-16, 2022-01-15, 2022-01-14, 2022-01-13, …</code></pre>
+## $ date      &lt;date&gt; 2022-01-19, 2022-01-18, 2022-01-17, 2022-01-16, 2022-01-15, …</code></pre>
 <div class="info">
 <p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
@@ -718,7 +730,7 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <li>
 <code>date</code> should be a date column</li>
 </ul>
-<p>We'll learn how to deal with this mess in Chapters <a href="#tidy"><strong>??</strong></a> and <a href="#wrangle"><strong>??</strong></a>, but we can fix a few things by setting the <code>col_types</code> argument in <code>read_csv()</code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code>col_double()</code> or the abbreviation, like <code><span class="st">"d"</span></code>; for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.</p>
+<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">7</a> and <a href="wrangle.html#wrangle">8</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code>read_csv()</code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code>col_double()</code> or the abbreviation, like <code><span class="st">"d"</span></code>; for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th align="left">function</th>
@@ -1300,61 +1312,6 @@ A type of data structure that collects values with the same data type, like T/F 
 </ul>
 </div>
 </div>
-
-
-
-<div class="chapter-nav">
-<div class="prev"><a href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></div>
-<div class="next"><a href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#data"><span class="header-section-number">4</span> Data Import</a></li>
-<li><a class="nav-link" href="#ilo-data"><span class="header-section-number">4.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#set-up-1"><span class="header-section-number">4.2</span> Set-up</a></li>
-<li><a class="nav-link" href="#builtin"><span class="header-section-number">4.3</span> Built-in data</a></li>
-<li>
-<a class="nav-link" href="#looking-at-data"><span class="header-section-number">4.4</span> Looking at data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#view"><span class="header-section-number">4.4.1</span> View()</a></li>
-<li><a class="nav-link" href="#print"><span class="header-section-number">4.4.2</span> print()</a></li>
-<li><a class="nav-link" href="#glimpse"><span class="header-section-number">4.4.3</span> glimpse()</a></li>
-<li><a class="nav-link" href="#summary-function"><span class="header-section-number">4.4.4</span> summary()</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#import_data"><span class="header-section-number">4.5</span> Importing data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rioimport"><span class="header-section-number">4.5.1</span> rio::import()</a></li>
-<li><a class="nav-link" href="#file-type-specific-import"><span class="header-section-number">4.5.2</span> File type specific import</a></li>
-<li><a class="nav-link" href="#col_types"><span class="header-section-number">4.5.3</span> Column data types</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#creating-data"><span class="header-section-number">4.6</span> Creating data</a></li>
-<li><a class="nav-link" href="#writing-data"><span class="header-section-number">4.7</span> Writing data</a></li>
-<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.8</span> Troubleshooting</a></li>
-<li><a class="nav-link" href="#working-with-real-data"><span class="header-section-number">4.9</span> Working with real data</a></li>
-<li>
-<a class="nav-link" href="#exercises-1"><span class="header-section-number">4.10</span> Exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercises-new-rmd-4"><span class="header-section-number">4.10.1</span> New Markdown</a></li>
-<li><a class="nav-link" href="#exercises-load"><span class="header-section-number">4.10.2</span> Import and export the dataset</a></li>
-<li><a class="nav-link" href="#convert-column-types"><span class="header-section-number">4.10.3</span> Convert column types</a></li>
-<li><a class="nav-link" href="#exercises-plots"><span class="header-section-number">4.10.4</span> Plots</a></li>
-<li><a class="nav-link" href="#make-it-look-nice"><span class="header-section-number">4.10.5</span> Make it look nice</a></li>
-<li><a class="nav-link" href="#share-your-work-1"><span class="header-section-number">4.10.6</span> Share your work</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#glossary-data"><span class="header-section-number">4.11</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-data"><span class="header-section-number">4.12</span> Further resources</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/04-data.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/04-data.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
-</div>
-    </nav>
-</div>
-</div>
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1549,15 +1506,65 @@ $( document ).ready(function() {
   move_sidebar();
   window.onresize = move_sidebar;
 });
-</script>
+</script><div class="chapter-nav">
+<div class="prev"><a href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></div>
+<div class="next"><a href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#data"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="nav-link" href="#ilo-data"><span class="header-section-number">4.1</span> Intended Learning Outcomes</a></li>
+<li><a class="nav-link" href="#set-up-1"><span class="header-section-number">4.2</span> Set-up</a></li>
+<li><a class="nav-link" href="#builtin"><span class="header-section-number">4.3</span> Built-in data</a></li>
+<li>
+<a class="nav-link" href="#looking-at-data"><span class="header-section-number">4.4</span> Looking at data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#view"><span class="header-section-number">4.4.1</span> View()</a></li>
+<li><a class="nav-link" href="#print"><span class="header-section-number">4.4.2</span> print()</a></li>
+<li><a class="nav-link" href="#glimpse"><span class="header-section-number">4.4.3</span> glimpse()</a></li>
+<li><a class="nav-link" href="#summary-function"><span class="header-section-number">4.4.4</span> summary()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#import_data"><span class="header-section-number">4.5</span> Importing data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rioimport"><span class="header-section-number">4.5.1</span> rio::import()</a></li>
+<li><a class="nav-link" href="#file-type-specific-import"><span class="header-section-number">4.5.2</span> File type specific import</a></li>
+<li><a class="nav-link" href="#col_types"><span class="header-section-number">4.5.3</span> Column data types</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#creating-data"><span class="header-section-number">4.6</span> Creating data</a></li>
+<li><a class="nav-link" href="#writing-data"><span class="header-section-number">4.7</span> Writing data</a></li>
+<li><a class="nav-link" href="#troubleshooting"><span class="header-section-number">4.8</span> Troubleshooting</a></li>
+<li><a class="nav-link" href="#working-with-real-data"><span class="header-section-number">4.9</span> Working with real data</a></li>
+<li>
+<a class="nav-link" href="#exercises-1"><span class="header-section-number">4.10</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises-new-rmd-4"><span class="header-section-number">4.10.1</span> New Markdown</a></li>
+<li><a class="nav-link" href="#exercises-load"><span class="header-section-number">4.10.2</span> Import and export the dataset</a></li>
+<li><a class="nav-link" href="#convert-column-types"><span class="header-section-number">4.10.3</span> Convert column types</a></li>
+<li><a class="nav-link" href="#exercises-plots"><span class="header-section-number">4.10.4</span> Plots</a></li>
+<li><a class="nav-link" href="#make-it-look-nice"><span class="header-section-number">4.10.5</span> Make it look nice</a></li>
+<li><a class="nav-link" href="#share-your-work-1"><span class="header-section-number">4.10.6</span> Share your work</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#glossary-data"><span class="header-section-number">4.11</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-data"><span class="header-section-number">4.12</span> Further resources</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/04-data.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/04-data.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
 </div>
- <!-- .container -->
+</div> <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,5 +1,7 @@
 # Data Relations {#joins}
 
+<div class="incomplete-chapter"></div>
+
 ## Intended Learning Outcomes {#ilo-joins}
 
 * Be able to match related data across multiple tables

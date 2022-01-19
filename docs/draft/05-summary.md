@@ -12,7 +12,6 @@ In this chapter we'll use the following packages:
 library(tidyverse)   # data wrangling functions
 library(rtweet) # for searching tweets
 library(kableExtra)  # for nice tables
-library(glue) # for pasting strings
 ```
 
 ## Set-up
@@ -47,7 +46,7 @@ If you're working with live social media data, every time you run a query it's h
 saveRDS(tweets, file = "data/ncod_tweets.rds")
 ```
 
-To load an `.rds` file, you can use the `readRDS` function. If you don't have access to a Twitter account, or to ensure that you get the same output as the rest of this chapter, you can now load in `ncod_tweets.rds` using this function.
+To load an `.rds` file, you can use the `readRDS()` function. If you don't have access to a Twitter account, or to ensure that you get the same output as the rest of this chapter, you can download <a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a> and load it using this function.
 
 
 ```r
@@ -150,10 +149,10 @@ quantile(tweets$favorite_count, 0.90)
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_LEPNPXKSSE'><label><input type="radio" autocomplete="off" name="radio_LEPNPXKSSE" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_LEPNPXKSSE" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_LEPNPXKSSE" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_LEPNPXKSSE" value="x"></input> <span>`tweets %>% max(retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_HCIQEEXUSR'><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
 
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_PLYKJOGKGT'><label><input type="radio" autocomplete="off" name="radio_PLYKJOGKGT" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_PLYKJOGKGT" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_PLYKJOGKGT" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_PLYKJOGKGT" value="x"></input> <span>`width(mean(display_text_width))`</span></label></div>
+    <div class='webex-radiogroup' id='radio_RRXOJHELAU'><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"></input> <span>`group_by(display_text_width)`</span></label></div>
 
 :::
 
@@ -185,7 +184,7 @@ tweets$display_text_width[c(20,30,40)] # select multiple with c()
 
 ### Pipes
 
-For our second detour, let's formally introduce the pipe, that weird `%>%` symbol we've used occasionally. Pipes allow you to send the output from one function straight into another function. Specifically, they send the result of the function before `%>%` to be the first argument of the function after `%>%`. It can be useful to translate the pipe as **and then**. It's easier to show than tell so let's look at an example.
+For our second detour, let's formally introduce the <a class='glossary' target='_blank' title='' href='https://psyteachr.github.io/glossary/p#pipe'>pipe</a> that weird `%>%` symbol we've used occasionally. Pipes allow you to send the output from one function straight into another function. Specifically, they send the result of the function before `%>%` to be the first argument of the function after `%>%`. It can be useful to translate the pipe as "**and then**". It's easier to show than tell, so let's look at an example.
 
 We could write the above code using a pipe as follows:
 
@@ -197,6 +196,7 @@ tweet_summary <- tweets %>% # start with the object tweets and then
 ```
 
 Notice that `summarise()` no longer needs the first argument to be the data table, it is pulled in from the pipe. The power of the pipe may not be obvious now, but it will soon prove its worth. 
+
 ### Inline coding
 
 To insert those values into the text of a report you can use inline coding. First. we'll create another set of objects that contain the first and last date of the tweets in our dataset. `format()` formats the dates to day/month/year.
@@ -209,13 +209,16 @@ date_to <- tweet_summary$max_date %>%
   format("%d %B, %Y")
 ```
 
-Then you can insert values from these objects and the tables you created with `summarise()` using inline R (note the dollar sign notation). Knit your Markdown to see the output. 
+Then you can insert values from these objects and the tables you created with `summarise()` using inline R (note the dollar sign notation to get the value of the `n` column from the table `tweet_summary`). 
 
 
-```r
-There were `r backtick("r tweet_summary$n")` tweets between `r backtick("r date_from")` and `r backtick("r date_to")`.
+```md
+There were `r tweet_summary$n` tweets between `r date_from` and `r date_to`.
 ```
-There were 28626 tweets between 10 October, 2021 and 12 October, 2021.
+
+Knit your Markdown to see how the variables inside the inline code get replaced by their values. 
+
+> There were 28626 tweets between 10 October, 2021 and 12 October, 2021.
 
 Ok, let's get back on track.
 
@@ -225,7 +228,7 @@ How many different accounts tweeted using the hashtag? Who tweeted most?
 
 You can count categorical data with the `count()` function. Since each row is a tweet, you can count the number of rows per each different `screen_name` to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called `n` containing the number of observations from that group. 
 
-`sort = TRUE` will sort the table by `n` in descending order whilst `head()` returns the first six lines of a data table and is a useful function to call when you have a very large dataset and just want to see the top values.
+The argument `sort = TRUE` will sort the table by `n` in descending order, whilst `head()` returns the first six lines of a data table and is a useful function to call when you have a very large dataset and just want to see the top values.
 
 
 ```r
@@ -277,8 +280,35 @@ head(tweets_per_user)
 
 
 ::: {.try data-latex=""}
-* How would you count the number of tweets that are quotes or not and are retweets or not? 
-    <div class='webex-radiogroup' id='radio_MNIBNZJNDD'><label><input type="radio" autocomplete="off" name="radio_MNIBNZJNDD" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_MNIBNZJNDD" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_MNIBNZJNDD" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_MNIBNZJNDD" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
+How would you create the table of counts below? 
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> is_quote </th>
+   <th style="text-align:left;"> is_retweet </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 26301 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:right;"> 2325 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<div class='webex-radiogroup' id='radio_SAODKWKKCD'><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
 
 :::
 
@@ -287,9 +317,9 @@ head(tweets_per_user)
 Let's do another example of inline coding that writes up a summary of the most prolific tweets to demonstrate a few additional functions. First, we need to create some additional objects to use with inline R:
 
 * `nrow` simply counts the number of rows in a dataset so if you have one user/participant/customer per row, this is an easy way to do a head count.
-* `slice()` selects a particular row of data, in this case the first row. Because we sorted our data, this will therefore be the user with the most tweets.
+* `slice()` chooses a particular row of data, in this case the first row. Because we sorted our data, this will therefore be the user with the most tweets.
 * `pull()` pulls out a single variable. 
-* The combination of `slice()` and `pull()` allows you to select a single observation from a single variable.
+* The combination of `slice()` and `pull()` allows you to choose a single observation from a single variable.
 
 
 ```r
@@ -303,17 +333,17 @@ most_prolific_n <- slice(tweets_per_user, 1) %>%
 Then add the inline code to your report and knit your Markdown to see the output:
 
 
-```r
-There were `r unique_users` unique accounts tweeting about #NationalComingOutDay. `r `most_prolific` was the most prolific tweeter, with `r most_prolific_n` tweets.
+```md
+There were `r unique_users` unique accounts tweeting about #NationalComingOutDay. `r most_prolific` was the most prolific tweeter, with `r most_prolific_n` tweets.
 ```
 
 There were 25189 unique accounts tweeting about #NationalComingOutDay. interest_outfit was the most prolific tweeter, with 35 tweets.
 
-### Grouping
+## Grouping
 
 You can also create other summary values by group. The combination of `group_by()` and `summarise()` is incredibly powerful, and it is also a good demonstration of why pipes are so useful.
 
-`group_by()` takes an existing data table and converts it into a grouped table where any operations that are performed on it are doing "by group".
+The function `group_by()` takes an existing data table and converts it into a grouped table, where any operations that are performed on it are done "by group".
 
 The first line of code creates an object named `tweets_grouped`, that groups the dataset according to whether the user is a verified user. On the surface, `tweets_grouped` doesn't look any different to the original `tweets`, however, the underlying structure has changed and so when we run `summarise()`, we now get our requested summaries for each group (in this case verified or not). 
 
@@ -364,7 +394,7 @@ verified
 Make sure you call the `ungroup()` function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.
 :::
 
-Whilst the above code is functional, it adds an unnecessary object to the environment - `tweets_grouped` is taking up space and increases the risk we'll use this grouped object by mistake. Enter the pipe.
+Whilst the above code is functional, it adds an unnecessary object to the environment - `tweets_grouped` is taking up space and increases the risk we'll use this grouped object by mistake. Enter... the pipe.
 
 Rather than creating an intermediate object, we can use the pipe to string our code together.
 
@@ -382,7 +412,7 @@ verified <- tweets_grouped %>% # Start with the original dataset and then;
 
 ::: {.try data-latex=""}
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `verified`? 
-    <div class='webex-radiogroup' id='radio_KVJZGKSDOK'><label><input type="radio" autocomplete="off" name="radio_KVJZGKSDOK" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_KVJZGKSDOK" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_KVJZGKSDOK" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_KVJZGKSDOK" value="answer"></input> <span>`group_by(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_XWAKDRLKLW'><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"></input> <span>`mean(screen_name)`</span></label></div>
 
 :::
 
@@ -481,7 +511,7 @@ If you get the following message when using `group_by()`, please update tidyvers
 
 You can also use additional functions like `filter()` or `mutate()` after `group_by`. You'll learn more about these in Chapter \ \@ref(wrangle) but briefly:
 
-* `filter()` selects observations (rows) according to specified criteria, e.g., all values above 5, all verified users.
+* `filter()` keeps observations (rows) according to specified criteria, e.g., all values above 5, all verified users.
 * `mutate()` creates new variables (columns), or overwrites existing ones.
 
 You can combine functions like this to get detailed insights into your data. For example, what was the most favourited original and quoted tweet? 
@@ -505,24 +535,29 @@ There's a huge amount of data reported for each tweet, including things like the
 
 
 
-> The most favourited 22935 original tweet was by [jackrooke](`r `orig$status_url`):
+The most favourited 22935 original tweet was by [jackrooke](https://twitter.com/jackrooke/status/1447541093260795904):
 
 --------------------------------------------------
 > it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4
 
-![](orig$ext_media_url)
+![](http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg)
 
 ------------------------------------------------
 
 To produce this, first we split `most_fav`, so that we have one object that contains the data from the original tweet and one object that contains the data from the quote tweet.
 
 
+```r
+orig <- filter(most_fav,is_quote == FALSE)
+quote <- filter(most_fav,is_quote == TRUE)
+```
 
 The inline code is then as follows:
 
 
-```r
-> The most favourited `r orig$favorite_count` original tweet was by [`r orig$screen_name`](`r `orig$status_url`):
+```md
+The most favourited `r orig$favorite_count` original tweet 
+was by [`r orig$screen_name`](`r orig$status_url`):
 
 --------------------------------------------------
 > `r orig$text`
@@ -533,362 +568,21 @@ The inline code is then as follows:
 
 This is quite complicated so let's break it down. 
 
-* The `>` symbol changes the format to a block quote.
 * The first bit of inline coding is fairly standard and is what you have used before.
-* The second bit of inline coding inserts a URL. The content of the `[]` is the text that will be displayed. The content of `()` is the underlying URL. In both cases the content is being pulled from the dataset. In this case, the text is `screen_name` and `status_url` links to the tweet.
+* The second bit of inline coding inserts a URL. The content of the `[]` is the text that will be displayed. The content of `()` is the underlying URL. In both cases, the content is being pulled from the dataset. In this case, the text is `screen_name` and `status_url` links to the tweet.
 * The line of dashes creates the solid line in the knitted output.
-* The image is then included using the format `![]()` which is alternative method of including images in Markdown. 
+* The `>` symbol changes the format to a block quote.
+* The image is then included using the format `![](url)`, which is an alternative method of including images in Markdown. 
 
 
 
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_BJZADENUVA'><label><input type="radio" autocomplete="off" name="radio_BJZADENUVA" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_BJZADENUVA" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_BJZADENUVA" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_BJZADENUVA" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_RUYRGRAHRF'><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label></div>
 
 :::
 
-## Putting it together {#together-summary}
-
-For the final step in this chapter, we will create a table of the top five hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.
-
-The function `select()` is useful for just keeping the variables (columns) you need to work with, which can make working with very large datasets easier. The arguments to `select()` are simply the names of the variables and the resulting table will present them in the order you specify.  
-
-
-```r
-tweets_with_hashtags <- tweets %>%
-  select(hashtags, text, favorite_count, media_url)
-```
-
-Look at the dataset using `View(tweets_with_hashtags)`. You'll notice that the variable `hashtags` has multiple values in each cell (i.e., when users used more than one hashtag in a single tweet). In order to work with this information, we need to separate each hashtag so that each row of data represents a single hashtag. We can do this using the function `unnest()` and adding a pipeline of code.
-
-
-```r
-tweets_with_hashtags <- tweets %>%
-  select(hashtags, text, favorite_count, media_url)%>%
-  unnest(cols = hashtags)
-```
-
-To get the top 5 hashtags we need to know how tweets used each one This code uses pipes to build up the analysis. When you encounter multi-pipe code, it can be very useful to run each line of the pipeline to see how it builds up and to check the output at each step. This code:
-
-* Starts with the object tweets and then;
-* Counts the number of tweets for each hashtag using `count()` and then;
-* Filters out any blank cells using `!is.na()` (you can read this as "keep any value that isn't a missing value) and then;
-* Returns the top five values using `slice_max()` and orders them by the `n` column.
-
-
-```r
-top5_hashtags <- tweets_with_hashtags %>%
-  count(hashtags) %>%
-  filter(!is.na(hashtags)) %>%  # get rid of the blank value
-  slice_max(order_by = n, n = 5)
-
-top5_hashtags
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> NationalComingOutDay </td>
-   <td style="text-align:right;"> 27308 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 1343 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> LGBTQ </td>
-   <td style="text-align:right;"> 829 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> IndigenousPeoplesDay </td>
-   <td style="text-align:right;"> 811 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> ComingOutDay </td>
-   <td style="text-align:right;"> 613 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-Two of the hashtags are the same, but with different case. We can fix this by adding in an extra line of code that uses `mutate()` to overwrite the variable `hashtag` with the same data but transformed to lower case.
-
-
-```r
-top5_hashtags <- tweets_with_hashtags %>%
-  mutate(hashtags = tolower(hashtags)) %>%
-  count(hashtags) %>%
-  filter(!is.na(hashtags)) %>%  # get rid of the blank value
-  slice_max(order_by = n, n = 5)
-
-top5_hashtags
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 28698 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lgbtq </td>
-   <td style="text-align:right;"> 1036 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> indigenouspeoplesday </td>
-   <td style="text-align:right;"> 837 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comingoutday </td>
-   <td style="text-align:right;"> 676 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> loveislove </td>
-   <td style="text-align:right;"> 396 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-Next, get the top tweet for each hashtag using `filter()`. Use `group_by()` before you filter to select the most-liked tweet in each hashtag, rather than the one with most likes overall. As you're getting used to writing and running this kind of multi-step code, it can be very useful to take out individual lines and see how it changes the output to strengthen your understanding of what each step is doing.
-
-
-```r
-top_tweet_per_hashtag <- tweets_with_hashtags %>%
-  mutate(hashtags = tolower(hashtags)) %>%
-  group_by(hashtags) %>%
-  filter(favorite_count == max(favorite_count)) %>%
-  sample_n(size = 1) %>%
-  ungroup()
-```
-
-Get the total number of likes per hashtag by grouping and summarising with `sum()`.
-
-
-```r
-likes_per_hashtag <- tweets_with_hashtags %>%
-  mutate(hashtags = tolower(hashtags)) %>%
-  group_by(hashtags) %>%
-  summarise(total_likes = sum(favorite_count)) %>%
-  ungroup()
-```
-
-We can put everything together using `left_join()`. This will keep everything from the first table specified and then add on the relevant data from the second table specified. In this case, we add on the data in `top_tweet_per_hashtag` and `like_per_hashtag` but only for the tweets included in `top5_hashtags`
-
-
-```r
-top5 <- top5_hashtags %>%
-  left_join(top_tweet_per_hashtag, by = "hashtags") %>%
-  left_join(likes_per_hashtag, by = "hashtags") 
-```
-
-Before we can finish up though, there's a couple of extra steps we need to add in to account for some of the idiosyncrasies of Twitter data. 
-
-First,  the `@` symbol is used by R Markdown for referencing (we'll show you how to do this in Chapter \ \@ref(present)). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of `@` and add backslashes. Backslashes create a literal version of characters that have a special meaning in R, so adding them means it will print the `@` symbol without any issues. Of course `\` also has a special meaning in R which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&) which sometimes display as "&amp".
-
-Second, if there are multiple images associated with a single tweet, `media_url` will be a list, so we use `unlist()`.
-
-Finally, we use `select()` to tidy up the table and just keep the columns we need.
-
-
-```r
-top5 <- top5_hashtags %>%
-  left_join(top_tweet_per_hashtag, by = "hashtags") %>%
-  left_join(likes_per_hashtag, by = "hashtags") %>%
-  # replace @ with \@ so @ doesn't trigger referencing
-  mutate(text = gsub("@", "\\\\@", text),
-         text = gsub("&amp;", "&", text)) %>%
-  # media_url can be a list if there is more than one image
-  mutate(image = unlist(media_url)) %>%
-  # put the columns you want to display in order
-  select(hashtags, n, total_likes, text, image)
-
-top5
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> total_likes </th>
-   <th style="text-align:left;"> text </th>
-   <th style="text-align:left;"> image </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 28698 </td>
-   <td style="text-align:right;"> 851510 </td>
-   <td style="text-align:left;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lgbtq </td>
-   <td style="text-align:right;"> 1036 </td>
-   <td style="text-align:right;"> 13691 </td>
-   <td style="text-align:left;"> It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready &amp; can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay https://t.co/dr61oyhR3L </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> indigenouspeoplesday </td>
-   <td style="text-align:right;"> 837 </td>
-   <td style="text-align:right;"> 14073 </td>
-   <td style="text-align:left;"> To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay https://t.co/KsZ5F3gBKO </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comingoutday </td>
-   <td style="text-align:right;"> 676 </td>
-   <td style="text-align:right;"> 6977 </td>
-   <td style="text-align:left;"> K—I’m out. Bi 👋🏼
-
-#ComingOutDay #NationalComingOutDay </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> loveislove </td>
-   <td style="text-align:right;"> 396 </td>
-   <td style="text-align:right;"> 4033 </td>
-   <td style="text-align:left;"> HAPPY NATIONAL COMING OUT DAY!! 
-
-🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
-
-\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-Whilst this table now has all the information we want, it isn't great aesthetically. The <code class='package'>kableExtra</code> package has functions that will improve the presentation of tables. We're going to show you two examples of how you could format this table. 
-
-The first is (relatively) simple and stays within the R programming language using functionality from <code class='package'>kableExtra</code>. The main aesthetic feature of the table is the incorporation of the pride flag colours for each row. Each row is set to a different colour of the pride flag and the text is set to be black and bold to improve the contrast. We've also removed the `image` column as it just contains a URL.
-
-
-```r
-# the hex codes of the pride flag colours, obtained from https://www.schemecolor.com/lgbt-flag-colors.php
-
-pride_colours <- c("#FF0018", "#FFA52C", "#FFFF41", "#008018", "#0000F9", "#86007D")
-
-top5 %>%
-  select(-image) %>%
-  kable(col.names = c("Hashtags", "No. tweets", "Likes", "Tweet"),
-        caption = "Stats and the top tweet for the top five hashtags.") %>%
-  row_spec(row = 0, 
-           background = pride_colours[1], color = "black", 
-           bold = T, font_size = 18) %>%
-  row_spec(row = 1, background = pride_colours[2], color = "black", 
-           bold = T)%>%
-  row_spec(row = 2, background = pride_colours[3], color = "black", 
-           bold = T)%>%
-  row_spec(row = 3, background = pride_colours[4], color = "black", 
-           bold = T)%>%
-  row_spec(row = 4, background = pride_colours[5], color = "black", 
-           bold = T)%>%
-  row_spec(row = 5, background = pride_colours[6], color = "black", 
-           bold = T)
-```
-
-<table>
-<caption>(\#tab:unnamed-chunk-36)Stats and the top tweet for the top five hashtags.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;font-weight: bold;color: black !important;background-color: #FF0018 !important;font-size: 18px;"> Hashtags </th>
-   <th style="text-align:right;font-weight: bold;color: black !important;background-color: #FF0018 !important;font-size: 18px;"> No. tweets </th>
-   <th style="text-align:right;font-weight: bold;color: black !important;background-color: #FF0018 !important;font-size: 18px;"> Likes </th>
-   <th style="text-align:left;font-weight: bold;color: black !important;background-color: #FF0018 !important;font-size: 18px;"> Tweet </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #FFA52C !important;"> nationalcomingoutday </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #FFA52C !important;"> 28698 </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #FFA52C !important;"> 851510 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #FFA52C !important;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #FFFF41 !important;"> lgbtq </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #FFFF41 !important;"> 1036 </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #FFFF41 !important;"> 13691 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #FFFF41 !important;"> It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready &amp; can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay https://t.co/dr61oyhR3L </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #008018 !important;"> indigenouspeoplesday </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #008018 !important;"> 837 </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #008018 !important;"> 14073 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #008018 !important;"> To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay https://t.co/KsZ5F3gBKO </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #0000F9 !important;"> comingoutday </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #0000F9 !important;"> 676 </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #0000F9 !important;"> 6977 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #0000F9 !important;"> K—I’m out. Bi 👋🏼
-
-#ComingOutDay #NationalComingOutDay </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #86007D !important;"> loveislove </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #86007D !important;"> 396 </td>
-   <td style="text-align:right;font-weight: bold;color: black !important;background-color: #86007D !important;"> 4033 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: #86007D !important;"> HAPPY NATIONAL COMING OUT DAY!! 
-
-🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
-
-\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
-  </tr>
-</tbody>
-</table>
-
-An alternative approach incorporates <a class='glossary' target='_blank' title='Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages.' href='https://psyteachr.github.io/glossary/h#html'>HTML</a> and also uses the package <code class='package'>glue</code> to combine information from multiple columns. 
-
-First, we use `mutate()` to create a new column `col1` that combines the first three columns into a single column and adds some formatting to make the hashtag bold (`<strong>`) and insert line breaks (`<br>`). We'll also change the image column to display the image using html if there is an image.
-
-If you're not familiar with HTML, don't worry too if you don't understand the below code, the point is to show you the full extent of the flexibility available.
-
-
-```r
-top5 %>%
-  mutate(col1 = glue("<strong>#{hashtags}</strong>
-                     <br>
-                     tweets: {n}
-                     <br>
-                     likes: {total_likes}"),
-         img = ifelse(!is.na(image),
-                      glue("<img src='{image}' width='200px' />"),
-                      "")) %>%
-  select(col1, text, img) %>%
-  kable(
-    escape = FALSE, # allows HTML in the table
-    col.names = c("Hashtag", "Top Tweet", ""),
-    caption = "Stats and the top tweet for the top five hashtags.") %>%
-  column_spec(1:2, extra_css = "vertical-align: top;") %>%
-  row_spec(0, extra_css = "vertical-align: bottom;") %>%
-  kable_paper()
-```
 
 ## Exercises
 
@@ -910,8 +604,8 @@ That was an intensive chapter! Take a break and then try one (or more) of the fo
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> [html](https://psyteachr.github.io/glossary/h.html#html){class="glossary" target="_blank"} </td>
-   <td style="text-align:left;"> Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages. </td>
+   <td style="text-align:left;"> [pipe](https://psyteachr.github.io/glossary/p.html#pipe){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;">  </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [quantile](https://psyteachr.github.io/glossary/q.html#quantile){class="glossary" target="_blank"} </td>

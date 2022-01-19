@@ -52,3 +52,12 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+.incomplete-chapter {
+  padding: 1em;
+  background-color: #4aa8c7;
+  text-align: center;
+}
+
+.incomplete-chapter::before {
+  content: "This chapter is in draft form and will be revised soon.";
+}

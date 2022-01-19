@@ -1,5 +1,7 @@
 # Advanced Reports  {#present}
 
+<div class="incomplete-chapter"></div>
+
 ## Intended Learning Outcomes {#ilo-present}
 
 * Structure data in report, presentation, and dashboard formats

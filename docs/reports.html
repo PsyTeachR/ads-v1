@@ -21,7 +21,12 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.9.4.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.19/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -57,6 +62,12 @@
 <li><a class="active" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
+<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
+<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -64,10 +75,11 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">E</span> Data Types</a></li>
 <li><a class="" href="plotstyle.html"><span class="header-section-number">F</span> Styling Plots</a></li>
-<li><a class="" href="twitter-example.html"><span class="header-section-number">G</span> Twitter Example</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">H</span> Webpages</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">G</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">H</span> Twitter Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">I</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -264,7 +276,7 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 342 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 340 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -578,7 +590,7 @@ Planes
 </tbody>
 </table></div>
 <div class="info">
-<p>The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page <code>html_document</code>, while this book uses the <code>bs4_book</code> style from the <code class="package">bookdown</code> package. You'll learn more about other document output types in Chapter <a href="#present"><strong>??</strong></a>.</p>
+<p>The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page <code>html_document</code>, while this book uses the <code>bs4_book</code> style from the <code class="package">bookdown</code> package. You'll learn more about other document output types in Chapter <a href="present.html#present">10</a>.</p>
 </div>
 <p>If you're feeling confident with what we have covered so far, the <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html" target="_blank">kableExtra vignette</a> gives a lot more detail on how you can edit your tables using <code>kableExtra</code>.</p>
 <div class="try">
@@ -1279,7 +1291,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

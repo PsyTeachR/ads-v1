@@ -1,5 +1,7 @@
 # Data Tidying {#tidy}
 
+<div class="incomplete-chapter"></div>
+
 ## Intended Learning Outcomes {#ilo-tidy}
 
 * Be able to reshape data between long and wide formats

@@ -1,5 +1,7 @@
 # Customising Visualisations {#custom}
 
+<div class="incomplete-chapter"></div>
+
 ## Intended Learning Outcomes {#ilo-custom}
 
 * Customise plots with a consistent style

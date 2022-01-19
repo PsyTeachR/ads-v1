@@ -1,8 +1,8 @@
-# Twitter Example
+# Twitter Data
 
-This section takes a problem-based approach to teach you how to use the functions above, in combination with functions you learned in previous chapters, to summarise and visualise twitter data.
+This appendix takes a problem-based approach to demonstrate how to use tidyverse functions to summarise and visualise twitter data.
 
-```{r setup-app-g, message=FALSE}
+```{r setup-app-h, message=FALSE}
 library(tidyverse)   # data wrangling functions
 library(lubridate)   # for handling dates and times
 ```

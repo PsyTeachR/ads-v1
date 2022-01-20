@@ -176,7 +176,7 @@ date_to <- tweet_summary$max_date %>%
 
 Then you can insert values from these objects and the tables you created with `summarise()` using inline R (note the dollar sign notation to get the value of the `n` column from the table `tweet_summary`). 
 
-```{md, eval = FALSE}
+```{verbatim, lang="md"}
 There were `r tweet_summary$n` tweets between `r date_from` and `r date_to`.
 ```
 
@@ -238,7 +238,7 @@ most_prolific_n <- slice(tweets_per_user, 1) %>%
 
 Then add the inline code to your report...
 
-```{md, eval = FALSE}
+```{verbatim, lang="md"}
 There were `r unique_users` unique accounts tweeting about #NationalComingOutDay. `r most_prolific` was the most prolific tweeter, with `r most_prolific_n` tweets.
 ```
 
@@ -387,7 +387,7 @@ quote <- filter(most_fav,is_quote == TRUE)
 
 The inline code is then as follows:
 
-```{md, eval = FALSE}
+```{verbatim, lang="md"}
 The most favourited `r orig$favorite_count` original tweet was by [`r orig$screen_name`](`r orig$status_url`):
 
 --------------------------------------------------

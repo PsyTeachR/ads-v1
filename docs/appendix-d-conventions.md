@@ -17,7 +17,7 @@ This book will use the following conventions:
 * Menu/interface options: **`New File...`**
 * Quiz question: I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value=''>FALSE</option></select>
 
-* What is a p-value? <div class='webex-radiogroup' id='radio_XOEBVAOYXZ'><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_KHTNYAOYJH'><label><input type="radio" autocomplete="off" name="radio_KHTNYAOYJH" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_KHTNYAOYJH" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_KHTNYAOYJH" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 
@@ -44,17 +44,30 @@ Try it yourself.
 
 ```r
 # code chunks
-paste("Applied", "Data", "Skills", 1, sep = " ")
+paste("Code", "Output", 1, sep = " ")
 ```
 
 ```
-## [1] "Applied Data Skills 1"
+## [1] "Code Output 1"
 ```
 
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, fig.width = 2, fig.height = 2}</code></pre>
 
-<pre class='md'><code><span class='md_header'>## Markdown Example</span>
+```r
+# code chunks with headers
+hist(rnorm(100000))
+```
 
-* Inline code: <span class='md_backtick'>`r nrow(iris)`</span>
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
+
+```md
+## Markdown Example
+
+* Inline code: `r nrow(iris)`
 * *Italics*
-* **Bold**</code></pre>
+* **Bold**
+```
+
+
 

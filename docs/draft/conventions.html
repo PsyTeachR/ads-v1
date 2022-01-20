@@ -66,7 +66,7 @@
 </h1>
 <p>This book will use the following conventions:</p>
 <ul>
-<li><p>Generic code: <code><a href="https://rdrr.io/r/base/list.html">list(number = 1, letter = "A")</a></code></p></li>
+<li><p>Generic code: <code>list(number = 1, letter = "A")</code></p></li>
 <li><p>Highlighted code: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>number <span class="op">=</span> <span class="fl">1</span>, letter <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span></code></p></li>
 <li><p>File paths: <code class="path">data/sales.csv</code></p></li>
 <li><p>R Packages: <code class="package">tidyverse</code></p></li>
@@ -84,8 +84,8 @@
 <option value="">FALSE</option></select></p></li>
 <li>
 <p>What is a p-value?</p>
-<div id="radio_WSQFQBPUMK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value=""><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value="answer"><span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value=""><span>the probability of making an error in your conclusion</span></label>
+<div id="radio_ZXNVCDGLFG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value=""><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value="answer"><span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value=""><span>the probability of making an error in your conclusion</span></label>
 </div>
 </li>
 </ul>
@@ -116,11 +116,20 @@ Hidden Solutions
 * Inline code: <span class="md_backtick">`r nrow(iris)`</span>
 * *Italics*
 * **Bold**</code></pre>
-<pre class="verbatim"><code>## Verbatim Example
-
-* Inline code: `r nrow(iris)`
-* *Italics*
-* **Bold**</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb3-1"><a href="conventions.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Markdown Example</span></span>
+<span id="cb3-2"><a href="conventions.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="conventions.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Inline code: <span class="in">`r nrow(iris)`</span></span>
+<span id="cb3-4"><a href="conventions.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>*Italics*</span>
+<span id="cb3-5"><a href="conventions.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Bold**</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="conventions.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r, fig.width = 2, fig.height = 2}</span></span>
+<span id="cb4-2"><a href="conventions.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">hist(rnorm(100000))</span></span>
+<span id="cb4-3"><a href="conventions.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 2, fig.height = 2}</code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-R-base" class="csl-entry">

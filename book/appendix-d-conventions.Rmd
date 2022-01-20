@@ -50,15 +50,21 @@ Try it yourself.
 
 ```{r}
 # code chunks
-paste("Applied", "Data", "Skills", 1, sep = " ")
+paste("Code", "Output", 1, sep = " ")
 ```
 
+```{r, eval = FALSE, verbatim="r, fig.width = 2, fig.height = 2"}
+# code chunks with headers
+hist(rnorm(100000))
+```
 
-```{md}
+```{verbatim, lang = "md"}
 ## Markdown Example
 
 * Inline code: `r nrow(iris)`
 * *Italics*
 * **Bold**
 ```
+
+
 

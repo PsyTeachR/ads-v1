@@ -164,7 +164,7 @@ One important feature of R Markdown is that you can combine text and code to ins
 First, copy and paste this text to the **white space underneath** your code chunk. If you used a different variable name than `christmas` you should update this with the name of the object you created, but otherwise don't change anything else.
 
 
-```r
+```md
 My name is `r name` and I am `r age` years old. 
 It is `r christmas - today` days until Christmas, 
 which is my favourite holiday.
@@ -311,7 +311,9 @@ This is useful for complex styling, but you can also use these common plain-text
 
 Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.
 
-<pre><code>## Sample sales report
+
+```md
+## Sample sales report
 
 This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
 
@@ -319,7 +321,8 @@ This report summarises the sales data for different types of vehicles sold betwe
 
 The *total* number of **planes** sold was `r sales_counts$n[3]`
 
-The *total* number of **classic cars** sold was `r sales_counts$n[1]`.</code></pre>
+The *total* number of **classic cars** sold was `r sales_counts$n[1]`.
+```
 
 
 Try and match up the inline code with what is in the `sales_counts` table. Of note:
@@ -330,12 +333,19 @@ Try and match up the inline code with what is in the `sales_counts` table. Of no
 
 ::: {.try data-latex=""}
 Add another line that reports the total numbers of **motorcycles** using inline code. Using either the visual editor or text markups, add in bold and italics so that it matches the others.
-:::
 
 
 <div class='webex-solution'><button>Solution</button>
-<pre><code>The *total* number of **motorcycles** sold was `r sales_counts$n[2]`.</code></pre>
+
+
+```md
+The *total* number of **motorcycles** sold was `r sales_counts$n[2]`.
+```
+
 </div>
+
+
+:::
 
 ### Code comments {#comments}
 

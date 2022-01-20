@@ -17,7 +17,7 @@ This book will use the following conventions:
 * Menu/interface options: **`New File...`**
 * Quiz question: I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value=''>FALSE</option></select>
 
-* What is a p-value? <div class='webex-radiogroup' id='radio_WSQFQBPUMK'><label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_WSQFQBPUMK" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_ZXNVCDGLFG'><label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_ZXNVCDGLFG" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 
@@ -59,10 +59,26 @@ paste("Applied", "Data", "Skills", 1, sep = " ")
 * **Bold**</code></pre>
 
 
-```verbatim
-## Verbatim Example
+
+```md
+## Markdown Example
 
 * Inline code: `r nrow(iris)`
 * *Italics*
 * **Bold**
 ```
+
+
+````r
+```{r, fig.width = 2, fig.height = 2}
+hist(rnorm(100000))
+```
+````
+
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r, fig.width = 2, fig.height = 2}</code></pre>
+
+```r
+hist(rnorm(100000))
+```
+
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>

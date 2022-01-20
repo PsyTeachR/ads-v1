@@ -92,13 +92,13 @@
 <span class="header-section-number">G</span> Twitter Hashtags<a class="anchor" aria-label="anchor" href="#twitter-hashtags"><i class="fas fa-link"></i></a>
 </h1>
 <p>In this appendix, we will create a table of the top five hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
-<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span>      <span class="co"># for searching tweets</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>        <span class="co"># for pasting strings</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span></code></pre></div>
 <p>The example below uses the data from Chapter <a href="reports.html#summary">2.6.5</a> (<a href="data/ncod_tweets.rds" download>which you can download</a>), but we encourage you to try a hashtag that interests you.</p>
-<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load tweets</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
                         n <span class="op">=</span> <span class="fl">30000</span>, 
@@ -106,7 +106,7 @@
 
 <span class="co"># save them to a file so you can skip this step in the future</span>
 <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">tweets</span>, file <span class="op">=</span> <span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load tweets from the file</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
 <div id="select-relevant-data" class="section level2" number="17.1">
@@ -114,7 +114,7 @@
 <span class="header-section-number">G.1</span> Select relevant data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>The function <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> is useful for just keeping the variables (columns) you need to work with, which can make working with very large datasets easier. The arguments to <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> are simply the names of the variables and the resulting table will present them in the order you specify.</p>
-<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span></code></pre></div>
 </div>
@@ -123,7 +123,7 @@
 <span class="header-section-number">G.2</span> Unnest columns<a class="anchor" aria-label="anchor" href="#unnest-columns"><i class="fas fa-link"></i></a>
 </h2>
 <p>Look at the dataset using <code>View(tweets_with_hashtags)</code> or clicking on it in the Environment tab. You'll notice that the variable <code>hashtags</code> has multiple values in each cell (i.e., when users used more than one hashtag in a single tweet). In order to work with this information, we need to separate each hashtag so that each row of data represents a single hashtag. We can do this using the function <code><a href="https://rdrr.io/pkg/tidyr/man/nest.html">unnest()</a></code> and adding a pipeline of code.</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/nest.html">unnest</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
@@ -142,7 +142,7 @@
 <li>Filters out any blank cells using <code>!is.na()</code> (you can read this as "keep any row value where it is not true (<code>!</code>) that <code>hashtags</code> is missing") and then;</li>
 <li>Returns the top five values using <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> and orders them by the <code>n</code> column.</li>
 </ul>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>  <span class="co"># get rid of the blank value</span>
@@ -204,7 +204,7 @@ ComingOutDay
 </table></div>
 </div>
 <p>Two of the hashtags are the same, but with different case. We can fix this by adding in an extra line of code that uses <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to overwrite the variable <code>hashtag</code> with the same data but transformed to lower case using <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code>. Since we're going to use the table <code>tweets_with_hashtags</code> a few more times, let's change that table first rather than having to fix this every time we use the table.</p>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span>
 
@@ -274,7 +274,7 @@ loveislove
 <span class="header-section-number">G.4</span> Top tweet per hashtag<a class="anchor" aria-label="anchor" href="#top-tweet-per-hashtag"><i class="fas fa-link"></i></a>
 </h2>
 <p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>. Use <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> before you filter to select the most-liked tweet in each hashtag, rather than the one with most likes overall. As you're getting used to writing and running this kind of multi-step code, it can be very useful to take out individual lines and see how it changes the output to strengthen your understanding of what each step is doing.</p>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
@@ -286,7 +286,7 @@ loveislove
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>
@@ -303,7 +303,7 @@ Solution
 <span class="header-section-number">G.5</span> Total likes per hashtag<a class="anchor" aria-label="anchor" href="#total-likes-per-hashtag"><i class="fas fa-link"></i></a>
 </h2>
 <p>Get the total number of likes per hashtag by grouping and summarising with <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
@@ -314,7 +314,7 @@ Solution
 <span class="header-section-number">G.6</span> Put it together<a class="anchor" aria-label="anchor" href="#put-it-together"><i class="fas fa-link"></i></a>
 </h2>
 <p>We can put everything together using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join()</a></code> (see Chapter @ref(left_join)). This will keep everything from the first table specified and then add on the relevant data from the second table specified. In this case, we add on the data in <code>top_tweet_per_hashtag</code> and <code>like_per_hashtag</code> but only for the tweets included in <code>top5_hashtags</code></p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> </code></pre></div>
@@ -327,7 +327,7 @@ Solution
 <p>First, the <code>@</code> symbol is used by R Markdown for referencing (see Chapter  <a href="present.html#references">10.2.4</a>). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of <code>@</code> and add backslashes. Backslashes create a literal version of characters that have a special meaning in R, so adding them means it will print the <code>@</code> symbol without trying to create a reference. Of course <code>\</code> also has a special meaning in R, which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&amp;), which sometimes display as "&amp;".</p>
 <p>Second, if there are multiple images associated with a single tweet, <code>media_url</code> will be a list, so we use <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code>. This might not be necessary for a different set of tweets; use <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code> to check the data types.</p>
 <p>Finally, we use <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> to tidy up the table and just keep the columns we need.</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
@@ -458,7 +458,7 @@ loveislove
 </h2>
 <p>Whilst this table now has all the information we want, it isn't great aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables. We're going to show you two examples of how you could format this table.</p>
 <p>The first is (relatively) simple and stays within the R programming language using functionality from <code class="package">kableExtra</code>. The main aesthetic feature of the table is the incorporation of the pride flag colours for each row. Each row is set to a different colour of the pride flag and the text is set to be black and bold to improve the contrast. We've also removed the <code>image</code> column, as it just contains a URL.</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># the hex codes of the pride flag colours, obtained from https://www.schemecolor.com/lgbt-flag-colors.php</span>
 
 <span class="co"># the last two characters (80) make the colours semi-transparent.</span>
@@ -588,7 +588,7 @@ loveislove
 <p>An alternative approach incorporates <a class="glossary" target="_blank" title="Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages." href="https://psyteachr.github.io/glossary/h#html">HTML</a> and also uses the package <code class="package">glue</code> to combine information from multiple columns.</p>
 <p>First, we use <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to create a new column <code>col1</code> that combines the first three columns into a single column and adds some formatting to make the hashtag bold (<code>&lt;strong&gt;</code>) and insert line breaks (<code>&lt;br&gt;</code>). We'll also change the image column to display the image using html if there is an image.</p>
 <p>If you're not familiar with HTML, don't worry if you don't understand the below code; the point is to show you the full extent of the flexibility available.</p>
-<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top5</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;#{hashtags}&lt;/strong&gt;
                      &lt;br&gt;

@@ -136,6 +136,10 @@ You can load the <code class='package'>esquisse</code> package for your current 
 library(esquisse)
 ```
 
+```
+## Warning: package 'esquisse' was built under R version 4.1.2
+```
+
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}

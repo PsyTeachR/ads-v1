@@ -64,13 +64,20 @@ bar + point
 
 You can set the image size in the `r glossary("chunk")` headers.
 
-```{r, eval = FALSE, verbatim = "r, fig.width = 10, fig.height = 5"}
+````{verbatim}
+```{r, fig.width = 10, fig.height = 5}
+bar + point
+```
+````
+
+```{r}
+#| figdim-demo, echo = FALSE, 
+#| fig.width = 10, fig.height = 5, 
+#| fig.cap="Image size altered to fig.width = 10, fig.height = 5"
 bar + point
 ```
 
-```{r, fig.width = 10, fig.height = 5, echo = FALSE, fig.cap="Image size altered to fig.width = 10, fig.height = 5"}
-bar + point
-```
+
 
 ::: {.warning data-latex=""}
 If you're using a MacBook with a Retina display, you may notice that the figures you see in RStudio when you're editing interactively are different from what you see when you render the file. This is an annoying but known bug in [RStudio](https://github.com/rstudio/rstudio/issues/4521){target="_blank"}. Until it's fixed, you can set fig.width and fig.height to their value/2 when checking a plot, and set it back before you knit.
@@ -80,23 +87,41 @@ If you're using a MacBook with a Retina display, you may notice that the figures
 
 The option `out.width` controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with `fig.align`.
 
-```{r, eval = FALSE, verbatim = "r, out.width = \"75%\", fig.align = \"center\""}
+````{verbatim}
+```{r, out.width = "75%", fig.align = "center"}
 bar
 ```
+````
 
-```{r, out.width = "75%", fig.align = "center", echo = FALSE, fig.cap = "Output display altered with out.width = \"75%\", fig.align = \"center\""}
+```{r}
+#| outwidth-demo, echo = FALSE, 
+#| out.width = "75%", fig.align = "center", 
+#| fig.cap = "Output display altered with out.width = \"75%\""
 bar
 ```
 
 ### Captions
 
-Figures should usually get a caption with `fig.cap` and alt text to describe the figure to people with impaired vision using `fig.alt`.
+Figures should usually get a caption with `fig.cap` and alt text to describe the figure to people with impaired vision using `fig.alt`. You can use the pattern below to spread the chunk options over multiple lines in a way that makes them easier to read. 
 
-```{r, eval = FALSE, verbatim = "r, fig.cap = \"As wait time increases, so does call time.\", fig.alt = \"Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds.\""}
+````{verbatim}
+```{r}
+#| reference-name, 
+#| echo = FALSE, 
+#| fig.width = 8, fig.height = 5, out.width = "100%", 
+#| fig.cap = "As wait time increases, so does call time.", 
+#| fig.alt = "Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds."
+
 point
 ```
+````
 
-```{r, echo = FALSE, fig.cap = "As wait time increases, so does call time.", fig.alt="Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds."}
+```{r}
+#| caption-demo, 
+#| echo = FALSE, 
+#| fig.width = 8, fig.height = 5, out.width = "100%", 
+#| fig.cap = "As wait time increases, so does call time.", 
+#| fig.alt = "Wait time on the x-axis and Call time on the y-axis. Shows scatterplots and regression lines for each of 4 issue categories: other, returns, sales, and tech. All 4 wait times increase with call time. At 50 seconds wait time, call time is about 25 seconds. At 250 seconds wait time, call time is about 60 seconds."
 point
 ```
 

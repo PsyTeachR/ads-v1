@@ -17,7 +17,7 @@ This book will use the following conventions:
 * Menu/interface options: **`New File...`**
 * Quiz question: I am going to learn a lot: <select class='webex-select'><option value='blank'></option><option value='answer'>TRUE</option><option value=''>FALSE</option></select>
 
-* What is a p-value? <div class='webex-radiogroup' id='radio_SZKNYYEIGB'><label><input type="radio" autocomplete="off" name="radio_SZKNYYEIGB" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_SZKNYYEIGB" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_SZKNYYEIGB" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
+* What is a p-value? <div class='webex-radiogroup' id='radio_XOEBVAOYXZ'><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value=""></input> <span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value="answer"></input> <span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_XOEBVAOYXZ" value=""></input> <span>the probability of making an error in your conclusion</span></label></div>
 
 
 
@@ -50,3 +50,11 @@ paste("Applied", "Data", "Skills", 1, sep = " ")
 ```
 ## [1] "Applied Data Skills 1"
 ```
+
+
+<pre class='md'><code><span class='md_header'>## Markdown Example</span>
+
+* Inline code: <span class='md_backtick'>`r nrow(iris)`</span>
+* *Italics*
+* **Bold**</code></pre>
+

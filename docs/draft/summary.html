@@ -53,6 +53,8 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="active" href="summary.html"><span class="header-section-number">1</span> Data Summaries</a></li>
+<li><a class="" href="license.html">License</a></li>
+<li><a class="" href="references.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -82,17 +84,17 @@
 <h2>
 <span class="header-section-number">1.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up"><i class="fas fa-link"></i></a>
 </h2>
-<p>First, create a new project for the work we'll do in this chapter named <code class="path">05-summary</code>. Second, download the data for this chapter <a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a> and save it in your project data folder. Finally, open and save and new R Markdown document named <code>summary.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
+<p>First, create a new project for the work we'll do in this chapter named <code class="path">05-summary</code>. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named <code>summary.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
 </div>
 <div id="social-media-data" class="section level2" number="1.3">
 <h2>
 <span class="header-section-number">1.3</span> Social media data<a class="anchor" aria-label="anchor" href="#social-media-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this chapter we're going to analyse social media data, specifically data from Twitter. There are two broad types of data you can obtain from Twitter; data scraped from Twitter using purpose-built packages such as <code class="package">rtweet</code>, and data provided via <a href="https://analytics.twitter.com/">Twitter Analytics</a> for any accounts for which you have access.</p>
-<p>For this chapter, we'll use data scraped from Twitter using <code class="package">rtweet</code>. In order to use these functions, you need to have a Twitter account although don't worry if you don't have one, we'll also provide the data for you.</p>
+<p>For this chapter, we'll use data scraped from Twitter using <code class="package">rtweet</code>. In order to use these functions, you need to have a Twitter account. Don't worry if you don't have one; we'll provide the data in the examples below for you.</p>
 <p><code class="package">rtweet</code> has a lot of flexibility, for example, you can search for tweets that contain a certain hashtag or word, tweets by a specific user, or tweets that meet certain conditions like location or whether the user is verified.</p>
-<p>For the dataset for this chapter, we used the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function to find the last 30K tweets with the hashtag <a href="https://en.wikipedia.org/wiki/National_Coming_Out_Day">#NationalComingOutDay</a>.This is mainly interesting around October 11th (the date of National Coming Out Day), so we've provided the relevant data for you that we scraped at that time.</p>
-<p>If you have a Twitter account, you can complete this chapter using your own data and any hashtag that interests you. When you run the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function you will be asked to sign in to your Twitter account.</p>
+<p>For the dataset for this chapter, we used the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function to find the last 30K tweets with the hashtag <a href="https://en.wikipedia.org/wiki/National_Coming_Out_Day">#NationalComingOutDay</a>. This is mainly interesting around October 11th (the date of National Coming Out Day), so we've provided the relevant data for you that we scraped at that time.</p>
+<p>If you have a Twitter account, you can complete this chapter using your own data and any hashtag that interests you. When you run the <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> function, you will be asked to sign in to your Twitter account.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
                         n <span class="op">=</span> <span class="fl">30000</span>, 
@@ -101,33 +103,30 @@
 <h3>
 <span class="header-section-number">1.3.1</span> R objects<a class="anchor" aria-label="anchor" href="#r-objects"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you're working with live social media data, every time you run a query it's highly likely you will get a different set of data as new tweets are added. Additionally, the Twitter API places limits on how much data you can download and searches are limited to data from the last 6-9 days. Consequently, it can be useful to save the results of your initial search. <code>saveRDS</code> is a useful function that allows you to save any object in your environment to disk</p>
+<p>If you're working with live social media data, every time you run a query it's highly likely you will get a different set of data as new tweets are added. Additionally, the Twitter API places limits on how much data you can download and searches are limited to data from the last 6-9 days. Consequently, it can be useful to save the results of your initial search. <code>saveRDS</code> is a useful function that allows you to save any object in your environment to disk.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">tweets</span>, file <span class="op">=</span> <span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
+<p>After you run <code><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets()</a></code> and save the results, set that code chunk to <code>eval = FALSE</code> or comment out that code so your script doesn't run the search and overwrite your saved data every time you knit it.</p>
 <p>To load an <code>.rds</code> file, you can use the <code><a href="https://rdrr.io/r/base/readRDS.html">readRDS()</a></code> function. If you don't have access to a Twitter account, or to ensure that you get the same output as the rest of this chapter, you can download <a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a> and load it using this function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
+<p>First, run <code>glimpse(tweets)</code> or click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.</p>
 </div>
 </div>
-<div id="data-summaries" class="section level2" number="1.4">
+<div id="summarise" class="section level2" number="1.4">
 <h2>
-<span class="header-section-number">1.4</span> Data summaries<a class="anchor" aria-label="anchor" href="#data-summaries"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4</span> Summarise<a class="anchor" aria-label="anchor" href="#summarise"><i class="fas fa-link"></i></a>
 </h2>
-<div id="summarise" class="section level3" number="1.4.1">
-<h3>
-<span class="header-section-number">1.4.1</span> Summarise<a class="anchor" aria-label="anchor" href="#summarise"><i class="fas fa-link"></i></a>
-</h3>
-<p>First, run <code>glimpse(tweets)</code> and click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.</p>
-<p>The <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> function from the <code class="package">dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. Check the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code>n()</code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
-<p>This function can be used to answer questions like: How many tweets were there? What date range is represented in these data? What are the mean and median number of favourites per tweet? Let's start with a very simple example to calculate the mean, median, min, and max number of favourites (Twitter's version of a "like"):</p>
+<p>The <code>summarise()</code> function from the <code class="package">dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code>n()</code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
+<p>This function can be used to answer questions like: How many tweets were there? What date range is represented in these data? What are the <a class="glossary" target="_blank" title="A descriptive statistic that measures the average value of a set of numbers." href="https://psyteachr.github.io/glossary/m#mean">mean</a> and <a class="glossary" target="_blank" title="The middle number in a distribution where half of the values are larger and half are smaller." href="https://psyteachr.github.io/glossary/m#median">median</a> number of favourites per tweet? Let's start with a very simple example to calculate the mean, median, min, and max number of favourites (Twitter's version of a "like"):</p>
 <ul>
-<li>The first argument <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> takes is the data table you wish to summarise, in this case the object <code>tweets</code>.</li>
+<li>The first argument that <code>summarise()</code> takes is the data table you wish to summarise, in this case the object <code>tweets</code>.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> will create a new table. The column names of this new table will be the left hand-side arguments, i.e., <code>mean_favs</code> and <code>median_favs</code>.</li>
+<code>summarise()</code> will create a new table. The column names of this new table will be the left hand-side arguments, i.e., <code>mean_favs</code>, <code>median_favs</code>, <code>min_favs</code> and <code>max_favs</code>.</li>
 <li>The values of these columns are the result of the summary operation on the right hand-side.</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">favourite_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span><span class="va">tweets</span>,
+<code class="sourceCode R"><span class="va">favourite_summary</span> <span class="op">&lt;-</span> <span class="fu">summarise</span><span class="op">(</span><span class="va">tweets</span>,
                            mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
                            median_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
                            min_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
@@ -162,15 +161,20 @@ max_favs
 </td>
 </tr></tbody>
 </table></div>
-<p>The mean number of favourites is substantially higher than the median and the range is huge, suggesting there are outliers. A quick histogram confirms this - most tweets have zero favourites but there are a few with a lot of likes (so few you can't really see them on the histogram) that skew the mean.</p>
+<p>The mean number of favourites is substantially higher than the median and the range is huge, suggesting there are <code>r glossary("outlier", "outliers")</code>. A quick histogram confirms this - most tweets have few favourites but there are a few with a lot of likes that skew the mean.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">tweets</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"pseudo_log"</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">100</span>, <span class="fl">1000</span>, <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="05-summary_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></div>
-<p>You can add multiple operations to a single call to <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> so let's try a few different operations. The <code>n()</code> function counts the number of rows in the data. The <code>created_at</code> column gives us the date each tweet were created, so we can use the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> functions to get the range of dates.</p>
+<div class="info">
+<p>Plotting the logarithm of a very skewed value can often give you a better idea of what's going on. Use <code>scale_x_continuous(trans = "pseudo_log")</code> to include zeros on the plot (just "log" converts 0 to negative infinity and removes it from the plot).</p>
+</div>
+<p>You can add multiple operations to a single call to <code>summarise()</code> so let's try a few different operations. The <code>n()</code> function counts the number of rows in the data. The <code>created_at</code> column gives us the date each tweet were created, so we can use the <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> and <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> functions to get the range of dates.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_summary</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
+  <span class="fu">summarise</span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
             median_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">favorite_count</span>, <span class="fl">.5</span><span class="op">)</span>,
             n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
             min_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">created_at</span><span class="op">)</span>,
@@ -194,48 +198,47 @@ max_favs
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_HCIQEEXUSR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HCIQEEXUSR" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label>
+<div id="radio_XZMYYSRWUN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XZMYYSRWUN" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XZMYYSRWUN" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XZMYYSRWUN" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_XZMYYSRWUN" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label>
 </div>
 </li>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_RRXOJHELAU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(width = mean(display_text_width))</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(display_text_width = mean)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_RRXOJHELAU" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(display_text_width)</a></code></span></label>
+<div id="radio_DZCZAHBVWQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DZCZAHBVWQ" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DZCZAHBVWQ" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_DZCZAHBVWQ" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DZCZAHBVWQ" value="x"><span><code>width(mean(display_text_width))</code></span></label>
 </div>
 </li>
 </ul>
 </div>
-</div>
-<div id="the-operator" class="section level3" number="1.4.2">
+<div id="the-operator" class="section level3" number="1.4.1">
 <h3>
-<span class="header-section-number">1.4.2</span> The $ operator<a class="anchor" aria-label="anchor" href="#the-operator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.1</span> The $ operator<a class="anchor" aria-label="anchor" href="#the-operator"><i class="fas fa-link"></i></a>
 </h3>
-<p>We need to take a couple of brief detours to introduce some additional coding conventions. First, let's clear up what that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> notation is doing. The dollar sign allows you to select variables from an object. The left-hand side is the object, and the right-hand side is the variable. When you call a variable like this, R will print all the observations in that variable.</p>
+<p>We need to take a couple of brief detours to introduce some additional coding conventions. First, let's clear up what that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> notation is doing. The dollar sign allows you to select items from an object, such as columns from a table. The left-hand side is the object, and the right-hand side is the item. When you call a column like this, R will print all the observations in that column.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_summary</span><span class="op">$</span><span class="va">mean_favs</span></code></pre></div>
 <pre><code>## [1] 29.71732</code></pre>
-<p>If your variable has multiple observations, you can specify which ones to return using square brackets <code>[]</code> and the row number.</p>
+<p>If your item has multiple observations, you can specify which ones to return using square brackets <code>[]</code> and the row number or a <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> of row numbers.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span><span class="op">$</span><span class="va">source</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># select one observation</span>
 <span class="va">tweets</span><span class="op">$</span><span class="va">display_text_width</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="co"># select multiple with c()</span></code></pre></div>
 <pre><code>## [1] "Twitter for Android"
 ## [1]  78 287 107</code></pre>
 </div>
-<div id="pipes" class="section level3" number="1.4.3">
+<div id="pipes-first" class="section level3" number="1.4.2">
 <h3>
-<span class="header-section-number">1.4.3</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.2</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes-first"><i class="fas fa-link"></i></a>
 </h3>
-<p>For our second detour, let's formally introduce the <a class="glossary" target="_blank" title="" href="https://psyteachr.github.io/glossary/p#pipe">pipe</a> that weird <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> symbol we've used occasionally. Pipes allow you to send the output from one function straight into another function. Specifically, they send the result of the function before <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> to be the first argument of the function after <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>. It can be useful to translate the pipe as "<strong>and then</strong>". It's easier to show than tell, so let's look at an example.</p>
+<p>For our second detour, let's formally introduce the <a class="glossary" target="_blank" title="A way to order your code in a more readable format using the symbol %&gt;%" href="https://psyteachr.github.io/glossary/p#pipe">pipe</a>, that weird <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> symbol we've used occasionally. Pipes allow you to send the output from one function straight into another function. Specifically, they send the result of the function before <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> to be the first argument of the function after <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>. It can be useful to translate the pipe as "<strong>and then</strong>". It's easier to show than tell, so let's look at an example.</p>
 <p>We could write the above code using a pipe as follows:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweet_summary</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span> <span class="co"># start with the object tweets and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>, <span class="co">#summarise it</span>
+  <span class="fu">summarise</span><span class="op">(</span>mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>, <span class="co">#summarise it</span>
             median_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Notice that <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> no longer needs the first argument to be the data table, it is pulled in from the pipe. The power of the pipe may not be obvious now, but it will soon prove its worth.</p>
+<p>Notice that <code>summarise()</code> no longer needs the first argument to be the data table, it is pulled in from the pipe. The power of the pipe may not be obvious now, but it will soon prove its worth.</p>
 </div>
-<div id="inline-coding" class="section level3" number="1.4.4">
+<div id="inline-coding" class="section level3" number="1.4.3">
 <h3>
-<span class="header-section-number">1.4.4</span> Inline coding<a class="anchor" aria-label="anchor" href="#inline-coding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4.3</span> Inline coding<a class="anchor" aria-label="anchor" href="#inline-coding"><i class="fas fa-link"></i></a>
 </h3>
 <p>To insert those values into the text of a report you can use inline coding. First. we'll create another set of objects that contain the first and last date of the tweets in our dataset. <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> formats the dates to day/month/year.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -243,7 +246,7 @@ max_favs
   <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span>
 <span class="va">date_to</span> <span class="op">&lt;-</span> <span class="va">tweet_summary</span><span class="op">$</span><span class="va">max_date</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="st">"%d %B, %Y"</span><span class="op">)</span></code></pre></div>
-<p>Then you can insert values from these objects and the tables you created with <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> using inline R (note the dollar sign notation to get the value of the <code>n</code> column from the table <code>tweet_summary</code>).</p>
+<p>Then you can insert values from these objects and the tables you created with <code>summarise()</code> using inline R (note the dollar sign notation to get the value of the <code>n</code> column from the table <code>tweet_summary</code>).</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb17-1"><a href="summary.html#cb17-1" aria-hidden="true" tabindex="-1"></a>There were <span class="in">`r tweet_summary$n`</span> tweets between <span class="in">`r date_from`</span> and <span class="in">`r date_to`</span>.</span></code></pre></div>
 <p>Knit your Markdown to see how the variables inside the inline code get replaced by their values.</p>
 <blockquote>
@@ -251,10 +254,11 @@ max_favs
 </blockquote>
 <p>Ok, let's get back on track.</p>
 </div>
-<div id="counting" class="section level3" number="1.4.5">
-<h3>
-<span class="header-section-number">1.4.5</span> Counting<a class="anchor" aria-label="anchor" href="#counting"><i class="fas fa-link"></i></a>
-</h3>
+</div>
+<div id="counting" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Counting<a class="anchor" aria-label="anchor" href="#counting"><i class="fas fa-link"></i></a>
+</h2>
 <p>How many different accounts tweeted using the hashtag? Who tweeted most?</p>
 <p>You can count categorical data with the <code>count()</code> function. Since each row is a tweet, you can count the number of rows per each different <code>screen_name</code> to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group.</p>
 <p>The argument <code>sort = TRUE</code> will sort the table by <code>n</code> in descending order, whilst <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> returns the first six lines of a data table and is a useful function to call when you have a very large dataset and just want to see the top values.</p>
@@ -366,52 +370,52 @@ FALSE
 </tbody>
 </table></div>
 </div>
-<div id="radio_SAODKWKKCD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_SAODKWKKCD" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
+<div id="radio_UDOAORCBQK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UDOAORCBQK" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UDOAORCBQK" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_UDOAORCBQK" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_UDOAORCBQK" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
 </div>
 </div>
-</div>
-<div id="inline-coding-2" class="section level3" number="1.4.6">
+<div id="inline-coding-2" class="section level3" number="1.5.1">
 <h3>
-<span class="header-section-number">1.4.6</span> Inline coding 2<a class="anchor" aria-label="anchor" href="#inline-coding-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.1</span> Inline coding 2<a class="anchor" aria-label="anchor" href="#inline-coding-2"><i class="fas fa-link"></i></a>
 </h3>
-<p>Let's do another example of inline coding that writes up a summary of the most prolific tweets to demonstrate a few additional functions. First, we need to create some additional objects to use with inline R:</p>
+<p>Let's do another example of inline coding that writes up a summary of the most prolific tweeters to demonstrate a few additional functions. First, we need to create some additional objects to use with inline R:</p>
 <ul>
 <li>
-<code>nrow</code> simply counts the number of rows in a dataset so if you have one user/participant/customer per row, this is an easy way to do a head count.</li>
+<code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> simply counts the number of rows in a dataset so if you have one user/participant/customer per row, this is an easy way to do a head count.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice()</a></code> chooses a particular row of data, in this case the first row. Because we sorted our data, this will therefore be the user with the most tweets.</li>
+<code>slice()</code> chooses a particular row of data, in this case the first row. Because we sorted our data, this will therefore be the user with the most tweets.</li>
 <li>
 <code>pull()</code> pulls out a single variable.</li>
-<li>The combination of <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice()</a></code> and <code>pull()</code> allows you to choose a single observation from a single variable.</li>
+<li>The combination of <code>slice()</code> and <code>pull()</code> allows you to choose a single observation from a single variable.</li>
 </ul>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unique_users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span>
-<span class="va">most_prolific</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">most_prolific</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">pull</span><span class="op">(</span><span class="va">screen_name</span><span class="op">)</span>
-<span class="va">most_prolific_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">most_prolific_n</span> <span class="op">&lt;-</span> <span class="fu">slice</span><span class="op">(</span><span class="va">tweets_per_user</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></code></pre></div>
-<p>Then add the inline code to your report and knit your Markdown to see the output:</p>
+<p>Then add the inline code to your report...</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb20-1"><a href="summary.html#cb20-1" aria-hidden="true" tabindex="-1"></a>There were <span class="in">`r unique_users`</span> unique accounts tweeting about #NationalComingOutDay. <span class="in">`r most_prolific`</span> was the most prolific tweeter, with <span class="in">`r most_prolific_n`</span> tweets.</span></code></pre></div>
+<p>...and knit your Markdown to see the output:</p>
 <p>There were 25189 unique accounts tweeting about #NationalComingOutDay. interest_outfit was the most prolific tweeter, with 35 tweets.</p>
 </div>
 </div>
-<div id="grouping" class="section level2" number="1.5">
+<div id="grouping" class="section level2" number="1.6">
 <h2>
-<span class="header-section-number">1.5</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
 </h2>
-<p>You can also create other summary values by group. The combination of <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> is incredibly powerful, and it is also a good demonstration of why pipes are so useful.</p>
-<p>The function <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> takes an existing data table and converts it into a grouped table, where any operations that are performed on it are done "by group".</p>
-<p>The first line of code creates an object named <code>tweets_grouped</code>, that groups the dataset according to whether the user is a verified user. On the surface, <code>tweets_grouped</code> doesn't look any different to the original <code>tweets</code>, however, the underlying structure has changed and so when we run <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code>, we now get our requested summaries for each group (in this case verified or not).</p>
+<p>You can also create summary values by group. The combination of <code>group_by()</code> and <code>summarise()</code> is incredibly powerful, and it is also a good demonstration of why pipes are so useful.</p>
+<p>The function <code>group_by()</code> takes an existing data table and converts it into a grouped table, where any operations that are performed on it are done "by group".</p>
+<p>The first line of code creates an object named <code>tweets_grouped</code>, that groups the dataset according to whether the user is a verified user. On the surface, <code>tweets_grouped</code> doesn't look any different to the original <code>tweets</code>. However, the underlying structure has changed and so when we run <code>summarise()</code>, we now get our requested summaries for each group (in this case verified or not).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets_grouped</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">verified</span><span class="op">)</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">verified</span><span class="op">)</span>
 
 <span class="va">verified</span> <span class="op">&lt;-</span> <span class="va">tweets_grouped</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu">summarise</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
             mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
             mean_retweets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">retweet_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">verified</span></code></pre></div>
 <div class="kable-table">
@@ -463,45 +467,45 @@ TRUE
 </table></div>
 </div>
 <div class="warning">
-<p>Make sure you call the <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
+<p>Make sure you call the <code>ungroup()</code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
 </div>
 <p>Whilst the above code is functional, it adds an unnecessary object to the environment - <code>tweets_grouped</code> is taking up space and increases the risk we'll use this grouped object by mistake. Enter... the pipe.</p>
 <p>Rather than creating an intermediate object, we can use the pipe to string our code together.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">verified</span> <span class="op">&lt;-</span> <span class="va">tweets_grouped</span> <span class="op">%&gt;%</span> <span class="co"># Start with the original dataset and then;</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">verified</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># group it and then</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="co"># summarise it by those groups</span>
+<code class="sourceCode R"><span class="va">verified</span> <span class="op">&lt;-</span> 
+  <span class="va">tweets_grouped</span> <span class="op">%&gt;%</span> <span class="co"># Start with the original dataset; and then</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">verified</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># group it; and then</span>
+  <span class="fu">summarise</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="co"># summarise it by those groups</span>
             mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
             mean_retweets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">retweet_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <ul>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>verified</code>?
-<div id="radio_XWAKDRLKLW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="answer"><span><code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"><span><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_XWAKDRLKLW" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label>
+<div id="radio_NABHRYIRAI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NABHRYIRAI" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_NABHRYIRAI" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_NABHRYIRAI" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_NABHRYIRAI" value="x"><span><code>count(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
 </div>
-<div id="multiple-groupings" class="section level3" number="1.5.1">
+<div id="multiple-groupings" class="section level3" number="1.6.1">
 <h3>
-<span class="header-section-number">1.5.1</span> Multiple groupings<a class="anchor" aria-label="anchor" href="#multiple-groupings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6.1</span> Multiple groupings<a class="anchor" aria-label="anchor" href="#multiple-groupings"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can add multiple variables to <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> to further break down your data. For example, the below gives us the number of likes and retweets broken down by verified status and the device the person was tweeting from.</p>
+<p>You can add multiple variables to <code>group_by()</code> to further break down your data. For example, the below gives us the number of likes and retweets broken down by verified status and the device the person was tweeting from (<code>source</code>).</p>
 <ul>
-<li>Reverse the order of <code>verified</code> and <code>source</code> in <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> to see how it changed the output.</li>
+<li>Reverse the order of <code>verified</code> and <code>source</code> in <code>group_by()</code> to see how it changed the output.</li>
 </ul>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">verified_source</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">verified</span>, <span class="va">source</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">verified</span>, <span class="va">source</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,
             mean_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span>,
             mean_retweets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">retweet_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by 'verified'. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">verified_source</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">verified_source</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -628,67 +632,72 @@ Twitter for iPad
 </table></div>
 </div>
 <div class="warning">
-<p>If you get the following message when using <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code>, please update tidyverse.</p>
+<p>You may get the following message when using <code>summarise()</code> after <code>group_by()</code>.</p>
 <blockquote>
-<p><code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> ungrouping output (override with <code>.groups</code> argument)</p>
+<p><code>summarise()</code> has grouped output by 'verified'. You can override using the <code>.groups</code> argument.</p>
 </blockquote>
+<p>Tidyverse recently added a message to remind you whether the <code>summarise()</code> function automatically ungroups grouped data or not (it may do different things depending on how it's used). You can set the argument <code>.groups</code> to "drop", "drop_last", "keep", or "rowwise" (see the help for <code>?summarise</code>), but it's good practice to explicitly use <code>ungroup()</code> when you're done working by groups, regardless.</p>
 </div>
 </div>
-<div id="filter-and-mutate" class="section level3" number="1.5.2">
+<div id="filter-and-mutate" class="section level3" number="1.6.2">
 <h3>
-<span class="header-section-number">1.5.2</span> Filter and mutate<a class="anchor" aria-label="anchor" href="#filter-and-mutate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6.2</span> Filter and mutate<a class="anchor" aria-label="anchor" href="#filter-and-mutate"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can also use additional functions like <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="#wrangle"><strong>??</strong></a> but briefly:</p>
+<p>You can also use additional functions like <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> or <code>mutate()</code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="#wrangle"><strong>??</strong></a> but briefly:</p>
 <ul>
 <li>
-<code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> keeps observations (rows) according to specified criteria, e.g., all values above 5, all verified users.</li>
+<code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> keeps observations (rows) according to specified criteria, e.g., all values above 5, or all verified users.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> creates new variables (columns), or overwrites existing ones.</li>
+<code>mutate()</code> creates new variables (columns), or overwrites existing ones.</li>
 </ul>
-<p>You can combine functions like this to get detailed insights into your data. For example, what was the most favourited original and quoted tweet?</p>
+<p>You can combine functions like this to get detailed insights into your data. For example, what were the most favourited original and quoted tweets?</p>
 <ul>
-<li>The variable <code>is_quote</code> tells us whether the tweet in question was an original tweet or a quote tweet. Because we want our output to treat these separately, we pass this variable to <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code>.</li>
-<li>We want the most favourited tweets, i.e., the maximum value of <code>favourite_count</code>, so we can use <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> to only return rows where <code>favourite_count</code> is equal to the maximum value in the variable <code>favourite_count</code>. Note the use of <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> rather than a single <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>.</li>
+<li>The variable <code>is_quote</code> tells us whether the tweet in question was an original tweet or a quote tweet. Because we want our output to treat these separately, we pass this variable to <code>group_by()</code>.</li>
+<li>We want the most favourited tweets, i.e., the maximum value of <code>favourite_count</code>, so we can use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> to only return rows where <code>favourite_count</code> is equal to the maximum value in the variable <code>favourite_count</code>. Note the use of <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> rather than a single <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>.</li>
 <li>Just in case there was a tie, choose a random one with <code>sample_n(size = 1)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">most_fav</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">is_quote</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">is_quote</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="try">
+<ul>
+<li>How would you limit the results to sources with 10 or more rows?
+<div id="radio_HLCURBEDOV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HLCURBEDOV" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HLCURBEDOV" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HLCURBEDOV" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HLCURBEDOV" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label>
 </div>
-<div id="inline-coding-3" class="section level3" number="1.5.3">
+</li>
+</ul>
+</div>
+</div>
+<div id="inline-coding-3" class="section level3" number="1.6.3">
 <h3>
-<span class="header-section-number">1.5.3</span> Inline coding 3<a class="anchor" aria-label="anchor" href="#inline-coding-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.6.3</span> Inline coding 3<a class="anchor" aria-label="anchor" href="#inline-coding-3"><i class="fas fa-link"></i></a>
 </h3>
 <p>There's a huge amount of data reported for each tweet, including things like the URLs of the tweets and any media attached to them. This means we can produce output like the below reproducibly and using inline coding.</p>
 <p>The most favourited 22935 original tweet was by <a href="https://twitter.com/jackrooke/status/1447541093260795904">jackrooke</a>:</p>
-<div class="inline-table"><table style="width:71%;" class="table table-sm">
-<colgroup><col width="70%"></colgroup>
-<tbody>
-<tr class="odd">
-<td>&gt; it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
-</td>
-</tr>
-<tr class="even">
-<td><img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg"></td>
-</tr>
-</tbody>
-</table></div>
+<hr>
+<blockquote>
+<p>it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a></p>
+</blockquote>
+<div class="inline-figure"><img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg"></div>
+<hr>
 <p>To produce this, first we split <code>most_fav</code>, so that we have one object that contains the data from the original tweet and one object that contains the data from the quote tweet.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">orig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">most_fav</span>,<span class="va">is_quote</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">quote</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">most_fav</span>,<span class="va">is_quote</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">orig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">most_fav</span>,<span class="va">is_quote</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">quote</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">most_fav</span>,<span class="va">is_quote</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>The inline code is then as follows:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb28-1"><a href="summary.html#cb28-1" aria-hidden="true" tabindex="-1"></a>The most favourited <span class="in">`r orig$favorite_count`</span> original tweet </span>
-<span id="cb28-2"><a href="summary.html#cb28-2" aria-hidden="true" tabindex="-1"></a>was by <span class="co">[</span><span class="ot">`r orig$screen_name`</span><span class="co">](`r orig$status_url`)</span>:</span>
-<span id="cb28-3"><a href="summary.html#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="summary.html#cb28-4" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------</span>
-<span id="cb28-5"><a href="summary.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="in">`r orig$text`</span></span>
-<span id="cb28-6"><a href="summary.html#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="summary.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="al">![](orig$ext_media_url)</span></span>
-<span id="cb28-8"><a href="summary.html#cb28-8" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb26-1"><a href="summary.html#cb26-1" aria-hidden="true" tabindex="-1"></a>The most favourited <span class="in">`r orig$favorite_count`</span> original tweet was by <span class="co">[</span><span class="ot">`r orig$screen_name`</span><span class="co">](`r orig$status_url`)</span>:</span>
+<span id="cb26-2"><a href="summary.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="summary.html#cb26-3" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------</span>
+<span id="cb26-4"><a href="summary.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-5"><a href="summary.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="in">`r orig$text`</span></span>
+<span id="cb26-6"><a href="summary.html#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="summary.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="al">![](orig$ext_media_url)</span></span>
+<span id="cb26-8"><a href="summary.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="summary.html#cb26-9" aria-hidden="true" tabindex="-1"></a>--------------------------------------------------</span></code></pre></div>
 <p>This is quite complicated so let's break it down.</p>
 <ul>
 <li>The first bit of inline coding is fairly standard and is what you have used before.</li>
@@ -697,32 +706,24 @@ Twitter for iPad
 <li>The <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> symbol changes the format to a block quote.</li>
 <li>The image is then included using the format <code>![](url)</code>, which is an alternative method of including images in Markdown.</li>
 </ul>
-<div class="try">
-<ul>
-<li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_RUYRGRAHRF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RUYRGRAHRF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<div id="exercises" class="section level2" number="1.6">
+<div id="exercises" class="section level2" number="1.7">
 <h2>
-<span class="header-section-number">1.6</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.7</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
 </h2>
 <p>That was an intensive chapter! Take a break and then try one (or more) of the following and post your knitted HTML files on Teams so that other learners on the course can see what you did.</p>
 <ul>
+<li>Work through the further examples in Appendix <a href="#twitter-hashtags"><strong>??</strong></a>.</li>
 <li>If you have your own Twitter account, conduct a similar analysis of a different hashtag.</li>
-<li>Look through the rest of the variables in <code>tweets</code>, what other insights can you generate about this data?</li>
+<li>Look through the rest of the variables in <code>tweets</code>; what other insights can you generate about this data?</li>
 <li>Read through the <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">kableExtra</a> vignettes and apply your own preferred table style.</li>
-<li>Work through the first few chapters of <a href="https://www.tidytextmining.com/index.html">Tidy Text</a> to see how you can work with and analyse text. In particular, see if you can conduct a sentiment analysis on the tweet data.</li>
+<li>Work through the first few chapters of <a href="https://www.tidytextmining.com/index.html" target="_blank">Tidy Text</a> to see how you can work with and analyse text. In particular, see if you can conduct a sentiment analysis on the tweet data.</li>
 </ul>
 </div>
-<div id="glossary-summary" class="section level2" number="1.7">
+<div id="glossary-summary" class="section level2" number="1.8">
 <h2>
-<span class="header-section-number">1.7</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.8</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-summary"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -736,9 +737,26 @@ definition
 <tbody>
 <tr>
 <td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/m.html#mean" class="glossary" target="_blank">mean</a>
+</td>
+<td style="text-align:left;">
+A descriptive statistic that measures the average value of a set of numbers.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/m.html#median" class="glossary" target="_blank">median</a>
+</td>
+<td style="text-align:left;">
+The middle number in a distribution where half of the values are larger and half are smaller.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <a href="https://psyteachr.github.io/glossary/p.html#pipe" class="glossary" target="_blank">pipe</a>
 </td>
 <td style="text-align:left;">
+A way to order your code in a more readable format using the symbol %&gt;%
 </td>
 </tr>
 <tr>
@@ -749,12 +767,20 @@ definition
 Cutoffs dividing the range of a distribution into continuous intervals with equal probabilities.
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+<a href="https://psyteachr.github.io/glossary/v.html#vector" class="glossary" target="_blank">vector</a>
+</td>
+<td style="text-align:left;">
+A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
-<div id="resources-summary" class="section level2" number="1.8">
+<div id="resources-summary" class="section level2" number="1.9">
 <h2>
-<span class="header-section-number">1.8</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.9</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-summary"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation cheat sheet</a></li>
@@ -765,11 +791,6 @@ Cutoffs dividing the range of a distribution into continuous intervals with equa
 <li><a href="https://www.tidytextmining.com/index.html">Tidy Text</a></li>
 <li><a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">kableExtra vignettes</a></li>
 </ul>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-R-base" class="csl-entry">
-R Core Team. (2021). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
-</div>
-</div>
 </div>
 </div>
 <script>
@@ -968,7 +989,7 @@ $( document ).ready(function() {
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="index.html">Overview</a></div>
-<div class="empty"></div>
+<div class="next"><a href="license.html">License</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -979,25 +1000,25 @@ $( document ).ready(function() {
 <a class="nav-link" href="#social-media-data"><span class="header-section-number">1.3</span> Social media data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-objects"><span class="header-section-number">1.3.1</span> R objects</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#data-summaries"><span class="header-section-number">1.4</span> Data summaries</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#summarise"><span class="header-section-number">1.4.1</span> Summarise</a></li>
-<li><a class="nav-link" href="#the-operator"><span class="header-section-number">1.4.2</span> The $ operator</a></li>
-<li><a class="nav-link" href="#pipes"><span class="header-section-number">1.4.3</span> Pipes</a></li>
-<li><a class="nav-link" href="#inline-coding"><span class="header-section-number">1.4.4</span> Inline coding</a></li>
-<li><a class="nav-link" href="#counting"><span class="header-section-number">1.4.5</span> Counting</a></li>
-<li><a class="nav-link" href="#inline-coding-2"><span class="header-section-number">1.4.6</span> Inline coding 2</a></li>
+<a class="nav-link" href="#summarise"><span class="header-section-number">1.4</span> Summarise</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-operator"><span class="header-section-number">1.4.1</span> The $ operator</a></li>
+<li><a class="nav-link" href="#pipes-first"><span class="header-section-number">1.4.2</span> Pipes</a></li>
+<li><a class="nav-link" href="#inline-coding"><span class="header-section-number">1.4.3</span> Inline coding</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#grouping"><span class="header-section-number">1.5</span> Grouping</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#multiple-groupings"><span class="header-section-number">1.5.1</span> Multiple groupings</a></li>
-<li><a class="nav-link" href="#filter-and-mutate"><span class="header-section-number">1.5.2</span> Filter and mutate</a></li>
-<li><a class="nav-link" href="#inline-coding-3"><span class="header-section-number">1.5.3</span> Inline coding 3</a></li>
+<a class="nav-link" href="#counting"><span class="header-section-number">1.5</span> Counting</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#inline-coding-2"><span class="header-section-number">1.5.1</span> Inline coding 2</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#grouping"><span class="header-section-number">1.6</span> Grouping</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-groupings"><span class="header-section-number">1.6.1</span> Multiple groupings</a></li>
+<li><a class="nav-link" href="#filter-and-mutate"><span class="header-section-number">1.6.2</span> Filter and mutate</a></li>
+<li><a class="nav-link" href="#inline-coding-3"><span class="header-section-number">1.6.3</span> Inline coding 3</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#exercises"><span class="header-section-number">1.6</span> Exercises</a></li>
-<li><a class="nav-link" href="#glossary-summary"><span class="header-section-number">1.7</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-summary"><span class="header-section-number">1.8</span> Further resources</a></li>
+<li><a class="nav-link" href="#exercises"><span class="header-section-number">1.7</span> Exercises</a></li>
+<li><a class="nav-link" href="#glossary-summary"><span class="header-section-number">1.8</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-summary"><span class="header-section-number">1.9</span> Further resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1015,7 +1036,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-19.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

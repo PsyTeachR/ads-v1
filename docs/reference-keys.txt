@@ -50,9 +50,9 @@ tab:unnamed-chunk-5
 tab:unnamed-chunk-6
 tab:unnamed-chunk-7
 fig:unnamed-chunk-2
-fig:unnamed-chunk-4
-fig:unnamed-chunk-6
-fig:unnamed-chunk-8
+fig:figdim-demo
+fig:outwidth-demo
+fig:caption-demo
 fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:plotly
@@ -76,8 +76,11 @@ fig:alpha-demo
 fig:shape-demo
 fig:linetype-demo
 fig:unnamed-chunk-3
+fig:unnamed-chunk-4
 fig:unnamed-chunk-5
+fig:unnamed-chunk-6
 fig:unnamed-chunk-7
+fig:unnamed-chunk-8
 fig:unnamed-chunk-9
 fig:theme-font-demo
 fig:font-demo
@@ -420,3 +423,4 @@ change-certain-elements
 example-using-the-styles-above
 level-3-header
 level-4-header
+reference

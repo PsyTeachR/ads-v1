@@ -12,3 +12,13 @@ suppressPackageStartupMessages({
   library(purrr)
   library(forcats)
 })
+
+knitr::knit_engines$set(md = function(options) {
+  code <- gsub("^(#+)\\s+(.+)$", "<span class='md_header'>\\1 \\2</span>",
+               options$code)
+  code <- knitr:::one_string(code)
+  code <- gsub("`r([^`]+)`", "<span class='md_backtick'>`r\\1`</span>",
+               code, ignore.case = TRUE)
+
+  paste0("<pre class='md'><code>", code, "</code></pre>")
+})

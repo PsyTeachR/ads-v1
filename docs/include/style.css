@@ -54,10 +54,21 @@ pre {
 
 .incomplete-chapter {
   padding: 1em;
-  background-color: #4aa8c7;
+  background-color: #517AA8;
   text-align: center;
 }
 
 .incomplete-chapter::before {
   content: "This chapter is in draft form and will be revised soon.";
+}
+
+.md {
+  border: 1px solid #3C4C72;
+}
+
+.md_backtick {
+  color: #3C4C72;
+}
+.md_header {
+  color: #0C07FF;
 }

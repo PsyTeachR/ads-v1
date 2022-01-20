@@ -7,7 +7,7 @@ rmd_files:
 # - 02-reports.Rmd
 # - 03-viz.Rmd
 # - 04-data.Rmd
-- 05-summary.Rmd
+# - 05-summary.Rmd
 # - 06-joins.Rmd
 # - 07-tidy.Rmd
 # - 08-wrangle.Rmd
@@ -17,7 +17,7 @@ rmd_files:
 # - appendix-a-installing-r.Rmd
 # - appendix-b-updating-r.Rmd
 # - appendix-c-symbols.Rmd
-# - appendix-d-conventions.Rmd
+- appendix-d-conventions.Rmd
 # - appendix-e-datatypes.Rmd
 # - appendix-f-styling.Rmd
 # - appendix-g-hashtags.Rmd

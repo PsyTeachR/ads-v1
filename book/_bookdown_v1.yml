@@ -18,12 +18,13 @@ rmd_files:
 - appendix-b-updating-r.Rmd
 - appendix-c-symbols.Rmd
 - appendix-d-conventions.Rmd
-- appendix-e-datatypes.Rmd
-- appendix-f-styling.Rmd
-- appendix-g-hashtags.Rmd
-- appendix-h-twitter.Rmd
-- appendix-i-webpage.Rmd
-- appendix-j-teams.Rmd
+- appendix-e-teams.Rmd
+- appendix-f-datatypes.Rmd
+- appendix-g-styling.Rmd
+- appendix-h-hashtags.Rmd
+- appendix-i-twitter.Rmd
+- appendix-j-spotify.Rmd
+- appendix-k-webpage.Rmd
 - appendix-y-license.Rmd
 - appendix-z-refs.Rmd
 

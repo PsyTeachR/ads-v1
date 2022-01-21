@@ -1,3 +1,10 @@
 structure-of-the-course
 how-to-learn-data-skills
-conventions
+teams
+what-is-the-best-way-to-share-r-code-on-microsoft-teams
+quick-and-easy-method
+more-flexible-method
+taking-it-one-step-further
+screenshots
+taking-a-screenshot-on-windows
+taking-a-screenshot-on-mac

@@ -1,0 +1,32 @@
+# Personal Spotify Data
+
+The package [spotifyr](https://www.rcharlie.com/spotifyr){target="_blank"} has instructions for setting up a developer account with Spotify and setting up an "app" so you can get authorisation codes.
+
+Once you've set up the app, you can copy the client ID and secret to your R environment file. The easiest way to do this is with `edit_r_environ()` from `r pkg("usethis")`. Setting scope to "user" maKes your spotify login details available to any R project on your computer. Setting it to "project" makes it only available to this project.
+
+```{r, eval = FALSE}
+usethis::edit_r_environ(scope = "user")
+```
+
+Add the following text to your environment file (don't delete anything already there), replacing the zeros with your personal ID and secret. Save and close the file and restart R. 
+
+```
+SPOTIFY_CLIENT_ID="0000000000000000000000000000"
+SPOTIFY_CLIENT_SECRET="0000000000000000000000000000"
+```
+
+Double check that it worked by typing the following into the console. Don't put it in your script unless you mean to share this confidential info.  You should see your values, not "", if it worked.
+
+```{r, eval = FALSE}
+Sys.getenv("SPOTIFY_CLIENT_ID")
+Sys.getenv("SPOTIFY_CLIENT_SECRET")
+```
+
+
+```{r}
+# access your own data
+access_token <- get_spotify_authorization_code()
+
+# or just access generic data
+# access_token <- get_spotify_access_token()
+```

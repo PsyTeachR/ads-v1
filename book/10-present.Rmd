@@ -48,12 +48,16 @@ The code chunk names can only contain letters, numbers and dashes. If they conta
 
 The code below shows how to link text to figures or tables. You can see the [HTML output here](demos/html_document2.html).
 
-```{r, echo = FALSE, results='asis', webex.hide = "Linked Document Code"}
-readLines("demos/html_document2.Rmd") %>% 
-  paste(collapse = "\n") %>%
-  paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
-  cat()
+`r hide()`
+
+```{embed, file = "demos/html_document2.Rmd"}
+# readLines("demos/html_document2.Rmd") %>% 
+#   paste(collapse = "\n") %>%
+#   paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
+#   cat()
 ```
+
+`r unhide()`
 
 This format defaults to numbered sections, so set `number_sections: false` in the `r glossary("YAML")` header if you don't want this.
 
@@ -195,13 +199,16 @@ The template provides you with examples of text, bullet point, code, and plot sl
 
 The code below shows how to load some packages and display text, a table, and a plot. You can see the [HTML output here](demos/ioslides.html).
 
-```{r, echo = FALSE, results='asis', webex.hide = "Slide Code"}
-readLines("demos/ioslides.Rmd") %>% 
-  paste(collapse = "\n") %>%
-  paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
-  cat()
+`r hide()`
+
+```{embed, file = "demos/ioslides.Rmd"}
+# readLines("demos/ioslides.Rmd") %>% 
+#   paste(collapse = "\n") %>%
+#   paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
+#   cat()
 ```
 
+`r unhide()`
 
 ### Dashboards
 
@@ -213,12 +220,16 @@ knitr::include_graphics("images/present/flexdashboard-template.png")
 
 The code below shows how to load some packages, display two tables in a tabset, and display two plots in a column. You can see the [HTML output here](demos/flexdashboard.html).
 
-```{r, echo = FALSE, results='asis', webex.hide = "Dashboard Code"}
-readLines("demos/flexdashboard.Rmd") %>% 
-  paste(collapse = "\n") %>%
-  paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
-  cat()
+`r hide()`
+
+```{embed, file = "demos/flexdashboard.Rmd"}
+# readLines("demos/flexdashboard.Rmd") %>% 
+#   paste(collapse = "\n") %>%
+#   paste0("<code style='font-size: smaller;'><pre>\n", ., "\n</pre></code>") %>%
+#   cat()
 ```
+
+`r unhide()`
 
 Change the size of your web browser to see how the boxes, tables and figures change.
 

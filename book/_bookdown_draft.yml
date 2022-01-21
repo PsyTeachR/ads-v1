@@ -23,6 +23,7 @@ rmd_files:
 # - appendix-g-hashtags.Rmd
 # - appendix-h-twitter.Rmd
 # - appendix-i-webpage.Rmd
+# - appendix-j-teams.Rmd
 # - appendix-y-license.Rmd
 # - appendix-z-refs.Rmd
 before_chapter_script:

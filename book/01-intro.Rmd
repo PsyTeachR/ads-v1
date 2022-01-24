@@ -103,7 +103,7 @@ Never install a package from inside a script. Only do this from the console pane
 You can also install multiple packages at once. Here is the command to install all of the packages we'll be using in this class. This will take a while, so don't try this in the middle of a tutorial!
 
 ```{r install-all-packages, eval = FALSE}
-install.packages(
+install.packages(c(
   "tidyverse",      # for everything
   "rio",            # for data import
   "kableExtra",     # for nice tables
@@ -117,7 +117,7 @@ install.packages(
   "sf",             # for mapping geoms
   "rnaturalearth",  # for map data
   "rnatrualearthdata" # extra mapping data
-)
+))
 
 # install waffle package 
 

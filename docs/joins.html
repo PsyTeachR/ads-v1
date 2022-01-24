@@ -1,79 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Chapter 6 Data Relations | Applied Data Skills</title>
-
-    <meta name="author" content="Emily Nordmann and Lisa DeBruine" />
-  
-   <meta name="description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Chapter 6 Data Relations | Applied Data Skills" />
-  <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://psyteachr.github.io/ads-v1" />
-  <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo" />
-  <meta property="og:description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Data Relations | Applied Data Skills" />
-  
-  <meta name="twitter:description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
-  <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo" />
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1.9000/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1.9000/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-    <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
-    <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-    <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-    <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-    <link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-    <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
-    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding-0.20/datatables.js"></script>
-    <link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
-    <script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Data Relations | Applied Data Skills</title>
+<meta name="author" content="Emily Nordmann and Lisa DeBruine">
+<meta name="description" content="6.1 Intended Learning Outcomes Be able to match related data across multiple tables Be able to combine data from multiple files In this chapter we'll use the following packages: In this chapter...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Data Relations | Applied Data Skills">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://psyteachr.github.io/ads-v1/joins.html">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:description" content="6.1 Intended Learning Outcomes Be able to match related data across multiple tables Be able to combine data from multiple files In this chapter we'll use the following packages: In this chapter...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Data Relations | Applied Data Skills">
+<meta name="twitter:description" content="6.1 Intended Learning Outcomes Be able to match related data across multiple tables Be able to combine data from multiple files In this chapter we'll use the following packages: In this chapter...">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-6NP3MF25W3');
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-    <link rel="stylesheet" href="include/psyteachr.css" />
-    <link rel="stylesheet" href="include/webex.css" />
-    <link rel="stylesheet" href="include/style.css" />
-  
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
+<link rel="stylesheet" href="include/webex.css">
+<link rel="stylesheet" href="include/style.css">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -86,54 +53,85 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Overview</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
+<li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
+<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
+<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
+<li><a class="active" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
+<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
+<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
+<li class="book-part">Appendices</li>
+<li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
+<li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
+<li><a class="" href="symbols.html"><span class="header-section-number">C</span> Symbols</a></li>
+<li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
+<li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
+<li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
+<li><a class="" href="license.html">License</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="https://github.com/psyteachr/ads-v1">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="joins" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Data Relations</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="joins" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Data Relations<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
+</h1>
 <div class="incomplete-chapter">
 
 </div>
 <div id="ilo-joins" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Intended Learning Outcomes</h2>
+<h2>
+<span class="header-section-number">6.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-joins"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
 <li>Be able to match related data across multiple tables</li>
 <li>Be able to combine data from multiple files</li>
 </ul>
 <p>In this chapter we'll use the following packages:</p>
 <p>In this chapter we'll use the following packages:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="joins.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)     <span class="co"># includes readr &amp; tibble</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># includes readr &amp; tibble</span></code></pre></div>
 <p>The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.</p>
 </div>
 <div id="set-up-3" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Set-up</h2>
-<p>First, create a new project for the work we'll do in this chapter named <code class='path'>06-relations</code>. Second, open and save and new R Markdown document named <code>relations</code>.Rmd`, delete the welcome text and load the required packages for this chapter.</p>
-<p>For this demo, rather than loading in data, we'll create two small data tables from scratch using the <code>tibble()</code> function.</p>
+<h2>
+<span class="header-section-number">6.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>First, create a new project for the work we'll do in this chapter named <code class="path">06-relations</code>. Second, open and save and new R Markdown document named <code>relations</code>.Rmd`, delete the welcome text and load the required packages for this chapter.</p>
+<p>For this demo, rather than loading in data, we'll create two small data tables from scratch using the <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> function.</p>
 <p><code>customers</code> has id, city and postcode for five customers 1-5.</p>
 <ul>
-<li><code>1:5</code> will fill the variable <code>id</code> with all integers between 1 and 5.</li>
-<li><code>city</code> and <code>code</code> both using the <code>c()</code> function to enter multiple strings. Note that each entry is contained within its own quotation marks, apart from missing data which is recorded as <code>NA</code>.</li>
+<li>
+<code>1:5</code> will fill the variable <code>id</code> with all integers between 1 and 5.</li>
+<li>
+<code>city</code> and <code>code</code> both using the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function to enter multiple strings. Note that each entry is contained within its own quotation marks, apart from missing data which is recorded as <code>NA</code>.</li>
 <li>When entering data like this, it's important that the order of each variable matches up. So number 1 will correspond to "Port Ellen" and "PA42 7DU".</li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="joins.html#cb198-1" aria-hidden="true" tabindex="-1"></a>customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb198-2"><a href="joins.html#cb198-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb198-3"><a href="joins.html#cb198-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Port Ellen&quot;</span>, <span class="st">&quot;Dufftown&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;Aberlour&quot;</span>, <span class="st">&quot;Tobermory&quot;</span>),</span>
-<span id="cb198-4"><a href="joins.html#cb198-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">postcode =</span> <span class="fu">c</span>(<span class="st">&quot;PA42 7DU&quot;</span>, <span class="st">&quot;AB55 4DH&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;AB38 7RY&quot;</span>, <span class="st">&quot;PA75 6NR&quot;</span>)</span>
-<span id="cb198-5"><a href="joins.html#cb198-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<thead>
-<tr>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
+  city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Port Ellen"</span>, <span class="st">"Dufftown"</span>, <span class="cn">NA</span>, <span class="st">"Aberlour"</span>, <span class="st">"Tobermory"</span><span class="op">)</span>,
+  postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA42 7DU"</span>, <span class="st">"AB55 4DH"</span>, <span class="cn">NA</span>, <span class="st">"AB38 7RY"</span>, <span class="st">"PA75 6NR"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -143,8 +141,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -202,23 +199,22 @@ PA75 6NR
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><code>orders</code> has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="joins.html#cb199-1" aria-hidden="true" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb199-2"><a href="joins.html#cb199-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
-<span id="cb199-3"><a href="joins.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">items =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span>
-<span id="cb199-4"><a href="joins.html#cb199-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<thead>
-<tr>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">orders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,
+  items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">18</span>, <span class="fl">21</span>, <span class="fl">23</span>, <span class="fl">9</span>, <span class="fl">11</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -293,33 +289,41 @@ items
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div id="mutating-joins" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Mutating Joins</h2>
-<p><a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target='_blank' href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code>mutate()</code> function in Chapter <a href="tidy.html#tidy">7</a>.)</p>
+<h2>
+<span class="header-section-number">6.3</span> Mutating Joins<a class="anchor" aria-label="anchor" href="#mutating-joins"><i class="fas fa-link"></i></a>
+</h2>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table." href="https://psyteachr.github.io/glossary/m#mutating-joins">Mutating joins</a> act like the <code><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> function in Chapter <a href="tidy.html#tidy">7</a>.)</p>
 <p>All the mutating joins have this basic syntax:</p>
 <p><code>****_join(x, y, by = NULL, suffix = c(".x", ".y")</code></p>
 <ul>
-<li><code>x</code> = the first (left) table</li>
-<li><code>y</code> = the second (right) table</li>
-<li><code>by</code> = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.</li>
-<li><code>suffix</code> = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.</li>
+<li>
+<code>x</code> = the first (left) table</li>
+<li>
+<code>y</code> = the second (right) table</li>
+<li>
+<code>by</code> = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.</li>
+<li>
+<code>suffix</code> = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.</li>
 </ul>
 <div class="info">
 <p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
 </div>
 <div id="left_join" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> left_join()</h3>
+<h3>
+<span class="header-section-number">6.3.1</span> left_join()<a class="anchor" aria-label="anchor" href="#left_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/left_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/left_join.png"></div>
 </div>
 <p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="joins.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -332,8 +336,7 @@ postcode
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -434,17 +437,17 @@ PA75 6NR
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="join">
-<p><img src="images/joins/left_join_rev.png"/></p>
+<div class="inline-figure"><img src="images/joins/left_join_rev.png"></div>
 </div>
 <p>The order you specify the tables matters, in the below code we have reversed the order and so the result is all rows from the <code>orders</code> table joined to any matching rows from the <code>customers</code> table.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="joins.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(orders, customers, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -457,8 +460,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -587,20 +589,22 @@ NA
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div id="right_join" class="section level3" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> right_join()</h3>
+<h3>
+<span class="header-section-number">6.3.2</span> right_join()<a class="anchor" aria-label="anchor" href="#right_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/right_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/right_join.png"></div>
 </div>
 <p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything that matches from the first (left) table.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="joins.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -613,8 +617,7 @@ postcode
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -743,23 +746,25 @@ NA
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="info">
 <p>This table has the same information as <code>left_join(orders, customers, by = "id")</code>, but the columns are in a different order (left table, then right table).</p>
 </div>
 </div>
 <div id="inner_join" class="section level3" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> inner_join()</h3>
+<h3>
+<span class="header-section-number">6.3.3</span> inner_join()<a class="anchor" aria-label="anchor" href="#inner_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/inner_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/inner_join.png"></div>
 </div>
 <p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="joins.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -772,8 +777,7 @@ postcode
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -860,20 +864,22 @@ PA75 6NR
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div id="full_join" class="section level3" number="6.3.4">
-<h3><span class="header-section-number">6.3.4</span> full_join()</h3>
+<h3>
+<span class="header-section-number">6.3.4</span> full_join()<a class="anchor" aria-label="anchor" href="#full_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/full_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/full_join.png"></div>
 </div>
 <p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to <code>NA</code>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="joins.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -886,8 +892,7 @@ postcode
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1030,24 +1035,28 @@ NA
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 </div>
 <div id="filtering-joins" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Filtering Joins</h2>
-<p><a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the <code>filter()</code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the <code>filter()</code> function in Chapter <a href="wrangle.html#wrangle">8</a>.)</p>
+<h2>
+<span class="header-section-number">6.4</span> Filtering Joins<a class="anchor" aria-label="anchor" href="#filtering-joins"><i class="fas fa-link"></i></a>
+</h2>
+<p><a class="glossary" target="_blank" title="Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table." href="https://psyteachr.github.io/glossary/f#filtering-joins">Filtering joins</a> act like the <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> function in Chapter <a href="wrangle.html#wrangle">8</a>.)</p>
 <div id="semi_join" class="section level3" number="6.4.1">
-<h3><span class="header-section-number">6.4.1</span> semi_join()</h3>
+<h3>
+<span class="header-section-number">6.4.1</span> semi_join()<a class="anchor" aria-label="anchor" href="#semi_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/semi_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/semi_join.png"></div>
 </div>
 <p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="joins.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1057,8 +1066,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1105,28 +1113,27 @@ PA75 6NR
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="info">
 <p>Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.</p>
 </div>
 <div class="join">
-<p><img src="images/joins/semi_join_rev.png"/></p>
+<div class="inline-figure"><img src="images/joins/semi_join_rev.png"></div>
 </div>
 <p>Order matters in a semi join.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="joins.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(orders, customers, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1177,20 +1184,22 @@ items
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div id="anti_join" class="section level3" number="6.4.2">
-<h3><span class="header-section-number">6.4.2</span> anti_join()</h3>
+<h3>
+<span class="header-section-number">6.4.2</span> anti_join()<a class="anchor" aria-label="anchor" href="#anti_join"><i class="fas fa-link"></i></a>
+</h3>
 <div class="join">
-<p><img src="images/joins/anti_join.png"/></p>
+<div class="inline-figure"><img src="images/joins/anti_join.png"></div>
 </div>
 <p>An <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="joins.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1200,10 +1209,8 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
+</tr></thead>
+<tbody><tr>
 <td style="text-align:right;">
 1
 </td>
@@ -1213,27 +1220,25 @@ Port Ellen
 <td style="text-align:left;">
 PA42 7DU
 </td>
-</tr>
-</tbody>
-</table>
+</tr></tbody>
+</table></div>
 </div>
 <div class="join">
-<p><img src="images/joins/anti_join_rev.png"/></p>
+<div class="inline-figure"><img src="images/joins/anti_join_rev.png"></div>
 </div>
 <p>Order matters in an anti join.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="joins.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(orders, customers, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">orders</span>, <span class="va">customers</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
 <th style="text-align:right;">
 items
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1260,56 +1265,63 @@ items
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 </div>
 <div id="multiple-joins" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Multiple joins</h2>
+<h2>
+<span class="header-section-number">6.5</span> Multiple joins<a class="anchor" aria-label="anchor" href="#multiple-joins"><i class="fas fa-link"></i></a>
+</h2>
 <p>The <code>****_join()</code> functions are all <strong>two-table verbs</strong>, that is, you can only join together two tables at a time. However, you may often need to join together multiple tables. To do so, you simply need to add on additional joins. You can do this by creating an intermediate object or more efficiently by using a pipe.</p>
-<p>Note that because the second join has multiple columns that need to be matched, we use <code>c()</code> to list them all (try removing the <code>c()</code> and see what happens).</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="joins.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a table of overall customer satisfaction scores</span></span>
-<span id="cb209-2"><a href="joins.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-3"><a href="joins.html#cb209-3" aria-hidden="true" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb209-4"><a href="joins.html#cb209-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb209-5"><a href="joins.html#cb209-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">items =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb209-6"><a href="joins.html#cb209-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb209-7"><a href="joins.html#cb209-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-8"><a href="joins.html#cb209-8" aria-hidden="true" tabindex="-1"></a><span class="co"># perform the initial join</span></span>
-<span id="cb209-9"><a href="joins.html#cb209-9" aria-hidden="true" tabindex="-1"></a>join_1 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(customers, orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb209-10"><a href="joins.html#cb209-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-11"><a href="joins.html#cb209-11" aria-hidden="true" tabindex="-1"></a><span class="co"># perform the second join on the new object</span></span>
-<span id="cb209-12"><a href="joins.html#cb209-12" aria-hidden="true" tabindex="-1"></a>join_2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(join_1, satisfaction, </span>
-<span id="cb209-13"><a href="joins.html#cb209-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;items&quot;</span>))</span>
-<span id="cb209-14"><a href="joins.html#cb209-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-15"><a href="joins.html#cb209-15" aria-hidden="true" tabindex="-1"></a><span class="co"># more efficient method using the pipe</span></span>
-<span id="cb209-16"><a href="joins.html#cb209-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-17"><a href="joins.html#cb209-17" aria-hidden="true" tabindex="-1"></a>pipe_join <span class="ot">&lt;-</span> customers <span class="sc">%&gt;%</span></span>
-<span id="cb209-18"><a href="joins.html#cb209-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(orders, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb209-19"><a href="joins.html#cb209-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(satisfaction, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;items&quot;</span>))</span></code></pre></div>
+<p>Note that because the second join has multiple columns that need to be matched, we use <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> to list them all (try removing the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> and see what happens).</p>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># create a table of overall customer satisfaction scores</span>
+
+<span class="va">satisfaction</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
+  items <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="co"># perform the initial join</span>
+<span class="va">join_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
+
+<span class="co"># perform the second join on the new object</span>
+<span class="va">join_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">join_1</span>, <span class="va">satisfaction</span>, 
+                    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"items"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># more efficient method using the pipe</span>
+
+<span class="va">pipe_join</span> <span class="op">&lt;-</span> <span class="va">customers</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">orders</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">satisfaction</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>,<span class="st">"items"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="warning">
-<p>At every stage of any analysis you should <strong>check your output</strong> to ensure that what you created is what you intended to create but this is particularly true of joins. You should be familiar enough with your data through routine checks using functions like <code>glimpse()</code>, <code>str()</code>, and <code>summary()</code> to have a rough idea of what the join should result in. At the very least, you should know whether the joined object should result in more or fewer variables and observations.</p>
+<p>At every stage of any analysis you should <strong>check your output</strong> to ensure that what you created is what you intended to create but this is particularly true of joins. You should be familiar enough with your data through routine checks using functions like <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code>, <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> to have a rough idea of what the join should result in. At the very least, you should know whether the joined object should result in more or fewer variables and observations.</p>
 <p>If you have a multi-line join like in the above piped example, build up the code and check the output at each stage.</p>
 </div>
 </div>
 <div id="binding-joins" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> Binding Joins</h2>
-<p><a class='glossary' target='_blank' title='Joins that bind one table to another by adding their rows or columns together.' href='https://psyteachr.github.io/glossary/b#binding-joins'>Binding joins</a> bind one table to another by adding their rows or columns together.</p>
+<h2>
+<span class="header-section-number">6.6</span> Binding Joins<a class="anchor" aria-label="anchor" href="#binding-joins"><i class="fas fa-link"></i></a>
+</h2>
+<p><a class="glossary" target="_blank" title="Joins that bind one table to another by adding their rows or columns together." href="https://psyteachr.github.io/glossary/b#binding-joins">Binding joins</a> bind one table to another by adding their rows or columns together.</p>
 <div id="bind_rows" class="section level3" number="6.6.1">
-<h3><span class="header-section-number">6.6.1</span> bind_rows()</h3>
+<h3>
+<span class="header-section-number">6.6.1</span> bind_rows()<a class="anchor" aria-label="anchor" href="#bind_rows"><i class="fas fa-link"></i></a>
+</h3>
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
 <p>Here we'll add customer data for customers 6-9 and bind that to the original customer table.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="joins.html#cb210-1" aria-hidden="true" tabindex="-1"></a>new_customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb210-2"><a href="joins.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb210-3"><a href="joins.html#cb210-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Falkirk&quot;</span>, <span class="st">&quot;Ardbeg&quot;</span>, <span class="st">&quot;Doogal&quot;</span>, <span class="st">&quot;Kirkwall&quot;</span>),</span>
-<span id="cb210-4"><a href="joins.html#cb210-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">postcode =</span> <span class="fu">c</span>(<span class="st">&quot;FK1 4RS&quot;</span>, <span class="st">&quot;PA42 7EA&quot;</span>, <span class="st">&quot;G81 4SJ&quot;</span>, <span class="st">&quot;KW15 1SE&quot;</span>)</span>
-<span id="cb210-5"><a href="joins.html#cb210-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb210-6"><a href="joins.html#cb210-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-7"><a href="joins.html#cb210-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(customers, new_customers)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">9</span>,
+  city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>,
+  postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1319,8 +1331,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1422,22 +1433,22 @@ KW15 1SE
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
-<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code>union()</code> (see Section <a href="joins.html#union">6.7.2</a>) to avoid duplicates.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="joins.html#cb211-1" aria-hidden="true" tabindex="-1"></a>new_customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb211-2"><a href="joins.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb211-3"><a href="joins.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">postcode =</span> <span class="fu">c</span>(<span class="st">&quot;PA75 6NR&quot;</span>, <span class="st">&quot;FK1 4RS&quot;</span>, <span class="st">&quot;PA42 7EA&quot;</span>, <span class="st">&quot;G81 4SJ&quot;</span>, <span class="st">&quot;KW15 1SE&quot;</span>),</span>
-<span id="cb211-4"><a href="joins.html#cb211-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Tobermory&quot;</span>, <span class="st">&quot;Falkirk&quot;</span>, <span class="st">&quot;Ardbeg&quot;</span>, <span class="st">&quot;Doogal&quot;</span>, <span class="st">&quot;Kirkwall&quot;</span>),</span>
-<span id="cb211-5"><a href="joins.html#cb211-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">new =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb211-6"><a href="joins.html#cb211-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb211-7"><a href="joins.html#cb211-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-8"><a href="joins.html#cb211-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(customers, new_customers)</span></code></pre></div>
+<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> (see Section <a href="joins.html#union">6.7.2</a>) to avoid duplicates.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
+  postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA75 6NR"</span>, <span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>,
+  city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tobermory"</span>, <span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>,
+  new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1450,8 +1461,7 @@ postcode
 <th style="text-align:right;">
 new
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1594,21 +1604,23 @@ KW15 1SE
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div id="bind_cols" class="section level3" number="6.6.2">
-<h3><span class="header-section-number">6.6.2</span> bind_cols()</h3>
+<h3>
+<span class="header-section-number">6.6.2</span> bind_cols()<a class="anchor" aria-label="anchor" href="#bind_cols"><i class="fas fa-link"></i></a>
+</h3>
 <p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="joins.html#cb212-1" aria-hidden="true" tabindex="-1"></a>new_info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb212-2"><a href="joins.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb212-3"><a href="joins.html#cb212-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb212-4"><a href="joins.html#cb212-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-5"><a href="joins.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(customers, new_info)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_info</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1621,8 +1633,7 @@ postcode
 <th style="text-align:left;">
 colour
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1695,56 +1706,68 @@ blue
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div id="importing-multiple-files" class="section level3" number="6.6.3">
-<h3><span class="header-section-number">6.6.3</span> Importing multiple files</h3>
+<h3>
+<span class="header-section-number">6.6.3</span> Importing multiple files<a class="anchor" aria-label="anchor" href="#importing-multiple-files"><i class="fas fa-link"></i></a>
+</h3>
 <p>If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="joins.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write our data to a new folder for the demo</span></span>
-<span id="cb213-2"><a href="joins.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(<span class="at">x =</span> customers, <span class="at">file =</span> <span class="st">&quot;data/customers1.csv&quot;</span>)</span>
-<span id="cb213-3"><a href="joins.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(<span class="at">x =</span> new_customers, <span class="at">file =</span> <span class="st">&quot;data/customers2.csv&quot;</span>)</span>
-<span id="cb213-4"><a href="joins.html#cb213-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-5"><a href="joins.html#cb213-5" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieves a list of all file names in the data folder that contain the string &quot;customers&quot;</span></span>
-<span id="cb213-6"><a href="joins.html#cb213-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-7"><a href="joins.html#cb213-7" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
-<span id="cb213-8"><a href="joins.html#cb213-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">&quot;data&quot;</span>, </span>
-<span id="cb213-9"><a href="joins.html#cb213-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">&quot;customers&quot;</span>, </span>
-<span id="cb213-10"><a href="joins.html#cb213-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
-<span id="cb213-11"><a href="joins.html#cb213-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb213-12"><a href="joins.html#cb213-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-13"><a href="joins.html#cb213-13" aria-hidden="true" tabindex="-1"></a>files</span></code></pre></div>
-<pre><code>## [1] &quot;data/customers1.csv&quot; &quot;data/customers2.csv&quot;</code></pre>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># write our data to a new folder for the demo</span>
+<span class="fu"><a href="https://rdrr.io/pkg/readr/man/write_delim.html">write_csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">customers</span>, file <span class="op">=</span> <span class="st">"data/customers1.csv"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/readr/man/write_delim.html">write_csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new_customers</span>, file <span class="op">=</span> <span class="st">"data/customers2.csv"</span><span class="op">)</span>
+
+<span class="co"># retrieves a list of all file names in the data folder that contain the string "customers"</span>
+
+<span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
+  path <span class="op">=</span> <span class="st">"data"</span>, 
+  pattern <span class="op">=</span> <span class="st">"customers"</span>, 
+  full.names <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
+
+<span class="va">files</span></code></pre></div>
+<pre><code>## [1] "data/customers1.csv" "data/customers2.csv"</code></pre>
 </div>
 <div id="iteration" class="section level3" number="6.6.4">
-<h3><span class="header-section-number">6.6.4</span> Iteration</h3>
+<h3>
+<span class="header-section-number">6.6.4</span> Iteration<a class="anchor" aria-label="anchor" href="#iteration"><i class="fas fa-link"></i></a>
+</h3>
 <p>Whilst this won't be something we cover in detail in the core resources of this course, iteration is an important concept to know about. Iteration is where you perform the same task on multiple different inputs. As a general rule of thumb, if you find yourself copying and pasting the same thing more than twice, there's a more efficient and less error-prone way to do it although these functions do typically require a stronger grasp of programming.</p>
-<p>The <code class='package'>purrr</code> package contains functions to help with iteration. <code>purrr::map_df()</code> maps a function to a list of data frames.</p>
+<p>The <code class="package">purrr</code> package contains functions to help with iteration. <code><a href="https://rdrr.io/pkg/purrr/man/map.html">purrr::map_df()</a></code> maps a function to a list of data frames.</p>
 <ul>
-<li><code>.x</code> is the list of file paths</li>
-<li><code>.f</code> specifies the function to map to each of those file paths.</li>
-<li>The resulting object <code>all_files</code> will be a data frame that combines all the files together, similar to if you had imported them separately and then used <code>bind_rows()</code>. Note that <code>map_df()</code> will only work in this way if the structure of all files is identical.</li>
+<li>
+<code>.x</code> is the list of file paths</li>
+<li>
+<code>.f</code> specifies the function to map to each of those file paths.</li>
+<li>The resulting object <code>all_files</code> will be a data frame that combines all the files together, similar to if you had imported them separately and then used <code><a href="https://rdrr.io/pkg/dplyr/man/bind.html">bind_rows()</a></code>. Note that <code><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df()</a></code> will only work in this way if the structure of all files is identical.</li>
 </ul>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="joins.html#cb215-1" aria-hidden="true" tabindex="-1"></a>all_files <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_df</span>(<span class="at">.x =</span> files, <span class="at">.f =</span> read_csv)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_files</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>, .f <span class="op">=</span> <span class="va">read_csv</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="set-operations" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> Set Operations</h2>
-<p><a class='glossary' target='_blank' title='Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).' href='https://psyteachr.github.io/glossary/s#set-operations'>Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).</p>
+<h2>
+<span class="header-section-number">6.7</span> Set Operations<a class="anchor" aria-label="anchor" href="#set-operations"><i class="fas fa-link"></i></a>
+</h2>
+<p><a class="glossary" target="_blank" title="Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff)." href="https://psyteachr.github.io/glossary/s#set-operations">Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).</p>
 <div id="intersect" class="section level3" number="6.7.1">
-<h3><span class="header-section-number">6.7.1</span> intersect()</h3>
-<p><code>intersect()</code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="joins.html#cb216-1" aria-hidden="true" tabindex="-1"></a>new_customers <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb216-2"><a href="joins.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb216-3"><a href="joins.html#cb216-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">postcode =</span> <span class="fu">c</span>(<span class="st">&quot;PA75 6NR&quot;</span>, <span class="st">&quot;FK1 4RS&quot;</span>, <span class="st">&quot;PA42 7EA&quot;</span>, <span class="st">&quot;G81 4SJ&quot;</span>, <span class="st">&quot;KW15 1SE&quot;</span>),</span>
-<span id="cb216-4"><a href="joins.html#cb216-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Tobermory&quot;</span>, <span class="st">&quot;Falkirk&quot;</span>, <span class="st">&quot;Ardbeg&quot;</span>, <span class="st">&quot;Doogal&quot;</span>, <span class="st">&quot;Kirkwall&quot;</span>)</span>
-<span id="cb216-5"><a href="joins.html#cb216-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb216-6"><a href="joins.html#cb216-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb216-7"><a href="joins.html#cb216-7" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(customers, new_customers)</span></code></pre></div>
+<h3>
+<span class="header-section-number">6.7.1</span> intersect()<a class="anchor" aria-label="anchor" href="#intersect"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect()</a></code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">new_customers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>,
+  postcode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PA75 6NR"</span>, <span class="st">"FK1 4RS"</span>, <span class="st">"PA42 7EA"</span>, <span class="st">"G81 4SJ"</span>, <span class="st">"KW15 1SE"</span><span class="op">)</span>,
+  city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tobermory"</span>, <span class="st">"Falkirk"</span>, <span class="st">"Ardbeg"</span>, <span class="st">"Doogal"</span>, <span class="st">"Kirkwall"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1754,10 +1777,8 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
+</tr></thead>
+<tbody><tr>
 <td style="text-align:right;">
 5
 </td>
@@ -1767,26 +1788,28 @@ Tobermory
 <td style="text-align:left;">
 PA75 6NR
 </td>
-</tr>
-</tbody>
-</table>
+</tr></tbody>
+</table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has an <code>intersect()</code> function. The error message can be confusing and looks something like this:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="joins.html#cb217-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">intersect</span>(customers, new_customers)</span></code></pre></div>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has an <code><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect()</a></code> function. The error message can be confusing and looks something like this:</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## Error: Must subset rows with a valid subscript vector.
 ## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.</code></pre>
 </div>
 </div>
 <div id="union" class="section level3" number="6.7.2">
-<h3><span class="header-section-number">6.7.2</span> union()</h3>
-<p><code>union()</code> returns all the rows from both tables, removing duplicate rows, unlike <code>bind_rows()</code>.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="joins.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(customers, new_customers)</span></code></pre></div>
+<h3>
+<span class="header-section-number">6.7.2</span> union()<a class="anchor" aria-label="anchor" href="#union"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> returns all the rows from both tables, removing duplicate rows, unlike <code><a href="https://rdrr.io/pkg/dplyr/man/bind.html">bind_rows()</a></code>.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1796,8 +1819,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1899,38 +1921,41 @@ KW15 1SE
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a <code>union()</code> function. You usually won't get an error message, but the output won't be what you expect.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="joins.html#cb220-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">union</span>(customers, new_customers)</span></code></pre></div>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/pkg/generics/man/setops.html">union()</a></code> function. You usually won't get an error message, but the output won't be what you expect.</p>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">union</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1 2 3 4 5
 ## 
 ## [[2]]
-## [1] &quot;Port Ellen&quot; &quot;Dufftown&quot;   NA           &quot;Aberlour&quot;   &quot;Tobermory&quot; 
+## [1] "Port Ellen" "Dufftown"   NA           "Aberlour"   "Tobermory" 
 ## 
 ## [[3]]
-## [1] &quot;PA42 7DU&quot; &quot;AB55 4DH&quot; NA         &quot;AB38 7RY&quot; &quot;PA75 6NR&quot;
+## [1] "PA42 7DU" "AB55 4DH" NA         "AB38 7RY" "PA75 6NR"
 ## 
 ## [[4]]
 ## [1] 5 6 7 8 9
 ## 
 ## [[5]]
-## [1] &quot;PA75 6NR&quot; &quot;FK1 4RS&quot;  &quot;PA42 7EA&quot; &quot;G81 4SJ&quot;  &quot;KW15 1SE&quot;
+## [1] "PA75 6NR" "FK1 4RS"  "PA42 7EA" "G81 4SJ"  "KW15 1SE"
 ## 
 ## [[6]]
-## [1] &quot;Tobermory&quot; &quot;Falkirk&quot;   &quot;Ardbeg&quot;    &quot;Doogal&quot;    &quot;Kirkwall&quot;</code></pre>
+## [1] "Tobermory" "Falkirk"   "Ardbeg"    "Doogal"    "Kirkwall"</code></pre>
 </div>
 </div>
 <div id="setdiff" class="section level3" number="6.7.3">
-<h3><span class="header-section-number">6.7.3</span> setdiff()</h3>
+<h3>
+<span class="header-section-number">6.7.3</span> setdiff()<a class="anchor" aria-label="anchor" href="#setdiff"><i class="fas fa-link"></i></a>
+</h3>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="joins.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(customers, new_customers)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -1940,8 +1965,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -1988,14 +2012,14 @@ AB38 7RY
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <p>Order matters for <code>setdiff</code>.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="joins.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(new_customers, customers)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff</a></span><span class="op">(</span><span class="va">new_customers</span>, <span class="va">customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -2005,8 +2029,7 @@ postcode
 <th style="text-align:left;">
 city
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -2053,15 +2076,15 @@ Kirkwall
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="warning">
-<p>If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a <code>setdiff()</code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code>setdiff()</code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="joins.html#cb224-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">setdiff</span>(customers, new_customers)</span></code></pre></div>
+<p>If you've forgotten to load dplyr or the tidyverse, <a class="glossary" target="_blank" title="The set of R functions that come with a basic installation of R, before you add external packages" href="https://psyteachr.github.io/glossary/b#base-r">base R</a> also has a <code><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff()</a></code> function. You usually won't get an error message, but the output might not be what you expect because the base R <code><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff()</a></code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">customers</span>, <span class="va">new_customers</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
-<table>
-<thead>
-<tr>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:right;">
 id
 </th>
@@ -2071,8 +2094,7 @@ city
 <th style="text-align:left;">
 postcode
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
@@ -2130,16 +2152,20 @@ PA75 6NR
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 </div>
 </div>
 <div id="exercises-3" class="section level2" number="6.8">
-<h2><span class="header-section-number">6.8</span> Exercises</h2>
+<h2>
+<span class="header-section-number">6.8</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-3"><i class="fas fa-link"></i></a>
+</h2>
 <p>There's lots of different use cases for the <code>****_join()</code> functions. These exercises will allow you to practice different joins. If you have any examples of where joins might be helpful in your own work, please post them on Teams in the week 6 channel, as having many concrete examples can help distinguish between the different joins.</p>
 <div id="grade-data" class="section level3" number="6.8.1">
-<h3><span class="header-section-number">6.8.1</span> Grade data</h3>
+<h3>
+<span class="header-section-number">6.8.1</span> Grade data<a class="anchor" aria-label="anchor" href="#grade-data"><i class="fas fa-link"></i></a>
+</h3>
 <p>The University of Glasgow's Schedule A grading scheme uses a 22-point alphanumeric scale (there's more information in your summative report <a href="https://sway.office.com/k0CnXGd6RjbVokkR?ref=Link">assessment information sheet</a>). Each alphanumeric grade (e.g., B2) has an underlying numeric Grade Point (e.g., 16).</p>
 <p>Often when we're working with student grades they are provided to us in only one of these forms but we need to be able to go between the two, for example, we need the numeric form in order to be able to calculate descriptive statistics about the mean grade but we need the alphanumeric form to release to student records.</p>
 <ul>
@@ -2152,28 +2178,31 @@ PA75 6NR
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="joins.html#cb225-1" aria-hidden="true" tabindex="-1"></a>schedule <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/scheduleA.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/scheduleA.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 23 Columns: 2</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
+## Delimiter: ","
 ## chr (1): Grade
 ## dbl (1): Points</code></pre>
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="joins.html#cb229-1" aria-hidden="true" tabindex="-1"></a>grades1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/grade_data1.csv&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">grades1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/grade_data1.csv"</span><span class="op">)</span> </code></pre></div>
 <pre><code>## Rows: 100 Columns: 3</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
+## Delimiter: ","
 ## chr (1): assessment
 ## dbl (2): id, Points</code></pre>
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="joins.html#cb233-1" aria-hidden="true" tabindex="-1"></a>grades2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/grade_data2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">grades2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/grade_data2.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 100 Columns: 3</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
+## Delimiter: ","
 ## chr (1): assessment
 ## dbl (2): id, Points</code></pre>
 <pre><code>## 
@@ -2182,7 +2211,9 @@ Solution
 </div>
 </div>
 <div id="complete-records" class="section level3" number="6.8.2">
-<h3><span class="header-section-number">6.8.2</span> Complete records</h3>
+<h3>
+<span class="header-section-number">6.8.2</span> Complete records<a class="anchor" aria-label="anchor" href="#complete-records"><i class="fas fa-link"></i></a>
+</h3>
 <p>In this example, we want to join the grade data to schedule A so that each student with a grade has both the grade and the grade point. But, we also want a complete record of all students on the course so students with missing grades should still be included in the data.</p>
 <ul>
 <li>Join <code>grades1</code> and <code>scheduleA</code> and store this table in an object named <code>exam_all</code>. T</li>
@@ -2199,29 +2230,37 @@ Hint
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="joins.html#cb237-1" aria-hidden="true" tabindex="-1"></a>exam_all <span class="ot">&lt;-</span> <span class="fu">left_join</span>(grades1, schedule, <span class="at">by =</span> <span class="st">&quot;Points&quot;</span>)</span>
-<span id="cb237-2"><a href="joins.html#cb237-2" aria-hidden="true" tabindex="-1"></a>essay_all <span class="ot">&lt;-</span> <span class="fu">left_join</span>(grades2, schedule, <span class="at">by =</span> <span class="st">&quot;Points&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">exam_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">grades1</span>, <span class="va">schedule</span>, by <span class="op">=</span> <span class="st">"Points"</span><span class="op">)</span>
+<span class="va">essay_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">grades2</span>, <span class="va">schedule</span>, by <span class="op">=</span> <span class="st">"Points"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="missing-data" class="section level3" number="6.8.3">
-<h3><span class="header-section-number">6.8.3</span> Missing data</h3>
-<p>Alternatively, you may wish to have a dataset that only contains data for students who submitted each assessment and have a grade. First, run <code>summary()</code> on both <code>exam_all</code> and <code>essay_all</code>.</p>
+<h3>
+<span class="header-section-number">6.8.3</span> Missing data<a class="anchor" aria-label="anchor" href="#missing-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Alternatively, you may wish to have a dataset that only contains data for students who submitted each assessment and have a grade. First, run <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> on both <code>exam_all</code> and <code>essay_all</code>.</p>
 <ul>
-<li>How many exam grades are missing? <input class='webex-solveme nospaces' size='2' data-answer='["17"]'/></li>
-<li>How many essay grades are missing? <input class='webex-solveme nospaces' size='2' data-answer='["23"]'/></li>
+<li>How many exam grades are missing? <input class="webex-solveme nospaces" size="2" data-answer='["17"]'>
+</li>
+<li>How many essay grades are missing? <input class="webex-solveme nospaces" size="2" data-answer='["23"]'>
+</li>
 </ul>
 <p>Now, create an object <code>exam_grades</code> that joins together <code>grades1</code> and <code>schedule</code> but this time the resulting object should only contain data from students who have a grade. Do the same but for <code>grades2</code> and store it in <code>essay_grades</code>.</p>
 <p>Before you do this, given what you know about how many data points are missing in each data set:</p>
 <ul>
-<li>How many observations should <code>essay_grades</code> have? <input class='webex-solveme nospaces' size='2' data-answer='["83"]'/></li>
-<li>How many observations should <code>essay_grades</code> have? <input class='webex-solveme nospaces' size='2' data-answer='["77"]'/></li>
+<li>How many observations should <code>essay_grades</code> have? <input class="webex-solveme nospaces" size="2" data-answer='["83"]'>
+</li>
+<li>How many observations should <code>essay_grades</code> have? <input class="webex-solveme nospaces" size="2" data-answer='["77"]'>
+</li>
 </ul>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="joins.html#cb238-1" aria-hidden="true" tabindex="-1"></a>exam_grades <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(grades1, schedule, <span class="at">by =</span> <span class="st">&quot;Points&quot;</span>)</span>
-<span id="cb238-2"><a href="joins.html#cb238-2" aria-hidden="true" tabindex="-1"></a>essay_grades <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(grades2, schedule, <span class="at">by =</span> <span class="st">&quot;Points&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">exam_grades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">grades1</span>, <span class="va">schedule</span>, by <span class="op">=</span> <span class="st">"Points"</span><span class="op">)</span>
+<span class="va">essay_grades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">grades2</span>, <span class="va">schedule</span>, by <span class="op">=</span> <span class="st">"Points"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="webex-solution">
 <button>
@@ -2232,43 +2271,52 @@ Alternative solution
 <p>Now, create a dataset <code>completes</code> that joins the grades for students who have a grade for <strong>both</strong> the essay and the exam.</p>
 <ul>
 <li>Because both <code>exam_grade</code> and <code>essay_grade</code> have the variables <code>Points</code> and that are named the same but have different data, you should amend the suffix so that the resulting variables are named <code>Points_exam</code> and <code>Points_essay</code> etc. You may need to consult the help documentation to see an example to figure this out.</li>
-<li>Clean up the file with <code>select()</code> and only keep the variables <code>id</code>, <code>Grade_exam</code>, and <code>Grade_essay</code></li>
+<li>Clean up the file with <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> and only keep the variables <code>id</code>, <code>Grade_exam</code>, and <code>Grade_essay</code>
+</li>
 </ul>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="joins.html#cb239-1" aria-hidden="true" tabindex="-1"></a>completes <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(exam_grades, essay_grades, </span>
-<span id="cb239-2"><a href="joins.html#cb239-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">by =</span> <span class="st">&quot;id&quot;</span>, </span>
-<span id="cb239-3"><a href="joins.html#cb239-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">&quot;_exam&quot;</span>, <span class="st">&quot;_essay&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb239-4"><a href="joins.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, Grade_exam, Grade_essay)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">completes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">exam_grades</span>, <span class="va">essay_grades</span>, 
+                        by <span class="op">=</span> <span class="st">"id"</span>, 
+                        suffix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"_exam"</span>, <span class="st">"_essay"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">Grade_exam</span>, <span class="va">Grade_essay</span><span class="op">)</span></code></pre></div>
 </div>
 <ul>
-<li>How many students have a grade for both the exam and the essay? <input class='webex-solveme nospaces' size='2' data-answer='["62"]'/></li>
+<li>How many students have a grade for both the exam and the essay? <input class="webex-solveme nospaces" size="2" data-answer='["62"]'>
+</li>
 </ul>
 <p>Now create a dataset <code>no_essay</code> that contains students that have a grade for the exam, but not the essay.</p>
 <ul>
-<li>How many students have a grade for the exam but not the essay? <input class='webex-solveme nospaces' size='2' data-answer='["23"]'/></li>
+<li>How many students have a grade for the exam but not the essay? <input class="webex-solveme nospaces" size="2" data-answer='["23"]'>
+</li>
 </ul>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="joins.html#cb240-1" aria-hidden="true" tabindex="-1"></a>no_essay <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(exam_grades, essay_grades, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">no_essay</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">exam_grades</span>, <span class="va">essay_grades</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 </div>
 <p>Finally, now make a dataset <code>no_exam</code> that contains students have have a grade for the essay but not the exam</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="joins.html#cb241-1" aria-hidden="true" tabindex="-1"></a>no_exam <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(essay_grades,exam_grades, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">no_exam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">essay_grades</span>,<span class="va">exam_grades</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></code></pre></div>
 </div>
 <ul>
-<li>How many students have a grade for the exam but not the essay? <input class='webex-solveme nospaces' size='2' data-answer='["15"]'/></li>
+<li>How many students have a grade for the exam but not the essay? <input class="webex-solveme nospaces" size="2" data-answer='["15"]'>
+</li>
 </ul>
 </div>
 <div id="report" class="section level3" number="6.8.4">
-<h3><span class="header-section-number">6.8.4</span> Report</h3>
+<h3>
+<span class="header-section-number">6.8.4</span> Report<a class="anchor" aria-label="anchor" href="#report"><i class="fas fa-link"></i></a>
+</h3>
 <p>For the final exercise in this chapter, create a report in R Markdown named <code>Assessment Report</code>. Assume that you need to present this report at an exam board and you're likely to be asked for the following information:</p>
 <ul>
 <li>How many students submitted each assessment?</li>
@@ -2279,18 +2327,18 @@ Solution
 </div>
 </div>
 <div id="glossary-joins" class="section level2" number="6.9">
-<h2><span class="header-section-number">6.9</span> Glossary</h2>
-<table>
-<thead>
-<tr>
+<h2>
+<span class="header-section-number">6.9</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-joins"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr>
 <th style="text-align:left;">
 term
 </th>
 <th style="text-align:left;">
 definition
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
@@ -2333,16 +2381,20 @@ Functions that compare two tables and return rows that match (intersect), are in
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div id="resources-joins" class="section level2" number="6.10">
-<h2><span class="header-section-number">6.10</span> Further resources</h2>
+<h2>
+<span class="header-section-number">6.10</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-joins"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation cheatsheet</a></li>
-<li><a href="http://r4ds.had.co.nz/relational-data.html">Chapter 13: Relational Data</a> in <em>R for Data Science</em></li>
-<li><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21: Iteration</a> in <em>R for Data Science</em>.</li>
+<li>
+<a href="http://r4ds.had.co.nz/relational-data.html">Chapter 13: Relational Data</a> in <em>R for Data Science</em>
+</li>
+<li>
+<a href="https://r4ds.had.co.nz/iteration.html">Chapter 21: Iteration</a> in <em>R for Data Science</em>.</li>
 </ul>
-
 </div>
 </div>
 <script>
@@ -2518,8 +2570,7 @@ window.onload = function() {
   update_total_correct();
 }
 
-</script>
-<script>
+</script><script>
 $( document ).ready(function() {
   var cite = ' ';
   var psyteachr = ' <a href="https://psyteachr.github.io/"><img src="images/logos/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a>';
@@ -2540,28 +2591,70 @@ $( document ).ready(function() {
   move_sidebar();
   window.onresize = move_sidebar;
 });
-</script>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+</script><div class="chapter-nav">
+<div class="prev"><a href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></div>
+<div class="next"><a href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#joins"><span class="header-section-number">6</span> Data Relations</a></li>
+<li><a class="nav-link" href="#ilo-joins"><span class="header-section-number">6.1</span> Intended Learning Outcomes</a></li>
+<li><a class="nav-link" href="#set-up-3"><span class="header-section-number">6.2</span> Set-up</a></li>
+<li>
+<a class="nav-link" href="#mutating-joins"><span class="header-section-number">6.3</span> Mutating Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#left_join"><span class="header-section-number">6.3.1</span> left_join()</a></li>
+<li><a class="nav-link" href="#right_join"><span class="header-section-number">6.3.2</span> right_join()</a></li>
+<li><a class="nav-link" href="#inner_join"><span class="header-section-number">6.3.3</span> inner_join()</a></li>
+<li><a class="nav-link" href="#full_join"><span class="header-section-number">6.3.4</span> full_join()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#filtering-joins"><span class="header-section-number">6.4</span> Filtering Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#semi_join"><span class="header-section-number">6.4.1</span> semi_join()</a></li>
+<li><a class="nav-link" href="#anti_join"><span class="header-section-number">6.4.2</span> anti_join()</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#multiple-joins"><span class="header-section-number">6.5</span> Multiple joins</a></li>
+<li>
+<a class="nav-link" href="#binding-joins"><span class="header-section-number">6.6</span> Binding Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#bind_rows"><span class="header-section-number">6.6.1</span> bind_rows()</a></li>
+<li><a class="nav-link" href="#bind_cols"><span class="header-section-number">6.6.2</span> bind_cols()</a></li>
+<li><a class="nav-link" href="#importing-multiple-files"><span class="header-section-number">6.6.3</span> Importing multiple files</a></li>
+<li><a class="nav-link" href="#iteration"><span class="header-section-number">6.6.4</span> Iteration</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#set-operations"><span class="header-section-number">6.7</span> Set Operations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#intersect"><span class="header-section-number">6.7.1</span> intersect()</a></li>
+<li><a class="nav-link" href="#union"><span class="header-section-number">6.7.2</span> union()</a></li>
+<li><a class="nav-link" href="#setdiff"><span class="header-section-number">6.7.3</span> setdiff()</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#exercises-3"><span class="header-section-number">6.8</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#grade-data"><span class="header-section-number">6.8.1</span> Grade data</a></li>
+<li><a class="nav-link" href="#complete-records"><span class="header-section-number">6.8.2</span> Complete records</a></li>
+<li><a class="nav-link" href="#missing-data"><span class="header-section-number">6.8.3</span> Missing data</a></li>
+<li><a class="nav-link" href="#report"><span class="header-section-number">6.8.4</span> Report</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#glossary-joins"><span class="header-section-number">6.9</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-joins"><span class="header-section-number">6.10</span> Further resources</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/06-joins.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/06-joins.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-24.</p>
@@ -2573,8 +2666,5 @@ $( document ).ready(function() {
 
 </div></div>
 </footer>
-
-
 </body>
-
 </html>

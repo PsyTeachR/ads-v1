@@ -104,7 +104,7 @@ You can also install multiple packages at once. Here is the command to install a
 
 
 ```r
-install.packages(
+install.packages(c(
   "tidyverse",      # for everything
   "rio",            # for data import
   "kableExtra",     # for nice tables
@@ -118,7 +118,7 @@ install.packages(
   "sf",             # for mapping geoms
   "rnaturalearth",  # for map data
   "rnatrualearthdata" # extra mapping data
-)
+))
 
 # install waffle package 
 

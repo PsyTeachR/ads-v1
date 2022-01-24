@@ -8,7 +8,7 @@ rmd_files:
 # - 03-viz.Rmd
 # - 04-data.Rmd
 # - 05-summary.Rmd
-# - 06-joins.Rmd
+- 06-joins.Rmd
 # - 07-tidy.Rmd
 # - 08-wrangle.Rmd
 # - 09-custom.Rmd
@@ -18,7 +18,7 @@ rmd_files:
 # - appendix-b-updating-r.Rmd
 # - appendix-c-symbols.Rmd
 # - appendix-d-conventions.Rmd
-- appendix-e-teams.Rmd
+# - appendix-e-teams.Rmd
 # - appendix-f-datatypes.Rmd
 # - appendix-g-styling.Rmd
 # - appendix-h-hashtags.Rmd

@@ -225,7 +225,7 @@ typeof(mixed)
 :::
 
 ::: {.warning data-latex=""}
-You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will <a class='glossary' target='_blank' title='Changing the data type of values in a vector to a single compatible type.' href='https://psyteachr.github.io/glossary/c#coercion'>coerce</a> them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so `r `hl(10)` would turn into <code><span class='st'>"10"</span></code>.
+You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will <a class='glossary' target='_blank' title='Changing the data type of values in a vector to a single compatible type.' href='https://psyteachr.github.io/glossary/c#coercion'>coerce</a> them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so <code><span class='fl'>10</span></code> would turn into <code><span class='st'>"10"</span></code>.
 :::
 
 #### Selecting values from a vector
@@ -435,7 +435,7 @@ dollar   <- data_types$double
 
 :::
 
-The single brackets (`bracket1` and `name1`) return a list with the subset of items inside the brackets. In this case, that's just one item, but can be more (try `data_types[1:2]`). The items keep their names if they have them, so the returned value is `r `hl(list(double = 10))`.
+The single brackets (`bracket1` and `name1`) return a list with the subset of items inside the brackets. In this case, that's just one item, but can be more (try `data_types[1:2]`). The items keep their names if they have them, so the returned value is <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>double <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></code>.
 
 The double brackets (`bracket2` and `name2` return a single item as a vector. You can't select more than one item; `data_types[[1:2]]` will give you a "subscript out of bounds" error. 
 
@@ -508,15 +508,28 @@ glimpse(avatar)
 
 #### Accessing rows and columns {#row-col-access}
 
-There are various ways of accessing specific columns or rows from a table. The ones below are from <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> and are useful to know about, but you'll be learning easier (and more readable) ways in Chapters\ \@ref(tidy) and \@ref(wrangle). Examples of these base R accessing functions are provided here for reference, since you might see them in other people's scripts.
+There are various ways of accessing specific columns or rows from a table. You'll be learning more about this in Chapters\ \@ref(tidy) and \@ref(wrangle). 
 
 
 ```r
-katara     <- avatar[1, ] # first row
-type       <- avatar[, 2] # second column (bends)
-benders    <- avatar[c(1, 2), ] # selected rows (by number)
-bends_name <- avatar[, c("bends", "name")] # selected columns (by name)
-friendly   <- avatar$friendly  # by column name
+siblings   <- avatar %>% slice(1, 3) # rows (by number)
+bends      <- avatar %>% pull(2) # column vector (by number)
+friendly   <- avatar %>% pull(friendly) # column vector (by name)
+bends_name <- avatar %>% select(bends, name) # subset table (by name)
+toph       <- avatar %>% pull(name) %>% pluck(2) # single cell
+```
+
+The code below uses <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> to produce the same subsets as the functions above. This format is useful to know about, since you might see them in other people's scripts.
+
+
+```r
+# base R access
+
+siblings   <- avatar[c(1, 3), ] # rows (by number)
+bends      <- avatar[, 2] # column vector (by number)
+friendly   <- avatar$friendly  # column vector (by name)
+bends_name <- avatar[, c("bends", "name")] # subset table (by name)
+toph       <- avatar[[2, 1]] # single cell (row, col)
 ```
 
 ## Glossary {#glossary-datatypes}

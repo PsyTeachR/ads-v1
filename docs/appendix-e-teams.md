@@ -91,7 +91,7 @@ no_test_data <- data %>%
   filter(!str_detect(type, "test"))
 ```
 
-One of the big benefits to creating a reprex is that you often solve your own problem while you;re trying to break it down to explain to someone else.
+One of the big benefits to creating a reprex is that you often solve your own problem while you're trying to break it down to explain to someone else.
 
 If you really want to go down the rabbit hole, you can create a reproducible example using the [reprex](https://www.tidyverse.org/help/#reprex) package from tidyverse.
 

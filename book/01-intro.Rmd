@@ -71,7 +71,7 @@ Try doing each of these now. Additionally, now would be a good time to create a 
 
 ## Packages and functions {#packages}
 
-When you install R you will have access to a range of `r glossary("function", "functions")` including options for `r `glossary("data wrangling")` and statistical analysis. The functions that are included in the default installation are typically referred to as `r glossary("base R")` and you can think of them like the default apps that come pre-loaded on your phone. 
+When you install R you will have access to a range of `r glossary("function", "functions")` including options for `r glossary("data wrangling")` and statistical analysis. The functions that are included in the default installation are typically referred to as `r glossary("base R")` and you can think of them like the default apps that come pre-loaded on your phone. 
 
 One of the great things about R, however, is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of `r glossary("package", "packages")` that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
 
@@ -107,6 +107,7 @@ install.packages(c(
   "tidyverse",      # for everything
   "rio",            # for data import
   "kableExtra",     # for nice tables
+  "devtools",       # for installing extra packages
   "ggwordcloud",    # for word clouds
   "tidytext",       # for parsing text for word clouds
   "patchwork",      # for multi-part plots

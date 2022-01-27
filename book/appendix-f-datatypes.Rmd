@@ -84,11 +84,21 @@ class(myfactor)
 
 ### Dates and Times
 
-Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the `r pkg("lubridate", "https://lubridate.tidyverse.org/")` package provides functions to help you with this.
+Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the `r pkg("lubridate", "https://lubridate.tidyverse.org/")` package provides functions to help you with this, and they have a useful [cheatsheet](https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf). The [Dates and Times](https://r4ds.had.co.nz/dates-and-times.html){target="_blank"} in R for Data Science gives a helpful overview.
 
 ```{r}
-today <- lubridate::today()
-now <- lubridate::now(tzone = "GMT")
+library(lubridate)
+
+today()
+now(tzone = "GMT")
+mdy("January 24, 2022")
+ymd("22/Jan/24")
+dmy("24-01-22")
+mdy_hm("1/1/01 1:01")
+today() - ymd("1976-11-18") 
+
+today() + days(100)
+
 ```
 
 Date and datetimes are a type of double, but you can tell that they are dates by checking their `class()`. Datetimes can have one or more of a few classes that start with `POSIX`.

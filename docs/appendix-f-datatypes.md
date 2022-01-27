@@ -133,12 +133,45 @@ class(myfactor)
 
 ### Dates and Times
 
-Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the <code class='package'><a href='https://lubridate.tidyverse.org/' target='_blank'>lubridate</a></code> package provides functions to help you with this.
+Dates and times are represented by doubles with special classes. Dates and times are very hard to work with, but the <code class='package'><a href='https://lubridate.tidyverse.org/' target='_blank'>lubridate</a></code> package provides functions to help you with this, and they have a useful [cheatsheet](https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf). The [Dates and Times](https://r4ds.had.co.nz/dates-and-times.html){target="_blank"} in R for Data Science gives a helpful overview.
 
 
 ```r
-today <- lubridate::today()
-now <- lubridate::now(tzone = "GMT")
+library(lubridate)
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+```
+
+```r
+today()
+now(tzone = "GMT")
+mdy("January 24, 2022")
+ymd("22/Jan/24")
+dmy("24-01-22")
+mdy_hm("1/1/01 1:01")
+today() - ymd("1976-11-18") 
+
+today() + days(100)
+```
+
+```
+## [1] "2022-01-27"
+## [1] "2022-01-27 14:21:53 GMT"
+## [1] "2022-01-24"
+## [1] "2022-01-24"
+## [1] "2022-01-24"
+## [1] "2001-01-01 01:01:00 UTC"
+## Time difference of 16506 days
+## [1] "2022-05-07"
 ```
 
 Date and datetimes are a type of double, but you can tell that they are dates by checking their `class()`. Datetimes can have one or more of a few classes that start with `POSIX`.
@@ -152,10 +185,10 @@ class(now)
 ```
 
 ```
-## [1] "double"
-## [1] "double"
-## [1] "Date"
-## [1] "POSIXct" "POSIXt"
+## [1] "closure"
+## [1] "closure"
+## [1] "function"
+## [1] "function"
 ```
 
 

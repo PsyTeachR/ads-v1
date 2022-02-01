@@ -246,7 +246,7 @@ ilo-summary
 set-up-2
 social-media-data
 r-objects
-summarise
+summary-summarise
 the-operator
 pipes-first
 inline-coding
@@ -314,7 +314,12 @@ select
 filter
 arrange
 mutate
+dplyr-summarise
+dplyr-groupby
+missing-values
 together-wrangle
+exercises-4
+mutate-1
 glossary-wrangle
 resources-wrangle
 custom

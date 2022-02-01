@@ -137,7 +137,7 @@ orders <- tibble(
 
 ## Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter \@ref(tidy).)
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -1101,7 +1101,7 @@ base::intersect(customers, new_customers)
 
 ```
 ## Error: Must subset rows with a valid subscript vector.
-## i Logical subscripts must match the size of the indexed input.
+## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
@@ -1326,7 +1326,7 @@ str(new_customers2)
 ```
 
 ```
-## tibble [5 x 3] (S3: tbl_df/tbl/data.frame)
+## tibble [5 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ id      : chr [1:5] "5" "6" "7" "8" ...
 ##  $ postcode: chr [1:5] "PA75 6NR" "FK1 4RS" "PA42 7EA" "G81 4SJ" ...
 ##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
@@ -1345,8 +1345,8 @@ inner_join(customers, new_customers2)
 
 ```
 ## Error: Can't join on `x$id` x `y$id` because of incompatible types.
-## i `x$id` is of type <integer>>.
-## i `y$id` is of type <character>>.
+## ℹ `x$id` is of type <integer>>.
+## ℹ `y$id` is of type <character>>.
 ```
 
 The same goes for `bind_rows()`:
@@ -1464,7 +1464,7 @@ schedule <- read_csv("data/scheduleA.csv")
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (1): Grade
 ## dbl (1): Points
@@ -1472,8 +1472,8 @@ schedule <- read_csv("data/scheduleA.csv")
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -1485,7 +1485,7 @@ grades1 <- read_csv("data/grade_data1.csv")
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (2): assessment, id
 ## dbl (1): Points
@@ -1493,8 +1493,8 @@ grades1 <- read_csv("data/grade_data1.csv")
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -1506,7 +1506,7 @@ grades2 <- read_csv("data/grade_data2.csv")
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (1): assessment
 ## dbl (2): id, Points
@@ -1514,8 +1514,8 @@ grades2 <- read_csv("data/grade_data2.csv")
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -1550,7 +1550,7 @@ grades1 <- grades1 %>%
 ```
 
 ```
-## spec_tbl_df [100 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+## spec_tbl_df [100 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ assessment: chr [1:100] "Exam" "Exam" "Exam" "Exam" ...
 ##  $ id        : chr [1:100] "1" "2" "3" "4" ...
 ##  $ Points    : num [1:100] NA 16 12 15 16 NA 16 13 15 NA ...
@@ -1561,7 +1561,7 @@ grades1 <- grades1 %>%
 ##   ..   Points = col_double()
 ##   .. )
 ##  - attr(*, "problems")=<externalptr> 
-## spec_tbl_df [100 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+## spec_tbl_df [100 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ id        : num [1:100] 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ Points    : num [1:100] 12 16 15 NA 14 NA 8 NA 16 14 ...
 ##  $ assessment: chr [1:100] "Essay" "Essay" "Essay" "Essay" ...

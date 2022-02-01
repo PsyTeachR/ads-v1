@@ -1,0 +1,17 @@
+structure-of-the-course
+how-to-learn-data-skills
+wrangle
+ilo-wrangle
+wrangling-functions
+select
+filter
+arrange
+mutate
+dplyr-summarise
+dplyr-groupby
+missing-values
+together-wrangle
+exercises
+mutate-1
+glossary-wrangle
+resources-wrangle

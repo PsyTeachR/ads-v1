@@ -201,7 +201,7 @@ budget %>%
 
 ### Mutate
 
-Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., `profit` below).
+Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions (e.g., `profit` below).
 
 ```{r mutate}
 budget2 <- budget %>%
@@ -219,42 +219,11 @@ You can overwrite a column by giving a new column the same name as the old colum
 :::
 
 
-Load some data about the [population of the Scottish counties](https://psyteachr.github.io/ads-v1/data/scottish_population.csv). 
-
-```{r}
-scotpop <- read_csv("data/scottish_population.csv",
-                    show_col_types = FALSE)
-```
-
-Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order `population` (in K) then `county`, and show only the counties with populations greater than 200K. 
-
-```{r, echo = FALSE}
-scotpop %>%
-  arrange(desc(population)) %>%
-  filter(population > 200000) %>%
-  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
-  select(population = kpop, 
-         county = name)
-```
-
-::: {.try data-latex=""}
-There are several different ways you could make the table above. Some functions could be in a different order and some couldn't. See where you can move the `filter()` and `arrange()` functions.
-:::
-
-```{r, eval = FALSE, webex.hide = TRUE}
-scotpop %>%
-  arrange(desc(population)) %>%
-  filter(population > 200000) %>%
-  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
-  select(population = kpop, 
-         county = name)
-```
-
 ### Summarise {#dplyr-summarise}
 
-You were introduced to the `summarise()` function in Chapter\ \ref(summarise). This applies summary functions to an entire table (or groups, as you'll see in the next section).
+You were introduced to the `summarise()` function in Chapter\ @\ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).
 
-Let's say we want to determine the mean sales and expenses overall, plus the minimum and maximum profit for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year.
+Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year.
 
 ```{r}
 budget3 <- budget %>%
@@ -283,7 +252,7 @@ budget3 %>%
 
 ### Group By {#dplyr-groupby}
 
-You were introduced to the `group_by()` function in Chapter\ \ref(grouping). For example, you can break down the summary statistics above by year and product.
+You were introduced to the `group_by()` function in Chapter\ \@ref(grouping). For example, you can break down the summary statistics above by year and product.
 
 ```{r}
 budget3 %>%
@@ -297,12 +266,17 @@ budget3 %>%
   )
 ```
 
-::: {.info data-latex=""}
-When you summarise data, you might see a message like:
+::: {.try data-latex=""}
+How would you find out the maximum sales for each region?
 
-> `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
+```{r, results='asis', echo = FALSE}
+c(answer = "<pre>budget3 %>%\n  group_by(region) %>%\n  summarise(max_sales = max(sales)</pre>",
+  x = "<pre>budget3 %>%\n  group_by(region) %>%\n  summarise(max_sales = max(region)</pre>",
+  x = "<pre>budget3 %>%\n  group_by(sales) %>%\n  summarise(max_sales = max(sales)</pre>",
+  x = "<pre>budget3 %>%\n  group_by(sales) %>%\n  summarise(max_sales = max(region)</pre>") %>%
+  sample() %>% webexercises::longmcq() %>% cat()
+```
 
-If you set the argument `.groups = "drop"`, then the table will not be grouped after the `summarise()` function. If you set it to `.groups = "keep"`, it will keep the same grouping structure for subsequent functions (until you use the `ungroup()` function). The default is `.groups = "drop_last"`, where only the last grouping is dropped, so in the example above, the data would no longer be grouped by product, but would still be grouped by year.
 :::
 
 ## Missing values
@@ -310,10 +284,12 @@ If you set the argument `.groups = "drop"`, then the table will not be grouped a
 What if the North region hasn't returned their sales data for 2020 yet?
 
 ```{r}
+# set sales values to NA for North 2020 rows
 budget_missing <- budget3 %>%
   mutate(sales = ifelse(region == "North" & year == 2020, NA, sales))
 
-budget_missing
+# check
+filter(budget_missing, region == "North")
 ```
 
 Now, if we try to calculate the mean sales and profits, we get missing values for any summary value that used one of the North 2020 sales values.
@@ -330,7 +306,7 @@ budget_missing %>%
   )
 ```
 
-This is because `NA` basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Se `na.rm = TRUE` in the summary function to remove missing values before calculating.
+This is because `NA` basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Set `na.rm = TRUE` in the summary function to remove missing values before calculating.
 
 ```{r}
 budget_missing %>%
@@ -450,7 +426,7 @@ fixed_sales <- sales %>%
   mutate(PRICEEACH = round(SALES / QUANTITYORDERED, 2))
 ```
 
-Now we can re-run the code from before to find any errors. 
+Now we can re-run the code from before to find any errors. We're adding in the `ORDERNUMBER` for the next step.
 
 ```{r}
 sales_check <- fixed_sales %>%
@@ -501,6 +477,41 @@ fixed_sales %>%
   mutate(total = round(total)) %>%
   pivot_wider(names_from = YEAR_ID,
               values_from = total)
+```
+
+## Exercises
+
+### Mutate
+
+Load some data about the [population of the Scottish counties](https://psyteachr.github.io/ads-v1/data/scottish_population.csv). 
+
+```{r}
+scotpop <- read_csv("data/scottish_population.csv",
+                    show_col_types = FALSE)
+```
+
+Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order `population` (in K) then `county`, and show only the counties with populations greater than 200K. 
+
+```{r, echo = FALSE}
+scotpop %>%
+  arrange(desc(population)) %>%
+  filter(population > 200000) %>%
+  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
+  select(population = kpop, 
+         county = name)
+```
+
+::: {.try data-latex=""}
+There are several different ways you could make the table above. Some functions could be in a different order and some couldn't. See where you can move the `filter()` and `arrange()` functions.
+:::
+
+```{r, eval = FALSE, webex.hide = TRUE}
+scotpop %>%
+  arrange(desc(population)) %>%
+  filter(population > 200000) %>%
+  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
+  select(population = kpop, 
+         county = name)
 ```
 
 ## Glossary {#glossary-wrangle}

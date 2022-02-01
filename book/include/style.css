@@ -61,3 +61,13 @@ pre {
 .incomplete-chapter::before {
   content: "This chapter is in draft form and will be revised soon.";
 }
+
+.webex-radiogroup label pre {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  text-indent: 0;
+  display: inline-block;
+  background-color: transparent;
+  background-image: none;
+}

@@ -9,8 +9,8 @@ rmd_files:
 # - 04-data.Rmd
 # - 05-summary.Rmd
 # - 06-joins.Rmd
-- 07-tidy.Rmd
-# - 08-wrangle.Rmd
+# - 07-tidy.Rmd
+- 08-wrangle.Rmd
 # - 09-custom.Rmd
 # - 10-present.Rmd
 # - appendix-0.Rmd

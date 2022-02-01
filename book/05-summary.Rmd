@@ -54,7 +54,7 @@ tweets <- readRDS("data/ncod_tweets.rds")
 
 First, run `glimpse(tweets)` or click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.
 
-## Summarise
+## Summarise {#summary-summarise}
 
 The `summarise()` function from the `r pkg("dplyr")` package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the [Data Transformation Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf) for various summary functions. Some common ones are: `n()`, `min()`, `max()`, `sum()`, `mean()`, and `quantile()`.
 

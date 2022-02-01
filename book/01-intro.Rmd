@@ -87,14 +87,14 @@ There is an important distinction between **installing** a package and **loading
 
 This is done using `r hl(install.packages())`. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store; you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 
-Install the `r pkg("esquisse")` package on your system. This package lets you create plots interactively and copy the code needed to make them reproducibly.
+Install the `r pkg("tidyverse")` package on your system. This package is the main package we will use throughout this book for data wrangling, summaries, and visualisation.
 
 ```{r install-pckg, eval = FALSE}
 # type this in the console pane
-install.packages("esquisse")
+install.packages("tidyverse")
 ```
 
-If you don't already have packages like `r pkg("ggplot2")` and `r pkg("shiny")` installed, it will also install these **dependencies** for you. If you get a message that says something like `package ‘esquisse’ successfully unpacked and MD5 sums checked`, the installation was successful. 
+If you get a message that says something like `package ‘tidyverse’ successfully unpacked and MD5 sums checked`, the installation was successful. 
 
 ::: {.dangerous data-latex=""}
 Never install a package from inside a script. Only do this from the console pane.
@@ -127,7 +127,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using `r hl(library(package_name))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `r hl(library(glue))` within a session, the functions in the package referred to by `glue` will be made available for your R session. The next time you start R, you will need to run `r hl(library(glue))` again if you want to access that package.
+This is done using `(library(package_name))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `r hl(library(glue))` within a session, the functions in the package referred to by `glue` will be made available for your R session. The next time you start R, you will need to run `r hl(library(glue))` again if you want to access that package.
 
 You can load the `r pkg("esquisse")` package for your current R session as follows:
 

@@ -76,7 +76,8 @@ You can leave out the `by` argument if you're matching on all of the columns wit
 A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
 
 ```{r left_join}
-left_join(customers, orders, by = "id")
+left_data <- left_join(customers, orders, by = "id")
+left_data
 ```
 
 ::: join
@@ -86,7 +87,8 @@ left_join(customers, orders, by = "id")
 The order you specify the tables matters, in the below code we have reversed the order and so the result is all rows from the `orders` table joined to any matching rows from the `customers` table.
 
 ```{r left_join-2}
-left_join(orders, customers, by = "id")
+left2_data <- left_join(orders, customers, by = "id")
+left2_data
 ```
 
 ### right_join() {#right_join}
@@ -98,7 +100,8 @@ left_join(orders, customers, by = "id")
 A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table.
 
 ```{r right_join}
-right_join(customers, orders, by = "id")
+right_data <- right_join(customers, orders, by = "id")
+right_data
 ```
 
 ::: {.info data-latex=""}
@@ -114,7 +117,8 @@ This table has the same information as `left_join(orders, customers, by = "id")`
 An `inner_join` returns all the rows that have a match in the other table.
 
 ```{r inner_join}
-inner_join(customers, orders, by = "id")
+inner_data <- inner_join(customers, orders, by = "id")
+inner_data
 ```
 
 ### full_join() {#full_join}
@@ -126,7 +130,8 @@ inner_join(customers, orders, by = "id")
 A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
 
 ```{r full_join}
-full_join(customers, orders, by = "id")
+full_data <- full_join(customers, orders, by = "id")
+full_data
 ```
 
 ## Filtering Joins
@@ -142,7 +147,8 @@ full_join(customers, orders, by = "id")
 A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
 
 ```{r semi_join}
-semi_join(customers, orders, by = "id")
+semi_data <- semi_join(customers, orders, by = "id")
+semi_data
 ```
 
 ::: {.info data-latex=""}
@@ -156,7 +162,8 @@ Unlike an inner join, a semi join will never duplicate the rows in the left tabl
 Order matters in a semi join.
 
 ```{r semi_join-2}
-semi_join(orders, customers, by = "id")
+semi2_data <- semi_join(orders, customers, by = "id")
+semi2_data
 ```
 
 ### anti_join() {#anti_join}
@@ -168,7 +175,8 @@ semi_join(orders, customers, by = "id")
 An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
 
 ```{r anti_join}
-anti_join(customers, orders, by = "id")
+anti_data <- anti_join(customers, orders, by = "id")
+anti_data
 ```
 
 ::: join
@@ -178,7 +186,8 @@ anti_join(customers, orders, by = "id")
 Order matters in an anti join.
 
 ```{r anti_join-2}
-anti_join(orders, customers, by = "id")
+anti2_data <- anti_join(orders, customers, by = "id")
+anti_data
 ```
 
 ## Multiple joins
@@ -234,7 +243,8 @@ new_customers <- tibble(
   postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
 )
 
-bind_rows(customers, new_customers)
+bindr_data <- bind_rows(customers, new_customers)
+bindr_data
 ```
 
 The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
@@ -249,7 +259,8 @@ new_customers <- tibble(
   new = c(1,2,3,4,5)
 )
 
-bind_rows(customers, new_customers)
+bindr2_data <- bind_rows(customers, new_customers)
+bindr2_data
 ```
 
 ### bind_cols() {#bind_cols}
@@ -261,7 +272,8 @@ new_info <- tibble(
   colour = c("red", "orange", "yellow", "green", "blue")
 )
 
-bind_cols(customers, new_info)
+bindc_data <- bind_cols(customers, new_info)
+bindc_data 
 ```
 
 ### Importing multiple files
@@ -321,7 +333,8 @@ new_customers <- tibble(
   city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
 )
 
-intersect(customers, new_customers)
+intersect_data <- intersect(customers, new_customers)
+intersect_data
 
 ```
 
@@ -338,7 +351,8 @@ base::intersect(customers, new_customers)
 `union()` returns all the rows from both tables, removing duplicate rows, unlike `bind_rows()`.
 
 ```{r union}
-union(customers, new_customers)
+union_data <- union(customers, new_customers)
+union_data
 ```
 
 ::: {.warning data-latex=""}
@@ -354,13 +368,14 @@ base::union(customers, new_customers)
 `setdiff` returns rows that are in the first table, but not in the second table.
 
 ```{r setdiff}
-setdiff(customers, new_customers)
+setdiff_data <- setdiff(customers, new_customers)
+setdiff_data
 ```
 
 Order matters for `setdiff`.
 
 ```{r setdiff-order}
-setdiff(new_customers, customers)
+setdiff2_data <- setdiff(new_customers, customers)
 ```
 
 ::: {.warning data-latex=""}
@@ -370,6 +385,56 @@ If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also 
 base::setdiff(customers, new_customers)
 ```
 :::
+
+## Conflicting variable types
+
+As we covered in Chapter\ \@ref(col_types), when you import or create data, R will do its best to set each column to an appropriate data type. However, sometimes it gets it wrong or sometimes there's something in the way the data has been encoded in the original spreadsheet that causes the data type to be different than expected. When joining datasets by common columns, it's important that not only are the variable names identical, but the data type of those variables is identical.
+
+Let's recreate our `new_customers` dataset but this time, we'll specify that `id` is a character `r glossary("character")` variable.
+
+```{r}
+new_customers2 <- tibble(
+  id = as.character(5:9),
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
+)
+str(new_customers2)
+
+```
+
+If you try to join this dataset to any of the other datasets where `id` is stored as a `r glossary("numeric")` variable, it will produce the error 
+
+```{r error=TRUE}
+inner_join(customers, new_customers2)
+```
+
+The same goes for `bind_rows()`:
+
+```{r error=TRUE}
+bind_rows(customers, new_customers2)
+```
+
+
+As alternative method to change variable types from what we showed you in Chapter\ \@ref(col_types) is to use the `as.***` functions. If you type `as.` into a code chunk, you will see that there a huge number of these functions for transforming variables and datasets to different types. Exactly which one you need will depend on the data you have but a few commonly used ones are:
+
+* `as.numeric()` - convert a variable to numeric. Useful for when you have a variable of real numbers that have been encoded as character. Any values that are not numeric (e.g., if you have the word "missing" in cells that you have no data for), will be returned as `NA`.
+* `as.factor()` - convert a variable to a factor. You can set the factor levels and labels manually, or use the default order (alphabetical).
+* `as.character()` - convert a variable to character data.
+* `as.tibble()` and `as.data.frame()` - convert an object to a tibble data frame. This isn't actually relevant to what we're discussing here but it's a useful one to be aware of because sometimes you'll run into issues where you get an error that specifically requests your data is a tibble or data frame type and you can use this function to overwrite your object. 
+
+To use these functions on a variable we can use `mutate()` to overwrite the variable with that variable as the new data type:
+
+```{r}
+new_customers2 <- new_customers2 %>%
+  mutate(id = as.numeric(id))
+```
+
+Once you've done this, the joins will now work:
+
+```{r}
+inner_join(orders, new_customers2)
+```
+
 
 ## Exercises
 
@@ -392,6 +457,30 @@ Often when we're working with student grades they are provided to us in only one
 schedule <- read_csv("data/scheduleA.csv")
 grades1 <- read_csv("data/grade_data1.csv") 
 grades2 <- read_csv("data/grade_data2.csv")
+```
+
+
+### Matching the variable types
+
+At UofG, all students are given a GUID, a numeric ID number. However, that ID number is also then combined with the first letter from your surname to create your username that is used with your email address. For example, if your ID is 1234567 and your surname is Nordmann, your username would be 1234567n. From a data wrangling perspective this is very annoying because the numeric ID will be stored as numeric data, but the username will be stored as character because of the letter at the end. `grades1` has a numeric id whilst `grades2` has the additional letter. In order to join these datasets, we need to standardise the variables.
+
+First, remove the letter character from `id` using the function `str_sub()` which returns a subset of a string.
+
+```{r}
+grades1 <- grades1 %>%
+  mutate(id = str_sub(id, # the variable you want to subset
+                      start = 1, # when the subset should start, in this case, the 1st character
+                      end = nchar(id)-1)) # when the subset should end, in this case, 1 less than the number of characters 
+```
+
+
+Now, transform the data type of `id` so that it matches the data type in `grades2`.
+
+```{r webex.hide = TRUE}
+str(grades1)
+str(grades2) # check variable types
+grades1 <- grades1 %>%
+  mutate(id = as.numeric(id))
 ```
 
 

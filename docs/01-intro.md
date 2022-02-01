@@ -86,15 +86,15 @@ There is an important distinction between **installing** a package and **loading
 
 This is done using <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='op'>)</span></code>. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store; you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 
-Install the <code class='package'>esquisse</code> package on your system. This package lets you create plots interactively and copy the code needed to make them reproducibly.
+Install the <code class='package'>tidyverse</code> package on your system. This package is the main package we will use throughout this book for data wrangling, summaries, and visualisation.
 
 
 ```r
 # type this in the console pane
-install.packages("esquisse")
+install.packages("tidyverse")
 ```
 
-If you don't already have packages like <code class='package'>ggplot2</code> and <code class='package'>shiny</code> installed, it will also install these **dependencies** for you. If you get a message that says something like `package ‘esquisse’ successfully unpacked and MD5 sums checked`, the installation was successful. 
+If you get a message that says something like `package ‘tidyverse’ successfully unpacked and MD5 sums checked`, the installation was successful. 
 
 ::: {.dangerous data-latex=""}
 Never install a package from inside a script. Only do this from the console pane.
@@ -128,7 +128,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>package_name</span><span class='op'>)</span></code>. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span></code> within a session, the functions in the package referred to by `glue` will be made available for your R session. The next time you start R, you will need to run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span></code> again if you want to access that package.
+This is done using `(library(package_name))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span></code> within a session, the functions in the package referred to by `glue` will be made available for your R session. The next time you start R, you will need to run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span></code> again if you want to access that package.
 
 You can load the <code class='package'>esquisse</code> package for your current R session as follows:
 
@@ -137,14 +137,10 @@ You can load the <code class='package'>esquisse</code> package for your current 
 library(esquisse)
 ```
 
-```
-## Warning: package 'esquisse' was built under R version 4.1.2
-```
-
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function

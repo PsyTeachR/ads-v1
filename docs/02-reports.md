@@ -180,7 +180,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 332 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 328 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -307,7 +307,7 @@ This is useful for complex styling, but you can also use these common plain-text
 -   Format text with *italics* or **bold** by surrounding the text with one or two asterisks or underscores.
 -   Make lists using numbers, asterisks or dashes before items. Indent items to make nested lists.
 -   Make links like this: `[psyTeachR](https://psyteachr.github.io/)`
--   Download the [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) to learn more.
+-   Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet) to learn more.
 
 Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.
 
@@ -608,7 +608,7 @@ ggplot(data = sales_counts,
 
 ### Loading packages
 
-You can also add the packages you need in your setup chunk using <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span></code>. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>package_I_need</span><span class='op'>)</span></code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.
+You can also add the packages you need in your setup chunk using <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span></code>. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `library(package_I_need)` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
 
 ::: {.try data-latex=""}
 Move the code that loads the `tidyverse` and `kableExtra` to the setup chunk.
@@ -823,7 +823,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.2 (2021-11-01)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>

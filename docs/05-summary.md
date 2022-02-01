@@ -156,10 +156,10 @@ quantile(tweets$favorite_count, 0.90)
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_COJGVHUIHD'><label><input type="radio" autocomplete="off" name="radio_COJGVHUIHD" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_COJGVHUIHD" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_COJGVHUIHD" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_COJGVHUIHD" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_NNCTFFPTEM'><label><input type="radio" autocomplete="off" name="radio_NNCTFFPTEM" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_NNCTFFPTEM" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_NNCTFFPTEM" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_NNCTFFPTEM" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label></div>
 
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_LTQRGNYVLK'><label><input type="radio" autocomplete="off" name="radio_LTQRGNYVLK" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_LTQRGNYVLK" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_LTQRGNYVLK" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_LTQRGNYVLK" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label></div>
+    <div class='webex-radiogroup' id='radio_DALPEQQVHC'><label><input type="radio" autocomplete="off" name="radio_DALPEQQVHC" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_DALPEQQVHC" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_DALPEQQVHC" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_DALPEQQVHC" value="x"></input> <span>`group_by(display_text_width)`</span></label></div>
 
 :::
 
@@ -315,7 +315,7 @@ How would you create the table of counts below?
 
 </div>
 
-<div class='webex-radiogroup' id='radio_TVLATAVZGC'><label><input type="radio" autocomplete="off" name="radio_TVLATAVZGC" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_TVLATAVZGC" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_TVLATAVZGC" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_TVLATAVZGC" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
+<div class='webex-radiogroup' id='radio_ZVYGKYFKAT'><label><input type="radio" autocomplete="off" name="radio_ZVYGKYFKAT" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_ZVYGKYFKAT" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_ZVYGKYFKAT" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_ZVYGKYFKAT" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
 
 :::
 
@@ -422,7 +422,7 @@ verified <-
 
 ::: {.try data-latex=""}
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `verified`? 
-    <div class='webex-radiogroup' id='radio_MJICLUYLXS'><label><input type="radio" autocomplete="off" name="radio_MJICLUYLXS" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MJICLUYLXS" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MJICLUYLXS" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_MJICLUYLXS" value="x"></input> <span>`summarise(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_FPAHRXFPNP'><label><input type="radio" autocomplete="off" name="radio_FPAHRXFPNP" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_FPAHRXFPNP" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_FPAHRXFPNP" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_FPAHRXFPNP" value="x"></input> <span>`count(screen_name)`</span></label></div>
 
 :::
 
@@ -540,7 +540,7 @@ most_fav <- tweets %>%
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_NBZQCYHHTE'><label><input type="radio" autocomplete="off" name="radio_NBZQCYHHTE" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_NBZQCYHHTE" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_NBZQCYHHTE" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_NBZQCYHHTE" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_UBHIFSKSXU'><label><input type="radio" autocomplete="off" name="radio_UBHIFSKSXU" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_UBHIFSKSXU" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_UBHIFSKSXU" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_UBHIFSKSXU" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label></div>
 
 :::
 

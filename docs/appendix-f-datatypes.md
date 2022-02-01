@@ -164,14 +164,14 @@ today() + days(100)
 ```
 
 ```
-## [1] "2022-01-27"
-## [1] "2022-01-27 14:21:53 GMT"
+## [1] "2022-01-31"
+## [1] "2022-01-31 22:08:12 GMT"
 ## [1] "2022-01-24"
 ## [1] "2022-01-24"
 ## [1] "2022-01-24"
 ## [1] "2001-01-01 01:01:00 UTC"
-## Time difference of 16506 days
-## [1] "2022-05-07"
+## Time difference of 16510 days
+## [1] "2022-05-11"
 ```
 
 Date and datetimes are a type of double, but you can tell that they are dates by checking their `class()`. Datetimes can have one or more of a few classes that start with `POSIX`.

@@ -256,7 +256,7 @@ If you're a Eurovision nerd (like Emily), try downloading playlists from several
 
 Select the first 20 artists in the genre "eurovision". So that people don't spam the Spotify API, you are limited to up to 50 artists per request.
 
-```{r}
+```{r eval=FALSE}
 euro_genre <- get_genre_artists(
   genre = "eurovision",
   limit = 20,
@@ -270,7 +270,7 @@ euro_genre %>%
 
 Now you can select the next 20 artists, incrementing the offset by 20, join that to the first table, and process the data.
 
-```{r}
+```{r eval=FALSE}
 euro_genre2 <- get_genre_artists(
   genre = "eurovision",
   limit = 20,
@@ -309,9 +309,6 @@ euro_genre200 %>%
   arrange(desc(followers.total)) %>%
   datatable()
 ```
-
-
-
 
 
 ## By Track

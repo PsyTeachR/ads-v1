@@ -9,8 +9,6 @@
 
 In this chapter we'll use the following packages:
 
-In this chapter we'll use the following packages:
-
 
 ```r
 library(tidyverse)     # includes readr & tibble
@@ -164,7 +162,8 @@ A `left_join` keeps all the data from the first (left) table and joins anything 
 
 
 ```r
-left_join(customers, orders, by = "id")
+left_data <- left_join(customers, orders, by = "id")
+left_data
 ```
 
 <div class="kable-table">
@@ -234,7 +233,8 @@ The order you specify the tables matters, in the below code we have reversed the
 
 
 ```r
-left_join(orders, customers, by = "id")
+left2_data <- left_join(orders, customers, by = "id")
+left2_data
 ```
 
 <div class="kable-table">
@@ -318,7 +318,8 @@ A `right_join` keeps all the data from the second (right) table and joins anythi
 
 
 ```r
-right_join(customers, orders, by = "id")
+right_data <- right_join(customers, orders, by = "id")
+right_data
 ```
 
 <div class="kable-table">
@@ -406,7 +407,8 @@ An `inner_join` returns all the rows that have a match in the other table.
 
 
 ```r
-inner_join(customers, orders, by = "id")
+inner_data <- inner_join(customers, orders, by = "id")
+inner_data
 ```
 
 <div class="kable-table">
@@ -472,7 +474,8 @@ A `full_join` lets you join up rows in two tables while keeping all of the infor
 
 
 ```r
-full_join(customers, orders, by = "id")
+full_data <- full_join(customers, orders, by = "id")
+full_data
 ```
 
 <div class="kable-table">
@@ -566,7 +569,8 @@ A `semi_join` returns all rows from the left table where there are matching valu
 
 
 ```r
-semi_join(customers, orders, by = "id")
+semi_data <- semi_join(customers, orders, by = "id")
+semi_data
 ```
 
 <div class="kable-table">
@@ -617,7 +621,8 @@ Order matters in a semi join.
 
 
 ```r
-semi_join(orders, customers, by = "id")
+semi2_data <- semi_join(orders, customers, by = "id")
+semi2_data
 ```
 
 <div class="kable-table">
@@ -669,7 +674,8 @@ An `anti_join` return all rows from the left table where there are *not* matchin
 
 
 ```r
-anti_join(customers, orders, by = "id")
+anti_data <- anti_join(customers, orders, by = "id")
+anti_data
 ```
 
 <div class="kable-table">
@@ -701,7 +707,8 @@ Order matters in an anti join.
 
 
 ```r
-anti_join(orders, customers, by = "id")
+anti2_data <- anti_join(orders, customers, by = "id")
+anti_data
 ```
 
 <div class="kable-table">
@@ -710,21 +717,15 @@ anti_join(orders, customers, by = "id")
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
-   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
   </tr>
 </tbody>
 </table>
@@ -785,7 +786,8 @@ new_customers <- tibble(
   postcode = c("FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE")
 )
 
-bind_rows(customers, new_customers)
+bindr_data <- bind_rows(customers, new_customers)
+bindr_data
 ```
 
 <div class="kable-table">
@@ -862,7 +864,8 @@ new_customers <- tibble(
   new = c(1,2,3,4,5)
 )
 
-bind_rows(customers, new_customers)
+bindr2_data <- bind_rows(customers, new_customers)
+bindr2_data
 ```
 
 <div class="kable-table">
@@ -952,7 +955,8 @@ new_info <- tibble(
   colour = c("red", "orange", "yellow", "green", "blue")
 )
 
-bind_cols(customers, new_info)
+bindc_data <- bind_cols(customers, new_info)
+bindc_data 
 ```
 
 <div class="kable-table">
@@ -1062,7 +1066,8 @@ new_customers <- tibble(
   city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
 )
 
-intersect(customers, new_customers)
+intersect_data <- intersect(customers, new_customers)
+intersect_data
 ```
 
 <div class="kable-table">
@@ -1095,8 +1100,7 @@ base::intersect(customers, new_customers)
 ```
 
 ```
-## Error:
-## ! Must subset rows with a valid subscript vector.
+## Error: Must subset rows with a valid subscript vector.
 ## i Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
@@ -1108,7 +1112,8 @@ base::intersect(customers, new_customers)
 
 
 ```r
-union(customers, new_customers)
+union_data <- union(customers, new_customers)
+union_data
 ```
 
 <div class="kable-table">
@@ -1207,7 +1212,8 @@ base::union(customers, new_customers)
 
 
 ```r
-setdiff(customers, new_customers)
+setdiff_data <- setdiff(customers, new_customers)
+setdiff_data
 ```
 
 <div class="kable-table">
@@ -1250,44 +1256,8 @@ Order matters for `setdiff`.
 
 
 ```r
-setdiff(new_customers, customers)
+setdiff2_data <- setdiff(new_customers, customers)
 ```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> id </th>
-   <th style="text-align:left;"> postcode </th>
-   <th style="text-align:left;"> city </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:left;"> FK1 4RS </td>
-   <td style="text-align:left;"> Falkirk </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:left;"> PA42 7EA </td>
-   <td style="text-align:left;"> Ardbeg </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:left;"> G81 4SJ </td>
-   <td style="text-align:left;"> Doogal </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:left;"> KW15 1SE </td>
-   <td style="text-align:left;"> Kirkwall </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
 
 ::: {.warning data-latex=""}
 If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
@@ -1339,6 +1309,132 @@ base::setdiff(customers, new_customers)
 </div>
 :::
 
+## Conflicting variable types
+
+As we covered in Chapter\ \@ref(col_types), when you import or create data, R will do its best to set each column to an appropriate data type. However, sometimes it gets it wrong or sometimes there's something in the way the data has been encoded in the original spreadsheet that causes the data type to be different than expected. When joining datasets by common columns, it's important that not only are the variable names identical, but the data type of those variables is identical.
+
+Let's recreate our `new_customers` dataset but this time, we'll specify that `id` is a character <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> variable.
+
+
+```r
+new_customers2 <- tibble(
+  id = as.character(5:9),
+  postcode = c("PA75 6NR", "FK1 4RS", "PA42 7EA", "G81 4SJ", "KW15 1SE"),
+  city = c("Tobermory", "Falkirk", "Ardbeg", "Doogal", "Kirkwall")
+)
+str(new_customers2)
+```
+
+```
+## tibble [5 x 3] (S3: tbl_df/tbl/data.frame)
+##  $ id      : chr [1:5] "5" "6" "7" "8" ...
+##  $ postcode: chr [1:5] "PA75 6NR" "FK1 4RS" "PA42 7EA" "G81 4SJ" ...
+##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
+```
+
+If you try to join this dataset to any of the other datasets where `id` is stored as a <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> variable, it will produce the error 
+
+
+```r
+inner_join(customers, new_customers2)
+```
+
+```
+## Joining, by = c("id", "city", "postcode")
+```
+
+```
+## Error: Can't join on `x$id` x `y$id` because of incompatible types.
+## i `x$id` is of type <integer>>.
+## i `y$id` is of type <character>>.
+```
+
+The same goes for `bind_rows()`:
+
+
+```r
+bind_rows(customers, new_customers2)
+```
+
+```
+## Error: Can't combine `..1$id` <integer> and `..2$id` <character>.
+```
+
+
+As alternative method to change variable types from what we showed you in Chapter\ \@ref(col_types) is to use the `as.***` functions. If you type `as.` into a code chunk, you will see that there a huge number of these functions for transforming variables and datasets to different types. Exactly which one you need will depend on the data you have but a few commonly used ones are:
+
+* `as.numeric()` - convert a variable to numeric. Useful for when you have a variable of real numbers that have been encoded as character. Any values that are not numeric (e.g., if you have the word "missing" in cells that you have no data for), will be returned as `NA`.
+* `as.factor()` - convert a variable to a factor. You can set the factor levels and labels manually, or use the default order (alphabetical).
+* `as.character()` - convert a variable to character data.
+* `as.tibble()` and `as.data.frame()` - convert an object to a tibble data frame. This isn't actually relevant to what we're discussing here but it's a useful one to be aware of because sometimes you'll run into issues where you get an error that specifically requests your data is a tibble or data frame type and you can use this function to overwrite your object. 
+
+To use these functions on a variable we can use `mutate()` to overwrite the variable with that variable as the new data type:
+
+
+```r
+new_customers2 <- new_customers2 %>%
+  mutate(id = as.numeric(id))
+```
+
+Once you've done this, the joins will now work:
+
+
+```r
+inner_join(orders, new_customers2)
+```
+
+```
+## Joining, by = "id"
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> city </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:left;"> Ardbeg </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+
 ## Exercises
 
 There's lots of different use cases for the `****_join()` functions. These exercises will allow you to practice different joins. If you have any examples of where joins might be helpful in your own work, please post them on Teams in the week 6 channel, as having many concrete examples can help distinguish between the different joins.
@@ -1365,10 +1461,16 @@ schedule <- read_csv("data/scheduleA.csv")
 
 ```
 ## Rows: 23 Columns: 2
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr (1): Grade
 ## dbl (1): Points
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -1380,10 +1482,16 @@ grades1 <- read_csv("data/grade_data1.csv")
 
 ```
 ## Rows: 100 Columns: 3
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
-## chr (1): assessment
-## dbl (2): id, Points
+## chr (2): assessment, id
+## dbl (1): Points
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -1395,13 +1503,75 @@ grades2 <- read_csv("data/grade_data2.csv")
 
 ```
 ## Rows: 100 Columns: 3
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr (1): assessment
 ## dbl (2): id, Points
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+
+</div>
+
+
+### Matching the variable types
+
+At UofG, all students are given a GUID, a numeric ID number. However, that ID number is also then combined with the first letter from your surname to create your username that is used with your email address. For example, if your ID is 1234567 and your surname is Nordmann, your username would be 1234567n. From a data wrangling perspective this is very annoying because the numeric ID will be stored as numeric data, but the username will be stored as character because of the letter at the end. `grades1` has a numeric id whilst `grades2` has the additional letter. In order to join these datasets, we need to standardise the variables.
+
+First, remove the letter character from `id` using the function `str_sub()` which returns a subset of a string.
+
+
+```r
+grades1 <- grades1 %>%
+  mutate(id = str_sub(id, # the variable you want to subset
+                      start = 1, # when the subset should start, in this case, the 1st character
+                      end = nchar(id)-1)) # when the subset should end, in this case, 1 less than the number of characters 
+```
+
+
+Now, transform the data type of `id` so that it matches the data type in `grades2`.
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+str(grades1)
+str(grades2) # check variable types
+grades1 <- grades1 %>%
+  mutate(id = as.numeric(id))
+```
+
+```
+## spec_tbl_df [100 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ assessment: chr [1:100] "Exam" "Exam" "Exam" "Exam" ...
+##  $ id        : chr [1:100] "1" "2" "3" "4" ...
+##  $ Points    : num [1:100] NA 16 12 15 16 NA 16 13 15 NA ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   assessment = col_character(),
+##   ..   id = col_character(),
+##   ..   Points = col_double()
+##   .. )
+##  - attr(*, "problems")=<externalptr> 
+## spec_tbl_df [100 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ id        : num [1:100] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Points    : num [1:100] 12 16 15 NA 14 NA 8 NA 16 14 ...
+##  $ assessment: chr [1:100] "Essay" "Essay" "Essay" "Essay" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   id = col_double(),
+##   ..   Points = col_double(),
+##   ..   assessment = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
 ```
 
 
@@ -1551,12 +1721,20 @@ In preparation for the summative assessment, how you do this is and what informa
    <td style="text-align:left;"> Joins that bind one table to another by adding their rows or columns together. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [character](https://psyteachr.github.io/glossary/c.html#character){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing strings of text. </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [filtering joins](https://psyteachr.github.io/glossary/f.html#filtering-joins){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [mutating joins](https://psyteachr.github.io/glossary/m.html#mutating-joins){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [numeric](https://psyteachr.github.io/glossary/n.html#numeric){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type representing a real decimal number or integer. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [set operations](https://psyteachr.github.io/glossary/s.html#set-operations){class="glossary" target="_blank"} </td>

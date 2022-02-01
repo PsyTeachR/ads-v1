@@ -243,7 +243,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, 2022-01-27, ~
+## $ date      <date> 2022-02-01, 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, ~
 ```
 
 
@@ -259,7 +259,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, 2022-01-27, ~
+## $ date      <dttm> 2022-02-01, 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, ~
 ```
 
 
@@ -275,7 +275,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, 2022-01-27, ~
+## $ date      <date> 2022-02-01, 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, ~
 ```
 
 
@@ -303,12 +303,18 @@ demo <- readr::read_csv("data/demo.csv")
 
 ```
 ## Rows: 6 Columns: 6
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr  (2): character, factor
 ## dbl  (2): integer, double
 ## lgl  (1): logical
 ## date (1): date
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -384,7 +390,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, 2022-01-27, ~
+## $ date      <date> 2022-02-01, 2022-01-31, 2022-01-30, 2022-01-29, 2022-01-28, ~
 ```
 
 
@@ -583,9 +589,15 @@ mess <- read_csv("data/mess.csv", lazy = FALSE)
 
 ```
 ## Rows: 27 Columns: 1
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr (1): This is my messy dataset
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -649,10 +661,16 @@ mess <- read_csv("data/mess.csv",
 
 ```
 ## Rows: 26 Columns: 7
+```
+
+```
 ## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr (6): junk, order, letter, good, min_max, date
 ## dbl (1): score
+```
+
+```
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.

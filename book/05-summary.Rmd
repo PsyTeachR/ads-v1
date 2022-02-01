@@ -58,6 +58,16 @@ First, run `glimpse(tweets)` or click on the object in the environment to find o
 
 The `summarise()` function from the `r pkg("dplyr")` package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the [Data Transformation Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf) for various summary functions. Some common ones are: `n()`, `min()`, `max()`, `sum()`, `mean()`, and `quantile()`.
 
+::: {.warning data-latex=""}
+If you get the answer `NA` from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter\ \@ref(missing-values), but you can ignore missing values for many functions by adding the argument `na.rm = TRUE`.
+
+```{r}
+values <- c(1, 2, 4, 3, NA, 2)
+mean(values) # is NA
+mean(values, na.rm = TRUE) # removes NAs first
+```
+:::
+
 This function can be used to answer questions like: How many tweets were there? What date range is represented in these data? What are the `r glossary("mean")` and `r glossary("median")` number of favourites per tweet? Let's start with a very simple example to calculate the mean, median, min, and max number of favourites (Twitter's version of a "like"):
 
 * The first argument that `summarise()` takes is the data table you wish to summarise, in this case the object `tweets`.

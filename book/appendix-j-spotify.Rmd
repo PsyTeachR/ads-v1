@@ -37,10 +37,12 @@ Now you're ready to get data from Spotify. There are several types of data that 
 ```{r, include = FALSE}
 # avoids calling spotify repeatedly and allows knitting even when you don't have a connection to Spotify
 
-#saveRDS(btw_features, "R/btw_features.Rds")
+#saveRDS(euro_genre2, "R/euro_genre2.Rds")
 
 gaga <- readRDS("R/gaga.Rds")
 eurovision2021 <- readRDS("R/eurovision2021.Rds")
+euro_genre <- readRDS("R/euro_genre.Rds")
+euro_genre2 <- readRDS("R/euro_genre2.Rds")
 euro_genre200 <- readRDS("R/euro_genre200.Rds")
 btw_analysis <- readRDS("R/btw_analysis.Rds")
 btw_features <- readRDS("R/btw_features.Rds")
@@ -256,13 +258,16 @@ If you're a Eurovision nerd (like Emily), try downloading playlists from several
 
 Select the first 20 artists in the genre "eurovision". So that people don't spam the Spotify API, you are limited to up to 50 artists per request.
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 euro_genre <- get_genre_artists(
   genre = "eurovision",
   limit = 20,
   offset = 0
 )
+```
 
+
+```{r}
 euro_genre %>%
   select(name, popularity, followers.total) %>%
   datatable()
@@ -270,13 +275,16 @@ euro_genre %>%
 
 Now you can select the next 20 artists, incrementing the offset by 20, join that to the first table, and process the data.
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 euro_genre2 <- get_genre_artists(
   genre = "eurovision",
   limit = 20,
   offset = 20
 )
+```
 
+
+```{r}
 bind_rows(euro_genre, euro_genre2) %>%
   select(name, popularity, followers.total) %>%
   datatable()

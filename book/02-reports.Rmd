@@ -254,7 +254,7 @@ We're going to write a basic report for this sales dataset using R Markdown to s
 
 For this report we're just going to present some simple sales stats for three types of vehicles: planes, motorcycles, and classic cars. We'll come back to how to write this kind of code yourself in Chapter\ \@ref(summary). For now, see if you can follow the logic of what the code is doing via the code comments.
 
-Create a new code chunk, then copy, paste and run the following code and then view `sales_counts` by clicking on the object in the environment pane.
+Create a new code chunk, then copy, paste and run the following code and then view `sales_counts` by clicking on the object in the environment pane. Note that it doesn't really matter whether you use `sales_local` or `sales_online` in the first line as they're identical.
 
 ```{r sales_counts}
 # start with the sale_online data and then
@@ -286,7 +286,7 @@ This is useful for complex styling, but you can also use these common plain-text
 -   Format text with *italics* or **bold** by surrounding the text with one or two asterisks or underscores.
 -   Make lists using numbers, asterisks or dashes before items. Indent items to make nested lists.
 -   Make links like this: `[psyTeachR](https://psyteachr.github.io/)`
--   Download the [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) to learn more.
+-   Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet) to learn more.
 
 Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.
 
@@ -505,7 +505,7 @@ ggplot(data = sales_counts,
 
 ### Loading packages
 
-You can also add the packages you need in your setup chunk using `r hl(library())`. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `r hl(library(package_I_need))` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
+You can also add the packages you need in your setup chunk using `r hl(library())`. Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `library(package_I_need)` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
 
 ::: {.try data-latex=""}
 Move the code that loads the `tidyverse` and `kableExtra` to the setup chunk.

@@ -45,10 +45,10 @@ tab:wide-data
 tab:long-data
 tab:pivot-longer
 tab:pivot-wider
-tab:unnamed-chunk-4
 tab:unnamed-chunk-5
 tab:unnamed-chunk-6
 tab:unnamed-chunk-7
+tab:unnamed-chunk-8
 fig:unnamed-chunk-2
 fig:figdim-demo
 fig:outwidth-demo
@@ -280,8 +280,10 @@ set-operations
 intersect
 union
 setdiff
+conflicting-variable-types
 exercises-3
 grade-data
+matching-the-variable-types
 complete-records
 missing-data
 report
@@ -289,7 +291,8 @@ glossary-joins
 resources-joins
 tidy
 ilo-tidy
-data-structure
+set-up-4
+data-structures
 untidy-data
 tidy-data
 reshaping-data
@@ -302,7 +305,6 @@ one-value-per-cell
 altering-data
 fixing-data-types
 pipes
-multi-step-pipes
 glossary-tidy
 resources-tidy
 wrangle
@@ -355,6 +357,7 @@ resources-present
 installing-r
 installing-base-r
 installing-rstudio
+installing-rtools
 rstudio-settings
 installing-latex
 appendix-updating-r

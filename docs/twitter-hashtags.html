@@ -19,10 +19,10 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
@@ -94,13 +94,13 @@
 <span class="header-section-number">H</span> Twitter Hashtags<a class="anchor" aria-label="anchor" href="#twitter-hashtags"><i class="fas fa-link"></i></a>
 </h1>
 <p>In this appendix, we will create a table of the top five hashtags used in conjunction with #NationalComingOutDay, the total number of tweets in each hashtag, the total number of likes, and the top tweet for each hashtag.</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span>      <span class="co"># for searching tweets</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>        <span class="co"># for pasting strings</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span></code></pre></div>
 <p>The example below uses the data from Chapter <a href="reports.html#summary">2.6.5</a> (<a href="data/ncod_tweets.rds" download>which you can download</a>), but we encourage you to try a hashtag that interests you.</p>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load tweets</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
                         n <span class="op">=</span> <span class="fl">30000</span>, 
@@ -108,27 +108,27 @@
 
 <span class="co"># save them to a file so you can skip this step in the future</span>
 <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">tweets</span>, file <span class="op">=</span> <span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load tweets from the file</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/ncod_tweets.rds"</span><span class="op">)</span></code></pre></div>
 <div id="select-relevant-data" class="section level2" number="18.1">
 <h2>
 <span class="header-section-number">H.1</span> Select relevant data<a class="anchor" aria-label="anchor" href="#select-relevant-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>The function <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> is useful for just keeping the variables (columns) you need to work with, which can make working with very large datasets easier. The arguments to <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> are simply the names of the variables and the resulting table will present them in the order you specify.</p>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span></code></pre></div>
+<p>The function <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is useful for just keeping the variables (columns) you need to work with, which can make working with very large datasets easier. The arguments to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> are simply the names of the variables and the resulting table will present them in the order you specify.</p>
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="unnest-columns" class="section level2" number="18.2">
 <h2>
 <span class="header-section-number">H.2</span> Unnest columns<a class="anchor" aria-label="anchor" href="#unnest-columns"><i class="fas fa-link"></i></a>
 </h2>
-<p>Look at the dataset using <code>View(tweets_with_hashtags)</code> or clicking on it in the Environment tab. You'll notice that the variable <code>hashtags</code> has multiple values in each cell (i.e., when users used more than one hashtag in a single tweet). In order to work with this information, we need to separate each hashtag so that each row of data represents a single hashtag. We can do this using the function <code><a href="https://rdrr.io/pkg/tidyr/man/nest.html">unnest()</a></code> and adding a pipeline of code.</p>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/nest.html">unnest</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
+<p>Look at the dataset using <code><a href="https://rdrr.io/r/utils/View.html">View(tweets_with_hashtags)</a></code> or clicking on it in the Environment tab. You'll notice that the variable <code>hashtags</code> has multiple values in each cell (i.e., when users used more than one hashtag in a single tweet). In order to work with this information, we need to separate each hashtag so that each row of data represents a single hashtag. We can do this using the function <code>unnest()</code> and adding a pipeline of code.</p>
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">text</span>, <span class="va">favorite_count</span>, <span class="va">media_url</span><span class="op">)</span><span class="op">%&gt;%</span>
+  <span class="fu">unnest</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">hashtags</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <p>Look at <code>tweets_with_hashtags</code> to see how it is different from the table <code>tweets</code>. WHy does it have more rows?</p>
 </div>
@@ -140,15 +140,15 @@
 <p>To get the top 5 hashtags we need to know how tweets used each one. This code uses pipes to build up the analysis. When you encounter multi-pipe code, it can be very useful to run each line of the pipeline to see how it builds up and to check the output at each step. This code:</p>
 <ul>
 <li>Starts with the object <code>tweets_with_hashtags</code> and then;</li>
-<li>Counts the number of tweets for each hashtag using <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code> and then;</li>
-<li>Filters out any blank cells using <code>!is.na()</code> (you can read this as "keep any row value where it is not true (<code>!</code>) that <code>hashtags</code> is missing") and then;</li>
-<li>Returns the top five values using <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> and orders them by the <code>n</code> column.</li>
+<li>Counts the number of tweets for each hashtag using <code>count()</code> and then;</li>
+<li>Filters out any blank cells using <code>!is.na()</code> (you can read this as "keep any row value where it is not true (<code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>) that <code>hashtags</code> is missing") and then;</li>
+<li>Returns the top five values using <code>slice_max()</code> and orders them by the <code>n</code> column.</li>
 </ul>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>  <span class="co"># get rid of the blank value</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># get rid of the blank value</span>
+  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
 <span class="va">top5_hashtags</span></code></pre></div>
 <div class="kable-table">
@@ -205,15 +205,15 @@ ComingOutDay
 </tbody>
 </table></div>
 </div>
-<p>Two of the hashtags are the same, but with different case. We can fix this by adding in an extra line of code that uses <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to overwrite the variable <code>hashtag</code> with the same data but transformed to lower case using <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code>. Since we're going to use the table <code>tweets_with_hashtags</code> a few more times, let's change that table first rather than having to fix this every time we use the table.</p>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span>
+<p>Two of the hashtags are the same, but with different case. We can fix this by adding in an extra line of code that uses <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to overwrite the variable <code>hashtag</code> with the same data but transformed to lower case using <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code>. Since we're going to use the table <code>tweets_with_hashtags</code> a few more times, let's change that table first rather than having to fix this every time we use the table.</p>
+<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets_with_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hashtags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>  <span class="co"># get rid of the blank value</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">top5_hashtags</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># get rid of the blank value</span>
+  <span class="fu">slice_max</span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">n</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
 <span class="va">top5_hashtags</span></code></pre></div>
 <div class="kable-table">
@@ -275,28 +275,28 @@ loveislove
 <h2>
 <span class="header-section-number">H.4</span> Top tweet per hashtag<a class="anchor" aria-label="anchor" href="#top-tweet-per-hashtag"><i class="fas fa-link"></i></a>
 </h2>
-<p>Next, get the top tweet for each hashtag using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>. Use <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> before you filter to select the most-liked tweet in each hashtag, rather than the one with most likes overall. As you're getting used to writing and running this kind of multi-step code, it can be very useful to take out individual lines and see how it changes the output to strengthen your understanding of what each step is doing.</p>
-<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/sample_n.html">sample_n</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Next, get the top tweet for each hashtag using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> before you filter to select the most-liked tweet in each hashtag, rather than the one with most likes overall. As you're getting used to writing and running this kind of multi-step code, it can be very useful to take out individual lines and see how it changes the output to strengthen your understanding of what each step is doing.</p>
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">favorite_count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">sample_n</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="try">
-<p>The function <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> accomplishes the same thing as the <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/sample_n.html">sample_n()</a></code> functions above. Look at the help for this function and see if you can figure out how to use it.</p>
+<p>The function <code>slice_max()</code> accomplishes the same thing as the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code>sample_n()</code> functions above. Look at the help for this function and see if you can figure out how to use it.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top_tweet_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">slice_max</span><span class="op">(</span>
     order_by <span class="op">=</span> <span class="va">favorite_count</span>, 
     n <span class="op">=</span> <span class="fl">1</span>, <span class="co"># select the 1 top value</span>
     with_ties <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># don't include ties</span>
-  <span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -305,41 +305,41 @@ Solution
 <span class="header-section-number">H.5</span> Total likes per hashtag<a class="anchor" aria-label="anchor" href="#total-likes-per-hashtag"><i class="fas fa-link"></i></a>
 </h2>
 <p>Get the total number of likes per hashtag by grouping and summarising with <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">likes_per_hashtag</span> <span class="op">&lt;-</span> <span class="va">tweets_with_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">hashtags</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_likes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="put-it-together" class="section level2" number="18.6">
 <h2>
 <span class="header-section-number">H.6</span> Put it together<a class="anchor" aria-label="anchor" href="#put-it-together"><i class="fas fa-link"></i></a>
 </h2>
-<p>We can put everything together using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join()</a></code> (see Chapter @ref(left_join)). This will keep everything from the first table specified and then add on the relevant data from the second table specified. In this case, we add on the data in <code>top_tweet_per_hashtag</code> and <code>like_per_hashtag</code> but only for the tweets included in <code>top5_hashtags</code></p>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> </code></pre></div>
+<p>We can put everything together using <code>left_join()</code> (see Chapter @ref(left_join)). This will keep everything from the first table specified and then add on the relevant data from the second table specified. In this case, we add on the data in <code>top_tweet_per_hashtag</code> and <code>like_per_hashtag</code> but only for the tweets included in <code>top5_hashtags</code></p>
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> </code></pre></div>
 </div>
 <div id="twitter-data-idiosyncrasies" class="section level2" number="18.7">
 <h2>
 <span class="header-section-number">H.7</span> Twitter data idiosyncrasies<a class="anchor" aria-label="anchor" href="#twitter-data-idiosyncrasies"><i class="fas fa-link"></i></a>
 </h2>
 <p>Before we can finish up though, there's a couple of extra steps we need to add in to account for some of the idiosyncrasies of Twitter data.</p>
-<p>First, the <code>@</code> symbol is used by R Markdown for referencing (see Chapter  <a href="present.html#references">10.2.4</a>). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of <code>@</code> and add backslashes. Backslashes create a literal version of characters that have a special meaning in R, so adding them means it will print the <code>@</code> symbol without trying to create a reference. Of course <code>\</code> also has a special meaning in R, which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&amp;), which sometimes display as "&amp;".</p>
-<p>Second, if there are multiple images associated with a single tweet, <code>media_url</code> will be a list, so we use <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code>. This might not be necessary for a different set of tweets; use <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code> to check the data types.</p>
-<p>Finally, we use <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> to tidy up the table and just keep the columns we need.</p>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+<p>First, the <code><a href="https://rdrr.io/r/base/slotOp.html">@</a></code> symbol is used by R Markdown for referencing (see Chapter  <a href="present.html#references">10.2.4</a>). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of <code><a href="https://rdrr.io/r/base/slotOp.html">@</a></code> and add backslashes. Backslashes create a literal version of characters that have a special meaning in R, so adding them means it will print the <code><a href="https://rdrr.io/r/base/slotOp.html">@</a></code> symbol without trying to create a reference. Of course <code>\</code> also has a special meaning in R, which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&amp;), which sometimes display as "&amp;".</p>
+<p>Second, if there are multiple images associated with a single tweet, <code>media_url</code> will be a list, so we use <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code>. This might not be necessary for a different set of tweets; use <code>glimpse()</code> to check the data types.</p>
+<p>Finally, we use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to tidy up the table and just keep the columns we need.</p>
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5</span> <span class="op">&lt;-</span> <span class="va">top5_hashtags</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">top_tweet_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">likes_per_hashtag</span>, by <span class="op">=</span> <span class="st">"hashtags"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># replace @ with \@ so @ doesn't trigger referencing</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"@"</span>, <span class="st">"\\\\@"</span>, <span class="va">text</span><span class="op">)</span>,
-         text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"&amp;amp;"</span>, <span class="st">"&amp;"</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"@"</span>, <span class="st">"\\\\@"</span>, <span class="va">text</span><span class="op">)</span>,
+         text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"&amp;amp;"</span>, <span class="st">"&amp;"</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># media_url can be a list if there is more than one image</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">media_url</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">media_url</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># put the columns you want to display in order</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">n</span>, <span class="va">total_likes</span>, <span class="va">text</span>, <span class="va">image</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">hashtags</span>, <span class="va">n</span>, <span class="va">total_likes</span>, <span class="va">text</span>, <span class="va">image</span><span class="op">)</span>
 
 <span class="va">top5</span></code></pre></div>
 <div class="kable-table">
@@ -373,7 +373,7 @@ nationalcomingoutday
 851510
 </td>
 <td style="text-align:left;">
-it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+it’s #nationalcomingoutday &lt;U+0001F389&gt; here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
 </td>
 <td style="text-align:left;">
 <a href="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" class="uri">http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg</a>
@@ -424,7 +424,7 @@ comingoutday
 6977
 </td>
 <td style="text-align:left;">
-<p>K—I’m out. Bi 👋🏼</p>
+<p>K—I’m out. Bi &lt;U+0001F44B&gt;&lt;U+0001F3FC&gt;</p>
 #ComingOutDay #NationalComingOutDay
 </td>
 <td style="text-align:left;">
@@ -443,7 +443,7 @@ loveislove
 </td>
 <td style="text-align:left;">
 <p>HAPPY NATIONAL COMING OUT DAY!!</p>
-<p>🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</p>
+<p>&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+2764&gt;&lt;U+FE0F&gt;&lt;U+0001F9E1&gt;&lt;U+0001F49B&gt;&lt;U+0001F49A&gt;&lt;U+0001F499&gt;&lt;U+0001F49C&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;</p>
 @msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a>
 </td>
 <td style="text-align:left;">
@@ -460,7 +460,7 @@ loveislove
 </h2>
 <p>Whilst this table now has all the information we want, it isn't great aesthetically. The <code class="package">kableExtra</code> package has functions that will improve the presentation of tables. We're going to show you two examples of how you could format this table.</p>
 <p>The first is (relatively) simple and stays within the R programming language using functionality from <code class="package">kableExtra</code>. The main aesthetic feature of the table is the incorporation of the pride flag colours for each row. Each row is set to a different colour of the pride flag and the text is set to be black and bold to improve the contrast. We've also removed the <code>image</code> column, as it just contains a URL.</p>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># the hex codes of the pride flag colours, obtained from https://www.schemecolor.com/lgbt-flag-colors.php</span>
 
 <span class="co"># the last two characters (80) make the colours semi-transparent.</span>
@@ -473,20 +473,20 @@ loveislove
                    <span class="st">"#0000F980"</span>, 
                    <span class="st">"#86007D80"</span><span class="op">)</span>
 
-<span class="va">top5</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">image</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+<span class="va">top5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">image</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtags"</span>, <span class="st">"No. tweets"</span>, <span class="st">"Likes"</span>, <span class="st">"Tweet"</span><span class="op">)</span>,
         caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top five hashtags."</span>,
         
-        <span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_paper</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">5</span>, bold <span class="op">=</span> <span class="cn">T</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+        <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_paper</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">5</span>, bold <span class="op">=</span> <span class="cn">T</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, font_size <span class="op">=</span> <span class="fl">18</span>,
-           background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">1</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">2</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">3</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">4</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+           background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">1</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">2</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">3</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">4</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">5</span>, background <span class="op">=</span> <span class="va">pride_colours</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
 <caption>
@@ -518,7 +518,7 @@ nationalcomingoutday
 851510
 </td>
 <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;">
-it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+it’s #nationalcomingoutday &lt;U+0001F389&gt; here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
 </td>
 </tr>
 <tr>
@@ -560,7 +560,7 @@ comingoutday
 6977
 </td>
 <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;">
-<p>K—I’m out. Bi 👋🏼</p>
+<p>K—I’m out. Bi &lt;U+0001F44B&gt;&lt;U+0001F3FC&gt;</p>
 #ComingOutDay #NationalComingOutDay
 </td>
 </tr>
@@ -576,7 +576,7 @@ loveislove
 </td>
 <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(134, 0, 125, 0.5) !important;">
 <p>HAPPY NATIONAL COMING OUT DAY!!</p>
-<p>🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</p>
+<p>&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+2764&gt;&lt;U+FE0F&gt;&lt;U+0001F9E1&gt;&lt;U+0001F49B&gt;&lt;U+0001F49A&gt;&lt;U+0001F499&gt;&lt;U+0001F49C&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;</p>
 @msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a>
 </td>
 </tr>
@@ -588,25 +588,25 @@ loveislove
 <span class="header-section-number">H.9</span> Customise with HTML<a class="anchor" aria-label="anchor" href="#customise-with-html"><i class="fas fa-link"></i></a>
 </h2>
 <p>An alternative approach incorporates <a class="glossary" target="_blank" title="Hyper-Text Markup Language: A system for semantically tagging structure and information on web pages." href="https://psyteachr.github.io/glossary/h#html">HTML</a> and also uses the package <code class="package">glue</code> to combine information from multiple columns.</p>
-<p>First, we use <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> to create a new column <code>col1</code> that combines the first three columns into a single column and adds some formatting to make the hashtag bold (<code>&lt;strong&gt;</code>) and insert line breaks (<code>&lt;br&gt;</code>). We'll also change the image column to display the image using html if there is an image.</p>
+<p>First, we use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create a new column <code>col1</code> that combines the first three columns into a single column and adds some formatting to make the hashtag bold (<code>&lt;strong&gt;</code>) and insert line breaks (<code>&lt;br&gt;</code>). We'll also change the image column to display the image using html if there is an image.</p>
 <p>If you're not familiar with HTML, don't worry if you don't understand the below code; the point is to show you the full extent of the flexibility available.</p>
-<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">top5</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;#{hashtags}&lt;/strong&gt;
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;#{hashtags}&lt;/strong&gt;
                      &lt;br&gt;
                      tweets: {n}
                      &lt;br&gt;
                      likes: {total_likes}"</span><span class="op">)</span>,
          img <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">image</span><span class="op">)</span>,
-                      <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;img src='{image}' width='200px' /&gt;"</span><span class="op">)</span>,
-                      <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">col1</span>, <span class="va">text</span>, <span class="va">img</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+                      <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"&lt;img src='{image}' width='200px' /&gt;"</span><span class="op">)</span>,
+                      <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">col1</span>, <span class="va">text</span>, <span class="va">img</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
     escape <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># allows HTML in the table</span>
     col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hashtag"</span>, <span class="st">"Top Tweet"</span>, <span class="st">""</span><span class="op">)</span>,
-    caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top five hashtags."</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: top;"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: bottom;"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+    caption <span class="op">=</span> <span class="st">"Stats and the top tweet for the top five hashtags."</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/column_spec.html">column_spec</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: top;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, extra_css <span class="op">=</span> <span class="st">"vertical-align: bottom;"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_paper</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
 <caption>
@@ -632,7 +632,7 @@ tweets: 28698
 likes: 851510
 </td>
 <td style="text-align:left;vertical-align: top;">
-it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a>
+it’s #nationalcomingoutday <u> here’s a pic of how I came out back in 2003 xx <a href="https://t.co/spBmHhF6p4" class="uri">https://t.co/spBmHhF6p4</a> </u>
 </td>
 <td style="text-align:left;">
 <img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" width="200px">
@@ -677,8 +677,8 @@ tweets: 676
 likes: 6977
 </td>
 <td style="text-align:left;vertical-align: top;">
-<p>K—I’m out. Bi 👋🏼</p>
-#ComingOutDay #NationalComingOutDay
+<p>K—I’m out. Bi <u><u></u></u></p>
+#ComingOutDay #NationalComingOutDay 
 </td>
 <td style="text-align:left;">
 </td>
@@ -693,8 +693,8 @@ likes: 4033
 </td>
 <td style="text-align:left;vertical-align: top;">
 <p>HAPPY NATIONAL COMING OUT DAY!!</p>
-<p>🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈</p>
-@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a>
+<p><u><u><u><u><u><u><u><u><u><u><u><u><u><u><u></u></u></u></u></u></u></u></u></u></u></u></u></u></u></u></p>
+@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay <a href="https://t.co/DVfKJsCqNQ" class="uri">https://t.co/DVfKJsCqNQ</a> 
 </td>
 <td style="text-align:left;">
 <img src="http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg" width="200px">
@@ -931,7 +931,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-01-27.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

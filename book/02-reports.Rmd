@@ -680,7 +680,7 @@ Knit this document to html [\@ref(rmd-knit)]
 Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)
 
 ```{r, eval = FALSE}
-knitr::knit2html("job.Rmd")
+rmarkdown::render("job.Rmd")
 ```
 
 `r unhide()`

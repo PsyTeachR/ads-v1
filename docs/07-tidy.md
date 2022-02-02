@@ -33,6 +33,7 @@ A <a class='glossary' target='_blank' title='A word that identifies and stores t
 
 A <a class='glossary' target='_blank' title='A single number or piece of data.' href='https://psyteachr.github.io/glossary/v#value'>value</a> is the data for one variable for one observation. For example, the value of the date variable from the observation of a sale might be `2021-08-20`.
 
+
 ::: {.try data-latex=""}
 The following table is data from an experiment where participants' reactions times are tested on two separate occasions.
 
@@ -555,6 +556,11 @@ Create a long version of the following table of how many million followers each 
 </div>
 
 :::
+
+::: {.info data-latex=""}
+If you're a researcher and you're used to thinking about IVs and DVs, you may find it easier to remember that each IV and DV should have it's own column, rather than each level of the IV. 
+:::
+
 
 The pivot functions allow you to transform a data table from wide to long or long to wide.
 
@@ -1563,10 +1569,10 @@ glimpse(mutated_data)
 ## Rows: 15
 ## Columns: 5
 ## $ customer_id    <int> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
-## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
+## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",~
+## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6~
 ```
 
 Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter \@ref(data)).
@@ -1586,10 +1592,10 @@ glimpse(tidy_data)
 ## Rows: 15
 ## Columns: 5
 ## $ customer_id    <int> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3…
-## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27…
+## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3~
+## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27~
 ```
 
 ## Pipes {#pipes}
@@ -1598,7 +1604,7 @@ glimpse(tidy_data)
 <img src="images/tidy/pipe_sticker.png" style="width: 100%"/>
 :::
 
-We've already introduced pipes in Chapter\ \@ref(pipes-first) but this type of data processing is where they really start to shine as they can reduce the amount of code you write significantly. 
+We've already introduced pipes in Chapter\ \@ref(pipes-first) but this type of data processing is where they really start to shine as they can significantly reduce the amount of code you write.  
 
 As a recap, a pipe takes the result of the previous function and sends it to the next function as its first argument, which means that you do not need to create intermediate objects. Below is all the code we've used in this chapter, and in the process we created five objects. This can get very confusing in longer scripts.
 
@@ -1734,6 +1740,314 @@ Don't feel like you always need to get all of your data wrangling code into a si
 ::: {.info data-latex=""}
 You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
 :::
+
+## Exercises
+
+Let's try a couple of examples. 
+
+* Save your current Markdown, close it, and open a new named "Patient survey".
+* Download a copy of [wide_excercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_excercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) and store them in your data folder.
+* In the set-up code chunk, load the <code class='package'>tidyverse</code> then load the two data files in using `read_csv()` and name the objects `wide1` and `wide2`
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+library(tidyverse)
+wide1 <- read_csv("data/wide_excercise-1.csv")
+```
+
+```
+## Rows: 50 Columns: 7
+```
+
+```
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): repeat
+## dbl (6): id, q1, q2, q3, q4, q5
+```
+
+```
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+```r
+wide2 <- read_csv("data/wide_excercise-2.csv")
+```
+
+```
+## Rows: 50 Columns: 12
+```
+
+```
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (1): repeat_patient
+## dbl (11): id, q1_sat, q2_sat, q3_sat, q4_sat, q5_sat, q1_rec, q2_rec, q3_rec...
+```
+
+```
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+
+</div>
+
+The two datasets represent simulated data from a patient satisfaction survey. We'll do them one at a time as they differ in complexity.
+
+### Survey 1
+
+`wide1` has data from 50 patients who were asked five questions about their most recent experience at a health centre. The results from this questionnaire are typically reported as a single overall satisfaction score, which is calculated by taking the mean of the five responses. Additionally, the survey also records whether the patient was attending the clinic for the first time, or as a repeat patient. 
+
+* Use your method of choice to look at the dataset and familiarise yourself with its structure and data. 
+
+As noted, it's important to think through what your tidied data should look like. Often, the problem with data wrangling in R isn't actually the code, it's a lack of understanding of the data that's being worked on. 
+
+1. How many **variables** should the long-form version of `wide` have? <input class='webex-solveme nospaces' size='1' data-answer='["4"]'/>
+2. How many **observations** should the long-form version of `wide1` have? <input class='webex-solveme nospaces' size='3' data-answer='["250"]'/>
+
+
+<div class='webex-solution'><button>Explain these answers</button>
+
+
+1. There should be four variables, as there are 4 types of data: participant id, whether they are a repeat patient, the question they were asked, and their response.
+2. There will be 250 observations or rows of data because each participant will have 5 rows of data (one per question) and there are 50 students (50 * 5 = 250).
+
+
+</div>
+
+
+### Tidy 1
+
+Transform `wide1` to long-form using `pivot_longer()` and store it in an object named `tidy1`
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+tidy1 <- wide1 %>%
+  pivot_longer(cols = q1:q5,
+               names_to = "question", 
+               values_to = "response")
+```
+
+
+</div>
+
+
+### Survey 2
+
+`wide2` also has data from 50 patients, however, there are now two measures included in the questionnaire. There are still five questions that relate to satisfaction, but there are also five questions that relate to whether the patient would recommend the medical practice to a friend. Both measures are typically reported by calculating an overall mean for each of the five items. 
+
+* Use your method of choice to look at the dataset and familiarise yourself with its structure and data. 
+
+This is not as simple as the first exercise because there's actually two potential ways you might tidy this data depending on what you want to do with it and how you conceptualise the two different measurements and it's important to recognise that many of your coding problems will not have just one solution.
+
+#### Tidy 2a
+
+For the first option, we're going to treat the "satisfaction" and "recommendation" measurements as two categories of the same variable. This will be a fully long-form data set with five variables `id`, `repeat_patient`, `question` (the question number), `category` (whether it's `sat` or `rec`), and `response` (the numerical rating). 
+
+* How many **observations** should the fully long-form version of `wide2` have? <input class='webex-solveme nospaces' size='3' data-answer='["500"]'/>
+
+
+<div class='webex-solution'><button>Explain this answer</button>
+
+
+There will be 500 rows of data because each participant will have 10 rows - 5 for the satisfaction questions and five for the recommendation questions.
+
+
+</div>
+
+
+Transform `wide2` to full long-form using `pivot_longer()` and store it in an object named `tidy2a`.
+
+This is not an easy exercise and you may need to look at the help documentation.
+
+
+<div class='webex-solution'><button>Hint 1</button>
+
+
+`data %>% pivot_longer() %>% separate()`
+
+
+</div>
+
+
+
+<div class='webex-solution'><button>Hint 2</button>
+
+
+`into  = c("col1", "col2")`
+
+
+</div>
+
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+tidy2a <- wide2 %>%
+  pivot_longer(cols = q1_sat:q5_rec,
+               names_to = "question", 
+               values_to = "response") %>%
+  separate(col = "question", into = c("question", "category"))
+```
+
+
+</div>
+
+
+#### Tidy 2b
+
+The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
+
+* How many **observations** should the semi-long version of `wide2` have? <input class='webex-solveme nospaces' size='3' data-answer='["250"]'/>
+
+
+<div class='webex-solution'><button>Explain this answer</button>
+
+
+There will be 250 rows of data because just like `tidy1` each participant will have 5 rows as there are five questions and the different responses to the satisfaction and recommendation questions are in different variables. 
+
+
+</div>
+
+
+This is also not easy.
+
+
+<div class='webex-solution'><button>Hint 1</button>
+
+
+You can reuse the code from `tidy2a` you just need to add on an extra line that makes the data slightly wider.
+
+
+</div>
+
+
+
+<div class='webex-solution'><button>Hint 2</button>
+
+
+`data %>% pivot_longer() %>% separate() %>% pivot_wider()`
+
+
+</div>
+
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+tidy2b <- wide2 %>%
+  pivot_longer(cols = q1_sat:q5_rec,
+               names_to = "question", 
+               values_to = "response") %>%
+  separate(col = "question", into = c("question", "category")) %>%
+  pivot_wider(names_from = "category", values_from = "response")
+```
+
+
+</div>
+
+### Analysis and visualisation
+
+Using `group_by()` and `summarise()` calculate the mean score for each participant for both satisfaction and recommendation. Do this for both versions of the dataset so that you can see how the structure of the dataset changes the approach you need to take.
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+tidy2a %>%
+  group_by(id, category) %>%
+  summarise(mean = mean(response))
+
+tidy2b %>%
+  group_by(id) %>%
+  summarise(mean_satisfaction = mean(sat),
+            mean_rec = mean(rec))
+```
+
+
+</div>
+
+Replicate the following:
+
+Plot 1: Scatterplot showing the relationship between satisfaction and recommendation scores, by whether the patient is a repeat patient.
+
+
+<div class='webex-solution'><button>Hint</button>
+
+
+`geom_jitter()`
+
+
+</div>
+
+
+<img src="07-tidy_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+ggplot(tidy2b, aes(x = sat, y = rec, colour = repeat_patient)) +
+  geom_jitter() +
+  geom_smooth(method = "lm") +
+  labs(x = "Satisfaction score", y = "Recommendation score", title = "Satisfaction and recommendation scores") +
+  theme_classic()
+```
+
+
+</div>
+
+
+Plot 2: Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
+
+<img src="07-tidy_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+ggplot(tidy2a, aes(x = repeat_patient, y = response, fill = repeat_patient)) +
+  geom_boxplot(show.legend = FALSE) +
+  facet_wrap(~category)+
+  theme_bw() +
+  scale_fill_brewer(palette = "Dark2")
+```
+
+
+</div>
+
+Plot 3: Histogram showing the distribution of all responses, across questions and categories.
+
+<img src="07-tidy_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+ggplot(tidy2a, aes(x = response)) +
+  geom_histogram(binwidth = 1, colour = "black", fill = "Grey") +
+  labs(x = "Responses across all questions and categories") +
+  theme_bw()
+```
+
+
+</div>
+
+### Your data
+
+Finally, find a wide-form dataset of your own and try and tidy it into long-form. If you get stuck or you just want to check your solution, post it on Teams - just remember to be careful about sharing confidential data if it's your own dataset. 
+
+If your head hurts a bit at this point, rest assured it's absolutely normal. As we said at the start, reshaping and tidying data is a conceptual leap and there's no shortcut to the fact it just takes a bit of time and practice with different datasets - you will get there eventually!
 
 ## Glossary {#glossary-tidy}
 

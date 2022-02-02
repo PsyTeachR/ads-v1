@@ -305,6 +305,14 @@ one-value-per-cell
 altering-data
 fixing-data-types
 pipes
+exercises-4
+survey-1
+tidy-1
+survey-2
+tidy-2a
+tidy-2b
+analysis-and-visualisation
+your-data
 glossary-tidy
 resources-tidy
 wrangle
@@ -318,7 +326,7 @@ dplyr-summarise
 dplyr-groupby
 missing-values
 together-wrangle
-exercises-4
+exercises-5
 mutate-1
 glossary-wrangle
 resources-wrangle

@@ -1,46 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>K Webpages | Applied Data Skills</title>
-<meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="In this tutorial, you will learn how to create a simple webpage using R Markdown, link multiple pages, and style your content using css.  K.1 Create a webpage  K.1.1 Create a project Choose New...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="K Webpages | Applied Data Skills">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://psyteachr.github.io/ads-v1/webpages.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="In this tutorial, you will learn how to create a simple webpage using R Markdown, link multiple pages, and style your content using css.  K.1 Create a webpage  K.1.1 Create a project Choose New...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K Webpages | Applied Data Skills">
-<meta name="twitter:description" content="In this tutorial, you will learn how to create a simple webpage using R Markdown, link multiple pages, and style your content using css.  K.1 Create a webpage  K.1.1 Create a project Choose New...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>K Webpages | Applied Data Skills</title>
+
+    <meta name="author" content="Emily Nordmann and Lisa DeBruine" />
+  
+   <meta name="description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="K Webpages | Applied Data Skills" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://psyteachr.github.io/ads-v1" />
+  <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo" />
+  <meta property="og:description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="K Webpages | Applied Data Skills" />
+  
+  <meta name="twitter:description" content="This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes." />
+  <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+    <script src="libs/typedarray-0.1/typedarray.min.js"></script>
+    <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+    <link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.20/datatables.js"></script>
+    <link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-6NP3MF25W3');
-    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
-<link rel="stylesheet" href="include/webex.css">
-<link rel="stylesheet" href="include/style.css">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+    <link rel="stylesheet" href="include/psyteachr.css" />
+    <link rel="stylesheet" href="include/webex.css" />
+    <link rel="stylesheet" href="include/style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -53,74 +86,42 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Overview</a></li>
-<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
-<li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
-<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
-<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
-<li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
-<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
-<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
-<li><a class="" href="custom.html"><span class="header-section-number">9</span> Customising Visualisations</a></li>
-<li><a class="" href="present.html"><span class="header-section-number">10</span> Advanced Reports</a></li>
-<li class="book-part">Appendices</li>
-<li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
-<li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
-<li><a class="" href="symbols.html"><span class="header-section-number">C</span> Symbols</a></li>
-<li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
-<li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
-<li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
-<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
-<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
-<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
-<li><a class="active" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
-<li><a class="" href="license.html">License</a></li>
-<li><a class="" href="references-1.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/psyteachr/ads-v1">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="webpages" class="section level1" number="21">
-<h1>
-<span class="header-section-number">K</span> Webpages<a class="anchor" aria-label="anchor" href="#webpages"><i class="fas fa-link"></i></a>
-</h1>
-<p>In this tutorial, you will learn how to create a simple webpage using <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R Markdown</a>, link multiple pages, and style your content using <a class="glossary" target="_blank" title="Cascading Style Sheet: A system for controlling the visual presentation of HTML in web pages." href="https://psyteachr.github.io/glossary/c#css">css</a>.</p>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="webpages" class="section level1" number="21">
+<h1><span class="header-section-number">K</span> Webpages</h1>
+<p>In this tutorial, you will learn how to create a simple webpage using <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a>, link multiple pages, and style your content using <a class='glossary' target='_blank' title='Cascading Style Sheet: A system for controlling the visual presentation of HTML in web pages.' href='https://psyteachr.github.io/glossary/c#css'>css</a>.</p>
 <div id="webpage-create" class="section level2" number="21.1">
-<h2>
-<span class="header-section-number">K.1</span> Create a webpage<a class="anchor" aria-label="anchor" href="#webpage-create"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">K.1</span> Create a webpage</h2>
 <div id="create-a-project" class="section level3" number="21.1.1">
-<h3>
-<span class="header-section-number">K.1.1</span> Create a project<a class="anchor" aria-label="anchor" href="#create-a-project"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.1.1</span> Create a project</h3>
 <ol style="list-style-type: decimal">
 <li>Choose <code>New Project...</code> from the <code>File</code> menu (don't save any workspaces)</li>
-<li>Choose <code>New Directory</code> &gt; <code>Simple R Markdown Website</code>
-</li>
+<li>Choose <code>New Directory</code> &gt; <code>Simple R Markdown Website</code></li>
 <li>Set your project name to "mywebpage"</li>
 </ol>
 </div>
 <div id="site-header" class="section level3" number="21.1.2">
-<h3>
-<span class="header-section-number">K.1.2</span> Site header<a class="anchor" aria-label="anchor" href="#site-header"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.1.2</span> Site header</h3>
 <p>This is where you can set options like whether to show a table of contents and what the navigation bar will look like. We'll edit this later to add a section menu.</p>
 <ol style="list-style-type: decimal">
 <li><p>Open the file <code>_site.yml</code></p></li>
-<li>
-<p>Replace the text with the following:</p>
-<pre><code>name: "mywebpage"  
-author: "YOUR NAME"  
-output_dir: "docs"  
+<li><p>Replace the text with the following:</p>
+<pre><code>name: &quot;mywebpage&quot;  
+author: &quot;YOUR NAME&quot;  
+output_dir: &quot;docs&quot;  
 output:  
   html_document:  
     self_contained: no  
@@ -128,53 +129,41 @@ output:
       version: 4
       bootswatch: yeti 
 navbar:  
-  title: "My First Webpage"  
+  title: &quot;My First Webpage&quot;  
     left:
-    - text: "Home"
+    - text: &quot;Home&quot;
       href: index.html
-    - text: "About"
-      href: about.html</code></pre>
-</li>
+    - text: &quot;About&quot;
+      href: about.html</code></pre></li>
 <li><p>Save the file (do not change the name)</p></li>
 </ol>
 </div>
 <div id="edit-the-pages" class="section level3" number="21.1.3">
-<h3>
-<span class="header-section-number">K.1.3</span> Edit the pages<a class="anchor" aria-label="anchor" href="#edit-the-pages"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.1.3</span> Edit the pages</h3>
 <p>Edit the text in the <code>index.Rmd</code> and <code>about.Rmd</code> pages. You can use R markdown, including code chunks.</p>
 </div>
 <div id="render-the-site" class="section level3" number="21.1.4">
-<h3>
-<span class="header-section-number">K.1.4</span> Render the site<a class="anchor" aria-label="anchor" href="#render-the-site"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.1.4</span> Render the site</h3>
 <p>In the upper right "Build" pane, click on the "Build website" hammer icon. This will render the website and automatically open it in a browser window. Alternatively, type the following into the Console pane:</p>
-<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html">browseURL</a></span><span class="op">(</span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render_site.html">render_site</a></span><span class="op">(</span>encoding <span class="op">=</span> <span class="st">'UTF-8'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="webpages.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">browseURL</span>(rmarkdown<span class="sc">::</span><span class="fu">render_site</span>(<span class="at">encoding =</span> <span class="st">&#39;UTF-8&#39;</span>))</span></code></pre></div>
 <p>If you accidentally close the website and want to look at it again, you don't have to re-render it. Click on the <code>docs</code> directory in the <code>Files</code> tab of the lower right pane, then click on <code>index.html</code> and choose <strong><code>View in Web Browser</code></strong></p>
 </div>
 </div>
 <div id="webpage-pages" class="section level2" number="21.2">
-<h2>
-<span class="header-section-number">K.2</span> Add pages<a class="anchor" aria-label="anchor" href="#webpage-pages"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">K.2</span> Add pages</h2>
 <ol style="list-style-type: decimal">
 <li>Create a new .Rmd file for each webpage</li>
 <li>Add content to the webpages using R Markdown</li>
 <li>Re-render the site</li>
 </ol>
-<p>If you include linked content like image files, make sure they are copied to your main project directory and linked using <a class="glossary" target="_blank" title="The location of a file in relation to the working directory." href="https://psyteachr.github.io/glossary/r#relative-path">relative paths</a>.</p>
+<p>If you include linked content like image files, make sure they are copied to your main project directory and linked using <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative paths</a>.</p>
 <p>To get your webpage online, copy the contents of the <code>docs</code> directory to a web server. If you don't have access to a web server, you can make free websites using a GitHub repository and <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>).</p>
 </div>
 <div id="webpage-styles" class="section level2" number="21.3">
-<h2>
-<span class="header-section-number">K.3</span> Styles<a class="anchor" aria-label="anchor" href="#webpage-styles"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">K.3</span> Styles</h2>
 <p>You can change the appearance of your website by changing the theme in the <code>_site.yml</code> file (see Appendix <a href="plotstyle.html#plotstyle">G</a>), but the instructions below will help you to customise things even further.</p>
 <div id="add-custom-styles" class="section level3" number="21.3.1">
-<h3>
-<span class="header-section-number">K.3.1</span> Add custom styles<a class="anchor" aria-label="anchor" href="#add-custom-styles"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.3.1</span> Add custom styles</h3>
 <p>You can add a custom style sheet (a document that determines how each element of your website should look) by adding the line <code>css: style.css</code> under <code>html_document:</code> in the <code>_site.yml</code> file.</p>
 <pre><code>output:  
   html_document:  
@@ -187,12 +176,10 @@ navbar:
 <p>However, the basics of css are easy to learn and it's best to just start playing around with it. Add the following text to your <code>style.css</code> file and re-render the website.</p>
 </div>
 <div id="change-global-fonts-and-colours" class="section level3" number="21.3.2">
-<h3>
-<span class="header-section-number">K.3.2</span> Change global fonts and colours<a class="anchor" aria-label="anchor" href="#change-global-fonts-and-colours"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.3.2</span> Change global fonts and colours</h3>
 <pre><code>body {
   font-size: 2em;
-  font-family: "Times New Roman";
+  font-family: &quot;Times New Roman&quot;;
   color: white;
   background-color: #660000;
 }</code></pre>
@@ -210,9 +197,7 @@ navbar:
 <p>The theme you're using might have css that blocks the styles you're trying to change. You can add <code>!important</code> before the end colon to override that.</p>
 </div>
 <div id="change-certain-elements" class="section level3" number="21.3.3">
-<h3>
-<span class="header-section-number">K.3.3</span> Change certain elements<a class="anchor" aria-label="anchor" href="#change-certain-elements"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.3.3</span> Change certain elements</h3>
 <p>Maybe you only want to change the font colour for your headings, not the rest of the text. You can apply a style to a specific <em>element</em> type by specifying the element name before the curly brackets.</p>
 <pre><code>h1, h2, h3 {
   text-align: center;
@@ -262,19 +247,13 @@ ul {
 </div>
 <div id="h-example">
 <div id="example-using-the-styles-above" class="section level2" number="21.4">
-<h2>
-<span class="header-section-number">K.4</span> Example using the styles above<a class="anchor" aria-label="anchor" href="#example-using-the-styles-above"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">K.4</span> Example using the styles above</h2>
 <p>The CSS above changes the styles for three levels of headers (<code>h2</code>, <code>h3</code>, <code>h4</code>) and sets the third level to italics.</p>
 <div id="level-3-header" class="section level3" number="21.4.1">
-<h3>
-<span class="header-section-number">K.4.1</span> Level 3 header<a class="anchor" aria-label="anchor" href="#level-3-header"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">K.4.1</span> Level 3 header</h3>
 <p>It also gives paragraphs (<code>p</code>) a green border and double-spacing.</p>
 <div id="level-4-header" class="section level4" number="21.4.1.1">
-<h4>
-<span class="header-section-number">K.4.1.1</span> Level 4 header<a class="anchor" aria-label="anchor" href="#level-4-header"><i class="fas fa-link"></i></a>
-</h4>
+<h4><span class="header-section-number">K.4.1.1</span> Level 4 header</h4>
 <p>Unordered Lists (<code>ul</code>) get:</p>
 <ul>
 <li>dotted red border</li>
@@ -460,7 +439,8 @@ window.onload = function() {
   update_total_correct();
 }
 
-</script><script>
+</script>
+<script>
 $( document ).ready(function() {
   var cite = ' ';
   var psyteachr = ' <a href="https://psyteachr.github.io/"><img src="images/logos/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a>';
@@ -481,50 +461,31 @@ $( document ).ready(function() {
   move_sidebar();
   window.onresize = move_sidebar;
 });
-</script><div class="chapter-nav">
-<div class="prev"><a href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></div>
-<div class="next"><a href="license.html">License</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#webpages"><span class="header-section-number">K</span> Webpages</a></li>
-<li>
-<a class="nav-link" href="#webpage-create"><span class="header-section-number">K.1</span> Create a webpage</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#create-a-project"><span class="header-section-number">K.1.1</span> Create a project</a></li>
-<li><a class="nav-link" href="#site-header"><span class="header-section-number">K.1.2</span> Site header</a></li>
-<li><a class="nav-link" href="#edit-the-pages"><span class="header-section-number">K.1.3</span> Edit the pages</a></li>
-<li><a class="nav-link" href="#render-the-site"><span class="header-section-number">K.1.4</span> Render the site</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#webpage-pages"><span class="header-section-number">K.2</span> Add pages</a></li>
-<li>
-<a class="nav-link" href="#webpage-styles"><span class="header-section-number">K.3</span> Styles</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#add-custom-styles"><span class="header-section-number">K.3.1</span> Add custom styles</a></li>
-<li><a class="nav-link" href="#change-global-fonts-and-colours"><span class="header-section-number">K.3.2</span> Change global fonts and colours</a></li>
-<li><a class="nav-link" href="#change-certain-elements"><span class="header-section-number">K.3.3</span> Change certain elements</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#example-using-the-styles-above"><span class="header-section-number">K.4</span> Example using the styles above</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#level-3-header"><span class="header-section-number">K.4.1</span> Level 3 header</a></li></ul>
-</li>
-</ul>
+</script>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/appendix-k-webpage.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/appendix-k-webpage.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-01.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -533,5 +494,8 @@ $( document ).ready(function() {
 
 </div></div>
 </footer>
+
+
 </body>
+
 </html>

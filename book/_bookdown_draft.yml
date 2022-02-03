@@ -9,7 +9,7 @@ rmd_files:
 # - 04-data.Rmd
 # - 05-summary.Rmd
 # - 06-joins.Rmd
-- 07-tidy.Rmd
+# - 07-tidy.Rmd
 # - 08-wrangle.Rmd
 # - 09-custom.Rmd
 # - 10-present.Rmd
@@ -25,6 +25,7 @@ rmd_files:
 # - appendix-i-twitter.Rmd
 # - appendix-j-spotify.Rmd
 # - appendix-k-webpage.Rmd
+- appendix-l-dates.Rmd
 # - appendix-y-license.Rmd
 # - appendix-z-refs.Rmd
 before_chapter_script:

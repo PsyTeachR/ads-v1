@@ -37,26 +37,26 @@ daily_tweets <- read_csv(file) %>%
 ```
 ## Rows: 31
 ## Columns: 20
-## $ Date                  <date> 2021-08-01, 2021-08-02, 2021-08-03, 2021-08-04,~
-## $ `Tweets published`    <dbl> 0, 2, 4, 15, 12, 11, 14, 17, 26, 17, 3, 9, 5, 17~
-## $ impressions           <dbl> 1088, 1244, 3974, 22394, 23340, 316989, 694114, ~
-## $ engagements           <dbl> 13, 19, 76, 1290, 2051, 26249, 51494, 5988, 2964~
-## $ `engagement rate`     <dbl> 0.01194853, 0.01527331, 0.01912431, 0.05760472, ~
-## $ retweets              <dbl> 0, 0, 0, 5, 15, 124, 130, 18, 13, 4, 2, 25, 1, 7~
-## $ replies               <dbl> 0, 2, 5, 15, 16, 122, 123, 21, 52, 21, 4, 11, 9,~
-## $ likes                 <dbl> 2, 3, 25, 96, 108, 628, 847, 93, 116, 68, 10, 10~
-## $ `user profile clicks` <dbl> 1, 9, 10, 56, 36, 379, 550, 98, 78, 31, 17, 104,~
-## $ `url clicks`          <dbl> 2, 0, 0, 45, 97, 10136, 19467, 1937, 681, 324, 1~
-## $ `hashtag clicks`      <dbl> 0, 0, 0, 0, 0, 0, 1, 5, 1, 0, 0, 12, 1, 2, 3, 1,~
-## $ `detail expands`      <dbl> 7, 5, 36, 412, 606, 10348, 21021, 2642, 1441, 79~
-## $ `permalink clicks`    <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ `app opens`           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ `app installs`        <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ follows               <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ `email tweet`         <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ `dial phone`          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ `media views`         <dbl> 2, 2, 25, 710, 1187, 4474, 9356, 1176, 582, 334,~
-## $ `media engagements`   <dbl> 1, 0, 0, 661, 1173, 4464, 9353, 1174, 582, 327, ~
+## $ Date                  <date> 2021-08-01, 2021-08-02, 2021-08-03, 2021-08-04,…
+## $ `Tweets published`    <dbl> 0, 2, 4, 15, 12, 11, 14, 17, 26, 17, 3, 9, 5, 17…
+## $ impressions           <dbl> 1088, 1244, 3974, 22394, 23340, 316989, 694114, …
+## $ engagements           <dbl> 13, 19, 76, 1290, 2051, 26249, 51494, 5988, 2964…
+## $ `engagement rate`     <dbl> 0.01194853, 0.01527331, 0.01912431, 0.05760472, …
+## $ retweets              <dbl> 0, 0, 0, 5, 15, 124, 130, 18, 13, 4, 2, 25, 1, 7…
+## $ replies               <dbl> 0, 2, 5, 15, 16, 122, 123, 21, 52, 21, 4, 11, 9,…
+## $ likes                 <dbl> 2, 3, 25, 96, 108, 628, 847, 93, 116, 68, 10, 10…
+## $ `user profile clicks` <dbl> 1, 9, 10, 56, 36, 379, 550, 98, 78, 31, 17, 104,…
+## $ `url clicks`          <dbl> 2, 0, 0, 45, 97, 10136, 19467, 1937, 681, 324, 1…
+## $ `hashtag clicks`      <dbl> 0, 0, 0, 0, 0, 0, 1, 5, 1, 0, 0, 12, 1, 2, 3, 1,…
+## $ `detail expands`      <dbl> 7, 5, 36, 412, 606, 10348, 21021, 2642, 1441, 79…
+## $ `permalink clicks`    <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `app opens`           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `app installs`        <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ follows               <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `email tweet`         <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `dial phone`          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `media views`         <dbl> 2, 2, 25, 710, 1187, 4474, 9356, 1176, 582, 334,…
+## $ `media engagements`   <dbl> 1, 0, 0, 661, 1173, 4464, 9353, 1174, 582, 327, …
 ```
 
 
@@ -275,6 +275,14 @@ likes_by_month
    <td style="text-align:left;"> Oct </td>
    <td style="text-align:right;"> 2196 </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> Nov </td>
+   <td style="text-align:right;"> 2497 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dec </td>
+   <td style="text-align:right;"> 1679 </td>
+  </tr>
 </tbody>
 </table>
 
@@ -292,6 +300,11 @@ ggplot(likes_by_month, aes(x = month, y = total_likes, fill = month)) +
                      breaks = seq(0, 10000, 1000),
                      labels = paste0(0:10, "K")) +
   scale_fill_brewer(palette = "Spectral")
+```
+
+```
+## Warning in RColorBrewer::brewer.pal(n, pal): n too large, allowed maximum for palette Spectral is 11
+## Returning the palette you asked for with that many colors
 ```
 
 <div class="figure" style="text-align: center">
@@ -388,6 +401,11 @@ ggplot(all_tweets, aes(x = month, y = impressions, fill = month)) +
   ggtitle("Distribution of Twitter Impressions per Tweet in 2021")
 ```
 
+```
+## Warning in RColorBrewer::brewer.pal(n, pal): n too large, allowed maximum for palette Spectral is 11
+## Returning the palette you asked for with that many colors
+```
+
 <div class="figure" style="text-align: center">
 <img src="appendix-i-twitter_files/figure-html/imp-month-plot-1.png" alt="Impressions per tweet per month." width="100%" />
 <p class="caption">(\#fig:imp-month-plot)Impressions per tweet per month.</p>
@@ -417,8 +435,8 @@ glue::glue("[Top tweet]({top_tweet$`Tweet permalink`}) with {top_tweet$likes} li
 [Top tweet](https://twitter.com/LisaDeBruine/status/1423445172092866563) with 1190 likes:
 
 ---------------------------
-Oh, this was fun! You think of the ten least-related nouns possible. I scored in the 94th percentile. 
-
+Oh, this was fun! You think of the ten least-related nouns possible. I scored in the 94th percentile. 
+
 https://t.co/FhR4DR38OU
 ---------------------------
 
@@ -486,94 +504,94 @@ slice_sample(sun_tweets, n = 10)
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 2021-06-08 05:41:00 </td>
-   <td style="text-align:left;"> 2021-06-08 </td>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:right;"> 5.683333 </td>
-   <td style="text-align:right;"> 3.592 </td>
-   <td style="text-align:right;"> 20.920 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-02-22 11:30:00 </td>
-   <td style="text-align:left;"> 2021-02-22 </td>
-   <td style="text-align:left;"> 11 </td>
-   <td style="text-align:right;"> 11.500000 </td>
-   <td style="text-align:right;"> 7.388 </td>
-   <td style="text-align:right;"> 17.608 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-07-12 09:16:00 </td>
-   <td style="text-align:left;"> 2021-07-12 </td>
-   <td style="text-align:left;"> 9 </td>
-   <td style="text-align:right;"> 9.266667 </td>
-   <td style="text-align:right;"> 3.837 </td>
-   <td style="text-align:right;"> 20.871 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-01-12 21:48:00 </td>
-   <td style="text-align:left;"> 2021-01-12 </td>
-   <td style="text-align:left;"> 21 </td>
-   <td style="text-align:right;"> 21.800000 </td>
-   <td style="text-align:right;"> 8.621 </td>
-   <td style="text-align:right;"> 16.199 </td>
-   <td style="text-align:left;"> night </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-02-18 07:48:00 </td>
-   <td style="text-align:left;"> 2021-02-18 </td>
-   <td style="text-align:left;"> 7 </td>
-   <td style="text-align:right;"> 7.800000 </td>
-   <td style="text-align:right;"> 7.544 </td>
-   <td style="text-align:right;"> 17.467 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-07-14 13:58:00 </td>
-   <td style="text-align:left;"> 2021-07-14 </td>
-   <td style="text-align:left;"> 13 </td>
-   <td style="text-align:right;"> 13.966667 </td>
-   <td style="text-align:right;"> 3.883 </td>
-   <td style="text-align:right;"> 20.832 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-04-26 07:31:00 </td>
-   <td style="text-align:left;"> 2021-04-26 </td>
-   <td style="text-align:left;"> 7 </td>
-   <td style="text-align:right;"> 7.516667 </td>
-   <td style="text-align:right;"> 4.750 </td>
-   <td style="text-align:right;"> 19.730 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-10-22 13:02:00 </td>
-   <td style="text-align:left;"> 2021-10-22 </td>
-   <td style="text-align:left;"> 13 </td>
-   <td style="text-align:right;"> 13.033333 </td>
-   <td style="text-align:right;"> 7.015 </td>
-   <td style="text-align:right;"> 16.983 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-04-20 15:58:00 </td>
-   <td style="text-align:left;"> 2021-04-20 </td>
-   <td style="text-align:left;"> 15 </td>
-   <td style="text-align:right;"> 15.966667 </td>
-   <td style="text-align:right;"> 4.986 </td>
-   <td style="text-align:right;"> 19.531 </td>
-   <td style="text-align:left;"> day </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2021-10-28 08:41:00 </td>
+   <td style="text-align:left;"> 2021-10-28 13:13:00 </td>
    <td style="text-align:left;"> 2021-10-28 </td>
-   <td style="text-align:left;"> 8 </td>
-   <td style="text-align:right;"> 8.683333 </td>
+   <td style="text-align:left;"> 13 </td>
+   <td style="text-align:right;"> 13.216667 </td>
    <td style="text-align:right;"> 7.222 </td>
    <td style="text-align:right;"> 16.755 </td>
    <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-06-22 07:49:00 </td>
+   <td style="text-align:left;"> 2021-06-22 </td>
+   <td style="text-align:left;"> 7 </td>
+   <td style="text-align:right;"> 7.816667 </td>
+   <td style="text-align:right;"> 3.554 </td>
+   <td style="text-align:right;"> 21.047 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-01-25 23:37:00 </td>
+   <td style="text-align:left;"> 2021-01-25 </td>
+   <td style="text-align:left;"> 23 </td>
+   <td style="text-align:right;"> 23.616667 </td>
+   <td style="text-align:right;"> 8.343 </td>
+   <td style="text-align:right;"> 16.613 </td>
+   <td style="text-align:left;"> night </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-04 20:58:00 </td>
+   <td style="text-align:left;"> 2021-08-04 </td>
+   <td style="text-align:left;"> 20 </td>
+   <td style="text-align:right;"> 20.966667 </td>
+   <td style="text-align:right;"> 4.470 </td>
+   <td style="text-align:right;"> 20.244 </td>
+   <td style="text-align:left;"> night </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-04-15 12:42:00 </td>
+   <td style="text-align:left;"> 2021-04-15 </td>
+   <td style="text-align:left;"> 12 </td>
+   <td style="text-align:right;"> 12.700000 </td>
+   <td style="text-align:right;"> 5.190 </td>
+   <td style="text-align:right;"> 19.365 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-02-14 11:26:00 </td>
+   <td style="text-align:left;"> 2021-02-14 </td>
+   <td style="text-align:left;"> 11 </td>
+   <td style="text-align:right;"> 11.433333 </td>
+   <td style="text-align:right;"> 7.695 </td>
+   <td style="text-align:right;"> 17.324 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-08-09 22:13:00 </td>
+   <td style="text-align:left;"> 2021-08-09 </td>
+   <td style="text-align:left;"> 22 </td>
+   <td style="text-align:right;"> 22.216667 </td>
+   <td style="text-align:right;"> 4.627 </td>
+   <td style="text-align:right;"> 20.067 </td>
+   <td style="text-align:left;"> night </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-10-24 11:55:00 </td>
+   <td style="text-align:left;"> 2021-10-24 </td>
+   <td style="text-align:left;"> 11 </td>
+   <td style="text-align:right;"> 11.916667 </td>
+   <td style="text-align:right;"> 7.084 </td>
+   <td style="text-align:right;"> 16.906 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-05-12 17:35:00 </td>
+   <td style="text-align:left;"> 2021-05-12 </td>
+   <td style="text-align:left;"> 17 </td>
+   <td style="text-align:right;"> 17.583333 </td>
+   <td style="text-align:right;"> 4.185 </td>
+   <td style="text-align:right;"> 20.247 </td>
+   <td style="text-align:left;"> day </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021-03-23 21:28:00 </td>
+   <td style="text-align:left;"> 2021-03-23 </td>
+   <td style="text-align:left;"> 21 </td>
+   <td style="text-align:right;"> 21.466667 </td>
+   <td style="text-align:right;"> 6.169 </td>
+   <td style="text-align:right;"> 18.600 </td>
+   <td style="text-align:left;"> night </td>
   </tr>
 </tbody>
 </table>

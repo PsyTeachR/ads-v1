@@ -75,11 +75,12 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
-<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
-<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
-<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
+<li><a class="" href="dates-times.html"><span class="header-section-number">G</span> Dates and Times</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">H</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">I</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">J</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">K</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">L</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
@@ -360,33 +361,33 @@ zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects column
 <code>budget %&gt;% select(starts_with("sales"))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="x">expenses_2019, expenses_2020</option>
-<option value="x">sales_2020, expenses_2020</option>
 <option value="answer">sales_2019, sales_2020</option>
+<option value="x">sales_2020, expenses_2020</option>
 <option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(ends_with("2020"))</code>
 <select class="webex-select"><option value="blank"></option>
-<option value="x">sales_2019, sales_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="x">expenses_2019, expenses_2020</option>
 <option value="answer">sales_2020, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
+<option value="x">sales_2019, sales_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(contains("_"))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="answer">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="x">sales_2020, expenses_2020</option>
-<option value="x">expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020</option></select>
+<option value="x">sales_2019, sales_2020</option>
+<option value="x">expenses_2019, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="answer">expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="x">sales_2020, expenses_2020</option>
-<option value="x">sales_2019, sales_2020</option></select>
+<option value="x">sales_2019, sales_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
 </li>
 </ul>
 </div>
@@ -1245,20 +1246,20 @@ widgets
 </div>
 <div class="try">
 <p>How would you find out the maximum sales for each region?</p>
-<div id="radio_KOESUTRQTI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KOESUTRQTI" value="answer"><span>
+<div id="radio_FPVDZTAOMX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="answer"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KOESUTRQTI" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
   summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KOESUTRQTI" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
   summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KOESUTRQTI" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(region)</pre>

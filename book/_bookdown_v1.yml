@@ -20,11 +20,12 @@ rmd_files:
 - appendix-d-conventions.Rmd
 - appendix-e-teams.Rmd
 - appendix-f-datatypes.Rmd
-- appendix-g-styling.Rmd
-- appendix-h-hashtags.Rmd
-- appendix-i-twitter.Rmd
-- appendix-j-spotify.Rmd
-- appendix-k-webpage.Rmd
+- appendix-g-dates.Rmd
+- appendix-h-styling.Rmd
+- appendix-i-hashtags.Rmd
+- appendix-j-twitter.Rmd
+- appendix-k-spotify.Rmd
+- appendix-l-webpage.Rmd
 - appendix-y-license.Rmd
 - appendix-z-refs.Rmd
 

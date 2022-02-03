@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 1 Dates and Times | Applied Data Skills</title>
+<meta name="author" content="Emily Nordmann and Lisa DeBruine">
+<meta name="description" content='Working with dates and times can be a little tricky, but the lubridate package is there to help. Their website has a helpful cheatsheet and you can view a tutorial by typing vignette("lubridate")...'>
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 1 Dates and Times | Applied Data Skills">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://psyteachr.github.io/ads-v1/dates-times.html">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:description" content='Working with dates and times can be a little tricky, but the lubridate package is there to help. Their website has a helpful cheatsheet and you can view a tutorial by typing vignette("lubridate")...'>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 1 Dates and Times | Applied Data Skills">
+<meta name="twitter:description" content='Working with dates and times can be a little tricky, but the lubridate package is there to help. Their website has a helpful cheatsheet and you can view a tutorial by typing vignette("lubridate")...'>
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6NP3MF25W3');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
+<link rel="stylesheet" href="include/webex.css">
+<link rel="stylesheet" href="include/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Processing &amp; Presenting Data">Applied Data Skills</a>:
+        <small class="text-muted">Processing &amp; Presenting Data</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Overview</a></li>
+<li><a class="active" href="dates-times.html"><span class="header-section-number">1</span> Dates and Times</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/psyteachr/ads-v1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="dates-times" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Dates and Times<a class="anchor" aria-label="anchor" href="#dates-times"><i class="fas fa-link"></i></a>
+</h1>
+<p>Working with dates and times can be a little tricky, but the <code class="package"><a href="https://lubridate.tidyverse.org/" target="_blank">lubridate</a></code> package is there to help. Their website has a helpful <a href="https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf">cheatsheet</a> and you can view a tutorial by typing <code><a href="https://cran.rstudio.com/web/packages/lubridate/vignettes/lubridate.html">vignette("lubridate")</a></code> in the console pane. The <a href="https://r4ds.had.co.nz/dates-and-times.html" target="_blank">Dates and Times</a> in R for Data Science also gives a helpful overview.</p>
+<p>This appendix is a quick intro to some of the most useful functions for making reproducible reports.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># packages needed for this appendix</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
+<div id="parsing" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Parsing<a class="anchor" aria-label="anchor" href="#parsing"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dates can be in many formats. The <code>ymd</code> functions can deal with almost all of them, regardless of the punctuation used in the format. All of the examples below produce a date in the standard format "2022-01-03".</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># year-month-day orders</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"22 Jan 3"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 January 3rd"</span><span class="op">)</span>
+
+<span class="co"># month-day-year orders</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="st">"January 3, 2022"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="st">"Jan/03/22"</span><span class="op">)</span>
+
+<span class="co"># day-month-year orders</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"3JAN22"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"3rd of January in the year 2022"</span><span class="op">)</span></code></pre></div>
+<div class="try">
+<p>See if you can make a date format that one of the parsers <em>can't</em> handle.</p>
+</div>
+<p>There are similar functions for date/times, too.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="st">"2022 Jan 3, 6:05 and 20s pm"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">mdy_h</a></span><span class="op">(</span><span class="st">"January 3rd, 2022 at 6pm"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-01-03 18:05:20 UTC"
+## [1] "2022-01-03 18:00:00 UTC"</code></pre>
+<p>The date/time functions can also take a timezone argument. If you don't specify it, it defaults to "UTC".</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-03 18:05"</span>, tz <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-01-03 18:05:00 GMT"</code></pre>
+</div>
+<div id="get-parts" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Get Parts<a class="anchor" aria-label="anchor" href="#get-parts"><i class="fas fa-link"></i></a>
+</h2>
+<p>You frequently need to extract parts of a date/time for plotting. The following functions extract specific parts of a date or datetime object. This is a godsend for those of us who never have a clue what week of the year it is today.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get the date and time when this function is run</span>
+<span class="va">now</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
+
+<span class="co"># get separate parts</span>
+<span class="va">time_parts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  second  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/second.html">second</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  minute  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  hour    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  day     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,  <span class="co"># day of the month (same as mday())</span>
+  wday    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>, <span class="co"># day of the week</span>
+  yday    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">yday</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>, <span class="co"># day of the year</span>
+  week    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  isoweek <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">isoweek</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>, <span class="co"># ISO 8501 week calendar (Monday start)</span>
+  epiweek <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">epiweek</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>, <span class="co"># CDC epidemiological week (Sunday Start)</span>
+  month   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  year    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>,
+  tz      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/tz.html">tz</a></span><span class="op">(</span><span class="va">now</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">time_parts</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 12
+##  $ second : num 28.1
+##  $ minute : int 17
+##  $ hour   : int 22
+##  $ day    : int 3
+##  $ wday   : num 5
+##  $ yday   : num 34
+##  $ week   : num 5
+##  $ isoweek: num 5
+##  $ epiweek: num 5
+##  $ month  : num 2
+##  $ year   : num 2022
+##  $ tz     : chr "GMT"</code></pre>
+<p>The <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">month()</a></code> and <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> functions can return factor labels.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jan1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220101</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] Sat
+## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat
+## [1] Sat
+## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat
+## [1] Jan
+## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec
+## [1] Jan
+## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+<div class="try">
+<p>What day of the week were you born?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birthdate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">19761118</span><span class="op">)</span> <span class="co"># put your own birthdate here</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">birthdate</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] Thu
+## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
+</div>
+</div>
+</div>
+<div id="date-arithmetic" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Date Arithmetic<a class="anchor" aria-label="anchor" href="#date-arithmetic"><i class="fas fa-link"></i></a>
+</h2>
+<p>You can add and subtract dates. For example, you can get the dates two weeks from today by adding <code>weeks(2)</code> to <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code>. You can probably guess how to add and subtract seconds, minutes, days, months, and years.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">weeks</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-02-10"</code></pre>
+<div class="try">
+<p>What day of the week will your 100th birthday be?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birthdate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">19761118</span><span class="op">)</span> <span class="co"># put your own birthdate here</span>
+<span class="va">centennial</span> <span class="op">&lt;-</span> <span class="va">birthdate</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">years</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">centennial</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] Wednesday
+## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
+</div>
+</div>
+<div class="warning">
+<p>What do you think will happen if you subtract one month from March 31st? You get NA, since February doesn't have a 31st day.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220331</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>Use the special date operators <code>%m+%</code> and <code>%m-%</code> to add and subtract months without risking an impossible date.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220331</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/lubridate/man/mplus.html">%m-%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-02-28"</code></pre>
+</div>
+<div id="first-and-last-of-month" class="section level3" number="1.3.1">
+<h3>
+<span class="header-section-number">1.3.1</span> First and last of month<a class="anchor" aria-label="anchor" href="#first-and-last-of-month"><i class="fas fa-link"></i></a>
+</h3>
+<p>For things like billing, you might need to find the first or last days of the current, previous, or next month. The <code><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollback()</a></code> and <code><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollforward()</a></code> functions are easier than trying to parse dates.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022-01-24"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollback</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>                          <span class="co"># last day of the previous month</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollforward</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>                       <span class="co"># last day of the current month</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollback</a></span><span class="op">(</span><span class="va">d</span>, roll_to_first <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>    <span class="co"># first day of the current month</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollforward</a></span><span class="op">(</span><span class="va">d</span>, roll_to_first <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># first day of the next month</span></code></pre></div>
+<pre><code>## [1] "2021-12-31"
+## [1] "2022-01-31"
+## [1] "2022-01-01"
+## [1] "2022-02-01"</code></pre>
+</div>
+<div id="rounding" class="section level3" number="1.3.2">
+<h3>
+<span class="header-section-number">1.3.2</span> Rounding<a class="anchor" aria-label="anchor" href="#rounding"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can round dates and times to the nearest unit. This can be useful when you have, for example, time measured to the nearest second, but want to group data by the nearest hour, rather than extract the hour component.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:25"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:30"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:35"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-01-24 10:00:00 UTC"
+## [1] "2022-01-24 11:00:00 UTC"
+## [1] "2022-01-24 11:00:00 UTC"</code></pre>
+</div>
+</div>
+<div id="internationalisation" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Internationalisation<a class="anchor" aria-label="anchor" href="#internationalisation"><i class="fas fa-link"></i></a>
+</h2>
+<p>You may need to work with dates from a different locale than your computer's defaults, such as dates written in French or Russian. Or your computer may have a non-English locale. Set the <code>locale</code> argument to the relevant language code.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 January 24"</span>, locale <span class="op">=</span> <span class="st">"en_GB"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 Janvier 24"</span>, locale <span class="op">=</span> <span class="st">"fr_FR"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="st">"2022-01-03"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, locale <span class="op">=</span> <span class="st">"ru_RU"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-01-24"
+## [1] "2022-01-24"
+## [1] пн
+## Levels: вс &lt; пн &lt; вт &lt; ср &lt; чт &lt; пт &lt; сб</code></pre>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># check which locales are available on your computer</span>
+<span class="co"># doesn't work for Windows</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"locale -a"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="example" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Example<a class="anchor" aria-label="anchor" href="#example"><i class="fas fa-link"></i></a>
+</h2>
+<p>Let's work through some examples with tweets from Appendix <a href="#twitter-data"><strong>??</strong></a>.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># read all metrics files in data/tweets/</span>
+<span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
+  path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
+  pattern <span class="op">=</span> <span class="st">"^tweet_activity_metrics"</span>,
+  full.names <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">read_csv</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The <code>time</code> column is already in date/time (POSIXct) format, but what if we wanted to plot tweets by hour for each day of the week?</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+         hour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hour</span>, fill <span class="op">=</span> <span class="va">weekday</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="op">~</span><span class="va">weekday</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">24</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="appendix-g-dates_files/figure-html/weekday-tweets-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>A nice side-effect of using the lubridate function to get days of the week or months of the year is that the results are an ordered factor, so display correctly in a plot. Let's display the months in Greek (if that's available on your system).</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">FALSE</span>, locale <span class="op">=</span> <span class="st">"el_GR.UTF-8"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, guide <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guide_axis.html">guide_axis</a></span><span class="op">(</span>n.dodge<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="appendix-g-dates_files/figure-html/month-tweets-1.png" width="100%" style="display: block; margin: auto;"></div>
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-R-base" class="csl-entry">
+R Core Team. (2021). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    $(solveme[i]).after(" <span class='webex-icon'></span>");
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    $(selects[i]).after(" <span class='webex-icon'></span>");
+  }
+
+  update_total_correct();
+}
+
+</script><script>
+$( document ).ready(function() {
+  var cite = ' ';
+  var psyteachr = ' <a href="https://psyteachr.github.io/"><img src="images/logos/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a>';
+  var license = ' <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>';
+
+  $("footer div.row div:eq(1) p").html(
+    psyteachr + license + cite
+  );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
+});
+</script><div class="chapter-nav">
+<div class="prev"><a href="index.html">Overview</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dates-times"><span class="header-section-number">1</span> Dates and Times</a></li>
+<li><a class="nav-link" href="#parsing"><span class="header-section-number">1.1</span> Parsing</a></li>
+<li><a class="nav-link" href="#get-parts"><span class="header-section-number">1.2</span> Get Parts</a></li>
+<li>
+<a class="nav-link" href="#date-arithmetic"><span class="header-section-number">1.3</span> Date Arithmetic</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#first-and-last-of-month"><span class="header-section-number">1.3.1</span> First and last of month</a></li>
+<li><a class="nav-link" href="#rounding"><span class="header-section-number">1.3.2</span> Rounding</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#internationalisation"><span class="header-section-number">1.4</span> Internationalisation</a></li>
+<li><a class="nav-link" href="#example"><span class="header-section-number">1.5</span> Example</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/appendix-g-dates.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/appendix-g-dates.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

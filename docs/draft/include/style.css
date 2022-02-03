@@ -31,6 +31,12 @@ div.sourceCode {
   clear: both;
 }
 
+div.sourceCode + pre:not(.sourceCode) {
+  background-color: #FBFBFB;
+  background-image: none;
+  border: 0.5px solid #BBB;
+}
+
 /* references with hanging indent */
 .csl-entry {
   padding-left: 2em ;

@@ -255,7 +255,7 @@ budget3 %>%
 You were introduced to the `group_by()` function in Chapter\ \@ref(grouping). For example, you can break down the summary statistics above by year and product.
 
 ```{r}
-budget3 %>%
+year_prod <- budget3 %>%
   group_by(year, product) %>%
   summarise(
     mean_sales = mean(sales),
@@ -264,6 +264,8 @@ budget3 %>%
     max_profit = max(expenses - sales),
     .groups = "drop"
   )
+
+year_prod
 ```
 
 ::: {.try data-latex=""}
@@ -279,7 +281,58 @@ c(answer = "<pre>budget3 %>%\n  group_by(region) %>%\n  summarise(max_sales = ma
 
 :::
 
-## Missing values
+## Complications
+
+### Rounding
+
+Let's say we want to round all the values to the nearest pound. The pattern below uses the `across()` function to apply the `round()` function to the columns from `mean_sales` to `max_profit`.
+
+```{r}
+year_prod %>%
+  mutate(across(.cols = mean_sales:max_profit, 
+                .fns = round))
+```
+
+If you compare this table to the one in Section\ \@ref(dplyr-groupby), you'll see that the 2019 gadgets mean sales rounded up from `r year_prod$mean_sales[1]` to `r round(year_prod$mean_sales[1])`, while the mean expenses rounded from `r year_prod$mean_expenses[1]` to `r round(year_prod$mean_expenses[1])`. What's going on!?
+
+This may seem like a mistake, but R rounds .5 to the nearest even number, rather than always up, like you were probably taught in school. This prevents overestimation biases, since x.5 is *exactly* halfway between x and x+1, so there is no reason it should always round up.
+
+```{r}
+round(0.5)
+round(1.5)
+```
+
+However, this might throw a monkey wrench into your own systems. For example, our school policy is to round up for course marks at x.5. The solution is to define your own version of `round()` (modified from [Andrew Landgraf's blog](http://andrewlandgraf.com/2012/06/15/rounding-in-r/){target="_blank"}). Put it in a hidden code block at the top of your script, with a clear warning that this is changing the way `round()` normally works. You don't need to understand how this function works, just how to use it.
+
+```{r}
+#!!!!!! redefining round so 5s round up !!!!!! 
+round <- function(x, digits = 0) {
+  posneg = sign(x)
+  z = abs(x)*10^digits
+  z = z + 0.5 + sqrt(.Machine$double.eps)
+  z = trunc(z)
+  z = z/10^digits
+  z*posneg
+}
+```
+
+Now `round()` should work as you'd expect.
+
+```{r}
+round(0.5)
+round(1.5)
+```
+
+Just remove your version if you want R to go back to the original method. Remember that you have to define the new round method in any script that uses it, and run the definition code before you use it interactively. You can check your Environment pane to see whether `round` is listed under "Functions".
+
+```{r}
+# remove new round() method
+rm(round)
+```
+
+
+
+### Missing values
 
 What if the North region hasn't returned their sales data for 2020 yet?
 

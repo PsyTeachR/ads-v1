@@ -11,7 +11,7 @@ library(lubridate)   # for handling dates and times
 
 ### Export Data
 
-You can export your organisations' twitter data from <https://analytics.twitter.com/>. Go to the Tweets tab, choose a time period, and export the last month's data by day (or use the files from the class data).
+You can export your organisations' twitter data from <https://analytics.twitter.com/>. Go to the Tweets tab, choose a time period, and export the last month's data by day (or use the files from the [class data](data/data.zip)).
 
 ### Import Data
 

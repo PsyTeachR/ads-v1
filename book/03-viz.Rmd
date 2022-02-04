@@ -1099,7 +1099,7 @@ library(kableExtra)
 survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv")
 ```
 
-### Summary
+### Summary {#exercises-summary}
 
 Create a level 1 heading titled "Overview". Underneath this heading, write a short summary of what the data set contains and what each of the variables means (you can use the information from Section\ \@ref(plots-loading-data) if you like).
 

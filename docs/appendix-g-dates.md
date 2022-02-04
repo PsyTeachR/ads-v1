@@ -89,9 +89,9 @@ str(time_parts)
 
 ```
 ## List of 12
-##  $ second : num 14.3
-##  $ minute : int 20
-##  $ hour   : int 22
+##  $ second : num 8.47
+##  $ minute : int 56
+##  $ hour   : int 23
 ##  $ day    : int 3
 ##  $ wday   : num 5
 ##  $ yday   : num 34
@@ -271,7 +271,7 @@ system("locale -a")
 
 ## Example
 
-Let's work through some examples with tweets from Appendix\ \@ref(twitter-data).
+Let's work through some examples with tweets from Appendix\ \@ref(twitter-data). Download the [class data](data/data.zip).
 
 
 ```r

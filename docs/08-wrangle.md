@@ -172,13 +172,13 @@ zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`,
 What are the resulting columns for these four examples?
 
 * `budget %>% select(starts_with("sales"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='answer'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option></select> 
+    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='answer'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020</option></select> 
 * `budget %>% select(ends_with("2020"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
 * `budget %>% select(contains("_"))`
-    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
 * `budget %>% select(num_range("expenses_", 2019:2020))`
-    <select class='webex-select'><option value='blank'></option><option value='answer'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='answer'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
 :::
 
 
@@ -642,7 +642,7 @@ You were introduced to the `group_by()` function in Chapter\ \@ref(grouping). Fo
 
 
 ```r
-budget3 %>%
+year_prod <- budget3 %>%
   group_by(year, product) %>%
   summarise(
     mean_sales = mean(sales),
@@ -651,6 +651,8 @@ budget3 %>%
     max_profit = max(expenses - sales),
     .groups = "drop"
   )
+
+year_prod
 ```
 
 <div class="kable-table">
@@ -707,19 +709,136 @@ budget3 %>%
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_FPVDZTAOMX'><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="answer"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_VPAGSEPWFO'><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="answer"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"></input> <span><pre>budget3 %>%
-  group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_FPVDZTAOMX" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"></input> <span><pre>budget3 %>%
   group_by(region) %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"></input> <span><pre>budget3 %>%
+  group_by(sales) %>%
   summarise(max_sales = max(region)</pre></span></label></div>
 
 :::
 
-## Missing values
+## Complications
+
+### Rounding
+
+Let's say we want to round all the values to the nearest pound. The pattern below uses the `across()` function to apply the `round()` function to the columns from `mean_sales` to `max_profit`.
+
+
+```r
+year_prod %>%
+  mutate(across(.cols = mean_sales:max_profit, 
+                .fns = round))
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:left;"> product </th>
+   <th style="text-align:right;"> mean_sales </th>
+   <th style="text-align:right;"> mean_expenses </th>
+   <th style="text-align:right;"> min_profit </th>
+   <th style="text-align:right;"> max_profit </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:left;"> gadgets </td>
+   <td style="text-align:right;"> 5832 </td>
+   <td style="text-align:right;"> 5188 </td>
+   <td style="text-align:right;"> -2632 </td>
+   <td style="text-align:right;"> 517 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:right;"> 10689 </td>
+   <td style="text-align:right;"> 10352 </td>
+   <td style="text-align:right;"> -1307 </td>
+   <td style="text-align:right;"> 150 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:left;"> gadgets </td>
+   <td style="text-align:right;"> 4751 </td>
+   <td style="text-align:right;"> 5754 </td>
+   <td style="text-align:right;"> -562 </td>
+   <td style="text-align:right;"> 2390 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:right;"> 9593 </td>
+   <td style="text-align:right;"> 9680 </td>
+   <td style="text-align:right;"> -1105 </td>
+   <td style="text-align:right;"> 2122 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+If you compare this table to the one in Section\ \@ref(dplyr-groupby), you'll see that the 2019 gadgets mean sales rounded up from 5831.5 to 5832, while the mean expenses rounded from 5188.5 to 5188. What's going on!?
+
+This may seem like a mistake, but R rounds .5 to the nearest even number, rather than always up, like you were probably taught in school. This prevents overestimation biases, since x.5 is *exactly* halfway between x and x+1, so there is no reason it should always round up.
+
+
+```r
+round(0.5)
+round(1.5)
+```
+
+```
+## [1] 0
+## [1] 2
+```
+
+However, this might throw a monkey wrench into your own systems. For example, our school policy is to round up for course marks at x.5. The solution is to define your own version of `round()` (modified from [Andrew Landgraf's blog](http://andrewlandgraf.com/2012/06/15/rounding-in-r/){target="_blank"}). Put it in a hidden code block at the top of your script, with a clear warning that this is changing the way `round()` normally works. You don't need to understand how this function works, just how to use it.
+
+
+```r
+#!!!!!! redefining round so 5s round up !!!!!! 
+round <- function(x, digits = 0) {
+  posneg = sign(x)
+  z = abs(x)*10^digits
+  z = z + 0.5 + sqrt(.Machine$double.eps)
+  z = trunc(z)
+  z = z/10^digits
+  z*posneg
+}
+```
+
+Now `round()` should work as you'd expect.
+
+
+```r
+round(0.5)
+round(1.5)
+```
+
+```
+## [1] 1
+## [1] 2
+```
+
+Just remove your version if you want R to go back to the original method. Remember that you have to define the new round method in any script that uses it, and run the definition code before you use it interactively. You can check your Environment pane to see whether `round` is listed under "Functions".
+
+
+```r
+# remove new round() method
+rm(round)
+```
+
+
+
+### Missing values
 
 What if the North region hasn't returned their sales data for 2020 yet?
 
@@ -1200,7 +1319,7 @@ ggplot(errors, aes(x = SALES, y = total)) +
   coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
 ```
 
-<img src="08-wrangle_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="08-wrangle_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
 
 Let's have a look at the data separately for products with a price of exactly 100 versus other products.
 
@@ -1214,7 +1333,7 @@ sales_check %>%
   coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
 ```
 
-<img src="08-wrangle_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="08-wrangle_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
 
 It looks like that's the problem with this dataset: the `PRICEEACH` column doesn't go above 100. Let's fix that by dividing the total sale price by the quantity ordered.
 

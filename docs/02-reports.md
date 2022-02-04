@@ -659,7 +659,7 @@ Error in yaml::yaml.load(..., eval.expr = TRUE) :
 The error message will tell you exactly where the problem is (the second character of the second line of the YAML header), and it's usually a matter of fixing typos or making sure that the indenting is exactly right.
 :::
 
-### Summary
+### Summary {#reports-summary}
 
 This chapter has covered a lot but hopefully now you have a much better idea of what Markdown is able to do. Whilst working in Markdown takes longer in the initial set-up stage, once you have a fully reproducible report you can plug in new data each week or month and simply click knit, reducing duplication of effort, and the human error that comes with it.
 

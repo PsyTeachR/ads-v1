@@ -146,7 +146,7 @@ rmd-setup
 override-defaults
 loading-packages
 yaml
-summary
+reports-summary
 exercises-reports
 exercises-reports-project
 exercises-reports-setup
@@ -208,7 +208,7 @@ jitter-plot
 facets
 exercises
 exercises-new-rmd-3
-summary-1
+exercises-summary
 presenting-plots
 combining-plots-1
 editing-your-markdown-display
@@ -242,6 +242,7 @@ make-it-look-nice
 share-your-work-1
 glossary-data
 resources-data
+summary
 ilo-summary
 set-up-2
 social-media-data
@@ -324,6 +325,8 @@ arrange
 mutate
 dplyr-summarise
 dplyr-groupby
+complications
+rounding
 missing-values
 together-wrangle
 exercises-5
@@ -408,7 +411,7 @@ parsing
 get-parts
 date-arithmetic
 first-and-last-of-month
-rounding
+rounding-1
 internationalisation
 example
 plotstyle

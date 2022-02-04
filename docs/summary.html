@@ -147,7 +147,7 @@
 </h2>
 <p>The <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> function from the <code class="package">dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code><a href="https://rdrr.io/pkg/dplyr/man/context.html">n()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
 <div class="warning">
-<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="wrangle.html#missing-values">8.3</a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
+<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="wrangle.html#missing-values">8.3.2</a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
 <div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="co"># is NA</span>
@@ -235,13 +235,13 @@ max_favs
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_MSULZFCHWJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MSULZFCHWJ" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_MSULZFCHWJ" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_MSULZFCHWJ" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_MSULZFCHWJ" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label>
+<div id="radio_HOOMQGXTAJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HOOMQGXTAJ" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HOOMQGXTAJ" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_HOOMQGXTAJ" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HOOMQGXTAJ" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label>
 </div>
 </li>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_QPSOBJTPRI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QPSOBJTPRI" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_QPSOBJTPRI" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_QPSOBJTPRI" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_QPSOBJTPRI" value="x"><span><code>summarise(display_text_width = mean)</code></span></label>
+<div id="radio_JBKQHPPESQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JBKQHPPESQ" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_JBKQHPPESQ" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_JBKQHPPESQ" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_JBKQHPPESQ" value="x"><span><code>width(mean(display_text_width))</code></span></label>
 </div>
 </li>
 </ul>
@@ -407,8 +407,8 @@ FALSE
 </tbody>
 </table></div>
 </div>
-<div id="radio_FXHCUIIPPN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FXHCUIIPPN" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FXHCUIIPPN" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FXHCUIIPPN" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_FXHCUIIPPN" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
+<div id="radio_FINROJLJCL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FINROJLJCL" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FINROJLJCL" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_FINROJLJCL" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_FINROJLJCL" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
 </div>
 </div>
 <div id="inline-coding-2" class="section level3" number="5.5.1">
@@ -519,8 +519,8 @@ TRUE
 <div class="try">
 <ul>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>verified</code>?
-<div id="radio_BCWPLSUQPL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BCWPLSUQPL" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BCWPLSUQPL" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BCWPLSUQPL" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BCWPLSUQPL" value="x"><span><code>mean(screen_name)</code></span></label>
+<div id="radio_WMOUNJGLJF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WMOUNJGLJF" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WMOUNJGLJF" value="x"><span><code>mean(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WMOUNJGLJF" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WMOUNJGLJF" value="x"><span><code>summarise(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
@@ -702,8 +702,8 @@ Twitter for iPad
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_HQVENXYSEF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HQVENXYSEF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HQVENXYSEF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HQVENXYSEF" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HQVENXYSEF" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label>
+<div id="radio_CJLIEGNXDG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CJLIEGNXDG" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJLIEGNXDG" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJLIEGNXDG" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_CJLIEGNXDG" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>

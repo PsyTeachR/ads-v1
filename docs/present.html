@@ -105,7 +105,7 @@
 <li>Structure data in report, presentation, and dashboard formats</li>
 <li>Include linked figures, tables, and references</li>
 </ul>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># data wrangling functions</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/bookdown">bookdown</a></span><span class="op">)</span>      <span class="co"># for chaptered reports</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rmarkdown.rstudio.com/flexdashboard">flexdashboard</a></span><span class="op">)</span> <span class="co"># for dashboards</span>
@@ -146,72 +146,72 @@
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb358"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb358-1"><a href="present.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb358-2"><a href="present.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Linked Document Demo"</span></span>
-<span id="cb358-3"><a href="present.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> </span></span>
-<span id="cb358-4"><a href="present.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="co">  bookdown::html_document2:</span></span>
-<span id="cb358-5"><a href="present.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: false</span></span>
-<span id="cb358-6"><a href="present.html#cb358-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb358-7"><a href="present.html#cb358-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-8"><a href="present.html#cb358-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb358-9"><a href="present.html#cb358-9" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(echo = FALSE,</span></span>
-<span id="cb358-10"><a href="present.html#cb358-10" aria-hidden="true" tabindex="-1"></a><span class="in">                      message = FALSE,</span></span>
-<span id="cb358-11"><a href="present.html#cb358-11" aria-hidden="true" tabindex="-1"></a><span class="in">                      warning = FALSE)</span></span>
-<span id="cb358-12"><a href="present.html#cb358-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb358-13"><a href="present.html#cb358-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
-<span id="cb358-14"><a href="present.html#cb358-14" aria-hidden="true" tabindex="-1"></a><span class="in">theme_set(theme_minimal())</span></span>
-<span id="cb358-15"><a href="present.html#cb358-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb358-16"><a href="present.html#cb358-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-17"><a href="present.html#cb358-17" aria-hidden="true" tabindex="-1"></a>Diamond price depends on many features, such as:</span>
-<span id="cb358-18"><a href="present.html#cb358-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-19"><a href="present.html#cb358-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>cut (See Table\ \@ref(tab:by-cut))</span>
-<span id="cb358-20"><a href="present.html#cb358-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>colour (See Table\ \@ref(tab:by-colour))</span>
-<span id="cb358-21"><a href="present.html#cb358-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clarity (See Figure\ \@ref(fig:by-clarity))</span>
-<span id="cb358-22"><a href="present.html#cb358-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>carats (See Figure\ \@ref(fig:by-carat))</span>
-<span id="cb358-23"><a href="present.html#cb358-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-24"><a href="present.html#cb358-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tables</span></span>
-<span id="cb358-25"><a href="present.html#cb358-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-26"><a href="present.html#cb358-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cut</span></span>
-<span id="cb358-27"><a href="present.html#cb358-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-28"><a href="present.html#cb358-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-cut}</span></span>
-<span id="cb358-29"><a href="present.html#cb358-29" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
-<span id="cb358-30"><a href="present.html#cb358-30" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut) %&gt;%</span></span>
-<span id="cb358-31"><a href="present.html#cb358-31" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
-<span id="cb358-32"><a href="present.html#cb358-32" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
-<span id="cb358-33"><a href="present.html#cb358-33" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
-<span id="cb358-34"><a href="present.html#cb358-34" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
-<span id="cb358-35"><a href="present.html#cb358-35" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by cut.") %&gt;%</span></span>
-<span id="cb358-36"><a href="present.html#cb358-36" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
-<span id="cb358-37"><a href="present.html#cb358-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb358-38"><a href="present.html#cb358-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-39"><a href="present.html#cb358-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Colour</span></span>
-<span id="cb358-40"><a href="present.html#cb358-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-41"><a href="present.html#cb358-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-colour}</span></span>
-<span id="cb358-42"><a href="present.html#cb358-42" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
-<span id="cb358-43"><a href="present.html#cb358-43" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(color) %&gt;%</span></span>
-<span id="cb358-44"><a href="present.html#cb358-44" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
-<span id="cb358-45"><a href="present.html#cb358-45" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
-<span id="cb358-46"><a href="present.html#cb358-46" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
-<span id="cb358-47"><a href="present.html#cb358-47" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
-<span id="cb358-48"><a href="present.html#cb358-48" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by colour.") %&gt;%</span></span>
-<span id="cb358-49"><a href="present.html#cb358-49" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
-<span id="cb358-50"><a href="present.html#cb358-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb358-51"><a href="present.html#cb358-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-52"><a href="present.html#cb358-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plots</span></span>
-<span id="cb358-53"><a href="present.html#cb358-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-54"><a href="present.html#cb358-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clarity</span></span>
-<span id="cb358-55"><a href="present.html#cb358-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-56"><a href="present.html#cb358-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-clarity, fig.cap = "Diamond price by clarity"}</span></span>
-<span id="cb358-57"><a href="present.html#cb358-57" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = clarity, y = price)) +</span></span>
-<span id="cb358-58"><a href="present.html#cb358-58" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot() </span></span>
-<span id="cb358-59"><a href="present.html#cb358-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb358-60"><a href="present.html#cb358-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-61"><a href="present.html#cb358-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Carats</span></span>
-<span id="cb358-62"><a href="present.html#cb358-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-63"><a href="present.html#cb358-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-carat, fig.cap = "Diamond price by carat"}</span></span>
-<span id="cb358-64"><a href="present.html#cb358-64" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = carat, y = price)) +</span></span>
-<span id="cb358-65"><a href="present.html#cb358-65" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_smooth()</span></span>
-<span id="cb358-66"><a href="present.html#cb358-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb359-1"><a href="present.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb359-2"><a href="present.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Linked Document Demo"</span></span>
+<span id="cb359-3"><a href="present.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> </span></span>
+<span id="cb359-4"><a href="present.html#cb359-4" aria-hidden="true" tabindex="-1"></a><span class="co">  bookdown::html_document2:</span></span>
+<span id="cb359-5"><a href="present.html#cb359-5" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: false</span></span>
+<span id="cb359-6"><a href="present.html#cb359-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb359-7"><a href="present.html#cb359-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-8"><a href="present.html#cb359-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb359-9"><a href="present.html#cb359-9" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(echo = FALSE,</span></span>
+<span id="cb359-10"><a href="present.html#cb359-10" aria-hidden="true" tabindex="-1"></a><span class="in">                      message = FALSE,</span></span>
+<span id="cb359-11"><a href="present.html#cb359-11" aria-hidden="true" tabindex="-1"></a><span class="in">                      warning = FALSE)</span></span>
+<span id="cb359-12"><a href="present.html#cb359-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb359-13"><a href="present.html#cb359-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
+<span id="cb359-14"><a href="present.html#cb359-14" aria-hidden="true" tabindex="-1"></a><span class="in">theme_set(theme_minimal())</span></span>
+<span id="cb359-15"><a href="present.html#cb359-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb359-16"><a href="present.html#cb359-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-17"><a href="present.html#cb359-17" aria-hidden="true" tabindex="-1"></a>Diamond price depends on many features, such as:</span>
+<span id="cb359-18"><a href="present.html#cb359-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-19"><a href="present.html#cb359-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>cut (See Table\ \@ref(tab:by-cut))</span>
+<span id="cb359-20"><a href="present.html#cb359-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>colour (See Table\ \@ref(tab:by-colour))</span>
+<span id="cb359-21"><a href="present.html#cb359-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clarity (See Figure\ \@ref(fig:by-clarity))</span>
+<span id="cb359-22"><a href="present.html#cb359-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>carats (See Figure\ \@ref(fig:by-carat))</span>
+<span id="cb359-23"><a href="present.html#cb359-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-24"><a href="present.html#cb359-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tables</span></span>
+<span id="cb359-25"><a href="present.html#cb359-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-26"><a href="present.html#cb359-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cut</span></span>
+<span id="cb359-27"><a href="present.html#cb359-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-28"><a href="present.html#cb359-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-cut}</span></span>
+<span id="cb359-29"><a href="present.html#cb359-29" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
+<span id="cb359-30"><a href="present.html#cb359-30" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut) %&gt;%</span></span>
+<span id="cb359-31"><a href="present.html#cb359-31" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
+<span id="cb359-32"><a href="present.html#cb359-32" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
+<span id="cb359-33"><a href="present.html#cb359-33" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
+<span id="cb359-34"><a href="present.html#cb359-34" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
+<span id="cb359-35"><a href="present.html#cb359-35" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by cut.") %&gt;%</span></span>
+<span id="cb359-36"><a href="present.html#cb359-36" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
+<span id="cb359-37"><a href="present.html#cb359-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb359-38"><a href="present.html#cb359-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-39"><a href="present.html#cb359-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Colour</span></span>
+<span id="cb359-40"><a href="present.html#cb359-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-41"><a href="present.html#cb359-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-colour}</span></span>
+<span id="cb359-42"><a href="present.html#cb359-42" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
+<span id="cb359-43"><a href="present.html#cb359-43" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(color) %&gt;%</span></span>
+<span id="cb359-44"><a href="present.html#cb359-44" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
+<span id="cb359-45"><a href="present.html#cb359-45" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
+<span id="cb359-46"><a href="present.html#cb359-46" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
+<span id="cb359-47"><a href="present.html#cb359-47" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
+<span id="cb359-48"><a href="present.html#cb359-48" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by colour.") %&gt;%</span></span>
+<span id="cb359-49"><a href="present.html#cb359-49" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
+<span id="cb359-50"><a href="present.html#cb359-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb359-51"><a href="present.html#cb359-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-52"><a href="present.html#cb359-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plots</span></span>
+<span id="cb359-53"><a href="present.html#cb359-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-54"><a href="present.html#cb359-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clarity</span></span>
+<span id="cb359-55"><a href="present.html#cb359-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-56"><a href="present.html#cb359-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-clarity, fig.cap = "Diamond price by clarity"}</span></span>
+<span id="cb359-57"><a href="present.html#cb359-57" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = clarity, y = price)) +</span></span>
+<span id="cb359-58"><a href="present.html#cb359-58" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot() </span></span>
+<span id="cb359-59"><a href="present.html#cb359-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb359-60"><a href="present.html#cb359-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-61"><a href="present.html#cb359-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Carats</span></span>
+<span id="cb359-62"><a href="present.html#cb359-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-63"><a href="present.html#cb359-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-carat, fig.cap = "Diamond price by carat"}</span></span>
+<span id="cb359-64"><a href="present.html#cb359-64" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = carat, y = price)) +</span></span>
+<span id="cb359-65"><a href="present.html#cb359-65" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_smooth()</span></span>
+<span id="cb359-66"><a href="present.html#cb359-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 <p>This format defaults to numbered sections, so set <code>number_sections: false</code> in the <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> header if you don't want this.</p>
 </div>
@@ -245,7 +245,7 @@ Solution
 }</code></pre>
 <p>See <a href="https://www.bibtex.com/g/bibtex-format/" target="_blank">A complete guide to the BibTeX format</a> for instructions on citing books, techincal reports, and more.</p>
 <p>You can get the reference for an R package using the functions <code><a href="https://rdrr.io/r/utils/citation.html">citation()</a></code> and <code><a href="https://rdrr.io/r/utils/toLatex.html">toBibtex()</a></code>. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., "ggplot2") before the first comma to refer to the reference.</p>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"ggplot2"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/DT/man/DT-imports.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/toLatex.html">toBibtex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## @Book{,
 ##   author = {Hadley Wickham},
@@ -291,16 +291,16 @@ Solution
 <span class="header-section-number">10.2.5</span> Interactive tables<a class="anchor" aria-label="anchor" href="#interactive-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>One way to make your reports more exciting is to use interactive tables. The <code><a href="https://rdrr.io/pkg/DT/man/datatable.html">DT::datatable()</a></code> function displays a table with some extra interactive elements to allow readers to search and reorder the data, as well as controlling the number of rows shown at once. This can be especially helpful. This only works with HTML output types. The <a href="https://rstudio.github.io/DT/" target="_blank">DT website</a> has extensive tutorials, but we'll cover the basics here.</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span>
 
 <span class="va">scotpop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/scottish_population.csv"</span>, 
                     show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">scotpop</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-b4c4386b54d35dfdcb81" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4c4386b54d35dfdcb81">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"],["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>You can customise the display, such as changing column names, adding a caption, moving the location of the filter boxes, removing row names, applying <a href="https://datatables.net/manual/styling/classes" target="_blank">classes</a> to change table appearance, and applying <a href="https://datatables.net/reference/option/" target="_blank">advanced options</a>.</p>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<div id="htmlwidget-4000a18097550d2a6da8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4000a18097550d2a6da8">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"],["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>You can customise the display, such as changing column names, adding a caption, moving the location of the filter boxes, removing row names, applying <a href="https://datatables.net/manual/styling/classes" target="_blank">classes</a> to change table appearance, and applying <a href="https://datatables.net/reference/option/" target="_blank">advanced options</a>.</p>
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># https://datatables.net/reference/option/</span>
 <span class="va">my_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   pageLength <span class="op">=</span> <span class="fl">5</span>, <span class="co"># how many rows are displayed</span>
@@ -320,8 +320,8 @@ Solution
   class <span class="op">=</span> <span class="st">"cell-border hover stripe"</span>, <span class="co"># default is "display"</span>
   options <span class="op">=</span> <span class="va">my_options</span>
 <span class="op">)</span></code></pre></div>
-<div id="htmlwidget-08709adae48853dec023" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08709adae48853dec023">{"x":{"filter":"none","vertical":false,"caption":"<caption>The population of Scottish counties.<\/caption>","data":[["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"cell-border hover stripe\">\n  <thead>\n    <tr>\n      <th>County<\/th>\n      <th>Population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"lengthChange":false,"info":true,"paging":true,"ordering":false,"searching":false,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cd9ee139491a6b104c6e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cd9ee139491a6b104c6e">{"x":{"filter":"none","vertical":false,"caption":"<caption>The population of Scottish counties.<\/caption>","data":[["Aberdeen","Aberdeenshire","Angus","Argyll and Bute","Edinburgh","Clackmannanshire","Dumfries and Galloway","Dundee","East Ayrshire","East Dunbartonshire","East Lothian","East Renfrewshire","Eilean Siar","Falkirk","Fife","Glasgow","Highland","Inverclyde","Midlothian","Moray","North Ayrshire","North Lanarkshire","Orkney","Perthshire and Kinross","Renfrewshire","Scottish Borders","Shetland Islands","South Ayrshire","South Lanarkshire","Stirling","West Dunbartonshire","West Lothian"],[217120,245780,110570,89200,486120,50630,148190,144290,120240,104580,97500,89540,26190,153280,365020,592820,221630,79770,81140,87720,135180,326360,20110,147780,170250,112870,22400,111440,311880,89850,90570,172080]],"container":"<table class=\"cell-border hover stripe\">\n  <thead>\n    <tr>\n      <th>County<\/th>\n      <th>Population<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"lengthChange":false,"info":true,"paging":true,"ordering":false,"searching":false,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="other-formats" class="section level2" number="10.3">
@@ -347,52 +347,52 @@ Figure 10.1: Ioslides RMarkdown template.
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb368"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb368-1"><a href="present.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb368-2"><a href="present.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Presentation Demo"</span></span>
-<span id="cb368-3"><a href="present.html#cb368-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Lisa DeBruine"</span></span>
-<span id="cb368-4"><a href="present.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> ioslides_presentation</span></span>
-<span id="cb368-5"><a href="present.html#cb368-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb368-6"><a href="present.html#cb368-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-7"><a href="present.html#cb368-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb368-8"><a href="present.html#cb368-8" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(echo = FALSE)</span></span>
-<span id="cb368-9"><a href="present.html#cb368-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb368-10"><a href="present.html#cb368-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
-<span id="cb368-11"><a href="present.html#cb368-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb368-12"><a href="present.html#cb368-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-13"><a href="present.html#cb368-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with Markdown</span></span>
-<span id="cb368-14"><a href="present.html#cb368-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-15"><a href="present.html#cb368-15" aria-hidden="true" tabindex="-1"></a>The following slides will present some data from the <span class="in">`diamonds`</span> dataset from **ggplot2**.</span>
-<span id="cb368-16"><a href="present.html#cb368-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-17"><a href="present.html#cb368-17" aria-hidden="true" tabindex="-1"></a>Diamond price depends on many features, such as:</span>
-<span id="cb368-18"><a href="present.html#cb368-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-19"><a href="present.html#cb368-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>cut</span>
-<span id="cb368-20"><a href="present.html#cb368-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>colour</span>
-<span id="cb368-21"><a href="present.html#cb368-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clarity</span>
-<span id="cb368-22"><a href="present.html#cb368-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>carats</span>
-<span id="cb368-23"><a href="present.html#cb368-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-24"><a href="present.html#cb368-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with a Table</span></span>
-<span id="cb368-25"><a href="present.html#cb368-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-26"><a href="present.html#cb368-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb368-27"><a href="present.html#cb368-27" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
-<span id="cb368-28"><a href="present.html#cb368-28" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut, color) %&gt;%</span></span>
-<span id="cb368-29"><a href="present.html#cb368-29" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg_price = mean(price),</span></span>
-<span id="cb368-30"><a href="present.html#cb368-30" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
-<span id="cb368-31"><a href="present.html#cb368-31" aria-hidden="true" tabindex="-1"></a><span class="in">  pivot_wider(names_from = cut, values_from = avg_price) %&gt;%</span></span>
-<span id="cb368-32"><a href="present.html#cb368-32" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, caption = "Mean diamond price by cut and colour.") %&gt;%</span></span>
-<span id="cb368-33"><a href="present.html#cb368-33" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
-<span id="cb368-34"><a href="present.html#cb368-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb368-35"><a href="present.html#cb368-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-36"><a href="present.html#cb368-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with a Plot</span></span>
-<span id="cb368-37"><a href="present.html#cb368-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb368-38"><a href="present.html#cb368-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r pressure}</span></span>
-<span id="cb368-39"><a href="present.html#cb368-39" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = cut, y = price, color = color)) +</span></span>
-<span id="cb368-40"><a href="present.html#cb368-40" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_summary(fun = mean, geom = "point") +</span></span>
-<span id="cb368-41"><a href="present.html#cb368-41" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_summary(aes(x = as.integer(cut)), </span></span>
-<span id="cb368-42"><a href="present.html#cb368-42" aria-hidden="true" tabindex="-1"></a><span class="in">               fun = mean, geom = "line") +</span></span>
-<span id="cb368-43"><a href="present.html#cb368-43" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_x_discrete(position = "top") +</span></span>
-<span id="cb368-44"><a href="present.html#cb368-44" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_color_viridis_d(guide = guide_legend(reverse = TRUE)) +</span></span>
-<span id="cb368-45"><a href="present.html#cb368-45" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal() </span></span>
-<span id="cb368-46"><a href="present.html#cb368-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb369-1"><a href="present.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb369-2"><a href="present.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Presentation Demo"</span></span>
+<span id="cb369-3"><a href="present.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Lisa DeBruine"</span></span>
+<span id="cb369-4"><a href="present.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> ioslides_presentation</span></span>
+<span id="cb369-5"><a href="present.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb369-6"><a href="present.html#cb369-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-7"><a href="present.html#cb369-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb369-8"><a href="present.html#cb369-8" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(echo = FALSE)</span></span>
+<span id="cb369-9"><a href="present.html#cb369-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb369-10"><a href="present.html#cb369-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
+<span id="cb369-11"><a href="present.html#cb369-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb369-12"><a href="present.html#cb369-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-13"><a href="present.html#cb369-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with Markdown</span></span>
+<span id="cb369-14"><a href="present.html#cb369-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-15"><a href="present.html#cb369-15" aria-hidden="true" tabindex="-1"></a>The following slides will present some data from the <span class="in">`diamonds`</span> dataset from **ggplot2**.</span>
+<span id="cb369-16"><a href="present.html#cb369-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-17"><a href="present.html#cb369-17" aria-hidden="true" tabindex="-1"></a>Diamond price depends on many features, such as:</span>
+<span id="cb369-18"><a href="present.html#cb369-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-19"><a href="present.html#cb369-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>cut</span>
+<span id="cb369-20"><a href="present.html#cb369-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>colour</span>
+<span id="cb369-21"><a href="present.html#cb369-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>clarity</span>
+<span id="cb369-22"><a href="present.html#cb369-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>carats</span>
+<span id="cb369-23"><a href="present.html#cb369-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-24"><a href="present.html#cb369-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with a Table</span></span>
+<span id="cb369-25"><a href="present.html#cb369-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-26"><a href="present.html#cb369-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb369-27"><a href="present.html#cb369-27" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
+<span id="cb369-28"><a href="present.html#cb369-28" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut, color) %&gt;%</span></span>
+<span id="cb369-29"><a href="present.html#cb369-29" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg_price = mean(price),</span></span>
+<span id="cb369-30"><a href="present.html#cb369-30" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
+<span id="cb369-31"><a href="present.html#cb369-31" aria-hidden="true" tabindex="-1"></a><span class="in">  pivot_wider(names_from = cut, values_from = avg_price) %&gt;%</span></span>
+<span id="cb369-32"><a href="present.html#cb369-32" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, caption = "Mean diamond price by cut and colour.") %&gt;%</span></span>
+<span id="cb369-33"><a href="present.html#cb369-33" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_material()</span></span>
+<span id="cb369-34"><a href="present.html#cb369-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb369-35"><a href="present.html#cb369-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-36"><a href="present.html#cb369-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide with a Plot</span></span>
+<span id="cb369-37"><a href="present.html#cb369-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-38"><a href="present.html#cb369-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r pressure}</span></span>
+<span id="cb369-39"><a href="present.html#cb369-39" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = cut, y = price, color = color)) +</span></span>
+<span id="cb369-40"><a href="present.html#cb369-40" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_summary(fun = mean, geom = "point") +</span></span>
+<span id="cb369-41"><a href="present.html#cb369-41" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_summary(aes(x = as.integer(cut)), </span></span>
+<span id="cb369-42"><a href="present.html#cb369-42" aria-hidden="true" tabindex="-1"></a><span class="in">               fun = mean, geom = "line") +</span></span>
+<span id="cb369-43"><a href="present.html#cb369-43" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_x_discrete(position = "top") +</span></span>
+<span id="cb369-44"><a href="present.html#cb369-44" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_color_viridis_d(guide = guide_legend(reverse = TRUE)) +</span></span>
+<span id="cb369-45"><a href="present.html#cb369-45" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal() </span></span>
+<span id="cb369-46"><a href="present.html#cb369-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 </div>
 <div id="dashboards" class="section level3" number="10.3.2">
@@ -411,75 +411,75 @@ Figure 10.2: Flexdashboard RMarkdown template.
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb369"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb369-1"><a href="present.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb369-2"><a href="present.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Flexdashboard Demo"</span></span>
-<span id="cb369-3"><a href="present.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> </span></span>
-<span id="cb369-4"><a href="present.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="co">  flexdashboard::flex_dashboard:</span></span>
-<span id="cb369-5"><a href="present.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="co">    social: [ "twitter", "facebook", "linkedin", "pinterest" ]</span></span>
-<span id="cb369-6"><a href="present.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="co">    source_code: embed</span></span>
-<span id="cb369-7"><a href="present.html#cb369-7" aria-hidden="true" tabindex="-1"></a><span class="co">    orientation: columns</span></span>
-<span id="cb369-8"><a href="present.html#cb369-8" aria-hidden="true" tabindex="-1"></a><span class="co">    vertical_layout: fill</span></span>
-<span id="cb369-9"><a href="present.html#cb369-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb369-10"><a href="present.html#cb369-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-11"><a href="present.html#cb369-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb369-12"><a href="present.html#cb369-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(flexdashboard)</span></span>
-<span id="cb369-13"><a href="present.html#cb369-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb369-14"><a href="present.html#cb369-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
-<span id="cb369-15"><a href="present.html#cb369-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(DT) # for interactive tables</span></span>
-<span id="cb369-16"><a href="present.html#cb369-16" aria-hidden="true" tabindex="-1"></a><span class="in">theme_set(theme_minimal())</span></span>
-<span id="cb369-17"><a href="present.html#cb369-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb369-18"><a href="present.html#cb369-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-19"><a href="present.html#cb369-19" aria-hidden="true" tabindex="-1"></a>Column {data-width=350, .tabset}</span>
-<span id="cb369-20"><a href="present.html#cb369-20" aria-hidden="true" tabindex="-1"></a>--------------------------------</span>
-<span id="cb369-21"><a href="present.html#cb369-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-22"><a href="present.html#cb369-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Cut</span></span>
-<span id="cb369-23"><a href="present.html#cb369-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-24"><a href="present.html#cb369-24" aria-hidden="true" tabindex="-1"></a>This table uses <span class="in">`kableExtra`</span> to render the table with a specific theme.</span>
-<span id="cb369-25"><a href="present.html#cb369-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-26"><a href="present.html#cb369-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb369-27"><a href="present.html#cb369-27" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
-<span id="cb369-28"><a href="present.html#cb369-28" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut) %&gt;%</span></span>
-<span id="cb369-29"><a href="present.html#cb369-29" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
-<span id="cb369-30"><a href="present.html#cb369-30" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
-<span id="cb369-31"><a href="present.html#cb369-31" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
-<span id="cb369-32"><a href="present.html#cb369-32" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
-<span id="cb369-33"><a href="present.html#cb369-33" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by cut.") %&gt;%</span></span>
-<span id="cb369-34"><a href="present.html#cb369-34" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_classic()</span></span>
-<span id="cb369-35"><a href="present.html#cb369-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb369-36"><a href="present.html#cb369-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-37"><a href="present.html#cb369-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Colour</span></span>
-<span id="cb369-38"><a href="present.html#cb369-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-39"><a href="present.html#cb369-39" aria-hidden="true" tabindex="-1"></a>This table uses <span class="in">`DT::datatable()`</span> to render the table with a searchable interface.</span>
-<span id="cb369-40"><a href="present.html#cb369-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-41"><a href="present.html#cb369-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb369-42"><a href="present.html#cb369-42" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
-<span id="cb369-43"><a href="present.html#cb369-43" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(color) %&gt;%</span></span>
-<span id="cb369-44"><a href="present.html#cb369-44" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
-<span id="cb369-45"><a href="present.html#cb369-45" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
-<span id="cb369-46"><a href="present.html#cb369-46" aria-hidden="true" tabindex="-1"></a><span class="in">  DT::datatable(colnames = c("Colour", "Average Price"), </span></span>
-<span id="cb369-47"><a href="present.html#cb369-47" aria-hidden="true" tabindex="-1"></a><span class="in">                caption = "Mean diamond price by colour",</span></span>
-<span id="cb369-48"><a href="present.html#cb369-48" aria-hidden="true" tabindex="-1"></a><span class="in">                options = list(pageLength = 5),</span></span>
-<span id="cb369-49"><a href="present.html#cb369-49" aria-hidden="true" tabindex="-1"></a><span class="in">                rownames = FALSE) %&gt;%</span></span>
-<span id="cb369-50"><a href="present.html#cb369-50" aria-hidden="true" tabindex="-1"></a><span class="in">  DT::formatRound(columns=2, digits=0)</span></span>
-<span id="cb369-51"><a href="present.html#cb369-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb369-52"><a href="present.html#cb369-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-53"><a href="present.html#cb369-53" aria-hidden="true" tabindex="-1"></a>Column {data-width=350}</span>
-<span id="cb369-54"><a href="present.html#cb369-54" aria-hidden="true" tabindex="-1"></a>-----------------------</span>
-<span id="cb369-55"><a href="present.html#cb369-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-56"><a href="present.html#cb369-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Clarity</span></span>
-<span id="cb369-57"><a href="present.html#cb369-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-58"><a href="present.html#cb369-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-clarity, fig.cap = "Diamond price by clarity"}</span></span>
-<span id="cb369-59"><a href="present.html#cb369-59" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = clarity, y = price)) +</span></span>
-<span id="cb369-60"><a href="present.html#cb369-60" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot() </span></span>
-<span id="cb369-61"><a href="present.html#cb369-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb369-62"><a href="present.html#cb369-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-63"><a href="present.html#cb369-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-64"><a href="present.html#cb369-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Carats</span></span>
-<span id="cb369-65"><a href="present.html#cb369-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-66"><a href="present.html#cb369-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-carat, fig.cap = "Diamond price by carat"}</span></span>
-<span id="cb369-67"><a href="present.html#cb369-67" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = carat, y = price)) +</span></span>
-<span id="cb369-68"><a href="present.html#cb369-68" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_smooth()</span></span>
-<span id="cb369-69"><a href="present.html#cb369-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb370-1"><a href="present.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb370-2"><a href="present.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Flexdashboard Demo"</span></span>
+<span id="cb370-3"><a href="present.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> </span></span>
+<span id="cb370-4"><a href="present.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="co">  flexdashboard::flex_dashboard:</span></span>
+<span id="cb370-5"><a href="present.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="co">    social: [ "twitter", "facebook", "linkedin", "pinterest" ]</span></span>
+<span id="cb370-6"><a href="present.html#cb370-6" aria-hidden="true" tabindex="-1"></a><span class="co">    source_code: embed</span></span>
+<span id="cb370-7"><a href="present.html#cb370-7" aria-hidden="true" tabindex="-1"></a><span class="co">    orientation: columns</span></span>
+<span id="cb370-8"><a href="present.html#cb370-8" aria-hidden="true" tabindex="-1"></a><span class="co">    vertical_layout: fill</span></span>
+<span id="cb370-9"><a href="present.html#cb370-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb370-10"><a href="present.html#cb370-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-11"><a href="present.html#cb370-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb370-12"><a href="present.html#cb370-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(flexdashboard)</span></span>
+<span id="cb370-13"><a href="present.html#cb370-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb370-14"><a href="present.html#cb370-14" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)</span></span>
+<span id="cb370-15"><a href="present.html#cb370-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(DT) # for interactive tables</span></span>
+<span id="cb370-16"><a href="present.html#cb370-16" aria-hidden="true" tabindex="-1"></a><span class="in">theme_set(theme_minimal())</span></span>
+<span id="cb370-17"><a href="present.html#cb370-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb370-18"><a href="present.html#cb370-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-19"><a href="present.html#cb370-19" aria-hidden="true" tabindex="-1"></a>Column {data-width=350, .tabset}</span>
+<span id="cb370-20"><a href="present.html#cb370-20" aria-hidden="true" tabindex="-1"></a>--------------------------------</span>
+<span id="cb370-21"><a href="present.html#cb370-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-22"><a href="present.html#cb370-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Cut</span></span>
+<span id="cb370-23"><a href="present.html#cb370-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-24"><a href="present.html#cb370-24" aria-hidden="true" tabindex="-1"></a>This table uses <span class="in">`kableExtra`</span> to render the table with a specific theme.</span>
+<span id="cb370-25"><a href="present.html#cb370-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-26"><a href="present.html#cb370-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb370-27"><a href="present.html#cb370-27" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
+<span id="cb370-28"><a href="present.html#cb370-28" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(cut) %&gt;%</span></span>
+<span id="cb370-29"><a href="present.html#cb370-29" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
+<span id="cb370-30"><a href="present.html#cb370-30" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
+<span id="cb370-31"><a href="present.html#cb370-31" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(digits = 0, </span></span>
+<span id="cb370-32"><a href="present.html#cb370-32" aria-hidden="true" tabindex="-1"></a><span class="in">        col.names = c("Cut", "Average Price"),</span></span>
+<span id="cb370-33"><a href="present.html#cb370-33" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Mean diamond price by cut.") %&gt;%</span></span>
+<span id="cb370-34"><a href="present.html#cb370-34" aria-hidden="true" tabindex="-1"></a><span class="in">  kable_classic()</span></span>
+<span id="cb370-35"><a href="present.html#cb370-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb370-36"><a href="present.html#cb370-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-37"><a href="present.html#cb370-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Colour</span></span>
+<span id="cb370-38"><a href="present.html#cb370-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-39"><a href="present.html#cb370-39" aria-hidden="true" tabindex="-1"></a>This table uses <span class="in">`DT::datatable()`</span> to render the table with a searchable interface.</span>
+<span id="cb370-40"><a href="present.html#cb370-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-41"><a href="present.html#cb370-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb370-42"><a href="present.html#cb370-42" aria-hidden="true" tabindex="-1"></a><span class="in">diamonds %&gt;%</span></span>
+<span id="cb370-43"><a href="present.html#cb370-43" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(color) %&gt;%</span></span>
+<span id="cb370-44"><a href="present.html#cb370-44" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(avg = mean(price),</span></span>
+<span id="cb370-45"><a href="present.html#cb370-45" aria-hidden="true" tabindex="-1"></a><span class="in">            .groups = "drop") %&gt;%</span></span>
+<span id="cb370-46"><a href="present.html#cb370-46" aria-hidden="true" tabindex="-1"></a><span class="in">  DT::datatable(colnames = c("Colour", "Average Price"), </span></span>
+<span id="cb370-47"><a href="present.html#cb370-47" aria-hidden="true" tabindex="-1"></a><span class="in">                caption = "Mean diamond price by colour",</span></span>
+<span id="cb370-48"><a href="present.html#cb370-48" aria-hidden="true" tabindex="-1"></a><span class="in">                options = list(pageLength = 5),</span></span>
+<span id="cb370-49"><a href="present.html#cb370-49" aria-hidden="true" tabindex="-1"></a><span class="in">                rownames = FALSE) %&gt;%</span></span>
+<span id="cb370-50"><a href="present.html#cb370-50" aria-hidden="true" tabindex="-1"></a><span class="in">  DT::formatRound(columns=2, digits=0)</span></span>
+<span id="cb370-51"><a href="present.html#cb370-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb370-52"><a href="present.html#cb370-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-53"><a href="present.html#cb370-53" aria-hidden="true" tabindex="-1"></a>Column {data-width=350}</span>
+<span id="cb370-54"><a href="present.html#cb370-54" aria-hidden="true" tabindex="-1"></a>-----------------------</span>
+<span id="cb370-55"><a href="present.html#cb370-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-56"><a href="present.html#cb370-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Clarity</span></span>
+<span id="cb370-57"><a href="present.html#cb370-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-58"><a href="present.html#cb370-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-clarity, fig.cap = "Diamond price by clarity"}</span></span>
+<span id="cb370-59"><a href="present.html#cb370-59" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = clarity, y = price)) +</span></span>
+<span id="cb370-60"><a href="present.html#cb370-60" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot() </span></span>
+<span id="cb370-61"><a href="present.html#cb370-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb370-62"><a href="present.html#cb370-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-63"><a href="present.html#cb370-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-64"><a href="present.html#cb370-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### By Carats</span></span>
+<span id="cb370-65"><a href="present.html#cb370-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-66"><a href="present.html#cb370-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r by-carat, fig.cap = "Diamond price by carat"}</span></span>
+<span id="cb370-67"><a href="present.html#cb370-67" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(diamonds, aes(x = carat, y = price)) +</span></span>
+<span id="cb370-68"><a href="present.html#cb370-68" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_smooth()</span></span>
+<span id="cb370-69"><a href="present.html#cb370-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 <p>Change the size of your web browser to see how the boxes, tables and figures change.</p>
 <p>The best way to figure out how to format a dashboard is trial and error, but you can also look at some <a href="https://pkgs.rstudio.com/flexdashboard/articles/layouts.html" target="_blank">sample layouts</a>.</p>

@@ -200,14 +200,19 @@ knitr::knit2html("important_info.Rmd")
 
 Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.
 
-Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything after the setup chunk. Add `library(tidyverse)` to the setup chunk so that tidyverse functions are available to your script.
+Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything after the setup chunk.  Add `library(tidyverse)` to the setup chunk so that tidyverse functions are available to your script.
+
+```{r, eval = FALSE, verbatim="r setup, include=FALSE"}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
 
 ### Online sources {#loading-online}
 
 First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.
 
--   The data is stored in a `.csv` file so we're going to use the `readr::read_csv()` function to load it in.
--   The package `readr` is part of the `tidyverse` that you installed in Chapter\ \@ref(intro) and we load this package with `library()`\
+-   The data is stored in a `.csv` file so we're going to use the `read_csv()` function to load it in.
 -   Note that the url is contained within double quotation marks - it won't work without this.
 
 ```{r, message=FALSE}

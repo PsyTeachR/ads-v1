@@ -199,14 +199,23 @@ knitr::knit2html("important_info.Rmd")
 
 Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.
 
-Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything after the setup chunk. Add `library(tidyverse)` to the setup chunk so that tidyverse functions are available to your script.
+Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything after the setup chunk.  Add `library(tidyverse)` to the setup chunk so that tidyverse functions are available to your script.
+
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r setup, include=FALSE}</code></pre>
+
+```r
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
+
 
 ### Online sources {#loading-online}
 
 First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.
 
--   The data is stored in a `.csv` file so we're going to use the `readr::read_csv()` function to load it in.
--   The package `readr` is part of the `tidyverse` that you installed in Chapter\ \@ref(intro) and we load this package with `library()`\
+-   The data is stored in a `.csv` file so we're going to use the `read_csv()` function to load it in.
 -   Note that the url is contained within double quotation marks - it won't work without this.
 
 
@@ -395,7 +404,7 @@ ggplot(data = sales_counts,
        subtitle = "2003 - 2005")
 ```
 
-<img src="02-reports_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
 
 You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using `knitr::include_graphics()`.
 
@@ -487,7 +496,7 @@ sales_counts %>%
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-13)Number of sales per product line.</caption>
+<caption>(\#tab:unnamed-chunk-14)Number of sales per product line.</caption>
  <thead>
   <tr>
    <th style="text-align:center;font-weight: bold;color: red !important;"> Product </th>

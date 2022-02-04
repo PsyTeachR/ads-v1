@@ -137,7 +137,7 @@ top5 <- top5_hashtags %>%
 
 Before we can finish up though, there's a couple of extra steps we need to add in to account for some of the idiosyncrasies of Twitter data. 
 
-First,  the `@` symbol is used by R Markdown for referencing (see Chapter \ \@ref(references)). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of `@` and add backslashes. Backslashes create a literal version of characters that have a special meaning in R, so adding them means it will print the `@` symbol without trying to create a reference. Of course `\` also has a special meaning in R, which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&), which sometimes display as "&amp;".
+First,  the `@` symbol is used by R Markdown for referencing (see Chapter \ \@ref(references)). It's likely that some of the tweets will contain this symbol, so we can use mutate to find any instances of `@` and `r glossary("escape")` them using backslashes. Backslashes create a `r glossary("literal")` version of characters that have a special meaning in R, so adding them means it will print the `@` symbol without trying to create a reference. Of course `\` also has a special meaning in R, which means we also need to backslash the backslash. Isn't programming fun? We can use the same code to tidy up any ampersands (&), which sometimes display as "&amp;".
 
 Second, if there are multiple images associated with a single tweet, `media_url` will be a list, so we use `unlist()`. This might not be necessary for a different set of tweets; use `glimpse()` to check the data types.
 

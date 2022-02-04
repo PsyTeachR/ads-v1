@@ -6,7 +6,7 @@ fig:img-new-chunk
 fig:img-run1
 fig:img-run2
 fig:visual-editor
-tab:unnamed-chunk-13
+tab:unnamed-chunk-14
 fig:img-full-100
 fig:img-half-100
 fig:img-half-50
@@ -86,6 +86,7 @@ fig:theme-font-demo
 fig:font-demo
 fig:demo-multi-text
 tab:unnamed-chunk-12
+tab:unnamed-chunk-13
 fig:likes-per-day-plot
 fig:eng-per-day-plot
 fig:likes-by-month-plot

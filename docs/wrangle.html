@@ -11,12 +11,12 @@
 <meta property="og:title" content="Chapter 8 Data Wrangling | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/wrangle.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <meta property="og:description" content="8.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data library(tidyverse)  # data...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 Data Wrangling | Applied Data Skills">
 <meta name="twitter:description" content="8.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data library(tidyverse)  # data...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -360,33 +360,33 @@ zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects column
 <li>
 <code>budget %&gt;% select(starts_with("sales"))</code>
 <select class="webex-select"><option value="blank"></option>
-<option value="answer">sales_2019, sales_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
+<option value="answer">sales_2019, sales_2020</option>
 <option value="x">sales_2020, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(ends_with("2020"))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="x">sales_2019, sales_2020</option>
-<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="answer">sales_2020, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
+<option value="x">expenses_2019, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(contains("_"))</code>
 <select class="webex-select"><option value="blank"></option>
-<option value="x">sales_2019, sales_2020</option>
-<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2020, expenses_2020</option>
 <option value="answer">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
-<option value="x">sales_2020, expenses_2020</option></select>
+<option value="x">expenses_2019, expenses_2020</option>
+<option value="x">sales_2019, sales_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
-<option value="answer">expenses_2019, expenses_2020</option>
 <option value="x">sales_2020, expenses_2020</option>
+<option value="answer">expenses_2019, expenses_2020</option>
 <option value="x">sales_2019, sales_2020</option></select>
 </li>
 </ul>
@@ -1248,20 +1248,20 @@ widgets
 </div>
 <div class="try">
 <p>How would you find out the maximum sales for each region?</p>
-<div id="radio_MASRGFEDUZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MASRGFEDUZ" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(sales) %&gt;%
-  summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_MASRGFEDUZ" value="answer"><span>
+<div id="radio_COQTLWWMJT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="answer"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_MASRGFEDUZ" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(sales) %&gt;%
+  summarise(max_sales = max(region)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_MASRGFEDUZ" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
   summarise(max_sales = max(sales)</pre>

@@ -12,7 +12,7 @@ description: |
   This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of descriptive statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes.
 url: https://psyteachr.github.io/ads-v1
 github-repo: psyteachr/ads-v1
-cover-image: images/logos/logo
+cover-image: images/logos/logo.png
 apple-touch-icon: images/logos/apple-touch-icon.png
 apple-touch-icon-size: 180
 favicon: images/logos/favicon.ico

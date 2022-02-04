@@ -103,9 +103,10 @@ When you first open a new R Markdown document you will see a bunch of welcome te
 
 Do the following steps:
 
--   Delete **everything** from line 12 onwards
--   On line 12 type "## My info" (with the hashtags but without the quotation marks)\
--   Click the insert new code menu (a green box with a C and a plus sign) then **`R`**
+-   Change the title to "Important Information" and the author to your name
+-   Delete **everything** after the setup chunk
+-   Skip a line after the setup chunk and type "## My info" (with the hashes but without the quotation marks); make sure there are no spaces before the hashes and at least one space after the hashes before the subtitle
+-   Skip a line and click the insert new code menu (a green box with a C and a plus sign) then **`R`**
 
 Your Markdown document should now look something like this:
 
@@ -180,13 +181,16 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 325 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 324 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
 
 
 ```r
+rmarkdown::render("important_info.Rmd")
+
+# alternatively, you can use this, but may get a warning
 knitr::knit2html("important_info.Rmd")
 ```
 :::
@@ -195,7 +199,7 @@ knitr::knit2html("important_info.Rmd")
 
 Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.
 
-Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything from line 12 onwards.
+Save and close your `important_info.Rmd` document. Then open and save a new Markdown document, this time named `sales_data.Rmd`. You can again get rid of everything after the setup chunk. Add `library(tidyverse)` to the setup chunk so that tidyverse functions are available to your script.
 
 ### Online sources {#loading-online}
 
@@ -208,9 +212,17 @@ First, let's try loading data that is stored online. Create a code chunk in your
 
 ```r
 # Data from https://www.kaggle.com/kyanyoga/sample-sales-data
-library(tidyverse)
-sales_online <- readr::read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv")
+sales_online <- read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv")
 ```
+
+::: {.warning data-latex=""}
+If you get an error message that looks like:
+
+> Error in read_csv("https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv") :  
+>  could not find function "read_csv"
+
+This means that you have not loaded tidyverse. Check that `library(tidyverse)` is in the setup chunk and that you have run the setup chunk.
+:::
 
 This dataset is simulated sales data for different types of vehicles where each line of data is a single order. There are multiple ways to view and check a dataset in R. Do each of the following and make a note of what information each approach seems to give you. If you'd like more information about each of these functions, you can look up the help documentation with `?function`:
 

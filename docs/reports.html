@@ -207,10 +207,10 @@ Figure 2.2: New R Markdown text
 </div>
 <p>Do the following steps:</p>
 <ul>
-<li>Delete <strong>everything</strong> from line 12 onwards</li>
-<li>On line 12 type "## My info" (with the hashtags but without the quotation marks)<br>
-</li>
-<li>Click the insert new code menu (a green box with a C and a plus sign) then <strong><code>R</code></strong>
+<li>Change the title to "Important Information" and the author to your name</li>
+<li>Delete <strong>everything</strong> after the setup chunk</li>
+<li>Skip a line after the setup chunk and type "## My info" (with the hashes but without the quotation marks); make sure there are no spaces before the hashes and at least one space after the hashes before the subtitle</li>
+<li>Skip a line and click the insert new code menu (a green box with a C and a plus sign) then <strong><code>R</code></strong>
 </li>
 </ul>
 <p>Your Markdown document should now look something like this:</p>
@@ -279,11 +279,14 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 325 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 324 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"important_info.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span><span class="op">(</span><span class="st">"important_info.Rmd"</span><span class="op">)</span>
+
+<span class="co"># alternatively, you can use this, but may get a warning</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit2html.html">knit2html</a></span><span class="op">(</span><span class="st">"important_info.Rmd"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -292,7 +295,7 @@ Figure 2.5: Slightly better method of running code
 <span class="header-section-number">2.4</span> Loading data<a class="anchor" aria-label="anchor" href="#loading-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now let's try another example of using Markdown but this time rather than using objects we have created from scratch, we will read in a data file.</p>
-<p>Save and close your <code>important_info.Rmd</code> document. Then open and save a new Markdown document, this time named <code>sales_data.Rmd</code>. You can again get rid of everything from line 12 onwards.</p>
+<p>Save and close your <code>important_info.Rmd</code> document. Then open and save a new Markdown document, this time named <code>sales_data.Rmd</code>. You can again get rid of everything after the setup chunk. Add <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> to the setup chunk so that tidyverse functions are available to your script.</p>
 <div id="loading-online" class="section level3" number="2.4.1">
 <h3>
 <span class="header-section-number">2.4.1</span> Online sources<a class="anchor" aria-label="anchor" href="#loading-online"><i class="fas fa-link"></i></a>
@@ -306,8 +309,15 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Data from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<div class="warning">
+<p>If you get an error message that looks like:</p>
+<blockquote>
+<p>Error in read_csv("<a href="https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv" class="uri">https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv</a>") :<br>
+could not find function "read_csv"</p>
+</blockquote>
+<p>This means that you have not loaded tidyverse. Check that <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> is in the setup chunk and that you have run the setup chunk.</p>
+</div>
 <p>This dataset is simulated sales data for different types of vehicles where each line of data is a single order. There are multiple ways to view and check a dataset in R. Do each of the following and make a note of what information each approach seems to give you. If you'd like more information about each of these functions, you can look up the help documentation with <code>?function</code>:</p>
 <ul>
 <li>Click on the <code>sales_online</code> object in the environment pane</li>
@@ -1294,7 +1304,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-03.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

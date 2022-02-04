@@ -360,9 +360,9 @@ zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects column
 <li>
 <code>budget %&gt;% select(starts_with("sales"))</code>
 <select class="webex-select"><option value="blank"></option>
-<option value="x">expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="answer">sales_2019, sales_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
+<option value="x">expenses_2019, expenses_2020</option>
 <option value="x">sales_2020, expenses_2020</option></select>
 </li>
 <li>
@@ -370,24 +370,24 @@ zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects column
 <select class="webex-select"><option value="blank"></option>
 <option value="answer">sales_2020, expenses_2020</option>
 <option value="x">expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020</option></select>
+<option value="x">sales_2019, sales_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(contains("_"))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="x">sales_2020, expenses_2020</option>
 <option value="x">sales_2019, sales_2020</option>
-<option value="answer">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
-<option value="x">expenses_2019, expenses_2020</option></select>
+<option value="x">expenses_2019, expenses_2020</option>
+<option value="answer">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
 </li>
 <li>
 <code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code>
 <select class="webex-select"><option value="blank"></option>
 <option value="x">sales_2020, expenses_2020</option>
-<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option>
 <option value="answer">expenses_2019, expenses_2020</option>
-<option value="x">sales_2019, sales_2020</option></select>
+<option value="x">sales_2019, sales_2020</option>
+<option value="x">sales_2019, sales_2020, expenses_2019, expenses_2020</option></select>
 </li>
 </ul>
 </div>
@@ -1248,23 +1248,23 @@ widgets
 </div>
 <div class="try">
 <p>How would you find out the maximum sales for each region?</p>
-<div id="radio_VPAGSEPWFO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="answer"><span>
-<pre>budget3 %&gt;%
-  group_by(region) %&gt;%
-  summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(sales) %&gt;%
-  summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(region) %&gt;%
-  summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_VPAGSEPWFO" value="x"><span>
+<div id="radio_RHULLEJYMY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RHULLEJYMY" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
   summarise(max_sales = max(region)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_RHULLEJYMY" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(sales) %&gt;%
+  summarise(max_sales = max(sales)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_RHULLEJYMY" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(region) %&gt;%
+  summarise(max_sales = max(region)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_RHULLEJYMY" value="answer"><span>
+<pre>budget3 %&gt;%
+  group_by(region) %&gt;%
+  summarise(max_sales = max(sales)</pre>
 </span></label>
 </div>
 </div>
@@ -2837,7 +2837,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-03.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

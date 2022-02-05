@@ -2,22 +2,23 @@
 
 <div class="incomplete-chapter"></div>
 
+
+
+
 ## Intended Learning Outcomes {#ilo-tidy}
 
 -   Be able to reshape data between long and wide formats
 -   Separate, change, reorder, and rename columns
 -   Use pipes to chain together functions
 
-In this chapter we'll use the following packages:
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named <code class='path'>07-tidy</code>. Second, open and save and new R Markdown document named `tidy.Rmd`, delete the welcome text and load the required packages for this chapter.
 
 
 ```r
 library(tidyverse) # for data wrangling
 ```
-
-## Set-up
-
-First, create a new project for the work we'll do in this chapter named <code class='path'>07-tidy</code>. Second, open and save and new R Markdown document named `tidy`.Rmd\`, delete the welcome text and load the required packages for this chapter.
 
 ## Data Structures
 
@@ -27,40 +28,38 @@ Data cleaning and tidying will likely be the most time consuming and difficult t
 
 First, some terminology.
 
-An <a class='glossary' target='_blank' title='All of the data about a single trial or question.' href='https://psyteachr.github.io/glossary/o#observation'>observation</a> is all the information about a single "thing" at a single point in time. These things can be customers, sales, orders, feedback questionnaires, tweets, or really anything. Observations should have a way to identify them, such as a unique ID or combination of variable values.
+An <a class='glossary' target='_blank' title='All of the data about a single trial or question.' href='https://psyteachr.github.io/glossary/o#observation'>observation</a> is all the information about a single "thing" in a single condition, such as at one point in time. These things can be customers, sales, orders, feedback questionnaires, tweets, or really anything. Observations should have a way to identify them, such as a unique ID or a unique combination of values like country and year.
 
 A <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a> is one type of information about the observation. For example, if the observation is a sale, the variables you might have about the sale are the sale ID, the customer's ID, the date of the sale, the price paid, and method of payment.
 
 A <a class='glossary' target='_blank' title='A single number or piece of data.' href='https://psyteachr.github.io/glossary/v#value'>value</a> is the data for one variable for one observation. For example, the value of the date variable from the observation of a sale might be `2021-08-20`.
 
-
 ::: {.try data-latex=""}
-The following table is data from an experiment where participants' reactions times are tested on two separate occasions.
+The following table is data that shows the number of items each customer bought each year.
 
-| Participant | RT - test 1 | RT - test 2 | RT - test 3 |
-|-------------|------------------------|------------------------|------------------------|
-| 1           | 356                    | 850                    | 400                    |
-| 2           | 456                    | 780                    | 541                    |
-| 3           | 471                    | 668                    | 522                    |
-| 4           | 510                    | 1020                   | 850                    |
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2018","3":"2"},{"1":"1","2":"2019","3":"8"},{"1":"1","2":"2020","3":"10"},{"1":"2","2":"2018","3":"1"},{"1":"2","2":"2019","3":"6"},{"1":"2","2":"2020","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 
--   What is `356`? <select class='webex-select'><option value='blank'></option><option value='x'>Observation</option><option value='x'>Variable</option><option value='answer'>Value</option></select>
--   What is test time? <select class='webex-select'><option value='blank'></option><option value='x'>Observation</option><option value='answer'>Variable</option><option value='x'>Value</option></select>
--   How many variables are there in this dataset? <input class='webex-solveme nospaces' size='1' data-answer='["3"]'/>
+
+-   What is `items`? <select class='webex-select'><option value='blank'></option><option value='x'>Observation</option><option value='answer'>Variable</option><option value='x'>Value</option></select>
+-   How many observations are there in this dataset? <input class='webex-solveme nospaces' size='1' data-answer='["6"]'/>
+-   What is `8`? <select class='webex-select'><option value='blank'></option><option value='x'>Observation</option><option value='x'>Variable</option><option value='answer'>Value</option></select>
 
 
 <div class='webex-solution'><button>Explain these answers</button>
 
 
--   There are three variables, Participant, Reaction time, and test time. Even though test time is spread out across three columns, it is still one variable.
--   `356` is a value because it is a single data point for one variable for one observation. 
+-   There are three variables, `customer_id`, `year`, and `items`.
+-   There are six observations, one for each of two customers for each of three years.
+-   `8` is a value because it is a single data point for one variable for one observation. 
 
 
 </div>
 
 :::
-
-
 
 ### Untidy data
 
@@ -71,7 +70,7 @@ First, let's have a look at an example of a messy, or untidy, dataset. Each row 
 * There is data for three different years in the dataset.
 
 <table>
-<caption>(\#tab:unnamed-chunk-1)Untidy table</caption>
+<caption>(\#tab:unnamed-chunk-2)Untidy table</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -158,12 +157,12 @@ There are three rules for "tidy data", which is data in a format that makes it e
 
 This is the tidy version:
 
-* There are now five variables (columns) because there are five different types of information we have on each customer, their id, the year, number of items bought, price per item, and total price. Even though there's multiple values in each one, these values all correspond to just five different types of information.
+* There are now five variables (columns) because there are five different types of information we have for each observation: the customer id, the year, number of items bought, price per item, and total price. 
 * Each row is a customer's orders in a particular year. 
 * The number of items (`items`) and price per item (`price_per_item`) are in separate columns, so now you can perform mathematical operations on them.
 
 <table>
-<caption>(\#tab:unnamed-chunk-1)Tidy table</caption>
+<caption>(\#tab:unnamed-chunk-2)Tidy table</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -302,48 +301,13 @@ tidy_data %>%
   )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> customer_id </th>
-   <th style="text-align:right;"> total_items </th>
-   <th style="text-align:right;"> total_price </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 101.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 37.82 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 67.19 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 60.59 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 98.93 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["total_items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["total_price"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"20","3":"101.48"},{"1":"2","2":"8","3":"37.82"},{"1":"3","2":"14","3":"67.19"},{"1":"4","2":"14","3":"60.59"},{"1":"5","2":"20","3":"98.93"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
-It also makes it very easier to use with `ggplot()` - try running each of the following plots. 
+It also makes it very easy to use with `ggplot()` - try running each of the following plots. 
 
 
 ```r
@@ -378,9 +342,18 @@ Data tables can be in <a class='glossary' target='_blank' title='Data where all 
 <p class="caption">(\#fig:img-pivot-table)Converting between wide and long formats using pivot tables in Excel.</p>
 </div>
 
-It can be easier to just consider one type of measurement at a time. `untidy_data` has two types of measurements, total price and price per time. Let's look at just the `totalprice` data first. 
+It can be easier to just consider one type of measurement at a time. `untidy_data` has two types of measurements, total price and price per item. Let's look at just the `totalprice` data first. 
 
-We can select just the columns we want using the `dplyr::select()` function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or `new_name = old_name`. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns. Note that because the names of the columns are numbers, they need to be wrapped in backticks otherwise it won't work.
+We can select just the columns we want using the `dplyr::select()` function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or `new_name = old_name`. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns. 
+
+::: {.warning data-latex=""}
+Note that because the names of the columns are numbers, they need to be wrapped in backticks otherwise you'll get an error like:
+```
+Error: unexpected '=' in:
+"  customer_id, 
+  2018 ="
+```
+:::
 
 
 ```r
@@ -393,6 +366,7 @@ untidy_price <- select(
   `2020` = totalprice_2020
 )
 ```
+
 
 <table>
 <caption>(\#tab:wide-data)Wide data</caption>
@@ -438,7 +412,7 @@ untidy_price <- select(
 </tbody>
 </table>
 
-This is in wide format, where each row is a customer, and represents the data from several years. This is a really intuitive way for humans to read a table, but it's not as easy for a computer to process it.
+This is in wide format, where each row is a customer, and represents the data from several years. This is a really intuitive way for humans to read a table, but it's not as easy to process with code.
 
 The same data can be represented in a long format by creating a new column that specifies what `year` the observation is from and a new column that specifies the `totalprice` of that observation. This is easier to use to make summaries and plots.
 
@@ -541,7 +515,8 @@ Create a long version of the following table of how many million followers each 
 
 
 <div class='webex-solution'><button>Answer</button>
- Your answer doesn't need to have the same column headers or be in the same order.
+
+Your answer doesn't need to have the same column headers or be in the same order.
 
 | account            | social_media | followers |
 |:-------------------|:-------------|:----------|
@@ -558,7 +533,7 @@ Create a long version of the following table of how many million followers each 
 :::
 
 ::: {.info data-latex=""}
-If you're a researcher and you're used to thinking about IVs and DVs, you may find it easier to remember that each IV and DV should have it's own column, rather than each level of the IV. 
+If you're a researcher and you're used to thinking about IVs and DVs, you may find it easier to remember that each IV and DV should have its own column, rather than a column for each level of the IV. 
 :::
 
 
@@ -682,7 +657,7 @@ We can also go from long to wide format using the `pivot_wider()` function.
 
 -   `names_from`: the columns that contain your new column headers.
 -   `values_from`: the column that contains the values for the new columns.
--   `names_sep`:the character string used to join names if `names_from` is more than one column.
+-   `names_sep`: the character string used to join names if `names_from` is more than one column.
 
 
 ```r
@@ -745,194 +720,18 @@ You often need to go from wide, to long, to an intermediate shape in order to ge
 
 Our full `untidy_data` table has seven columns: a customer ID, three columns for `itemsprice` and 3 columns for `totalprice`.
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> customer_id </th>
-   <th style="text-align:left;"> itemsprice_2018 </th>
-   <th style="text-align:left;"> itemsprice_2019 </th>
-   <th style="text-align:left;"> itemsprice_2020 </th>
-   <th style="text-align:right;"> totalprice_2018 </th>
-   <th style="text-align:right;"> totalprice_2019 </th>
-   <th style="text-align:right;"> totalprice_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 2 (3.91) </td>
-   <td style="text-align:left;"> 8 (4.72) </td>
-   <td style="text-align:left;"> 10 (5.59) </td>
-   <td style="text-align:right;"> 7.82 </td>
-   <td style="text-align:right;"> 37.76 </td>
-   <td style="text-align:right;"> 55.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1 (3.91) </td>
-   <td style="text-align:left;"> 6 (4.72) </td>
-   <td style="text-align:left;"> 1 (5.59) </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 28.32 </td>
-   <td style="text-align:right;"> 5.59 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 4 (3.91) </td>
-   <td style="text-align:left;"> 5 (4.72) </td>
-   <td style="text-align:left;"> 5 (5.59) </td>
-   <td style="text-align:right;"> 15.64 </td>
-   <td style="text-align:right;"> 23.60 </td>
-   <td style="text-align:right;"> 27.95 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 10 (3.91) </td>
-   <td style="text-align:left;"> 1 (4.72) </td>
-   <td style="text-align:left;"> 3 (5.59) </td>
-   <td style="text-align:right;"> 39.10 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 16.77 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 3 (3.91) </td>
-   <td style="text-align:left;"> 9 (4.72) </td>
-   <td style="text-align:left;"> 8 (5.59) </td>
-   <td style="text-align:right;"> 11.73 </td>
-   <td style="text-align:right;"> 42.48 </td>
-   <td style="text-align:right;"> 44.72 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["itemsprice_2018"],"name":[2],"type":["chr"],"align":["left"]},{"label":["itemsprice_2019"],"name":[3],"type":["chr"],"align":["left"]},{"label":["itemsprice_2020"],"name":[4],"type":["chr"],"align":["left"]},{"label":["totalprice_2018"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["totalprice_2019"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["totalprice_2020"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2 (3.91)","3":"8 (4.72)","4":"10 (5.59)","5":"7.82","6":"37.76","7":"55.90"},{"1":"2","2":"1 (3.91)","3":"6 (4.72)","4":"1 (5.59)","5":"3.91","6":"28.32","7":"5.59"},{"1":"3","2":"4 (3.91)","3":"5 (4.72)","4":"5 (5.59)","5":"15.64","6":"23.60","7":"27.95"},{"1":"4","2":"10 (3.91)","3":"1 (4.72)","4":"3 (5.59)","5":"39.10","6":"4.72","7":"16.77"},{"1":"5","2":"3 (3.91)","3":"9 (4.72)","4":"8 (5.59)","5":"11.73","6":"42.48","7":"44.72"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 We want to get it into the tidy format below where each row is an observation of one customer per year, with the columns of `customer_id`, `year`, `item`, `price_per_item` and `totalprice`. Before trying to reshape any dataset, you should be able to visualise what it will look like. Sketching out your tables on a piece of paper can really help make these transformations make sense.
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> customer_id </th>
-   <th style="text-align:right;"> year </th>
-   <th style="text-align:right;"> items </th>
-   <th style="text-align:right;"> price_per_item </th>
-   <th style="text-align:right;"> totalprice </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 7.82 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2019 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 37.76 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 5.59 </td>
-   <td style="text-align:right;"> 55.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 3.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2019 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 28.32 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5.59 </td>
-   <td style="text-align:right;"> 5.59 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 15.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2019 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 23.60 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5.59 </td>
-   <td style="text-align:right;"> 27.95 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 39.10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2019 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 4.72 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 5.59 </td>
-   <td style="text-align:right;"> 16.77 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 11.73 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2019 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 42.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2020 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 5.59 </td>
-   <td style="text-align:right;"> 44.72 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["price_per_item"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["totalprice"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2018","3":"2","4":"3.91","5":"7.82"},{"1":"1","2":"2019","3":"8","4":"4.72","5":"37.76"},{"1":"1","2":"2020","3":"10","4":"5.59","5":"55.90"},{"1":"2","2":"2018","3":"1","4":"3.91","5":"3.91"},{"1":"2","2":"2019","3":"6","4":"4.72","5":"28.32"},{"1":"2","2":"2020","3":"1","4":"5.59","5":"5.59"},{"1":"3","2":"2018","3":"4","4":"3.91","5":"15.64"},{"1":"3","2":"2019","3":"5","4":"4.72","5":"23.60"},{"1":"3","2":"2020","3":"5","4":"5.59","5":"27.95"},{"1":"4","2":"2018","3":"10","4":"3.91","5":"39.10"},{"1":"4","2":"2019","3":"1","4":"4.72","5":"4.72"},{"1":"4","2":"2020","3":"3","4":"5.59","5":"16.77"},{"1":"5","2":"2018","3":"3","4":"3.91","5":"11.73"},{"1":"5","2":"2019","3":"9","4":"4.72","5":"42.48"},{"1":"5","2":"2020","3":"8","4":"5.59","5":"44.72"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ### One observation per row
@@ -958,7 +757,7 @@ longer_data <- pivot_longer(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-5)Untidy data converted from wide to long.</caption>
+<caption>(\#tab:unnamed-chunk-6)Untidy data converted from wide to long.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1155,7 +954,7 @@ longer_data <- pivot_longer(
 
 ### One variable per column
 
-Now the `value` column contains data from two different variables. We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
+Now this table is long, but not tidy. The `value` column contains data from two different variables.We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
 
 
 ```r
@@ -1168,7 +967,7 @@ wider_data <- pivot_wider(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-6)Data converted from long to an intermediate shape.</caption>
+<caption>(\#tab:unnamed-chunk-7)Data converted from long to an intermediate shape.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1273,6 +1072,10 @@ wider_data <- pivot_wider(
 
 
 
+::: {.info data-latex=""}
+Techinically, you can skip setting the `id_cols` argument, because all of the columns apart from the `names_from` column and the `values_from` column identify the observation (e.g., each observation is identified by the unique combination of `customer_id` and `year`). You only have to set the `id_cols` argument when this is not the case.
+:::
+
 ### One value per cell
 
 The cells in the `itemsprice` column actually contain two different values. We need to split it into two columns for the variables `items`, and `price_per_item`. You can split a column into parts with the function `tidyr::separate()`. There is a space between the number of items and the brackets, so we can split it along this space - if you are in charge of how data is stored, ensuring data is entered consistently makes this much easier.
@@ -1290,7 +1093,7 @@ split_data <- separate(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-7)The itemsprice column split into items and price_per_item using separate()</caption>
+<caption>(\#tab:unnamed-chunk-8)The itemsprice column split into items and price_per_item using separate()</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1434,7 +1237,7 @@ mutated_data <- mutate(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-8)Mutating data to remove the parentheses from price_per_item.</caption>
+<caption>(\#tab:unnamed-chunk-9)Mutating data to remove the parentheses from price_per_item.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1568,11 +1371,11 @@ glimpse(mutated_data)
 ```
 ## Rows: 15
 ## Columns: 5
-## $ customer_id    <int> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
+## $ customer_id    <dbl> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",~
-## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6~
+## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
+## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
 ```
 
 Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter \@ref(data)).
@@ -1591,11 +1394,11 @@ glimpse(tidy_data)
 ```
 ## Rows: 15
 ## Columns: 5
-## $ customer_id    <int> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
+## $ customer_id    <dbl> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3~
-## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27~
+## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3…
+## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27…
 ```
 
 ## Pipes {#pipes}
@@ -1755,44 +1558,7 @@ Let's try a couple of examples.
 ```r
 library(tidyverse)
 wide1 <- read_csv("data/wide_excercise-1.csv")
-```
-
-```
-## Rows: 50 Columns: 7
-```
-
-```
-## -- Column specification --------------------------------------------------------
-## Delimiter: ","
-## chr (1): repeat
-## dbl (6): id, q1, q2, q3, q4, q5
-```
-
-```
-## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-```r
 wide2 <- read_csv("data/wide_excercise-2.csv")
-```
-
-```
-## Rows: 50 Columns: 12
-```
-
-```
-## -- Column specification --------------------------------------------------------
-## Delimiter: ","
-## chr  (1): repeat_patient
-## dbl (11): id, q1_sat, q2_sat, q3_sat, q4_sat, q5_sat, q1_rec, q2_rec, q3_rec...
-```
-
-```
-## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -1815,8 +1581,8 @@ As noted, it's important to think through what your tidied data should look like
 <div class='webex-solution'><button>Explain these answers</button>
 
 
-1. There should be four variables, as there are 4 types of data: participant id, whether they are a repeat patient, the question they were asked, and their response.
-2. There will be 250 observations or rows of data because each participant will have 5 rows of data (one per question) and there are 50 students (50 * 5 = 250).
+1. There should be four variables, as there are 4 types of data: patient id, whether they are a repeat patient, the question they were asked, and their response.
+2. There will be 250 observations or rows of data because each patient will have 5 rows of data (one per question) and there are 50 patients (50 * 5 = 250).
 
 
 </div>
@@ -1846,7 +1612,7 @@ tidy1 <- wide1 %>%
 
 * Use your method of choice to look at the dataset and familiarise yourself with its structure and data. 
 
-This is not as simple as the first exercise because there's actually two potential ways you might tidy this data depending on what you want to do with it and how you conceptualise the two different measurements and it's important to recognise that many of your coding problems will not have just one solution.
+This is not as simple as the first exercise because there's actually two potential ways you might tidy this data, depending on what you want to do with it and how you conceptualise the two different measurements. It's important to recognise that many of your coding problems will not have just one solution.
 
 #### Tidy 2a
 
@@ -1858,7 +1624,7 @@ For the first option, we're going to treat the "satisfaction" and "recommendatio
 <div class='webex-solution'><button>Explain this answer</button>
 
 
-There will be 500 rows of data because each participant will have 10 rows - 5 for the satisfaction questions and five for the recommendation questions.
+There will be 500 rows of data because each participant will have 10 rows: 5 for the satisfaction questions and five for the recommendation questions.
 
 
 </div>
@@ -1866,7 +1632,7 @@ There will be 500 rows of data because each participant will have 10 rows - 5 fo
 
 Transform `wide2` to full long-form using `pivot_longer()` and store it in an object named `tidy2a`.
 
-This is not an easy exercise and you may need to look at the help documentation.
+This exercise requires multiple steps and you may need to look at the help documentation.
 
 
 <div class='webex-solution'><button>Hint 1</button>
@@ -1903,9 +1669,25 @@ tidy2a <- wide2 %>%
 </div>
 
 
+
+<div class='webex-solution'><button>Alternative solution</button>
+
+```r
+# combine pivot_longer and separate by setting two values for names_to
+# must include names_sep to determine how to separate the column names
+tidy2a <- wide2 %>%
+  pivot_longer(cols = q1_sat:q5_rec,
+               names_to = c("question", "category"), 
+               names_sep = "_",
+               values_to = "response")
+```
+
+
+</div>
+
 #### Tidy 2b
 
-The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
+The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables, but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
 
 * How many **observations** should the semi-long version of `wide2` have? <input class='webex-solveme nospaces' size='3' data-answer='["250"]'/>
 
@@ -1913,19 +1695,19 @@ The second option is  to treat the satisfaction and recommendation scores as two
 <div class='webex-solution'><button>Explain this answer</button>
 
 
-There will be 250 rows of data because just like `tidy1` each participant will have 5 rows as there are five questions and the different responses to the satisfaction and recommendation questions are in different variables. 
+There will be 250 rows of data because, just like `tidy1`, each participant will have 5 rows, one for each of the five questions. The different responses to the satisfaction and recommendation questions are in different variables. 
 
 
 </div>
 
 
-This is also not easy.
+This also takes multiple steps.
 
 
 <div class='webex-solution'><button>Hint 1</button>
 
 
-You can reuse the code from `tidy2a` you just need to add on an extra line that makes the data slightly wider.
+You can reuse the code from `tidy2a`, you just need to add on an extra line that makes the data slightly wider.
 
 
 </div>
@@ -1956,9 +1738,9 @@ tidy2b <- wide2 %>%
 
 </div>
 
-## Analysis and visualisation
+### Analysis and visualisation
 
-Using `group_by()` and `summarise()` calculate the mean score for each participant for both satisfaction and recommendation. Do this for both versions of the dataset so that you can see how the structure of the dataset changes the approach you need to take.
+Using `group_by()` and `summarise()`, calculate the mean score for each participant for both satisfaction and recommendation. Do this for both versions of the dataset so that you can see how the structure of the dataset changes the approach you need to take.
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -1966,7 +1748,8 @@ Using `group_by()` and `summarise()` calculate the mean score for each participa
 ```r
 tidy2a %>%
   group_by(id, category) %>%
-  summarise(mean = mean(response))
+  summarise(mean = mean(response),
+            .groups = "drop")
 
 tidy2b %>%
   group_by(id) %>%
@@ -1979,7 +1762,9 @@ tidy2b %>%
 
 Replicate the following:
 
-Plot 1: Scatterplot showing the relationship between satisfaction and recommendation scores, by whether the patient is a repeat patient.
+#### Plot 1
+
+Scatterplot showing the relationship between satisfaction and recommendation scores, by whether the patient is a repeat patient.
 
 
 <div class='webex-solution'><button>Hint</button>
@@ -1991,12 +1776,7 @@ Plot 1: Scatterplot showing the relationship between satisfaction and recommenda
 </div>
 
 
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-<img src="07-tidy_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="07-tidy_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -2013,9 +1793,11 @@ ggplot(tidy2b, aes(x = sat, y = rec, colour = repeat_patient)) +
 </div>
 
 
-Plot 2: Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
+#### Plot 2
 
-<img src="07-tidy_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
+Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
+
+<img src="07-tidy_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -2031,9 +1813,11 @@ ggplot(tidy2a, aes(x = repeat_patient, y = response, fill = repeat_patient)) +
 
 </div>
 
-Plot 3: Histogram showing the distribution of all responses, across questions and categories.
+#### Plot 3
 
-<img src="07-tidy_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
+Histogram showing the distribution of all responses, across questions and categories.
+
+<img src="07-tidy_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>

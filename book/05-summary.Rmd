@@ -5,17 +5,16 @@
 * Be able to summarise data by groups
 * Be able to produce well-formatted tables
 
-In this chapter we'll use the following packages:
-
-```{r setup-summary, message=FALSE}
-library(tidyverse)   # data wrangling functions
-library(rtweet) # for searching tweets
-library(kableExtra)  # for nice tables
-```
 
 ## Set-up
 
 First, create a new project for the work we'll do in this chapter named `r path("05-summary")`. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named `summary.Rmd`, delete the welcome text and load the required packages for this chapter.
+
+```{r setup-summary, message=FALSE, verbatim="r setup, include=FALSE"}
+library(tidyverse)   # data wrangling functions
+library(rtweet) # for searching tweets
+library(kableExtra)  # for nice tables
+```
 
 ## Social media data
 

@@ -76,39 +76,10 @@ top5_hashtags <- tweets_with_hashtags %>%
 top5_hashtags
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> NationalComingOutDay </td>
-   <td style="text-align:right;"> 27308 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 1343 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> LGBTQ </td>
-   <td style="text-align:right;"> 829 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> IndigenousPeoplesDay </td>
-   <td style="text-align:right;"> 811 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> ComingOutDay </td>
-   <td style="text-align:right;"> 613 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hashtags"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"NationalComingOutDay","2":"27308"},{"1":"nationalcomingoutday","2":"1343"},{"1":"LGBTQ","2":"829"},{"1":"IndigenousPeoplesDay","2":"811"},{"1":"ComingOutDay","2":"613"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 Two of the hashtags are the same, but with different case. We can fix this by adding in an extra line of code that uses `mutate()` to overwrite the variable `hashtag` with the same data but transformed to lower case using `tolower()`. Since we're going to use the table `tweets_with_hashtags` a few more times, let's change that table first rather than having to fix this every time we use the table.
@@ -126,39 +97,10 @@ top5_hashtags <- tweets_with_hashtags %>%
 top5_hashtags
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 28698 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lgbtq </td>
-   <td style="text-align:right;"> 1036 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> indigenouspeoplesday </td>
-   <td style="text-align:right;"> 837 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comingoutday </td>
-   <td style="text-align:right;"> 676 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> loveislove </td>
-   <td style="text-align:right;"> 396 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hashtags"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"nationalcomingoutday","2":"28698"},{"1":"lgbtq","2":"1036"},{"1":"indigenouspeoplesday","2":"837"},{"1":"comingoutday","2":"676"},{"1":"loveislove","2":"396"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ## Top tweet per hashtag
@@ -245,63 +187,10 @@ top5 <- top5_hashtags %>%
 top5
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> hashtags </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> total_likes </th>
-   <th style="text-align:left;"> text </th>
-   <th style="text-align:left;"> image </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> nationalcomingoutday </td>
-   <td style="text-align:right;"> 28698 </td>
-   <td style="text-align:right;"> 851510 </td>
-   <td style="text-align:left;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lgbtq </td>
-   <td style="text-align:right;"> 1036 </td>
-   <td style="text-align:right;"> 13691 </td>
-   <td style="text-align:left;"> It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready &amp; can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay https://t.co/dr61oyhR3L </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> indigenouspeoplesday </td>
-   <td style="text-align:right;"> 837 </td>
-   <td style="text-align:right;"> 14073 </td>
-   <td style="text-align:left;"> To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay https://t.co/KsZ5F3gBKO </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> comingoutday </td>
-   <td style="text-align:right;"> 676 </td>
-   <td style="text-align:right;"> 6977 </td>
-   <td style="text-align:left;"> K—I’m out. Bi 👋🏼
-
-#ComingOutDay #NationalComingOutDay </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> loveislove </td>
-   <td style="text-align:right;"> 396 </td>
-   <td style="text-align:right;"> 4033 </td>
-   <td style="text-align:left;"> HAPPY NATIONAL COMING OUT DAY!! 
-
-🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
-
-\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
-   <td style="text-align:left;"> http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hashtags"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]},{"label":["total_likes"],"name":[3],"type":["int"],"align":["right"]},{"label":["text"],"name":[4],"type":["chr"],"align":["left"]},{"label":["image"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"nationalcomingoutday","2":"28698","3":"851510","4":"it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4","5":"http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg"},{"1":"lgbtq","2":"1036","3":"13691","4":"It takes bravery to life an authentic life. While I was not able to come out as a member of the #LGBTQ community on my own terms, if you’re ready & can safely do so, then I support you! And if you’re not quite there yet, I support you exactly where you are. #NationalComingOutDay https://t.co/dr61oyhR3L","5":"http://pbs.twimg.com/media/FBcJiNUXIA4LTmr.jpg"},{"1":"indigenouspeoplesday","2":"837","3":"14073","4":"To all my Two Spirit brothers and sisters — I see you — I celebrate you. #NationalComingOutDay #IndigenousPeoplesDay https://t.co/KsZ5F3gBKO","5":"http://pbs.twimg.com/media/FBdQIf7UYAQjEAW.jpg"},{"1":"comingoutday","2":"676","3":"6977","4":"K—I’m out. Bi 👋🏼\\n\\n#ComingOutDay #NationalComingOutDay","5":"NA"},{"1":"loveislove","2":"396","3":"4033","4":"HAPPY NATIONAL COMING OUT DAY!! \\n\\n🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈\\n\\n\\\\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ","5":"http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ## Make it prettier

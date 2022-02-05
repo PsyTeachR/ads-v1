@@ -6,15 +6,6 @@
 * Be able to create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
-In this chapter we'll use the following packages:
-
-```{r setup-viz, message=FALSE}
-library(tidyverse) # includes ggplot2
-library(patchwork) # for multi-part plots
-library(ggthemes)  # for plot themes
-library(lubridate) # for manipulating dates
-```
-
 ## Set-up
 
 Create a new project for the work we'll do in this chapter:
@@ -23,7 +14,14 @@ Create a new project for the work we'll do in this chapter:
 -   Name the project `r path("03-visualisation")`
 -   Save it inside your ADS directory.
 
-Then, create and save a new `r glossary("R Markdown")` document named `plots.Rmd`, get rid of the default template text, and load the above packages in the set-up code `r glossary("chunk")`. You should have all of these packages installed already, but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
+Then, create and save a new `r glossary("R Markdown")` document named `plots.Rmd`, get rid of the default template text, and load the packages in the set-up code `r glossary("chunk")`. You should have all of these packages installed already, but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
+
+```{r setup-viz, message=FALSE, verbatim="r setup, include=FALSE"}
+library(tidyverse) # includes ggplot2
+library(patchwork) # for multi-part plots
+library(ggthemes)  # for plot themes
+library(lubridate) # for manipulating dates
+```
 
 We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 

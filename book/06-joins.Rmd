@@ -7,17 +7,17 @@
 -   Be able to match related data across multiple tables
 -   Be able to combine data from multiple files
 
-In this chapter we'll use the following packages:
-
-```{r setup-joins, message=FALSE}
-library(tidyverse)     # includes readr & tibble
-```
-
-The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
-
 ## Set-up
 
 First, create a new project for the work we'll do in this chapter named `r path("06-relations")`. Second, open and save and new R Markdown document named `relations`.Rmd\`, delete the welcome text and load the required packages for this chapter.
+
+```{r setup-joins, message=FALSE, verbatim="r setup, include=FALSE"}
+library(tidyverse)     # includes readr & tibble
+```
+
+## Loading data {#joins-data}
+
+The data you want to report on or visualise are often in more than one file (or more than one tab of an excel file or googlesheet). You might need to join up a table of customer information with a table of orders, or combine the monthly social media reports across several months.
 
 For this demo, rather than loading in data, we'll create two small data tables from scratch using the `tibble()` function.
 
@@ -35,7 +35,7 @@ customers <- tibble(
 )
 ```
 
-`r knitr::kable(customers)`
+`r kable(customers, cpation="Demo customers table.")`
 
 `orders` has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.
 
@@ -46,11 +46,11 @@ orders <- tibble(
 )
 ```
 
-`r knitr::kable(orders)`
+`r kable(orders, caption="Demo orders table.")`
 
 ## Mutating Joins
 
-`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter \@ref(tidy).)
+`r glossary("Mutating joins")` act like the `r hl(dplyr::mutate())` function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 

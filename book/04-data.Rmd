@@ -6,19 +6,17 @@
 * Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
 
-In this chapter we'll use the following packages:
+## Set-up
 
-```{r setup-data, message=FALSE}
+Create a new project for the work we'll do in this chapter named `r path("04-data")`. Then, create and save a new R Markdown document named `data.Rmd`, get rid of the default template text, and load the packages in the set-up code chunk. You should have all of these packages installed already, but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
+
+```{r setup-data, message=FALSE, verbatim="r setup, include=FALSE"}
 library(tidyverse)     # includes readr & tibble
 library(rio)           # for almost any data import/export
 library(haven)         # for SPSS, Stata,and SAS files
 library(readxl)        # for Excel files
 library(googlesheets4) # for Google Sheets
 ```
-
-## Set-up
-
-Create a new project for the work we'll do in this chapter named `r path("04-data")`. Then, create and save a new R Markdown document named `data.Rmd`, get rid of the default template text, and load the above packages in the set-up code chunk. You should have all of these packages installed already but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).
 
 We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 

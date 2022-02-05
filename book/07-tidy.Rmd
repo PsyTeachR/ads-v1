@@ -2,60 +2,9 @@
 
 <div class="incomplete-chapter"></div>
 
-## Intended Learning Outcomes {#ilo-tidy}
-
--   Be able to reshape data between long and wide formats
--   Separate, change, reorder, and rename columns
--   Use pipes to chain together functions
-
-In this chapter we'll use the following packages:
-
-```{r setup-tidy, message=FALSE}
-library(tidyverse) # for data wrangling
-```
-
-## Set-up
-
-First, create a new project for the work we'll do in this chapter named `r path("07-tidy")`. Second, open and save and new R Markdown document named `tidy`.Rmd\`, delete the welcome text and load the required packages for this chapter.
-
-## Data Structures
-
-The data you work with will likely come in many different formats and structures. Some of these structures may be driven by how the software you use outputs the data, but data structures may also differ because of human intervention or attempts at organisation, some of which may not be particularly helpful.
-
-Data cleaning and tidying will likely be the most time consuming and difficult task you perform. Whilst you can create code recipes for analyses and visualisations, as Hadley Whickham puts it ["every messy dataset is messy in its own way"](https://vita.had.co.nz/papers/tidy-data.pdf) which means that you will often have to solve new problems that are specific to the dataset. Additionally, moving between data structures that are intuitive to read by humans and those that are useful for a computer requires a conceptual shift that only comes with practice. This is all a verbose way of saying that what lies ahead in this chapter is unlikely to sink in on the first attempt and you will need to practice with different examples (preferably with data you know well) before you truly feel comfortable with it.
-
-First, some terminology.
-
-An `r glossary("observation")` is all the information about a single "thing" at a single point in time. These things can be customers, sales, orders, feedback questionnaires, tweets, or really anything. Observations should have a way to identify them, such as a unique ID or combination of variable values.
-
-A `r glossary("variable")` is one type of information about the observation. For example, if the observation is a sale, the variables you might have about the sale are the sale ID, the customer's ID, the date of the sale, the price paid, and method of payment.
-
-A `r glossary("value")` is the data for one variable for one observation. For example, the value of the date variable from the observation of a sale might be `2021-08-20`.
-
-
-::: {.try data-latex=""}
-The following table is data from an experiment where participants' reactions times are tested on two separate occasions.
-
-| Participant | RT - test 1 | RT - test 2 | RT - test 3 |
-|-------------|------------------------|------------------------|------------------------|
-| 1           | 356                    | 850                    | 400                    |
-| 2           | 456                    | 780                    | 541                    |
-| 3           | 471                    | 668                    | 522                    |
-| 4           | 510                    | 1020                   | 850                    |
-
--   What is `356`? `r mcq(c(x = "Observation", x = "Variable", answer = "Value"))`
--   What is test time? `r mcq(c(x = "Observation", answer = "Variable", x = "Value"))`
--   How many variables are there in this dataset? `r fitb(3)`
-
-`r hide("Explain these answers")`
-
--   There are three variables, Participant, Reaction time, and test time. Even though test time is spread out across three columns, it is still one variable.
--   `356` is a value because it is a single data point for one variable for one observation. 
-
-`r unhide()`
-:::
-
-```{r, include=FALSE}
+```{r, include=FALSE, eval = FALSE}
+# setup - doesn't need to run every time
+# creates and saves tidy_data.csv and untidy_data.csv
 set.seed(90210)
 
 tidy_data <- crossing(
@@ -80,6 +29,65 @@ write_csv(tidy_data, "data/tidy_data.csv")
 write_csv(untidy_data, "data/untidy_data.csv")
 
 ```
+
+
+## Intended Learning Outcomes {#ilo-tidy}
+
+-   Be able to reshape data between long and wide formats
+-   Separate, change, reorder, and rename columns
+-   Use pipes to chain together functions
+
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named `r path("07-tidy")`. Second, open and save and new R Markdown document named `tidy.Rmd`, delete the welcome text and load the required packages for this chapter.
+
+```{r setup-tidy, message=FALSE, verbatim="r setup, include=FALSE"}
+library(tidyverse) # for data wrangling
+```
+
+## Data Structures
+
+The data you work with will likely come in many different formats and structures. Some of these structures may be driven by how the software you use outputs the data, but data structures may also differ because of human intervention or attempts at organisation, some of which may not be particularly helpful.
+
+Data cleaning and tidying will likely be the most time consuming and difficult task you perform. Whilst you can create code recipes for analyses and visualisations, as Hadley Whickham puts it ["every messy dataset is messy in its own way"](https://vita.had.co.nz/papers/tidy-data.pdf) which means that you will often have to solve new problems that are specific to the dataset. Additionally, moving between data structures that are intuitive to read by humans and those that are useful for a computer requires a conceptual shift that only comes with practice. This is all a verbose way of saying that what lies ahead in this chapter is unlikely to sink in on the first attempt and you will need to practice with different examples (preferably with data you know well) before you truly feel comfortable with it.
+
+First, some terminology.
+
+An `r glossary("observation")` is all the information about a single "thing" in a single condition, such as at one point in time. These things can be customers, sales, orders, feedback questionnaires, tweets, or really anything. Observations should have a way to identify them, such as a unique ID or a unique combination of values like country and year.
+
+A `r glossary("variable")` is one type of information about the observation. For example, if the observation is a sale, the variables you might have about the sale are the sale ID, the customer's ID, the date of the sale, the price paid, and method of payment.
+
+A `r glossary("value")` is the data for one variable for one observation. For example, the value of the date variable from the observation of a sale might be `2021-08-20`.
+
+::: {.try data-latex=""}
+The following table is data that shows the number of items each customer bought each year.
+
+```{r, echo = FALSE}
+tidy_data <- read_csv("data/tidy_data.csv", show_col_types = FALSE)
+untidy_data <- read_csv("data/untidy_data.csv", show_col_types = FALSE)
+
+tidy_data %>%
+  filter(customer_id < 3) %>%
+  group_by(customer_id, year) %>%
+  summarise(
+    items = sum(items),
+    .groups = "drop"
+  )
+```
+
+
+-   What is `items`? `r mcq(c(x = "Observation", answer = "Variable", x = "Value"))`
+-   How many observations are there in this dataset? `r fitb(6)`
+-   What is `8`? `r mcq(c(x = "Observation", x = "Variable", answer = "Value"))`
+
+`r hide("Explain these answers")`
+
+-   There are three variables, `customer_id`, `year`, and `items`.
+-   There are six observations, one for each of two customers for each of three years.
+-   `8` is a value because it is a single data point for one variable for one observation. 
+
+`r unhide()`
+:::
 
 ### Untidy data
 
@@ -115,7 +123,7 @@ There are three rules for "tidy data", which is data in a format that makes it e
 
 This is the tidy version:
 
-* There are now five variables (columns) because there are five different types of information we have on each customer, their id, the year, number of items bought, price per item, and total price. Even though there's multiple values in each one, these values all correspond to just five different types of information.
+* There are now five variables (columns) because there are five different types of information we have for each observation: the customer id, the year, number of items bought, price per item, and total price. 
 * Each row is a customer's orders in a particular year. 
 * The number of items (`items`) and price per item (`price_per_item`) are in separate columns, so now you can perform mathematical operations on them.
 
@@ -138,9 +146,9 @@ tidy_data %>%
   )
 ```
 
-It also makes it very easier to use with `ggplot()` - try running each of the following plots. 
+It also makes it very easy to use with `ggplot()` - try running each of the following plots. 
 
-```{r eval = FALSE}
+```{r, eval = FALSE}
 
 # all years
 ggplot(tidy_data, aes(x = totalprice)) +
@@ -174,9 +182,18 @@ knitr::include_graphics("images/tidy/excel_pivot_table.png")
 
 ```
 
-It can be easier to just consider one type of measurement at a time. `untidy_data` has two types of measurements, total price and price per time. Let's look at just the `totalprice` data first. 
+It can be easier to just consider one type of measurement at a time. `untidy_data` has two types of measurements, total price and price per item. Let's look at just the `totalprice` data first. 
 
-We can select just the columns we want using the `dplyr::select()` function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or `new_name = old_name`. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns. Note that because the names of the columns are numbers, they need to be wrapped in backticks otherwise it won't work.
+We can select just the columns we want using the `dplyr::select()` function. This function's first argument is the data table you want to select from, then each argument after that is either the name of a column in that table, or `new_name = old_name`. This is a useful function for changing the column names and order of columns, as well as selecting a subset of columns. 
+
+::: {.warning data-latex=""}
+Note that because the names of the columns are numbers, they need to be wrapped in backticks otherwise you'll get an error like:
+```
+Error: unexpected '=' in:
+"  customer_id, 
+  2018 ="
+```
+:::
 
 ```{r}
 # select just the customer ID and 3 total price columns
@@ -189,11 +206,12 @@ untidy_price <- select(
 )
 ```
 
+
 ```{r wide-data, echo = FALSE}
 kable(untidy_price, caption = "Wide data")
 ```
 
-This is in wide format, where each row is a customer, and represents the data from several years. This is a really intuitive way for humans to read a table, but it's not as easy for a computer to process it.
+This is in wide format, where each row is a customer, and represents the data from several years. This is a really intuitive way for humans to read a table, but it's not as easy to process with code.
 
 The same data can be represented in a long format by creating a new column that specifies what `year` the observation is from and a new column that specifies the `totalprice` of that observation. This is easier to use to make summaries and plots.
 
@@ -212,7 +230,8 @@ Create a long version of the following table of how many million followers each 
 | The Rolling Stones | 3.4     | 3.1       |
 | One Direction      | 31.3    | 22.8      |
 
-`r hide("Answer")` Your answer doesn't need to have the same column headers or be in the same order.
+`r hide("Answer")`
+Your answer doesn't need to have the same column headers or be in the same order.
 
 | account            | social_media | followers |
 |:-------------------|:-------------|:----------|
@@ -227,7 +246,7 @@ Create a long version of the following table of how many million followers each 
 :::
 
 ::: {.info data-latex=""}
-If you're a researcher and you're used to thinking about IVs and DVs, you may find it easier to remember that each IV and DV should have it's own column, rather than each level of the IV. 
+If you're a researcher and you're used to thinking about IVs and DVs, you may find it easier to remember that each IV and DV should have its own column, rather than a column for each level of the IV. 
 :::
 
 
@@ -262,7 +281,7 @@ We can also go from long to wide format using the `pivot_wider()` function.
 
 -   `names_from`: the columns that contain your new column headers.
 -   `values_from`: the column that contains the values for the new columns.
--   `names_sep`:the character string used to join names if `names_from` is more than one column.
+-   `names_sep`: the character string used to join names if `names_from` is more than one column.
 
 ```{r pivot-wider}
 untidy_price_wide <- pivot_wider(
@@ -311,7 +330,7 @@ longer_data <- pivot_longer(
 
 ### One variable per column
 
-Now the `value` column contains data from two different variables. We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
+Now this table is long, but not tidy. The `value` column contains data from two different variables.We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
 
 ```{r}
 wider_data <- pivot_wider(
@@ -323,6 +342,10 @@ wider_data <- pivot_wider(
 ```
 
 `r kable(wider_data, caption = "Data converted from long to an intermediate shape.")`
+
+::: {.info data-latex=""}
+Techinically, you can skip setting the `id_cols` argument, because all of the columns apart from the `names_from` column and the `values_from` column identify the observation (e.g., each observation is identified by the unique combination of `customer_id` and `year`). You only have to set the `id_cols` argument when this is not the case.
+:::
 
 ### One value per cell
 
@@ -534,7 +557,7 @@ Let's try a couple of examples.
 * Download a copy of [wide_excercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_excercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) and store them in your data folder.
 * In the set-up code chunk, load the `r pkg("tidyverse")` then load the two data files in using `read_csv()` and name the objects `wide1` and `wide2`
 
-```{r webex.hide = TRUE}
+```{r, message = FALSE,  webex.hide = TRUE}
 library(tidyverse)
 wide1 <- read_csv("data/wide_excercise-1.csv")
 wide2 <- read_csv("data/wide_excercise-2.csv")
@@ -555,8 +578,8 @@ As noted, it's important to think through what your tidied data should look like
 
 `r hide("Explain these answers")`
 
-1. There should be four variables, as there are 4 types of data: participant id, whether they are a repeat patient, the question they were asked, and their response.
-2. There will be 250 observations or rows of data because each participant will have 5 rows of data (one per question) and there are 50 students (50 * 5 = 250).
+1. There should be four variables, as there are 4 types of data: patient id, whether they are a repeat patient, the question they were asked, and their response.
+2. There will be 250 observations or rows of data because each patient will have 5 rows of data (one per question) and there are 50 patients (50 * 5 = 250).
 
 `r unhide()`
 
@@ -578,7 +601,7 @@ tidy1 <- wide1 %>%
 
 * Use your method of choice to look at the dataset and familiarise yourself with its structure and data. 
 
-This is not as simple as the first exercise because there's actually two potential ways you might tidy this data depending on what you want to do with it and how you conceptualise the two different measurements and it's important to recognise that many of your coding problems will not have just one solution.
+This is not as simple as the first exercise because there's actually two potential ways you might tidy this data, depending on what you want to do with it and how you conceptualise the two different measurements. It's important to recognise that many of your coding problems will not have just one solution.
 
 #### Tidy 2a
 
@@ -588,13 +611,13 @@ For the first option, we're going to treat the "satisfaction" and "recommendatio
 
 `r hide("Explain this answer")`
 
-There will be 500 rows of data because each participant will have 10 rows - 5 for the satisfaction questions and five for the recommendation questions.
+There will be 500 rows of data because each participant will have 10 rows: 5 for the satisfaction questions and five for the recommendation questions.
 
 `r unhide()`
 
 Transform `wide2` to full long-form using `pivot_longer()` and store it in an object named `tidy2a`.
 
-This is not an easy exercise and you may need to look at the help documentation.
+This exercise requires multiple steps and you may need to look at the help documentation.
 
 `r hide("Hint 1")`
 
@@ -618,23 +641,34 @@ tidy2a <- wide2 %>%
 ```
 
 
+```{r webex.hide = "Alternative solution"}
+# combine pivot_longer and separate by setting two values for names_to
+# must include names_sep to determine how to separate the column names
+tidy2a <- wide2 %>%
+  pivot_longer(cols = q1_sat:q5_rec,
+               names_to = c("question", "category"), 
+               names_sep = "_",
+               values_to = "response")
+
+```
+
 #### Tidy 2b
 
-The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
+The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables, but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
 
 * How many **observations** should the semi-long version of `wide2` have? `r fitb(250)`
 
 `r hide("Explain this answer")`
 
-There will be 250 rows of data because just like `tidy1` each participant will have 5 rows as there are five questions and the different responses to the satisfaction and recommendation questions are in different variables. 
+There will be 250 rows of data because, just like `tidy1`, each participant will have 5 rows, one for each of the five questions. The different responses to the satisfaction and recommendation questions are in different variables. 
 
 `r unhide()`
 
-This is also not easy.
+This also takes multiple steps.
 
 `r hide("Hint 1")`
 
-You can reuse the code from `tidy2a` you just need to add on an extra line that makes the data slightly wider.
+You can reuse the code from `tidy2a`, you just need to add on an extra line that makes the data slightly wider.
 
 `r unhide()`
 
@@ -655,12 +689,13 @@ tidy2b <- wide2 %>%
 
 ### Analysis and visualisation
 
-Using `group_by()` and `summarise()` calculate the mean score for each participant for both satisfaction and recommendation. Do this for both versions of the dataset so that you can see how the structure of the dataset changes the approach you need to take.
+Using `group_by()` and `summarise()`, calculate the mean score for each participant for both satisfaction and recommendation. Do this for both versions of the dataset so that you can see how the structure of the dataset changes the approach you need to take.
 
 ```{r eval = FALSE, webex.hide = TRUE}
 tidy2a %>%
   group_by(id, category) %>%
-  summarise(mean = mean(response))
+  summarise(mean = mean(response),
+            .groups = "drop")
 
 tidy2b %>%
   group_by(id) %>%
@@ -670,7 +705,9 @@ tidy2b %>%
 
 Replicate the following:
 
-Plot 1: Scatterplot showing the relationship between satisfaction and recommendation scores, by whether the patient is a repeat patient.
+#### Plot 1
+
+Scatterplot showing the relationship between satisfaction and recommendation scores, by whether the patient is a repeat patient.
 
 `r hide("Hint")`
 
@@ -695,7 +732,9 @@ ggplot(tidy2b, aes(x = sat, y = rec, colour = repeat_patient)) +
 ```
 
 
-Plot 2: Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
+#### Plot 2
+
+Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
 
 ```{r echo = FALSE}
 ggplot(tidy2a, aes(x = repeat_patient, y = response, fill = repeat_patient)) +
@@ -713,7 +752,9 @@ ggplot(tidy2a, aes(x = repeat_patient, y = response, fill = repeat_patient)) +
   scale_fill_brewer(palette = "Dark2")
 ```
 
-Plot 3: Histogram showing the distribution of all responses, across questions and categories.
+#### Plot 3
+
+Histogram showing the distribution of all responses, across questions and categories.
 
 ```{r echo = FALSE}
 ggplot(tidy2a, aes(x = response)) +

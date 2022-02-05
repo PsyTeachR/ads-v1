@@ -26,87 +26,10 @@ We'll use a small example table with the sales and expenses for two years from f
 budget <- read_csv("data/budget.csv", show_col_types = FALSE)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9172 </td>
-   <td style="text-align:right;"> 9849 </td>
-   <td style="text-align:right;"> 9099 </td>
-   <td style="text-align:right;"> 9558 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10533 </td>
-   <td style="text-align:right;"> 10690 </td>
-   <td style="text-align:right;"> 10683 </td>
-   <td style="text-align:right;"> 9585 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"12029","4":"9383","5":"10722","6":"9003"},{"1":"North","2":"gadgets","3":"5673","4":"5027","5":"5987","6":"6065"},{"1":"South","2":"widgets","3":"11023","4":"8450","5":"10904","6":"10572"},{"1":"South","2":"gadgets","3":"6972","4":"4005","5":"4340","6":"5150"},{"1":"East","2":"widgets","3":"9172","4":"9849","5":"9099","6":"9558"},{"1":"East","2":"gadgets","3":"4527","4":"4596","5":"5044","6":"6986"},{"1":"West","2":"widgets","3":"10533","4":"10690","5":"10683","6":"9585"},{"1":"West","2":"gadgets","3":"6154","4":"5376","5":"5383","6":"4814"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -172,13 +95,13 @@ zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`,
 What are the resulting columns for these four examples?
 
 * `budget %>% select(starts_with("sales"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='answer'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020</option></select> 
+    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='answer'>sales_2019, sales_2020</option></select> 
 * `budget %>% select(ends_with("2020"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
 * `budget %>% select(contains("_"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2020, expenses_2020</option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
 * `budget %>% select(num_range("expenses_", 2019:2020))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='answer'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='answer'>expenses_2019, expenses_2020</option></select>
 :::
 
 
@@ -193,39 +116,10 @@ Select rows by matching column criteria.
 budget %>% filter(region == "North")
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"12029","4":"9383","5":"10722","6":"9003"},{"1":"North","2":"gadgets","3":"5673","4":"5027","5":"5987","6":"6065"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ::: {.warning data-latex=""}
@@ -242,31 +136,10 @@ budget %>% filter(
 )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"12029","4":"9383","5":"10722","6":"9003"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 You can use the symbols `&`, `|`, and `!` to mean "and", "or", and "not". You can also use other operators to make equations. The equation is checked for each row, and if the result is FALSE, the row is removed.
@@ -305,39 +178,10 @@ budget %>%
          product == "widgets")
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"12029","4":"9383","5":"10722","6":"9003"},{"1":"South","2":"widgets","3":"11023","4":"8450","5":"10904","6":"10572"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -351,87 +195,10 @@ budget %>%
   arrange(product, desc(region))
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10533 </td>
-   <td style="text-align:right;"> 10690 </td>
-   <td style="text-align:right;"> 10683 </td>
-   <td style="text-align:right;"> 9585 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9172 </td>
-   <td style="text-align:right;"> 9849 </td>
-   <td style="text-align:right;"> 9099 </td>
-   <td style="text-align:right;"> 9558 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"West","2":"gadgets","3":"6154","4":"5376","5":"5383","6":"4814"},{"1":"South","2":"gadgets","3":"6972","4":"4005","5":"4340","6":"5150"},{"1":"North","2":"gadgets","3":"5673","4":"5027","5":"5987","6":"6065"},{"1":"East","2":"gadgets","3":"4527","4":"4596","5":"5044","6":"6986"},{"1":"West","2":"widgets","3":"10533","4":"10690","5":"10683","6":"9585"},{"1":"South","2":"widgets","3":"11023","4":"8450","5":"10904","6":"10572"},{"1":"North","2":"widgets","3":"12029","4":"9383","5":"10722","6":"9003"},{"1":"East","2":"widgets","3":"9172","4":"9849","5":"9099","6":"9558"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -446,55 +213,10 @@ budget %>%
   arrange(region)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["fct"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sales_2019"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sales_2020"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses_2019"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["expenses_2020"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"gadgets","3":"5673","4":"5027","5":"5987","6":"6065"},{"1":"South","2":"gadgets","3":"6972","4":"4005","5":"4340","6":"5150"},{"1":"East","2":"gadgets","3":"4527","4":"4596","5":"5044","6":"6986"},{"1":"West","2":"gadgets","3":"6154","4":"5376","5":"5383","6":"4814"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 :::
@@ -539,64 +261,10 @@ budget3 <- budget %>%
 head(budget3) # check the format
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:right;"> sales </th>
-   <th style="text-align:right;"> expenses </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 10722 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5987 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 10904 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10572 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sales"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"2019","4":"12029","5":"10722"},{"1":"North","2":"widgets","3":"2020","4":"9383","5":"9003"},{"1":"North","2":"gadgets","3":"2019","4":"5673","5":"5987"},{"1":"North","2":"gadgets","3":"2020","4":"5027","5":"6065"},{"1":"South","2":"widgets","3":"2019","4":"11023","5":"10904"},{"1":"South","2":"widgets","3":"2020","4":"8450","5":"10572"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 Now we can create summary statistics for the table.
@@ -612,27 +280,10 @@ budget3 %>%
   )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> mean_sales </th>
-   <th style="text-align:right;"> mean_expenses </th>
-   <th style="text-align:right;"> min_profit </th>
-   <th style="text-align:right;"> max_profit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 7716.188 </td>
-   <td style="text-align:right;"> 7743.438 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 2390 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["mean_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["mean_expenses"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["min_profit"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["max_profit"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"7716.188","2":"7743.438","3":"-2632","4":"2390"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -655,69 +306,24 @@ year_prod <- budget3 %>%
 year_prod
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> mean_sales </th>
-   <th style="text-align:right;"> mean_expenses </th>
-   <th style="text-align:right;"> min_profit </th>
-   <th style="text-align:right;"> max_profit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4751.00 </td>
-   <td style="text-align:right;"> 5753.75 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9593.00 </td>
-   <td style="text-align:right;"> 9679.50 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean_sales"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_expenses"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min_profit"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["max_profit"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"gadgets","3":"5831.50","4":"5188.50","5":"-2632","6":"517"},{"1":"2019","2":"widgets","3":"10689.25","4":"10352.00","5":"-1307","6":"150"},{"1":"2020","2":"gadgets","3":"4751.00","4":"5753.75","5":"-562","6":"2390"},{"1":"2020","2":"widgets","3":"9593.00","4":"9679.50","5":"-1105","6":"2122"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_COQTLWWMJT'><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="answer"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_JWHMVTEWPN'><label><input type="radio" autocomplete="off" name="radio_JWHMVTEWPN" value="answer"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"></input> <span><pre>budget3 %>%
-  group_by(sales) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_JWHMVTEWPN" value="x"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_COQTLWWMJT" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_JWHMVTEWPN" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label></div>
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_JWHMVTEWPN" value="x"></input> <span><pre>budget3 %>%
+  group_by(sales) %>%
+  summarise(max_sales = max(region)</pre></span></label></div>
 
 :::
 
@@ -734,55 +340,10 @@ year_prod %>%
                 .fns = round))
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> mean_sales </th>
-   <th style="text-align:right;"> mean_expenses </th>
-   <th style="text-align:right;"> min_profit </th>
-   <th style="text-align:right;"> max_profit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5832 </td>
-   <td style="text-align:right;"> 5188 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689 </td>
-   <td style="text-align:right;"> 10352 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4751 </td>
-   <td style="text-align:right;"> 5754 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9593 </td>
-   <td style="text-align:right;"> 9680 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean_sales"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_expenses"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min_profit"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["max_profit"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"gadgets","3":"5832","4":"5188","5":"-2632","6":"517"},{"1":"2019","2":"widgets","3":"10689","4":"10352","5":"-1307","6":"150"},{"1":"2020","2":"gadgets","3":"4751","4":"5754","5":"-562","6":"2390"},{"1":"2020","2":"widgets","3":"9593","4":"9680","5":"-1105","6":"2122"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 If you compare this table to the one in Section\ \@ref(dplyr-groupby), you'll see that the 2019 gadgets mean sales rounded up from 5831.5 to 5832, while the mean expenses rounded from 5188.5 to 5188. What's going on!?
@@ -852,50 +413,10 @@ budget_missing <- budget3 %>%
 filter(budget_missing, region == "North")
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:right;"> sales </th>
-   <th style="text-align:right;"> expenses </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 10722 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5987 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["chr"],"align":["left"]},{"label":["sales"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["expenses"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"North","2":"widgets","3":"2019","4":"12029","5":"10722"},{"1":"North","2":"widgets","3":"2020","4":"NA","5":"9003"},{"1":"North","2":"gadgets","3":"2019","4":"5673","5":"5987"},{"1":"North","2":"gadgets","3":"2020","4":"NA","5":"6065"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 Now, if we try to calculate the mean sales and profits, we get missing values for any summary value that used one of the North 2020 sales values.
@@ -913,55 +434,10 @@ budget_missing %>%
   )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> mean_sales </th>
-   <th style="text-align:right;"> mean_expenses </th>
-   <th style="text-align:right;"> min_profit </th>
-   <th style="text-align:right;"> max_profit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 5753.75 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 9679.50 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean_sales"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_expenses"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min_profit"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["max_profit"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"gadgets","3":"5831.50","4":"5188.50","5":"-2632","6":"517"},{"1":"2019","2":"widgets","3":"10689.25","4":"10352.00","5":"-1307","6":"150"},{"1":"2020","2":"gadgets","3":"NA","4":"5753.75","5":"NA","6":"NA"},{"1":"2020","2":"widgets","3":"NA","4":"9679.50","5":"NA","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 This is because `NA` basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Set `na.rm = TRUE` in the summary function to remove missing values before calculating.
@@ -979,55 +455,10 @@ budget_missing %>%
   )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> mean_sales </th>
-   <th style="text-align:right;"> mean_expenses </th>
-   <th style="text-align:right;"> min_profit </th>
-   <th style="text-align:right;"> max_profit </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4659.00 </td>
-   <td style="text-align:right;"> 5753.75 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9663.00 </td>
-   <td style="text-align:right;"> 9679.50 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean_sales"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_expenses"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min_profit"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["max_profit"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"gadgets","3":"5831.50","4":"5188.50","5":"-2632","6":"517"},{"1":"2019","2":"widgets","3":"10689.25","4":"10352.00","5":"-1307","6":"150"},{"1":"2020","2":"gadgets","3":"4659.00","4":"5753.75","5":"-562","6":"2390"},{"1":"2020","2":"widgets","3":"9663.00","4":"9679.50","5":"-1105","6":"2122"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 If you want to find out how many missing or non-missing values there are in a column, use the `is.na()` function to get a <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> vector of whether or not each value is missing, and use `sum()` to count how many values are TRUE or `mean()` to calculate the proportion of TRUE values.
@@ -1044,50 +475,10 @@ budget_missing %>%
   )
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> n_valid </th>
-   <th style="text-align:right;"> n_missing </th>
-   <th style="text-align:right;"> prop_missing </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.00 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.00 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["product"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n_valid"],"name":[3],"type":["int"],"align":["right"]},{"label":["n_missing"],"name":[4],"type":["int"],"align":["right"]},{"label":["prop_missing"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"gadgets","3":"4","4":"0","5":"0.00"},{"1":"2019","2":"widgets","3":"4","4":"0","5":"0.00"},{"1":"2020","2":"gadgets","3":"3","4":"1","5":"0.25"},{"1":"2020","2":"widgets","3":"3","4":"1","5":"0.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -1122,57 +513,10 @@ errors <- sales_check %>%
 head(errors)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 2765.90 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 81.35 </td>
-   <td style="text-align:right;"> 2765.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3884.34 </td>
-   <td style="text-align:right;"> 41 </td>
-   <td style="text-align:right;"> 94.74 </td>
-   <td style="text-align:right;"> 3884.34 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3746.70 </td>
-   <td style="text-align:right;"> 45 </td>
-   <td style="text-align:right;"> 83.26 </td>
-   <td style="text-align:right;"> 3746.70 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5205.27 </td>
-   <td style="text-align:right;"> 49 </td>
-   <td style="text-align:right;"> 100.00 </td>
-   <td style="text-align:right;"> 4900.00 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3479.76 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 96.66 </td>
-   <td style="text-align:right;"> 3479.76 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5512.32 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 100.00 </td>
-   <td style="text-align:right;"> 4800.00 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["SALES"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["price"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2765.90","2":"34","3":"81.35","4":"2765.90"},{"1":"3884.34","2":"41","3":"94.74","4":"3884.34"},{"1":"3746.70","2":"45","3":"83.26","4":"3746.70"},{"1":"5205.27","2":"49","3":"100.00","4":"4900.00"},{"1":"3479.76","2":"36","3":"96.66","4":"3479.76"},{"1":"5512.32","2":"48","3":"100.00","4":"4800.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 If you check the `errors` table, you'll see that 1697 of the original 2823 rows have "errors", even though many of the values in the `SALES` and `sales_check` columns look identical. You can fix this by rounding the value of `total` to 2 decimal places.
@@ -1221,92 +565,10 @@ errors %>%
   slice_min(order_by = diff, n = 10)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
-   <th style="text-align:right;"> diff </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 2600.26 </td>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2600 </td>
-   <td style="text-align:right;"> 0.26 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3602.16 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3600 </td>
-   <td style="text-align:right;"> 2.16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2504.75 </td>
-   <td style="text-align:right;"> 25 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2500 </td>
-   <td style="text-align:right;"> 4.75 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4607.36 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4600 </td>
-   <td style="text-align:right;"> 7.36 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3711.10 </td>
-   <td style="text-align:right;"> 37 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3700 </td>
-   <td style="text-align:right;"> 11.10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3912.09 </td>
-   <td style="text-align:right;"> 39 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3900 </td>
-   <td style="text-align:right;"> 12.09 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2612.48 </td>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2600 </td>
-   <td style="text-align:right;"> 12.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4613.80 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4600 </td>
-   <td style="text-align:right;"> 13.80 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4814.40 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4800 </td>
-   <td style="text-align:right;"> 14.40 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2915.66 </td>
-   <td style="text-align:right;"> 29 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2900 </td>
-   <td style="text-align:right;"> 15.66 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["SALES"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["price"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["diff"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2600.26","2":"26","3":"100","4":"2600","5":"0.26"},{"1":"3602.16","2":"36","3":"100","4":"3600","5":"2.16"},{"1":"2504.75","2":"25","3":"100","4":"2500","5":"4.75"},{"1":"4607.36","2":"46","3":"100","4":"4600","5":"7.36"},{"1":"3711.10","2":"37","3":"100","4":"3700","5":"11.10"},{"1":"3912.09","2":"39","3":"100","4":"3900","5":"12.09"},{"1":"2612.48","2":"26","3":"100","4":"2600","5":"12.48"},{"1":"4613.80","2":"46","3":"100","4":"4600","5":"13.80"},{"1":"4814.40","2":"48","3":"100","4":"4800","5":"14.40"},{"1":"2915.66","2":"29","3":"100","4":"2900","5":"15.66"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 If we plot the data, it looks like all of the errors are in one direction.
@@ -1360,57 +622,10 @@ errors <- sales_check %>%
 errors
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> ORDERNUMBER </th>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 10304 </td>
-   <td style="text-align:right;"> 10172.7 </td>
-   <td style="text-align:right;"> 47 </td>
-   <td style="text-align:right;"> 216.44 </td>
-   <td style="text-align:right;"> 10172.68 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10312 </td>
-   <td style="text-align:right;"> 11623.7 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 242.16 </td>
-   <td style="text-align:right;"> 11623.68 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10405 </td>
-   <td style="text-align:right;"> 11739.7 </td>
-   <td style="text-align:right;"> 76 </td>
-   <td style="text-align:right;"> 154.47 </td>
-   <td style="text-align:right;"> 11739.72 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10375 </td>
-   <td style="text-align:right;"> 10039.6 </td>
-   <td style="text-align:right;"> 43 </td>
-   <td style="text-align:right;"> 233.48 </td>
-   <td style="text-align:right;"> 10039.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10388 </td>
-   <td style="text-align:right;"> 10066.6 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 218.84 </td>
-   <td style="text-align:right;"> 10066.64 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ORDERNUMBER"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SALES"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"10304","2":"10172.7","3":"47","4":"216.44","5":"10172.68"},{"1":"10312","2":"11623.7","3":"48","4":"242.16","5":"11623.68"},{"1":"10405","2":"11739.7","3":"76","4":"154.47","5":"11739.72"},{"1":"10375","2":"10039.6","3":"43","4":"233.48","5":"10039.64"},{"1":"10388","2":"10066.6","3":"46","4":"218.84","5":"10066.64"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 There are 5 instances where the quantity ordered doesn't divide into the total price in a way that produces prices that round to the nearest cent. These might require further investigation, but let's just set the value of `SALES` to missing for the orders in the `errors` tables.
@@ -1428,39 +643,10 @@ fixed_sales <- fixed_sales %>%
 
 Now that you've fixed (most of) the problems with the dataset, see if you can figure out how to make the table below. It should take you 5 steps.
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> PRODUCTLINE </th>
-   <th style="text-align:right;"> 2003 </th>
-   <th style="text-align:right;"> 2004 </th>
-   <th style="text-align:right;"> 2005 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Planes </td>
-   <td style="text-align:right;"> 272258 </td>
-   <td style="text-align:right;"> 502672 </td>
-   <td style="text-align:right;"> 159051 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ships </td>
-   <td style="text-align:right;"> 244821 </td>
-   <td style="text-align:right;"> 341438 </td>
-   <td style="text-align:right;"> 128178 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Trains </td>
-   <td style="text-align:right;"> 72802 </td>
-   <td style="text-align:right;"> 116524 </td>
-   <td style="text-align:right;"> 36917 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["PRODUCTLINE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2003"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2004"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2005"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Planes","2":"272258","3":"502672","4":"159051"},{"1":"Ships","2":"244821","3":"341438","4":"128178"},{"1":"Trains","2":"72802","3":"116524","4":"36917"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -1495,51 +681,10 @@ scotpop <- read_csv("data/scottish_population.csv",
 
 Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order `population` (in K) then `county`, and show only the counties with populations greater than 200K. 
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:left;"> county </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 593K </td>
-   <td style="text-align:left;"> Glasgow </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 486K </td>
-   <td style="text-align:left;"> Edinburgh </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 365K </td>
-   <td style="text-align:left;"> Fife </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 326K </td>
-   <td style="text-align:left;"> North Lanarkshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 312K </td>
-   <td style="text-align:left;"> South Lanarkshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 246K </td>
-   <td style="text-align:left;"> Aberdeenshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 222K </td>
-   <td style="text-align:left;"> Highland </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 217K </td>
-   <td style="text-align:left;"> Aberdeen </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["population"],"name":[1],"type":["chr"],"align":["left"]},{"label":["county"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"593K","2":"Glasgow"},{"1":"486K","2":"Edinburgh"},{"1":"365K","2":"Fife"},{"1":"326K","2":"North Lanarkshire"},{"1":"312K","2":"South Lanarkshire"},{"1":"246K","2":"Aberdeenshire"},{"1":"222K","2":"Highland"},{"1":"217K","2":"Aberdeen"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ::: {.try data-latex=""}

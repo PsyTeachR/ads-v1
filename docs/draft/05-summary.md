@@ -5,8 +5,12 @@
 * Be able to summarise data by groups
 * Be able to produce well-formatted tables
 
-In this chapter we'll use the following packages:
 
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named <code class='path'>05-summary</code>. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named `summary.Rmd`, delete the welcome text and load the required packages for this chapter.
+
+<div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r setup, include=FALSE}</code></pre>
 
 ```r
 library(tidyverse)   # data wrangling functions
@@ -14,9 +18,7 @@ library(rtweet) # for searching tweets
 library(kableExtra)  # for nice tables
 ```
 
-## Set-up
-
-First, create a new project for the work we'll do in this chapter named <code class='path'>05-summary</code>. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named `summary.Rmd`, delete the welcome text and load the required packages for this chapter.
+<pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
 ## Social media data
 
@@ -58,7 +60,7 @@ tweets <- readRDS("data/ncod_tweets.rds")
 
 First, run `glimpse(tweets)` or click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.
 
-## Summarise
+## Summarise {#summary-summarise}
 
 The `summarise()` function from the <code class='package'>dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the [Data Transformation Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf) for various summary functions. Some common ones are: `n()`, `min()`, `max()`, `sum()`, `mean()`, and `quantile()`.
 
@@ -172,10 +174,10 @@ quantile(tweets$favorite_count, 0.90)
 
 ::: {.try data-latex=""}
 * How would you find the largest number of retweets?
-    <div class='webex-radiogroup' id='radio_HIAKATRJFD'><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_PPAUZCXXQQ'><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"></input> <span>`tweets %>% summarise(max_retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"></input> <span>`tweets %>% max(retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"></input> <span>`tweets %>% summarise(max = retweets)`</span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="answer"></input> <span>`tweets %>% summarise(max_retweets = max(retweets))`</span></label></div>
 
 * How would you calculate the mean `display_text_width`? 
-    <div class='webex-radiogroup' id='radio_YKTHRSRMSW'><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"></input> <span>`group_by(display_text_width)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_YGTBNTOWKX'><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"></input> <span>`width(mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"></input> <span>`group_by(display_text_width)`</span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="answer"></input> <span>`summarise(width = mean(display_text_width))`</span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"></input> <span>`summarise(display_text_width = mean)`</span></label></div>
 
 :::
 
@@ -261,43 +263,10 @@ tweets_per_user <- tweets %>%
 head(tweets_per_user)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> screen_name </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> interest_outfit </td>
-   <td style="text-align:right;"> 35 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> LeoShir2 </td>
-   <td style="text-align:right;"> 33 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> dr_stack </td>
-   <td style="text-align:right;"> 32 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> NRArchway </td>
-   <td style="text-align:right;"> 32 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bhavna_95 </td>
-   <td style="text-align:right;"> 25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> WipeHomophobia </td>
-   <td style="text-align:right;"> 23 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["screen_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"interest_outfit","2":"35"},{"1":"LeoShir2","2":"33"},{"1":"dr_stack","2":"32"},{"1":"NRArchway","2":"32"},{"1":"bhavna_95","2":"25"},{"1":"WipeHomophobia","2":"23"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 
@@ -305,33 +274,13 @@ head(tweets_per_user)
 ::: {.try data-latex=""}
 How would you create the table of counts below? 
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> is_quote </th>
-   <th style="text-align:left;"> is_retweet </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:right;"> 26301 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:right;"> 2325 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["is_quote"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["is_retweet"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"FALSE","3":"26301"},{"1":"TRUE","2":"FALSE","3":"2325"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
-<div class='webex-radiogroup' id='radio_RMELHEASFR'><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
+<div class='webex-radiogroup' id='radio_KOQXCVLTNE'><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="answer"></input> <span>`tweets %>% count(is_quote, is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"></input> <span>`tweets %>% count(is_quote) %>% count(is_retweet)`</span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"></input> <span>`tweets %>% count(c(is_quote, is_retweet))`</span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"></input> <span>`tweets %>% select(is_quote, is_retweet) %>% count()`</span></label></div>
 
 :::
 
@@ -386,33 +335,10 @@ verified <- tweets_grouped %>%
 verified
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> verified </th>
-   <th style="text-align:right;"> count </th>
-   <th style="text-align:right;"> mean_favs </th>
-   <th style="text-align:right;"> mean_retweets </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:right;"> 26676 </td>
-   <td style="text-align:right;"> 18.40576 </td>
-   <td style="text-align:right;"> 1.825649 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:right;"> 1950 </td>
-   <td style="text-align:right;"> 184.45949 </td>
-   <td style="text-align:right;"> 21.511282 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["verified"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["count"],"name":[2],"type":["int"],"align":["right"]},{"label":["mean_favs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_retweets"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"26676","3":"18.40576","4":"1.825649"},{"1":"TRUE","2":"1950","3":"184.45949","4":"21.511282"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ::: {.warning data-latex=""}
@@ -438,7 +364,7 @@ verified <-
 
 ::: {.try data-latex=""}
 * What would you change to calculate the mean favourites and retweets by `screen_name` instead of by `verified`? 
-    <div class='webex-radiogroup' id='radio_WYQRTYTCPS'><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"></input> <span>`mean(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"></input> <span>`count(screen_name)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_XSVJJDJQXT'><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"></input> <span>`summarise(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="answer"></input> <span>`group_by(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"></input> <span>`count(screen_name)`</span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"></input> <span>`mean(screen_name)`</span></label></div>
 
 :::
 
@@ -461,64 +387,10 @@ verified_source <- tweets %>%
 head(verified_source)
 ```
 
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> verified </th>
-   <th style="text-align:left;"> source </th>
-   <th style="text-align:right;"> count </th>
-   <th style="text-align:right;"> mean_favs </th>
-   <th style="text-align:right;"> mean_retweets </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> Twitter for iPhone </td>
-   <td style="text-align:right;"> 12943 </td>
-   <td style="text-align:right;"> 25.40493 </td>
-   <td style="text-align:right;"> 2.304643 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> Twitter for Android </td>
-   <td style="text-align:right;"> 5807 </td>
-   <td style="text-align:right;"> 11.90839 </td>
-   <td style="text-align:right;"> 1.155846 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> Twitter Web App </td>
-   <td style="text-align:right;"> 5795 </td>
-   <td style="text-align:right;"> 13.54737 </td>
-   <td style="text-align:right;"> 1.611217 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> Twitter for iPhone </td>
-   <td style="text-align:right;"> 691 </td>
-   <td style="text-align:right;"> 323.24457 </td>
-   <td style="text-align:right;"> 29.010130 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> Twitter Web App </td>
-   <td style="text-align:right;"> 560 </td>
-   <td style="text-align:right;"> 131.44643 </td>
-   <td style="text-align:right;"> 21.717857 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> Twitter for iPad </td>
-   <td style="text-align:right;"> 374 </td>
-   <td style="text-align:right;"> 13.85027 </td>
-   <td style="text-align:right;"> 2.042781 </td>
-  </tr>
-</tbody>
-</table>
-
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["verified"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[2],"type":["chr"],"align":["left"]},{"label":["count"],"name":[3],"type":["int"],"align":["right"]},{"label":["mean_favs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean_retweets"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"Twitter for iPhone","3":"12943","4":"25.40493","5":"2.304643"},{"1":"FALSE","2":"Twitter for Android","3":"5807","4":"11.90839","5":"1.155846"},{"1":"FALSE","2":"Twitter Web App","3":"5795","4":"13.54737","5":"1.611217"},{"1":"TRUE","2":"Twitter for iPhone","3":"691","4":"323.24457","5":"29.010130"},{"1":"TRUE","2":"Twitter Web App","3":"560","4":"131.44643","5":"21.717857"},{"1":"FALSE","2":"Twitter for iPad","3":"374","4":"13.85027","5":"2.042781"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 
 ::: {.warning data-latex=""}
@@ -556,7 +428,7 @@ most_fav <- tweets %>%
 
 ::: {.try data-latex=""}
 * How would you limit the results to sources with 10 or more rows?
-    <div class='webex-radiogroup' id='radio_WPHYIJSJNM'><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label></div>
+    <div class='webex-radiogroup' id='radio_QYEEWIVONE'><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"></input> <span>`tweets %>% group_by(source) %>% select(count() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"></input> <span>`tweets %>% group_by(source) %>% select(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="answer"></input> <span>`tweets %>% group_by(source) %>% filter(n() >= 10)`</span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"></input> <span>`tweets %>% group_by(source) %>% filter(count() >= 10)`</span></label></div>
 
 :::
 

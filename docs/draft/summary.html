@@ -6,25 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 1 Data Summaries | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables In this chapter we'll use the following packages: library(tidyverse)  # data wrangling...">
+<meta name="description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables  1.2 Set-up First, create a new project for the work we'll do in this chapter named...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Data Summaries | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/summary.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
-<meta property="og:description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables In this chapter we'll use the following packages: library(tidyverse)  # data wrangling...">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
+<meta property="og:description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables  1.2 Set-up First, create a new project for the work we'll do in this chapter named...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Data Summaries | Applied Data Skills">
-<meta name="twitter:description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables In this chapter we'll use the following packages: library(tidyverse)  # data wrangling...">
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta name="twitter:description" content="1.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables  1.2 Set-up First, create a new project for the work we'll do in this chapter named...">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -57,8 +54,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Overview</a></li>
 <li><a class="active" href="summary.html"><span class="header-section-number">1</span> Data Summaries</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">2</span> Data Wrangling</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">3</span> Spotify Data</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">2</span> Data Relations</a></li>
 </ul>
 
         <div class="book-extra">
@@ -78,17 +74,20 @@
 <li>Be able to summarise data by groups</li>
 <li>Be able to produce well-formatted tables</li>
 </ul>
-<p>In this chapter we'll use the following packages:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span> <span class="co"># for searching tweets</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span></code></pre></div>
 </div>
 <div id="set-up" class="section level2" number="1.2">
 <h2>
 <span class="header-section-number">1.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, create a new project for the work we'll do in this chapter named <code class="path">05-summary</code>. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named <code>summary.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
+<div class="verbatim">
+<pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=rtweet">rtweet</a></span><span class="op">)</span> <span class="co"># for searching tweets</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>  <span class="co"># for nice tables</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
+</div>
 </div>
 <div id="social-media-data" class="section level2" number="1.3">
 <h2>
@@ -117,13 +116,13 @@
 <p>First, run <code>glimpse(tweets)</code> or click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.</p>
 </div>
 </div>
-<div id="summarise" class="section level2" number="1.4">
+<div id="summary-summarise" class="section level2" number="1.4">
 <h2>
-<span class="header-section-number">1.4</span> Summarise<a class="anchor" aria-label="anchor" href="#summarise"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.4</span> Summarise<a class="anchor" aria-label="anchor" href="#summary-summarise"><i class="fas fa-link"></i></a>
 </h2>
 <p>The <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> function from the <code class="package">dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code><a href="https://rdrr.io/pkg/dplyr/man/context.html">n()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
 <div class="warning">
-<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="wrangle.html#missing-values">2.3</a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
+<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="#missing-values"><strong>??</strong></a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="co"># is NA</span>
@@ -211,13 +210,13 @@ max_favs
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_HIAKATRJFD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HIAKATRJFD" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label>
+<div id="radio_PPAUZCXXQQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_PPAUZCXXQQ" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label>
 </div>
 </li>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_YKTHRSRMSW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"><span><code>summarise(display_text_width = mean)</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YKTHRSRMSW" value="x"><span><code>group_by(display_text_width)</code></span></label>
+<div id="radio_YGTBNTOWKX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_YGTBNTOWKX" value="x"><span><code>summarise(display_text_width = mean)</code></span></label>
 </div>
 </li>
 </ul>
@@ -280,111 +279,20 @@ max_favs
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">screen_name</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tweets_per_user</span><span class="op">)</span></code></pre></div>
-<div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-screen_name
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-interest_outfit
-</td>
-<td style="text-align:right;">
-35
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LeoShir2
-</td>
-<td style="text-align:right;">
-33
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dr_stack
-</td>
-<td style="text-align:right;">
-32
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NRArchway
-</td>
-<td style="text-align:right;">
-32
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-bhavna_95
-</td>
-<td style="text-align:right;">
-25
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WipeHomophobia
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-</tbody>
-</table></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["screen_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"interest_outfit","2":"35"},{"1":"LeoShir2","2":"33"},{"1":"dr_stack","2":"32"},{"1":"NRArchway","2":"32"},{"1":"bhavna_95","2":"25"},{"1":"WipeHomophobia","2":"23"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 <div class="try">
 <p>How would you create the table of counts below?</p>
-<div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-is_quote
-</th>
-<th style="text-align:left;">
-is_retweet
-</th>
-<th style="text-align:right;">
-n
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-26301
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-2325
-</td>
-</tr>
-</tbody>
-</table></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["is_quote"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["is_retweet"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"FALSE","3":"26301"},{"1":"TRUE","2":"FALSE","3":"2325"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="radio_RMELHEASFR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_RMELHEASFR" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
+<div id="radio_KOQXCVLTNE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_KOQXCVLTNE" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
 </div>
 </div>
 <div id="inline-coding-2" class="section level3" number="1.5.1">
@@ -431,53 +339,10 @@ FALSE
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">verified</span></code></pre></div>
-<div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-verified
-</th>
-<th style="text-align:right;">
-count
-</th>
-<th style="text-align:right;">
-mean_favs
-</th>
-<th style="text-align:right;">
-mean_retweets
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-26676
-</td>
-<td style="text-align:right;">
-18.40576
-</td>
-<td style="text-align:right;">
-1.825649
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-1950
-</td>
-<td style="text-align:right;">
-184.45949
-</td>
-<td style="text-align:right;">
-21.511282
-</td>
-</tr>
-</tbody>
-</table></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["verified"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["count"],"name":[2],"type":["int"],"align":["right"]},{"label":["mean_favs"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_retweets"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"26676","3":"18.40576","4":"1.825649"},{"1":"TRUE","2":"1950","3":"184.45949","4":"21.511282"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 <div class="warning">
 <p>Make sure you call the <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> function when you are done with grouped functions. Failing to do this can cause all sorts of mysterious problems if you use that data table later assuming it isn't grouped.</p>
@@ -495,8 +360,8 @@ TRUE
 <div class="try">
 <ul>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>verified</code>?
-<div id="radio_WYQRTYTCPS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"><span><code>mean(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WYQRTYTCPS" value="x"><span><code>count(screen_name)</code></span></label>
+<div id="radio_XSVJJDJQXT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"><span><code>count(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XSVJJDJQXT" value="x"><span><code>mean(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
@@ -519,130 +384,10 @@ TRUE
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">verified_source</span><span class="op">)</span></code></pre></div>
-<div class="kable-table">
-<div class="inline-table"><table class="table table-sm">
-<thead><tr>
-<th style="text-align:left;">
-verified
-</th>
-<th style="text-align:left;">
-source
-</th>
-<th style="text-align:right;">
-count
-</th>
-<th style="text-align:right;">
-mean_favs
-</th>
-<th style="text-align:right;">
-mean_retweets
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-Twitter for iPhone
-</td>
-<td style="text-align:right;">
-12943
-</td>
-<td style="text-align:right;">
-25.40493
-</td>
-<td style="text-align:right;">
-2.304643
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-Twitter for Android
-</td>
-<td style="text-align:right;">
-5807
-</td>
-<td style="text-align:right;">
-11.90839
-</td>
-<td style="text-align:right;">
-1.155846
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-Twitter Web App
-</td>
-<td style="text-align:right;">
-5795
-</td>
-<td style="text-align:right;">
-13.54737
-</td>
-<td style="text-align:right;">
-1.611217
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-Twitter for iPhone
-</td>
-<td style="text-align:right;">
-691
-</td>
-<td style="text-align:right;">
-323.24457
-</td>
-<td style="text-align:right;">
-29.010130
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-Twitter Web App
-</td>
-<td style="text-align:right;">
-560
-</td>
-<td style="text-align:right;">
-131.44643
-</td>
-<td style="text-align:right;">
-21.717857
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-Twitter for iPad
-</td>
-<td style="text-align:right;">
-374
-</td>
-<td style="text-align:right;">
-13.85027
-</td>
-<td style="text-align:right;">
-2.042781
-</td>
-</tr>
-</tbody>
-</table></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["verified"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[2],"type":["chr"],"align":["left"]},{"label":["count"],"name":[3],"type":["int"],"align":["right"]},{"label":["mean_favs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean_retweets"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"FALSE","2":"Twitter for iPhone","3":"12943","4":"25.40493","5":"2.304643"},{"1":"FALSE","2":"Twitter for Android","3":"5807","4":"11.90839","5":"1.155846"},{"1":"FALSE","2":"Twitter Web App","3":"5795","4":"13.54737","5":"1.611217"},{"1":"TRUE","2":"Twitter for iPhone","3":"691","4":"323.24457","5":"29.010130"},{"1":"TRUE","2":"Twitter Web App","3":"560","4":"131.44643","5":"21.717857"},{"1":"FALSE","2":"Twitter for iPad","3":"374","4":"13.85027","5":"2.042781"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 <div class="warning">
 <p>You may get the following message when using <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> after <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code>.</p>
@@ -656,7 +401,7 @@ Twitter for iPad
 <h3>
 <span class="header-section-number">1.6.2</span> Filter and mutate<a class="anchor" aria-label="anchor" href="#filter-and-mutate"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can also use additional functions like <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="wrangle.html#wrangle">2</a> but briefly:</p>
+<p>You can also use additional functions like <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="#wrangle"><strong>??</strong></a> but briefly:</p>
 <ul>
 <li>
 <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> keeps observations (rows) according to specified criteria, e.g., all values above 5, or all verified users.</li>
@@ -678,8 +423,8 @@ Twitter for iPad
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_WPHYIJSJNM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_WPHYIJSJNM" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label>
+<div id="radio_QYEEWIVONE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_QYEEWIVONE" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>
@@ -1002,7 +747,7 @@ $( document ).ready(function() {
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="index.html">Overview</a></div>
-<div class="next"><a href="wrangle.html"><span class="header-section-number">2</span> Data Wrangling</a></div>
+<div class="next"><a href="joins.html"><span class="header-section-number">2</span> Data Relations</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -1013,7 +758,7 @@ $( document ).ready(function() {
 <a class="nav-link" href="#social-media-data"><span class="header-section-number">1.3</span> Social media data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-objects"><span class="header-section-number">1.3.1</span> R objects</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#summarise"><span class="header-section-number">1.4</span> Summarise</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#summary-summarise"><span class="header-section-number">1.4</span> Summarise</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#the-operator"><span class="header-section-number">1.4.1</span> The $ operator</a></li>
 <li><a class="nav-link" href="#pipes-first"><span class="header-section-number">1.4.2</span> Pipes</a></li>
 <li><a class="nav-link" href="#inline-coding"><span class="header-section-number">1.4.3</span> Inline coding</a></li>
@@ -1049,7 +794,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-01.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

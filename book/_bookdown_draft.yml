@@ -7,8 +7,8 @@ rmd_files:
 # - 02-reports.Rmd
 # - 03-viz.Rmd
 # - 04-data.Rmd
-# - 05-summary.Rmd
-# - 06-joins.Rmd
+- 05-summary.Rmd
+- 06-joins.Rmd
 # - 07-tidy.Rmd
 # - 08-wrangle.Rmd
 # - 09-custom.Rmd
@@ -20,7 +20,7 @@ rmd_files:
 # - appendix-d-conventions.Rmd
 # - appendix-e-teams.Rmd
 # - appendix-f-datatypes.Rmd
-- appendix-g-dates.Rmd
+# - appendix-g-dates.Rmd
 # - appendix-h-styling.Rmd
 # - appendix-i-hashtags.Rmd
 # - appendix-j-twitter.Rmd

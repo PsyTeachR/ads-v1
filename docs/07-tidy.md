@@ -40,10 +40,50 @@ A <a class='glossary' target='_blank' title='A single number or piece of data.' 
 ::: {.try data-latex=""}
 The following table is data that shows the number of items each customer bought each year.
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2018","3":"2"},{"1":"1","2":"2019","3":"8"},{"1":"1","2":"2020","3":"10"},{"1":"2","2":"2018","3":"1"},{"1":"2","2":"2019","3":"6"},{"1":"2","2":"2020","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> customer_id </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 
@@ -304,10 +344,45 @@ tidy_data %>%
   )
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["total_items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["total_price"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"20","3":"101.48"},{"1":"2","2":"8","3":"37.82"},{"1":"3","2":"14","3":"67.19"},{"1":"4","2":"14","3":"60.59"},{"1":"5","2":"20","3":"98.93"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> customer_id </th>
+   <th style="text-align:right;"> total_items </th>
+   <th style="text-align:right;"> total_price </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 101.48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 37.82 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 67.19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 60.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 98.93 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 It also makes it very easy to use with `ggplot()` - try running each of the following plots. 
@@ -723,18 +798,194 @@ You often need to go from wide, to long, to an intermediate shape in order to ge
 
 Our full `untidy_data` table has seven columns: a customer ID, three columns for `itemsprice` and 3 columns for `totalprice`.
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["itemsprice_2018"],"name":[2],"type":["chr"],"align":["left"]},{"label":["itemsprice_2019"],"name":[3],"type":["chr"],"align":["left"]},{"label":["itemsprice_2020"],"name":[4],"type":["chr"],"align":["left"]},{"label":["totalprice_2018"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["totalprice_2019"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["totalprice_2020"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2 (3.91)","3":"8 (4.72)","4":"10 (5.59)","5":"7.82","6":"37.76","7":"55.90"},{"1":"2","2":"1 (3.91)","3":"6 (4.72)","4":"1 (5.59)","5":"3.91","6":"28.32","7":"5.59"},{"1":"3","2":"4 (3.91)","3":"5 (4.72)","4":"5 (5.59)","5":"15.64","6":"23.60","7":"27.95"},{"1":"4","2":"10 (3.91)","3":"1 (4.72)","4":"3 (5.59)","5":"39.10","6":"4.72","7":"16.77"},{"1":"5","2":"3 (3.91)","3":"9 (4.72)","4":"8 (5.59)","5":"11.73","6":"42.48","7":"44.72"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> customer_id </th>
+   <th style="text-align:left;"> itemsprice_2018 </th>
+   <th style="text-align:left;"> itemsprice_2019 </th>
+   <th style="text-align:left;"> itemsprice_2020 </th>
+   <th style="text-align:right;"> totalprice_2018 </th>
+   <th style="text-align:right;"> totalprice_2019 </th>
+   <th style="text-align:right;"> totalprice_2020 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 2 (3.91) </td>
+   <td style="text-align:left;"> 8 (4.72) </td>
+   <td style="text-align:left;"> 10 (5.59) </td>
+   <td style="text-align:right;"> 7.82 </td>
+   <td style="text-align:right;"> 37.76 </td>
+   <td style="text-align:right;"> 55.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 1 (3.91) </td>
+   <td style="text-align:left;"> 6 (4.72) </td>
+   <td style="text-align:left;"> 1 (5.59) </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 28.32 </td>
+   <td style="text-align:right;"> 5.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 4 (3.91) </td>
+   <td style="text-align:left;"> 5 (4.72) </td>
+   <td style="text-align:left;"> 5 (5.59) </td>
+   <td style="text-align:right;"> 15.64 </td>
+   <td style="text-align:right;"> 23.60 </td>
+   <td style="text-align:right;"> 27.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 10 (3.91) </td>
+   <td style="text-align:left;"> 1 (4.72) </td>
+   <td style="text-align:left;"> 3 (5.59) </td>
+   <td style="text-align:right;"> 39.10 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 16.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> 3 (3.91) </td>
+   <td style="text-align:left;"> 9 (4.72) </td>
+   <td style="text-align:left;"> 8 (5.59) </td>
+   <td style="text-align:right;"> 11.73 </td>
+   <td style="text-align:right;"> 42.48 </td>
+   <td style="text-align:right;"> 44.72 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 We want to get it into the tidy format below where each row is an observation of one customer per year, with the columns of `customer_id`, `year`, `item`, `price_per_item` and `totalprice`. Before trying to reshape any dataset, you should be able to visualise what it will look like. Sketching out your tables on a piece of paper can really help make these transformations make sense.
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["customer_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["price_per_item"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["totalprice"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2018","3":"2","4":"3.91","5":"7.82"},{"1":"1","2":"2019","3":"8","4":"4.72","5":"37.76"},{"1":"1","2":"2020","3":"10","4":"5.59","5":"55.90"},{"1":"2","2":"2018","3":"1","4":"3.91","5":"3.91"},{"1":"2","2":"2019","3":"6","4":"4.72","5":"28.32"},{"1":"2","2":"2020","3":"1","4":"5.59","5":"5.59"},{"1":"3","2":"2018","3":"4","4":"3.91","5":"15.64"},{"1":"3","2":"2019","3":"5","4":"4.72","5":"23.60"},{"1":"3","2":"2020","3":"5","4":"5.59","5":"27.95"},{"1":"4","2":"2018","3":"10","4":"3.91","5":"39.10"},{"1":"4","2":"2019","3":"1","4":"4.72","5":"4.72"},{"1":"4","2":"2020","3":"3","4":"5.59","5":"16.77"},{"1":"5","2":"2018","3":"3","4":"3.91","5":"11.73"},{"1":"5","2":"2019","3":"9","4":"4.72","5":"42.48"},{"1":"5","2":"2020","3":"8","4":"5.59","5":"44.72"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> customer_id </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:right;"> price_per_item </th>
+   <th style="text-align:right;"> totalprice </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 7.82 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 37.76 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 55.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 3.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 28.32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 5.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 15.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 23.60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 27.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 39.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 4.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 16.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3.91 </td>
+   <td style="text-align:right;"> 11.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 4.72 </td>
+   <td style="text-align:right;"> 42.48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2020 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 44.72 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### One observation per row

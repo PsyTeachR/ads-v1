@@ -84,10 +84,57 @@ print(table1)
 table1
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["cases"],"name":[3],"type":["int"],"align":["right"]},{"label":["population"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"1999","3":"745","4":"19987071"},{"1":"Afghanistan","2":"2000","3":"2666","4":"20595360"},{"1":"Brazil","2":"1999","3":"37737","4":"172006362"},{"1":"Brazil","2":"2000","3":"80488","4":"174504898"},{"1":"China","2":"1999","3":"212258","4":"1272915272"},{"1":"China","2":"2000","3":"213766","4":"1280428583"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> year </th>
+   <th style="text-align:right;"> cases </th>
+   <th style="text-align:right;"> population </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 745 </td>
+   <td style="text-align:right;"> 19987071 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 2666 </td>
+   <td style="text-align:right;"> 20595360 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 37737 </td>
+   <td style="text-align:right;"> 172006362 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 80488 </td>
+   <td style="text-align:right;"> 174504898 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 1999 </td>
+   <td style="text-align:right;"> 212258 </td>
+   <td style="text-align:right;"> 1272915272 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 2000 </td>
+   <td style="text-align:right;"> 213766 </td>
+   <td style="text-align:right;"> 1280428583 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### glimpse() 
@@ -197,7 +244,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, 2022-02-01, …
+## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
 ```
 
 
@@ -213,7 +260,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, 2022-02-01, …
+## $ date      <dttm> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
 ```
 
 
@@ -229,7 +276,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, 2022-02-01, …
+## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
 ```
 
 
@@ -344,7 +391,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, 2022-02-01, …
+## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
 ```
 
 
@@ -372,10 +419,35 @@ avatar <- tibble(
 avatar
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["bends"],"name":[2],"type":["chr"],"align":["left"]},{"label":["friendly"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"Katara","2":"water","3":"TRUE"},{"1":"Toph","2":"earth","3":"TRUE"},{"1":"Sokka","2":"NA","3":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> bends </th>
+   <th style="text-align:left;"> friendly </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Katara </td>
+   <td style="text-align:left;"> water </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Toph </td>
+   <td style="text-align:left;"> earth </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sokka </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> TRUE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 You can also use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/tibble/man/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
@@ -532,10 +604,36 @@ mess <- read_csv("data/mess.csv", lazy = FALSE)
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["This is my messy dataset"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"junk,order,score,letter,good,min_max,date"},{"1":"junk,1,-1,a,1,1 - 2,2020-01-1"},{"1":"junk,missing,0.72,b,1,2 - 3,2020-01-2"},{"1":"junk,3,-0.62,c,FALSE,3 - 4,2020-01-3"},{"1":"junk,4,2.03,d,T,4 - 5,2020-01-4"},{"1":"junk,5,NA,e,1,5 - 6,2020-01-5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> This is my messy dataset </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> junk,order,score,letter,good,min_max,date </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,1,-1,a,1,1 - 2,2020-01-1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,missing,0.72,b,1,2 - 3,2020-01-2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,3,-0.62,c,FALSE,3 - 4,2020-01-3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,4,2.03,d,T,4 - 5,2020-01-4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> junk,5,NA,e,1,5 - 6,2020-01-5 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 You'll get a warning about parsing issues and the data table is just a single column. View the file `data/mess.csv` by clicking on it in the File pane, and choosing "View File". Here are the first 10 lines. What went wrong?
@@ -649,10 +747,29 @@ problems()
 ```
 
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["row"],"name":[1],"type":["int"],"align":["right"]},{"label":["col"],"name":[2],"type":["int"],"align":["right"]},{"label":["expected"],"name":[3],"type":["chr"],"align":["left"]},{"label":["actual"],"name":[4],"type":["chr"],"align":["left"]},{"label":["file"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"3","2":"2","3":"an integer","4":"missing","5":"data/mess.csv"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> row </th>
+   <th style="text-align:right;"> col </th>
+   <th style="text-align:left;"> expected </th>
+   <th style="text-align:left;"> actual </th>
+   <th style="text-align:left;"> file </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> an integer </td>
+   <td style="text-align:left;"> missing </td>
+   <td style="text-align:left;"> data/mess.csv </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 
@@ -670,10 +787,71 @@ tidiest <- read_csv("data/mess.csv",
 
 Now `order` is an integer variable where any empty cells contain `NA`. The variable `good` is a logical value, where <code><span class='fl'>0</span></code> and <code><span class='cn'>F</span></code> are converted to <code><span class='cn'>FALSE</span></code> and <code><span class='fl'>1</span></code> and <code><span class='cn'>T</span></code> are converted to <code><span class='cn'>TRUE</span></code>. The variable `date` is a date type (adding leading zeros to the day). We'll learn in later chapters how to fix other problems, such as the `min_max` column containing two different types of data.
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["order"],"name":[1],"type":["int"],"align":["right"]},{"label":["score"],"name":[2],"type":["chr"],"align":["left"]},{"label":["letter"],"name":[3],"type":["chr"],"align":["left"]},{"label":["good"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["min_max"],"name":[5],"type":["chr"],"align":["left"]},{"label":["date"],"name":[6],"type":["date"],"align":["right"]}],"data":[{"1":"1","2":"-1","3":"a","4":"TRUE","5":"1 - 2","6":"2020-01-01"},{"1":"NA","2":"0.72","3":"b","4":"TRUE","5":"2 - 3","6":"2020-01-02"},{"1":"3","2":"-0.62","3":"c","4":"FALSE","5":"3 - 4","6":"2020-01-03"},{"1":"4","2":"2.03","3":"d","4":"TRUE","5":"4 - 5","6":"2020-01-04"},{"1":"5","2":"__NA__","3":"e","4":"TRUE","5":"5 - 6","6":"2020-01-05"},{"1":"6","2":"0.99","3":"f","4":"FALSE","5":"6 - 7","6":"2020-01-06"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> order </th>
+   <th style="text-align:left;"> score </th>
+   <th style="text-align:left;"> letter </th>
+   <th style="text-align:left;"> good </th>
+   <th style="text-align:left;"> min_max </th>
+   <th style="text-align:left;"> date </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> -1 </td>
+   <td style="text-align:left;"> a </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> 1 - 2 </td>
+   <td style="text-align:left;"> 2020-01-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> 0.72 </td>
+   <td style="text-align:left;"> b </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> 2 - 3 </td>
+   <td style="text-align:left;"> 2020-01-02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> -0.62 </td>
+   <td style="text-align:left;"> c </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 3 - 4 </td>
+   <td style="text-align:left;"> 2020-01-03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 2.03 </td>
+   <td style="text-align:left;"> d </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> 4 - 5 </td>
+   <td style="text-align:left;"> 2020-01-04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> e </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> 5 - 6 </td>
+   <td style="text-align:left;"> 2020-01-05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> 0.99 </td>
+   <td style="text-align:left;"> f </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 6 - 7 </td>
+   <td style="text-align:left;"> 2020-01-06 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 

@@ -96,7 +96,7 @@
 </h1>
 <p>Working with dates and times can be a little tricky, but the <code class="package"><a href="https://lubridate.tidyverse.org/" target="_blank">lubridate</a></code> package is there to help. Their website has a helpful <a href="https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf">cheatsheet</a> and you can view a tutorial by typing <code><a href="https://cran.rstudio.com/web/packages/lubridate/vignettes/lubridate.html">vignette("lubridate")</a></code> in the console pane. The <a href="https://r4ds.had.co.nz/dates-and-times.html" target="_blank">Dates and Times</a> in R for Data Science also gives a helpful overview.</p>
 <p>This appendix is a quick intro to some of the most useful functions for making reproducible reports.</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># packages needed for this appendix</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
@@ -105,7 +105,7 @@
 <span class="header-section-number">G.1</span> Parsing<a class="anchor" aria-label="anchor" href="#parsing"><i class="fas fa-link"></i></a>
 </h2>
 <p>Dates can be in many formats. The <code>ymd</code> functions can deal with almost all of them, regardless of the punctuation used in the format. All of the examples below produce a date in the standard format "2022-01-03".</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># year-month-day orders</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"22 Jan 3"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 January 3rd"</span><span class="op">)</span>
@@ -121,13 +121,13 @@
 <p>See if you can make a date format that one of the parsers <em>can't</em> handle.</p>
 </div>
 <p>There are similar functions for date/times, too.</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="st">"2022 Jan 3, 6:05 and 20s pm"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">mdy_h</a></span><span class="op">(</span><span class="st">"January 3rd, 2022 at 6pm"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-01-03 18:05:20 UTC"
 ## [1] "2022-01-03 18:00:00 UTC"</code></pre>
 <p>The date/time functions can also take a timezone argument. If you don't specify it, it defaults to "UTC".</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-03 18:05"</span>, tz <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-01-03 18:05:00 GMT"</code></pre>
 </div>
@@ -136,7 +136,7 @@
 <span class="header-section-number">G.2</span> Get Parts<a class="anchor" aria-label="anchor" href="#get-parts"><i class="fas fa-link"></i></a>
 </h2>
 <p>You frequently need to extract parts of a date/time for plotting. The following functions extract specific parts of a date or datetime object. This is a godsend for those of us who never have a clue what week of the year it is today.</p>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get the date and time when this function is run</span>
 <span class="va">now</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span>tzone <span class="op">=</span> <span class="st">"GMT"</span><span class="op">)</span>
 
@@ -158,20 +158,20 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">time_parts</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 12
-##  $ second : num 31.1
-##  $ minute : int 48
-##  $ hour   : int 18
-##  $ day    : int 5
-##  $ wday   : num 7
-##  $ yday   : num 36
+##  $ second : num 52.9
+##  $ minute : int 17
+##  $ hour   : int 20
+##  $ day    : int 6
+##  $ wday   : num 1
+##  $ yday   : num 37
 ##  $ week   : num 6
 ##  $ isoweek: num 5
-##  $ epiweek: num 5
+##  $ epiweek: num 6
 ##  $ month  : num 2
 ##  $ year   : num 2022
 ##  $ tz     : chr "GMT"</code></pre>
 <p>The <code><a href="https://rdrr.io/pkg/lubridate/man/month.html">month()</a></code> and <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> functions can return factor labels.</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jan1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220101</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">jan1</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -191,7 +191,7 @@
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">birthdate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">19761118</span><span class="op">)</span> <span class="co"># put your own birthdate here</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">birthdate</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] Thu
@@ -204,16 +204,16 @@ Solution
 <span class="header-section-number">G.3</span> Date Arithmetic<a class="anchor" aria-label="anchor" href="#date-arithmetic"><i class="fas fa-link"></i></a>
 </h2>
 <p>You can add and subtract dates. For example, you can get the dates two weeks from today by adding <code>weeks(2)</code> to <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code>. You can probably guess how to add and subtract seconds, minutes, days, months, and years.</p>
-<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">weeks</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-02-12"</code></pre>
+<pre><code>## [1] "2022-02-13"</code></pre>
 <div class="try">
 <p>What day of the week will your 100th birthday be?</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">birthdate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">19761118</span><span class="op">)</span> <span class="co"># put your own birthdate here</span>
 <span class="va">centennial</span> <span class="op">&lt;-</span> <span class="va">birthdate</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">years</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">centennial</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
@@ -223,11 +223,11 @@ Solution
 </div>
 <div class="warning">
 <p>What do you think will happen if you subtract one month from March 31st? You get NA, since February doesn't have a 31st day.</p>
-<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220331</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Use the special date operators <code>%m+%</code> and <code>%m-%</code> to add and subtract months without risking an impossible date.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20220331</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/lubridate/man/mplus.html">%m-%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-02-28"</code></pre>
 </div>
@@ -236,7 +236,7 @@ Solution
 <span class="header-section-number">G.3.1</span> First and last of month<a class="anchor" aria-label="anchor" href="#first-and-last-of-month"><i class="fas fa-link"></i></a>
 </h3>
 <p>For things like billing, you might need to find the first or last days of the current, previous, or next month. The <code><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollback()</a></code> and <code><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollforward()</a></code> functions are easier than trying to parse dates.</p>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022-01-24"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollback</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>                          <span class="co"># last day of the previous month</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/rollbackward.html">rollforward</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>                       <span class="co"># last day of the current month</span>
@@ -252,7 +252,7 @@ Solution
 <span class="header-section-number">G.3.2</span> Rounding<a class="anchor" aria-label="anchor" href="#rounding-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can round dates and times to the nearest unit. This can be useful when you have, for example, time measured to the nearest second, but want to group data by the nearest hour, rather than extract the hour component.</p>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:25"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:30"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2022-01-24 10:35"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/round_date.html">round_date</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span></code></pre></div>
@@ -266,7 +266,7 @@ Solution
 <span class="header-section-number">G.4</span> Internationalisation<a class="anchor" aria-label="anchor" href="#internationalisation"><i class="fas fa-link"></i></a>
 </h2>
 <p>You may need to work with dates from a different locale than your computer's defaults, such as dates written in French or Russian. Or your computer may have a non-English locale. Set the <code>locale</code> argument to the relevant language code.</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 January 24"</span>, locale <span class="op">=</span> <span class="st">"en_GB"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022 Janvier 24"</span>, locale <span class="op">=</span> <span class="st">"fr_FR"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="st">"2022-01-03"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, locale <span class="op">=</span> <span class="st">"ru_RU"</span><span class="op">)</span></code></pre></div>
@@ -274,7 +274,7 @@ Solution
 ## [1] "2022-01-24"
 ## [1] пн
 ## Levels: вс &lt; пн &lt; вт &lt; ср &lt; чт &lt; пт &lt; сб</code></pre>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># check which locales are available on your computer</span>
 <span class="co"># doesn't work for Windows</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"locale -a"</span><span class="op">)</span></code></pre></div>
@@ -284,7 +284,7 @@ Solution
 <span class="header-section-number">G.5</span> Example<a class="anchor" aria-label="anchor" href="#example"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let's work through some examples with tweets from Appendix <a href="twitter-data.html#twitter-data">J</a>. Download the <a href="data/data.zip">class data</a>.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># read all metrics files in data/tweets/</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
   path <span class="op">=</span> <span class="st">"data/tweets"</span>, 
@@ -294,7 +294,7 @@ Solution
   <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_df</a></span><span class="op">(</span><span class="va">read_csv</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The <code>time</code> column is already in date/time (POSIXct) format, but what if we wanted to plot tweets by hour for each day of the week?</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>weekday <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
          hour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
@@ -305,7 +305,7 @@ Solution
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">24</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="appendix-g-dates_files/figure-html/weekday-tweets-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>A nice side-effect of using the lubridate function to get days of the week or months of the year is that the results are an ordered factor, so display correctly in a plot. Let's display the months in Greek (if that's available on your system).</p>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">time</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">FALSE</span>, locale <span class="op">=</span> <span class="st">"el_GR.UTF-8"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, fill <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -543,7 +543,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-05.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

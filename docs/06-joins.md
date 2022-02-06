@@ -170,10 +170,63 @@ left_data <- left_join(customers, orders, by = "id")
 left_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: join
@@ -188,10 +241,75 @@ left2_data <- left_join(orders, customers, by = "id")
 left2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"10","3":"Dufftown","4":"AB55 4DH"},{"1":"3","2":"18","3":"NA","4":"NA"},{"1":"4","2":"21","3":"Aberlour","4":"AB38 7RY"},{"1":"4","2":"23","3":"Aberlour","4":"AB38 7RY"},{"1":"5","2":"9","3":"Tobermory","4":"PA75 6NR"},{"1":"5","2":"11","3":"Tobermory","4":"PA75 6NR"},{"1":"6","2":"11","3":"NA","4":"NA"},{"1":"6","2":"12","3":"NA","4":"NA"},{"1":"7","2":"3","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### right_join() {#right_join}
@@ -208,10 +326,75 @@ right_data <- right_join(customers, orders, by = "id")
 right_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"},{"1":"6","2":"NA","3":"NA","4":"11"},{"1":"6","2":"NA","3":"NA","4":"12"},{"1":"7","2":"NA","3":"NA","4":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.info data-latex=""}
@@ -232,10 +415,57 @@ inner_data <- inner_join(customers, orders, by = "id")
 inner_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### full_join() {#full_join}
@@ -252,10 +482,81 @@ full_data <- full_join(customers, orders, by = "id")
 full_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"},{"1":"6","2":"NA","3":"NA","4":"11"},{"1":"6","2":"NA","3":"NA","4":"12"},{"1":"7","2":"NA","3":"NA","4":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ## Filtering Joins
@@ -276,10 +577,40 @@ semi_data <- semi_join(customers, orders, by = "id")
 semi_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.info data-latex=""}
@@ -298,10 +629,43 @@ semi2_data <- semi_join(orders, customers, by = "id")
 semi2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"10"},{"1":"3","2":"18"},{"1":"4","2":"21"},{"1":"4","2":"23"},{"1":"5","2":"9"},{"1":"5","2":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### anti_join() {#anti_join}
@@ -318,10 +682,25 @@ anti_data <- anti_join(customers, orders, by = "id")
 anti_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: join
@@ -336,10 +715,25 @@ anti2_data <- anti_join(orders, customers, by = "id")
 anti_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ## Multiple joins
@@ -400,10 +794,65 @@ bindr_data <- bind_rows(customers, new_customers)
 bindr_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"},{"1":"6","2":"Falkirk","3":"FK1 4RS"},{"1":"7","2":"Ardbeg","3":"PA42 7EA"},{"1":"8","2":"Doogal","3":"G81 4SJ"},{"1":"9","2":"Kirkwall","3":"KW15 1SE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
@@ -423,10 +872,81 @@ bindr2_data <- bind_rows(customers, new_customers)
 bindr2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["new"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"NA"},{"1":"3","2":"NA","3":"NA","4":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"NA"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"NA"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"1"},{"1":"6","2":"Falkirk","3":"FK1 4RS","4":"2"},{"1":"7","2":"Ardbeg","3":"PA42 7EA","4":"3"},{"1":"8","2":"Doogal","3":"G81 4SJ","4":"4"},{"1":"9","2":"Kirkwall","3":"KW15 1SE","4":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> new </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### bind_cols() {#bind_cols}
@@ -443,10 +963,51 @@ bindc_data <- bind_cols(customers, new_info)
 bindc_data 
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["colour"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"red"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"orange"},{"1":"3","2":"NA","3":"NA","4":"yellow"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"green"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"blue"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> colour </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:left;"> red </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:left;"> orange </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yellow </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:left;"> green </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> blue </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### Importing multiple files
@@ -513,10 +1074,25 @@ intersect_data <- intersect(customers, new_customers)
 intersect_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.warning data-latex=""}
@@ -544,10 +1120,65 @@ union_data <- union(customers, new_customers)
 union_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"},{"1":"6","2":"Falkirk","3":"FK1 4RS"},{"1":"7","2":"Ardbeg","3":"PA42 7EA"},{"1":"8","2":"Doogal","3":"G81 4SJ"},{"1":"9","2":"Kirkwall","3":"KW15 1SE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.warning data-latex=""}
@@ -589,10 +1220,40 @@ setdiff_data <- setdiff(customers, new_customers)
 setdiff_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 Order matters for `setdiff`.
@@ -610,10 +1271,45 @@ If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='
 base::setdiff(customers, new_customers)
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 :::
 
@@ -695,10 +1391,51 @@ inner_join(orders, new_customers2)
 ## Joining, by = "id"
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["city"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"5","2":"9","3":"PA75 6NR","4":"Tobermory"},{"1":"5","2":"11","3":"PA75 6NR","4":"Tobermory"},{"1":"6","2":"11","3":"FK1 4RS","4":"Falkirk"},{"1":"6","2":"12","3":"FK1 4RS","4":"Falkirk"},{"1":"7","2":"3","3":"PA42 7EA","4":"Ardbeg"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> city </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:left;"> Ardbeg </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 

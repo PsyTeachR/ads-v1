@@ -310,7 +310,7 @@ Copy and paste the below text into the white space below the code chunk that loa
 ```{verbatim, lang="md"}
 ## Sample sales report
 
-This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
+This report summarises the sales data for different types of vehicles sold between 2003 and 2005. This data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
 
 ### Sales by type
 
@@ -319,6 +319,23 @@ The *total* number of **planes** sold was `r sales_counts$n[3]`
 The *total* number of **classic cars** sold was `r sales_counts$n[1]`.
 ```
 
+
+::: {.warning data-latex=""}
+The example markdown above (and in the rest of this book) is shown for the regular editor, not the visual editor. In the visual editor, you won't see the hashes that create headers, or the asterisks that create bold and italic text. You also won't see the backticks that demarcate inline code.
+
+```{r visual-editor-example, echo = FALSE, fig.cap="The example code above shown in the visual editor."}
+knitr::include_graphics("images/reports/visual-editor-example.png")
+```
+
+If you try to add the hashes, asterisks and backticks to the visual editor, you will get frustrated as they disappear. If you succeed, your code in the regular editor will look mangled like this:
+
+```{verbatim, lang="md"}
+\#\#\# Sales by type
+
+The \*total\* number of \*\*planes\*\* sold was \`r sales_counts\$n\[3]\`
+```
+
+:::
 
 Try and match up the inline code with what is in the `sales_counts` table. Of note:
 
@@ -386,6 +403,11 @@ Most images on Wikipedia are public domain or have an open license. You can sear
 knitr::include_graphics("images/reports/google-images.png")
 ```
 :::
+
+Alternatively, you can use the markdown notation `![caption](url)` to show an image. This goes in the markdown text section of the document, not inside is grey code block. The caption is optional; you can omit it like this: 
+
+`![](images/reports/google-images.png)`
+
 
 ### Tables {#rmd-tables}
 
@@ -663,7 +685,12 @@ kableExtra::kable(tasks) %>%
 
 Add an image of anything relevant [\@ref(rmd-images)]
 
-`r hide()`
+```{r, webex.hide= TRUE}
+knitr::include_graphics("https://psyteachr.github.io/ads-v1/images/logos/logo.png")
+```
+
+
+`r hide("Alternative Solution")`
 
 You can add an image from the web using its URL:
 

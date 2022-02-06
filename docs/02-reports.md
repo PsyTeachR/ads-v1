@@ -181,7 +181,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 323 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 322 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -336,7 +336,7 @@ Copy and paste the below text into the white space below the code chunk that loa
 ```md
 ## Sample sales report
 
-This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
+This report summarises the sales data for different types of vehicles sold between 2003 and 2005. This data is from [Kaggle](https://www.kaggle.com/kyanyoga/sample-sales-data).
 
 ### Sales by type
 
@@ -345,6 +345,25 @@ The *total* number of **planes** sold was `r sales_counts$n[3]`
 The *total* number of **classic cars** sold was `r sales_counts$n[1]`.
 ```
 
+
+::: {.warning data-latex=""}
+The example markdown above (and in the rest of this book) is shown for the regular editor, not the visual editor. In the visual editor, you won't see the hashes that create headers, or the asterisks that create bold and italic text. You also won't see the backticks that demarcate inline code.
+
+<div class="figure" style="text-align: center">
+<img src="images/reports/visual-editor-example.png" alt="The example code above shown in the visual editor." width="100%" />
+<p class="caption">(\#fig:visual-editor-example)The example code above shown in the visual editor.</p>
+</div>
+
+If you try to add the hashes, asterisks and backticks to the visual editor, you will get frustrated as they disappear. If you succeed, your code in the regular editor will look mangled like this:
+
+
+```md
+\#\#\# Sales by type
+
+The \*total\* number of \*\*planes\*\* sold was \`r sales_counts\$n\[3]\`
+```
+
+:::
 
 Try and match up the inline code with what is in the `sales_counts` table. Of note:
 
@@ -404,7 +423,7 @@ ggplot(data = sales_counts,
        subtitle = "2003 - 2005")
 ```
 
-<img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="02-reports_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
 
 You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using `knitr::include_graphics()`.
 
@@ -420,6 +439,11 @@ Most images on Wikipedia are public domain or have an open license. You can sear
 
 <img src="images/reports/google-images.png" title="Screenshot of Google Images interface with Usage Rights selections open." alt="Screenshot of Google Images interface with Usage Rights selections open." width="100%" style="display: block; margin: auto;" />
 :::
+
+Alternatively, you can use the markdown notation `![caption](url)` to show an image. This goes in the markdown text section of the document, not inside is grey code block. The caption is optional; you can omit it like this: 
+
+`![](images/reports/google-images.png)`
+
 
 ### Tables {#rmd-tables}
 
@@ -496,7 +520,7 @@ sales_counts %>%
 ```
 
 <table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-14)Number of sales per product line.</caption>
+<caption>(\#tab:unnamed-chunk-15)Number of sales per product line.</caption>
  <thead>
   <tr>
    <th style="text-align:center;font-weight: bold;color: red !important;"> Product </th>
@@ -824,6 +848,17 @@ Add an image of anything relevant [\@ref(rmd-images)]
 
 
 <div class='webex-solution'><button>Solution</button>
+
+```r
+knitr::include_graphics("https://psyteachr.github.io/ads-v1/images/logos/logo.png")
+```
+
+<img src="https://psyteachr.github.io/ads-v1/images/logos/logo.png" width="100%" style="display: block; margin: auto;" />
+</div>
+
+
+
+<div class='webex-solution'><button>Alternative Solution</button>
 
 
 You can add an image from the web using its URL:

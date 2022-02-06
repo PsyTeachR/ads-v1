@@ -279,7 +279,7 @@ Figure 2.5: Slightly better method of running code
 </ul>
 <p>R Markdown will create and display a new HTML document, but it will also automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 36 years old. It is 323 days until Christmas, which is my favourite holiday.</strong></p>
+<p><strong>My name is Emily and I am 36 years old. It is 322 days until Christmas, which is my favourite holiday.</strong></p>
 <div class="info">
 <p>You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -435,13 +435,26 @@ Figure 2.6: The visual editor.
 <p>Copy and paste the below text into the white space below the code chunk that loads in the data. Save the file and then click knit to view the results. It will look a bit messy for now as it contains the code and messages from loading the data but don't worry, we'll get rid of that soon.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb26-1"><a href="reports.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample sales report</span></span>
 <span id="cb26-2"><a href="reports.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="reports.html#cb26-3" aria-hidden="true" tabindex="-1"></a>This report summarises the sales data for different types of vehicles sold between 2003 and 2005. Thie data is from <span class="co">[</span><span class="ot">Kaggle</span><span class="co">](https://www.kaggle.com/kyanyoga/sample-sales-data)</span>.</span>
+<span id="cb26-3"><a href="reports.html#cb26-3" aria-hidden="true" tabindex="-1"></a>This report summarises the sales data for different types of vehicles sold between 2003 and 2005. This data is from <span class="co">[</span><span class="ot">Kaggle</span><span class="co">](https://www.kaggle.com/kyanyoga/sample-sales-data)</span>.</span>
 <span id="cb26-4"><a href="reports.html#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-5"><a href="reports.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sales by type</span></span>
 <span id="cb26-6"><a href="reports.html#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-7"><a href="reports.html#cb26-7" aria-hidden="true" tabindex="-1"></a>The *total* number of **planes** sold was <span class="in">`r sales_counts$n[3]`</span></span>
 <span id="cb26-8"><a href="reports.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-9"><a href="reports.html#cb26-9" aria-hidden="true" tabindex="-1"></a>The *total* number of **classic cars** sold was <span class="in">`r sales_counts$n[1]`</span>.</span></code></pre></div>
+<div class="warning">
+<p>The example markdown above (and in the rest of this book) is shown for the regular editor, not the visual editor. In the visual editor, you won't see the hashes that create headers, or the asterisks that create bold and italic text. You also won't see the backticks that demarcate inline code.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:visual-editor-example"></span>
+<img src="images/reports/visual-editor-example.png" alt="The example code above shown in the visual editor." width="100%"><p class="caption">
+Figure 2.7: The example code above shown in the visual editor.
+</p>
+</div>
+<p>If you try to add the hashes, asterisks and backticks to the visual editor, you will get frustrated as they disappear. If you succeed, your code in the regular editor will look mangled like this:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb27-1"><a href="reports.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">\#\#\#</span> Sales by type</span>
+<span id="cb27-2"><a href="reports.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="reports.html#cb27-3" aria-hidden="true" tabindex="-1"></a>The <span class="sc">\*</span>total<span class="sc">\*</span> number of <span class="sc">\*\*</span>planes<span class="sc">\*\*</span> sold was <span class="sc">\`</span>r sales_counts\$n<span class="sc">\[</span>3]<span class="sc">\`</span></span></code></pre></div>
+</div>
 <p>Try and match up the inline code with what is in the <code>sales_counts</code> table. Of note:</p>
 <ul>
 <li>The <code>$</code> sign is used to indicate specific variables (or columns) in an object using the <code>object$variable</code> syntax.</li>
@@ -454,7 +467,7 @@ Figure 2.6: The visual editor.
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb27"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb27-1"><a href="reports.html#cb27-1" aria-hidden="true" tabindex="-1"></a>The *total* number of **motorcycles** sold was <span class="in">`r sales_counts$n[2]`</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb28-1"><a href="reports.html#cb28-1" aria-hidden="true" tabindex="-1"></a>The *total* number of **motorcycles** sold was <span class="in">`r sales_counts$n[2]`</span>.</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -463,7 +476,7 @@ Solution
 <span class="header-section-number">2.5.3</span> Code comments<a class="anchor" aria-label="anchor" href="#comments"><i class="fas fa-link"></i></a>
 </h3>
 <p>In the above code we've used code <strong>comments</strong> and it's important to highlight how useful these are. You can add comments inside R chunks with the hash symbol (<code>#</code>). R will ignore characters from the hash to the end of the line.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># important numbers</span>
 
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sales_online</span><span class="op">)</span> <span class="co"># the total number of sales (number of rows)</span>
@@ -479,7 +492,7 @@ Solution
 <p>As the saying goes, a picture paints a thousand words and sometimes you will want to communicate your data using visualisations.</p>
 <p>Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to make a simple bar chart that represents the sales data - focus on trying to follow how bits of the code map on to the plot that is created.</p>
 <p>Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -487,15 +500,17 @@ Solution
        y <span class="op">=</span> <span class="st">"Number of sales"</span>,
        title <span class="op">=</span> <span class="st">"Sales by vehicle type"</span>,
        subtitle <span class="op">=</span> <span class="st">"2003 - 2005"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="02-reports_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="02-reports_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>You can also include images that you did not create in R using the markdown syntax for images. This is very similar to loading data in that you can either use an image that is stored on your computer, or via a url using <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">knitr::include_graphics()</a></code>.</p>
 <p>Create a new code chunk underneath each of the sales figures for planes, classic cars, and motorcycles and add in an image from Google or Wikipedia for each (right click on an image and select copy image address to get a url). See the section on <a href="reports.html#rmd-setup">chunk defaults</a> to see how to change the display size.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/3/3f/P-51_Mustang_edit1.jpg"</span><span class="op">)</span></code></pre></div>
 <div class="info">
 <p>Most images on Wikipedia are public domain or have an open license. You can search for images by license on Google Images by clicking on the <strong><code>Tools</code></strong> button and choosing "Creative Commons licenses" from the "Usage Rights" menu.</p>
 <div class="inline-figure"><img src="images/reports/google-images.png" title="Screenshot of Google Images interface with Usage Rights selections open." alt="Screenshot of Google Images interface with Usage Rights selections open." width="100%" style="display: block; margin: auto;"></div>
 </div>
+<p>Alternatively, you can use the markdown notation <code>![caption](url)</code> to show an image. This goes in the markdown text section of the document, not inside is grey code block. The caption is optional; you can omit it like this:</p>
+<p><code>![](images/reports/google-images.png)</code></p>
 </div>
 <div id="rmd-tables" class="section level3" number="2.5.5">
 <h3>
@@ -506,7 +521,7 @@ Solution
 <li>Add a new level 2 heading (two hashtags) to your document, name the heading "Data in table form" and then create a new code chunk below this.</li>
 </ul>
 <p>First, let's see what the table looks like if we don't make any edits. Simply write the name of the table you want to display in the code chunk (in our case <code>sales_counts</code>) and then click knit to see what it looks like.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_counts</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ## # Groups:   PRODUCTLINE [3]
@@ -517,7 +532,7 @@ Solution
 ## 3 Planes         306</code></pre>
 <p>It's just about readable but it's not great. To customise tables we're going to use the function <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> from the <code>kableExtra</code> package.</p>
 <p>Amend your code to load the <code>kableExtra</code> package and apply the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> function to the table. Once you've done this, knit the file again to see the output.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span> <span class="co"># for table display</span>
 
 <span class="va">sales_counts</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="co"># start with the sales_count table and then</span>
@@ -561,7 +576,7 @@ Planes
 <p>It's better, but it's still not amazing. So let's make a few adjustments. We can change the names of the columns, add a caption, and also change the alignment of the cell contents using arguments to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code>.</p>
 <p>We can also add a theme to change the overall style. In this example we've used <code>kable_classic</code> but there are 5 others: <code>kable_paper</code>, <code>kable_classic_2</code>, <code>kable_minimal</code>, <code>kable_material</code> and <code>kable_material_dark</code>. Try them all and see which one you prefer.</p>
 <p>Finally, we can change the formatting of the first row using <code>row_spec</code>. Look up the help documentation for <code>row_spec</code> to see what other options are available. Try changing the value of any of the arguments below to figure out what they do.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sales_counts</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Product"</span>, <span class="st">"Sales"</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Number of sales per product line."</span>, 
@@ -570,7 +585,7 @@ Planes
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </code></pre></div>
 <div class="inline-table"><table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
 <caption>
-<span id="tab:unnamed-chunk-14">Table 2.1: </span>Number of sales per product line.
+<span id="tab:unnamed-chunk-15">Table 2.1: </span>Number of sales per product line.
 </caption>
 <thead><tr>
 <th style="text-align:center;font-weight: bold;color: red !important;">
@@ -627,7 +642,7 @@ Planes
 <p>Let's finish by tidying up the report and organising our code a bit better. When you create a new R Markdown file in RStudio, a setup chunk is automatically created - we've ignored this chunk until now.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -635,7 +650,7 @@ Planes
 <p>Replace the code in your setup chunk with the below code and then try changing each option from <code>FALSE</code> to <code>TRUE</code> and changing the numeric values then knit the file again to see the difference it makes.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
   echo       <span class="op">=</span> <span class="cn">FALSE</span>,     <span class="co"># whether to show code chunks</span>
   message    <span class="op">=</span> <span class="cn">FALSE</span>,     <span class="co"># whether to show messages from your code</span>
@@ -651,19 +666,19 @@ Planes
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-full-100"></span>
 <img src="02-reports_files/figure-html/img-full-100-1.png" alt='A plot with the default values of fig.width = 8, fig.height = 5, out.width = "100%"' width="100%"><p class="caption">
-Figure 2.7: A plot with the default values of fig.width = 8, fig.height = 5, out.width = "100%"
+Figure 2.8: A plot with the default values of fig.width = 8, fig.height = 5, out.width = "100%"
 </p>
 </div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-half-100"></span>
 <img src="02-reports_files/figure-html/img-half-100-1.png" alt='The same plot with half the default width and height: fig.width = 4, fig.height = 2.5, out.width = "100%"' width="100%"><p class="caption">
-Figure 2.8: The same plot with half the default width and height: fig.width = 4, fig.height = 2.5, out.width = "100%"
+Figure 2.9: The same plot with half the default width and height: fig.width = 4, fig.height = 2.5, out.width = "100%"
 </p>
 </div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-half-50"></span>
 <img src="02-reports_files/figure-html/img-half-50-1.png" alt='The same plot as above at half the output width: fig.width = 4, fig.height = 2.5, out.width = "50%"' width="50%"><p class="caption">
-Figure 2.9: The same plot as above at half the output width: fig.width = 4, fig.height = 2.5, out.width = "50%"
+Figure 2.10: The same plot as above at half the output width: fig.width = 4, fig.height = 2.5, out.width = "50%"
 </p>
 </div>
 </div>
@@ -676,7 +691,7 @@ Figure 2.9: The same plot as above at half the output width: fig.width = 4, fig.
 <p>For example, by default you might want to hide your code but there also might be an occasion where you want to show the code you used to analyse your data. You can set <code>echo = FALSE</code> in your setup chunk to make hiding code the default but in the individual code chunk for your plot set <code>echo = TRUE</code>. Try this now and knit the file to see the results.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo = TRUE}</code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -689,13 +704,13 @@ Figure 2.9: The same plot as above at half the output width: fig.width = 4, fig.
 <p>Additionally, you can also override the default image display size or dimensions.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, out.width='25%'}</code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/3/3f/P-51_Mustang_edit1.jpg"</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 10, fig.height = 20}</code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
        mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
@@ -744,7 +759,7 @@ output:
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:img-bootswatch"></span>
 <img src="images/reports/bootswatch.png" alt="Light themes in versions 3 and 4." width="100%"><p class="caption">
-Figure 2.10: Light themes in versions 3 and 4.
+Figure 2.11: Light themes in versions 3 and 4.
 </p>
 </div>
 <div class="warning">
@@ -815,7 +830,7 @@ and teaching computational skills.
 <span class="header-section-number">2.7.4</span> Tables<a class="anchor" aria-label="anchor" href="#exercises-reports-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use the following code to load a small table of tasks [<a href="reports.html#code-chunks">2.3.2</a>]. Edit it to be relevant to your job (you can change the categories entirely if you want).</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tasks</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">task</span>,                   <span class="op">~</span><span class="va">category</span>,      <span class="op">~</span><span class="va">frequency</span>,
   <span class="st">"Respond to tweets"</span>,     <span class="st">"social media"</span>, <span class="st">"daily"</span>,
@@ -828,12 +843,12 @@ and teaching computational skills.
 Solution
 </button>
 <p>You can set the default to <code>echo = FALSE</code> in the setup chunk at the top of the script.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>To set visibility for a specific code chunk, put <code>echo = FALSE</code> inside the curly brackets.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo=FALSE}</code></pre>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code to hide</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -843,7 +858,7 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
@@ -906,6 +921,14 @@ montly
 <button>
 Solution
 </button>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/images/logos/logo.png"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="https://psyteachr.github.io/ads-v1/images/logos/logo.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div class="webex-solution">
+<button>
+Alternative Solution
+</button>
 <p>You can add an image from the web using its URL:</p>
 <pre><code>![Applied Data Skills](https://psyteachr.github.io/ads-v1/images/logos/logo.png)</code></pre>
 <p>Or save an image into your project directory (e.g., in the images folder) and add it using the relative path:</p>
@@ -934,7 +957,7 @@ Solution
 Solution
 </button>
 <p>Click on the knit button or run the following code in the console. (Do not put it the Rmd script!)</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span><span class="op">(</span><span class="st">"job.Rmd"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
@@ -1309,7 +1332,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-05.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

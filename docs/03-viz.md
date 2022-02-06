@@ -35,10 +35,55 @@ If a spreadsheet is in a <a class='glossary' target='_blank' title='A format for
 
 For example, the table below lists pets owned by members of the psyTeachR team. Each row is an observation of one pet. There are 6 variables for each pet, their `name`, `owner`, `species`, `birthdate`, `weight` (in kg), and `rating` (on a 5-point scale from "very evil" to "very good").
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["owner"],"name":[2],"type":["chr"],"align":["left"]},{"label":["species"],"name":[3],"type":["fct"],"align":["left"]},{"label":["birthdate"],"name":[4],"type":["date"],"align":["right"]},{"label":["weight"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rating"],"name":[6],"type":["fct"],"align":["left"]}],"data":[{"1":"Darwin","2":"Lisa","3":"ferret","4":"1998-04-02","5":"1.2","6":"a little evil"},{"1":"Oy","2":"Lisa","3":"ferret","4":"<NA>","5":"2.9","6":"very good"},{"1":"Khaleesi","2":"Emily","3":"cat","4":"2014-10-01","5":"4.5","6":"very good"},{"1":"Bernie","2":"Phil","3":"dog","4":"2017-06-01","5":"32.0","6":"very good"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> owner </th>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:left;"> birthdate </th>
+   <th style="text-align:right;"> weight </th>
+   <th style="text-align:left;"> rating </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Darwin </td>
+   <td style="text-align:left;"> Lisa </td>
+   <td style="text-align:left;"> ferret </td>
+   <td style="text-align:left;"> 1998-04-02 </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:left;"> a little evil </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Oy </td>
+   <td style="text-align:left;"> Lisa </td>
+   <td style="text-align:left;"> ferret </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 2.9 </td>
+   <td style="text-align:left;"> very good </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Khaleesi </td>
+   <td style="text-align:left;"> Emily </td>
+   <td style="text-align:left;"> cat </td>
+   <td style="text-align:left;"> 2014-10-01 </td>
+   <td style="text-align:right;"> 4.5 </td>
+   <td style="text-align:left;"> very good </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bernie </td>
+   <td style="text-align:left;"> Phil </td>
+   <td style="text-align:left;"> dog </td>
+   <td style="text-align:left;"> 2017-06-01 </td>
+   <td style="text-align:right;"> 32.0 </td>
+   <td style="text-align:left;"> very good </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 Variables can be classified as <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a> (numbers) or <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> (labels). When you're plotting data, it's important to know what kind of variables you have, which can help you decide what types of plots are most appropriate. Each variable also has a <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a>, such as <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> (numbers), <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> (text), or <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> (TRUE/FALSE values). Some plots can only work on some data types. Make sure you have watched the mini-lecture on types of data from last week before you work through this chapter. Additionally, Appendix\ \@ref(data-types) has more details, as this concept will be relevant repeatedly.
@@ -75,7 +120,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2022-02-05"
+## [1] "2022-02-06"
 ```
 
 
@@ -85,7 +130,7 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2022-02-05 19:31:36 GMT"
+## [1] "2022-02-06 20:16:21 GMT"
 ```
 
 ### Test your understanding
@@ -598,10 +643,35 @@ If your data already have a column with the number you want to plot, you can use
 count_data <- count(x = survey_data, issue_category)
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["issue_category"],"name":[1],"type":["fct"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"tech","2":"311"},{"1":"sales","2":"88"},{"1":"returns","2":"232"},{"1":"other","2":"76"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> issue_category </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> tech </td>
+   <td style="text-align:right;"> 311 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sales </td>
+   <td style="text-align:right;"> 88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> returns </td>
+   <td style="text-align:right;"> 232 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:right;"> 76 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 The mapping for `geom_col()` requires you to set both the `x` and `y` aesthetics. Set `y = n` because we want to plot the number of issues in each category, and that information is in the column called `n`.
@@ -637,9 +707,9 @@ England             | 56,550,138      | Great Britain
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? <select class='webex-select'><option value='blank'></option><option value='x'>geom_bar</option><option value='answer'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_QNHFYATOBP'><label><input type="radio" autocomplete="off" name="radio_QNHFYATOBP" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_QNHFYATOBP" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_QNHFYATOBP" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_QNHFYATOBP" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_QNHFYATOBP" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_TKLOESCAZD'><label><input type="radio" autocomplete="off" name="radio_TKLOESCAZD" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_TKLOESCAZD" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TKLOESCAZD" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TKLOESCAZD" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_TKLOESCAZD" value="x"></input> <span>aes(y = population)</span></label></div>
 * What geom would you use to plot the number of countries on each island? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_bar</option><option value='x'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_XNLEQSGCZF'><label><input type="radio" autocomplete="off" name="radio_XNLEQSGCZF" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_XNLEQSGCZF" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_XNLEQSGCZF" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_XNLEQSGCZF" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_XNLEQSGCZF" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_JZOOTOBGPZ'><label><input type="radio" autocomplete="off" name="radio_JZOOTOBGPZ" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_JZOOTOBGPZ" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_JZOOTOBGPZ" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_JZOOTOBGPZ" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_JZOOTOBGPZ" value="x"></input> <span>aes(y = population)</span></label></div>
 :::
 
 ### One continuous variable
@@ -749,7 +819,7 @@ Imagine you have a table of the [population for each country in the world](https
 * What kind of plot is A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='answer'>geom_density</option></select>
 * What kind of plot is B? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='x'>geom_density</option></select>
 * What kind of plot is C? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='answer'>geom_freqpoly</option><option value='x'>geom_density</option></select>
-* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_DCXRMFEIXV'><label><input type="radio" autocomplete="off" name="radio_DCXRMFEIXV" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_DCXRMFEIXV" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_DCXRMFEIXV" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_DCXRMFEIXV" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
+* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_VDHLZVNVCF'><label><input type="radio" autocomplete="off" name="radio_VDHLZVNVCF" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_VDHLZVNVCF" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_VDHLZVNVCF" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_VDHLZVNVCF" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
 * What is the `binwidth` of the histogram? <select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>100</option><option value='answer'>100K</option><option value=''>1M</option></select>
 :::
 
@@ -948,7 +1018,7 @@ Column plots can also be very misleading. The plot on the left starts the y-axis
 ::: {.try data-latex=""}
 * How would you create plot A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='x'>geom_boxplot()</option><option value='answer'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
 * How would you create plot B? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='answer'>geom_boxplot()</option><option value='x'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
-* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_RXPOJVXFZD'><label><input type="radio" autocomplete="off" name="radio_RXPOJVXFZD" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_RXPOJVXFZD" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_RXPOJVXFZD" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_RXPOJVXFZD" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label></div>
+* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_OAKRFJJJYI'><label><input type="radio" autocomplete="off" name="radio_OAKRFJJJYI" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_OAKRFJJJYI" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_OAKRFJJJYI" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_OAKRFJJJYI" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label></div>
 
 * Which employee tends to have the longest calls? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='answer'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='x'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
 * Which employee has the record longest call? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='x'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='answer'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>

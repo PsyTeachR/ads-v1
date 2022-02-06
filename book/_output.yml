@@ -1,7 +1,7 @@
 bookdown::bs4_book:
   default: yes
   md_extensions: -smart
-  df_print: paged
+  df_print: kable
   repo:
     base: https://github.com/psyteachr/ads-v1
     branch: master

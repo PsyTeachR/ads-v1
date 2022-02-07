@@ -15,6 +15,8 @@ library(knitr)      # for rendering a report from a script
 library(kableExtra) # for styling tables
 ```
 
+Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
+
 ## Organising a project {#projects}
 
 Before we write any code, first, we need to get organised. <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images.
@@ -181,7 +183,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 322 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 321 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.

@@ -22,3 +22,14 @@ suppressPackageStartupMessages({
 #
 #   paste0("<pre class='md'><code>", code, "</code></pre>")
 # })
+
+# dl <- function(file, label = basename(file)) {
+#   link <- paste0("https://psyteachr.github.io/ads-v1/", file)
+#   downloadthis::download_link(
+#     link = link,
+#     button_label = label,
+#     button_type = "default",
+#     has_icon = TRUE,
+#     icon = "fa fa-file-download"
+#   )
+# }

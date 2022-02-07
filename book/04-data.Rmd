@@ -20,6 +20,8 @@ library(googlesheets4) # for Google Sheets
 
 We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 
+Download the [Data import cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf).
+
 ## Built-in data {#builtin}
 
 You'll likely want to import you own data to work with, however, Base R also comes with built-in datasets and these can be very useful for learning new functions and packages. Additionally, some packages, like `r pkg("tidyr")`, also contain data. The `r hl(data())` function lists the datasets available.
@@ -637,7 +639,7 @@ if (file.exists("data/starwars.csv"))
 
 ## Further resources {#resources-data}
 
-* [Data import cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+* [Data import cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
 * [Multi-row headers](https://psyteachr.github.io/tutorials/multi-row-headers.html)
 

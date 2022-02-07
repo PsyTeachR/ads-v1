@@ -24,6 +24,8 @@ library(googlesheets4) # for Google Sheets
 
 We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 
+Download the [Data import cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf).
+
 ## Built-in data {#builtin}
 
 You'll likely want to import you own data to work with, however, Base R also comes with built-in datasets and these can be very useful for learning new functions and packages. Additionally, some packages, like <code class='package'>tidyr</code>, also contain data. The <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='op'>)</span></code> function lists the datasets available.
@@ -244,7 +246,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
+## $ date      <date> 2022-02-07, 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, …
 ```
 
 
@@ -260,7 +262,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
+## $ date      <dttm> 2022-02-07, 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, …
 ```
 
 
@@ -276,7 +278,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
+## $ date      <date> 2022-02-07, 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, …
 ```
 
 
@@ -391,7 +393,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, 2022-02-02, …
+## $ date      <date> 2022-02-07, 2022-02-06, 2022-02-05, 2022-02-04, 2022-02-03, …
 ```
 
 
@@ -1093,7 +1095,7 @@ Once you're done, share your knitted html file on the Week 4 Teams channel so ot
 
 ## Further resources {#resources-data}
 
-* [Data import cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+* [Data import cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
 * [Multi-row headers](https://psyteachr.github.io/tutorials/multi-row-headers.html)
 

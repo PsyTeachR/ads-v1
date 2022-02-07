@@ -5,7 +5,6 @@
 * Be able to summarise data by groups
 * Be able to produce well-formatted tables
 
-
 ## Set-up
 
 First, create a new project for the work we'll do in this chapter named `r path("05-summary")`. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named `summary.Rmd`, delete the welcome text and load the required packages for this chapter.
@@ -15,6 +14,8 @@ library(tidyverse)   # data wrangling functions
 library(rtweet) # for searching tweets
 library(kableExtra)  # for nice tables
 ```
+
+Download the [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf).
 
 ## Social media data
 

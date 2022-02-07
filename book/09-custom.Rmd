@@ -25,6 +25,8 @@ library(rnaturalearthdata) # extra mapping data
 theme_set(theme_light())
 ```
 
+Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
+
 
 ## Defaults
 
@@ -64,16 +66,11 @@ bar + point
 
 You can set the image size in the `r glossary("chunk")` headers.
 
-````{verbatim}
-```{r, fig.width = 10, fig.height = 5}
+```{r, eval=FALSE, verbatim="r, fig.width = 10, fig.height = 5"}
 bar + point
 ```
-````
 
-```{r}
-#| figdim-demo, echo = FALSE, 
-#| fig.width = 10, fig.height = 5, 
-#| fig.cap="Image size altered to fig.width = 10, fig.height = 5"
+```{r figdim-demo, echo = FALSE, fig.width = 10, fig.height = 5, fig.cap="Image size altered to fig.width = 10, fig.height = 5"}
 bar + point
 ```
 
@@ -87,16 +84,13 @@ If you're using a MacBook with a Retina display, you may notice that the figures
 
 The option `out.width` controls how much space the figure takes up relative to the width of the output. The default value is "100%". You can also set alignment with `fig.align`.
 
-````{verbatim}
-```{r, out.width = "75%", fig.align = "center"}
+
+```{r, eval = FALSE, varbatim='out.width = "75%", fig.align = "center"'}
 bar
 ```
-````
 
-```{r}
-#| outwidth-demo, echo = FALSE, 
-#| out.width = "75%", fig.align = "center", 
-#| fig.cap = "Output display altered with out.width = \"75%\""
+
+```{r outwidth-demo, echo = FALSE, out.width = "75%", fig.align = "center",  fig.cap = "Output display altered with out.width = \"75%\""}
 bar
 ```
 
@@ -104,8 +98,7 @@ bar
 
 Figures should usually get a caption with `fig.cap` and alt text to describe the figure to people with impaired vision using `fig.alt`. You can use the pattern below to spread the chunk options over multiple lines in a way that makes them easier to read. 
 
-````{verbatim}
-```{r}
+```{r, eval = FALSE, verbatim = "r"}
 #| reference-name, 
 #| echo = FALSE, 
 #| fig.width = 8, fig.height = 5, out.width = "100%", 
@@ -114,7 +107,6 @@ Figures should usually get a caption with `fig.cap` and alt text to describe the
 
 point
 ```
-````
 
 ```{r}
 #| caption-demo, 
@@ -189,6 +181,7 @@ ggplotly(point_econ)
 ::: {.info data-latex=""}
 Hover over the data points above and click on the legend items.
 :::
+
 
 ### Waffle Plots
 
@@ -432,9 +425,6 @@ ggplot() +
                        labels = paste0(0:6, "00 K")) +
   theme(legend.position = c(0.16, 0.84))
 ```
-
-
-
 
 
 ## Further Resources {#resources-custom}

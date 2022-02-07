@@ -13,6 +13,8 @@
 library(tidyverse)   # data wrangling functions
 ```
 
+Download the [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf).
+
 ## Wrangling functions
 
 Most <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> involves the reshaping functions you learned in Chapter\ \@ref(tidy) and these six functions: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.
@@ -172,11 +174,11 @@ zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`,
 What are the resulting columns for these four examples?
 
 * `budget %>% select(starts_with("sales"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='answer'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option></select> 
+    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option></select> 
 * `budget %>% select(ends_with("2020"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2020, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
 * `budget %>% select(contains("_"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option></select>
 * `budget %>% select(num_range("expenses_", 2019:2020))`
     <select class='webex-select'><option value='blank'></option><option value='x'>sales_2020, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>expenses_2019, expenses_2020</option></select>
 :::
@@ -709,13 +711,13 @@ year_prod
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_KVDECKMWTY'><label><input type="radio" autocomplete="off" name="radio_KVDECKMWTY" value="x"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_VMPOXYWNBA'><label><input type="radio" autocomplete="off" name="radio_VMPOXYWNBA" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_KVDECKMWTY" value="x"></input> <span><pre>budget3 %>%
-  group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_KVDECKMWTY" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VMPOXYWNBA" value="x"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_KVDECKMWTY" value="answer"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VMPOXYWNBA" value="x"></input> <span><pre>budget3 %>%
+  group_by(sales) %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_VMPOXYWNBA" value="answer"></input> <span><pre>budget3 %>%
   group_by(region) %>%
   summarise(max_sales = max(sales)</pre></span></label></div>
 

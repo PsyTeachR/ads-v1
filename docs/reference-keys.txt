@@ -40,6 +40,7 @@ fig:over-plot
 fig:jitter-plot
 fig:fact-plot
 fig:unnamed-chunk-32
+tab:subject
 tab:orders
 tab:unnamed-chunk-2
 fig:img-pivot-table
@@ -55,14 +56,14 @@ fig:unnamed-chunk-2
 fig:figdim-demo
 fig:outwidth-demo
 fig:caption-demo
-fig:unnamed-chunk-10
-fig:unnamed-chunk-11
+fig:unnamed-chunk-8
+fig:unnamed-chunk-9
 fig:plotly
+fig:unnamed-chunk-11
+fig:unnamed-chunk-12
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
-fig:unnamed-chunk-15
-fig:unnamed-chunk-16
-fig:unnamed-chunk-20
+fig:unnamed-chunk-18
 fig:map-islands
 fig:map-scotland
 fig:img-ioslides-template
@@ -82,8 +83,7 @@ fig:unnamed-chunk-4
 fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
-fig:unnamed-chunk-8
-fig:unnamed-chunk-9
+fig:unnamed-chunk-10
 fig:theme-font-demo
 fig:font-demo
 fig:demo-multi-text
@@ -280,7 +280,6 @@ binding-joins
 bind_rows
 bind_cols
 importing-multiple-files
-iteration
 set-operations
 intersect
 union

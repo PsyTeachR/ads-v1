@@ -14,6 +14,8 @@ library(flexdashboard) # for dashboards
 library(DT)            # for interactive tables
 ```
 
+Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
+
 Until now, we've only used the default `html_document` output format in an `r glossary("R markdown")` report, but there are several other [output formats](https://rmarkdown.rstudio.com/formats.html){target="_blank"} that you can try.
 
 ## Reports

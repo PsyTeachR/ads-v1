@@ -77,3 +77,9 @@ pre {
   background-color: transparent;
   background-image: none;
 }
+
+.dl_button {
+  display: inline;
+  margin: 0;
+  float: left;
+}

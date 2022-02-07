@@ -12,6 +12,8 @@
 library(tidyverse)   # data wrangling functions
 ```
 
+Download the [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf).
+
 ## Wrangling functions
 
 Most `r glossary("data wrangling")` involves the reshaping functions you learned in Chapter\ \@ref(tidy) and these six functions: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.

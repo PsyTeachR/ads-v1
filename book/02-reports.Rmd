@@ -14,6 +14,8 @@ library(knitr)      # for rendering a report from a script
 library(kableExtra) # for styling tables
 ```
 
+Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
+
 ## Organising a project {#projects}
 
 Before we write any code, first, we need to get organised. `r glossary("project", "Projects")` in RStudio are a way to group all the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images.

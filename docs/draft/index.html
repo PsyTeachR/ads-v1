@@ -20,9 +20,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="libs/pagedtable-1.1/js/pagedtable.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/font-awesome-5.13.0/js/script.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -54,7 +52,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="active" href="index.html">Overview</a></li>
-<li><a class="" href="reports.html"><span class="header-section-number">1</span> Reports with R Markdown</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">1</span> Data Relations</a></li>
 </ul>
 
         <div class="book-extra">
@@ -65,7 +63,7 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="overview" class="section level1 unnumbered">
 <h1>Overview<a class="anchor" aria-label="anchor" href="#overview"><i class="fas fa-link"></i></a>
 </h1>
-<p>This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R <span class="citation">(<a href="reports.html#ref-R-base" role="doc-biblioref">R Core Team, 2021</a>)</span>, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of <a class="glossary" target="_blank" title="Statistics that describe an aspect of data (e.g., mean, median, mode, variance, range)" href="https://psyteachr.github.io/glossary/d#descriptive">descriptive</a> statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes.</p>
+<p>This book provides an overview of the basic skills needed to turn raw data into informative summaries and visualisations presented in professional reports and presentations. The book will introduce learners to R <span class="citation">(<a href="joins.html#ref-R-base" role="doc-biblioref">R Core Team, 2021</a>)</span>, a programming language that can help automate working with data. The book will cover importing and processing data from spreadsheets, producing data summaries of <a class="glossary" target="_blank" title="Statistics that describe an aspect of data (e.g., mean, median, mode, variance, range)" href="https://psyteachr.github.io/glossary/d#descriptive">descriptive</a> statistics in tables, creating beautiful and informative visualisations, and constructing reports and presentations that automatically update when the underlying data changes.</p>
 <div class="small_right">
 <div class="inline-figure"><img src="images/logos/logo.png" alt="ADS Hex Logo"></div>
 </div>
@@ -303,7 +301,7 @@ $( document ).ready(function() {
 });
 </script><div class="chapter-nav">
 <div class="empty"></div>
-<div class="next"><a href="reports.html"><span class="header-section-number">1</span> Reports with R Markdown</a></div>
+<div class="next"><a href="joins.html"><span class="header-section-number">1</span> Data Relations</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

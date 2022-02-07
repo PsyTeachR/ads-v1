@@ -25,6 +25,8 @@ library(lubridate) # for manipulating dates
 
 We'd recommend making a new code chunk for each different activity, and using the white space to make notes on any errors you make, things you find interesting, or questions you'd like to ask the course team.
 
+Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
+
 ## Variable types
 
 If a spreadsheet is in a `r glossary("tidy data")` format, each row is an `r glossary("observation")`, each column is a `r glossary("variable")`, and the information in each cell is a `r glossary("value")`. We'll learn more about how to get our data into this format in Chapter\ \@ref(tidy), but to get started we'll use datasets with the right format.
@@ -1164,9 +1166,9 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
 
 ## Further Resources {#resources-viz}
 
+* [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 * [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) [@nordmann_2021]
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
-* [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 * [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)
 * [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 * [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students

@@ -1,7 +1,5 @@
 # Data Relations {#joins}
 
-<div class="incomplete-chapter"></div>
-
 ## Intended Learning Outcomes {#ilo-joins}
 
 -   Be able to match related data across multiple tables
@@ -9,7 +7,7 @@
 
 ## Set-up
 
-First, create a new project for the work we'll do in this chapter named <code class='path'>06-relations</code>. Second, open and save and new R Markdown document named `relations`.Rmd\`, delete the welcome text and load the required packages for this chapter.
+First, create a new project for the work we'll do in this chapter named <code class='path'>06-relations</code>. Second, open and save a new R Markdown document named `relations`.Rmd\`, delete the welcome text, and load the required packages for this chapter.
 
 <div class='verbatim'><pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;{r setup, include=FALSE}</code></pre>
 
@@ -28,7 +26,7 @@ For this demo, rather than loading in data, we'll create two small data tables f
 `customers` has id, city and postcode for five customers 1-5.
 
 -   `1:5` will fill the variable `id` with all integers between 1 and 5.
--   `city` and `code` both using the `c()` function to enter multiple strings. Note that each entry is contained within its own quotation marks, apart from missing data which is recorded as `NA`.
+-   `city` and `code` both use the `c()` function to enter multiple strings. Note that each entry is contained within its own quotation marks, apart from missing data, which is recorded as `NA`.
 -   When entering data like this, it's important that the order of each variable matches up. So number 1 will correspond to "Port Ellen" and "PA42 7DU".
 
 
@@ -41,6 +39,7 @@ customers <- tibble(
 ```
 
 <table>
+<caption>(\#tab:subject)Demo customers table.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> id </th>
@@ -79,7 +78,7 @@ customers <- tibble(
 
 
 
-`orders` has customer id and the number of items ordered. Some customers have no orders, some have more than one order, and some are not in the customer table.
+`orders` has customer id and the number of items ordered. Some customers from the previous table have no orders, some have more than one order, and some are not in the customer table.
 
 
 ```r
@@ -145,7 +144,7 @@ orders <- tibble(
 
 All the mutating joins have this basic syntax:
 
-`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
+`****_join(x, y, by = NULL, suffix = c(".x", ".y"))`
 
 -   `x` = the first (left) table
 -   `y` = the second (right) table
@@ -162,7 +161,7 @@ You can leave out the `by` argument if you're matching on all of the columns wit
 <img src="images/joins/left_join.png"/>
 :::
 
-A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
+A `left_join` keeps all the data from the first (left) table and adds anything that matches from the second (right) table. If the right table has more than one match for a row in the left table, there will be more than one row in the joined table (see ids 4 and 5).
 
 
 ```r
@@ -170,10 +169,63 @@ left_data <- left_join(customers, orders, by = "id")
 left_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: join
@@ -188,10 +240,75 @@ left2_data <- left_join(orders, customers, by = "id")
 left2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[3],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"10","3":"Dufftown","4":"AB55 4DH"},{"1":"3","2":"18","3":"NA","4":"NA"},{"1":"4","2":"21","3":"Aberlour","4":"AB38 7RY"},{"1":"4","2":"23","3":"Aberlour","4":"AB38 7RY"},{"1":"5","2":"9","3":"Tobermory","4":"PA75 6NR"},{"1":"5","2":"11","3":"Tobermory","4":"PA75 6NR"},{"1":"6","2":"11","3":"NA","4":"NA"},{"1":"6","2":"12","3":"NA","4":"NA"},{"1":"7","2":"3","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### right_join() {#right_join}
@@ -208,10 +325,75 @@ right_data <- right_join(customers, orders, by = "id")
 right_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"},{"1":"6","2":"NA","3":"NA","4":"11"},{"1":"6","2":"NA","3":"NA","4":"12"},{"1":"7","2":"NA","3":"NA","4":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.info data-latex=""}
@@ -224,7 +406,7 @@ This table has the same information as `left_join(orders, customers, by = "id")`
 <img src="images/joins/inner_join.png"/>
 :::
 
-An `inner_join` returns all the rows that have a match in the other table.
+An `inner_join` returns all the rows that have a match in both tables. Changing the order of the tables will change the order of the columns, but not which rows are kept.
 
 
 ```r
@@ -232,10 +414,57 @@ inner_data <- inner_join(customers, orders, by = "id")
 inner_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### full_join() {#full_join}
@@ -252,15 +481,86 @@ full_data <- full_join(customers, orders, by = "id")
 full_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["items"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"10"},{"1":"3","2":"NA","3":"NA","4":"18"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"21"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"23"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"9"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"11"},{"1":"6","2":"NA","3":"NA","4":"11"},{"1":"6","2":"NA","3":"NA","4":"12"},{"1":"7","2":"NA","3":"NA","4":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ## Filtering Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter \@ref(wrangle).)
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `dplyr::filter()` function in that they keep and remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. (We'll learn more about the `filter()` function in Chapter \@ref(wrangle).)
 
 ### semi_join() {#semi_join}
 
@@ -276,10 +576,40 @@ semi_data <- semi_join(customers, orders, by = "id")
 semi_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.info data-latex=""}
@@ -298,10 +628,43 @@ semi2_data <- semi_join(orders, customers, by = "id")
 semi2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"10"},{"1":"3","2":"18"},{"1":"4","2":"21"},{"1":"4","2":"23"},{"1":"5","2":"9"},{"1":"5","2":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### anti_join() {#anti_join}
@@ -318,10 +681,25 @@ anti_data <- anti_join(customers, orders, by = "id")
 anti_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: join
@@ -333,28 +711,46 @@ Order matters in an anti join.
 
 ```r
 anti2_data <- anti_join(orders, customers, by = "id")
-anti_data
+anti2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ## Multiple joins
 
 The `****_join()` functions are all **two-table verbs**, that is, you can only join together two tables at a time. However, you may often need to join together multiple tables. To do so, you simply need to add on additional joins. You can do this by creating an intermediate object or more efficiently by using a pipe.
 
-Note that because the second join has multiple columns that need to be matched, we use `c()` to list them all (try removing the `c()` and see what happens).
-
 
 ```r
 # create a table of overall customer satisfaction scores
-
 satisfaction <- tibble(
   id = 1:5,
-  items = c(4, 3, 2, 3, 1)
+  satisfaction = c(4, 3, 2, 3, 1)
 )
 
 # perform the initial join
@@ -362,17 +758,20 @@ join_1 <- left_join(customers, orders, by = "id")
 
 # perform the second join on the new object
 join_2 <- left_join(join_1, satisfaction, 
-                    by = c("id", "items"))
+                    by = "id")
+```
 
+
+
+```r
 # more efficient method using the pipe
-
 pipe_join <- customers %>%
   left_join(orders, by = "id") %>%
-  left_join(satisfaction, by = c("id","items"))
+  left_join(satisfaction, by = "id")
 ```
 
 ::: {.warning data-latex=""}
-At every stage of any analysis you should **check your output** to ensure that what you created is what you intended to create but this is particularly true of joins. You should be familiar enough with your data through routine checks using functions like `glimpse()`, `str()`, and `summary()` to have a rough idea of what the join should result in. At the very least, you should know whether the joined object should result in more or fewer variables and observations.
+At every stage of any analysis you should **check your output** to ensure that what you created is what you intended to create, but this is particularly true of joins. You should be familiar enough with your data through routine checks using functions like `glimpse()`, `str()`, and `summary()` to have a rough idea of what the join should result in. At the very least, you should know whether the joined object should result in more or fewer variables and observations.
 
 If you have a multi-line join like in the above piped example, build up the code and check the output at each stage.
 :::
@@ -400,10 +799,65 @@ bindr_data <- bind_rows(customers, new_customers)
 bindr_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"},{"1":"6","2":"Falkirk","3":"FK1 4RS"},{"1":"7","2":"Ardbeg","3":"PA42 7EA"},{"1":"8","2":"Doogal","3":"G81 4SJ"},{"1":"9","2":"Kirkwall","3":"KW15 1SE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
@@ -423,15 +877,86 @@ bindr2_data <- bind_rows(customers, new_customers)
 bindr2_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["new"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"NA"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"NA"},{"1":"3","2":"NA","3":"NA","4":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"NA"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"NA"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"1"},{"1":"6","2":"Falkirk","3":"FK1 4RS","4":"2"},{"1":"7","2":"Ardbeg","3":"PA42 7EA","4":"3"},{"1":"8","2":"Doogal","3":"G81 4SJ","4":"4"},{"1":"9","2":"Kirkwall","3":"KW15 1SE","4":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:right;"> new </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ### bind_cols() {#bind_cols}
 
-You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
+You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have the same number of rows in the exact same order.
 
 
 ```r
@@ -443,24 +968,75 @@ bindc_data <- bind_cols(customers, new_info)
 bindc_data 
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["colour"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU","4":"red"},{"1":"2","2":"Dufftown","3":"AB55 4DH","4":"orange"},{"1":"3","2":"NA","3":"NA","4":"yellow"},{"1":"4","2":"Aberlour","3":"AB38 7RY","4":"green"},{"1":"5","2":"Tobermory","3":"PA75 6NR","4":"blue"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> colour </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+   <td style="text-align:left;"> red </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+   <td style="text-align:left;"> orange </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> yellow </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+   <td style="text-align:left;"> green </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> blue </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
+
+::: {.info data-latex=""}
+The only advantage of `bind_cols()` over a mutating join is when the tables don't have any IDs to join by and you have to rely solely on their order. Otherwise, you should use a mutating join (all four mutating joins result in the same output when all rows in each table have exactly one match in the other table).
+:::
 
 ### Importing multiple files
 
 If you need to import and bind a whole folder full of files that have the same structure, get a list of all the files you want to combine. It's easiest if they're all in the same directory, although you can use a pattern to select the files you want if they have a systematic naming structure.
 
+First, save the two customer tables to CSV files. The `dir.create()` function makes a folder called "data". The `showWarnings = FALSE` argument means that you won't get a warning if the folder already exists, it just won't do anything.
+
 
 ```r
 # write our data to a new folder for the demo
+dir.create("data", showWarnings = FALSE)
 write_csv(x = customers, file = "data/customers1.csv")
 write_csv(x = new_customers, file = "data/customers2.csv")
+```
 
-# retrieves a list of all file names in the data folder that contain the string "customers"
+Next, retrieve a list of all file names in the data folder that contain the string "customers"
 
+
+```r
 files <- list.files(
   path = "data", 
   pattern = "customers", 
@@ -474,16 +1050,13 @@ files
 ## [1] "data/customers1.csv" "data/customers2.csv"
 ```
 
-### Iteration
+Next, we'll iterate over this list to read in the data from each file. Whilst this won't be something we cover in detail in the core resources of this course, <a class='glossary' target='_blank' title='Repeating a process or function' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> is an important concept to know about. Iteration is where you perform the same task on multiple different inputs. As a general rule of thumb, if you find yourself copying and pasting the same thing more than twice, there's a more efficient and less error-prone way to do it, although these functions do typically require a stronger grasp of programming.
 
-Whilst this won't be something we cover in detail in the core resources of this course, iteration is an important concept to know about. Iteration is where you perform the same task on multiple different inputs. As a general rule of thumb, if you find yourself copying and pasting the same thing more than twice, there's a more efficient and less error-prone way to do it although these functions do typically require a stronger grasp of programming.
-
-The <code class='package'>purrr</code> package contains functions to help with iteration. `purrr::map_df()` maps a function to a list of data frames.  
+The <code class='package'>purrr</code> package contains functions to help with iteration. `purrr::map_df()` maps a function to a list and returns a data frame (table) of the results.
 
 * `.x` is the list of file paths 
 * `.f` specifies the function to map to each of those file paths.
 * The resulting object `all_files` will be a data frame that combines all the files together, similar to if you had imported them separately and then used `bind_rows()`. Note that `map_df()` will only work in this way if the structure of all files is identical.
-
 
 
 ```r
@@ -499,7 +1072,7 @@ all_files <- purrr::map_df(.x = files, .f = read_csv)
 
 ### intersect() {#intersect}
 
-`intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
+`dplyr::intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order, but they have to have the same names.
 
 
 ```r
@@ -513,14 +1086,29 @@ intersect_data <- intersect(customers, new_customers)
 intersect_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has an `intersect()` function. The error message can be confusing and looks something like this:
+If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `base::intersect()` function that doesn't work like `dplyr::intersect()`. The error message can be confusing and looks something like this:
 
 
 ```r
@@ -536,7 +1124,7 @@ base::intersect(customers, new_customers)
 
 ### union() {#union}
 
-`union()` returns all the rows from both tables, removing duplicate rows, unlike `bind_rows()`.
+`dplyr::union()` returns all the rows from both tables, removing duplicate rows, unlike `bind_rows()`.
 
 
 ```r
@@ -544,14 +1132,69 @@ union_data <- union(customers, new_customers)
 union_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"},{"1":"6","2":"Falkirk","3":"FK1 4RS"},{"1":"7","2":"Ardbeg","3":"PA42 7EA"},{"1":"8","2":"Doogal","3":"G81 4SJ"},{"1":"9","2":"Kirkwall","3":"KW15 1SE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> Falkirk </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> Ardbeg </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> Doogal </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> Kirkwall </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 ::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `union()` function. You usually won't get an error message, but the output won't be what you expect.
+If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `base::union()` function. You usually won't get an error message, but the output won't be what you expect.
 
 
 ```r
@@ -581,7 +1224,7 @@ base::union(customers, new_customers)
 
 ### setdiff() {#setdiff}
 
-`setdiff` returns rows that are in the first table, but not in the second table.
+`dplyr::setdiff` returns rows that are in the first table, but not in the second table.
 
 
 ```r
@@ -589,10 +1232,40 @@ setdiff_data <- setdiff(customers, new_customers)
 setdiff_data
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 Order matters for `setdiff`.
@@ -600,26 +1273,98 @@ Order matters for `setdiff`.
 
 ```r
 setdiff2_data <- setdiff(new_customers, customers)
+setdiff2_data
 ```
 
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> city </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:left;"> Ardbeg </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;"> G81 4SJ </td>
+   <td style="text-align:left;"> Doogal </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> KW15 1SE </td>
+   <td style="text-align:left;"> Kirkwall </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
 ::: {.warning data-latex=""}
-If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
+If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `base::setdiff()` function. You usually won't get an error message, but the output might not be what you expect because `base::setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
 
 
 ```r
 base::setdiff(customers, new_customers)
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["city"],"name":[2],"type":["chr"],"align":["left"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Port Ellen","3":"PA42 7DU"},{"1":"2","2":"Dufftown","3":"AB55 4DH"},{"1":"3","2":"NA","3":"NA"},{"1":"4","2":"Aberlour","3":"AB38 7RY"},{"1":"5","2":"Tobermory","3":"PA75 6NR"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:left;"> city </th>
+   <th style="text-align:left;"> postcode </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Port Ellen </td>
+   <td style="text-align:left;"> PA42 7DU </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Dufftown </td>
+   <td style="text-align:left;"> AB55 4DH </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> Aberlour </td>
+   <td style="text-align:left;"> AB38 7RY </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> Tobermory </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 :::
 
 ## Conflicting variable types
 
-As we covered in Chapter\ \@ref(col_types), when you import or create data, R will do its best to set each column to an appropriate data type. However, sometimes it gets it wrong or sometimes there's something in the way the data has been encoded in the original spreadsheet that causes the data type to be different than expected. When joining datasets by common columns, it's important that not only are the variable names identical, but the data type of those variables is identical.
+As we covered in Chapter\ \@ref(data), when you import or create data, R will do its best to set each column to an appropriate data type. However, sometimes it gets it wrong or sometimes there's something in the way the data has been encoded in the original spreadsheet that causes the data type to be different than expected. When joining datasets by common columns, it's important that not only are the variable names identical, but the data type of those variables is identical.
 
 Let's recreate our `new_customers` dataset but this time, we'll specify that `id` is a character <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> variable.
 
@@ -640,7 +1385,7 @@ str(new_customers2)
 ##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
 ```
 
-If you try to join this dataset to any of the other datasets where `id` is stored as a <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> variable, it will produce the error 
+If you try to join this dataset to any of the other datasets where `id` is stored as a <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a> variable, it will produce an error. 
 
 
 ```r
@@ -669,12 +1414,12 @@ bind_rows(customers, new_customers2)
 ```
 
 
-As alternative method to change variable types from what we showed you in Chapter\ \@ref(col_types) is to use the `as.***` functions. If you type `as.` into a code chunk, you will see that there a huge number of these functions for transforming variables and datasets to different types. Exactly which one you need will depend on the data you have but a few commonly used ones are:
+As alternative method to change variable types from what we showed you in Chapter\ \@ref(data) is to use the `as.***` functions. If you type `as.` into a code chunk, you will see that there are a huge number of these functions for transforming variables and datasets to different types. Exactly which one you need will depend on the data you have, but a few commonly used ones are:
 
-* `as.numeric()` - convert a variable to numeric. Useful for when you have a variable of real numbers that have been encoded as character. Any values that are not numeric (e.g., if you have the word "missing" in cells that you have no data for), will be returned as `NA`.
-* `as.factor()` - convert a variable to a factor. You can set the factor levels and labels manually, or use the default order (alphabetical).
-* `as.character()` - convert a variable to character data.
-* `as.tibble()` and `as.data.frame()` - convert an object to a tibble data frame. This isn't actually relevant to what we're discussing here but it's a useful one to be aware of because sometimes you'll run into issues where you get an error that specifically requests your data is a tibble or data frame type and you can use this function to overwrite your object. 
+* `as.numeric()` - convert a variable to <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>. Useful for when you have a variable of real numbers that have been encoded as character. Any values that can't be turned into numbers (e.g., if you have the word "missing" in cells that you have no data for), will be returned as `NA`.
+* `as.factor()` - convert a variable to a <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factor</a>. You can set the factor levels and labels manually, or use the default order (alphabetical).
+* `as.character()` - convert a variable to <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> data.
+* `as.tibble()` and `as.data.frame()` - convert an object to a tibble data frame. This isn't actually relevant to what we're discussing here, but it's a useful one to be aware of because sometimes you'll run into issues where you get an error that specifically requests your data is a tibble or data frame type and you can use this function to overwrite your object. 
 
 To use these functions on a variable we can use `mutate()` to overwrite the variable with that variable as the new data type:
 
@@ -695,10 +1440,51 @@ inner_join(orders, new_customers2)
 ## Joining, by = "id"
 ```
 
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["items"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["postcode"],"name":[3],"type":["chr"],"align":["left"]},{"label":["city"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"5","2":"9","3":"PA75 6NR","4":"Tobermory"},{"1":"5","2":"11","3":"PA75 6NR","4":"Tobermory"},{"1":"6","2":"11","3":"FK1 4RS","4":"Falkirk"},{"1":"6","2":"12","3":"FK1 4RS","4":"Falkirk"},{"1":"7","2":"3","3":"PA42 7EA","4":"Ardbeg"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> id </th>
+   <th style="text-align:right;"> items </th>
+   <th style="text-align:left;"> postcode </th>
+   <th style="text-align:left;"> city </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> PA75 6NR </td>
+   <td style="text-align:left;"> Tobermory </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:left;"> FK1 4RS </td>
+   <td style="text-align:left;"> Falkirk </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> PA42 7EA </td>
+   <td style="text-align:left;"> Ardbeg </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 
 
@@ -708,11 +1494,29 @@ There's lots of different use cases for the `****_join()` functions. These exerc
 
 ### Grade data
 
-The University of Glasgow's Schedule A grading scheme uses a 22-point alphanumeric scale (there's more information in your summative report [assessment information sheet](https://sway.office.com/k0CnXGd6RjbVokkR?ref=Link)). Each alphanumeric grade (e.g., B2) has an underlying numeric Grade Point (e.g., 16). 
+The University of Glasgow's Schedule A grading scheme uses a 22-point alphanumeric scale (there's more information in your summative report [assessment information sheet](https://sway.office.com/k0CnXGd6RjbVokkR){target="_blank"}). Each alphanumeric grade (e.g., B2) has an underlying numeric Grade Point (e.g., 16). 
 
-Often when we're working with student grades they are provided to us in only one of these forms but we need to be able to go between the two, for example, we need the numeric form in order to be able to calculate descriptive statistics about the mean grade but we need the alphanumeric form to release to student records.
+Often when we're working with student grades they are provided to us in only one of these forms, but we need to be able to go between the two. For example, we need the numeric form in order to be able to calculate descriptive statistics about the mean grade, but we need the alphanumeric form to release to student records.
 
-* Download <a href="data/grade_data1.csv" download>grade_data.csv</a>, <a href="data/grade_data2.csv" download>grade_data2.csv</a> and <a href="data/scheduleA.csv" download>scheduleA.csv</a> into your data folder.
+* Download 
+```{=html}
+<a href="https://psyteachr.github.io/ads-v1/data/grade_data1.csv">
+<button class="btn btn-default dl_button"><i class="fa fa-file-download"></i> grade_data1.csv</button>
+</a>
+```
+, 
+```{=html}
+<a href="https://psyteachr.github.io/ads-v1/data/grade_data2.csv">
+<button class="btn btn-default dl_button"><i class="fa fa-file-download"></i> grade_data2.csv</button>
+</a>
+```
+ and 
+```{=html}
+<a href="https://psyteachr.github.io/ads-v1/data/scheduleA.csv">
+<button class="btn btn-default dl_button"><i class="fa fa-file-download"></i> scheduleA.csv</button>
+</a>
+```
+ into your data folder.
 
 * Read in `scheduleA.csv` and save it to an object named `schedule`.
 * Read in `grade_data1.csv` and save it to an object named `grades1`.
@@ -992,8 +1796,16 @@ In preparation for the summative assessment, how you do this is and what informa
    <td style="text-align:left;"> A data type representing strings of text. </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> [factor](https://psyteachr.github.io/glossary/f.html#factor){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> [filtering joins](https://psyteachr.github.io/glossary/f.html#filtering-joins){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [iteration](https://psyteachr.github.io/glossary/i.html#iteration){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> Repeating a process or function </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [mutating joins](https://psyteachr.github.io/glossary/m.html#mutating-joins){class="glossary" target="_blank"} </td>
@@ -1017,5 +1829,6 @@ In preparation for the summative assessment, how you do this is and what informa
 * [Data transformation cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
 * [Chapter 21: Iteration](https://r4ds.had.co.nz/iteration.html) in *R for Data Science*.
+* [purrr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/purrr.pdf)
 
 

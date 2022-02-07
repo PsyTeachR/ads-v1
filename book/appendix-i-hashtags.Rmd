@@ -43,7 +43,7 @@ Look at the dataset using `View(tweets_with_hashtags)` or clicking on it in the 
 
 ```{r}
 tweets_with_hashtags <- tweets %>%
-  select(hashtags, text, favorite_count, media_url)%>%
+  select(hashtags, text, favorite_count, media_url) %>%
   unnest(cols = hashtags)
 ```
 

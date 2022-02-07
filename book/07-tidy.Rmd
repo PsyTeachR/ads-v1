@@ -45,6 +45,8 @@ First, create a new project for the work we'll do in this chapter named `r path(
 library(tidyverse) # for data wrangling
 ```
 
+Download the [Data tidying cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf).
+
 ## Data Structures
 
 The data you work with will likely come in many different formats and structures. Some of these structures may be driven by how the software you use outputs the data, but data structures may also differ because of human intervention or attempts at organisation, some of which may not be particularly helpful.

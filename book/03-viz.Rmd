@@ -209,11 +209,12 @@ Importantly, each layer is independent and independently customisable. For examp
 
 
 ```{r remove-layer, fig.cap="Final plot with scatterplot layer removed.", echo = FALSE}
+
 ggplot(survey_data, aes(x = wait_time, y = call_time)) + 
   #geom_point(alpha = 0.15, color = "dodgerblue") +
   geom_smooth(method = "lm", formula = y~x, color = rgb(0, .5, .8)) +
-  scale_x_continuous(name = "Wait Time (seconds)", breaks = x_breaks) +
-  scale_y_continuous(name = "Call time (seconds)", breaks = y_breaks) + 
+  scale_x_continuous(name = "Wait Time (seconds)", breaks = seq(from = 0, to = 600, by = 60)) +
+  scale_y_continuous(name = "Call time (seconds)", breaks = seq(from = 0, to = 600, by = 30)) + 
   coord_cartesian(xlim = c(0, 360), ylim = c(0, 180)) +
   ggthemes::theme_gdocs(base_size = 11) +
   theme(axis.line.x = element_blank(),
@@ -1160,10 +1161,6 @@ As an alternative, you can also knit to a Word document.
 
 Once you've completed this activity, post it in the Week 3 channel on Teams so that you can compare which plots you chose and visual style with other learners on the course.
 
-## Glossary {#glossary-viz}
-
-`r glossary_table()`
-
 ## Further Resources {#resources-viz}
 
 * [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
@@ -1173,3 +1170,8 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
 * [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 * [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students
 * [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
+* [gganimate](https://gganimate.com/): A package for making animated plots
+
+## Glossary {#glossary-viz}
+
+`r glossary_table()`

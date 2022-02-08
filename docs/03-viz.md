@@ -122,7 +122,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2022-02-07"
+## [1] "2022-02-08"
 ```
 
 
@@ -132,7 +132,7 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2022-02-07 01:07:40 GMT"
+## [1] "2022-02-08 14:45:38 GMT"
 ```
 
 ### Test your understanding
@@ -209,7 +209,7 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 ```
 
 ```
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
@@ -218,8 +218,8 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 
 ```
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 This data is simulated data for a call centre customer satisfaction survey. The first thing you should do when you need to plot data is to get familiar with what all of the rows (observations) and columns (variables) mean. Sometimes this is obvious, and sometimes it requires help from the data provider. Here, each row represents one call to the centre.
@@ -709,9 +709,9 @@ England             | 56,550,138      | Great Britain
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? <select class='webex-select'><option value='blank'></option><option value='x'>geom_bar</option><option value='answer'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_CNPOMTWPSE'><label><input type="radio" autocomplete="off" name="radio_CNPOMTWPSE" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_CNPOMTWPSE" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_CNPOMTWPSE" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_CNPOMTWPSE" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_CNPOMTWPSE" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_NTEIBLIYXC'><label><input type="radio" autocomplete="off" name="radio_NTEIBLIYXC" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_NTEIBLIYXC" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_NTEIBLIYXC" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_NTEIBLIYXC" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_NTEIBLIYXC" value="x"></input> <span>aes(y = population)</span></label></div>
 * What geom would you use to plot the number of countries on each island? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_bar</option><option value='x'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_NSWGRKYFXG'><label><input type="radio" autocomplete="off" name="radio_NSWGRKYFXG" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_NSWGRKYFXG" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_NSWGRKYFXG" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_NSWGRKYFXG" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_NSWGRKYFXG" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_UJPSIXFLJC'><label><input type="radio" autocomplete="off" name="radio_UJPSIXFLJC" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_UJPSIXFLJC" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_UJPSIXFLJC" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_UJPSIXFLJC" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_UJPSIXFLJC" value="x"></input> <span>aes(y = population)</span></label></div>
 :::
 
 ### One continuous variable
@@ -821,7 +821,7 @@ Imagine you have a table of the [population for each country in the world](https
 * What kind of plot is A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='answer'>geom_density</option></select>
 * What kind of plot is B? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='x'>geom_density</option></select>
 * What kind of plot is C? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='answer'>geom_freqpoly</option><option value='x'>geom_density</option></select>
-* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_MQQCHMFEGF'><label><input type="radio" autocomplete="off" name="radio_MQQCHMFEGF" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_MQQCHMFEGF" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_MQQCHMFEGF" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_MQQCHMFEGF" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
+* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_WBFXIAHVQZ'><label><input type="radio" autocomplete="off" name="radio_WBFXIAHVQZ" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_WBFXIAHVQZ" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_WBFXIAHVQZ" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_WBFXIAHVQZ" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
 * What is the `binwidth` of the histogram? <select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>100</option><option value='answer'>100K</option><option value=''>1M</option></select>
 :::
 
@@ -1020,7 +1020,7 @@ Column plots can also be very misleading. The plot on the left starts the y-axis
 ::: {.try data-latex=""}
 * How would you create plot A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='x'>geom_boxplot()</option><option value='answer'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
 * How would you create plot B? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='answer'>geom_boxplot()</option><option value='x'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
-* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_PMSXVWRTRY'><label><input type="radio" autocomplete="off" name="radio_PMSXVWRTRY" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_PMSXVWRTRY" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_PMSXVWRTRY" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_PMSXVWRTRY" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label></div>
+* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_DCVXYDCMBE'><label><input type="radio" autocomplete="off" name="radio_DCVXYDCMBE" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_DCVXYDCMBE" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_DCVXYDCMBE" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_DCVXYDCMBE" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label></div>
 
 * Which employee tends to have the longest calls? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='answer'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='x'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
 * Which employee has the record longest call? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='x'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='answer'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
@@ -1274,6 +1274,17 @@ As an alternative, you can also knit to a Word document.
 
 Once you've completed this activity, post it in the Week 3 channel on Teams so that you can compare which plots you chose and visual style with other learners on the course.
 
+## Further Resources {#resources-viz}
+
+* [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+* [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) [@nordmann_2021]
+* [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
+* [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)
+* [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
+* [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students
+* [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
+* [gganimate](https://gganimate.com/): A package for making animated plots
+
 ## Glossary {#glossary-viz}
 
 <table>
@@ -1392,13 +1403,3 @@ Once you've completed this activity, post it in the Week 3 channel on Teams so t
 </table>
 
 
-
-## Further Resources {#resources-viz}
-
-* [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
-* [Data visualisation using R, for researchers who don't use R](https://psyteachr.github.io/introdataviz/) [@nordmann_2021]
-* [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
-* [ggplot2 FAQs](https://ggplot2.tidyverse.org/articles/)
-* [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
-* [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students
-* [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*

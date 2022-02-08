@@ -217,8 +217,8 @@ combining-plots-1
 editing-your-markdown-display
 change-the-output
 share-your-work
-glossary-viz
 resources-viz
+glossary-viz
 data
 ilo-data
 set-up-1
@@ -412,14 +412,6 @@ tables-data
 table-info
 row-col-access
 glossary-datatypes
-dates-times
-parsing
-get-parts
-date-arithmetic
-first-and-last-of-month
-rounding-1
-internationalisation
-example
 plotstyle
 aesthetics
 colourfill

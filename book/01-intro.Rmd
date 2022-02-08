@@ -119,7 +119,7 @@ install.packages(c(
   "treemap",        # for treemap plots
   "sf",             # for mapping geoms
   "rnaturalearth",  # for map data
-  "rnatrualearthdata" # extra mapping data
+  "rnaturalearthdata" # extra mapping data
 ))
 
 # install waffle package 

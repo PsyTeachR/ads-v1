@@ -10,14 +10,15 @@
 
 ```{r setup-custom, message=FALSE}
 library(tidyverse)   # data wrangling functions
-library(ggwordcloud) # for word clouds
-library(tidytext)    # for manipulating text for word clouds
+library(ggthemes)    # for themes
 library(patchwork)   # for combining plots
 library(plotly)      # for interactive plots
 # devtools::install_github("hrbrmstr/waffle")
 library(waffle)      # for waffle plots
+library(ggbump)      # for bump plots
 library(treemap)     # for treemap plots
-library(ggthemes)    # for themes
+library(ggwordcloud) # for word clouds
+library(tidytext)    # for manipulating text for word clouds
 library(sf)          # for mapping geoms
 library(rnaturalearth) # for map data
 library(rnaturalearthdata) # extra mapping data
@@ -266,6 +267,81 @@ survey_data %>%
 ```
 
 The example above uses `geom_text()` to put the labels on the plot and removes the default axis labels with `scale_x_discrete(labels = NULL)` (remember the labels are on the x-axis before the coordinates are flipped).
+
+### Bump Plots
+
+Bump plots are very useful for visualising how rankings change over time. So first, we need to get some ranking data. Let's start with a more typical raw data table, containing an identifying column of `person` and three columns for their scores each week
+
+```{r}
+# make a small dataset of scores for 3 people over 3 weeks
+score_data <- tribble(
+  ~person, ~week_1, ~week_2, ~week_3,
+  "Abeni",      80,     75,       90,
+  "Beth",       75,     85,       75,
+  "Carmen",     60,     70,       80
+)
+```
+
+Now we make the table long, group by week, and use the `rank()` function to find the rank of each person's score each week. Use `n() - rank(score) + 1` to reverse the ranks so that the highest score gets rank 1. We also need to make the `week` variable a number.
+
+```{r}
+rank_data <- score_data %>%
+  # make long format
+  pivot_longer(cols = -person,
+               names_to = "week",
+               values_to = "score") %>%
+  group_by(week) %>%
+  mutate(rank = n() - rank(score) + 1) %>%
+  ungroup() %>%
+  arrange(week, rank) %>%
+  mutate(week = str_replace(week, "week_", "") %>% as.integer())
+
+rank_data
+```
+
+A typical mapping for a bump plot puts the time variable in the x-axis, the rank variable on the y-axis, and sets colour to the identifying variable.
+
+```{r basic-bump, fig.width = 8, fig.height=3, fig.cap = "Basic bump plot"}
+ggplot(data = rank_data, 
+       mapping = aes(x = week, 
+                     y = rank, 
+                     colour = person)) +
+  ggbump::geom_bump()
+```
+
+We can make this more attractive by customising the axes and adding text labels. 
+
+* Add `label = person` to the mapping so we can add in text labels.
+* Increase the size of the lines with the `size` argument to `geom_bump()`
+* We don't need labels for weeks 1.5 and 2.5, so change the x-axis `breaks`
+* The `expand` argument for the two scale_ functions expands the plot area so we can fit text labels to the right.
+* It makes more sense to have first place at the top so reverse the order of the y-axis with `scale_y_reverse()` and fix the breaks and expansion.
+* Add text labels with `geom_text()`, but just for week 3, so set `data =  filter(rank_data, week == 3)` for this geom. 
+* Set `x = 3.05` to move the text labels just to the right of week 3, and set `hjust = 0` to right-justify the text labels (the default is `hjust = 0.5`, which would center them on 3.05).
+* Remove the legend and grid lines. Increase the x-axis text size.
+
+```{r bump-example, fig.width = 8, fig.height=3, fig.cap = "Bump plot with added features."}
+ggplot(data = rank_data, 
+       mapping = aes(x = week, 
+                     y = rank, 
+                     colour = person,
+                     label = person)) +
+  ggbump::geom_bump(size = 10) +
+  scale_x_continuous(name = "",
+                     breaks = 1:3, 
+                     labels = c("Week 1", "Week 2", "Week 3"),
+                     expand = expansion(c(.05, .2))) +
+  scale_y_reverse(name = "Ranking",
+                  breaks = 1:3, 
+                  expand = expansion(.2)) +
+  geom_text(data = filter(rank_data, week == 3),
+            color = "black", x = 3.05, hjust = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_text(size = 12))
+```
+
 
 ### Treemap
 

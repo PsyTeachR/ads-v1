@@ -4,6 +4,7 @@
 
 * Be able to summarise data by groups
 * Be able to produce well-formatted tables
+* Use pipes to chain together functions
 
 ## Set-up
 

@@ -22,6 +22,7 @@ library(tidytext)    # for manipulating text for word clouds
 library(sf)          # for mapping geoms
 library(rnaturalearth) # for map data
 library(rnaturalearthdata) # extra mapping data
+library(gganimate)   # for animated plots
 
 theme_set(theme_light())
 ```
@@ -268,6 +269,22 @@ survey_data %>%
 
 The example above uses `geom_text()` to put the labels on the plot and removes the default axis labels with `scale_x_discrete(labels = NULL)` (remember the labels are on the x-axis before the coordinates are flipped).
 
+### Treemap
+
+Treemap plots are another way to visualise proportions. Like the waffle plots, you need to count the data by category first. You can use any brewer palette for the fill.
+
+```{r, fig.cap = "Treemap plot."}
+survey_data %>% 
+  count(issue_category) %>%
+  treemap(
+    index="issue_category",
+    vSize="n",
+    title = "",
+    palette = "BuPu",
+    inflate.labels = TRUE
+  )
+```
+
 ### Bump Plots
 
 Bump plots are very useful for visualising how rankings change over time. So first, we need to get some ranking data. Let's start with a more typical raw data table, containing an identifying column of `person` and three columns for their scores each week
@@ -285,8 +302,8 @@ score_data <- tribble(
 Now we make the table long, group by week, and use the `rank()` function to find the rank of each person's score each week. Use `n() - rank(score) + 1` to reverse the ranks so that the highest score gets rank 1. We also need to make the `week` variable a number.
 
 ```{r}
+# calculate ranks
 rank_data <- score_data %>%
-  # make long format
   pivot_longer(cols = -person,
                names_to = "week",
                values_to = "score") %>%
@@ -343,21 +360,7 @@ ggplot(data = rank_data,
 ```
 
 
-### Treemap
 
-Treemap plots are another way to visualise proportions. Like the waffle plots, you need to count the data by category first. You can use any brewer palette for the fill.
-
-```{r, fig.cap = "Treemap plot."}
-survey_data %>% 
-  count(issue_category) %>%
-  treemap(
-    index="issue_category",
-    vSize="n",
-    title = "",
-    palette = "BuPu",
-    inflate.labels = TRUE
-  )
-```
 
 
 
@@ -502,6 +505,67 @@ ggplot() +
   theme(legend.position = c(0.16, 0.84))
 ```
 
+### Animated Plots
+
+Animated plots are a great way to add a wow factor to your reports, but they can be complex to make, distracting, and not very accessible, so use them sparingly and only for data visualisation where the animation really adds something. The package `r pkg("gganimate", "https://gganimate.com/")` has many functions for animating ggplots.
+
+Here, we'll load some population data from the United Nations. <a href="data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx" download>Download the file</a> into your data folder and open it in Excel first to see what it looks like. The code below gets the data from the first tab, filters it to just the 6 world regions, makes the data long, and makes sure the `year` column is numeric and the `pop` column shows population in whole numbers (the original data is in 1000s).
+
+```{r}
+# load and process data
+worldpop <- readxl::read_excel("data/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx", skip = 16) %>%
+  filter(Type == "Region") %>%
+  select(region = 3, `1950`:`1992`) %>%
+  pivot_longer(cols = -region, 
+               names_to = "year",
+               values_to = "pop") %>%
+  mutate(year = as.integer(year),
+         pop = round(1000 * as.numeric(pop)))
+```
+
+Let's make an animated plot showing how the population in each region changes with year. First, make a static plot. Filter the data to the most recent year so you can see what a single frame of the animation will look like.
+
+```{r}
+worldpop %>%
+  filter(year == 1992) %>%
+  ggplot(aes(x = region, y = pop, fill = region)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_viridis_d() +
+  scale_x_discrete(name = "", 
+                   guide = guide_axis(n.dodge=2))+
+  scale_y_continuous(name = "Population",
+                     breaks = seq(0, 3e9, 1e9),
+                     labels = paste0(0:3, "B")) +
+  ggtitle('Year: 1992')
+```
+
+Remove the filter and add `transition_time(year)`. You can use glue syntax to include the `frame_time` in the title. Use `anim_save()` to save the animation to a GIF file and set this code chunk to `eval = FALSE` because creating an animation takes a long time and you don't want to have to run it every time you knit your report.
+
+```{r, eval = FALSE}
+anim <- worldpop %>%
+  ggplot(aes(x = region, y = pop, fill = region)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_viridis_d() +
+  scale_x_discrete(name = "",
+                   guide = guide_axis(n.dodge=2))+
+  scale_y_continuous(name = "Population",
+                     breaks = seq(0, 3e9, 1e9),
+                     labels = paste0(0:3, "B")) +
+  ggtitle('Year: {frame_time}') +
+  transition_time(year)
+  
+
+anim_save(filename = "images/gganim-demo.gif",
+          animation = anim,
+          width = 8, height = 5, units = "in", res = 150)
+```
+
+You can show your animated gif in an html report (animations don't work in Word or a PDF) using `include_graphics()`, or include the GIF in a dynamic document like PowerPoint.
+
+```{r anim-demo, fig.cap="Animated gif."}
+knitr::include_graphics("images/gganim-demo.gif")
+```
+
 
 ## Further Resources {#resources-custom}
 
@@ -515,3 +579,4 @@ There are so many more options for data visualisation in R than we have time to 
 * [ggplot extensions](https://www.ggplot2-exts.org/)
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 * [Drawing Beautiful Maps Programmatically](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
+* [gganimate](https://gganimate.com/)

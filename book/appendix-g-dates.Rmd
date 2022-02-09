@@ -160,11 +160,21 @@ ymd("2022 Janvier 24", locale = "fr_FR")
 wday("2022-01-03", label = TRUE, locale = "ru_RU")
 ```
 
+Some of the locale functions only work on unix-based machines, like Macs or machines running linux.
+
+```{r}
+# check your own locale; doesn't work for Windows
+locale()
+```
+
 ```{r, eval = FALSE}
 # check which locales are available on your computer
 # doesn't work for Windows
 system("locale -a")
 ```
+
+
+
 
 ## Example
 

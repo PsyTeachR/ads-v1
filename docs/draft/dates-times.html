@@ -11,12 +11,12 @@
 <meta property="og:title" content="Chapter 1 Dates and Times | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/dates-times.html">
-<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <meta property="og:description" content='Working with dates and times can be a little tricky, but the lubridate package is there to help. Their website has a helpful cheatsheet and you can view a tutorial by typing vignette("lubridate")...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Dates and Times | Applied Data Skills">
 <meta name="twitter:description" content='Working with dates and times can be a little tricky, but the lubridate package is there to help. Their website has a helpful cheatsheet and you can view a tutorial by typing vignette("lubridate")...'>
-<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -128,15 +128,15 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">time_parts</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 12
-##  $ second : num 43.5
-##  $ minute : int 16
-##  $ hour   : int 23
-##  $ day    : int 3
-##  $ wday   : num 5
-##  $ yday   : num 34
-##  $ week   : num 5
-##  $ isoweek: num 5
-##  $ epiweek: num 5
+##  $ second : num 51.4
+##  $ minute : int 48
+##  $ hour   : int 11
+##  $ day    : int 9
+##  $ wday   : num 4
+##  $ yday   : num 40
+##  $ week   : num 6
+##  $ isoweek: num 6
+##  $ epiweek: num 6
 ##  $ month  : num 2
 ##  $ year   : num 2022
 ##  $ tz     : chr "GMT"</code></pre>
@@ -176,7 +176,7 @@ Solution
 <p>You can add and subtract dates. For example, you can get the dates two weeks from today by adding <code>weeks(2)</code> to <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code>. You can probably guess how to add and subtract seconds, minutes, days, months, and years.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">weeks</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-02-10"</code></pre>
+<pre><code>## [1] "2022-02-16"</code></pre>
 <div class="try">
 <p>What day of the week will your 100th birthday be?</p>
 <div class="webex-solution">
@@ -253,7 +253,7 @@ Solution
 <h2>
 <span class="header-section-number">1.5</span> Example<a class="anchor" aria-label="anchor" href="#example"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let's work through some examples with tweets from Appendix <a href="#twitter-data"><strong>??</strong></a>.</p>
+<p>Let's work through some examples with tweets from Appendix <a href="#twitter-data"><strong>??</strong></a>. Download the <a href="data/data.zip">class data</a>.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># read all metrics files in data/tweets/</span>
 <span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
@@ -518,7 +518,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-03.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

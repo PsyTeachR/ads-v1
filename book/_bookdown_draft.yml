@@ -8,7 +8,7 @@ rmd_files:
 # - 03-viz.Rmd
 # - 04-data.Rmd
 # - 05-summary.Rmd
-- 06-joins.Rmd
+# - 06-joins.Rmd
 # - 07-tidy.Rmd
 # - 08-wrangle.Rmd
 # - 09-custom.Rmd

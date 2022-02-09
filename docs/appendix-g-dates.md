@@ -89,12 +89,12 @@ str(time_parts)
 
 ```
 ## List of 12
-##  $ second : num 13.1
-##  $ minute : int 9
-##  $ hour   : int 1
-##  $ day    : int 7
-##  $ wday   : num 2
-##  $ yday   : num 38
+##  $ second : num 26.1
+##  $ minute : int 55
+##  $ hour   : int 11
+##  $ day    : int 9
+##  $ wday   : num 4
+##  $ yday   : num 40
 ##  $ week   : num 6
 ##  $ isoweek: num 6
 ##  $ epiweek: num 6
@@ -158,7 +158,7 @@ today() + weeks(1)
 ```
 
 ```
-## [1] "2022-02-14"
+## [1] "2022-02-16"
 ```
 
 ::: {.try data-latex=""}
@@ -262,12 +262,38 @@ wday("2022-01-03", label = TRUE, locale = "ru_RU")
 ## Levels: вс < пн < вт < ср < чт < пт < сб
 ```
 
+Some of the locale functions only work on unix-based machines, like Macs or machines running linux.
+
+
+```r
+# check your own locale; doesn't work for Windows
+locale()
+```
+
+```
+## <locale>
+## Numbers:  123,456.78
+## Formats:  %AD / %AT
+## Timezone: UTC
+## Encoding: UTF-8
+## <date_names>
+## Days:   Sunday (Sun), Monday (Mon), Tuesday (Tue), Wednesday (Wed), Thursday
+##         (Thu), Friday (Fri), Saturday (Sat)
+## Months: January (Jan), February (Feb), March (Mar), April (Apr), May (May),
+##         June (Jun), July (Jul), August (Aug), September (Sep), October
+##         (Oct), November (Nov), December (Dec)
+## AM/PM:  AM/PM
+```
+
 
 ```r
 # check which locales are available on your computer
 # doesn't work for Windows
 system("locale -a")
 ```
+
+
+
 
 ## Example
 

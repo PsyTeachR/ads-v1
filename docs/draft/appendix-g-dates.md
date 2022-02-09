@@ -89,15 +89,15 @@ str(time_parts)
 
 ```
 ## List of 12
-##  $ second : num 43.5
-##  $ minute : int 16
-##  $ hour   : int 23
-##  $ day    : int 3
-##  $ wday   : num 5
-##  $ yday   : num 34
-##  $ week   : num 5
-##  $ isoweek: num 5
-##  $ epiweek: num 5
+##  $ second : num 51.4
+##  $ minute : int 48
+##  $ hour   : int 11
+##  $ day    : int 9
+##  $ wday   : num 4
+##  $ yday   : num 40
+##  $ week   : num 6
+##  $ isoweek: num 6
+##  $ epiweek: num 6
 ##  $ month  : num 2
 ##  $ year   : num 2022
 ##  $ tz     : chr "GMT"
@@ -158,7 +158,7 @@ today() + weeks(1)
 ```
 
 ```
-## [1] "2022-02-10"
+## [1] "2022-02-16"
 ```
 
 ::: {.try data-latex=""}
@@ -271,7 +271,7 @@ system("locale -a")
 
 ## Example
 
-Let's work through some examples with tweets from Appendix\ \@ref(twitter-data).
+Let's work through some examples with tweets from Appendix\ \@ref(twitter-data). Download the [class data](data/data.zip).
 
 
 ```r

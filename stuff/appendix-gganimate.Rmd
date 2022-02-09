@@ -75,3 +75,37 @@ anim_save(filename = "images/gganimate_demo.gif",
 # load the gif from the file
 knitr::include_graphics("images/gganimate_demo.gif")
 ```
+
+
+```{r}
+ct <- cols(
+  Day = col_date(format = "%d/%m/%Y"),
+  RiseTime = col_double(),
+  SetTime = col_double()
+)
+
+sun <- read_csv("https://psyteachr.github.io/ads-v1/data/sunfact2021.csv", col_types = ct)
+```
+
+
+```{r, eval = FALSE}
+anim <- ggplot(sun, aes(x = Day)) +
+  geom_linerange(aes(ymin = RiseTime, ymax = SetTime), color = "gold", size = 2) +
+  geom_linerange(aes(ymin = SetTime, ymax = 24), color = "darkblue", size = 2) +
+  geom_linerange(aes(ymin = 0, ymax = RiseTime), color = "darkblue", size = 2) +
+  geom_point(aes(y = RiseTime), color = "black") +
+  geom_point(aes(y = SetTime), color = "black") +
+  scale_y_continuous("Time", breaks = seq(0,24, 4), limits = c(0, 24)) +
+  theme_minimal() +
+  ggtitle("Daylight Across the Year") +
+  transition_time(Day) +
+  shadow_mark()
+
+anim_save("sun.gif", anim, width = 8, height = 5, units = "in", res = 72)
+```
+
+```{r sun-demo, fig.cap = "Animated plot demo using gganimate."}
+# load the gif from the file
+knitr::include_graphics("sun.gif")
+```
+

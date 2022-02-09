@@ -14,6 +14,21 @@ knitr::include_graphics("images/appx/update_rstudio.jpg")
 
 If an update is available, it will prompt you to download it and you can install it as usual.
 
+## Updating R
+
+Finally, you may also wish to update R itself. The key thing to be aware of is that when you update R, if you just download the latest version from the website, you will lose all your packages. The easiest way to update R and not cause yourself a huge headache is to use the `installr` package. When you use the `updateR()` function, a series of dialogue boxes will appear. These should be fairly self-explanatory but there is a [full step-by-step guide available](https://www.r-statistics.com/2015/06/a-step-by-step-screenshots-tutorial-for-upgrading-r-on-windows/) for how to use `installr`, the important bit is to select "Yes" when it asked if you would like to copy your packages from the older version of R.
+
+```{r installr, eval = FALSE}
+# Install the installr package
+install.packages("installr")
+
+# Load installr
+library(installr)
+
+# Run the update function
+updateR()
+```
+
 ## Updating packages
 
 Package developers will occasionally release updates to their packages. This is typically to add in new functions to the package, or to fix or amend existing functions. **Be aware that some package updates may cause your previous code to stop working**. This does not tend to happen with minor updates to packages, but occasionally with major updates, you can have serious issues if the developer has made fundamental changes to how the code works. For this reason, we recommend updating all your packages once at the beginning of each academic year (or semester) - don't do it before an assessment or deadline just in case!
@@ -30,7 +45,12 @@ To update multiple packages, or indeed all packages, RStudio provides helpful to
 knitr::include_graphics("images/appx/update_packages.jpg")
 ```
 
-Occasionally, you might have a few problem packages that seemingly refuse to update, for me, `rlang` and `vctrs` cause me no end of trouble. These aren't packages that you will likely every explicitly load, but they're required beneath the surface for R to do things like knit your Markdown files etc.
+
+## Troubleshooting {#package-install-troubleshooting}
+
+Occasionally, you might have a few problem packages that seemingly refuse to update. For me, `rlang` and `vctrs` cause me no end of trouble. These aren't packages that you will likely every explicitly load, but they're required beneath the surface for R to do things like knit your Markdown files etc.
+
+### Non-zero exit status
 
 If you try to update a package and get an error message that says something like `Warning in install.packages : installation of package ‘vctrs’ had non-zero exit status` or perhaps `Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) :  namespace 'rlang' 0.4.9 is being loaded, but >= 0.4.10 is required` one solution I have found is to manually uninstall the package, restart R, and then install the package new, rather than trying to update an existing version. The `installr` package also has a useful function for uninstalling packages.
 
@@ -48,19 +68,29 @@ install.packages("package")
 
 ```
 
-## Updating R
+### Cannot open file
 
-Finally, you may also wish to update R itself. The key thing to be aware of is that when you update R, if you just download the latest version from the website, you will lose all your packages. The easiest way to update R and not cause yourself a huge headache is to use the `installr` package. When you use the `updateR()` function, a series of dialogue boxes will appear. These should be fairly self-explanatory but there is a [full step-by-step guide available](https://www.r-statistics.com/2015/06/a-step-by-step-screenshots-tutorial-for-upgrading-r-on-windows/) for how to use `installr`, the important bit is to select "Yes" when it asked if you would like to copy your packages from the older version of R.
+You may get the following error after trying to install any packages at all:
 
-```{r installr, eval = FALSE}
-# Install the installr package
-install.packages("installr")
+> Error in install packages : Cannot open file 'C:/.....': Permission denied
 
-# Load installr
-library(installr)
+This usually indicates a permissions problem with writing to the default library (the folder that packages are kept in). Sometimes this means that you need to install R and RStudio as administrator or run it as administrator. 
 
-# Run the update function
-updateR()
+One other fix may be to change the library location using the following code (check in "C:/Program Files/R" for what version you should have instead of "R-3.5.2"):
+
+```{r, eval = FALSE}
+# change the library path
+.libPaths(c("C:/Program Files/R/R-3.5.2/library"))
 ```
+
+If that works and you can install packages, set this library path permanently:
+
+1. Install the `r pkg("usethis")` package
+2. Run `usethis::edit_r_profile()` in the console; it will open up a blank file
+3. Paste into the file (your version of): `.libPaths(c("C:/Program Files/R/R-3.5.2/library"))`
+4. Save and close the file
+5. Restart R for changes to take effect
+
+The code in your .Rprofile will now run every time you start up R. 
 
 As always, if you're having issues, please ask on Teams or come to office hours.

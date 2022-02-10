@@ -1118,8 +1118,9 @@ base::intersect(customers, new_customers)
 ```
 
 ```
-## Error: Must subset rows with a valid subscript vector.
-## i Logical subscripts must match the size of the indexed input.
+## Error:
+## ! Must subset rows with a valid subscript vector.
+## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
@@ -1381,7 +1382,7 @@ str(new_customers2)
 ```
 
 ```
-## tibble [5 x 3] (S3: tbl_df/tbl/data.frame)
+## tibble [5 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ id      : chr [1:5] "5" "6" "7" "8" ...
 ##  $ postcode: chr [1:5] "PA75 6NR" "FK1 4RS" "PA42 7EA" "G81 4SJ" ...
 ##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
@@ -1399,9 +1400,10 @@ inner_join(customers, new_customers2)
 ```
 
 ```
-## Error: Can't join on `x$id` x `y$id` because of incompatible types.
-## i `x$id` is of type <integer>>.
-## i `y$id` is of type <character>>.
+## Error in `inner_join()`:
+## ! Can't join on `x$id` x `y$id` because of incompatible types.
+## ℹ `x$id` is of type <integer>>.
+## ℹ `y$id` is of type <character>>.
 ```
 
 The same goes for `bind_rows()`:
@@ -1412,7 +1414,8 @@ bind_rows(customers, new_customers2)
 ```
 
 ```
-## Error: Can't combine `..1$id` <integer> and `..2$id` <character>.
+## Error in `bind_rows()`:
+## ! Can't combine `..1$id` <integer> and `..2$id` <character>.
 ```
 
 
@@ -1682,7 +1685,7 @@ In preparation for the summative assessment, how you do this and what informatio
 
 ## Glossary {#glossary-joins}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

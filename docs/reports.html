@@ -21,8 +21,8 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
@@ -150,7 +150,7 @@ Figure 2.1: Starting a new project.
 <ul>
 <li>file and directory names should only contain letters, numbers, dashes, and underscores, with a full stop (<code>.</code>) between the file name and <a class="glossary" target="_blank" title="The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd)." href="https://psyteachr.github.io/glossary/e#extension">extension</a> (that means no spaces!)</li>
 <li>be consistent with capitalisation (set a rule to make it easy to remember, like always use lowercase)</li>
-<li>use underscores (<code>_</code>) to separate parts of the file name, like the title and date, and dashes (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) to separate words in each part (e.g., <code>social-media-report_2021-10.Rmd</code>)</li>
+<li>use underscores (<code>_</code>) to separate parts of the file name, like the title and date, and dashes (<code>-</code>) to separate words in each part (e.g., <code>social-media-report_2021-10.Rmd</code>)</li>
 <li>name files with a pattern that alphabetises in a sensible order and makes it easy for you to find the file you're looking for</li>
 <li>prefix a file name with an underscore to move it to the top of the list, or prefix all files with numbers to control their order</li>
 </ul>
@@ -309,12 +309,12 @@ Figure 2.5: Slightly better method of running code
 </h3>
 <p>First, let's try loading data that is stored online. Create a code chunk in your document and copy, paste, and run the below code. This code loads some simulated sales data.</p>
 <ul>
-<li>The data is stored in a <code>.csv</code> file so we're going to use the <code>read_csv()</code> function to load it in.</li>
+<li>The data is stored in a <code>.csv</code> file so we're going to use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function to load it in.</li>
 <li>Note that the url is contained within double quotation marks - it won't work without this.</li>
 </ul>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Data from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
-<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">sales_online</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv"</span><span class="op">)</span></code></pre></div>
 <div class="warning">
 <p>If you get an error message that looks like:</p>
 <blockquote>
@@ -326,10 +326,10 @@ could not find function "read_csv"</p>
 <p>This dataset is simulated sales data for different types of vehicles where each line of data is a single order. There are multiple ways to view and check a dataset in R. Do each of the following and make a note of what information each approach seems to give you. If you'd like more information about each of these functions, you can look up the help documentation with <code>?function</code>:</p>
 <ul>
 <li>Click on the <code>sales_online</code> object in the environment pane</li>
-<li>Run <code><a href="https://rdrr.io/r/utils/head.html">head(sales_online)</a></code> in the console</li>
-<li>Run <code><a href="https://rdrr.io/r/base/summary.html">summary(sales_online)</a></code> in the console</li>
-<li>Run <code><a href="https://rdrr.io/r/utils/str.html">str(sales_online)</a></code> in the console</li>
-<li>Run <code><a href="https://rdrr.io/r/utils/View.html">View(sales_online)</a></code> in the console</li>
+<li>Run <code>head(sales_online)</code> in the console</li>
+<li>Run <code>summary(sales_online)</code> in the console</li>
+<li>Run <code>str(sales_online)</code> in the console</li>
+<li>Run <code>View(sales_online)</code> in the console</li>
 </ul>
 </div>
 <div id="local-data-files" class="section level3" number="2.4.2">
@@ -341,13 +341,13 @@ could not find function "read_csv"</p>
 <div class="try">
 <p>In your <code class="path">02-reports</code> directory, create a new folder named <code class="path">data</code>, then, <a href="https://psyteachr.github.io/ads-v1/data/sales_data_sample.csv">download a copy of the sales data file</a> and save it in this new subdirectory.</p>
 </div>
-<p>To load in data from a local file, again we can use the <code>read_csv()</code> function but this time rather than specifying a url, give it the subdirectory and file name.</p>
+<p>To load in data from a local file, again we can use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function but this time rather than specifying a url, give it the subdirectory and file name.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sales_local</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/sales_data_sample.csv"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span class="va">sales_local</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/sales_data_sample.csv"</span><span class="op">)</span> </code></pre></div>
 <p>Things to note:</p>
 <ul>
 <li>You must include the file extension (in this case <code>.csv</code>)</li>
-<li>The subdirectory folder name (<code>data</code>) and the file name are separated by a forward slash <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>
+<li>The subdirectory folder name (<code>data</code>) and the file name are separated by a forward slash <code>/</code>
 </li>
 <li>Precision is important, if you have a typo in the file name it won't be able to find your file; remember that R is case sensitive - <code>Sales_Data.csv</code> is a completely different file to <code>sales_data.csv</code> as far as R is concerned.</li>
 </ul>
@@ -369,11 +369,11 @@ could not find function "read_csv"</p>
 <p>Create a new code chunk, then copy, paste and run the following code and then view <code>sales_counts</code> by clicking on the object in the environment pane. Note that it doesn't really matter whether you use <code>sales_local</code> or <code>sales_online</code> in the first line as they're identical.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># start with the sale_online data and then</span>
-<span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op">%&gt;%</span> 
+<span class="va">sales_counts</span> <span class="op">&lt;-</span> <span class="va">sales_online</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="co"># keep only the data from planes, motorcycles, and cars and then</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Planes"</span>, <span class="st">"Motorcycles"</span>, <span class="st">"Classic Cars"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="co"># count how many are in each PRODUCTLINE</span>
-  <span class="fu">count</span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">PRODUCTLINE</span><span class="op">)</span></code></pre></div>
 <p>Because each row of the dataset is a sale, this code gives us a nice and easy way of seeing how many sales were made of each type of vehicle; it just counts the number of rows in each group.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -457,7 +457,7 @@ Figure 2.7: The example code above shown in the visual editor.
 </div>
 <p>Try and match up the inline code with what is in the <code>sales_counts</code> table. Of note:</p>
 <ul>
-<li>The <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> sign is used to indicate specific variables (or columns) in an object using the <code>object$variable</code> syntax.</li>
+<li>The <code>$</code> sign is used to indicate specific variables (or columns) in an object using the <code>object$variable</code> syntax.</li>
 <li>Square brackets with a number e.g., <code>[3]</code> indicate a particular observation</li>
 <li>So <code>sales_counts$n[3]</code> asks the inline code to display the third observation of the variable <code>n</code> in the dataset <code>sales_online</code>.</li>
 </ul>
@@ -493,10 +493,10 @@ Solution
 <p>Create a code chunk to display a graph of the data in your document after the text we've written so far. We'll use some code that you'll learn more about in Chapter <a href="viz.html#viz">3</a> to make a simple bar chart that represents the sales data - focus on trying to follow how bits of the code map on to the plot that is created.</p>
 <p>Copy and paste the below code. Run the code in your Markdown to see the plot it creates and then knit the file to see how it is displayed in your document.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
-       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
        y <span class="op">=</span> <span class="st">"Number of sales"</span>,
        title <span class="op">=</span> <span class="st">"Sales by vehicle type"</span>,
        subtitle <span class="op">=</span> <span class="st">"2003 - 2005"</span><span class="op">)</span></code></pre></div>
@@ -535,7 +535,7 @@ Solution
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span> <span class="co"># for table display</span>
 
-<span class="va">sales_counts</span> <span class="op">%&gt;%</span> <span class="co"># start with the sales_count table and then</span>
+<span class="va">sales_counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># start with the sales_count table and then</span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># apply the kable function</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -577,11 +577,11 @@ Planes
 <p>We can also add a theme to change the overall style. In this example we've used <code>kable_classic</code> but there are 5 others: <code>kable_paper</code>, <code>kable_classic_2</code>, <code>kable_minimal</code>, <code>kable_material</code> and <code>kable_material_dark</code>. Try them all and see which one you prefer.</p>
 <p>Finally, we can change the formatting of the first row using <code>row_spec</code>. Look up the help documentation for <code>row_spec</code> to see what other options are available. Try changing the value of any of the arguments below to figure out what they do.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sales_counts</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">sales_counts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Product"</span>, <span class="st">"Sales"</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Number of sales per product line."</span>, 
-      align <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+      align <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </code></pre></div>
 <div class="inline-table"><table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
 <caption>
@@ -646,7 +646,7 @@ Planes
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
-<p>You can set more default options for your document here. Type <code><a href="https://rdrr.io/r/utils/str.html">str(knitr::opts_chunk$get())</a></code> into the console to see the full list of options that you can set and their default values, however, the most useful and common options to change for the purposes of writing reports revolve around whether you want to show your code and the size of your images.</p>
+<p>You can set more default options for your document here. Type <code>str(knitr::opts_chunk$get())</code> into the console to see the full list of options that you can set and their default values, however, the most useful and common options to change for the purposes of writing reports revolve around whether you want to show your code and the size of your images.</p>
 <p>Replace the code in your setup chunk with the below code and then try changing each option from <code>FALSE</code> to <code>TRUE</code> and changing the numeric values then knit the file again to see the difference it makes.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
@@ -692,10 +692,10 @@ Figure 2.10: The same plot as above at half the output width: fig.width = 4, fig
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo = TRUE}</code></pre>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
-       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
        y <span class="op">=</span> <span class="st">"Number of sales"</span>,
        title <span class="op">=</span> <span class="st">"Sales by vehicle type"</span>,
        subtitle <span class="op">=</span> <span class="st">"2003 - 2005"</span><span class="op">)</span></code></pre></div>
@@ -711,10 +711,10 @@ Figure 2.10: The same plot as above at half the output width: fig.width = 4, fig
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 10, fig.height = 20}</code></pre>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
-       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PRODUCTLINE</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">PRODUCTLINE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of vehicle"</span>,
        y <span class="op">=</span> <span class="st">"Number of sales"</span>,
        title <span class="op">=</span> <span class="st">"Sales by vehicle type"</span>,
        subtitle <span class="op">=</span> <span class="st">"2003 - 2005"</span><span class="op">)</span></code></pre></div>
@@ -859,8 +859,8 @@ Solution
 Solution
 </button>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tasks</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html">kable_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span>row <span class="op">=</span> <span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span>, color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
 <thead><tr>
@@ -939,7 +939,7 @@ Alternative Solution
 <h3>
 <span class="header-section-number">2.7.6</span> Inline R<a class="anchor" aria-label="anchor" href="#exercises-reports-inline"><i class="fas fa-link"></i></a>
 </h3>
-<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
+<p>Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.2 (2021-11-01)." You can get the version using the object <code>R.version.string</code>. [<a href="reports.html#rmd-inline-r">2.3.4</a>]</p>
 <div class="webex-solution">
 <button>
 Solution
@@ -966,7 +966,7 @@ Solution
 <h2>
 <span class="header-section-number">2.8</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-reports"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-table"><table class="table table-sm">
+<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 term

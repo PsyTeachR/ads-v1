@@ -21,8 +21,8 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
@@ -216,7 +216,7 @@ Figure 1.1: The RStudio IDE
 <span class="op">)</span>
 
 <span class="co"># determine which need to be installed</span>
-<span class="va">new_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span><span class="op">[</span><span class="op">!</span><span class="va">packages</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span>
+<span class="va">new_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span><span class="op">[</span><span class="op">!</span><span class="va">packages</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">new_packages</span><span class="op">)</span></code></pre></div>
 <p>Once you have the <code class="package">devtools</code> package, you can also install packages from repositories other than CRAN, such as github. The following code installs the development version of a package for making waffle plots.</p>
@@ -348,7 +348,7 @@ Figure 1.1: The RStudio IDE
 <button>
 Why are my letters different to your letters?
 </button>
-<p><code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> generates a random sample. Each time you run the code, you'll generate a different set of random letters (try it). The function <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> controls the random number generator - if you're using any functions that use randomness (such as <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>), running <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> will ensure that you get the same result (in many cases this may not be what you want to do). To get the same numbers we do, run <code><a href="https://rdrr.io/r/base/Random.html">set.seed(1242016)</a></code> in the console, and then run <code><a href="https://rdrr.io/r/base/sample.html">sample(x = letters, size = 5)</a></code> again.</p>
+<p><code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> generates a random sample. Each time you run the code, you'll generate a different set of random letters (try it). The function <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> controls the random number generator - if you're using any functions that use randomness (such as <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>), running <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> will ensure that you get the same result (in many cases this may not be what you want to do). To get the same numbers we do, run <code>set.seed(1242016)</code> in the console, and then run <code>sample(x = letters, size = 5)</code> again.</p>
 </div>
 <p>Now we can change the default value for the <code>replace</code> argument to produce a set of letters that is allowed to have duplicates.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -389,7 +389,7 @@ Figure 1.2: Tab auto-complete
 <h2>
 <span class="header-section-number">1.7</span> Objects<a class="anchor" aria-label="anchor" href="#objects"><i class="fas fa-link"></i></a>
 </h2>
-<p>A large part of your coding will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses. You assign content to an object using <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>.</p>
+<p>A large part of your coding will involve creating and manipulating objects. Objects contain stuff. That stuff can be numbers, words, or the result of operations and analyses. You assign content to an object using <code>&lt;-</code>.</p>
 <p>Run the following code in the console, but change the values of <code>name</code> and <code>age</code> to your own details and change <code>christmas</code> to a holiday or date you care about.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"Emily"</span>
@@ -450,7 +450,7 @@ Figure 1.2: Tab auto-complete
 <h2>
 <span class="header-section-number">1.9</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-intro"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-table"><table class="table table-sm">
+<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 term

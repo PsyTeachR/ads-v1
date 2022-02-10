@@ -47,9 +47,16 @@ Imports:
     rnaturalearthdata, 
     rnaturalearthhires,
     glue,
-    flexdashboard
+    flexdashboard,
+    rtweet,
+    ggbump,
+    waffle,
+    DT,
+    showtext,
+    spotifyr
 Remotes: 
     psyteachr/glossary,
     ropensci/rnaturalearthhires
+    hrbrmstr/waffle
 Depends: 
     tidyverse

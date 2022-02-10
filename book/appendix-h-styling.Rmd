@@ -212,10 +212,10 @@ g <- faux::rnorm_multi(
         axis.title.x = element_blank(),
         axis.ticks.x = element_blank())
 
-
+# install hexbin if this fails
 viridis_c_plot <- function(g, option, geom = geom_hex) {
   g + scale_color_viridis_c(option = option) +
-    geom() +
+    geom_hex() +
     scale_fill_viridis_c(option = option) +
     ggtitle(glue::glue("option = \"{option}\""))
 }

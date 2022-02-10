@@ -390,6 +390,8 @@ installing-latex
 appendix-updating-r
 updating-rstudio
 updating-r
+windows
+mac
 updating-packages
 package-install-troubleshooting
 non-zero-exit-status

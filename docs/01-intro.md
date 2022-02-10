@@ -374,7 +374,7 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Glossary {#glossary-intro}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

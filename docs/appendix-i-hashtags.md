@@ -262,7 +262,7 @@ top5
    <td style="text-align:left;"> nationalcomingoutday </td>
    <td style="text-align:right;"> 28698 </td>
    <td style="text-align:right;"> 851510 </td>
-   <td style="text-align:left;"> it’s #nationalcomingoutday &lt;U+0001F389&gt; here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
+   <td style="text-align:left;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
    <td style="text-align:left;"> http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg </td>
   </tr>
   <tr>
@@ -283,7 +283,7 @@ top5
    <td style="text-align:left;"> comingoutday </td>
    <td style="text-align:right;"> 676 </td>
    <td style="text-align:right;"> 6977 </td>
-   <td style="text-align:left;"> K—I’m out. Bi &lt;U+0001F44B&gt;&lt;U+0001F3FC&gt;
+   <td style="text-align:left;"> K—I’m out. Bi 👋🏼
 
 #ComingOutDay #NationalComingOutDay </td>
    <td style="text-align:left;"> NA </td>
@@ -294,7 +294,7 @@ top5
    <td style="text-align:right;"> 4033 </td>
    <td style="text-align:left;"> HAPPY NATIONAL COMING OUT DAY!! 
 
-&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+2764&gt;&lt;U+FE0F&gt;&lt;U+0001F9E1&gt;&lt;U+0001F49B&gt;&lt;U+0001F49A&gt;&lt;U+0001F499&gt;&lt;U+0001F49C&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;
+🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
 
 \@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
    <td style="text-align:left;"> http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg </td>
@@ -356,7 +356,7 @@ top5 %>%
    <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;"> nationalcomingoutday </td>
    <td style="text-align:right;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;"> 28698 </td>
    <td style="text-align:right;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;"> 851510 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;"> it’s #nationalcomingoutday &lt;U+0001F389&gt; here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
+   <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(255, 165, 44, 0.5) !important;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(255, 255, 65, 0.5) !important;"> lgbtq </td>
@@ -374,7 +374,7 @@ top5 %>%
    <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;"> comingoutday </td>
    <td style="text-align:right;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;"> 676 </td>
    <td style="text-align:right;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;"> 6977 </td>
-   <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;"> K—I’m out. Bi &lt;U+0001F44B&gt;&lt;U+0001F3FC&gt;
+   <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(0, 0, 249, 0.5) !important;"> K—I’m out. Bi 👋🏼
 
 #ComingOutDay #NationalComingOutDay </td>
   </tr>
@@ -384,7 +384,7 @@ top5 %>%
    <td style="text-align:right;font-weight: bold;color: black !important;background-color: rgba(134, 0, 125, 0.5) !important;"> 4033 </td>
    <td style="text-align:left;font-weight: bold;color: black !important;background-color: rgba(134, 0, 125, 0.5) !important;"> HAPPY NATIONAL COMING OUT DAY!! 
 
-&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;&lt;U+2764&gt;&lt;U+FE0F&gt;&lt;U+0001F9E1&gt;&lt;U+0001F49B&gt;&lt;U+0001F49A&gt;&lt;U+0001F499&gt;&lt;U+0001F49C&gt;&lt;U+0001F3F3&gt;&lt;U+FE0F&gt;&lt;U+200D&gt;&lt;U+0001F308&gt;
+🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
 
 \@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
   </tr>
@@ -436,8 +436,7 @@ top5 %>%
 tweets: 28698
 <br>
 likes: 851510 </td>
-   <td style="text-align:left;vertical-align: top;"> it’s #nationalcomingoutday <u> here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </u>
-</td>
+   <td style="text-align:left;vertical-align: top;"> it’s #nationalcomingoutday 🎉 here’s a pic of how I came out back in 2003 xx https://t.co/spBmHhF6p4 </td>
    <td style="text-align:left;"> <img src="http://pbs.twimg.com/media/FBayvGYXsAY-5hZ.jpg" width="200px"> </td>
   </tr>
   <tr>
@@ -464,10 +463,9 @@ likes: 14073 </td>
 tweets: 676
 <br>
 likes: 6977 </td>
-   <td style="text-align:left;vertical-align: top;"> K—I’m out. Bi <u><u>
+   <td style="text-align:left;vertical-align: top;"> K—I’m out. Bi 👋🏼
 
-#ComingOutDay #NationalComingOutDay </u></u>
-</td>
+#ComingOutDay #NationalComingOutDay </td>
    <td style="text-align:left;">  </td>
   </tr>
   <tr>
@@ -478,10 +476,9 @@ tweets: 396
 likes: 4033 </td>
    <td style="text-align:left;vertical-align: top;"> HAPPY NATIONAL COMING OUT DAY!! 
 
-<u><u><u><u><u><u><u><u><u><u><u><u><u><u><u>
+🏳️‍🌈❤️🧡💛💚💙💜🏳️‍🌈
 
-\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </u></u></u></u></u></u></u></u></u></u></u></u></u></u></u>
-</td>
+\@msmadig #OutAndProud #Queer #loveislove #NationalComingOutDay https://t.co/DVfKJsCqNQ </td>
    <td style="text-align:left;"> <img src="http://pbs.twimg.com/ext_tw_video_thumb/1447698152463626242/pu/img/pZor72nSNDPn8KiP.jpg" width="200px"> </td>
   </tr>
 </tbody>

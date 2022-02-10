@@ -45,7 +45,7 @@ install.packages("tidyverse")
 To update multiple packages, or indeed all packages, RStudio provides helpful tools. Click `Tools - Check for Package Updates`. A dialogue box will appear and you can select the packages you wish to update. Be aware that if you select all packages, this may take some time and you will be unable to use R whilst the process completes.
 
 <div class="figure" style="text-align: center">
-<img src="images/appx/update_packages.jpg" alt="Updating packages with RStudio" width="100%" />
+<img src="images/appx/update_packages.png" alt="Updating packages with RStudio" width="100%" />
 <p class="caption">(\#fig:img-updateall)Updating packages with RStudio</p>
 </div>
 

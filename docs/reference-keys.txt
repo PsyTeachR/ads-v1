@@ -420,14 +420,6 @@ tables-data
 table-info
 row-col-access
 glossary-datatypes
-dates-times
-parsing
-get-parts
-date-arithmetic
-first-and-last-of-month
-rounding-1
-internationalisation
-example
 plotstyle
 aesthetics
 colourfill

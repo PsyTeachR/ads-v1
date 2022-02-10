@@ -405,7 +405,7 @@ The most favourited `r orig$favorite_count` original tweet was by [`r orig$scree
   
 > `r orig$text`
 
-![](orig$ext_media_url)
+![](`r orig$ext_media_url`)
 
 --------------------------------------------------
 ```

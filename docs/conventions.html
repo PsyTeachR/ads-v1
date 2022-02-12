@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
@@ -75,11 +75,12 @@
 <li><a class="active" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
-<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
-<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
-<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
+<li><a class="" href="dates-times.html"><span class="header-section-number">G</span> Dates and Times</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">H</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">I</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">J</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">K</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">L</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
@@ -113,8 +114,8 @@
 <option value="">FALSE</option></select></p></li>
 <li>
 <p>What is a p-value?</p>
-<div id="radio_JBSPDAYNWG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JBSPDAYNWG" value=""><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_JBSPDAYNWG" value="answer"><span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_JBSPDAYNWG" value=""><span>the probability of making an error in your conclusion</span></label>
+<div id="radio_HETLAQDOKV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HETLAQDOKV" value=""><span>the probability that the null hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_HETLAQDOKV" value="answer"><span>the probability of the observed, or more extreme, data, under the assumption that the null-hypothesis is true</span></label><label><input type="radio" autocomplete="off" name="radio_HETLAQDOKV" value=""><span>the probability of making an error in your conclusion</span></label>
 </div>
 </li>
 </ul>
@@ -136,22 +137,22 @@ Hidden Solutions
 <div class="try">
 <p>Try it yourself.</p>
 </div>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code chunks</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Code"</span>, <span class="st">"Output"</span>, <span class="fl">1</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Code Output 1"</code></pre>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, fig.width = 2, fig.height = 2}</code></pre>
-<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code chunks with headers</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
-<div class="sourceCode" id="cb370"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb370-1"><a href="conventions.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Markdown Example</span></span>
-<span id="cb370-2"><a href="conventions.html#cb370-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb370-3"><a href="conventions.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Inline code: <span class="in">`r nrow(iris)`</span></span>
-<span id="cb370-4"><a href="conventions.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>*Italics*</span>
-<span id="cb370-5"><a href="conventions.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Bold**</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb381-1"><a href="conventions.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Markdown Example</span></span>
+<span id="cb381-2"><a href="conventions.html#cb381-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb381-3"><a href="conventions.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Inline code: <span class="in">`r nrow(iris)`</span></span>
+<span id="cb381-4"><a href="conventions.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>*Italics*</span>
+<span id="cb381-5"><a href="conventions.html#cb381-5" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Bold**</span></code></pre></div>
 
 </div>
 <script>
@@ -370,7 +371,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-10.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

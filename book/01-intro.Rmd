@@ -129,7 +129,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using `(library(package_name))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `r hl(library(rio))` within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run `r hl(library(rio))` again if you want to access that package.
+This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(rio)` within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run `library(rio)` again if you want to access that package.
 
 After installing the`r pkg("esquisse")` package, you can load it for your current R session as follows:
 
@@ -140,7 +140,7 @@ library(esquisse)
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `r hl(readr::read_csv())`, that refers to the function `r hl(read_csv())` in the `r pkg("readr")` add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `r hl(readr::read_csv())`, that refers to the function `r hl(read_csv())` in the `r pkg("readr")` add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a `r glossary("conflict")` (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function

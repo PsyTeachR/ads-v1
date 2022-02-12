@@ -131,7 +131,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using `(library(package_name))`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/leeper/rio'>rio</a></span><span class='op'>)</span></code> within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run <code><span class='kw'><a target='_blank' href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a target='_blank' href='https://github.com/leeper/rio'>rio</a></span><span class='op'>)</span></code> again if you want to access that package.
+This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(rio)` within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run `library(rio)` again if you want to access that package.
 
 After installing the<code class='package'>esquisse</code> package, you can load it for your current R session as follows:
 
@@ -140,10 +140,14 @@ After installing the<code class='package'>esquisse</code> package, you can load 
 library(esquisse)
 ```
 
+```
+## Warning: package 'esquisse' was built under R version 4.1.2
+```
+
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a conflict (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a <a class='glossary' target='_blank' title='Having two packages loaded that have a function with the same name.' href='https://psyteachr.github.io/glossary/c#conflict'>conflict</a> (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function
@@ -374,7 +378,7 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Glossary {#glossary-intro}
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table>
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>
@@ -397,6 +401,10 @@ vignette("ggplot2-specs", package = "ggplot2")
   <tr>
    <td style="text-align:left;"> [chunk](https://psyteachr.github.io/glossary/c.html#chunk){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> A section of code in an R Markdown file </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [conflict](https://psyteachr.github.io/glossary/c.html#conflict){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> Having two packages loaded that have a function with the same name. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [cran](https://psyteachr.github.io/glossary/c.html#cran){class="glossary" target="_blank"} </td>

@@ -1,7 +1,5 @@
 # Data Tidying {#tidy}
 
-<div class="incomplete-chapter"></div>
-
 
 
 
@@ -23,13 +21,19 @@ library(tidyverse) # for data wrangling
 
 <pre class='sourceCode r'><code class='sourceCode R'>&#96;&#96;&#96;</code></pre></div>
 
+You'll need to make a fodler called "data" and download two data files into it: 
+<a href="https://psyteachr.github.io/ads-v1/data/tidy_data.csv" download>tidy_data.csv</a> and
+<a href="https://psyteachr.github.io/ads-v1/data/untidy_data.csv" download>untidy_data.csv</a>.
+
 Download the [Data tidying cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf).
 
 ## Data Structures
 
 The data you work with will likely come in many different formats and structures. Some of these structures may be driven by how the software you use outputs the data, but data structures may also differ because of human intervention or attempts at organisation, some of which may not be particularly helpful.
 
-Data cleaning and tidying will likely be the most time consuming and difficult task you perform. Whilst you can create code recipes for analyses and visualisations, as Hadley Whickham puts it ["every messy dataset is messy in its own way"](https://vita.had.co.nz/papers/tidy-data.pdf) which means that you will often have to solve new problems that are specific to the dataset. Additionally, moving between data structures that are intuitive to read by humans and those that are useful for a computer requires a conceptual shift that only comes with practice. This is all a verbose way of saying that what lies ahead in this chapter is unlikely to sink in on the first attempt and you will need to practice with different examples (preferably with data you know well) before you truly feel comfortable with it.
+Data cleaning and tidying will likely be the most time consuming and difficult task you perform. Whilst you can create code recipes for analyses and visualisations, as Hadley Whickham puts it, ["every messy dataset is messy in its own way"](https://vita.had.co.nz/papers/tidy-data.pdf), which means that you will often have to solve new problems that are specific to the dataset. Additionally, moving between data structures that are intuitive to read by humans and those that are useful for a computer requires a conceptual shift that only comes with practice. 
+
+This is all a verbose way of saying that what lies ahead in this chapter is unlikely to sink in on the first attempt and you will need to practice with different examples (preferably with data you know well) before you truly feel comfortable with it.
 
 First, some terminology.
 
@@ -110,12 +114,13 @@ The following table is data that shows the number of items each customer bought 
 
 First, let's have a look at an example of a messy, or untidy, dataset. Each row has all of the data relating to one customer.
 
-* The `itemsprice_{year}` columns contain two values (number of items and price per item)
-* The `totalprice_{year}` columns contain the total amount spent by that customer that year, i.e., item * price.
-* There is data for three different years in the dataset.
+
+```r
+untidy_data <- read_csv("data/untidy_data.csv", show_col_types = FALSE)
+```
 
 <table>
-<caption>(\#tab:unnamed-chunk-2)Untidy table</caption>
+<caption>(\#tab:unnamed-chunk-3)Untidy table</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -178,6 +183,10 @@ First, let's have a look at an example of a messy, or untidy, dataset. Each row 
 
 
 
+* The `itemsprice_{year}` columns contain two values (number of items and price per item)
+* The `totalprice_{year}` columns contain the total amount spent by that customer that year, i.e., items * price.
+* There is data for three different years in the dataset.
+
 Let's say you wanted to calculate the total price per customer over the three years and the total number of items bought per customer. You can't perform mathematical operations on the `itemsprice_{year}` columns because they are <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a> <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a>.
 
 You would probably normally use Excel to
@@ -194,7 +203,7 @@ Think about how many steps in Excel this would be if there were 10 years in the 
 
 ### Tidy data
 
-There are three rules for "tidy data", which is data in a format that makes it easier to combine data from different tables, create summary tables, and visualise your data.
+There are three rules for "<a class='glossary' target='_blank' title='A format for data that maps the meaning onto the structure.' href='https://psyteachr.github.io/glossary/t#tidy-data'>tidy data</a>, which is data in a format that makes it easier to combine data from different tables, create summary tables, and visualise your data.
 
 -   Each observation must have its own row
 -   Each variable must have its own column
@@ -202,12 +211,13 @@ There are three rules for "tidy data", which is data in a format that makes it e
 
 This is the tidy version:
 
-* There are now five variables (columns) because there are five different types of information we have for each observation: the customer id, the year, number of items bought, price per item, and total price. 
-* Each row is a customer's orders in a particular year. 
-* The number of items (`items`) and price per item (`price_per_item`) are in separate columns, so now you can perform mathematical operations on them.
+
+```r
+tidy_data <- read_csv("data/tidy_data.csv", show_col_types = FALSE)
+```
 
 <table>
-<caption>(\#tab:unnamed-chunk-2)Tidy table</caption>
+<caption>(\#tab:unnamed-chunk-4)Tidy table</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -328,6 +338,10 @@ This is the tidy version:
 
 
 
+* There are now five variables (columns) because there are five different types of information we have for each observation: the customer id, the year, number of items bought, price per item, and total price. 
+* Each row is a customer's orders in a particular year. 
+* The number of items (`items`) and price per item (`price_per_item`) are in separate columns, so now you can perform mathematical operations on them.
+
 To calculate the total price per customer over the three years and the total number of items bought per customer in R, you could then:
 
 1.  group the table by customer_id
@@ -336,8 +350,6 @@ To calculate the total price per customer over the three years and the total num
 
 
 ```r
-tidy_data <- read_csv("data/tidy_data.csv")
-
 tidy_data %>%
   group_by(customer_id) %>%
   summarise(
@@ -387,25 +399,6 @@ tidy_data %>%
 
 </div>
 
-It also makes it very easy to use with `ggplot()` - try running each of the following plots. 
-
-
-```r
-# all years
-ggplot(tidy_data, aes(x = totalprice)) +
-  geom_histogram(binwidth = 10, colour = "black")
-
-# different fill on one plot for each year
-ggplot(tidy_data, aes(x = totalprice, fill = as.factor(year))) +
-  geom_histogram(binwidth = 10, colour = "black")
-
-ggplot(tidy_data, aes(x = totalprice, fill = as.factor(year))) +
-  geom_histogram(binwidth = 10, 
-                 colour = "black",
-                 show.legend = FALSE) +
-  facet_wrap(~year)
-```
-
 
 ::: {.info data-latex=""}
 If there were 10 years in the table, or a different number of years each time you encountered data like this, the code for producing the tables and plots above never changes.
@@ -438,7 +431,7 @@ Error: unexpected '=' in:
 
 ```r
 # select just the customer ID and 3 total price columns
-untidy_price <- select(
+wide_totalprice <- select(
   .data = untidy_data,
   customer_id, 
   `2018` = totalprice_2018,
@@ -496,8 +489,17 @@ This is in wide format, where each row is a customer, and represents the data fr
 
 The same data can be represented in a long format by creating a new column that specifies what `year` the observation is from and a new column that specifies the `totalprice` of that observation. This is easier to use to make summaries and plots.
 
+
+```r
+long_totalprice <- pivot_longer(
+  data = wide_totalprice,
+  cols = `2018`:`2020`,
+  names_to = "year",
+  values_to = "totalprice")
+```
+
 <table>
-<caption>(\#tab:long-data)Long data</caption>
+<caption>(\#tab:unnamed-chunk-7)Long data</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -512,49 +514,9 @@ The same data can be represented in a long format by creating a new column that 
    <td style="text-align:right;"> 7.82 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 3.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 15.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 39.10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 11.73 </td>
-  </tr>
-  <tr>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:right;"> 37.76 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 28.32 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 23.60 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 4.72 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 42.48 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 1 </td>
@@ -563,8 +525,28 @@ The same data can be represented in a long format by creating a new column that 
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 2018 </td>
+   <td style="text-align:right;"> 3.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 28.32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:right;"> 5.59 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 2018 </td>
+   <td style="text-align:right;"> 15.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 23.60 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
@@ -573,8 +555,28 @@ The same data can be represented in a long format by creating a new column that 
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 2018 </td>
+   <td style="text-align:right;"> 39.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 4.72 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:right;"> 16.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> 2018 </td>
+   <td style="text-align:right;"> 11.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 42.48 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
@@ -583,6 +585,22 @@ The same data can be represented in a long format by creating a new column that 
   </tr>
 </tbody>
 </table>
+
+
+
+It also makes it very easy to use with `ggplot()`. Run the following plot, and consider how you'd make it with the wide version.
+
+
+```r
+ggplot(long_totalprice, aes(x = totalprice, fill = year)) +
+  geom_histogram(binwidth = 10, color = "black")
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-tidy_files/figure-html/long-ggplot-demo-1.png" alt="Most plots are easier to make with data in a long format." width="100%" />
+<p class="caption">(\#fig:long-ggplot-demo)Most plots are easier to make with data in a long format.</p>
+</div>
+
 
 ::: {.try data-latex=""}
 Create a long version of the following table of how many million followers each band has on different social media platforms. You don't need to use code, just sketch it in a notebook or make a table in a spreadsheet.
@@ -619,7 +637,7 @@ If you're a researcher and you're used to thinking about IVs and DVs, you may fi
 
 The pivot functions allow you to transform a data table from wide to long or long to wide.
 
-#### Wide to long
+### Wide to long
 
 The function `pivot_longer()` converts a wide data table to a longer format by converting the headers from specified columns into the values of new columns, and combining the values of those columns into a new condensed column.
 
@@ -629,122 +647,36 @@ This function has several arguments:
 -   `names_to`: what you want to call the new columns that the `cols` column header names will go into
 -   `values_to`: what you want to call the new column that contains the values in the `cols`
 
-With the pivot functions, it can be easier to show than tell - run the below code and then compare `untidy_price` with `untidy_price_long` and the pivot code and try to map each argument to what has changed. 
+With the pivot functions, it can be easier to show than tell - run the below code and then compare `wide_totalprice` with `long_totalprice` and the pivot code and try to map each argument to what has changed. 
 
 
 ```r
-untidy_price_long <- pivot_longer(
-  data = untidy_price, 
+long_totalprice <- pivot_longer(
+  data = wide_totalprice, 
   cols = `2018`:`2020`, # columns to make long 
   names_to = "year", # new column name for headers
   values_to = "totalprice" # new column name for values
 )
 ```
 
-<table>
-<caption>(\#tab:pivot-longer)Data made longer with pivot_longer()</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> customer_id </th>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:right;"> totalprice </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 7.82 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 37.76 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 55.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 3.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 28.32 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 5.59 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 15.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 23.60 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 27.95 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 39.10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 4.72 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 16.77 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 11.73 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 42.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 44.72 </td>
-  </tr>
-</tbody>
-</table>
 
+### Long to wide
 
+We can also go from long to wide format using the `pivot_wider()` function. Instead of returning to the original table with a row for each customer and a column for each year, this new wide table will have a row for each year and a column for each customer. It can be awkward to have numbers for column names, so we use `names_prefix` to add "C_" before each new column name.
 
-#### Long to wide
-
-We can also go from long to wide format using the `pivot_wider()` function.
-
--   `names_from`: the columns that contain your new column headers.
--   `values_from`: the column that contains the values for the new columns.
--   `names_sep`: the character string used to join names if `names_from` is more than one column.
+-   `id_cols`: the column(s) that uniquely identify each new row
+-   `names_from`: the column(s) that contain your new column headers
+-   `names_prefix`: A prefix to add to the values in the names column
+-   `values_from`: the column that contains the values for the new columns
 
 
 ```r
-untidy_price_wide <- pivot_wider(
-  data = untidy_price_long,
-  names_from = year,
-  values_from = totalprice
+wide_by_customer <- pivot_wider(
+  data = long_totalprice,
+  id_cols = year, # identifying column(s)
+  names_from = customer_id, # the new column names
+  names_prefix = "C_", # prefix for new column names
+  values_from = totalprice # the new column values
 )
 ```
 
@@ -752,41 +684,37 @@ untidy_price_wide <- pivot_wider(
 <caption>(\#tab:pivot-wider)Data made wider with pivot_wider()</caption>
  <thead>
   <tr>
-   <th style="text-align:right;"> customer_id </th>
-   <th style="text-align:right;"> 2018 </th>
-   <th style="text-align:right;"> 2019 </th>
-   <th style="text-align:right;"> 2020 </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:right;"> C_1 </th>
+   <th style="text-align:right;"> C_2 </th>
+   <th style="text-align:right;"> C_3 </th>
+   <th style="text-align:right;"> C_4 </th>
+   <th style="text-align:right;"> C_5 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 2018 </td>
    <td style="text-align:right;"> 7.82 </td>
-   <td style="text-align:right;"> 37.76 </td>
-   <td style="text-align:right;"> 55.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 3.91 </td>
-   <td style="text-align:right;"> 28.32 </td>
-   <td style="text-align:right;"> 5.59 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 15.64 </td>
-   <td style="text-align:right;"> 23.60 </td>
-   <td style="text-align:right;"> 27.95 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 39.10 </td>
-   <td style="text-align:right;"> 4.72 </td>
-   <td style="text-align:right;"> 16.77 </td>
+   <td style="text-align:right;"> 11.73 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 11.73 </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 37.76 </td>
+   <td style="text-align:right;"> 28.32 </td>
+   <td style="text-align:right;"> 23.60 </td>
+   <td style="text-align:right;"> 4.72 </td>
    <td style="text-align:right;"> 42.48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 55.90 </td>
+   <td style="text-align:right;"> 5.59 </td>
+   <td style="text-align:right;"> 27.95 </td>
+   <td style="text-align:right;"> 16.77 </td>
    <td style="text-align:right;"> 44.72 </td>
   </tr>
 </tbody>
@@ -996,13 +924,15 @@ The original table has observations from each customer over three years. This is
 
 Because we'll be combining columns with numeric (`totalprice`) and character (`itemsprice`) data, we need to make the new `value` column a character data type using `values_transform`, since numbers can be represented as characters (like <code><span class='st'>"3.5"</span></code>), but character strings can't be represented as numbers.
 
+The argument `names_sep` is set to the character string used to join names if `names_from` is more than one column. Alternatively, you can use the argument `names_pattern`, which can be more powerful but also a little harder to understand how to set up.
+
 
 ```r
 longer_data <- pivot_longer(
   data = untidy_data, 
   cols = itemsprice_2018:totalprice_2020, # columns to make long 
-  names_to = c("category", "year"),       # new column names for cols
-  names_sep = "_",                        # how to split cols into new columns
+  names_to = c("category", "year"), # new column names for cols
+  names_sep = "_", # how to split cols into new columns
   # names_pattern = "(.*)_(.*)", # alternative to names_sep
   values_to = "value", # new column name for values
   
@@ -1013,7 +943,7 @@ longer_data <- pivot_longer(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-6)Untidy data converted from wide to long.</caption>
+<caption>(\#tab:unnamed-chunk-8)Untidy data converted from wide to long.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1210,7 +1140,7 @@ longer_data <- pivot_longer(
 
 ### One variable per column
 
-Now this table is long, but not tidy. The `value` column contains data from two different variables.We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
+Now this table is long, but not tidy. The `value` column contains data from two different variables. We need to make the table wider, but not as wide as before. We want to keep the `year` column and make new columns called `itemsprice` and `totalprice` with the relevant customer's `value` for that variable and year.
 
 
 ```r
@@ -1223,7 +1153,7 @@ wider_data <- pivot_wider(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-7)Data converted from long to an intermediate shape.</caption>
+<caption>(\#tab:unnamed-chunk-9)Data converted from long to an intermediate shape.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1334,7 +1264,7 @@ Techinically, you can skip setting the `id_cols` argument, because all of the co
 
 ### One value per cell
 
-The cells in the `itemsprice` column actually contain two different values. We need to split it into two columns for the variables `items`, and `price_per_item`. You can split a column into parts with the function `tidyr::separate()`. There is a space between the number of items and the brackets, so we can split it along this space - if you are in charge of how data is stored, ensuring data is entered consistently makes this much easier.
+The cells in the `itemsprice` column actually contain two different values. We need to split it into two columns for the variables `items`, and `price_per_item`. You can split a column into parts with the function `tidyr::separate()`. There is a space between the number of items and the brackets, so we can split it along this space -- if you are in charge of how data is stored, ensuring data is entered consistently makes this much easier.
 
 
 ```r
@@ -1349,7 +1279,7 @@ split_data <- separate(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-8)The itemsprice column split into items and price_per_item using separate()</caption>
+<caption>(\#tab:unnamed-chunk-10)The itemsprice column split into items and price_per_item using separate()</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1493,7 +1423,7 @@ mutated_data <- mutate(
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-9)Mutating data to remove the parentheses from price_per_item.</caption>
+<caption>(\#tab:unnamed-chunk-11)Mutating data to remove the parentheses from price_per_item.</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> customer_id </th>
@@ -1634,7 +1564,7 @@ glimpse(mutated_data)
 ## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
 ```
 
-Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter \@ref(data)).
+Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter\ \@ref(data)).
 
 
 ```r
@@ -1663,13 +1593,14 @@ glimpse(tidy_data)
 <img src="images/tidy/pipe_sticker.png" style="width: 100%"/>
 :::
 
-We've already introduced pipes in Chapter\ \@ref(pipes-first) but this type of data processing is where they really start to shine as they can significantly reduce the amount of code you write.  
+We've already introduced pipes in Chapter\ \@ref(pipes-first) but this type of data processing is where they really start to shine, as they can significantly reduce the amount of code you write.  
 
 As a recap, a pipe takes the result of the previous function and sends it to the next function as its first argument, which means that you do not need to create intermediate objects. Below is all the code we've used in this chapter, and in the process we created five objects. This can get very confusing in longer scripts.
 
 
 ```r
-untidy_data <- read_csv(file = "data/untidy_data.csv")
+untidy_data <- read_csv("data/untidy_data.csv", 
+                        show_col_types = FALSE)
 
 longer_data <- pivot_longer(
   data = untidy_data,
@@ -1716,11 +1647,12 @@ tidy_data <- type_convert(
 You *can* give each object the same name and keep replacing the old data object with the new one at each step. This will keep your environment clean, but it makes debugging code much harder.
 :::
 
-For longer series of steps like the one above, using pipes can eliminate many intermediate objects. This also makes it easier to add an intermediate step to your process without having to think of a new table name and edit the table input to the next step.
+For longer series of steps like the one above, using pipes can eliminate many intermediate objects. This also makes it easier to add an intermediate step to your process without having to think of a new table name and edit the table input to the next step (which is really easy to accidentally miss).
 
 
 ```r
-tidy_data <- read_csv(file = "data/untidy_data.csv") %>%
+tidy_data <- read_csv(file = "data/untidy_data.csv",
+                      show_col_types = FALSE) %>%
   pivot_longer(
     cols = itemsprice_2018:totalprice_2020,
     names_to = c("category", "year"),
@@ -1755,26 +1687,27 @@ tidy_data <- read_csv(file = "data/untidy_data.csv") %>%
 
 You can read the code above like this:
 
-1.  Read the data (`read_csv()`)
+1.  Read the data with `read_csv()`
 
-    -   `file`: from the file at r path("data/untidy_data.csv")\`; **and then**
+    -   `file`: from the file at r path("data/untidy_data.csv")\`,
+    -   `show_col_types`: do not show the colukmn types message; **and then**
 
-2.  Reshape the data longer (`pivot_longer()`)
+2.  Reshape the data longer with `pivot_longer()`
 
     -   `cols`: take the columns from `itemsprice_2018` to `totalprice_2020`,
     -   `names_to`: create new columns called "category" and "year" from the `cols` header names,
     -   `names_sep`: separate the column names using "\_"
     -   `values_to`: create a new column called "value" from the `cols` values,
-    -   `names_transform` = transform the `year` column to integers,
-    -   `values_transform` = transform the `value` column to characters; **and then**
+    -   `names_transform`: transform the `year` column to integers,
+    -   `values_transform`: transform the `value` column to characters; **and then**
 
-3.  Reshape the data wider (`pivot_wider()`)
+3.  Reshape the data wider with `pivot_wider()`
 
     -   `id_cols`: each row should be an observation of a unique `customer_id` and `year`,
     -   `names_from`: get the new column names from the values in the `category` column,
     -   `values_from`: get the new column values from the values in the `value` column; **and then**
 
-4.  Split multiple values in the same column (`separate()`)
+4.  Split multiple values in the same column with `separate()`
 
     -   `col`: separate the column `itemsprice`,
     -   `into`: into new columns called "items" and "price_per_item",
@@ -1782,30 +1715,30 @@ You can read the code above like this:
     -   `remove`: do remove the old column,
     -   `convert`: do convert the new columns into the right data types; **and then**
 
-5.  Change a column (`mutate()`)
+5.  Change a column with `mutate()`
 
-    -   `price_per_item`: replace the existing column `price_per_item` with the result of a search and replace:
+    -   `price_per_item`: replace the existing column `price_per_item` with the result of a search and replace with `str_replace_all()`:
 
         -   `string`: the strings to modify come from the `price_per_item` columns,
         -   `pattern`: search for left or right parentheses,
         -   `replacement`: replace them with ""; **and then**,
 
-6.  Fix data types (`type_convert()`)
+6.  Fix data types with `type_convert()`
 
     -   `trim_ws`: remove spaces, tabs, and line breaks from the start and end of each value
 
 Don't feel like you always need to get all of your data wrangling code into a single pipeline. You should make intermediate objects whenever you need to break up your code because it's getting too complicated or if you need to debug something.
 
 ::: {.info data-latex=""}
-You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
+You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing command-enter (mac) or control-enter (PC). What does `data` look like now?
 :::
 
 ## Exercises
 
 Let's try a couple of examples. 
 
-* Save your current Markdown, close it, and open a new named "Patient survey".
-* Download a copy of [wide_excercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_excercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) and store them in your data folder.
+* Save your current Markdown, close it, and open a new Rmd named "Patient_survey".
+* Download a copy of [wide_excercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_excercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) into your data folder.
 * In the set-up code chunk, load the <code class='package'>tidyverse</code> then load the two data files in using `read_csv()` and name the objects `wide1` and `wide2`
 
 
@@ -1820,7 +1753,7 @@ wide2 <- read_csv("data/wide_excercise-2.csv")
 
 </div>
 
-The two datasets represent simulated data from a patient satisfaction survey. We'll do them one at a time as they differ in complexity.
+The two datasets represent simulated data from a patient satisfaction survey. We'll do them one at a time, as they differ in complexity.
 
 ### Survey 1
 
@@ -1943,7 +1876,9 @@ tidy2a <- wide2 %>%
 
 #### Tidy 2b
 
-The second option is  to treat the satisfaction and recommendation scores as two distinct variables. This version should also have five variables, but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
+The second option is to treat the satisfaction and recommendation scores as two distinct variables. This only makes sense if the satisfaction and recommendation scores for each question number are related to each other (e.g., q1 is about the same thing for both questions), making them part of the same observation.
+
+This version should also have five variables, but it won't be fully long-form, it'll be a slight mix of the two that we're going to call "semi-long". The variables in the semi-long version will be `id`, `repeat`, `question` (the question number), `sat` (the response for the satisfaction question), and `rec` (the response for the recommendation question). 
 
 * How many **observations** should the semi-long version of `wide2` have? <input class='webex-solveme nospaces' size='3' data-answer='["250"]'/>
 
@@ -2032,7 +1967,7 @@ Scatterplot showing the relationship between satisfaction and recommendation sco
 </div>
 
 
-<img src="07-tidy_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="07-tidy_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -2053,7 +1988,7 @@ ggplot(tidy2b, aes(x = sat, y = rec, colour = repeat_patient)) +
 
 Boxplots showing satisfaction and recommends scores for new and repeat patients separately.
 
-<img src="07-tidy_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="07-tidy_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -2073,7 +2008,7 @@ ggplot(tidy2a, aes(x = repeat_patient, y = response, fill = repeat_patient)) +
 
 Histogram showing the distribution of all responses, across questions and categories.
 
-<img src="07-tidy_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="07-tidy_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -2096,7 +2031,7 @@ If your head hurts a bit at this point, rest assured it's absolutely normal. As 
 
 ## Glossary {#glossary-tidy}
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table>
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>
@@ -2119,6 +2054,10 @@ If your head hurts a bit at this point, rest assured it's absolutely normal. As 
   <tr>
    <td style="text-align:left;"> [observation](https://psyteachr.github.io/glossary/o.html#observation){class="glossary" target="_blank"} </td>
    <td style="text-align:left;"> All of the data about a single trial or question. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> [tidy data](https://psyteachr.github.io/glossary/t.html#tidy-data){class="glossary" target="_blank"} </td>
+   <td style="text-align:left;"> A format for data that maps the meaning onto the structure. </td>
   </tr>
   <tr>
    <td style="text-align:left;"> [value](https://psyteachr.github.io/glossary/v.html#value){class="glossary" target="_blank"} </td>

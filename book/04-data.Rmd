@@ -570,7 +570,7 @@ ggplot(starwars, aes(mass)) +
 ```{r echo  = FALSE}
 ggplot(starwars, aes(x = gender, fill = gender)) +
   geom_bar(show.legend = FALSE, colour = "black") +
-  scale_x_discrete(name = "Gender of character", labels = (c("Masculine", "Feminine", "Missing"))) +
+  scale_x_discrete(name = "Gender of character", labels = (c("Feminine", "Masculine", "Missing"))) +
   scale_fill_brewer(palette = 2) +
   theme_bw() +
   labs(title = "Number of Star Wars characters of each gender")

@@ -1,9 +1,9 @@
-region,product,sales_2019,sales_2020,expenses_2019,expenses_2020
-North,widgets,12029,9383,10722,9003
-North,gadgets,5673,5027,5987,6065
-South,widgets,11023,8450,10904,10572
-South,gadgets,6972,4005,4340,5150
-East,widgets,9172,9849,9099,9558
-East,gadgets,4527,4596,5044,6986
-West,widgets,10533,10690,10683,9585
-West,gadgets,6154,5376,5383,4814
+region,product,sales_2019,sales_2020,expenses_2019,expenses_2020,satisfaction_2019,satisfaction_2020
+North,widgets,8784,9789,9270,8778,high,very high
+North,gadgets,5208,6937,4014,6504,very high,very high
+South,widgets,11989,11194,9560,12456,high,neutral
+South,gadgets,4685,4692,6328,5069,low,low
+East,widgets,10376,8948,12132,10256,very low,very low
+East,gadgets,5871,6336,5752,7178,neutral,high
+West,widgets,10361,10885,9313,10417,neutral,neutral
+West,gadgets,3983,6369,4712,5871,low,low

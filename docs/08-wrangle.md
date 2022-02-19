@@ -8,6 +8,10 @@
 * Be able to create new columns and edit existing ones
 * Be able to handle missing data
 
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named <code class='path'>08-wrangle</code>. Second, open and save and new R Markdown document named `wrangle.Rmd`, delete the welcome text and load the required packages for this chapter.
+
 
 ```r
 library(tidyverse)   # data wrangling functions
@@ -17,11 +21,13 @@ Download the [Data transformation cheat sheet](https://raw.githubusercontent.com
 
 ## Wrangling functions
 
-Most <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> involves the reshaping functions you learned in Chapter\ \@ref(tidy) and these six functions: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.
+Data wrangling refers to the process of cleaning, transforming, and restructuring your data to get it into the format you need for analysis and it's something you will spend an awful lot of time doing. Most <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> involves the reshaping functions you learned in Chapter\ \@ref(tidy) and six functions from the <code class='package'>dplyr</code> package that is loaded as part of the <code class='package'>tidyverse</code>: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.
+
+It's worth highlighting that in this chapter we're going to cover these common functions and common uses of said functions. However, <code class='package'>dplyr</code> (and packages beyond it) has a huge number of additional wrangling functions and each function has many different arguments. Essentially, if you think you should be able to wrangle your data in a particular way that we haven't explicitly shown you, you almost certainly can, it might just take a bit of Googling to find out how. 
 
 
 
-We'll use a small example table with the sales and expenses for two years from four regions over two products.
+We'll use a small example table with the sales, expenses, and satisfaction for two years from four regions over two products.
 
 
 ```r
@@ -39,72 +45,90 @@ budget <- read_csv("data/budget.csv", show_col_types = FALSE)
    <th style="text-align:right;"> sales_2020 </th>
    <th style="text-align:right;"> expenses_2019 </th>
    <th style="text-align:right;"> expenses_2020 </th>
+   <th style="text-align:left;"> satisfaction_2019 </th>
+   <th style="text-align:left;"> satisfaction_2020 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
+   <td style="text-align:right;"> 8784 </td>
+   <td style="text-align:right;"> 9789 </td>
+   <td style="text-align:right;"> 9270 </td>
+   <td style="text-align:right;"> 8778 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 6937 </td>
+   <td style="text-align:right;"> 4014 </td>
+   <td style="text-align:right;"> 6504 </td>
+   <td style="text-align:left;"> very high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 11194 </td>
+   <td style="text-align:right;"> 9560 </td>
+   <td style="text-align:right;"> 12456 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> neutral </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
+   <td style="text-align:right;"> 4685 </td>
+   <td style="text-align:right;"> 4692 </td>
+   <td style="text-align:right;"> 6328 </td>
+   <td style="text-align:right;"> 5069 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
   <tr>
    <td style="text-align:left;"> East </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9172 </td>
-   <td style="text-align:right;"> 9849 </td>
-   <td style="text-align:right;"> 9099 </td>
-   <td style="text-align:right;"> 9558 </td>
+   <td style="text-align:right;"> 10376 </td>
+   <td style="text-align:right;"> 8948 </td>
+   <td style="text-align:right;"> 12132 </td>
+   <td style="text-align:right;"> 10256 </td>
+   <td style="text-align:left;"> very low </td>
+   <td style="text-align:left;"> very low </td>
   </tr>
   <tr>
    <td style="text-align:left;"> East </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:right;"> 6336 </td>
+   <td style="text-align:right;"> 5752 </td>
+   <td style="text-align:right;"> 7178 </td>
+   <td style="text-align:left;"> neutral </td>
+   <td style="text-align:left;"> high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> West </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10533 </td>
-   <td style="text-align:right;"> 10690 </td>
-   <td style="text-align:right;"> 10683 </td>
-   <td style="text-align:right;"> 9585 </td>
+   <td style="text-align:right;"> 10361 </td>
+   <td style="text-align:right;"> 10885 </td>
+   <td style="text-align:right;"> 9313 </td>
+   <td style="text-align:right;"> 10417 </td>
+   <td style="text-align:left;"> neutral </td>
+   <td style="text-align:left;"> neutral </td>
   </tr>
   <tr>
    <td style="text-align:left;"> West </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
+   <td style="text-align:right;"> 3983 </td>
+   <td style="text-align:right;"> 6369 </td>
+   <td style="text-align:right;"> 4712 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
 </tbody>
 </table>
@@ -114,21 +138,32 @@ budget <- read_csv("data/budget.csv", show_col_types = FALSE)
 
 ### Select
 
-Select columns by name or number.
-
-You can select each column individually, separated by commas (e.g., `region, sales_2019`). You can also select all columns from one to another by separating them with a colon (e.g., `sales_2019:expenses_2020`).
+You can select columns (variables) by name or number (which is sometimes referred to as the column index).  Selecting by number can be useful when the column names are long or complicated.
 
 
 ```r
-budget2020 <- budget %>% select(region, sales_2020, expenses_2020)
-names(budget2020)
+# select single column by name
+product_dat <- budget %>% select(product) 
+
+# select single column by number
+product_dat <- budget %>% select(2) 
 ```
 
-```
-## [1] "region"        "sales_2020"    "expenses_2020"
+
+You can select each column individually, separated by commas (e.g., `region, sales_2019`) but you can also select all columns from one to another by separating them with a colon (e.g., `sales_2019:expenses_2020`).
+
+The colon notation can be much faster because you don't need to type out each individual variable name, but make sure that you know what order your columns are in and always check the output to make sure you have selected what you intended.
+
+
+```r
+# select columns individually
+sales2019 <- budget %>% select(region, product, sales_2019)
+
+# select columns with colon
+sales2019 <- budget %>% select(region:sales_2019)
 ```
 
-You can select columns by number, which can be useful when the column names are long or complicated. You even rename them by setting `new_name = old_col`. 
+You can rename columns at the same time as selecting them by setting `new_name = old_col`. 
 
 
 ```r
@@ -141,31 +176,25 @@ names(regions)
 ## [5] "expenses_2020"
 ```
 
-You can use a minus symbol to un-select columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first, e.g., `-(sales_2019:expenses_2020)`, not `-sales_2019:expenses_2020`.
+You can select columns either by telling R which ones you want to keep as in the previous examples, or by specifying which ones you want to exclude by using a minus symbol to un-select columns. You can also use the colon notation to de-select columns, but to do so you need to put parentheses around the span first, e.g., `-(sales_2019:expenses_2020)`, not `-sales_2019:expenses_2020`.
 
 
 ```r
+# de-select individual columns
+sales <- budget %>% select(-expenses_2019, -expenses_2020)
+
+# de-select a range of columns
 sales <- budget %>% select(-(expenses_2019:expenses_2020))
-names(sales)
 ```
 
-```
-## [1] "region"     "product"    "sales_2019" "sales_2020"
-```
-
-You can select columns based on criteria about the column names.
+Finally, you can select columns based on criteria about the column names.
 
 | function | definition |
 |----------|------------|
 | `starts_with()` | select columns that start with a character string|
-| `ends_with()` | elect columns that end with a character string |
+| `ends_with()` | select columns that end with a character string |
 | `contains()` | select columns that contain a character string |
 | `num_range()` | select columns with a name that matches the pattern `prefix` |
-
-::: {.info data-latex=""}
-Use `width` to set the number of digits with leading
-zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`, `var_09`, and `var_10`.
-:::
 
 
 
@@ -174,104 +203,42 @@ zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`,
 What are the resulting columns for these four examples?
 
 * `budget %>% select(starts_with("sales"))`
-    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option></select> 
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020, satisfaction_2020</option><option value='answer'>sales_2019, sales_2020</option></select> 
 * `budget %>% select(ends_with("2020"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2020, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>sales_2020, expenses_2020, satisfaction_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
 * `budget %>% select(contains("_"))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020</option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='answer'>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</option><option value='x'>sales_2019, sales_2020</option><option value='x'>sales_2020, expenses_2020, satisfaction_2020</option><option value='x'>expenses_2019, expenses_2020</option></select>
 * `budget %>% select(num_range("expenses_", 2019:2020))`
-    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020</option><option value='answer'>expenses_2019, expenses_2020</option><option value='x'>sales_2020, expenses_2020</option></select>
+    <select class='webex-select'><option value='blank'></option><option value='x'>sales_2020, expenses_2020, satisfaction_2020</option><option value='answer'>expenses_2019, expenses_2020</option><option value='x'>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</option><option value='x'>sales_2019, sales_2020</option></select>
 :::
-
 
 
 ### Filter
 
-Select rows by matching column criteria.
+Whilst `select()` selects which variables you want to retain, `filter()` selects which rows to keep by matching column criteria.
+
+You can filter by a single criterion. This criterion can be a character value (e.g., "North"), a number (e.g., 9003), or the result of a logical equation (e.g., keep all numbers larger than a certain value). For logical equations, the equation is checked for each row, and if the result is FALSE, the row is removed. You can reverse this equation by specifying `!=` where `!` means "not".
 
 
 ```r
-# select all rows from the North region
+# select all rows where region equals North
 budget %>% filter(region == "North")
+
+# select all rows where expenses_2020 were exactly equal to 9003
+budget %>% filter(expenses_2020 == 9003)
+
+# select all rows where sales_2019 was more than 10,000
+budget %>% filter(sales_2019 > 10000)
+
+# everything but the North
+budget %>% filter(region != "North")
 ```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
 
 ::: {.warning data-latex=""}
-Remember to use `==` and not `=` to check if two things are equivalent. A single `=` assigns the right-hand value to the left-hand variable.
+Remember to use `==` and not `=` to check if two things are equivalent. A single `=` assigns the right-hand value to the left-hand variable (much like the `<-` operator).
 :::
 
-You can select on multiple criteria by separating them with commas.
-
-
-```r
-budget %>% filter(
-  region == "North",
-  product == "widgets"
-)
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:right;"> sales_2019 </th>
-   <th style="text-align:right;"> sales_2020 </th>
-   <th style="text-align:right;"> expenses_2019 </th>
-   <th style="text-align:right;"> expenses_2020 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-You can use the symbols `&`, `|`, and `!` to mean "and", "or", and "not". You can also use other operators to make equations. The equation is checked for each row, and if the result is FALSE, the row is removed.
+You can also select on multiple criteria by using `&` ("and") and `|` ("or").
 
 
 ```r
@@ -289,22 +256,42 @@ profit_either <- budget %>%
     sales_2020 > expenses_2020
   )
 
-# everything but the North
-not_north <- budget %>%
-  filter(region != "North")
-
 # 2020 profit greater than 1000
 profit_1000 <- budget %>%
   filter(sales_2020 - expenses_2020 > 1000)
 ```
 
-The <a class='glossary' target='_blank' title='A binary operator (%in%) that returns a logical vector indicating if there is a match or not for its left operand.' href='https://psyteachr.github.io/glossary/m#match-operator'>match operator</a> (`%in%`) is useful here for testing if a column value is in a list.
+If you want the filter to retain multiple specific values in the same variable, the <a class='glossary' target='_blank' title='A binary operator (%in%) that returns a logical vector indicating if there is a match or not for its left operand.' href='https://psyteachr.github.io/glossary/m#match-operator'>match operator</a> (`%in%`) should be used rather than `|`/or. The `!` can also be used in combination here, but it is placed before the variable name.
+
+
+```r
+# retain any rows where region is north or south, and where product equals widget
+budget %>%
+  filter(region %in% c("North", "South"),
+         product == "widgets")
+
+# retain any rows where the region is not east or west, and where the product does not equal gadgets
+budget %>%
+  filter(!region %in% c("East", "West"),
+         product != "gagdets")
+```
+
+Operator	|Name	                 |is TRUE if and only if
+----------|----------------------|---------------------------------
+A < B 	  |less than 	           |A is less than B
+A <= B 	  |less than or equal    |A is less than or equal to B
+A > B 	  |greater than 	       |A is greater than B
+A >= B 	  |greater than or equal |A is greater than or equal to B
+A == B 	  |equivalence 	         |A exactly equals B
+A != B 	  |not equal 	           |A does not exactly equal B
+A %in% B 	|in 	                 |A is an element of vector B
+
+Finally, you can also pass many other functions to filter. For example, the <code class='package'>stringr</code> that is loaded as part of the <code class='package'>tidyverse</code> contains many different functions for working with strings (character data). For example, you you use `str_detect()` to only retain rows where the customer satisfaction rating includes the word "high" (note that `str_detect()` is case sensitive so it would not return values of "High" or "HIGH".
 
 
 ```r
 budget %>%
-  filter(region %in% c("North", "South"),
-         product == "widgets")
+  filter(str_detect(satisfaction_2019, "high"))
 ```
 
 <div class="kable-table">
@@ -318,34 +305,53 @@ budget %>%
    <th style="text-align:right;"> sales_2020 </th>
    <th style="text-align:right;"> expenses_2019 </th>
    <th style="text-align:right;"> expenses_2020 </th>
+   <th style="text-align:left;"> satisfaction_2019 </th>
+   <th style="text-align:left;"> satisfaction_2020 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
+   <td style="text-align:right;"> 8784 </td>
+   <td style="text-align:right;"> 9789 </td>
+   <td style="text-align:right;"> 9270 </td>
+   <td style="text-align:right;"> 8778 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> very high </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North </td>
+   <td style="text-align:left;"> gadgets </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 6937 </td>
+   <td style="text-align:right;"> 4014 </td>
+   <td style="text-align:right;"> 6504 </td>
+   <td style="text-align:left;"> very high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 11194 </td>
+   <td style="text-align:right;"> 9560 </td>
+   <td style="text-align:right;"> 12456 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> neutral </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
+::: {.warning data-latex=""}
+`filter()` is incredibly powerful and can allow you to select very specific subsets of data. But, it is also quite dangerous because when you start combining multiple criteria and operators, it's very easy to accidentally specify something slightly different than what you intended. **Always check your output**. If you have a small dataset than you can eyeball it to see if it looks right, with a larger dataset you may wish to compute summary statistics or count the number of groups/observations in each variable to verify your filter is correct. There is no level of expertise in coding that can substitute knowing and checking your data. 
+:::
 
 ### Arrange
 
-Sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data for display in tables. Reverse the order using `desc()`.
+You can sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data for display in tables. `arrange()` works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using `desc()`.
 
 
 ```r
@@ -364,72 +370,90 @@ budget %>%
    <th style="text-align:right;"> sales_2020 </th>
    <th style="text-align:right;"> expenses_2019 </th>
    <th style="text-align:right;"> expenses_2020 </th>
+   <th style="text-align:left;"> satisfaction_2019 </th>
+   <th style="text-align:left;"> satisfaction_2020 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> West </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
+   <td style="text-align:right;"> 3983 </td>
+   <td style="text-align:right;"> 6369 </td>
+   <td style="text-align:right;"> 4712 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
+   <td style="text-align:right;"> 4685 </td>
+   <td style="text-align:right;"> 4692 </td>
+   <td style="text-align:right;"> 6328 </td>
+   <td style="text-align:right;"> 5069 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 6937 </td>
+   <td style="text-align:right;"> 4014 </td>
+   <td style="text-align:right;"> 6504 </td>
+   <td style="text-align:left;"> very high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> East </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:right;"> 6336 </td>
+   <td style="text-align:right;"> 5752 </td>
+   <td style="text-align:right;"> 7178 </td>
+   <td style="text-align:left;"> neutral </td>
+   <td style="text-align:left;"> high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> West </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10533 </td>
-   <td style="text-align:right;"> 10690 </td>
-   <td style="text-align:right;"> 10683 </td>
-   <td style="text-align:right;"> 9585 </td>
+   <td style="text-align:right;"> 10361 </td>
+   <td style="text-align:right;"> 10885 </td>
+   <td style="text-align:right;"> 9313 </td>
+   <td style="text-align:right;"> 10417 </td>
+   <td style="text-align:left;"> neutral </td>
+   <td style="text-align:left;"> neutral </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10904 </td>
-   <td style="text-align:right;"> 10572 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 11194 </td>
+   <td style="text-align:right;"> 9560 </td>
+   <td style="text-align:right;"> 12456 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> neutral </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 10722 </td>
-   <td style="text-align:right;"> 9003 </td>
+   <td style="text-align:right;"> 8784 </td>
+   <td style="text-align:right;"> 9789 </td>
+   <td style="text-align:right;"> 9270 </td>
+   <td style="text-align:right;"> 8778 </td>
+   <td style="text-align:left;"> high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> East </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9172 </td>
-   <td style="text-align:right;"> 9849 </td>
-   <td style="text-align:right;"> 9099 </td>
-   <td style="text-align:right;"> 9558 </td>
+   <td style="text-align:right;"> 10376 </td>
+   <td style="text-align:right;"> 8948 </td>
+   <td style="text-align:right;"> 12132 </td>
+   <td style="text-align:right;"> 10256 </td>
+   <td style="text-align:left;"> very low </td>
+   <td style="text-align:left;"> very low </td>
   </tr>
 </tbody>
 </table>
@@ -438,7 +462,7 @@ budget %>%
 
 
 ::: {.try data-latex=""}
-If you want to sort categories in a specific order, turn the column into a <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factor</a> and set the `levels` in the desired order.
+If you want to sort character data/categories in a specific order, turn the column into a <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factor</a> and set the `levels` in the desired order.
 
 
 ```r
@@ -459,40 +483,50 @@ budget %>%
    <th style="text-align:right;"> sales_2020 </th>
    <th style="text-align:right;"> expenses_2019 </th>
    <th style="text-align:right;"> expenses_2020 </th>
+   <th style="text-align:left;"> satisfaction_2019 </th>
+   <th style="text-align:left;"> satisfaction_2020 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 5987 </td>
-   <td style="text-align:right;"> 6065 </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 6937 </td>
+   <td style="text-align:right;"> 4014 </td>
+   <td style="text-align:right;"> 6504 </td>
+   <td style="text-align:left;"> very high </td>
+   <td style="text-align:left;"> very high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6972 </td>
-   <td style="text-align:right;"> 4005 </td>
-   <td style="text-align:right;"> 4340 </td>
-   <td style="text-align:right;"> 5150 </td>
+   <td style="text-align:right;"> 4685 </td>
+   <td style="text-align:right;"> 4692 </td>
+   <td style="text-align:right;"> 6328 </td>
+   <td style="text-align:right;"> 5069 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
   <tr>
    <td style="text-align:left;"> East </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4527 </td>
-   <td style="text-align:right;"> 4596 </td>
-   <td style="text-align:right;"> 5044 </td>
-   <td style="text-align:right;"> 6986 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:right;"> 6336 </td>
+   <td style="text-align:right;"> 5752 </td>
+   <td style="text-align:right;"> 7178 </td>
+   <td style="text-align:left;"> neutral </td>
+   <td style="text-align:left;"> high </td>
   </tr>
   <tr>
    <td style="text-align:left;"> West </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 6154 </td>
-   <td style="text-align:right;"> 5376 </td>
-   <td style="text-align:right;"> 5383 </td>
-   <td style="text-align:right;"> 4814 </td>
+   <td style="text-align:right;"> 3983 </td>
+   <td style="text-align:right;"> 6369 </td>
+   <td style="text-align:right;"> 4712 </td>
+   <td style="text-align:right;"> 5871 </td>
+   <td style="text-align:left;"> low </td>
+   <td style="text-align:left;"> low </td>
   </tr>
 </tbody>
 </table>
@@ -503,7 +537,7 @@ budget %>%
 
 ### Mutate
 
-Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions (e.g., `profit` below).
+The function `mutate()` allows you to add new columns or change existing ones by overwriting them by using the syntax `new_column = operation`.  You can add more than one column in the same mutate function by separating the columns with a comma. Once you make a new column, you can use it in further column definitions. For example, the creation of `profit` below uses the column `expenses` which is created above it.
 
 
 ```r
@@ -516,21 +550,65 @@ budget2 <- budget %>%
   )
 ```
 
+`mutate()` can also be used in conjunction with other functions and Boolean operators. For example, we can add another column to `budget2` that states whether a profit was returned that year or overwrite our `product` variable as a factor. Just like when we used Boolean operators with filter, it will evaluate the equation and return TRUE or FALSE depending on whether the observation meets the criteria.
+
+
+```r
+budget2 <- budget2 %>%
+  mutate(profit_category = profit > 0,
+         product = as.factor(product))
+```
 
 ::: {.warning data-latex=""}
-You can overwrite a column by giving a new column the same name as the old column (see `region`) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
+You can overwrite a column by giving a new column the same name as the old column (see `region` or `product`) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
 :::
 
+You can also use `case_when()` to specify what values to return, rather than defaulting to TRUE or FALSE:
+
+
+```r
+budget3 <- budget2 %>%
+  mutate(profit_category = case_when(profit > 0 ~ "PROFIT",
+                                     profit < 0 ~ "NO PROFIT"))
+```
+
+Use it to recode values:
+
+
+```r
+# create a column where people get a bonus if customer satisfaction was overall high or very high
+
+bonus <- budget3 %>%
+  mutate(bonus_2019 = case_when(satisfaction_2019 %in% c("very low", "low", "neutral") ~ "no bonus",
+                                satisfaction_2019 %in% c("high", "very high") ~ "bonus"))
+```
+
+And combine different criteria:
+
+
+```r
+# new management takes over - people only get a bonus if customer satisfaction was overall high or very high AND if a profit was returned
+
+bonus2 <- budget3 %>%
+  mutate(bonus_2020 = case_when(satisfaction_2020 == "high" & 
+                                  profit_category == "PROFIT" ~ "bonus",
+                                satisfaction_2020 == "very high" & 
+                                  profit_category == "PROFIT" ~ "bonus",
+                                TRUE ~ "No bonus")) # set all other values to "no bonus"
+```
+
+Just like `filter()`, `mutate()` is incredibly powerful and the scope of what you can create is far beyond what we can cover in this book. 
 
 ### Summarise {#dplyr-summarise}
 
 You were introduced to the `summarise()` function in Chapter\ @\ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).
 
-Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year.
+Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year. We'll also drop the satisfaction data as we don't need it for this analysis. 
 
 
 ```r
-budget3 <- budget %>%
+budget4 <- budget %>%
+  select(-satisfaction_2019, -satisfaction_2020) %>%
   pivot_longer(cols = sales_2019:expenses_2020,
                names_to = c("type", "year"),
                names_sep = "_",
@@ -538,7 +616,7 @@ budget3 <- budget %>%
   pivot_wider(names_from = type,
               values_from = value)
 
-head(budget3) # check the format
+head(budget4) # check the format
 ```
 
 <div class="kable-table">
@@ -558,43 +636,43 @@ head(budget3) # check the format
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> widgets </td>
    <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 10722 </td>
+   <td style="text-align:right;"> 8784 </td>
+   <td style="text-align:right;"> 9270 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> widgets </td>
    <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 9383 </td>
-   <td style="text-align:right;"> 9003 </td>
+   <td style="text-align:right;"> 9789 </td>
+   <td style="text-align:right;"> 8778 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> gadgets </td>
    <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5987 </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 4014 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> North </td>
    <td style="text-align:left;"> gadgets </td>
    <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 5027 </td>
-   <td style="text-align:right;"> 6065 </td>
+   <td style="text-align:right;"> 6937 </td>
+   <td style="text-align:right;"> 6504 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> widgets </td>
    <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 11023 </td>
-   <td style="text-align:right;"> 10904 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 9560 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> South </td>
    <td style="text-align:left;"> widgets </td>
    <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> 8450 </td>
-   <td style="text-align:right;"> 10572 </td>
+   <td style="text-align:right;"> 11194 </td>
+   <td style="text-align:right;"> 12456 </td>
   </tr>
 </tbody>
 </table>
@@ -605,7 +683,7 @@ Now we can create summary statistics for the table.
 
 
 ```r
-budget3 %>%
+budget4 %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
@@ -627,16 +705,15 @@ budget3 %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 7716.188 </td>
-   <td style="text-align:right;"> 7743.438 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 2390 </td>
+   <td style="text-align:right;"> 7900.438 </td>
+   <td style="text-align:right;"> 7975.625 </td>
+   <td style="text-align:right;"> -2429 </td>
+   <td style="text-align:right;"> 1756 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
-
 
 ### Group By {#dplyr-groupby}
 
@@ -644,16 +721,22 @@ You were introduced to the `group_by()` function in Chapter\ \@ref(grouping). Fo
 
 
 ```r
-year_prod <- budget3 %>%
+year_prod <- budget4 %>%
   group_by(year, product) %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
     min_profit = min(expenses - sales),
-    max_profit = max(expenses - sales),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales)
+  ) %>%
+  ungroup()
+```
 
+```
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
+```
+
+```r
 year_prod
 ```
 
@@ -674,54 +757,173 @@ year_prod
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
+   <td style="text-align:right;"> 4936.75 </td>
+   <td style="text-align:right;"> 5201.50 </td>
+   <td style="text-align:right;"> -1194 </td>
+   <td style="text-align:right;"> 1643 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
+   <td style="text-align:right;"> 10377.50 </td>
+   <td style="text-align:right;"> 10068.75 </td>
+   <td style="text-align:right;"> -2429 </td>
+   <td style="text-align:right;"> 1756 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4751.00 </td>
-   <td style="text-align:right;"> 5753.75 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
+   <td style="text-align:right;"> 6083.50 </td>
+   <td style="text-align:right;"> 6155.50 </td>
+   <td style="text-align:right;"> -498 </td>
+   <td style="text-align:right;"> 842 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9593.00 </td>
-   <td style="text-align:right;"> 9679.50 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
+   <td style="text-align:right;"> 10204.00 </td>
+   <td style="text-align:right;"> 10476.75 </td>
+   <td style="text-align:right;"> -1011 </td>
+   <td style="text-align:right;"> 1308 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
+
+Note that you can use the other wrangling functions on the summary table, for example: 
+
+
+```r
+# arrange by maximum profit
+year_prod %>%
+  arrange(desc(max_profit))
+
+# filter out gadgets
+year_prod %>%
+  filter(product != "gadgets")
+```
+
+
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_EZXDAXMOYQ'><label><input type="radio" autocomplete="off" name="radio_EZXDAXMOYQ" value="x"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_DEXIJDMDRI'><label><input type="radio" autocomplete="off" name="radio_DEXIJDMDRI" value="x"></input> <span><pre>budget3 %>%
+  group_by(region) %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_DEXIJDMDRI" value="answer"></input> <span><pre>budget3 %>%
+  group_by(region) %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_DEXIJDMDRI" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_EZXDAXMOYQ" value="x"></input> <span><pre>budget3 %>%
-  group_by(region) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_EZXDAXMOYQ" value="answer"></input> <span><pre>budget3 %>%
-  group_by(region) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_EZXDAXMOYQ" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_DEXIJDMDRI" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
   summarise(max_sales = max(region)</pre></span></label></div>
 
 :::
+
+You can also use `group_by()` in combination with other functions. For example, `slice_max()` returns the top N rows, ordered by a specific variable.
+
+
+```r
+# return top 3 sales
+budget4 %>%
+  slice_max(n = 3, order_by = sales)
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> product </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:right;"> sales </th>
+   <th style="text-align:right;"> expenses </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> South </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 9560 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> South </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 11194 </td>
+   <td style="text-align:right;"> 12456 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> West </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 10885 </td>
+   <td style="text-align:right;"> 10417 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+But this can be combined with `group_by()` to return the top sales for each region:
+
+
+```r
+# return top sale for each region
+budget4 %>%
+  group_by(region) %>%
+  slice_max(n = 1, order_by = sales)
+```
+
+<div class="kable-table">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> region </th>
+   <th style="text-align:left;"> product </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:right;"> sales </th>
+   <th style="text-align:right;"> expenses </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> East </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 10376 </td>
+   <td style="text-align:right;"> 12132 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> North </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 9789 </td>
+   <td style="text-align:right;"> 8778 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> South </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 11989 </td>
+   <td style="text-align:right;"> 9560 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> West </td>
+   <td style="text-align:left;"> widgets </td>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 10885 </td>
+   <td style="text-align:right;"> 10417 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
 
 ## Complications
 
@@ -753,41 +955,41 @@ year_prod %>%
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5832 </td>
-   <td style="text-align:right;"> 5188 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
+   <td style="text-align:right;"> 4937 </td>
+   <td style="text-align:right;"> 5202 </td>
+   <td style="text-align:right;"> -1194 </td>
+   <td style="text-align:right;"> 1643 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689 </td>
-   <td style="text-align:right;"> 10352 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
+   <td style="text-align:right;"> 10378 </td>
+   <td style="text-align:right;"> 10069 </td>
+   <td style="text-align:right;"> -2429 </td>
+   <td style="text-align:right;"> 1756 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4751 </td>
-   <td style="text-align:right;"> 5754 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
+   <td style="text-align:right;"> 6084 </td>
+   <td style="text-align:right;"> 6156 </td>
+   <td style="text-align:right;"> -498 </td>
+   <td style="text-align:right;"> 842 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9593 </td>
-   <td style="text-align:right;"> 9680 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
+   <td style="text-align:right;"> 10204 </td>
+   <td style="text-align:right;"> 10477 </td>
+   <td style="text-align:right;"> -1011 </td>
+   <td style="text-align:right;"> 1308 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
-If you compare this table to the one in Section\ \@ref(dplyr-groupby), you'll see that the 2019 gadgets mean sales rounded up from 5831.5 to 5832, while the mean expenses rounded from 5188.5 to 5188. What's going on!?
+If you compare this table to the one in Section\ \@ref(dplyr-groupby), you'll see that the 2019 gadgets mean sales rounded up from 4936.75 to 4937, while the mean expenses rounded from 5201.5 to 5202. What's going on!?
 
 This may seem like a mistake, but R rounds .5 to the nearest even number, rather than always up, like you were probably taught in school. This prevents overestimation biases, since x.5 is *exactly* halfway between x and x+1, so there is no reason it should always round up.
 
@@ -803,6 +1005,8 @@ round(1.5)
 ```
 
 However, this might throw a monkey wrench into your own systems. For example, our school policy is to round up for course marks at x.5. The solution is to define your own version of `round()` (modified from [Andrew Landgraf's blog](http://andrewlandgraf.com/2012/06/15/rounding-in-r/){target="_blank"}). Put it in a hidden code block at the top of your script, with a clear warning that this is changing the way `round()` normally works. You don't need to understand how this function works, just how to use it.
+
+when you run this code, a new section will appear in the environment pane labelled "Functions". In addition to using functions from packages, you can also make your own. It's not something we are going to go into detail on in this course but it's useful to know the functionality exists.
 
 
 ```r
@@ -838,20 +1042,61 @@ Just remove your version if you want R to go back to the original method. Rememb
 rm(round)
 ```
 
-
-
 ### Missing values
 
-What if the North region hasn't returned their sales data for 2020 yet?
+If you have control over your data, it is always best to keep missing values as empty cells rather than using denoting missingness with a word or implausible number. If you used e.g., "missing" rather than leaving the cell empty, the entire variable would be read as character data which means you wouldn't be able to perform mathematical operations like calculating the mean. If you use an implausible number (0 or 999 are common), then you risk these value being included in any calculations as real numbers.
+
+However, we often don't have control over how the data come to us, so let's run through how to fix this.
+
+What if the North region hadn't returned their sales data for 2020 yet (entered as "missing") and the South region hadn't returned their expenses (entered as 0)? 
+
+We'll create two separate objects to demonstrate two approaches.
 
 
 ```r
-# set sales values to NA for North 2020 rows
-budget_missing <- budget3 %>%
-  mutate(sales = ifelse(region == "North" & year == 2020, NA, sales))
+north_data <- budget4 %>%
+  filter(region == "North")
 
-# check
-filter(budget_missing, region == "North")
+south_data <- budget4 %>%
+  filter(region == "South")
+```
+
+For the South data, we can use `case_when()` to convert the expenses for 2020 to "0".
+
+
+```r
+south_missing <- south_data %>%
+  mutate(expenses = case_when(year == 2020 ~ 0,
+                           TRUE ~ sales))
+```
+
+For the North, we need to use `ifelse()` to recode these values as "missing". `ifelse()` is similar to `case_when()`, it's harder to use when you have multiple different conditions but it's also less picky. `case_when()` requires all the values in the variable to be of the same type, whereas `ifelse()` doesn't. In this case, because sales will contain both character and numeric data, we need to use `ifelse()`.
+
+
+```r
+# set sales values to "missing" for North 2020 rows
+north_missing <- north_data %>%
+  mutate(sales = ifelse(region == "North" & year == 2020,
+                        "missing", sales))
+# check structure of data, sales now character
+str(north_missing)
+
+# try to compute mean sales
+north_missing %>%
+  summarise(mean_sales = mean(sales))
+```
+
+```
+## Warning in mean.default(sales): argument is not numeric or logical: returning NA
+```
+
+```
+## tibble [4 x 5] (S3: tbl_df/tbl/data.frame)
+##  $ region  : chr [1:4] "North" "North" "North" "North"
+##  $ product : chr [1:4] "widgets" "widgets" "gadgets" "gadgets"
+##  $ year    : chr [1:4] "2019" "2020" "2019" "2020"
+##  $ sales   : chr [1:4] "8784" "missing" "5208" "missing"
+##  $ expenses: num [1:4] 9270 8778 4014 6504
 ```
 
 <div class="kable-table">
@@ -859,60 +1104,46 @@ filter(budget_missing, region == "North")
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;"> region </th>
-   <th style="text-align:left;"> product </th>
-   <th style="text-align:left;"> year </th>
-   <th style="text-align:right;"> sales </th>
-   <th style="text-align:right;"> expenses </th>
+   <th style="text-align:right;"> mean_sales </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 12029 </td>
-   <td style="text-align:right;"> 10722 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:left;"> 2020 </td>
    <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 9003 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:right;"> 5673 </td>
-   <td style="text-align:right;"> 5987 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> North </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 6065 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
+To set the missing values to NA, you could use either `ifelse()` or `case_when()`. For the North data, because the variable was converted to character, we also need to transform this back to numeric.
+
+
+```r
+# set "missing" values to NA using case_when
+north_missing <- north_missing %>%
+  mutate(sales = case_when(sales == "missing" ~ NA_character_,
+                           TRUE ~ sales),
+         sales = as.numeric(sales))
+
+# set "0" values to NA using ifelse
+
+south_missing <- south_missing %>%
+  mutate(expenses = ifelse(expenses == 0, NA, sales))
+```
+
 Now, if we try to calculate the mean sales and profits, we get missing values for any summary value that used one of the North 2020 sales values.
 
 
 ```r
-budget_missing %>%
-  group_by(year, product) %>%
+north_missing %>%
+  group_by(product) %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
     min_profit = min(expenses - sales),
-    max_profit = max(expenses - sales),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales)) %>%
+  ungroup()
 ```
 
 <div class="kable-table">
@@ -920,7 +1151,6 @@ budget_missing %>%
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;"> year </th>
    <th style="text-align:left;"> product </th>
    <th style="text-align:right;"> mean_sales </th>
    <th style="text-align:right;"> mean_expenses </th>
@@ -930,34 +1160,16 @@ budget_missing %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2019 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> gadgets </td>
    <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 5753.75 </td>
+   <td style="text-align:right;"> 5259 </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> widgets </td>
    <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 9679.50 </td>
+   <td style="text-align:right;"> 9024 </td>
    <td style="text-align:right;"> NA </td>
    <td style="text-align:right;"> NA </td>
   </tr>
@@ -970,15 +1182,15 @@ This is because `NA` basically means "I don't know", and the sum of 100 and "I d
 
 
 ```r
-budget_missing %>%
-  group_by(year, product) %>%
+north_missing %>%
+  group_by(product) %>%
   summarise(
     mean_sales = mean(sales, na.rm = TRUE),
     mean_expenses = mean(expenses, na.rm = TRUE),
     min_profit = min(expenses - sales, na.rm = TRUE),
-    max_profit = max(expenses - sales, na.rm = TRUE),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales, na.rm = TRUE)
+  ) %>%
+  ungroup()
 ```
 
 <div class="kable-table">
@@ -986,7 +1198,6 @@ budget_missing %>%
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;"> year </th>
    <th style="text-align:left;"> product </th>
    <th style="text-align:right;"> mean_sales </th>
    <th style="text-align:right;"> mean_expenses </th>
@@ -996,36 +1207,18 @@ budget_missing %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 5831.50 </td>
-   <td style="text-align:right;"> 5188.50 </td>
-   <td style="text-align:right;"> -2632 </td>
-   <td style="text-align:right;"> 517 </td>
+   <td style="text-align:right;"> 5208 </td>
+   <td style="text-align:right;"> 5259 </td>
+   <td style="text-align:right;"> -1194 </td>
+   <td style="text-align:right;"> -1194 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 10689.25 </td>
-   <td style="text-align:right;"> 10352.00 </td>
-   <td style="text-align:right;"> -1307 </td>
-   <td style="text-align:right;"> 150 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4659.00 </td>
-   <td style="text-align:right;"> 5753.75 </td>
-   <td style="text-align:right;"> -562 </td>
-   <td style="text-align:right;"> 2390 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2020 </td>
-   <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 9663.00 </td>
-   <td style="text-align:right;"> 9679.50 </td>
-   <td style="text-align:right;"> -1105 </td>
-   <td style="text-align:right;"> 2122 </td>
+   <td style="text-align:right;"> 8784 </td>
+   <td style="text-align:right;"> 9024 </td>
+   <td style="text-align:right;"> 486 </td>
+   <td style="text-align:right;"> 486 </td>
   </tr>
 </tbody>
 </table>
@@ -1036,14 +1229,18 @@ If you want to find out how many missing or non-missing values there are in a co
 
 
 ```r
-budget_missing %>%
+north_missing %>%
   group_by(year, product) %>%
   summarise(
     n_valid = sum(!is.na(sales)),
     n_missing = sum(is.na(sales)),
-    prop_missing = mean(is.na(sales)),
-    .groups = "drop"
-  )
+    prop_missing = mean(is.na(sales))
+  ) %>%
+  ungroup()
+```
+
+```
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 <div class="kable-table">
@@ -1062,406 +1259,153 @@ budget_missing %>%
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2019 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> gadgets </td>
-   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 2020 </td>
    <td style="text-align:left;"> widgets </td>
-   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 1 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 
+You may also want to remove rows that have missing values and only work from complete datasets. `drop_na()` will remove any row that has a missing observation. You can use `drop_na()` on the entire dataset which will remove any row that has *any* missing value, or you can specify to only remove rows that are missing a specific value.
 
-## Putting it together {#together-wrangle}
 
-Load some demo data we first used in Chapter\ \@ref(data). Use `glimpse()` or another method to get familiar with the data set.
+```r
+# combine missing datasets
 
+missing_data <- bind_rows(north_missing, south_missing)
+
+# remove any rows with any missing values
+complete_data <- missing_data %>%
+  drop_na()
+
+# remove any rows that are missing a value for sales
+complete_sales <- missing_data %>%
+  drop_na(sales)
+```
+
+Missing data can be quite difficult to deal with depending on how it is represented. As always, no amount of coding expertise can make up for not understanding the structure and idiosyncrasies of your data. 
+
+## Exercises {#together-wrangle}
+
+Let's try some exercises using a dataset you already encountered in Chapter\ \@ref(viz) so that you can see how much more you're able to do with the data now.
+
+* Save your current Markdown, close it, and open a new Rmd named "survey_data_mad_skillz".
+* In the set-up code chunk, load the tidyverse then load the dataset from https://psyteachr.github.io/ads-v1/data/survey_data.csv into an object named `survey_data`.
+* Use your method of choice to review the dataset and familiarise yourself with its structure.
+
+
+<div class='webex-solution'><button>Solution</button>
 
 ```r
 # from https://www.kaggle.com/kyanyoga/sample-sales-data
-sales <- read_csv("data/sales_data_sample.csv",
-                  show_col_types = FALSE)
+library(tidyverse)
+survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv")
+```
+
+```
+## Rows: 707 Columns: 7
+```
+
+```
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (3): caller_id, employee_id, issue_category
+## dbl  (3): wait_time, call_time, satisfaction
+## dttm (1): call_start
+```
+
+```
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
-Double check that the `SALES` column does equal the `QUANTITYORDERED` column times the `PRICEEACH`. You can select just the columns you need and rename them when selecting to make the code more readable.
+</div>
 
+### Creating new categories
+
+Employees 1-5 were trained by Michael and employees 6-10 were trained by Dwight. 
+
+* Create a new column named `trainer` that lists the trainer for each employee.
+* Then, calculate the average satisfaction scores for employees trained by each trainer and visualise the satisfaction scores for each in whatever way you think best.
+
+
+<div class='webex-solution'><button>Solution</button>
 
 ```r
-sales_check <- sales %>%
-  select(SALES, n = QUANTITYORDERED, price = PRICEEACH) %>%
-  mutate(total = n * price)
+survey_data <- survey_data %>%
+  mutate(trainer = case_when(employee_id %in% c("E01", "E02", "E03", "E04", "E05") ~ "Michael",
+                             employee_id %in% c("E06", "E07", "E08", "E09", "E10") ~ "Dwight"))
+
+# mean satisfaction scores
+survey_data %>%
+  group_by(trainer) %>%
+  summarise(mean_satisfaction = mean(satisfaction))
+
+# possible visualisation 
+
+ggplot(survey_data, aes(x = satisfaction, fill = trainer)) +
+  geom_histogram(binwidth = 1, show.legend = FALSE, colour = "black") +
+  facet_wrap(~trainer) +
+  labs(title = "Satisfaction scores by employee trainer")
 ```
 
-Make a table of any rows where the value of `total` doesn't equal `SALES`.
-
-
-```r
-errors <- sales_check %>%
-  filter(SALES != total)
-
-head(errors)
-```
-
-<div class="kable-table">
+<img src="08-wrangle_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /><div class="kable-table">
 
 <table>
  <thead>
   <tr>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
+   <th style="text-align:left;"> trainer </th>
+   <th style="text-align:right;"> mean_satisfaction </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 2765.90 </td>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 81.35 </td>
-   <td style="text-align:right;"> 2765.90 </td>
+   <td style="text-align:left;"> Dwight </td>
+   <td style="text-align:right;"> 3.366755 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 3884.34 </td>
-   <td style="text-align:right;"> 41 </td>
-   <td style="text-align:right;"> 94.74 </td>
-   <td style="text-align:right;"> 3884.34 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3746.70 </td>
-   <td style="text-align:right;"> 45 </td>
-   <td style="text-align:right;"> 83.26 </td>
-   <td style="text-align:right;"> 3746.70 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5205.27 </td>
-   <td style="text-align:right;"> 49 </td>
-   <td style="text-align:right;"> 100.00 </td>
-   <td style="text-align:right;"> 4900.00 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3479.76 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 96.66 </td>
-   <td style="text-align:right;"> 3479.76 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5512.32 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 100.00 </td>
-   <td style="text-align:right;"> 4800.00 </td>
+   <td style="text-align:left;"> Michael </td>
+   <td style="text-align:right;"> 3.088415 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
-
-If you check the `errors` table, you'll see that 1697 of the original 2823 rows have "errors", even though many of the values in the `SALES` and `sales_check` columns look identical. You can fix this by rounding the value of `total` to 2 decimal places.
-
-::: {.info data-latex=""}
-This is due to the way values with decimal places are represented by a computer. You use base 10 to count, and have to represent some numbers with a repeating decimal, like 1/3 is .0333 repeating, while a computer uses binary to count, and has to represent different numbers using repeats. This can lead to very small differences when you divide or multiply some numbers.
-
-
-```r
-options(scipen = 20) # avoids scientific notation
-x = (1/49 * 49)
-x # prints as 1
-1-x # but is actually very slightly smaller
-```
-
-```
-## [1] 1
-## [1] 0.0000000000000001110223
-```
-
-:::
-
-
-
-```r
-errors <- sales_check %>%
-  filter(SALES != round(total, 2))
-```
-
-There are still 1304 errors! Lets look at the 10 smallest. We can do this by calculating the difference, arranging from smallest to largest, and filtering for the first 10 rows. 
-
-
-```r
-errors %>%
-  mutate(diff = SALES - total) %>%
-  arrange(diff) %>%
-  filter(row_number() <= 10)
-```
-
-Alternatively, we can use a `slice` function.
-
-
-```r
-errors %>%
-  mutate(diff = SALES - total) %>%
-  slice_min(order_by = diff, n = 10)
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
-   <th style="text-align:right;"> diff </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 2600.26 </td>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2600 </td>
-   <td style="text-align:right;"> 0.26 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3602.16 </td>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3600 </td>
-   <td style="text-align:right;"> 2.16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2504.75 </td>
-   <td style="text-align:right;"> 25 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2500 </td>
-   <td style="text-align:right;"> 4.75 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4607.36 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4600 </td>
-   <td style="text-align:right;"> 7.36 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3711.10 </td>
-   <td style="text-align:right;"> 37 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3700 </td>
-   <td style="text-align:right;"> 11.10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3912.09 </td>
-   <td style="text-align:right;"> 39 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 3900 </td>
-   <td style="text-align:right;"> 12.09 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2612.48 </td>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2600 </td>
-   <td style="text-align:right;"> 12.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4613.80 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4600 </td>
-   <td style="text-align:right;"> 13.80 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4814.40 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 4800 </td>
-   <td style="text-align:right;"> 14.40 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2915.66 </td>
-   <td style="text-align:right;"> 29 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 2900 </td>
-   <td style="text-align:right;"> 15.66 </td>
-  </tr>
-</tbody>
-</table>
-
 </div>
 
-If we plot the data, it looks like all of the errors are in one direction.
+### Filter by calculated score
+
+First, calculate the average wait time and store this in an object named `mean_wait`. This should be a single value rather than a table.
 
 
-```r
-ggplot(errors, aes(x = SALES, y = total)) + 
-  geom_point(alpha = 0.5) +
-  geom_abline(slope = 1, intercept = 0) +
-  coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
-```
+<div class='webex-solution'><button>Hint</button>
 
-<img src="08-wrangle_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
-
-Let's have a look at the data separately for products with a price of exactly 100 versus other products.
-
-
-```r
-sales_check %>%
-  mutate(price100 = price == 100) %>%
-  ggplot(aes(x = SALES, y = total, color = price100)) + 
-  geom_point(alpha = 0.5) +
-  geom_abline(slope = 1, intercept = 0) +
-  coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
-```
-
-<img src="08-wrangle_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" />
-
-It looks like that's the problem with this dataset: the `PRICEEACH` column doesn't go above 100. Let's fix that by dividing the total sale price by the quantity ordered.
-
-
-```r
-fixed_sales <- sales %>%
-  mutate(PRICEEACH = round(SALES / QUANTITYORDERED, 2))
-```
-
-Now we can re-run the code from before to find any errors. We're adding in the `ORDERNUMBER` for the next step.
-
-
-```r
-sales_check <- fixed_sales %>%
-  select(ORDERNUMBER, 
-         SALES, 
-         n = QUANTITYORDERED, 
-         price = PRICEEACH) %>%
-  mutate(total = n * price)
-
-errors <- sales_check %>%
-  filter(SALES != round(total, 2))
-
-errors
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> ORDERNUMBER </th>
-   <th style="text-align:right;"> SALES </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> price </th>
-   <th style="text-align:right;"> total </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 10304 </td>
-   <td style="text-align:right;"> 10172.7 </td>
-   <td style="text-align:right;"> 47 </td>
-   <td style="text-align:right;"> 216.44 </td>
-   <td style="text-align:right;"> 10172.68 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10312 </td>
-   <td style="text-align:right;"> 11623.7 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 242.16 </td>
-   <td style="text-align:right;"> 11623.68 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10405 </td>
-   <td style="text-align:right;"> 11739.7 </td>
-   <td style="text-align:right;"> 76 </td>
-   <td style="text-align:right;"> 154.47 </td>
-   <td style="text-align:right;"> 11739.72 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10375 </td>
-   <td style="text-align:right;"> 10039.6 </td>
-   <td style="text-align:right;"> 43 </td>
-   <td style="text-align:right;"> 233.48 </td>
-   <td style="text-align:right;"> 10039.64 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10388 </td>
-   <td style="text-align:right;"> 10066.6 </td>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 218.84 </td>
-   <td style="text-align:right;"> 10066.64 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-There are 5 instances where the quantity ordered doesn't divide into the total price in a way that produces prices that round to the nearest cent. These might require further investigation, but let's just set the value of `SALES` to missing for the orders in the `errors` tables.
-
-
-```r
-fixed_sales <- fixed_sales %>%
-  mutate(SALES = ifelse(
-    test = ORDERNUMBER %in% errors$ORDERNUMBER,
-    yes = NA,
-    no = SALES)
-  )
-```
-
-
-Now that you've fixed (most of) the problems with the dataset, see if you can figure out how to make the table below. It should take you 5 steps.
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> PRODUCTLINE </th>
-   <th style="text-align:right;"> 2003 </th>
-   <th style="text-align:right;"> 2004 </th>
-   <th style="text-align:right;"> 2005 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Planes </td>
-   <td style="text-align:right;"> 272258 </td>
-   <td style="text-align:right;"> 502672 </td>
-   <td style="text-align:right;"> 159051 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ships </td>
-   <td style="text-align:right;"> 244821 </td>
-   <td style="text-align:right;"> 341438 </td>
-   <td style="text-align:right;"> 128178 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Trains </td>
-   <td style="text-align:right;"> 72802 </td>
-   <td style="text-align:right;"> 116524 </td>
-   <td style="text-align:right;"> 36917 </td>
-  </tr>
-</tbody>
-</table>
+There are multiple ways to achieve this. You could create the table and then pull put the single value, or just calculate the single value.
 
 </div>
 
@@ -1470,98 +1414,174 @@ Now that you've fixed (most of) the problems with the dataset, see if you can fi
 <div class='webex-solution'><button>Solution</button>
 
 ```r
-fixed_sales %>%
-  filter(PRODUCTLINE %in% c("Planes", "Ships", "Trains")) %>%
-  group_by(YEAR_ID, PRODUCTLINE) %>%
-  summarise(total = sum(SALES, na.rm = TRUE),
-            .groups = "drop") %>%
-  mutate(total = round(total)) %>%
-  pivot_wider(names_from = YEAR_ID,
-              values_from = total)
+# method 1 - tidyverse
+mean_wait <- survey_data %>%
+  summarise(mean_wait = mean(wait_time)) %>%
+  pull(mean_wait)
+
+# method 2 - base R
+mean_wait <- mean(survey_data$wait_time)
 ```
 
 
 </div>
 
-## Exercises
-
-### Mutate
-
-Load some data about the [population of the Scottish counties](https://psyteachr.github.io/ads-v1/data/scottish_population.csv). 
-
-
-```r
-scotpop <- read_csv("data/scottish_population.csv",
-                    show_col_types = FALSE)
-```
-
-Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order `population` (in K) then `county`, and show only the counties with populations greater than 200K. 
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:left;"> county </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 593K </td>
-   <td style="text-align:left;"> Glasgow </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 486K </td>
-   <td style="text-align:left;"> Edinburgh </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 365K </td>
-   <td style="text-align:left;"> Fife </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 326K </td>
-   <td style="text-align:left;"> North Lanarkshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 312K </td>
-   <td style="text-align:left;"> South Lanarkshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 246K </td>
-   <td style="text-align:left;"> Aberdeenshire </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 222K </td>
-   <td style="text-align:left;"> Highland </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 217K </td>
-   <td style="text-align:left;"> Aberdeen </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-::: {.try data-latex=""}
-There are several different ways you could make the table above. Some functions could be in a different order and some couldn't. See where you can move the `filter()` and `arrange()` functions.
-:::
+Now create a dataset named `long_wait` that just contains data from customers who waited more than the average wait time.
 
 
 <div class='webex-solution'><button>Solution</button>
 
 ```r
-scotpop %>%
-  arrange(desc(population)) %>%
-  filter(population > 200000) %>%
-  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
-  select(population = kpop, 
-         county = name)
+long_wait <- survey_data %>%
+  filter(wait_time > mean_wait)
 ```
 
 
 </div>
+
+Create a visualisation that shows how many customers waited more than the average wait time for each employee.
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+long_wait %>%
+  ggplot(aes(x = employee_id)) +
+  geom_bar()
+```
+
+<img src="08-wrangle_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" />
+</div>
+
+### Multiple critera
+
+Now, add a column to `survey_data` named `follow_up` that flags whether a customer should be followed up with a courtesy phone call. Your company is short-staffed so only customers that meet all three of the following criteria should be followed-up:
+
+* Their wait time should be above the average **for all calls**
+* Their call time should be above the average **for their category**
+* Their satisfaction should be less than three 3. 
+
+This is quite complicated and there are multiple ways to achieve the desired outcome. Some approaches may need other functions that were covered in previous chapters and you may need to create intermediate objects.
+
+Call the final object `follow_data` and keep only the customer ID, employee ID, trainer, and follow up columns. 
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+# this is one possible solution, there are many other valid approaches 
+
+# calculate mean wait time across all calls
+mean_wait <- mean(survey_data$wait_time)
+
+# calculate mean call time for each category
+follow_data <- survey_data %>%
+  group_by(issue_category) %>%
+  summarise(mean_call = mean(call_time)) %>%
+#then join it to the survey data  
+  left_join(survey_data, by = "issue_category") %>%
+# then add on the column
+  mutate(follow_up = case_when(wait_time > mean_wait & 
+                                 call_time > mean_call & 
+                                 satisfaction < 3 ~ "yes",
+                               TRUE ~ "no")) %>%
+  select(caller_id, employee_id, trainer, follow_up)
+```
+
+
+</div>
+
+For all of the above, write code that stores the answer as a single value, so that you could easily use it in inline coding.
+
+How many customers need to be followed up:
+
+* In total? <input class='webex-solveme nospaces' size='3' data-answer='["120"]'/>
+* From calls by employee 06? <input class='webex-solveme nospaces' size='2' data-answer='["16"]'/>
+* From calls by employees trained by Michael <input class='webex-solveme nospaces' size='2' data-answer='["65"]'/>
+* From calls by employees trained by Dwight <input class='webex-solveme nospaces' size='2' data-answer='["55"]'/>
+
+
+<div class='webex-solution'><button>Hint</button>
+
+`group_by %>% count() %>% filter() %>% pull()
+
+</div>
+
+
+Which employee needs to make the largest number of follow-up courtesy calls? <input class='webex-solveme nospaces' size='3' data-answer='["E02"]'/>
+
+
+<div class='webex-solution'><button>Hint</button>
+
+As above but add in an `ungroup()` and `slice_max()` along the way. 
+
+</div>
+
+
+
+<div class='webex-solution'><button>Solution</button>
+
+```r
+# in total
+follow_data %>%
+  group_by(follow_up) %>%
+  count()%>%
+  filter(follow_up == "yes") %>%
+  pull(n)
+
+# by employee 6
+follow_data %>%
+  group_by(follow_up, employee_id) %>%
+  count() %>%
+  filter(employee_id == "E06",
+         follow_up == "yes") %>%
+  pull(n)
+
+# by michael
+follow_data %>%
+  group_by(follow_up, trainer) %>%
+  count() %>%
+  filter(trainer == "Michael",
+         follow_up == "yes") %>%
+  pull(n)
+
+# by dwight
+follow_data %>%
+  group_by(follow_up, trainer) %>%
+  count() %>%
+  filter(trainer == "Dwight",
+         follow_up == "yes") %>%
+  pull(n)
+
+# most follow-ups needed
+follow_data %>%
+  group_by(follow_up, employee_id) %>%
+  count() %>%
+  ungroup() %>%
+  filter(follow_up == "yes") %>%
+  slice_max(n = 1, order_by = n) %>%
+  pull(employee_id)
+```
+
+```
+## [1] 120
+## [1] 16
+## [1] 65
+## [1] 55
+## [1] "E02"
+```
+
+
+</div>
+
+### Original insight
+
+In preparation for the final summative assessment, explore the data to provide one original insight of your own.
+
+### Report
+
+Compile all the above into a visually appealing reproducible report that could be used to target employees and trainers for extra training (or depending on what mood you're in, to fire them). Use inline coding to report any numbers in the text. Once you're finished, post your Rmd and knitted html document on teams so that other learners can see your approach.
+
 
 ## Glossary {#glossary-wrangle}
 
@@ -1598,5 +1618,9 @@ scotpop %>%
 
 * [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
 * [Chapter 5: Data Transformation ](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
+* [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html) in *R for Data Science*
+* [Introduction to stringr](https://stringr.tidyverse.org/articles/stringr.html)
+
+
 
 

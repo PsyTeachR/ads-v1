@@ -43,7 +43,7 @@ First, create a new project for the work we'll do in this chapter named `r path(
 library(tidyverse) # for data wrangling
 ```
 
-You'll need to make a fodler called "data" and download two data files into it: 
+You'll need to make a folder called "data" and download two data files into it: 
 <a href="https://psyteachr.github.io/ads-v1/data/tidy_data.csv" download>tidy_data.csv</a> and
 <a href="https://psyteachr.github.io/ads-v1/data/untidy_data.csv" download>untidy_data.csv</a>.
 

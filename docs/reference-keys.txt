@@ -328,6 +328,7 @@ glossary-tidy
 resources-tidy
 wrangle
 ilo-wrangle
+set-up-5
 wrangling-functions
 select
 filter
@@ -339,8 +340,11 @@ complications
 rounding
 missing-values
 together-wrangle
-exercises-5
-mutate-1
+creating-new-categories
+filter-by-calculated-score
+multiple-critera
+original-insight
+report-1
 glossary-wrangle
 resources-wrangle
 custom
@@ -423,14 +427,6 @@ tables-data
 table-info
 row-col-access
 glossary-datatypes
-dates-times
-parsing
-get-parts
-date-arithmetic
-first-and-last-of-month
-rounding-1
-internationalisation
-example
 plotstyle
 aesthetics
 colourfill

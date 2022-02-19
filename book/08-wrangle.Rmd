@@ -8,6 +8,10 @@
 * Be able to create new columns and edit existing ones
 * Be able to handle missing data
 
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named `r path("08-wrangle")`. Second, open and save and new R Markdown document named `wrangle.Rmd`, delete the welcome text and load the required packages for this chapter.
+
 ```{r setup-wrangle, message=FALSE}
 library(tidyverse)   # data wrangling functions
 ```
@@ -16,7 +20,9 @@ Download the [Data transformation cheat sheet](https://raw.githubusercontent.com
 
 ## Wrangling functions
 
-Most `r glossary("data wrangling")` involves the reshaping functions you learned in Chapter\ \@ref(tidy) and these six functions: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.
+Data wrangling refers to the process of cleaning, transforming, and restructuring your data to get it into the format you need for analysis and it's something you will spend an awful lot of time doing. Most `r glossary("data wrangling")` involves the reshaping functions you learned in Chapter\ \@ref(tidy) and six functions from the `r pkg("dplyr")` package that is loaded as part of the `r pkg("tidyverse")`: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`. You'll remember the last two from Chapter\ \@ref(summary), so we'll only cover them briefly.
+
+It's worth highlighting that in this chapter we're going to cover these common functions and common uses of said functions. However, `r pkg("dplyr")` (and packages beyond it) has a huge number of additional wrangling functions and each function has many different arguments. Essentially, if you think you should be able to wrangle your data in a particular way that we haven't explicitly shown you, you almost certainly can, it might just take a bit of Googling to find out how. 
 
 ```{r, echo = FALSE, eval = FALSE}
 set.seed(8675309)
@@ -35,12 +41,14 @@ budget <- faux::sim_design(
   plot = FALSE
 ) %>%
   mutate_if(is.numeric, round) %>%
-  select(-id)
+  select(-id) %>%
+  mutate(satisfaction_2019 = c("high", "very high", "high", "low", "very low", "neutral", "neutral", "low"),
+         satisfaction_2020 = c("very high", "very high", "neutral", "low", "very low", "high", "neutral", "low"))
 
 write_csv(budget, "data/budget.csv")
 ```
 
-We'll use a small example table with the sales and expenses for two years from four regions over two products.
+We'll use a small example table with the sales, expenses, and satisfaction for two years from four regions over two products.
 
 ```{r}
 budget <- read_csv("data/budget.csv", show_col_types = FALSE)
@@ -53,42 +61,54 @@ budget
 
 ### Select
 
-Select columns by name or number.
+You can select columns (variables) by name or number (which is sometimes referred to as the column index).  Selecting by number can be useful when the column names are long or complicated.
 
-You can select each column individually, separated by commas (e.g., `region, sales_2019`). You can also select all columns from one to another by separating them with a colon (e.g., `sales_2019:expenses_2020`).
+```{r}
+# select single column by name
+product_dat <- budget %>% select(product) 
 
-```{r select-name}
-budget2020 <- budget %>% select(region, sales_2020, expenses_2020)
-names(budget2020)
+# select single column by number
+product_dat <- budget %>% select(2) 
 ```
 
-You can select columns by number, which can be useful when the column names are long or complicated. You even rename them by setting `new_name = old_col`. 
+
+You can select each column individually, separated by commas (e.g., `region, sales_2019`) but you can also select all columns from one to another by separating them with a colon (e.g., `sales_2019:expenses_2020`).
+
+The colon notation can be much faster because you don't need to type out each individual variable name, but make sure that you know what order your columns are in and always check the output to make sure you have selected what you intended.
+
+```{r select-name}
+# select columns individually
+sales2019 <- budget %>% select(region, product, sales_2019)
+
+# select columns with colon
+sales2019 <- budget %>% select(region:sales_2019)
+```
+
+You can rename columns at the same time as selecting them by setting `new_name = old_col`. 
 
 ```{r select-number}
 regions <- budget %>% select(`Sales Region` = 1, 3:6)
 names(regions)
 ```
 
-You can use a minus symbol to un-select columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first, e.g., `-(sales_2019:expenses_2020)`, not `-sales_2019:expenses_2020`.
+You can select columns either by telling R which ones you want to keep as in the previous examples, or by specifying which ones you want to exclude by using a minus symbol to un-select columns. You can also use the colon notation to de-select columns, but to do so you need to put parentheses around the span first, e.g., `-(sales_2019:expenses_2020)`, not `-sales_2019:expenses_2020`.
 
 ```{r select-unselect}
+# de-select individual columns
+sales <- budget %>% select(-expenses_2019, -expenses_2020)
+
+# de-select a range of columns
 sales <- budget %>% select(-(expenses_2019:expenses_2020))
-names(sales)
 ```
 
-You can select columns based on criteria about the column names.
+Finally, you can select columns based on criteria about the column names.
 
 | function | definition |
 |----------|------------|
 | `starts_with()` | select columns that start with a character string|
-| `ends_with()` | elect columns that end with a character string |
+| `ends_with()` | select columns that end with a character string |
 | `contains()` | select columns that contain a character string |
 | `num_range()` | select columns with a name that matches the pattern `prefix` |
-
-::: {.info data-latex=""}
-Use `width` to set the number of digits with leading
-zeros. For example, `num_range('var_', 8:10, width=2)` selects columns `var_08`, `var_09`, and `var_10`.
-:::
 
 ```{r select-helpers, echo = FALSE}
 x1 <- budget %>% select(starts_with("sales"))
@@ -120,30 +140,31 @@ What are the resulting columns for these four examples?
 :::
 
 
-
 ### Filter
 
-Select rows by matching column criteria.
+Whilst `select()` selects which variables you want to retain, `filter()` selects which rows to keep by matching column criteria.
 
-```{r filter}
-# select all rows from the North region
+You can filter by a single criterion. This criterion can be a character value (e.g., "North"), a number (e.g., 9003), or the result of a logical equation (e.g., keep all numbers larger than a certain value). For logical equations, the equation is checked for each row, and if the result is FALSE, the row is removed. You can reverse this equation by specifying `!=` where `!` means "not".
+
+```{r filter, eval = FALSE}
+# select all rows where region equals North
 budget %>% filter(region == "North")
+
+# select all rows where expenses_2020 were exactly equal to 9003
+budget %>% filter(expenses_2020 == 9003)
+
+# select all rows where sales_2019 was more than 10,000
+budget %>% filter(sales_2019 > 10000)
+
+# everything but the North
+budget %>% filter(region != "North")
 ```
 
 ::: {.warning data-latex=""}
-Remember to use `==` and not `=` to check if two things are equivalent. A single `=` assigns the right-hand value to the left-hand variable.
+Remember to use `==` and not `=` to check if two things are equivalent. A single `=` assigns the right-hand value to the left-hand variable (much like the `<-` operator).
 :::
 
-You can select on multiple criteria by separating them with commas.
-
-```{r filter-multiple}
-budget %>% filter(
-  region == "North",
-  product == "widgets"
-)
-```
-
-You can use the symbols `&`, `|`, and `!` to mean "and", "or", and "not". You can also use other operators to make equations. The equation is checked for each row, and if the result is FALSE, the row is removed.
+You can also select on multiple criteria by using `&` ("and") and `|` ("or").
 
 ```{r filter-symbols}
 # regions and products with profit in both 2019 and 2020
@@ -160,28 +181,50 @@ profit_either <- budget %>%
     sales_2020 > expenses_2020
   )
 
-# everything but the North
-not_north <- budget %>%
-  filter(region != "North")
-
 # 2020 profit greater than 1000
 profit_1000 <- budget %>%
   filter(sales_2020 - expenses_2020 > 1000)
 
 ```
 
-The `r glossary("match operator")` (`%in%`) is useful here for testing if a column value is in a list.
+If you want the filter to retain multiple specific values in the same variable, the `r glossary("match operator")` (`%in%`) should be used rather than `|`/or. The `!` can also be used in combination here, but it is placed before the variable name.
 
-```{r match-operator}
+```{r match-operator, eval = FALSE}
+# retain any rows where region is north or south, and where product equals widget
 budget %>%
   filter(region %in% c("North", "South"),
          product == "widgets")
+
+# retain any rows where the region is not east or west, and where the product does not equal gadgets
+budget %>%
+  filter(!region %in% c("East", "West"),
+         product != "gagdets")
 ```
 
+Operator	|Name	                 |is TRUE if and only if
+----------|----------------------|---------------------------------
+A < B 	  |less than 	           |A is less than B
+A <= B 	  |less than or equal    |A is less than or equal to B
+A > B 	  |greater than 	       |A is greater than B
+A >= B 	  |greater than or equal |A is greater than or equal to B
+A == B 	  |equivalence 	         |A exactly equals B
+A != B 	  |not equal 	           |A does not exactly equal B
+A %in% B 	|in 	                 |A is an element of vector B
+
+Finally, you can also pass many other functions to filter. For example, the `r pkg("stringr")` that is loaded as part of the `r pkg("tidyverse")` contains many different functions for working with strings (character data). For example, you you use `str_detect()` to only retain rows where the customer satisfaction rating includes the word "high" (note that `str_detect()` is case sensitive so it would not return values of "High" or "HIGH".
+
+```{r eval = TRUE}
+budget %>%
+  filter(str_detect(satisfaction_2019, "high"))
+```
+
+::: {.warning data-latex=""}
+`filter()` is incredibly powerful and can allow you to select very specific subsets of data. But, it is also quite dangerous because when you start combining multiple criteria and operators, it's very easy to accidentally specify something slightly different than what you intended. **Always check your output**. If you have a small dataset than you can eyeball it to see if it looks right, with a larger dataset you may wish to compute summary statistics or count the number of groups/observations in each variable to verify your filter is correct. There is no level of expertise in coding that can substitute knowing and checking your data. 
+:::
 
 ### Arrange
 
-Sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data for display in tables. Reverse the order using `desc()`.
+You can sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data for display in tables. `arrange()` works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using `desc()`.
 
 ```{r arrange}
 budget %>%
@@ -190,7 +233,7 @@ budget %>%
 
 
 ::: {.try data-latex=""}
-If you want to sort categories in a specific order, turn the column into a `r glossary("factor")` and set the `levels` in the desired order.
+If you want to sort character data/categories in a specific order, turn the column into a `r glossary("factor")` and set the `levels` in the desired order.
 
 ```{r}
 budget %>%
@@ -203,7 +246,7 @@ budget %>%
 
 ### Mutate
 
-Add new columns or change existing ones. Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions (e.g., `profit` below).
+The function `mutate()` allows you to add new columns or change existing ones by overwriting them by using the syntax `new_column = operation`.  You can add more than one column in the same mutate function by separating the columns with a comma. Once you make a new column, you can use it in further column definitions. For example, the creation of `profit` below uses the column `expenses` which is created above it.
 
 ```{r mutate}
 budget2 <- budget %>%
@@ -215,20 +258,61 @@ budget2 <- budget %>%
   )
 ```
 
+`mutate()` can also be used in conjunction with other functions and Boolean operators. For example, we can add another column to `budget2` that states whether a profit was returned that year or overwrite our `product` variable as a factor. Just like when we used Boolean operators with filter, it will evaluate the equation and return TRUE or FALSE depending on whether the observation meets the criteria.
+
+```{r}
+budget2 <- budget2 %>%
+  mutate(profit_category = profit > 0,
+         product = as.factor(product))
+```
 
 ::: {.warning data-latex=""}
-You can overwrite a column by giving a new column the same name as the old column (see `region`) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
+You can overwrite a column by giving a new column the same name as the old column (see `region` or `product`) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
 :::
 
+You can also use `case_when()` to specify what values to return, rather than defaulting to TRUE or FALSE:
+
+```{r}
+budget3 <- budget2 %>%
+  mutate(profit_category = case_when(profit > 0 ~ "PROFIT",
+                                     profit < 0 ~ "NO PROFIT"))
+```
+
+Use it to recode values:
+
+```{r}
+# create a column where people get a bonus if customer satisfaction was overall high or very high
+
+bonus <- budget3 %>%
+  mutate(bonus_2019 = case_when(satisfaction_2019 %in% c("very low", "low", "neutral") ~ "no bonus",
+                                satisfaction_2019 %in% c("high", "very high") ~ "bonus"))
+```
+
+And combine different criteria:
+
+```{r}
+
+# new management takes over - people only get a bonus if customer satisfaction was overall high or very high AND if a profit was returned
+
+bonus2 <- budget3 %>%
+  mutate(bonus_2020 = case_when(satisfaction_2020 == "high" & 
+                                  profit_category == "PROFIT" ~ "bonus",
+                                satisfaction_2020 == "very high" & 
+                                  profit_category == "PROFIT" ~ "bonus",
+                                TRUE ~ "No bonus")) # set all other values to "no bonus"
+```
+
+Just like `filter()`, `mutate()` is incredibly powerful and the scope of what you can create is far beyond what we can cover in this book. 
 
 ### Summarise {#dplyr-summarise}
 
 You were introduced to the `summarise()` function in Chapter\ @\ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).
 
-Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year.
+Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter\ \@ref(tidy), so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year. We'll also drop the satisfaction data as we don't need it for this analysis. 
 
 ```{r}
-budget3 <- budget %>%
+budget4 <- budget %>%
+  select(-satisfaction_2019, -satisfaction_2020) %>%
   pivot_longer(cols = sales_2019:expenses_2020,
                names_to = c("type", "year"),
                names_sep = "_",
@@ -236,13 +320,13 @@ budget3 <- budget %>%
   pivot_wider(names_from = type,
               values_from = value)
 
-head(budget3) # check the format
+head(budget4) # check the format
 ```
 
 Now we can create summary statistics for the table.
 
 ```{r}
-budget3 %>%
+budget4 %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
@@ -251,24 +335,38 @@ budget3 %>%
   )
 ```
 
-
 ### Group By {#dplyr-groupby}
 
 You were introduced to the `group_by()` function in Chapter\ \@ref(grouping). For example, you can break down the summary statistics above by year and product.
 
 ```{r}
-year_prod <- budget3 %>%
+year_prod <- budget4 %>%
   group_by(year, product) %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
     min_profit = min(expenses - sales),
-    max_profit = max(expenses - sales),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales)
+  ) %>%
+  ungroup()
 
 year_prod
 ```
+
+
+Note that you can use the other wrangling functions on the summary table, for example: 
+
+```{r eval = FALSE}
+# arrange by maximum profit
+year_prod %>%
+  arrange(desc(max_profit))
+
+# filter out gadgets
+year_prod %>%
+  filter(product != "gadgets")
+
+```
+
 
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
@@ -282,6 +380,23 @@ c(answer = "<pre>budget3 %>%\n  group_by(region) %>%\n  summarise(max_sales = ma
 ```
 
 :::
+
+You can also use `group_by()` in combination with other functions. For example, `slice_max()` returns the top N rows, ordered by a specific variable.
+
+```{r}
+# return top 3 sales
+budget4 %>%
+  slice_max(n = 3, order_by = sales)
+```
+
+But this can be combined with `group_by()` to return the top sales for each region:
+
+```{r}
+# return top sale for each region
+budget4 %>%
+  group_by(region) %>%
+  slice_max(n = 1, order_by = sales)
+```
 
 ## Complications
 
@@ -305,6 +420,8 @@ round(1.5)
 ```
 
 However, this might throw a monkey wrench into your own systems. For example, our school policy is to round up for course marks at x.5. The solution is to define your own version of `round()` (modified from [Andrew Landgraf's blog](http://andrewlandgraf.com/2012/06/15/rounding-in-r/){target="_blank"}). Put it in a hidden code block at the top of your script, with a clear warning that this is changing the way `round()` normally works. You don't need to understand how this function works, just how to use it.
+
+when you run this code, a new section will appear in the environment pane labelled "Functions". In addition to using functions from packages, you can also make your own. It's not something we are going to go into detail on in this course but it's useful to know the functionality exists.
 
 ```{r}
 #!!!!!! redefining round so 5s round up !!!!!! 
@@ -332,242 +449,301 @@ Just remove your version if you want R to go back to the original method. Rememb
 rm(round)
 ```
 
-
-
 ### Missing values
 
-What if the North region hasn't returned their sales data for 2020 yet?
+If you have control over your data, it is always best to keep missing values as empty cells rather than using denoting missingness with a word or implausible number. If you used e.g., "missing" rather than leaving the cell empty, the entire variable would be read as character data which means you wouldn't be able to perform mathematical operations like calculating the mean. If you use an implausible number (0 or 999 are common), then you risk these value being included in any calculations as real numbers.
+
+However, we often don't have control over how the data come to us, so let's run through how to fix this.
+
+What if the North region hadn't returned their sales data for 2020 yet (entered as "missing") and the South region hadn't returned their expenses (entered as 0)? 
+
+We'll create two separate objects to demonstrate two approaches.
 
 ```{r}
-# set sales values to NA for North 2020 rows
-budget_missing <- budget3 %>%
-  mutate(sales = ifelse(region == "North" & year == 2020, NA, sales))
+north_data <- budget4 %>%
+  filter(region == "North")
 
-# check
-filter(budget_missing, region == "North")
+south_data <- budget4 %>%
+  filter(region == "South")
+```
+
+For the South data, we can use `case_when()` to convert the expenses for 2020 to "0".
+
+```{r}
+south_missing <- south_data %>%
+  mutate(expenses = case_when(year == 2020 ~ 0,
+                           TRUE ~ sales))
+```
+
+For the North, we need to use `ifelse()` to recode these values as "missing". `ifelse()` is similar to `case_when()`, it's harder to use when you have multiple different conditions but it's also less picky. `case_when()` requires all the values in the variable to be of the same type, whereas `ifelse()` doesn't. In this case, because sales will contain both character and numeric data, we need to use `ifelse()`.
+
+```{r eval = TRUE, error=TRUE}
+# set sales values to "missing" for North 2020 rows
+north_missing <- north_data %>%
+  mutate(sales = ifelse(region == "North" & year == 2020,
+                        "missing", sales))
+# check structure of data, sales now character
+str(north_missing)
+
+# try to compute mean sales
+north_missing %>%
+  summarise(mean_sales = mean(sales))
+```
+
+To set the missing values to NA, you could use either `ifelse()` or `case_when()`. For the North data, because the variable was converted to character, we also need to transform this back to numeric.
+
+```{r}
+
+# set "missing" values to NA using case_when
+north_missing <- north_missing %>%
+  mutate(sales = case_when(sales == "missing" ~ NA_character_,
+                           TRUE ~ sales),
+         sales = as.numeric(sales))
+
+# set "0" values to NA using ifelse
+
+south_missing <- south_missing %>%
+  mutate(expenses = ifelse(expenses == 0, NA, sales))
+
 ```
 
 Now, if we try to calculate the mean sales and profits, we get missing values for any summary value that used one of the North 2020 sales values.
 
-```{r}
-budget_missing %>%
-  group_by(year, product) %>%
+```{r error=TRUE}
+north_missing %>%
+  group_by(product) %>%
   summarise(
     mean_sales = mean(sales),
     mean_expenses = mean(expenses),
     min_profit = min(expenses - sales),
-    max_profit = max(expenses - sales),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales)) %>%
+  ungroup()
 ```
 
 This is because `NA` basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Set `na.rm = TRUE` in the summary function to remove missing values before calculating.
 
 ```{r}
-budget_missing %>%
-  group_by(year, product) %>%
+north_missing %>%
+  group_by(product) %>%
   summarise(
     mean_sales = mean(sales, na.rm = TRUE),
     mean_expenses = mean(expenses, na.rm = TRUE),
     min_profit = min(expenses - sales, na.rm = TRUE),
-    max_profit = max(expenses - sales, na.rm = TRUE),
-    .groups = "drop"
-  )
+    max_profit = max(expenses - sales, na.rm = TRUE)
+  ) %>%
+  ungroup()
 ```
 
 If you want to find out how many missing or non-missing values there are in a column, use the `is.na()` function to get a `r glossary("logical")` vector of whether or not each value is missing, and use `sum()` to count how many values are TRUE or `mean()` to calculate the proportion of TRUE values.
 
 ```{r}
-budget_missing %>%
+north_missing %>%
   group_by(year, product) %>%
   summarise(
     n_valid = sum(!is.na(sales)),
     n_missing = sum(is.na(sales)),
-    prop_missing = mean(is.na(sales)),
-    .groups = "drop"
-  )
+    prop_missing = mean(is.na(sales))
+  ) %>%
+  ungroup()
 ```
 
+You may also want to remove rows that have missing values and only work from complete datasets. `drop_na()` will remove any row that has a missing observation. You can use `drop_na()` on the entire dataset which will remove any row that has *any* missing value, or you can specify to only remove rows that are missing a specific value.
 
-## Putting it together {#together-wrangle}
+```{r eval = TRUE}
+# combine missing datasets
 
-Load some demo data we first used in Chapter\ \@ref(data). Use `glimpse()` or another method to get familiar with the data set.
+missing_data <- bind_rows(north_missing, south_missing)
 
-```{r}
+# remove any rows with any missing values
+complete_data <- missing_data %>%
+  drop_na()
+
+# remove any rows that are missing a value for sales
+complete_sales <- missing_data %>%
+  drop_na(sales)
+
+```
+
+Missing data can be quite difficult to deal with depending on how it is represented. As always, no amount of coding expertise can make up for not understanding the structure and idiosyncrasies of your data. 
+
+## Exercises {#together-wrangle}
+
+Let's try some exercises using a dataset you already encountered in Chapter\ \@ref(viz) so that you can see how much more you're able to do with the data now.
+
+* Save your current Markdown, close it, and open a new Rmd named "survey_data_mad_skillz".
+* In the set-up code chunk, load the tidyverse then load the dataset from https://psyteachr.github.io/ads-v1/data/survey_data.csv into an object named `survey_data`.
+* Use your method of choice to review the dataset and familiarise yourself with its structure.
+
+```{r webex.hide = TRUE}
 # from https://www.kaggle.com/kyanyoga/sample-sales-data
-sales <- read_csv("data/sales_data_sample.csv",
-                  show_col_types = FALSE)
+library(tidyverse)
+survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv")
+
 ```
 
+### Creating new categories
 
-Double check that the `SALES` column does equal the `QUANTITYORDERED` column times the `PRICEEACH`. You can select just the columns you need and rename them when selecting to make the code more readable.
+Employees 1-5 were trained by Michael and employees 6-10 were trained by Dwight. 
 
-```{r}
-sales_check <- sales %>%
-  select(SALES, n = QUANTITYORDERED, price = PRICEEACH) %>%
-  mutate(total = n * price)
+* Create a new column named `trainer` that lists the trainer for each employee.
+* Then, calculate the average satisfaction scores for employees trained by each trainer and visualise the satisfaction scores for each in whatever way you think best.
+
+```{r webex.hide = TRUE}
+survey_data <- survey_data %>%
+  mutate(trainer = case_when(employee_id %in% c("E01", "E02", "E03", "E04", "E05") ~ "Michael",
+                             employee_id %in% c("E06", "E07", "E08", "E09", "E10") ~ "Dwight"))
+
+# mean satisfaction scores
+survey_data %>%
+  group_by(trainer) %>%
+  summarise(mean_satisfaction = mean(satisfaction))
+
+# possible visualisation 
+
+ggplot(survey_data, aes(x = satisfaction, fill = trainer)) +
+  geom_histogram(binwidth = 1, show.legend = FALSE, colour = "black") +
+  facet_wrap(~trainer) +
+  labs(title = "Satisfaction scores by employee trainer")
 ```
 
-Make a table of any rows where the value of `total` doesn't equal `SALES`.
+### Filter by calculated score
 
-```{r}
-errors <- sales_check %>%
-  filter(SALES != total)
+First, calculate the average wait time and store this in an object named `mean_wait`. This should be a single value rather than a table.
 
-head(errors)
+`r hide("Hint")`
+There are multiple ways to achieve this. You could create the table and then pull put the single value, or just calculate the single value.
+`r unhide()`
+
+```{r webex.hide = TRUE}
+
+# method 1 - tidyverse
+mean_wait <- survey_data %>%
+  summarise(mean_wait = mean(wait_time)) %>%
+  pull(mean_wait)
+
+# method 2 - base R
+mean_wait <- mean(survey_data$wait_time)
+
 ```
 
-If you check the `errors` table, you'll see that `r nrow(errors)` of the original `r nrow(sales)` rows have "errors", even though many of the values in the `SALES` and `sales_check` columns look identical. You can fix this by rounding the value of `total` to 2 decimal places.
+Now create a dataset named `long_wait` that just contains data from customers who waited more than the average wait time.
 
-::: {.info data-latex=""}
-This is due to the way values with decimal places are represented by a computer. You use base 10 to count, and have to represent some numbers with a repeating decimal, like 1/3 is .0333 repeating, while a computer uses binary to count, and has to represent different numbers using repeats. This can lead to very small differences when you divide or multiply some numbers.
-
-```{r}
-options(scipen = 20) # avoids scientific notation
-x = (1/49 * 49)
-x # prints as 1
-1-x # but is actually very slightly smaller
+```{r webex.hide = TRUE}
+long_wait <- survey_data %>%
+  filter(wait_time > mean_wait)
 ```
 
-:::
+Create a visualisation that shows how many customers waited more than the average wait time for each employee.
 
-
-```{r}
-errors <- sales_check %>%
-  filter(SALES != round(total, 2))
+```{r webex.hide = TRUE}
+long_wait %>%
+  ggplot(aes(x = employee_id)) +
+  geom_bar()
 ```
 
-There are still `r nrow(errors)` errors! Lets look at the 10 smallest. We can do this by calculating the difference, arranging from smallest to largest, and filtering for the first 10 rows. 
+### Multiple critera
 
-```{r, eval = FALSE}
-errors %>%
-  mutate(diff = SALES - total) %>%
-  arrange(diff) %>%
-  filter(row_number() <= 10)
+Now, add a column to `survey_data` named `follow_up` that flags whether a customer should be followed up with a courtesy phone call. Your company is short-staffed so only customers that meet all three of the following criteria should be followed-up:
+
+* Their wait time should be above the average **for all calls**
+* Their call time should be above the average **for their category**
+* Their satisfaction should be less than three 3. 
+
+This is quite complicated and there are multiple ways to achieve the desired outcome. Some approaches may need other functions that were covered in previous chapters and you may need to create intermediate objects.
+
+Call the final object `follow_data` and keep only the customer ID, employee ID, trainer, and follow up columns. 
+
+```{r webex.hide = TRUE}
+
+# this is one possible solution, there are many other valid approaches 
+
+# calculate mean wait time across all calls
+mean_wait <- mean(survey_data$wait_time)
+
+# calculate mean call time for each category
+follow_data <- survey_data %>%
+  group_by(issue_category) %>%
+  summarise(mean_call = mean(call_time)) %>%
+#then join it to the survey data  
+  left_join(survey_data, by = "issue_category") %>%
+# then add on the column
+  mutate(follow_up = case_when(wait_time > mean_wait & 
+                                 call_time > mean_call & 
+                                 satisfaction < 3 ~ "yes",
+                               TRUE ~ "no")) %>%
+  select(caller_id, employee_id, trainer, follow_up)
 ```
 
-Alternatively, we can use a `slice` function.
+For all of the above, write code that stores the answer as a single value, so that you could easily use it in inline coding.
 
-```{r}
-errors %>%
-  mutate(diff = SALES - total) %>%
-  slice_min(order_by = diff, n = 10)
+How many customers need to be followed up:
+
+* In total? `r fitb("120")`
+* From calls by employee 06? `r fitb("16")`
+* From calls by employees trained by Michael `r fitb("65")`
+* From calls by employees trained by Dwight `r fitb("55")`
+
+`r hide("Hint")`
+`group_by %>% count() %>% filter() %>% pull()
+`r unhide()`
+
+Which employee needs to make the largest number of follow-up courtesy calls? `r fitb("E02")`
+
+`r hide("Hint")`
+As above but add in an `ungroup()` and `slice_max()` along the way. 
+`r unhide()`
+
+```{r webex.hide = TRUE}
+# in total
+follow_data %>%
+  group_by(follow_up) %>%
+  count()%>%
+  filter(follow_up == "yes") %>%
+  pull(n)
+
+# by employee 6
+follow_data %>%
+  group_by(follow_up, employee_id) %>%
+  count() %>%
+  filter(employee_id == "E06",
+         follow_up == "yes") %>%
+  pull(n)
+
+# by michael
+follow_data %>%
+  group_by(follow_up, trainer) %>%
+  count() %>%
+  filter(trainer == "Michael",
+         follow_up == "yes") %>%
+  pull(n)
+
+# by dwight
+follow_data %>%
+  group_by(follow_up, trainer) %>%
+  count() %>%
+  filter(trainer == "Dwight",
+         follow_up == "yes") %>%
+  pull(n)
+
+# most follow-ups needed
+follow_data %>%
+  group_by(follow_up, employee_id) %>%
+  count() %>%
+  ungroup() %>%
+  filter(follow_up == "yes") %>%
+  slice_max(n = 1, order_by = n) %>%
+  pull(employee_id)
+
 ```
 
-If we plot the data, it looks like all of the errors are in one direction.
+### Original insight
 
-```{r}
-ggplot(errors, aes(x = SALES, y = total)) + 
-  geom_point(alpha = 0.5) +
-  geom_abline(slope = 1, intercept = 0) +
-  coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
-```
+In preparation for the final summative assessment, explore the data to provide one original insight of your own.
 
-Let's have a look at the data separately for products with a price of exactly 100 versus other products.
+### Report
 
-```{r}
-sales_check %>%
-  mutate(price100 = price == 100) %>%
-  ggplot(aes(x = SALES, y = total, color = price100)) + 
-  geom_point(alpha = 0.5) +
-  geom_abline(slope = 1, intercept = 0) +
-  coord_cartesian(xlim = c(0, 15000), ylim = c(0, 8000))
-```
+Compile all the above into a visually appealing reproducible report that could be used to target employees and trainers for extra training (or depending on what mood you're in, to fire them). Use inline coding to report any numbers in the text. Once you're finished, post your Rmd and knitted html document on teams so that other learners can see your approach.
 
-It looks like that's the problem with this dataset: the `PRICEEACH` column doesn't go above 100. Let's fix that by dividing the total sale price by the quantity ordered.
-
-```{r}
-fixed_sales <- sales %>%
-  mutate(PRICEEACH = round(SALES / QUANTITYORDERED, 2))
-```
-
-Now we can re-run the code from before to find any errors. We're adding in the `ORDERNUMBER` for the next step.
-
-```{r}
-sales_check <- fixed_sales %>%
-  select(ORDERNUMBER, 
-         SALES, 
-         n = QUANTITYORDERED, 
-         price = PRICEEACH) %>%
-  mutate(total = n * price)
-
-errors <- sales_check %>%
-  filter(SALES != round(total, 2))
-
-errors
-```
-
-There are 5 instances where the quantity ordered doesn't divide into the total price in a way that produces prices that round to the nearest cent. These might require further investigation, but let's just set the value of `SALES` to missing for the orders in the `errors` tables.
-
-```{r}
-fixed_sales <- fixed_sales %>%
-  mutate(SALES = ifelse(
-    test = ORDERNUMBER %in% errors$ORDERNUMBER,
-    yes = NA,
-    no = SALES)
-  )
-```
-
-
-Now that you've fixed (most of) the problems with the dataset, see if you can figure out how to make the table below. It should take you 5 steps.
-
-```{r, echo = FALSE}
-fixed_sales %>%
-  filter(PRODUCTLINE %in% c("Planes", "Ships", "Trains")) %>%
-  group_by(YEAR_ID, PRODUCTLINE) %>%
-  summarise(total = sum(SALES, na.rm = TRUE),
-            .groups = "drop") %>%
-  mutate(total = round(total)) %>%
-  pivot_wider(names_from = YEAR_ID,
-              values_from = total)
-```
-
-
-```{r, webex.hide = TRUE, eval = FALSE}
-fixed_sales %>%
-  filter(PRODUCTLINE %in% c("Planes", "Ships", "Trains")) %>%
-  group_by(YEAR_ID, PRODUCTLINE) %>%
-  summarise(total = sum(SALES, na.rm = TRUE),
-            .groups = "drop") %>%
-  mutate(total = round(total)) %>%
-  pivot_wider(names_from = YEAR_ID,
-              values_from = total)
-```
-
-## Exercises
-
-### Mutate
-
-Load some data about the [population of the Scottish counties](https://psyteachr.github.io/ads-v1/data/scottish_population.csv). 
-
-```{r}
-scotpop <- read_csv("data/scottish_population.csv",
-                    show_col_types = FALSE)
-```
-
-Transform the population value to the nearest thousands (e.g., 3433 would be "3K"), order from most to least populous, put the columns in the order `population` (in K) then `county`, and show only the counties with populations greater than 200K. 
-
-```{r, echo = FALSE}
-scotpop %>%
-  arrange(desc(population)) %>%
-  filter(population > 200000) %>%
-  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
-  select(population = kpop, 
-         county = name)
-```
-
-::: {.try data-latex=""}
-There are several different ways you could make the table above. Some functions could be in a different order and some couldn't. See where you can move the `filter()` and `arrange()` functions.
-:::
-
-```{r, eval = FALSE, webex.hide = TRUE}
-scotpop %>%
-  arrange(desc(population)) %>%
-  filter(population > 200000) %>%
-  mutate(kpop = round(population/1000) %>% paste0("K")) %>%
-  select(population = kpop, 
-         county = name)
-```
 
 ## Glossary {#glossary-wrangle}
 
@@ -577,5 +753,9 @@ scotpop %>%
 
 * [Data transformation cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
 * [Chapter 5: Data Transformation ](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
+* [Chapter 19: Functions](https://r4ds.had.co.nz/functions.html) in *R for Data Science*
+* [Introduction to stringr](https://stringr.tidyverse.org/articles/stringr.html)
+
+
 
 

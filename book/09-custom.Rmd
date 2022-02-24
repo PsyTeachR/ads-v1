@@ -8,7 +8,7 @@
 * Create high quality plots like BBC, NYT, 538
 
 
-```{r setup-custom, message=FALSE}
+```{r setup-custom, message=FALSE, warning = FALSE}
 library(tidyverse)   # data wrangling functions
 library(ggthemes)    # for themes
 library(patchwork)   # for combining plots

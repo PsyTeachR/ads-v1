@@ -1,0 +1,108 @@
+# Sparklines
+
+
+This tutorial is inspired by https://cranky-chandrasekhar-cfefcd.netlify.app/. In it, we're going to visualise the distributions of a few names over the years covered by the `r pkg("ukbabnames")` package using a function from the `r pkg("sparkline")` package and display the results in a table.
+
+## Setup
+
+The following code loads the necessary packages and sets default options. `sparklines(0)` initialises the scripts that make the sparklines work in html (this is a bit of a hack). Normally, we don't want to see any of this in a report, so would put it in a chunk with `include = FALSE`.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sparkline)
+library(ukbabynames)
+library(kableExtra)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# stops tables from printing "NA" for cells with missing data
+options(knitr.kable.NA = '')
+
+#initialises sparklines
+sparkline(0)
+```
+
+## Data processing
+
+First, we need to narrow down our data to a manageable number of names. You can run the code on all the names in this set, but there are more than half a million rows in the original dataset, so that will take a while to run.
+
+We'll make a vector of a few people from the psyTeachR team.
+
+```{r}
+selected_names <- c("Lisa", "Emily", "Gaby", 
+                    "Jaimie", "Dale", "Philip")
+```
+
+Filter the `ukbabynames` dataset to just the selected names from Scotland (the other nations only have records from 1996) and remove the rank and nation columns.
+
+```{r}
+subset <- ukbabynames %>%
+  filter(name %in% selected_names,
+         nation == "Scotland") %>%
+  select(-rank, -nation)
+
+head(subset)
+```
+
+Next, pivot wider so each year gets its own column. The argument `values_fill = 0` sets the value for any missing years to 0. The different nations have different years in the dataset and some rarer names might not have any babies born in a year.
+
+```{r}
+names_wide <- subset %>%
+  pivot_wider(names_from = year, 
+              values_from = n, 
+              values_fill = 0)
+
+head(names_wide)
+```
+
+Now convert back to the long format. This new long dataset will be the same as `subset`, but will include new rows with n = 0 for years where, for example, there were no male "Lisa"s born. It doesn't matter that the years or names aren't in any coherent order.
+
+```{r}
+names_long <- names_wide %>%
+  pivot_longer(cols = -(sex:name),
+               names_to = "year", 
+               values_to = "n")
+
+head(names_long)
+```
+
+## Make the sparklines
+
+Now we're going to make a sparkline for each unique combination of name and sex (Jaimie is a unisex name, and there are even a few male Lisas), using the `spk_chr()` function. Pivot wider to put sex across the top.
+
+```{r}
+babies <- names_long %>%
+  group_by(name, sex) %>%
+  summarise(
+    data = spk_chr(n, width = 120,
+                   type = "bar",
+                   barColor = ifelse(all(sex == "M"),
+                                     "dodgerblue", 
+                                     "hotpink")),
+    .groups = "drop") %>%
+  pivot_wider(names_from = sex,
+              values_from = data)
+```
+
+## Display the table
+
+Use kable to print the table, setting `escape = FALSE` to prevent the html in the three nations columns from being "escaped" and printing literally instead of functioning as html code.
+
+If you run this code interactively in the source pane, you won't see the sparklines. You have to knit to be able to see them because they rely on some javascript code that is created by `sparkline(0)` in the setup chunk. 
+
+Click on the sparklines and hover over them to see the actual numbers.
+
+```{r}
+caption <- paste("Baby name popularity from",
+                 min(ukbabynames$year), "to",
+                 max(ukbabynames$year))
+
+kable(babies, 
+      escape = FALSE, # allows the html
+      caption = caption,
+      col.names = c("Name", "Female Babies", "Male Babies")) %>%
+  kable_styling(full_width = FALSE) 
+```
+
+
+

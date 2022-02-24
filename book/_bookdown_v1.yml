@@ -26,6 +26,7 @@ rmd_files:
 - appendix-j-twitter.Rmd
 - appendix-k-spotify.Rmd
 - appendix-l-webpage.Rmd
+- appendix-m-sparklines.Rmd
 - appendix-y-license.Rmd
 - appendix-z-refs.Rmd
 

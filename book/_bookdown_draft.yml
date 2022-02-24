@@ -24,8 +24,9 @@ rmd_files:
 # - appendix-h-styling.Rmd
 # - appendix-i-hashtags.Rmd
 # - appendix-j-twitter.Rmd
-- appendix-k-spotify.Rmd
+# - appendix-k-spotify.Rmd
 # - appendix-l-webpage.Rmd
+- appendix-m-sparklines.Rmd
 # - appendix-y-license.Rmd
 # - appendix-z-refs.Rmd
 before_chapter_script:

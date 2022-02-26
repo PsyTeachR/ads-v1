@@ -10,7 +10,7 @@ rmd_files:
 # - 05-summary.Rmd
 # - 06-joins.Rmd
 # - 07-tidy.Rmd
-# - 08-wrangle.Rmd
+- 08-wrangle.Rmd
 # - 09-custom.Rmd
 # - 10-present.Rmd
 # - appendix-0.Rmd
@@ -26,7 +26,7 @@ rmd_files:
 # - appendix-j-twitter.Rmd
 # - appendix-k-spotify.Rmd
 # - appendix-l-webpage.Rmd
-- appendix-m-sparklines.Rmd
+# - appendix-m-sparklines.Rmd
 # - appendix-y-license.Rmd
 # - appendix-z-refs.Rmd
 before_chapter_script:

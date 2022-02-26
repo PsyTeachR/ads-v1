@@ -331,6 +331,9 @@ ilo-wrangle
 set-up-5
 wrangling-functions
 select
+by-name-or-index
+un-selecting-columns
+select-helpers
 filter
 arrange
 mutate
@@ -339,6 +342,11 @@ dplyr-groupby
 complications
 rounding
 missing-values
+bad-missing-values
+convert-missing-values-to-na
+ignore-missing-values
+count-missing-values
+omit-missing-values
 together-wrangle
 creating-new-categories
 filter-by-calculated-score
@@ -427,6 +435,14 @@ tables-data
 table-info
 row-col-access
 glossary-datatypes
+dates-times
+parsing
+get-parts
+date-arithmetic
+first-and-last-of-month
+rounding-1
+internationalisation
+example
 plotstyle
 aesthetics
 colourfill

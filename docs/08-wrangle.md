@@ -239,16 +239,16 @@ Finally, you can select columns based on criteria about the column names.
 What are the resulting columns for these four examples?
 
 * `budget %>% select(contains("_"))`
-    <div class='webex-radiogroup' id='radio_XXIMTJYUEV'><label><input type="radio" autocomplete="off" name="radio_XXIMTJYUEV" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XXIMTJYUEV" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XXIMTJYUEV" value="answer"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XXIMTJYUEV" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_KJQUZGTYFS'><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="answer"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 * `budget %>% select(num_range("expenses_", 2019:2020))`
-    <div class='webex-radiogroup' id='radio_AYGWLPOALT'><label><input type="radio" autocomplete="off" name="radio_AYGWLPOALT" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_AYGWLPOALT" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_AYGWLPOALT" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_AYGWLPOALT" value="answer"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_YYLVQAJRLD'><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="answer"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 * `budget %>% select(starts_with("sales"))`
-    <div class='webex-radiogroup' id='radio_XYWMJIHJJJ'><label><input type="radio" autocomplete="off" name="radio_XYWMJIHJJJ" value="answer"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XYWMJIHJJJ" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XYWMJIHJJJ" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_XYWMJIHJJJ" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_FMGLAODYUC'><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="answer"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
  
 * `budget %>% select(ends_with("2020"))`
-    <div class='webex-radiogroup' id='radio_LLJTBDUYWQ'><label><input type="radio" autocomplete="off" name="radio_LLJTBDUYWQ" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LLJTBDUYWQ" value="answer"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LLJTBDUYWQ" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LLJTBDUYWQ" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_MJJDVRKDDU'><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="answer"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 :::
 
@@ -916,15 +916,15 @@ year_prod %>%
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_NWYYUHUKVG'><label><input type="radio" autocomplete="off" name="radio_NWYYUHUKVG" value="x"></input> <span><pre>budget3 %>%
-  group_by(region) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_NWYYUHUKVG" value="x"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_TQPDUIWWSU'><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_NWYYUHUKVG" value="answer"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_NWYYUHUKVG" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(region)</pre></span></label></div>
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="answer"></input> <span><pre>budget3 %>%
+  group_by(region) %>%
+  summarise(max_sales = max(sales)</pre></span></label></div>
 
 :::
 
@@ -1157,7 +1157,9 @@ However, we often don't have control over how the data come to us, so let's run 
 
 #### Bad missing values
 
-What if the South region hadn't returned their expenses (entered as 0) and the North region hadn't returned their sales data for 2020 yet, so someone entered it as "missing"? 
+What if the South region hadn't returned their expenses (entered as 0) and the North region hadn't returned their sales data for 2020 yet, so someone entered it as "missing"?  We're going to show you two functions that you can use to recode or change values, `ifelse()` and `case_when()`. `ifelse()` is from Base R and can be slightly more intuitive to use initially. `case_when()` is from the <code class='package'>dplyr</code> and allows you to specify multiple criteria, although is slightly more difficult to use so it's good to be aware of both.
+
+First, we're going to recode the data to add in the missing values
 
 For the South data, we can use `ifelse()` to set the value of expenses to 0 if the year is 2020 and region is "South", otherwise use the value from the expenses column (i.e., don't change).
 
@@ -1166,8 +1168,8 @@ For the South data, we can use `ifelse()` to set the value of expenses to 0 if t
 missing_bad <- budget4 %>%
   mutate(expenses = ifelse(
     test = year == 2020 & region == "South", 
-    yes = 0,
-    no = expenses
+    yes = 0, # value if above conditions are met
+    no = expenses # value if above conditions are not met
   ))
 ```
 
@@ -1185,7 +1187,7 @@ missing_bad <- budget4 %>%
 ```
 
 
-<div class='webex-solution'><button>Using case_when()</button>
+<div class='webex-solution'><button>Using case_when() for multiple criteria</button>
 
 
 The `case_when()` function allows allows you to set multiple criteria, although we're only using one non-default criterion here. It can be very useful, but takes a little practice.
@@ -1269,7 +1271,7 @@ str(missing_bad)
 ```
 
 ```
-## tibble [16 × 5] (S3: tbl_df/tbl/data.frame)
+## tibble [16 x 5] (S3: tbl_df/tbl/data.frame)
 ##  $ region  : chr [1:16] "North" "North" "North" "North" ...
 ##  $ product : chr [1:16] "widgets" "widgets" "gadgets" "gadgets" ...
 ##  $ year    : chr [1:16] "2019" "2020" "2019" "2020" ...
@@ -1570,7 +1572,7 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 ```
 
 ```
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
@@ -1579,8 +1581,8 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 
 ```
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -1593,13 +1595,25 @@ Employees 1-5 were trained by Michael and employees 6-10 were trained by Dwight.
 * Create a new column named `trainer` that lists the trainer for each employee.
 * Then, calculate the average satisfaction scores for employees trained by each trainer and visualise the satisfaction scores for each in whatever way you think best.
 
+` r hide("Hint")`
+To add the trainer column you can either use `case_when()` and specify multiple criteria (e.g., if the employee is 1-5, Michael, if the employee is 6-10 Dwight), or you could use `ifelse()` and set the `test` to Michael's employees and return `Dwight` for all others.
+` r unhide()`
+
 
 <div class='webex-solution'><button>Solution</button>
 
 ```r
+# case_when() method
 survey_data <- survey_data %>%
   mutate(trainer = case_when(employee_id %in% c("E01", "E02", "E03", "E04", "E05") ~ "Michael",
                              employee_id %in% c("E06", "E07", "E08", "E09", "E10") ~ "Dwight"))
+
+# ifelse() method
+
+survey_data <- survey_data %>%
+  mutate(trainer = ifelse(test = employee_id %in% c("E01", "E02", "E03", "E04", "E05"),
+                           yes = "Michael",
+                           no = "Dwight"))
 
 # mean satisfaction scores
 survey_data %>%

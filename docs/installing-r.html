@@ -19,10 +19,10 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
@@ -75,12 +75,11 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
-<li><a class="" href="dates-times.html"><span class="header-section-number">G</span> Dates and Times</a></li>
-<li><a class="" href="plotstyle.html"><span class="header-section-number">H</span> Styling Plots</a></li>
-<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">I</span> Twitter Hashtags</a></li>
-<li><a class="" href="twitter-data.html"><span class="header-section-number">J</span> Twitter Data</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">K</span> Spotify Data</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">L</span> Webpages</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
@@ -116,13 +115,13 @@
 </h2>
 <p>If you are using Windows, after you install R, you should also install <a href="https://cran.rstudio.com/bin/windows/Rtools/" target="_blank">RTools</a>; use the "recommended" version highlighted near the top of the list. RTools is used for installing and loading some packages. You can get started without installing RTools, but if you're having problems with installing and loading some packages, this should be the first thing you try.</p>
 <p>RTools will require you to put it "on the PATH". The instructions for this can seem a bit vague - the easiest way to do it is to open RStudio, run the below code in the console:</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/write.html">write</a></span><span class="op">(</span><span class="st">'PATH="${RTOOLS40_HOME}\\usr\\bin;${PATH}"'</span>, file <span class="op">=</span> <span class="st">"~/.Renviron"</span>, append <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Once you've done that, restart R by clicking <code>Session - Restart R</code> and then run the below code in the console which should give you the path to your RTools installation:</p>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.which.html">Sys.which</a></span><span class="op">(</span><span class="st">"make"</span><span class="op">)</span></code></pre></div>
-<pre><code>##            make 
-## "/usr/bin/make"</code></pre>
+<pre><code>## make 
+##   ""</code></pre>
 </div>
 <div id="rstudio-settings" class="section level2" number="11.4">
 <h2>
@@ -149,7 +148,7 @@ Figure A.2: RStudio Code settings
 <span class="header-section-number">A.5</span> Installing LaTeX<a class="anchor" aria-label="anchor" href="#installing-latex"><i class="fas fa-link"></i></a>
 </h2>
 <p>You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. To generate PDF reports, you will additionally need to install <code class="package">tinytex</code> <span class="citation">(<a href="references-1.html#ref-R-tinytex" role="doc-biblioref">Xie, 2021</a>)</span> and run the following code:</p>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># run this in the console</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tinytex"</span><span class="op">)</span>
 <span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -379,7 +378,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-26.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

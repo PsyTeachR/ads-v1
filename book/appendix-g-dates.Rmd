@@ -154,7 +154,7 @@ ymd_hm("2022-01-24 10:35") %>% round_date(unit = "hour")
 
 You may need to work with dates from a different locale than your computer's defaults, such as dates written in French or Russian. Or your computer may have a non-English locale. Set the `locale` argument to the relevant language code.
 
-```{r}
+```{r, error = TRUE}
 ymd("2022 January 24", locale = "en_GB")
 ymd("2022 Janvier 24", locale = "fr_FR")
 wday("2022-01-03", label = TRUE, locale = "ru_RU")
@@ -162,7 +162,7 @@ wday("2022-01-03", label = TRUE, locale = "ru_RU")
 
 Some of the locale functions only work on unix-based machines, like Macs or machines running linux.
 
-```{r}
+```{r, error = TRUE}
 # check your own locale; doesn't work for Windows
 locale()
 ```
@@ -207,7 +207,7 @@ tweets %>%
 
 A nice side-effect of using the lubridate function to get days of the week or months of the year is that the results are an ordered factor, so display correctly in a plot. Let's display the months in Greek (if that's available on your system).
 
-```{r month-tweets}
+```{r month-tweets, error = TRUE}
 tweets %>%
   mutate(month = month(time, label = TRUE, abbr = FALSE, locale = "el_GR.UTF-8")) %>%
   ggplot(aes(x = month, fill = month)) +

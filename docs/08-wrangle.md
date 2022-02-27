@@ -239,16 +239,16 @@ Finally, you can select columns based on criteria about the column names.
 What are the resulting columns for these four examples?
 
 * `budget %>% select(contains("_"))`
-    <div class='webex-radiogroup' id='radio_KJQUZGTYFS'><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="answer"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KJQUZGTYFS" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_EWNHZBQGYU'><label><input type="radio" autocomplete="off" name="radio_EWNHZBQGYU" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EWNHZBQGYU" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EWNHZBQGYU" value="answer"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EWNHZBQGYU" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 * `budget %>% select(num_range("expenses_", 2019:2020))`
-    <div class='webex-radiogroup' id='radio_YYLVQAJRLD'><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_YYLVQAJRLD" value="answer"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_QKLDDXRNBK'><label><input type="radio" autocomplete="off" name="radio_QKLDDXRNBK" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_QKLDDXRNBK" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_QKLDDXRNBK" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_QKLDDXRNBK" value="answer"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 * `budget %>% select(starts_with("sales"))`
-    <div class='webex-radiogroup' id='radio_FMGLAODYUC'><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="answer"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FMGLAODYUC" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_BITCDHJGLR'><label><input type="radio" autocomplete="off" name="radio_BITCDHJGLR" value="answer"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BITCDHJGLR" value="x"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BITCDHJGLR" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BITCDHJGLR" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
  
 * `budget %>% select(ends_with("2020"))`
-    <div class='webex-radiogroup' id='radio_MJJDVRKDDU'><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="answer"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MJJDVRKDDU" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
+    <div class='webex-radiogroup' id='radio_LULGSAYYWF'><label><input type="radio" autocomplete="off" name="radio_LULGSAYYWF" value="x"></input> <span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LULGSAYYWF" value="answer"></input> <span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LULGSAYYWF" value="x"></input> <span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_LULGSAYYWF" value="x"></input> <span>expenses_2019, expenses_2020</span></label></div>
 
 :::
 
@@ -916,15 +916,15 @@ year_prod %>%
 ::: {.try data-latex=""}
 How would you find out the maximum sales for each region?
 
-<div class='webex-radiogroup' id='radio_TQPDUIWWSU'><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
+<div class='webex-radiogroup' id='radio_PJMZUCKLDR'><label><input type="radio" autocomplete="off" name="radio_PJMZUCKLDR" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_PJMZUCKLDR" value="answer"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(region)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="x"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_PJMZUCKLDR" value="x"></input> <span><pre>budget3 %>%
   group_by(sales) %>%
-  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_TQPDUIWWSU" value="answer"></input> <span><pre>budget3 %>%
+  summarise(max_sales = max(sales)</pre></span></label><label><input type="radio" autocomplete="off" name="radio_PJMZUCKLDR" value="x"></input> <span><pre>budget3 %>%
   group_by(region) %>%
-  summarise(max_sales = max(sales)</pre></span></label></div>
+  summarise(max_sales = max(region)</pre></span></label></div>
 
 :::
 
@@ -1271,7 +1271,7 @@ str(missing_bad)
 ```
 
 ```
-## tibble [16 x 5] (S3: tbl_df/tbl/data.frame)
+## tibble [16 × 5] (S3: tbl_df/tbl/data.frame)
 ##  $ region  : chr [1:16] "North" "North" "North" "North" ...
 ##  $ product : chr [1:16] "widgets" "widgets" "gadgets" "gadgets" ...
 ##  $ year    : chr [1:16] "2019" "2020" "2019" "2020" ...
@@ -1572,7 +1572,7 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 ```
 
 ```
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
@@ -1581,8 +1581,8 @@ survey_data <- read_csv("https://psyteachr.github.io/ads-v1/data/survey_data.csv
 
 ```
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 
@@ -1839,7 +1839,7 @@ Compile all the above into a visually appealing reproducible report that could b
 
 ## Glossary {#glossary-wrangle}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

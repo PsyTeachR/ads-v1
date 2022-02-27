@@ -881,7 +881,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -913,7 +913,7 @@ rmarkdown::render("job.Rmd")
 
 ## Glossary {#glossary-reports}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

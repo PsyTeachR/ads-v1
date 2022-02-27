@@ -11,7 +11,7 @@ Authors@R:
         comment = c(ORCID = "0000-0002-0806-1081")
     ),
     person(
-        given = "Lisa", 
+        given = "Lisa M", 
         family = "DeBruine", 
         role = c("aut", "cre"), 
         email = "debruine@gmail.com", 

@@ -7,6 +7,9 @@
 * Customise plots with a consistent style
 * Create high quality plots like BBC, NYT, 538
 
+## Set-up
+
+First, create a new project for the work we'll do in this chapter named `r path("09-custom")`. Second, open and save and new R Markdown document named `custom.Rmd`, delete the welcome text and load the required packages for this chapter.
 
 ```{r setup-custom, message=FALSE, warning = FALSE}
 library(tidyverse)   # data wrangling functions
@@ -27,6 +30,9 @@ library(gganimate)   # for animated plots
 theme_set(theme_light())
 ```
 
+You'll need to make a folder called "data" and download a data file into it: 
+<a href="https://psyteachr.github.io/ads-v1/data/survey_data.csv" download>survey_data.csv</a>.
+
 Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
 
 
@@ -35,7 +41,9 @@ Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/che
 The code below creates two familiar plots from Chapter\ \@ref(viz), using the default (light) theme and palettes
 
 ```{r, message=FALSE}
-survey_data <- read_csv(file = "data/survey_data.csv")
+ct <- cols(issue_category = col_factor(levels = c("tech", "returns", "sales", "other")))
+survey_data <- read_csv(file = "data/survey_data.csv",
+                        col_types = ct)
 
 bar <- ggplot(data = survey_data, 
               mapping = aes(x = issue_category,
@@ -45,10 +53,10 @@ bar <- ggplot(data = survey_data,
        y = "Count",
        title = "Calls by Issue Category")
 
-point <- lm_plot <- ggplot(data = survey_data, 
-                           mapping = aes(x = wait_time, 
-                                         y = call_time,
-                                         color = issue_category)) +
+point <- ggplot(data = survey_data, 
+                mapping = aes(x = wait_time, 
+                              y = call_time,
+                              color = issue_category)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = lm, formula = y~x) +
   labs(x = "Wait Time",
@@ -169,6 +177,132 @@ point_econ <- point +
 
 bar_econ + point_econ
 ```
+
+## Annotations
+
+It's often useful to add annotation to a plot to, for example, highlight an important part of the plot or add labels. The `annotate()` function creates a specific geom at x- and y-coordinates you specify. 
+
+### Text annotations
+
+Add a text annotation by setting the `geom` argument to "text" or "label" and adding a `label`. Labels have padding and a background, while text is just text.
+
+```{r annotate-text, fig.cap = "An example of annotation text and label."}
+bar +
+  # add left-justified text to the second bar
+  annotate(geom = "text",
+           label = "Our goal is to\nreduce this\ncategory",
+           x = 1.65, y = 215,
+           hjust = 0, vjust = 1, 
+           color = "white", fontface = "bold") +
+  # add a centred label to the third bar
+  annotate(geom = "label",
+           label = "Our goal is\nto increase this\ncategory",
+           x = 3, y = 75,
+           hjust = 0.5, vjust = 1, 
+           color = " darkturquoise", fontface = "bold")
+```
+::: {.try data-latex=""}
+
+The argument `hjust` is the horizontal justification of text, and `vjust` is the vertical justification. The default values are 0.5, where the text is centred on the x and y coordinates. 0 will justify to the left and bottom, while 1 justifies to the right and top. You can also change the `angle` of text, but not labels.
+
+See if you can work out how to make the figure below, starting with the following:
+
+```{r, eval = FALSE}
+tibble(x = c(0, 0, 1, 1),
+       y = c(0, 1, 0, 1)) %>%
+  ggplot(aes(x, y)) +
+  geom_point(alpha = 0.25, size = 4, color = "red")
+```
+
+
+```{r, echo = FALSE}
+tibble(x = c(0, 0, 1, 1),
+       y = c(0, 1, 0, 1)) %>%
+  ggplot(aes(x, y)) +
+  geom_point(alpha = 0.25, size = 4, color = "red") +
+  annotate("label", label = "In the\nmiddle",
+           x = 0.5, y = 0.5,
+           fill = "dodgerblue", color = "white",
+           label.padding = unit(1, "lines"),
+           label.r = unit(1.5, "lines")) +
+  annotate("text", label = "Bottom\nLeft",
+           x = 0, y = 0, hjust = 0, vjust = 0) +
+  annotate("text", label = "Top\nLeft", 
+           x = 0, y = 1, hjust = 0, vjust = 1) +
+  annotate("text", label = "Bottom\nRight",
+           x = 1, y = 0, hjust = 1, vjust = 0) +
+  annotate("text", label = "Top\nRight",
+           x = 1, y = 1, hjust = 1, vjust = 1) +
+  annotate("text", label = "45 degrees",
+           x = 0, y = 0.5, hjust = 0, angle = 45) +
+  annotate("text", label = "90 degrees",
+           x = 0.25, y = 0.5, angle = 90) +
+  annotate("text", label = "270 degrees",
+           x = 0.75, y = 0.5, angle = 270)+
+  annotate("text", label = "-45 degrees",
+           x = 1, y = 0.5, hjust = 1, angle = -45)
+```
+
+
+```{r, eval = FALSE, webex.hide = TRUE}
+tibble(x = c(0, 0, 1, 1),
+       y = c(0, 1, 0, 1)) %>%
+  ggplot(aes(x, y)) +
+  geom_point(alpha = 0.25, size = 4, color = "red") +
+  annotate("label", label = "In the\nmiddle",
+           x = 0.5, y = 0.5,
+           fill = "dodgerblue", color = "white",
+           label.padding = unit(1, "lines"),
+           label.r = unit(1.5, "lines")) +
+  annotate("text", label = "Bottom\nLeft",
+           x = 0, y = 0, hjust = 0, vjust = 0) +
+  annotate("text", label = "Top\nLeft", 
+           x = 0, y = 1, hjust = 0, vjust = 1) +
+  annotate("text", label = "Bottom\nRight",
+           x = 1, y = 0, hjust = 1, vjust = 0) +
+  annotate("text", label = "Top\nRight",
+           x = 1, y = 1, hjust = 1, vjust = 1) +
+  annotate("text", label = "45 degrees",
+           x = 0, y = 0.5, hjust = 0, angle = 45) +
+  annotate("text", label = "90 degrees",
+           x = 0.25, y = 0.5, angle = 90) +
+  annotate("text", label = "270 degrees",
+           x = 0.75, y = 0.5, angle = 270)+
+  annotate("text", label = "-45 degrees",
+           x = 1, y = 0.5, hjust = 1, angle = -45)
+```
+:::
+
+### Other annotations
+
+You can add other geoms to highlight parts of a plot. The example below adds a rectangle around a group of points, a text label, a straight arrow from the label to the rectangle, and a curved arrow from the label to an individual point.
+
+```{r annotation-other, fig.cap="Example of annotatins with the rect, text, segment, and curve geoms."}
+point +
+  # add a rectangle surrounding long call times
+  annotate(geom = "rect",
+           xmin = 100, xmax = 275,
+           ymin = 140, ymax = 180,
+           fill = "transparent", color = "red") +
+  # add a text label
+  annotate("text",
+           x = 260, y = 120,
+           label = "outliers") +
+  # add an line with an arrow from the text to the box
+  annotate("segment", 
+           x = 240, y = 120, 
+           xend = 200, yend = 135,
+           arrow = arrow(length = unit(0.5, "lines"))) +
+  # add a curved line with an arrow 
+  # from the text to a wait time outlier
+  annotate("curve", 
+          x = 280, y = 120, 
+          xend = 320, yend = 45,
+          curvature = -0.5,
+          arrow = arrow(length = unit(0.5, "lines")))
+```
+
+See the `r pkg("ggforce", "https://ggforce.data-imaginist.com/")` package for more sophisticated options, such as highlighting a group of points with an ellipse. 
 
 ## Other Plots
 

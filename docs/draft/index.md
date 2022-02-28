@@ -2,7 +2,7 @@
 title: "Applied Data Skills"
 subtitle: "Processing & Presenting Data"
 author: "Emily Nordmann and Lisa DeBruine"
-date: "2022-02-26"
+date: "2022-02-28"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

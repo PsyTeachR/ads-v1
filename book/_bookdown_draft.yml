@@ -10,8 +10,8 @@ rmd_files:
 # - 05-summary.Rmd
 # - 06-joins.Rmd
 # - 07-tidy.Rmd
-- 08-wrangle.Rmd
-# - 09-custom.Rmd
+# - 08-wrangle.Rmd
+- 09-custom.Rmd
 # - 10-present.Rmd
 # - appendix-0.Rmd
 # - appendix-a-installing-r.Rmd

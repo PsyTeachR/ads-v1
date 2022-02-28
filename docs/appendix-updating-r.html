@@ -119,7 +119,7 @@ Figure B.1: Updating RStudio
 <span class="header-section-number">B.2.1</span> Windows<a class="anchor" aria-label="anchor" href="#windows"><i class="fas fa-link"></i></a>
 </h3>
 <p>The easiest way to update R on Windows and not cause yourself a huge headache is to use the <code>installr</code> package. When you use the <code><a href="https://talgalili.github.io/installr/reference/updateR.html">updateR()</a></code> function, a series of dialogue boxes will appear. These should be fairly self-explanatory but there is a <a href="https://www.r-statistics.com/2015/06/a-step-by-step-screenshots-tutorial-for-upgrading-r-on-windows/">full step-by-step guide available</a> for how to use <code>installr</code>, the important bit is to select "Yes" when it asked if you would like to copy your packages from the older version of R.</p>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install the installr package</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"installr"</span><span class="op">)</span>
 
@@ -131,7 +131,7 @@ Figure B.1: Updating RStudio
 <span class="header-section-number">B.2.2</span> Mac<a class="anchor" aria-label="anchor" href="#mac"><i class="fas fa-link"></i></a>
 </h3>
 <p>For a Mac, you can use the <code class="package"><a href="https://github.com/AndreaCirilloAC/updateR" target="_blank">updateR</a></code> package. You'll need to install this from GitHub. You will be asked to type your system password (that you use to log into your computer) in the console pane. If relevant, it will ask you if you want to restore your packages for a new major version.</p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install from github</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"AndreaCirilloAC/updateR"</span><span class="op">)</span>
 
@@ -145,7 +145,7 @@ Figure B.1: Updating RStudio
 </h2>
 <p>Package developers will occasionally release updates to their packages. This is typically to add in new functions to the package, or to fix or amend existing functions. <strong>Be aware that some package updates may cause your previous code to stop working</strong>. This does not tend to happen with minor updates to packages, but occasionally with major updates, you can have serious issues if the developer has made fundamental changes to how the code works. For this reason, we recommend updating all your packages once at the beginning of each academic year (or semester) - don't do it before an assessment or deadline just in case!</p>
 <p>To update an individual package, the easiest way is to use the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function, as this always installs the most recent version of the package.</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
 <p>To update multiple packages, or indeed all packages, RStudio provides helpful tools. Click <code>Tools - Check for Package Updates</code>. A dialogue box will appear and you can select the packages you wish to update. Be aware that if you select all packages, this may take some time and you will be unable to use R whilst the process completes.</p>
 <div class="figure" style="text-align: center">
@@ -165,7 +165,7 @@ Figure B.2: Updating packages with RStudio
 <span class="header-section-number">B.4.1</span> Non-zero exit status<a class="anchor" aria-label="anchor" href="#non-zero-exit-status"><i class="fas fa-link"></i></a>
 </h3>
 <p>If you try to update a package and get an error message that says something like <code>Warning in install.packages : installation of package ‘vctrs’ had non-zero exit status</code> or perhaps <code>Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) :  namespace 'rlang' 0.4.9 is being loaded, but &gt;= 0.4.10 is required</code> one solution I have found is to manually uninstall the package, restart R, and then install the package new, rather than trying to update an existing version. The <code>installr</code> package also has a useful function for uninstalling packages.</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load installr</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://talgalili.github.io/installr/">installr</a></span><span class="op">)</span>
 
@@ -187,7 +187,7 @@ Figure B.2: Updating packages with RStudio
 </blockquote>
 <p>This usually indicates a permissions problem with writing to the default library (the folder that packages are kept in). Sometimes this means that you need to install R and RStudio as administrator or run it as administrator.</p>
 <p>One other fix may be to change the library location using the following code (check in "C:/Program Files/R" for what version you should have instead of "R-3.5.2"):</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># change the library path</span>
 <span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/Program Files/R/R-3.5.2/library"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>If that works and you can install packages, set this library path permanently:</p>
@@ -437,7 +437,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-27.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-02-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

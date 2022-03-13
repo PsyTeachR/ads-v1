@@ -11,7 +11,7 @@ rmd_files:
 # - 06-joins.Rmd
 # - 07-tidy.Rmd
 # - 08-wrangle.Rmd
-- 09-custom.Rmd
+- 09-advanced.Rmd
 # - 10-present.Rmd
 # - appendix-0.Rmd
 # - appendix-a-installing-r.Rmd

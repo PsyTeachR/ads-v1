@@ -20,6 +20,7 @@ Diamond price depends on many features, such as:
 - colour (See Table\ \@ref(tab:by-colour))
 - clarity (See Figure\ \@ref(fig:by-clarity))
 - carats (See Figure\ \@ref(fig:by-carat))
+- See section\ \@ref(conclusion) for concluding remarks
 
 ## Tables
 
@@ -65,3 +66,6 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   stat_smooth()
 ```
 
+### Concluding remarks {#conclusion}
+
+I am not rich enough to worry about any of this.

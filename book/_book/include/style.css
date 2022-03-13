@@ -1,0 +1,79 @@
+/* (edit style.css for your own book styles) */
+
+.apple::before {
+  margin: 0 5px 0 3px;
+  font-weight: 900;
+  color: #a3aaae;
+  font-family:"Font Awesome 5 Brands";
+  content:"\f179";
+}
+
+.windows::before {
+  margin: 0 5px 0 3px;
+  font-weight: 900;
+  color: #46A7E2;
+  font-family:"Font Awesome 5 Brands";
+  content:"\f17a";
+}
+
+.join {
+  height: 150px;
+  width: 200px;
+  float: right;
+  clear: right;
+}
+
+.join img {
+  width: 100%;
+}
+
+div.sourceCode {
+  clear: both;
+}
+
+div.sourceCode + pre:not(.sourceCode) {
+  background-color: #FBFBFB;
+  background-image: none;
+  border: 0.5px solid #BBB;
+}
+
+/* references with hanging indent */
+.csl-entry {
+  padding-left: 2em ;
+  text-indent: -2em ;
+}
+
+.package {
+  font-weight: 600;
+  background-color: transparent;
+}
+.package::before { content: "{"; }
+.package::after { content: "}"; }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.incomplete-chapter {
+  padding: 1em;
+  background-color: #517AA8;
+  text-align: center;
+}
+
+.incomplete-chapter::before {
+  content: "This chapter is in draft form and will be revised soon.";
+}
+
+.webex-radiogroup label pre {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  text-indent: 0;
+  display: inline-block;
+  background-color: transparent;
+  background-image: none;
+}

@@ -649,9 +649,9 @@ knitr::include_graphics("images/gganim-demo.gif")
 
 
 ::: {.warning data-latex=""}
-There are actually not many plots that are really improved by animating them. 
+There are actually not many plots that are really improved by animating them. The plot below gives the same information at a single glance.
 
-```{r anim-alternative, echo = FALSE, fig.caption = "This plot gives the same information at a single glance."}
+```{r anim-alternative, echo = FALSE}
 worldpop %>%
   ggplot(aes(x = year, y = pop, color = region)) +
   geom_line(size = 2) +

@@ -413,7 +413,7 @@ ggplot(survey_data, aes(x = wait_time, y = call_time)) +
 ```
 
 ::: {.warning data-latex=""}
-This method is only for changing the style of *all* the shapes made with that geom. If you want, for example, points to have different colours depending on which issue category they are from, you set the argument `colour = issue_category` inside the `aes()` function for the mapping. You can customise the colours used with `scale_` functions, which you will learn about below and in Chapter\ \@ref(themes-and-colours).
+This method is only for changing the style of *all* the shapes made with that geom. If you want, for example, points to have different colours depending on which issue category they are from, you set the argument `colour = issue_category` inside the `aes()` function for the mapping. You can customise the colours used with `scale_` functions, which you will learn about below and in Appendix\ \@ref(plotstyle).
 :::
 
 #### Format axes

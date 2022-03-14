@@ -242,7 +242,7 @@ glue::glue("[Top tweet]({top_tweet$`Tweet permalink`}) with {top_tweet$likes} li
 
 ### Word Cloud
 
-Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter\ \@ref(custom)).
+Or you can make a word cloud of the top words they tweet about. (You'll learn how to do this in Chapter\ \@ref(word-clouds)).
 
 ```{r, echo = FALSE, message=FALSE}
 library(tidytext)

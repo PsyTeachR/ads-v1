@@ -1,18 +1,18 @@
 # Advanced Visualisations & Reports {#advanced}
 
-<div class="incomplete-chapter"></div>
-
 ## Intended Learning Outcomes {#ilo-advanced}
 
-The final chapter of ADS moves beyond the core skills needed to complete the course. Our aim in this chapter is to give you a sense of what is now available to you with your new-found R skills. There's a lot in this chapter as we wanted to present an overview of the possibilities, although there are no exercises at the end. If you're enrolled on ADS, you may wish to prioritise the summative assessment this week and come back to this chapter at a later date.
+The final chapter of ADS moves beyond the core skills needed to complete the course. Our aim in this chapter is to give you a sense of what is now available to you with your new-found R skills. There's a lot in this chapter, as we wanted to present an overview of the possibilities, although there are no exercises at the end. If you're enrolled on ADS, you may wish to prioritise the summative assessment this week and come back to this chapter at a later date.
 
 * Create and customise advanced types of plots
 * Structure data in report, presentation, and dashboard formats
 * Include linked figures, tables, and references
 
-## Set-up (visualisation)
+## Advanced Visualisation {#custom}
 
-First, create a new project for the work we'll do in this chapter named `r path("09-advanced")`. Second, open and save a new R Markdown document named `visualisations.Rmd`, delete the welcome text and load the required packages for this section
+### Set-up 
+
+First, create a new project for the work we'll do in this chapter named `r path("09-advanced")`. Second, open and save a new R Markdown document named `visualisations.Rmd`, delete the welcome text and load the required packages for this section. You will probably need to install several new packages.
 
 ```{r setup-custom, message=FALSE, warning = FALSE}
 library(tidyverse)   # data wrangling functions
@@ -39,9 +39,9 @@ You'll need to make a folder called "data" and download a data file into it:
 Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
 
 
-## Defaults
+### Defaults
 
-The code below creates two familiar plots from Chapter\ \@ref(viz), using the default (light) theme and palettes
+The code below creates two familiar plots from Chapter\ \@ref(viz), using the default (light) theme and palettes. First, load the data and set `issue_category` to a factor so you can control the order of the categories.
 
 ```{r, message=FALSE}
 # update column specification
@@ -50,7 +50,11 @@ ct <- cols(issue_category = col_factor(levels = c("tech", "returns", "sales", "o
 # load data
 survey_data <- read_csv(file = "data/survey_data.csv",
                         col_types = ct)
+```
 
+Next, create a bar plot of number of calls by issue category.
+
+```{r, message=FALSE}
 # create bar plot
 bar <- ggplot(data = survey_data, 
               mapping = aes(x = issue_category,
@@ -59,6 +63,11 @@ bar <- ggplot(data = survey_data,
   labs(x = "Issue Category", 
        y = "Count",
        title = "Calls by Issue Category")
+```
+
+And create a scatterplot of wait time by call time, distinguished by issue category.
+
+```{r, message=FALSE}
 #create scatterplot
 point <- ggplot(data = survey_data, 
                 mapping = aes(x = wait_time, 
@@ -72,21 +81,26 @@ point <- ggplot(data = survey_data,
        title = "Wait Time by Call Time")
 ```
 
+Finally, combine the two plots using the `+` from `r pkg("patchwork")` to see the default styles for these plots.
 
 ```{r, fig.cap="Default plot styles."}
 bar + point
 ```
 
+::: {.try data-latex=""}
+Try changing the theme using built-in themes or customising the colours or linetypes with scale_* functions. See Appendix\ \@ref(plotstyle) for details.
+:::
 
-## Annotations
 
-It's often useful to add annotation to a plot to, for example, highlight an important part of the plot or add labels. The `annotate()` function creates a specific geom at x- and y-coordinates you specify. 
+### Annotations
 
-### Text annotations
+It's often useful to add annotations to a plot, for example, to highlight an important part of the plot or add labels. The `annotate()` function creates a specific geom at x- and y-coordinates you specify. 
+
+#### Text annotations
 
 Add a text annotation by setting the `geom` argument to "text" or "label" and adding a `label`. Labels have padding and a background, while text is just text.
 
-* The backslashes `\` in the label text control where the line breaks are. Try removing or changing the position of these to see what happens. 
+* Backslash-n `\n` in the label text controls where the line breaks are. Try removing or changing the position of these to see what happens. 
 * `x` and `y` control the coordinates of the label. You will likely have to play around with these values to get them right.
 * The argument `hjust` is the horizontal justification of text, and `vjust` is the vertical justification. The default values are 0.5, where the text is centred on the x and y coordinates. 0 will justify to the left and bottom, while 1 justifies to the right and top. 
 * You can  change the `angle` of text, but not labels.
@@ -96,7 +110,7 @@ bar +
   # add left-justified text to the second bar
   annotate(geom = "text",
            label = "Our goal is to\nreduce this\ncategory",
-           x = 1.65, y = 180,
+           x = 1.65, y = 150,
            hjust = 0, vjust = 1, 
            color = "white", fontface = "bold",
            angle = 45) +
@@ -120,6 +134,7 @@ tibble(x = c(0, 0, 1, 1),
   geom_point(alpha = 0.25, size = 4, color = "red")
 ```
 
+Hint: you will need to add 1 label annotation and 8 separate text annotations.
 
 ```{r, echo = FALSE}
 tibble(x = c(0, 0, 1, 1),
@@ -179,7 +194,7 @@ tibble(x = c(0, 0, 1, 1),
 ```
 :::
 
-### Other annotations
+#### Other annotations
 
 You can add other geoms to highlight parts of a plot. The example below adds a rectangle around a group of points, a text label, a straight arrow from the label to the rectangle, and a curved arrow from the label to an individual point.
 
@@ -210,9 +225,9 @@ point +
 
 See the `r pkg("ggforce", "https://ggforce.data-imaginist.com/")` package for more sophisticated options, such as highlighting a group of points with an ellipse. 
 
-## Other Plots
+### Other Plots
 
-### Interactive Plots
+#### Interactive Plots
 
 The `r pkg("plotly")` package can be used to make interactive graphs. Assign your ggplot to a variable and then use the function `ggplotly()` on the plot object. Note that interactive plots only work in HTML files, not PDFs or Word files.
 
@@ -224,7 +239,7 @@ ggplotly(point)
 Hover over the data points above and click on the legend items.
 :::
 
-### Waffle Plots
+#### Waffle Plots
 
 In Chapter\ \@ref(viz), we mentioned that pie charts are such a poor way to visualise proportions that we refused to even show you how to make one. Waffle plots are a delicious alternative. 
 
@@ -237,17 +252,18 @@ devtools::install_github("hrbrmstr/waffle")
 
 :::
 
-By default, `geom_waffle()` represents each observation with a tile and splits these across 10 rows. You can play about with the `n_rows` argument to determine what works better for your data.
+By default, `geom_waffle()` represents each observation with a tile and splits these across 10 rows. You can play about with the `n_rows` argument to determine what works best for your data.
 
 ```{r, fig.cap = "Waffle plot."}
 survey_data %>% 
   count(issue_category) %>%
   ggplot(aes(fill = issue_category, values = n)) +
-  geom_waffle(n_rows = 23, # try setting this to 10 (the default)
-              size = 0.33,       # line size
-    make_proportional = FALSE, # whether to compute proportions from the raw values
-    colour = "white",  # line colour
-    flip = FALSE,      # bottom-top or left-right
+  geom_waffle(
+    n_rows = 23, # try setting this to 10 (the default)
+    size = 0.33, # line size
+    make_proportional = FALSE, # use raw values
+    colour = "white", # line colour
+    flip = FALSE, # bottom-top or left-right
     radius = grid::unit(0.1, "npc") # set to 0.5 for circles
   ) +
   theme_enhance_waffle() + # gets rid of axes
@@ -260,18 +276,19 @@ The waffle plot can also be used to display the counts as proportions To achieve
 survey_data %>% 
   count(issue_category) %>%
   ggplot(aes(fill = issue_category, values = n)) +
-  geom_waffle(n_rows = 10, 
-              size = 0.33,       
-    make_proportional = TRUE, # whether to compute proportions from the raw values
-    colour = "white",  
-    flip = FALSE,      
+  geom_waffle(
+    n_rows = 10, 
+    size = 0.33, 
+    make_proportional = TRUE, # compute proportions
+    colour = "white", 
+    flip = FALSE, 
     radius = grid::unit(0.1, "npc") 
   ) +
   theme_enhance_waffle() + 
   scale_fill_colorblind(name = "Issue Category")
 ```
 
-### Treemap
+#### Treemap
 
 Treemap plots are another way to visualise proportions. Like the waffle plots, you need to count the data by category first. You can use any [brewer palette](https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/) for the fill. 
 
@@ -279,8 +296,8 @@ Treemap plots are another way to visualise proportions. Like the waffle plots, y
 survey_data %>% 
   count(issue_category) %>%
   treemap(
-    index="issue_category", # variable that determines the number of rectangles
-    vSize="n", # variable that determines size of rectangle
+    index = "issue_category", # column with number of rectangles
+    vSize = "n", # column with size of rectangle
     title = "",
     palette = "BuPu",
     inflate.labels = TRUE # expand labels to size of rectangle
@@ -295,18 +312,21 @@ survey_data %>%
   count(issue_category, employee_id) %>%
   arrange(employee_id) %>%
   treemap(
-    index=c("employee_id", "issue_category"), # use c() to specify two variables
-    vSize="n", 
+    # use c() to specify two variables
+    index = c("employee_id", "issue_category"), 
+    vSize = "n", 
     title = "",
     palette = "Dark2",
-    fontsize.labels = c(30, 10), # set different label sizes for each type of label
-    align.labels = list(c("left", "top"), c("center", "center")) # set different alignments for two label types
+    # set different label sizes for each type of label
+    fontsize.labels = c(30, 10), 
+    # set different alignments for two label types
+    align.labels = list(c("left", "top"), c("center", "center")) 
   )
 
 ```
 
 
-### Bump Plots
+#### Bump Plots
 
 Bump plots are very useful for visualising how rankings change over time. So first, we need to get some ranking data. Let's start with a more typical raw data table, containing an identifying column of `person` and three columns for their scores each week
 
@@ -353,7 +373,7 @@ We can make this more attractive by customising the axes and adding text labels.
 * Increase the size of the lines with the `size` argument to `geom_bump()`
 * We don't need labels for weeks 1.5 and 2.5, so change the x-axis `breaks`
 * The `expand` argument for the two scale_ functions expands the plot area so we can fit text labels to the right.
-* It makes more sense to have first place at the top so reverse the order of the y-axis with `scale_y_reverse()` and fix the breaks and expansion.
+* It makes more sense to have first place at the top, so reverse the order of the y-axis with `scale_y_reverse()` and fix the breaks and expansion.
 * Add text labels with `geom_text()`, but just for week 3, so set `data =  filter(rank_data, week == 3)` for this geom. 
 * Set `x = 3.05` to move the text labels just to the right of week 3, and set `hjust = 0` to right-justify the text labels (the default is `hjust = 0.5`, which would center them on 3.05).
 * Remove the legend and grid lines. Increase the x-axis text size.
@@ -381,7 +401,7 @@ ggplot(data = rank_data,
 ```
 
 
-### Word Clouds
+#### Word Clouds
 
 Word clouds are a common way to summarise text data. First, download <a href="https://psyteachr.github.io/ads-v1/data/amazon_alexa.csv" download>amazon_alexa.csv</a> into your data folder and then load it into an object. This dataset contains  text reviews as well as the 1-5 rating from customers who bought an Alexa device on Amazon.
 
@@ -391,7 +411,7 @@ Word clouds are a common way to summarise text data. First, download <a href="ht
 alexa <- rio::import("data/amazon_alexa.csv")
 ```
 
-We can use this data to look at how the words used differ depending on the rating given. To make the text data easy to work with, the function `tidytext::unnest_tokens()` splits the words in the `input` column into individual words in a new `output` column. `unnnest_tokens()` is particularly helpful because it also does things like removes punctuation and transforms all words to lower case to make it easier to work with. Compare `words` and `alexa` to see how the map on to each other.
+We can use this data to look at how the words used differ depending on the rating given. To make the text data easy to work with, the function `tidytext::unnest_tokens()` splits the words in the `input` column into individual words in a new `output` column. `unnnest_tokens()` is particularly helpful because it also does things like removes punctuation and transforms all words to lower case to make it easier to work with. Compare `words` and `alexa` to see how they map on to each other.
 
 ```{r}
 words <- alexa %>%
@@ -412,7 +432,7 @@ head(words)
 
 The problem is that the most common words are all function words rather than content words, which makes sense because these words have the highest word frequency in natural language.
 
-Helpfully, `tidytext` contains a list of common "stop words", i.e., words that you want to ignore, that are stored in an object named `stop_words`.  It is also very useful to define a list of custom stop words based upon the unique properties of your data (it can sometimes take a few attempts to identify what's appropriate for your dataset). This dataset contains a lot of numbers which aren't informative, and it also contains "https" from website links so we'll get rid of both with a custom stop list.
+Helpfully, `tidytext` contains a list of common "stop words", i.e., words that you want to ignore, that are stored in an object named `stop_words`.  It is also very useful to define a list of custom stop words based upon the unique properties of your data (it can sometimes take a few attempts to identify what's appropriate for your dataset). This dataset contains a lot of numbers that aren't informative, and it also contains "https" from website links, so we'll get rid of both with a custom stop list.
 
 Once you have defined your stop words, you can then use `anti_join()`  to remove any `word` that is present in the stop word list.
 
@@ -427,14 +447,15 @@ words <- alexa %>%
   anti_join(stop_words, by = "word") %>%
   anti_join(custom_stop, by = "word") %>%
   group_by(rating) %>%
-  slice_max(order_by = n, n = 25, with_ties = FALSE)
+  slice_max(order_by = n, n = 25, with_ties = FALSE) %>%
+  ungroup()
 ```
 
 First, let's make a word cloud for customers who gave a 1-star rating:
 
 * Filter retains only the data for 1-star ratings. 
 * `label` comes from the `word` column and is the data to plot (i.e., the words).
-* `colour` makes the words red (you could also set this to `word` to give each word a different colour).
+* `colour` makes the words red (you could also set this to `word` to give each word a different colour or `n` to vary colour continuously by frequency).
 * `size` makes the size of the word proportional to `n`, the number of times the word appeared.
 * `r hl(ggwordcloud::geom_text_wordcloud_area())` is the word cloud geom. 
 * `r hl(ggwordcloud::scale_size_area())` controls how big the word cloud is (this usually takes some trial-and-error).  
@@ -463,14 +484,17 @@ rating5 <- filter(words, rating == 5) %>%
 rating1 + rating5
 ```
 
-It's worth highlighting that whilst word clouds are very common, they're really the equivalent of pie charts for text data because we're not very good at making accurate comparisons based on size. You might be able to see what's the most popular word, but can you accurately determine the 2nd, 3rd, 4th or 5th most popular word based on the clouds alone? There's also the issue that just because it's text data doesn't make it a qualitative analysis and just because something is said a lot doesn't mean it's useful or important. But, this argument is outwith the scope of this book, even it is a recurring part of Emily's life thanks to her qualitative wife. 
+::: {.warning data-latex=""}
+It's worth highlighting that whilst word clouds are very common, they're really the equivalent of pie charts for text data because we're not very good at making accurate comparisons based on size. You might be able to see what's the most popular word, but can you accurately determine the 2nd, 3rd, 4th or 5th most popular word based on the clouds alone? There's also the issue that just because it's text data doesn't make it a qualitative analysis and just because something is said a lot doesn't mean it's useful or important. But, this argument is outwith the scope of this book, even if it is a recurring part of Emily's life thanks to her qualitative wife. 
+:::
 
-### Maps
+
+#### Maps
 
 Working with maps can be tricky. The `r pkg("sf")` package provides functions that work with `r pkg("ggplot2")`, such as `geom_sf()`. The `r pkg("rnaturalearth")` package (and associated data packages that you may be prompted to download) provide high-quality mapping coordinates.
 
 * `ne_countries()` returns world country polygons (i.e., a world map). We specify the object should be returned as a "simple feature" class `sf` so that it will work with `geom_sf()`. If you would like a deep dive on simple feature objects, check out a [vignette](https://r-spatial.github.io/sf/articles/sf1.html) from the `r pkg("sf")` package.
-* It's worth checking out the object `ne_countries()` returns to see just how much information is available.
+* It's worth checking out what the object `ne_countries()` returns to see just how much information is available.
 * Try changing the values and colours below to get a sense of how the code works.
 
 
@@ -558,7 +582,7 @@ ggplot() +
   theme(legend.position = c(0.16, 0.84))
 ```
 
-### Animated Plots
+#### Animated Plots
 
 Animated plots are a great way to add a wow factor to your reports, but they can be complex to make, distracting, and not very accessible, so use them sparingly and only for data visualisation where the animation really adds something. The package `r pkg("gganimate", "https://gganimate.com/")` has many functions for animating ggplots.
 
@@ -624,7 +648,36 @@ knitr::include_graphics("images/gganim-demo.gif")
 ```
 
 
-## Visualisation Resources  {#resources-custom}
+::: {.warning data-latex=""}
+There are actually not many plots that are really improved by animating them. 
+
+```{r anim-alternative, echo = FALSE, fig.caption = "This plot gives the same information at a single glance."}
+worldpop %>%
+  ggplot(aes(x = year, y = pop, color = region)) +
+  geom_line(size = 2) +
+  geom_text(aes(label = region), 
+            # only label last year
+            data = filter(worldpop, year == max(year)),
+            hjust = 0,  # right-justify
+            nudge_x = 1, # move x-position 1 to the right
+            # nudge Europe up  a little
+            nudge_y = c(0, 0, 1e8, 0, 0, 0) 
+  ) +
+  scale_x_continuous(name = "", 
+                     breaks = seq(1950, 1995, 5),
+                     expand = expansion(add = c(1, 25))) +
+  scale_y_continuous(name = "Population (in billions)",
+                     breaks = seq(0, 3e9, 1e9),
+                     labels = paste0(0:3, "B"),
+                     limits = c(0, 3.5e9)) +
+  scale_color_viridis_d() +
+  ggtitle("Population growth from 1950 to 1995") +
+  theme(legend.position = "none")
+```
+
+:::
+
+### Resources  {#resources-custom}
 
 There are so many more options for data visualisation in R than we have time to cover here. The following resources will get you started on your journey to informative, intuitive visualisations.
 
@@ -638,9 +691,12 @@ There are so many more options for data visualisation in R than we have time to 
 * [Drawing Beautiful Maps Programmatically](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
 * [gganimate](https://gganimate.com/)
 
-## Set-up (reports)
 
-Close your visualisation Markdown and open and save an new R Markdown document named `reports`.Rmd`, delete the welcome text and load the required packages for this section.
+## Reports {#present}
+
+### Set-up
+
+Close your visualisation Markdown and open and save an new R Markdown document named `reports.Rmd`, delete the welcome text and load the required packages for this section.
 
 ```{r setup-reports, message=FALSE}
 library(tidyverse)     # data wrangling functions
@@ -649,7 +705,7 @@ library(flexdashboard) # for dashboards
 library(DT)            # for interactive tables
 ```
 
-## Linked documents
+### Linked documents
 
 If you need to create longer reports with links between sections, you can edit the YAML to use a bookdown format. `bookdown::html_document2` is a useful one that adds figure and table numbers automatically to any figures or tables with a caption and allows you to link to these by reference.
 
@@ -694,13 +750,17 @@ The code below shows how to link text to figures or tables in a full report usin
 
 `r unhide()`
 
-This format defaults to numbered sections, so set `number_sections: false` in the `r glossary("YAML")` header if you don't want this.
+This format defaults to numbered sections, so set `number_sections: false` in the `r glossary("YAML")` header if you don't want this. If you remove numbered sections, links like `\@ref(conclusion)` will show "??", so you need to use URL link syntax instead, like this:
 
-## References
+```
+See the [last section](#conclusion) for concluding remarks.
+```
+
+### References
 
 There are several ways to do in-text references and automatically generate a [bibliography](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html){target="_blank"} in R Markdown. Markdown files need to link to a BibTex file (a plain text file with references in a specific format) that contains the references you need to cite. You specify the name of this file in the YAML header, like `bibliography: filename.bib` and cite references in text using an at symbol and a shortname, like `[@tidyverse]`.
 
-### Creating a BibTeX file
+#### Creating a BibTeX file
 
 Most reference software like EndNote, Zotero or Mendeley have exporting options that can export to BibTeX format. You just need to check the shortnames in the resulting file.
 
@@ -708,7 +768,7 @@ You can also make a BibTeX file and add references manually. In RStudio, go to *
 
 Next, add the line `bibliography: bibliography.bib` to your YAML header.
 
-### Adding references
+#### Adding references
 
 You can add references to a journal article in the following format:
 
@@ -736,7 +796,12 @@ citation(package="ggplot2") %>% toBibtex()
 
 [Google Scholar](https://scholar.google.com/) entries have a BibTeX citation option. This is usually the easiest way to get the relevant values, although you have to add the DOI yourself. You can keep the suggested shortname or change it to something that makes more sense to you.
 
-### Citing references
+```{r google-scholar, echo = FALSE, fi.caption = "Get BibTex citations from Google Scholar."}
+knitr::include_graphics("images/present/google-scholar.png")
+```
+
+
+#### Citing references
 
 You can cite references in text like this: 
 
@@ -754,17 +819,19 @@ Franconeri and colleagues [-@franconeri2021science] review research-backed guide
 
 Franconeri and colleagues [-@franconeri2021science] review research-backed guidelines for creating effective and intuitive visualizations.
 
-### Citation styles
+#### Citation styles
 
 You can search a [list of style files](https://www.zotero.org/styles){target="_blank"} (e.g., APA, MLA, Harvard) and download a file that will format your bibliography. You'll need to add the line `csl: filename.csl` to your YAML header. 
 
-### Reference section
+#### Reference section
 
 By default, the reference section is added to the end of the document. If you want to change the position (e.g., to add figures and tables after the references), include `<div id="refs"></div>` where you want the references. 
 
-Try adding in-text citations and a reference list to your `diamonds` report now.
+::: {.try data-latex=""}
+Add in-text citations and a reference list to your report.
+:::
 
-## Interactive tables
+### Interactive tables
 
 One way to make your reports more exciting is to use interactive tables. The `DT::datatable()` function displays a table with some extra interactive elements to allow readers to search and reorder the data, as well as controlling the number of rows shown at once. This can be especially helpful. This only works with HTML output types. The [DT website](https://rstudio.github.io/DT/){target="_blank"} has extensive tutorials, but we'll cover the basics here.
 
@@ -802,13 +869,47 @@ datatable(
 )
 ```
 
+::: {.try data-latex=""}
+Create an interactive table like the one below from the `diamonds` dataset of diamonds where the `table` value is greater than 65 (the whole table is *much* too large to display with an interactive table). Show 20 items by default and remove the search box, but leave in the filter and other default options.
+
+```{r, echo = FALSE}
+my_options <- list(
+  pageLength = 20, # how many rows are displayed
+  searching = FALSE # whether you can search the table
+)
+
+diamonds %>% 
+  filter(table > 65) %>%
+  select(-table, -(x:z)) %>%
+  DT::datatable(
+    caption = "All diamonds with table > 65.",
+    options = my_options
+  )
+```
+
+```{r, webex.hide = TRUE, eval = FALSE}
+my_options <- list(
+  pageLength = 20, # how many rows are displayed
+  searching = FALSE # whether you can search the table
+)
+
+diamonds %>% 
+  filter(table > 65) %>%
+  select(-table, -(x:z)) %>%
+  DT::datatable(
+    caption = "All diamonds with table > 65.",
+    options = my_options
+  )
+```
+:::
 
 
-## Other formats
+
+### Other formats
 
 You can create more than just reports with R Markdown. You can also create presentations, interactive dashboards, books, websites, and web applications.
 
-### Presentations
+#### Presentations
 
 You can choose a presentation template when you create a new R Markdown document. We'll use ioslides for this example, but the other formats work similarly.
 
@@ -833,7 +934,7 @@ The code below shows how to load some packages and display text, a table, and a 
 
 `r unhide()`
 
-### Dashboards
+#### Dashboards
 
 Dashboards are a way to display text, tables, and plots with dynamic formatting. After you install `r pkg("flexdashboard")`, you can choose a flexdashboard template when you create a new R Markdown document. 
 
@@ -858,7 +959,7 @@ Change the size of your web browser to see how the boxes, tables and figures cha
 
 The best way to figure out how to format a dashboard is trial and error, but you can also look at some [sample layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html){target="_blank"}.
 
-### Books
+#### Books
 
 You can create online books with `r pkg("bookdown")`. In fact, the book you're reading was created using bookdown. After you download the package, start a new project and choose "Book project using bookdown" from the list of project templates. 
 
@@ -868,19 +969,19 @@ knitr::include_graphics("images/present/bookdown.png")
 
 Each chapter is written in a separate .Rmd file and the general book settings can be changed in the `_bookdown.yml` and `_output.yml` files. 
 
-### Websites
+#### Websites
 
 You can create a simple website the same way you create any R Markdown document. Choose "Simple R Markdown Website" from the project templates to get started. See Appendix\ \@ref(webpages) for a step-by-step tutorial.
 
-For more complex, blog-style websites, you can investigate [`r pkg("blogdown")`](https://bookdown.org/yihui/blogdown/). After you install this package, you will also be able to crate template blogdown projects to get you started.
+For more complex, blog-style websites, you can investigate [`r pkg("blogdown")`](https://bookdown.org/yihui/blogdown/). After you install this package, you will also be able to create template blogdown projects to get you started.
 
-### Shiny
+#### Shiny
 
 To get truly interactive, you can take your R coding to the next level and learn Shiny. Shiny apps let your R code react to user input. You can do things like [make a word cloud](https://shiny.psy.gla.ac.uk/debruine/wordcloud/), [search a google spreadsheet](https://shiny.psy.gla.ac.uk/debruine/seen/), or [conduct a survey](https://shiny.psy.gla.ac.uk/debruine/question/).
 
 This is well outside the scope of this class, but the skills you've learned here provide a good start. The free book [Building Web Apps with R Shiny](https://debruine.github.io/shinyintro/) by one of the authors of this book can get you started creating shiny apps.
 
-## Report Resources {#resources-report}
+### Resources {#resources-report}
 
 * [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
 * [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook)
@@ -891,13 +992,16 @@ This is well outside the scope of this class, but the skills you've learned here
 * [Shiny](https://shiny.rstudio.com/)
 * [Building Web Apps with R Shiny](https://debruine.github.io/shinyintro/)
 
+
+<hr>
+
 ## Course Complete
 
 And so, we are done. We've covered a huge amount over the course of Applied Data Skills, and whilst you're likely more comfortable with some bits than others, the skills you have developed are truly impressive. Even if you go no further than what you've learned in this book, you can now work reproducibly to produce informative summaries and visualisations that provide new insights into your data and reduce human error. 
 
 But it's also important to recognise that your knowledge of R will never be complete. In the course of writing this book, the entire ADS team have learned new functions, new arguments, new approaches, and new reasons to love or loathe certain data visualisations. The flexibility and possibility of R is what makes it frustrating and empowering in equal measure. What we hope more than anything is that Applied Data Skills is the start of your journey with R, not the end. Please keep in touch, we'd love to see where it takes you.
 
-Emily Nordmann
-Lisa DeBruine
-Gaby Mahrholz
+Emily Nordmann,  
+Lisa DeBruine,  
+Gaby Mahrholz,  
 Jaimie Torrance

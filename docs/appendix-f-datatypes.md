@@ -530,7 +530,7 @@ toph       <- avatar[[2, 1]] # single cell (row, col)
 
 ## Glossary {#glossary-datatypes}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

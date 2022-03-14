@@ -142,7 +142,7 @@ orders <- tibble(
 
 ## Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -1119,7 +1119,7 @@ base::intersect(customers, new_customers)
 
 ```
 ## Error: Must subset rows with a valid subscript vector.
-## i Logical subscripts must match the size of the indexed input.
+## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
@@ -1381,7 +1381,7 @@ str(new_customers2)
 ```
 
 ```
-## tibble [5 x 3] (S3: tbl_df/tbl/data.frame)
+## tibble [5 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ id      : chr [1:5] "5" "6" "7" "8" ...
 ##  $ postcode: chr [1:5] "PA75 6NR" "FK1 4RS" "PA42 7EA" "G81 4SJ" ...
 ##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
@@ -1400,8 +1400,8 @@ inner_join(customers, new_customers2)
 
 ```
 ## Error: Can't join on `x$id` x `y$id` because of incompatible types.
-## i `x$id` is of type <integer>>.
-## i `y$id` is of type <character>>.
+## ℹ `x$id` is of type <integer>>.
+## ℹ `y$id` is of type <character>>.
 ```
 
 The same goes for `bind_rows()`:
@@ -1682,7 +1682,7 @@ In preparation for the summative assessment, how you do this and what informatio
 
 ## Glossary {#glossary-joins}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

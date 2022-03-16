@@ -6,6 +6,10 @@
 * Be able to import data from a range of sources
 * Be able to identify and handle common problems with data import
 
+## Walkthrough video
+
+There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/5b916fab-75cc-4827-9858-d841957f4697/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
+
 ## Set-up
 
 Create a new project for the work we'll do in this chapter named `r path("04-data")`. Then, create and save a new R Markdown document named `data.Rmd`, get rid of the default template text, and load the packages in the set-up code chunk. You should have all of these packages installed already, but if you get the message `Error in library(x) : there is no package called ‘x’`, please refer to Chapter\ \@ref(install-package).

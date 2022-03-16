@@ -126,6 +126,7 @@ glossary-intro
 resources-intro
 reports
 ilo-reports
+walkthrough-video-1
 projects
 project-start
 naming
@@ -162,6 +163,7 @@ glossary-reports
 resources-reports
 viz
 ilo-viz
+walkthrough-video-2
 set-up
 variable-types
 continuous
@@ -221,6 +223,7 @@ resources-viz
 glossary-viz
 data
 ilo-data
+walkthrough-video-3
 set-up-1
 builtin
 looking-at-data
@@ -247,6 +250,7 @@ glossary-data
 resources-data
 summary
 ilo-summary
+walkthrough-video-4
 set-up-2
 social-media-data
 r-objects
@@ -263,8 +267,16 @@ inline-coding-3
 exercises-2
 glossary-summary
 resources-summary
+practice-report
+assessment-information
+intended-learning-outcomes-ilos
+details-and-files
+support
+helpful-hints
+why-am-i-being-assessed-like-this
 joins
 ilo-joins
+walkthrough-video-5
 set-up-3
 joins-data
 mutating-joins
@@ -295,6 +307,7 @@ glossary-joins
 resources-joins
 tidy
 ilo-tidy
+walkthrough-video-6
 set-up-4
 data-structures
 untidy-data
@@ -324,6 +337,7 @@ glossary-tidy
 resources-tidy
 wrangle
 ilo-wrangle
+walkthrough-video-7
 set-up-5
 wrangling-functions
 select
@@ -353,6 +367,7 @@ glossary-wrangle
 resources-wrangle
 advanced
 ilo-advanced
+walkthrough-video-8
 custom
 set-up-6
 defaults

@@ -63,10 +63,11 @@
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
 <li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
-<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
-<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
-<li><a class="" href="advanced.html"><span class="header-section-number">9</span> Advanced Visualisations &amp; Reports</a></li>
+<li><a class="" href="practice-report.html"><span class="header-section-number">6</span> Practice Report</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">7</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">8</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="advanced.html"><span class="header-section-number">10</span> Advanced Visualisations &amp; Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -88,11 +89,11 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="data-types" class="section level1" number="15">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="data-types" class="section level1" number="16">
 <h1>
 <span class="header-section-number">F</span> Data Types<a class="anchor" aria-label="anchor" href="#data-types"><i class="fas fa-link"></i></a>
 </h1>
-<div id="basic-data-types" class="section level2" number="15.1">
+<div id="basic-data-types" class="section level2" number="16.1">
 <h2>
 <span class="header-section-number">F.1</span> Basic data types<a class="anchor" aria-label="anchor" href="#basic-data-types"><i class="fas fa-link"></i></a>
 </h2>
@@ -103,7 +104,7 @@
 Figure F.1: Data types are like the categories when you format cells in Excel.
 </p>
 </div>
-<div id="numeric-data" class="section level3" number="15.1.1">
+<div id="numeric-data" class="section level3" number="16.1.1">
 <h3>
 <span class="header-section-number">F.1.1</span> Numeric data<a class="anchor" aria-label="anchor" href="#numeric-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -125,7 +126,7 @@ Figure F.1: Data types are like the categories when you format cells in Excel.
 ## [1] TRUE
 ## [1] FALSE</code></pre>
 </div>
-<div id="character-data" class="section level3" number="15.1.2">
+<div id="character-data" class="section level3" number="16.1.2">
 <h3>
 <span class="header-section-number">F.1.2</span> Character data<a class="anchor" aria-label="anchor" href="#character-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -141,7 +142,7 @@ Figure F.1: Data types are like the categories when you format cells in Excel.
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">my_string</span><span class="op">)</span> <span class="co"># cat() prints the arguments</span></code></pre></div>
 <pre><code>## The instructor said, "R is cool," and the class agreed.</code></pre>
 </div>
-<div id="logical-data" class="section level3" number="15.1.3">
+<div id="logical-data" class="section level3" number="16.1.3">
 <h3>
 <span class="header-section-number">F.1.3</span> Logical Data<a class="anchor" aria-label="anchor" href="#logical-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -159,7 +160,7 @@ Figure F.1: Data types are like the categories when you format cells in Excel.
 <p>You might also see logical values abbreviated as <code>T</code> and <code>F</code>, or <code>0</code> and <code>1</code>. This can cause some problems down the road, so we will always spell out the whole thing.</p>
 </div>
 </div>
-<div id="factors" class="section level3" number="15.1.4">
+<div id="factors" class="section level3" number="16.1.4">
 <h3>
 <span class="header-section-number">F.1.4</span> Factors<a class="anchor" aria-label="anchor" href="#factors"><i class="fas fa-link"></i></a>
 </h3>
@@ -176,7 +177,7 @@ Figure F.1: Data types are like the categories when you format cells in Excel.
 <pre><code>## [1] "integer"
 ## [1] "factor"</code></pre>
 </div>
-<div id="dates-and-times-1" class="section level3" number="15.1.5">
+<div id="dates-and-times-1" class="section level3" number="16.1.5">
 <h3>
 <span class="header-section-number">F.1.5</span> Dates and Times<a class="anchor" aria-label="anchor" href="#dates-and-times-1"><i class="fas fa-link"></i></a>
 </h3>
@@ -280,12 +281,12 @@ Figure F.1: Data types are like the categories when you format cells in Excel.
 </div>
 </div>
 </div>
-<div id="containers" class="section level2" number="15.2">
+<div id="containers" class="section level2" number="16.2">
 <h2>
 <span class="header-section-number">F.2</span> Basic container types<a class="anchor" aria-label="anchor" href="#containers"><i class="fas fa-link"></i></a>
 </h2>
 <p>Individual data values can be grouped together into containers. The main types of containers we'll work with are vectors, lists, and data tables.</p>
-<div id="vectors" class="section level3" number="15.2.1">
+<div id="vectors" class="section level3" number="16.2.1">
 <h3>
 <span class="header-section-number">F.2.1</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors"><i class="fas fa-link"></i></a>
 </h3>
@@ -314,7 +315,7 @@ Solution
 <div class="warning">
 <p>You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will <a class="glossary" target="_blank" title="Changing the data type of values in a vector to a single compatible type." href="https://psyteachr.github.io/glossary/c#coercion">coerce</a> them so that they are all the same. If you mix doubles and integers, the integers will be changed to doubles. If you mix characters and numeric types, the numbers will be coerced to characters, so <code><span class="fl">10</span></code> would turn into <code><span class="st">"10"</span></code>.</p>
 </div>
-<div id="selecting-values-from-a-vector" class="section level4" number="15.2.1.1">
+<div id="selecting-values-from-a-vector" class="section level4" number="16.2.1.1">
 <h4>
 <span class="header-section-number">F.2.1.1</span> Selecting values from a vector<a class="anchor" aria-label="anchor" href="#selecting-values-from-a-vector"><i class="fas fa-link"></i></a>
 </h4>
@@ -362,7 +363,7 @@ Solution
 <pre><code>## [1] 26
 ##  [1] "A" "C" "E" "G" "I" "K" "M" "O" "Q" "S" "U" "W" "Y"</code></pre>
 </div>
-<div id="rep_seq" class="section level4" number="15.2.1.2">
+<div id="rep_seq" class="section level4" number="16.2.1.2">
 <h4>
 <span class="header-section-number">F.2.1.2</span> Repeating Sequences<a class="anchor" aria-label="anchor" href="#rep_seq"><i class="fas fa-link"></i></a>
 </h4>
@@ -402,7 +403,7 @@ Solution
 <pre><code>##  [1]  1  2  5  6  9 10 13 14 17 18 21 22 25 26 29 30 33 34 37 38</code></pre>
 </div>
 </div>
-<div id="lists" class="section level3" number="15.2.2">
+<div id="lists" class="section level3" number="16.2.2">
 <h3>
 <span class="header-section-number">F.2.2</span> Lists<a class="anchor" aria-label="anchor" href="#lists"><i class="fas fa-link"></i></a>
 </h3>
@@ -438,7 +439,7 @@ Solution
 <p>The double brackets (<code>bracket2</code> and <code>name2</code> return a single item as a vector. You can't select more than one item; <code>data_types[[1:2]]</code> will give you a "subscript out of bounds" error.</p>
 <p>The dollar-sign notation is the same as double-brackets. If the name has spaces or any characters other than letters, numbers, underscores, and full stops, you need to surround the name with backticks (e.g., <code>sales$`Customer ID`</code>).</p>
 </div>
-<div id="tables-data" class="section level3" number="15.2.3">
+<div id="tables-data" class="section level3" number="16.2.3">
 <h3>
 <span class="header-section-number">F.2.3</span> Tables<a class="anchor" aria-label="anchor" href="#tables-data"><i class="fas fa-link"></i></a>
 </h3>
@@ -464,8 +465,8 @@ Solution
 
 <span class="co"># or by importing data from a file</span>
 <span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/avatar.csv"</span><span class="op">)</span></code></pre></div>
-<p>Tabular data becomes especially important for when we talk about <a class="glossary" target="_blank" title="A format for data that maps the meaning onto the structure." href="https://psyteachr.github.io/glossary/t#tidy-data">tidy data</a> in Chapter <a href="tidy.html#tidy">7</a>, which consists of a set of simple principles for structuring data.</p>
-<div id="table-info" class="section level4" number="15.2.3.1">
+<p>Tabular data becomes especially important for when we talk about <a class="glossary" target="_blank" title="A format for data that maps the meaning onto the structure." href="https://psyteachr.github.io/glossary/t#tidy-data">tidy data</a> in Chapter <a href="tidy.html#tidy">8</a>, which consists of a set of simple principles for structuring data.</p>
+<div id="table-info" class="section level4" number="16.2.3.1">
 <h4>
 <span class="header-section-number">F.2.3.1</span> Table info<a class="anchor" aria-label="anchor" href="#table-info"><i class="fas fa-link"></i></a>
 </h4>
@@ -498,11 +499,11 @@ Solution
 ## $ bends    &lt;chr&gt; "water", "earth", NA
 ## $ friendly &lt;lgl&gt; TRUE, TRUE, TRUE</code></pre>
 </div>
-<div id="row-col-access" class="section level4" number="15.2.3.2">
+<div id="row-col-access" class="section level4" number="16.2.3.2">
 <h4>
 <span class="header-section-number">F.2.3.2</span> Accessing rows and columns<a class="anchor" aria-label="anchor" href="#row-col-access"><i class="fas fa-link"></i></a>
 </h4>
-<p>There are various ways of accessing specific columns or rows from a table. You'll be learning more about this in Chapters <a href="tidy.html#tidy">7</a> and <a href="wrangle.html#wrangle">8</a>.</p>
+<p>There are various ways of accessing specific columns or rows from a table. You'll be learning more about this in Chapters <a href="tidy.html#tidy">8</a> and <a href="wrangle.html#wrangle">9</a>.</p>
 <div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">siblings</span>   <span class="op">&lt;-</span> <span class="va">avatar</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># rows (by number)</span>
 <span class="va">bends</span>      <span class="op">&lt;-</span> <span class="va">avatar</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="co"># column vector (by number)</span>
@@ -521,7 +522,7 @@ Solution
 </div>
 </div>
 </div>
-<div id="glossary-datatypes" class="section level2" number="15.3">
+<div id="glossary-datatypes" class="section level2" number="16.3">
 <h2>
 <span class="header-section-number">F.3</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-datatypes"><i class="fas fa-link"></i></a>
 </h2>
@@ -910,6 +911,34 @@ $( document ).ready(function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

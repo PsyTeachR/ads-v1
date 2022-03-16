@@ -19,10 +19,10 @@
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
@@ -74,12 +74,11 @@
 <li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
 <li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
 <li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
-<li><a class="" href="dates-times.html"><span class="header-section-number">G</span> Dates and Times</a></li>
-<li><a class="" href="plotstyle.html"><span class="header-section-number">H</span> Styling Plots</a></li>
-<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">I</span> Twitter Hashtags</a></li>
-<li><a class="" href="twitter-data.html"><span class="header-section-number">J</span> Twitter Data</a></li>
-<li><a class="" href="spotify-data.html"><span class="header-section-number">K</span> Spotify Data</a></li>
-<li><a class="" href="webpages.html"><span class="header-section-number">L</span> Webpages</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
 <li><a class="" href="license.html">License</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
@@ -108,7 +107,7 @@
 <span class="header-section-number">8.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, create a new project for the work we'll do in this chapter named <code class="path">08-wrangle</code>. Second, open and save and new R Markdown document named <code>wrangle.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
-<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data wrangling functions</span></code></pre></div>
 <p>You'll need to make a folder called "data" and download a data file into it:
 <a href="https://psyteachr.github.io/ads-v1/data/budget.csv" download>budget.csv</a>.</p>
@@ -120,9 +119,9 @@
 </h2>
 <p>Data wrangling refers to the process of cleaning, transforming, and restructuring your data to get it into the format you need for analysis and it's something you will spend an awful lot of time doing. Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">7</a> and six functions from the <code class="package">dplyr</code> package that is loaded as part of the <code class="package">tidyverse</code>: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>. You'll remember the last two from Chapter <a href="summary.html#summary">5</a>, so we'll only cover them briefly.</p>
 <p>It's worth highlighting that in this chapter we're going to cover these common functions and common uses of said functions. However, <code class="package">dplyr</code> (and packages beyond it) has a huge number of additional wrangling functions and each function has many different arguments. Essentially, if you think you should be able to wrangle your data in a particular way that we haven't explicitly shown you, you almost certainly can, it might just take a bit of Googling to find out how.</p>
-<p>We'll use a small example table with the sales, expenses, and satisfaction for two years from four regions over two products. After you load the data, use <code>glimpse(budget)</code> or <code>View(budget)</code> to get familiar with the data.</p>
-<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/budget.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>We'll use a small example table with the sales, expenses, and satisfaction for two years from four regions over two products. After you load the data, use <code>glimpse(budget)</code> or <code><a href="https://rdrr.io/r/utils/View.html">View(budget)</a></code> to get familiar with the data.</p>
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/budget.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -373,23 +372,23 @@ low
 <span class="header-section-number">8.3.1.1</span> By name or index<a class="anchor" aria-label="anchor" href="#by-name-or-index"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can select columns by name or number (which is sometimes referred to as the column index). Selecting by number can be useful when the column names are long or complicated.</p>
-<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select single column by name</span>
-<span class="va">product_dat</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">product</span><span class="op">)</span> 
+<span class="va">product_dat</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">product</span><span class="op">)</span> 
 
 <span class="co"># select single column by number</span>
-<span class="va">product_dat</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<span class="va">product_dat</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> </code></pre></div>
 <p>You can select each column individually, separated by commas (e.g., <code>region, sales_2019</code>) but you can also select all columns from one to another by separating them with a colon (e.g., <code>sales_2019:expenses_2020</code>).</p>
 <p>The colon notation can be much faster because you don't need to type out each individual variable name, but make sure that you know what order your columns are in and always check the output to make sure you have selected what you intended.</p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select columns individually</span>
-<span class="va">sales2019</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">product</span>, <span class="va">sales_2019</span><span class="op">)</span>
+<span class="va">sales2019</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">region</span>, <span class="va">product</span>, <span class="va">sales_2019</span><span class="op">)</span>
 
 <span class="co"># select columns with colon</span>
-<span class="va">sales2019</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">region</span><span class="op">:</span><span class="va">sales_2019</span><span class="op">)</span></code></pre></div>
+<span class="va">sales2019</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">region</span><span class="op">:</span><span class="va">sales_2019</span><span class="op">)</span></code></pre></div>
 <p>You can rename columns at the same time as selecting them by setting <code>new_name = old_col</code>.</p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">regions</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span>`Sales Region` <span class="op">=</span> <span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">regions</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span>`Sales Region` <span class="op">=</span> <span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">regions</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
@@ -455,12 +454,12 @@ North
 <span class="header-section-number">8.3.1.2</span> Un-selecting columns<a class="anchor" aria-label="anchor" href="#un-selecting-columns"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can select columns either by telling R which ones you want to keep as in the previous examples, or by specifying which ones you want to exclude by using a minus symbol to un-select columns. You can also use the colon notation to de-select columns, but to do so you need to put parentheses around the span first, e.g., <code>-(sales_2019:expenses_2020)</code>, not <code>-sales_2019:expenses_2020</code>.</p>
-<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># de-select individual columns</span>
-<span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expenses_2019</span>, <span class="op">-</span><span class="va">expenses_2020</span><span class="op">)</span>
+<span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">expenses_2019</span>, <span class="op">-</span><span class="va">expenses_2020</span><span class="op">)</span>
 
 <span class="co"># de-select a range of columns</span>
-<span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">expenses_2019</span><span class="op">:</span><span class="va">expenses_2020</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">expenses_2019</span><span class="op">:</span><span class="va">expenses_2020</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="select-helpers" class="section level4" number="8.3.1.3">
 <h4>
@@ -474,19 +473,19 @@ North
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">starts_with()</a></code></td>
+<td><code>starts_with()</code></td>
 <td>select columns that start with a character string</td>
 </tr>
 <tr class="even">
-<td><code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">ends_with()</a></code></td>
+<td><code>ends_with()</code></td>
 <td>select columns that end with a character string</td>
 </tr>
 <tr class="odd">
-<td><code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains()</a></code></td>
+<td><code>contains()</code></td>
 <td>select columns that contain a character string</td>
 </tr>
 <tr class="even">
-<td><code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">num_range()</a></code></td>
+<td><code>num_range()</code></td>
 <td>select columns with a name that matches the pattern <code>prefix</code>
 </td>
 </tr>
@@ -497,26 +496,26 @@ North
 <ul>
 <li>
 <code>budget %&gt;% select(contains("_"))</code>
-<div id="radio_FTPUVIPXFG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FTPUVIPXFG" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FTPUVIPXFG" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FTPUVIPXFG" value="answer"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_FTPUVIPXFG" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_EUIVBQYGWK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="answer"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code>
-<div id="radio_KRUVWUFERO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KRUVWUFERO" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KRUVWUFERO" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KRUVWUFERO" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_KRUVWUFERO" value="answer"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_MUDYTKTEGI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="answer"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(starts_with("sales"))</code>
-<div id="radio_MRKUMFXJBG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MRKUMFXJBG" value="answer"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MRKUMFXJBG" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MRKUMFXJBG" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MRKUMFXJBG" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_DDJSYVAFSX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="answer"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(ends_with("2020"))</code>
-<div id="radio_PJXZANQSIR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PJXZANQSIR" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_PJXZANQSIR" value="answer"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_PJXZANQSIR" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_PJXZANQSIR" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_JKHWQGFCPH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="answer"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 </ul>
@@ -527,22 +526,22 @@ North
 <h3>
 <span class="header-section-number">8.3.2</span> Filter<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
 </h3>
-<p>Whilst <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> chooses the columns you want to retain, <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> chooses the rows to retain by matching row or column criteria.</p>
-<p>You can filter by a single criterion. This criterion can be rows where a certain column's value matches a character value (e.g., "North") or a number (e.g., 9003). It can also be the result of a logical equation (e.g., keep all rows with a specific column value larger than a certain value). The criterion is checked for each row, and if the result is FALSE, the row is removed. You can reverse equations by specifying <code>!=</code> where <code>!</code> means "not".</p>
-<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<p>Whilst <code>select()</code> chooses the columns you want to retain, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> chooses the rows to retain by matching row or column criteria.</p>
+<p>You can filter by a single criterion. This criterion can be rows where a certain column's value matches a character value (e.g., "North") or a number (e.g., 9003). It can also be the result of a logical equation (e.g., keep all rows with a specific column value larger than a certain value). The criterion is checked for each row, and if the result is FALSE, the row is removed. You can reverse equations by specifying <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code> where <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> means "not".</p>
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># select all rows where region equals North</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span><span class="op">)</span>
+<span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span><span class="op">)</span>
 
 <span class="co"># select all rows where expenses_2020 were exactly equal to 200</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">expenses_2020</span> <span class="op">==</span> <span class="fl">200</span><span class="op">)</span>
+<span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">expenses_2020</span> <span class="op">==</span> <span class="fl">200</span><span class="op">)</span>
 
 <span class="co"># select all rows where sales_2019 was more than 100</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span>
+<span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span>
 
 <span class="co"># everything but the North</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">!=</span> <span class="st">"North"</span><span class="op">)</span></code></pre></div>
+<span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">!=</span> <span class="st">"North"</span><span class="op">)</span></code></pre></div>
 <div class="warning">
-<p>Remember to use <code>==</code> and not <code>=</code> to check if two things are equivalent. A single <code>=</code> assigns the right-hand value to the left-hand variable (much like the <code>&lt;-</code> operator).</p>
+<p>Remember to use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> and not <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> to check if two things are equivalent. A single <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> assigns the right-hand value to the left-hand variable (much like the <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> operator).</p>
 </div>
 <div class="try">
 <p>Which IDs are kept from the table below?</p>
@@ -642,42 +641,42 @@ B
 </li>
 </ul>
 </div>
-<p>You can also select on multiple criteria by separating them by commas (rows will be kept if they match <em>all</em> criteria). Additionally, you can use <code>&amp;</code> ("and") and <code>|</code> ("or") to create complex criteria.</p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<p>You can also select on multiple criteria by separating them by commas (rows will be kept if they match <em>all</em> criteria). Additionally, you can use <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code> ("and") and <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> ("or") to create complex criteria.</p>
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># regions and products with profit in both 2019 and 2020</span>
-<span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span>
+<span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
     <span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="va">expenses_2019</span>,
     <span class="va">sales_2020</span> <span class="op">&gt;</span> <span class="va">expenses_2020</span>
   <span class="op">)</span>
 
 <span class="co"># the same as above, using &amp; instead of a comma</span>
-<span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span>
+<span class="va">profit_both</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
     <span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="va">expenses_2019</span> <span class="op">&amp;</span>
     <span class="va">sales_2020</span> <span class="op">&gt;</span> <span class="va">expenses_2020</span>
   <span class="op">)</span>
 
 <span class="co"># regions and products with profit in 2019 or 2020</span>
-<span class="va">profit_either</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span>
+<span class="va">profit_either</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span>
     <span class="va">sales_2019</span> <span class="op">&gt;</span> <span class="va">expenses_2019</span> <span class="op">|</span>
     <span class="va">sales_2020</span> <span class="op">&gt;</span> <span class="va">expenses_2020</span>
   <span class="op">)</span>
 
 <span class="co"># 2020 profit greater than 1000</span>
-<span class="va">profit_1000</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2020</span> <span class="op">-</span> <span class="va">expenses_2020</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
-<p>If you want the filter to retain multiple specific values in the same variable, the <a class="glossary" target="_blank" title="A binary operator (%in%) that returns a logical vector indicating if there is a match or not for its left operand." href="https://psyteachr.github.io/glossary/m#match-operator">match operator</a> (<code>%in%</code>) should be used rather than <code>|</code> (or). The <code>!</code> can also be used in combination here, but it is placed before the variable name.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<span class="va">profit_1000</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sales_2020</span> <span class="op">-</span> <span class="va">expenses_2020</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<p>If you want the filter to retain multiple specific values in the same variable, the <a class="glossary" target="_blank" title="A binary operator (%in%) that returns a logical vector indicating if there is a match or not for its left operand." href="https://psyteachr.github.io/glossary/m#match-operator">match operator</a> (<code><a href="https://rdrr.io/r/base/match.html">%in%</a></code>) should be used rather than <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> (or). The <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> can also be used in combination here, but it is placed before the variable name.</p>
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># retain any rows where region is north or south, and where product equals widget</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span><span class="op">)</span>,
+<span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span><span class="op">)</span>,
          <span class="va">product</span> <span class="op">==</span> <span class="st">"widgets"</span><span class="op">)</span>
 
 <span class="co"># retain any rows where the region is not east or west, and where the product does not equal gadgets</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"East"</span>, <span class="st">"West"</span><span class="op">)</span>,
+<span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"East"</span>, <span class="st">"West"</span><span class="op">)</span>,
          <span class="va">product</span> <span class="op">!=</span> <span class="st">"gadgets"</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -723,10 +722,10 @@ B
 </tr>
 </tbody>
 </table></div>
-<p>Finally, you can also pass many other functions to filter. For example, the package <code class="package">stringr</code> that is loaded as part of the <code class="package">tidyverse</code> contains many different functions for working with <a class="glossary" target="_blank" title="A piece of text inside of quotes." href="https://psyteachr.github.io/glossary/s#string">strings</a> (character data). For example, you you use <code><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect()</a></code> to only retain rows where the customer satisfaction rating includes the word "high"</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">satisfaction_2019</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Finally, you can also pass many other functions to filter. For example, the package <code class="package">stringr</code> that is loaded as part of the <code class="package">tidyverse</code> contains many different functions for working with <a class="glossary" target="_blank" title="A piece of text inside of quotes." href="https://psyteachr.github.io/glossary/s#string">strings</a> (character data). For example, you you use <code>str_detect()</code> to only retain rows where the customer satisfaction rating includes the word "high"</p>
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">satisfaction_2019</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -837,22 +836,22 @@ neutral
 </tbody>
 </table></div>
 </div>
-<p>Note that <code><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect()</a></code> is case sensitive so it would not return values of "High" or "HIGH". You can use the function <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code> or <code><a href="https://rdrr.io/r/base/chartr.html">toupper()</a></code> to convert a string to lowercase or uppercase before you search for substring if you need case-insensitive matching.</p>
+<p>Note that <code>str_detect()</code> is case sensitive so it would not return values of "High" or "HIGH". You can use the function <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code> or <code><a href="https://rdrr.io/r/base/chartr.html">toupper()</a></code> to convert a string to lowercase or uppercase before you search for substring if you need case-insensitive matching.</p>
 <div class="warning">
-<p><code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> is incredibly powerful and can allow you to select very specific subsets of data. But, it is also quite dangerous because when you start combining multiple criteria and operators, it's very easy to accidentally specify something slightly different than what you intended. <strong>Always check your output</strong>. If you have a small dataset, then you can eyeball it to see if it looks right. With a larger dataset, you may wish to compute summary statistics or count the number of groups/observations in each variable to verify your filter is correct. There is no level of expertise in coding that can substitute knowing and checking your data.</p>
+<p><code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> is incredibly powerful and can allow you to select very specific subsets of data. But, it is also quite dangerous because when you start combining multiple criteria and operators, it's very easy to accidentally specify something slightly different than what you intended. <strong>Always check your output</strong>. If you have a small dataset, then you can eyeball it to see if it looks right. With a larger dataset, you may wish to compute summary statistics or count the number of groups/observations in each variable to verify your filter is correct. There is no level of expertise in coding that can substitute knowing and checking your data.</p>
 </div>
 </div>
 <div id="arrange" class="section level3" number="8.3.3">
 <h3>
 <span class="header-section-number">8.3.3</span> Arrange<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can sort your dataset using <code><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange()</a></code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But <code><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange()</a></code> can be useful when preparing data for display in tables. <code><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange()</a></code> works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using <code><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc()</a></code>.</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<p>You can sort your dataset using <code>arrange()</code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But <code>arrange()</code> can be useful when preparing data for display in tables. <code>arrange()</code> works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using <code>desc()</code>.</p>
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># arranging the table </span>
 <span class="co"># first by product in alphabetical order</span>
 <span class="co"># then by "region" in reverse alphabetical order</span>
-<span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="va">product</span>, <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">product</span>, <span class="fu">desc</span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -1095,11 +1094,11 @@ very low
 </div>
 <div class="try">
 <p>If you want to sort character data/categories in a specific order, turn the column into a <a class="glossary" target="_blank" title="A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter" href="https://psyteachr.github.io/glossary/f#factor">factor</a> and set the <code>levels</code> in the desired order.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">==</span> <span class="st">"gadgets"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">==</span> <span class="st">"gadgets"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">region</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -1242,61 +1241,61 @@ low
 <h3>
 <span class="header-section-number">8.3.4</span> Mutate<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
 </h3>
-<p>The function <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> allows you to add new columns or change existing ones by overwriting them by using the syntax <code>new_column = operation</code>. You can add more than one column in the same mutate function by separating the columns with a comma. Once you make a new column, you can use it in further column definitions. For example, the creation of <code>profit</code> below uses the column <code>expenses</code>, which is created above it.</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
+<p>The function <code>mutate()</code> allows you to add new columns or change existing ones by overwriting them by using the syntax <code>new_column = operation</code>. You can add more than one column in the same mutate function by separating the columns with a comma. Once you make a new column, you can use it in further column definitions. For example, the creation of <code>profit</code> below uses the column <code>expenses</code>, which is created above it.</p>
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
     sales <span class="op">=</span> <span class="va">sales_2019</span> <span class="op">+</span> <span class="va">sales_2020</span>,
     expenses <span class="op">=</span> <span class="va">expenses_2019</span> <span class="op">+</span> <span class="va">expenses_2020</span>,
     profit <span class="op">=</span> <span class="va">sales</span> <span class="op">-</span> <span class="va">expenses</span>,
     region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">region</span>, <span class="st">"Office"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<p><code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> can also be used in conjunction with other functions and Boolean operators. For example, we can add another column to <code>budget2</code> that states whether a profit was returned that year or overwrite our <code>product</code> variable as a factor. Just like when we used <a class="glossary" target="_blank" title="An expression that evaluates to TRUE or FALSE." href="https://psyteachr.github.io/glossary/b#boolean-expression">Boolean expressions</a> with filter, it will evaluate the equation and return TRUE or FALSE depending on whether the observation meets the criteria.</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget2</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>profit_category <span class="op">=</span> <span class="va">profit</span> <span class="op">&gt;</span> <span class="fl">0</span>,
+<p><code>mutate()</code> can also be used in conjunction with other functions and Boolean operators. For example, we can add another column to <code>budget2</code> that states whether a profit was returned that year or overwrite our <code>product</code> variable as a factor. Just like when we used <a class="glossary" target="_blank" title="An expression that evaluates to TRUE or FALSE." href="https://psyteachr.github.io/glossary/b#boolean-expression">Boolean expressions</a> with filter, it will evaluate the equation and return TRUE or FALSE depending on whether the observation meets the criteria.</p>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget2</span> <span class="op">&lt;-</span> <span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>profit_category <span class="op">=</span> <span class="va">profit</span> <span class="op">&gt;</span> <span class="fl">0</span>,
          product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">product</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="warning">
 <p>You can overwrite a column by giving a new column the same name as the old column (see <code>region</code> or <code>product</code>) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.</p>
 </div>
-<p>You can also use <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> to specify what values to return, rather than defaulting to TRUE or FALSE:</p>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget3</span> <span class="op">&lt;-</span> <span class="va">budget2</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>profit_category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">profit</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">~</span> <span class="st">"PROFIT"</span>,
+<p>You can also use <code>case_when()</code> to specify what values to return, rather than defaulting to TRUE or FALSE:</p>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget3</span> <span class="op">&lt;-</span> <span class="va">budget2</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>profit_category <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">profit</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">~</span> <span class="st">"PROFIT"</span>,
                                      <span class="va">profit</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">~</span> <span class="st">"NO PROFIT"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Use it to recode values:</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a column where people get a bonus if customer satisfaction was overall high or very high</span>
 
-<span class="va">bonus</span> <span class="op">&lt;-</span> <span class="va">budget3</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>bonus_2019 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">satisfaction_2019</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"very low"</span>, <span class="st">"low"</span>, <span class="st">"neutral"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"no bonus"</span>,
-                                <span class="va">satisfaction_2019</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"high"</span>, <span class="st">"very high"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"bonus"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">bonus</span> <span class="op">&lt;-</span> <span class="va">budget3</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>bonus_2019 <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">satisfaction_2019</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"very low"</span>, <span class="st">"low"</span>, <span class="st">"neutral"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"no bonus"</span>,
+                                <span class="va">satisfaction_2019</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"high"</span>, <span class="st">"very high"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"bonus"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>And combine different criteria:</p>
-<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># new management takes over - people only get a bonus if customer satisfaction was overall high or very high AND if a profit was returned</span>
 
-<span class="va">bonus2</span> <span class="op">&lt;-</span> <span class="va">budget3</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>bonus_2020 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">satisfaction_2020</span> <span class="op">==</span> <span class="st">"high"</span> <span class="op">&amp;</span> 
+<span class="va">bonus2</span> <span class="op">&lt;-</span> <span class="va">budget3</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>bonus_2020 <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">satisfaction_2020</span> <span class="op">==</span> <span class="st">"high"</span> <span class="op">&amp;</span> 
                                   <span class="va">profit_category</span> <span class="op">==</span> <span class="st">"PROFIT"</span> <span class="op">~</span> <span class="st">"bonus"</span>,
                                 <span class="va">satisfaction_2020</span> <span class="op">==</span> <span class="st">"very high"</span> <span class="op">&amp;</span> 
                                   <span class="va">profit_category</span> <span class="op">==</span> <span class="st">"PROFIT"</span> <span class="op">~</span> <span class="st">"bonus"</span>,
                                 <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"No bonus"</span><span class="op">)</span><span class="op">)</span> <span class="co"># set all other values to "no bonus"</span></code></pre></div>
-<p>Just like <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>, <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> is incredibly powerful and the scope of what you can create is far beyond what we can cover in this book.</p>
+<p>Just like <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>mutate()</code> is incredibly powerful and the scope of what you can create is far beyond what we can cover in this book.</p>
 </div>
 <div id="dplyr-summarise" class="section level3" number="8.3.5">
 <h3>
 <span class="header-section-number">8.3.5</span> Summarise<a class="anchor" aria-label="anchor" href="#dplyr-summarise"><i class="fas fa-link"></i></a>
 </h3>
-<p>You were introduced to the <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> function in Chapter @ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).</p>
+<p>You were introduced to the <code>summarise()</code> function in Chapter @ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).</p>
 <p>Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter <a href="tidy.html#tidy">7</a>, so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year. We'll also drop the satisfaction data as we don't need it for this analysis.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget4</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">satisfaction_2019</span>, <span class="op">-</span><span class="va">satisfaction_2020</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">sales_2019</span><span class="op">:</span><span class="va">expenses_2020</span>,
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget4</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">satisfaction_2019</span>, <span class="op">-</span><span class="va">satisfaction_2020</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">sales_2019</span><span class="op">:</span><span class="va">expenses_2020</span>,
                names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="st">"year"</span><span class="op">)</span>,
                names_sep <span class="op">=</span> <span class="st">"_"</span>,
-               values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">type</span>,
+               values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">type</span>,
               values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">budget4</span><span class="op">)</span> <span class="co"># check the format</span></code></pre></div>
@@ -1426,9 +1425,9 @@ widgets
 </table></div>
 </div>
 <p>Now we can create summary statistics for the table.</p>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
     mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>,
     mean_expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">expenses</span><span class="op">)</span>,
     min_profit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">-</span> <span class="va">sales</span><span class="op">)</span>,
@@ -1471,19 +1470,19 @@ max_profit
 <h3>
 <span class="header-section-number">8.3.6</span> Group By<a class="anchor" aria-label="anchor" href="#dplyr-groupby"><i class="fas fa-link"></i></a>
 </h3>
-<p>You were introduced to the <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> function in Chapter <a href="summary.html#grouping">5.6</a>. For example, you can break down the summary statistics above by year and product.</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">year_prod</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">product</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+<p>You were introduced to the <code>group_by()</code> function in Chapter <a href="summary.html#grouping">5.6</a>. For example, you can break down the summary statistics above by year and product.</p>
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">year_prod</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span>, <span class="va">product</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
     mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>,
     mean_expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">expenses</span><span class="op">)</span>,
     min_profit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">-</span> <span class="va">sales</span><span class="op">)</span>,
     max_profit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">-</span> <span class="va">sales</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">year_prod</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -1592,41 +1591,41 @@ widgets
 </table></div>
 </div>
 <p>Note that you can use the other wrangling functions on the summary table, for example:</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># arrange by maximum profit</span>
-<span class="va">year_prod</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">max_profit</span><span class="op">)</span><span class="op">)</span>
+<span class="va">year_prod</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">max_profit</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># filter out gadgets</span>
-<span class="va">year_prod</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">!=</span> <span class="st">"gadgets"</span><span class="op">)</span></code></pre></div>
+<span class="va">year_prod</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">!=</span> <span class="st">"gadgets"</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <p>How would you find out the maximum sales for each region?</p>
-<div id="radio_KHUDFPCMKE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KHUDFPCMKE" value="answer"><span>
+<div id="radio_IAZDMYDZHC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="answer"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KHUDFPCMKE" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
-  summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KHUDFPCMKE" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(region) %&gt;%
   summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_KHUDFPCMKE" value="x"><span>
+</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(sales) %&gt;%
+  summarise(max_sales = max(sales)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(region) %&gt;%
   summarise(max_sales = max(region)</pre>
 </span></label>
 </div>
 </div>
-<p>You can also use <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> in combination with other functions. For example, <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> returns the top N rows, ordered by a specific variable.</p>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<p>You can also use <code>group_by()</code> in combination with other functions. For example, <code>slice_max()</code> returns the top N rows, ordered by a specific variable.</p>
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># return top 3 sales</span>
-<span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, order_by <span class="op">=</span> <span class="va">sales</span><span class="op">)</span></code></pre></div>
+<span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">slice_max</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, order_by <span class="op">=</span> <span class="va">sales</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -1701,12 +1700,12 @@ gadgets
 </tbody>
 </table></div>
 </div>
-<p>But this can be combined with <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> to return the top sales for each region:</p>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<p>But this can be combined with <code>group_by()</code> to return the top sales for each region:</p>
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># return top sale for each region</span>
-<span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, order_by <span class="op">=</span> <span class="va">sales</span><span class="op">)</span></code></pre></div>
+<span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">slice_max</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, order_by <span class="op">=</span> <span class="va">sales</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -1808,10 +1807,10 @@ gadgets
 <h3>
 <span class="header-section-number">8.4.1</span> Rounding<a class="anchor" aria-label="anchor" href="#rounding"><i class="fas fa-link"></i></a>
 </h3>
-<p>Let's say we want to round all the values to the nearest pound. The pattern below uses the <code><a href="https://rdrr.io/pkg/dplyr/man/across.html">across()</a></code> function to apply the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function to the columns from <code>mean_sales</code> to <code>max_profit</code>.</p>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">year_prod</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="va">mean_sales</span><span class="op">:</span><span class="va">max_profit</span>, 
+<p>Let's say we want to round all the values to the nearest pound. The pattern below uses the <code>across()</code> function to apply the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function to the columns from <code>mean_sales</code> to <code>max_profit</code>.</p>
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">year_prod</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span>.cols <span class="op">=</span> <span class="va">mean_sales</span><span class="op">:</span><span class="va">max_profit</span>, 
                 .fns <span class="op">=</span> <span class="va">round</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -1921,14 +1920,14 @@ widgets
 </div>
 <p>If you compare this table to the one in Section <a href="wrangle.html#dplyr-groupby">8.3.6</a>, you'll see that the 2019 gadgets mean sales rounded up from 881.5 to 882, while the mean expenses rounded down from 238.5 to 238. What's going on!?</p>
 <p>This may seem like a mistake, but R rounds .5 to the nearest even number, rather than always up, like you were probably taught in school. This prevents overestimation biases, since x.5 is <em>exactly</em> halfway between x and x+1, so there is no reason it should always round up.</p>
-<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 2</code></pre>
 <p>However, this might throw a monkey wrench into your own systems. For example, our school policy is to round up for course marks at x.5. The solution is to define your own version of <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> (modified from <a href="http://andrewlandgraf.com/2012/06/15/rounding-in-r/" target="_blank">Andrew Landgraf's blog</a>). Put it in a hidden code block at the top of your script, with a clear warning that this is changing the way <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> normally works. You don't need to understand how this function works, just how to use it.</p>
 <p>when you run this code, a new section will appear in the environment pane labelled "Functions". In addition to using functions from packages, you can also make your own. It's not something we are going to go into detail on in this course, but it's useful to know the functionality exists.</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#!!!!!! redefining round so 5s round up !!!!!! </span>
 <span class="va">round</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span> <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">posneg</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -1939,13 +1938,13 @@ widgets
   <span class="va">z</span><span class="op">*</span><span class="va">posneg</span>
 <span class="op">}</span></code></pre></div>
 <p>Now <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> should work as you'd expect.</p>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2</code></pre>
 <p>Just remove your version if you want R to go back to the original method. Remember that you have to define the new round method in any script that uses it, and run the definition code before you use it interactively. You can check your Environment pane to see whether <code>round</code> is listed under "Functions".</p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># remove new round() method</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">round</span><span class="op">)</span></code></pre></div>
 </div>
@@ -1959,20 +1958,20 @@ widgets
 <h4>
 <span class="header-section-number">8.4.2.1</span> Bad missing values<a class="anchor" aria-label="anchor" href="#bad-missing-values"><i class="fas fa-link"></i></a>
 </h4>
-<p>What if the South region hadn't returned their expenses (entered as 0) and the North region hadn't returned their sales data for 2020 yet, so someone entered it as "missing"? We're going to show you two functions that you can use to recode or change values, <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code>. <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> is from Base R and can be slightly more intuitive to use initially. <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> is from the <code class="package">dplyr</code> and allows you to specify multiple criteria, although is slightly more difficult to use so it's good to be aware of both.</p>
+<p>What if the South region hadn't returned their expenses (entered as 0) and the North region hadn't returned their sales data for 2020 yet, so someone entered it as "missing"? We're going to show you two functions that you can use to recode or change values, <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> and <code>case_when()</code>. <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> is from Base R and can be slightly more intuitive to use initially. <code>case_when()</code> is from the <code class="package">dplyr</code> and allows you to specify multiple criteria, although is slightly more difficult to use so it's good to be aware of both.</p>
 <p>First, we're going to recode the data to add in the missing values</p>
 <p>For the South data, we can use <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> to set the value of expenses to 0 if the year is 2020 and region is "South", otherwise use the value from the expenses column (i.e., don't change).</p>
-<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>
     test <span class="op">=</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"South"</span>, 
     yes <span class="op">=</span> <span class="fl">0</span>, <span class="co"># value if above conditions are met</span>
     no <span class="op">=</span> <span class="va">expenses</span> <span class="co"># value if above conditions are not met</span>
   <span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Alternatively, we can use <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> to convert the expenses for 2020 to <code>0</code>. The last line of <code>TRUE ~ expenses</code> means that the default value is retrieved from the expenses column, if none of the previous criteria applied.</p>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span>
+<p>Alternatively, we can use <code>case_when()</code> to convert the expenses for 2020 to <code>0</code>. The last line of <code>TRUE ~ expenses</code> means that the default value is retrieved from the expenses column, if none of the previous criteria applied.</p>
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>expenses <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
     <span class="co"># set to 0 when year is 2020 and region is North</span>
     <span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"South"</span> <span class="op">~</span> <span class="fl">0</span>, 
     <span class="co"># otherwise, set to the value in the expenses column</span>
@@ -1982,16 +1981,16 @@ widgets
 <button>
 Using case_when() for multiple criteria
 </button>
-<p>The <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> function allows allows you to set multiple criteria, although we're only using one non-default criterion here. It can be very useful, but takes a little practice.</p>
-<p>The example below creates a label for each row. Notice how the label for the first row is "x &lt; 2", even though this row also fits the second criterion "y &lt; 4". This is because <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> applies the first match to each row, even if other criteria in the function also match that row.</p>
-<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+<p>The <code>case_when()</code> function allows allows you to set multiple criteria, although we're only using one non-default criterion here. It can be very useful, but takes a little practice.</p>
+<p>The example below creates a label for each row. Notice how the label for the first row is "x &lt; 2", even though this row also fits the second criterion "y &lt; 4". This is because <code>case_when()</code> applies the first match to each row, even if other criteria in the function also match that row.</p>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>
   x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
   y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
 <span class="op">)</span>
 
-<span class="va">data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span>
+<span class="va">data</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>label <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
     <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span>           <span class="op">~</span> <span class="st">"x &lt; 2"</span>,
     <span class="va">y</span> <span class="op">&lt;</span> <span class="fl">4</span>           <span class="op">~</span> <span class="st">"y &lt; 4"</span>,
     <span class="va">x</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"both 5"</span>,
@@ -2071,33 +2070,33 @@ both 5
 </div>
 </div>
 <p>For the North, we need to to recode these values as "missing". Since this is character data, and sales are numeric data, the result will be <a class="glossary" target="_blank" title="Changing the data type of values in a vector to a single compatible type." href="https://psyteachr.github.io/glossary/c#coercion">coerced</a> to a character.</p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set sales values to "missing" for North 2020 rows</span>
-<span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span>, 
+<span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span>, 
                         <span class="st">"missing"</span>, 
                         <span class="va">sales</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># check structure of data, sales now character</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">missing_bad</span><span class="op">)</span></code></pre></div>
-<pre><code>## tibble [16 × 5] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble [16 x 5] (S3: tbl_df/tbl/data.frame)
 ##  $ region  : chr [1:16] "North" "North" "North" "North" ...
 ##  $ product : chr [1:16] "widgets" "widgets" "gadgets" "gadgets" ...
 ##  $ year    : chr [1:16] "2019" "2020" "2019" "2020" ...
 ##  $ sales   : chr [1:16] "2129" "missing" "723" "missing" ...
 ##  $ expenses: num [1:16] 822 -897 1037 1115 1004 ...</code></pre>
-<p>If we're using <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code>, first we need to convert the sales column to a character, as this function is a little pickier and won't let you combine <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a>, since this almost always means that you're making a mistake.</p>
-<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<p>If we're using <code>case_when()</code>, first we need to convert the sales column to a character, as this function is a little pickier and won't let you combine <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data types</a>, since this almost always means that you're making a mistake.</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set sales values to "missing" for North 2020 rows</span>
-<span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>,
-         sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span> <span class="op">~</span> <span class="st">"missing"</span>, 
+<span class="va">missing_bad</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>,
+         sales <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"North"</span> <span class="op">~</span> <span class="st">"missing"</span>, 
                            <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">sales</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now, if you try to compute the mean sales, you will get an error message and the result will be <code>NA</code>.</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># try to compute mean sales</span>
-<span class="va">missing_bad</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">missing_bad</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in mean.default(sales): argument is not numeric or logical: returning NA</code></pre>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
@@ -2118,28 +2117,28 @@ NA
 <h4>
 <span class="header-section-number">8.4.2.2</span> Convert missing values to NA<a class="anchor" aria-label="anchor" href="#convert-missing-values-to-na"><i class="fas fa-link"></i></a>
 </h4>
-<p>To set the missing values to NA, you could use either <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code>. Because the <code>sales</code> column was converted to character, we also need to transform this back to numeric.</p>
-<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_data</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>
+<p>To set the missing values to NA, you could use either <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> or <code>case_when()</code>. Because the <code>sales</code> column was converted to character, we also need to transform this back to numeric.</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_data</span> <span class="op">&lt;-</span> <span class="va">missing_bad</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>
     <span class="co"># set "0" values to NA using ifelse</span>
     expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">==</span> <span class="fl">0</span>, <span class="cn">NA</span>, <span class="va">expenses</span><span class="op">)</span>,
     <span class="co"># set "missing" values to NA using case_when</span>
-    sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">sales</span> <span class="op">==</span> <span class="st">"missing"</span> <span class="op">~</span> <span class="cn">NA_character_</span>,
+    sales <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">sales</span> <span class="op">==</span> <span class="st">"missing"</span> <span class="op">~</span> <span class="cn">NA_character_</span>,
                       <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">sales</span><span class="op">)</span>,
     <span class="co"># convert to numeric</span>
     sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <div class="warning">
-<p>Because <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> is so picky about character types, you need to specify which type of NA you're using (there is a specific NA for each data type). If you change <code><span class="cn">NA_character_</span></code> to <code><span class="cn">NA</span></code> in the code above, you'll get the following error message:</p>
+<p>Because <code>case_when()</code> is so picky about character types, you need to specify which type of NA you're using (there is a specific NA for each data type). If you change <code><span class="cn">NA_character_</span></code> to <code><span class="cn">NA</span></code> in the code above, you'll get the following error message:</p>
 <pre><code>Error: Problem with `mutate()` column `sales`. ℹ `sales = case_when(sales == "missing" ~ NA, TRUE ~ sales)`. x must be a logical vector, not a character vector.</code></pre>
 <p>Technically, <code>NA</code> has a <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a> data type, so functions that aren't as picky about combining data types will <a class="glossary" target="_blank" title="Changing the data type of values in a vector to a single compatible type." href="https://psyteachr.github.io/glossary/c#coercion">coerce</a> this to the NA version for the most compatible data type.</p>
 </div>
 <p>Now, if we try to calculate the mean sales and profits, we get missing values for any summary value that used one of the North 2020 sales values or the South 2020 expenses.</p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
     mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>,
     mean_expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">expenses</span><span class="op">)</span>,
     min_profit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">-</span> <span class="va">sales</span><span class="op">)</span>,
@@ -2242,10 +2241,10 @@ West
 <span class="header-section-number">8.4.2.3</span> Ignore missing values<a class="anchor" aria-label="anchor" href="#ignore-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is because <code>NA</code> basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Set <code>na.rm = TRUE</code> in the summary function to remove missing values before calculating.</p>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
     mean_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sales</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     mean_expenses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">expenses</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     min_profit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">expenses</span> <span class="op">-</span> <span class="va">sales</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -2349,10 +2348,10 @@ West
 <span class="header-section-number">8.4.2.4</span> Count missing values<a class="anchor" aria-label="anchor" href="#count-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>If you want to find out how many missing or non-missing values there are in a column, use the <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> function to get a <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a> vector of whether or not each value is missing, and use <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to count how many values are TRUE or <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> to calculate the proportion of TRUE values.</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">missing_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">product</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">missing_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span>, <span class="va">product</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>
     n_valid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span>,
     n_missing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span>,
     prop_missing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span>,
@@ -2454,15 +2453,15 @@ widgets
 <h4>
 <span class="header-section-number">8.4.2.5</span> Omit missing values<a class="anchor" aria-label="anchor" href="#omit-missing-values"><i class="fas fa-link"></i></a>
 </h4>
-<p>You may also want to remove rows that have missing values and only work from complete datasets. <code><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na()</a></code> will remove any row that has a missing observation. You can use <code><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na()</a></code> on the entire dataset which will remove any row that has <em>any</em> missing value, or you can specify to only remove rows that are missing a specific value.</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<p>You may also want to remove rows that have missing values and only work from complete datasets. <code>drop_na()</code> will remove any row that has a missing observation. You can use <code>drop_na()</code> on the entire dataset which will remove any row that has <em>any</em> missing value, or you can specify to only remove rows that are missing a specific value.</p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># remove any rows with any missing values</span>
-<span class="va">complete_data</span> <span class="op">&lt;-</span> <span class="va">missing_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">complete_data</span> <span class="op">&lt;-</span> <span class="va">missing_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># remove any rows that are missing a value for sales</span>
-<span class="va">complete_sales</span> <span class="op">&lt;-</span> <span class="va">missing_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
+<span class="va">complete_sales</span> <span class="op">&lt;-</span> <span class="va">missing_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">drop_na</span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
 <p>Missing data can be quite difficult to deal with depending on how it is represented. As always, no amount of coding expertise can make up for not understanding the structure and idiosyncrasies of your data.</p>
 </div>
 </div>
@@ -2481,19 +2480,19 @@ widgets
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># from https://www.kaggle.com/kyanyoga/sample-sales-data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/survey_data.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://psyteachr.github.io/ads-v1/data/survey_data.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 707 Columns: 7</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## -- Column specification --------------------------------------------------------
 ## Delimiter: ","
 ## chr  (3): caller_id, employee_id, issue_category
 ## dbl  (3): wait_time, call_time, satisfaction
 ## dttm (1): call_start</code></pre>
 <pre><code>## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="creating-new-categories" class="section level3" number="8.5.1">
 <h3>
@@ -2505,36 +2504,36 @@ Solution
 <li>Then, calculate the average satisfaction scores for employees trained by each trainer and visualise the satisfaction scores for each in whatever way you think best.</li>
 </ul>
 <p><code>r hide("Hint")</code>
-To add the trainer column you can either use <code><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when()</a></code> and specify multiple criteria (e.g., if the employee is 1-5, Michael, if the employee is 6-10 Dwight), or you could use <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> and set the <code>test</code> to Michael's employees and return <code>Dwight</code> for all others.
+To add the trainer column you can either use <code>case_when()</code> and specify multiple criteria (e.g., if the employee is 1-5, Michael, if the employee is 6-10 Dwight), or you could use <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> and set the <code>test</code> to Michael's employees and return <code>Dwight</code> for all others.
 <code>r unhide()</code></p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># case_when() method</span>
-<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>trainer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">employee_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E01"</span>, <span class="st">"E02"</span>, <span class="st">"E03"</span>, <span class="st">"E04"</span>, <span class="st">"E05"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Michael"</span>,
-                             <span class="va">employee_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E06"</span>, <span class="st">"E07"</span>, <span class="st">"E08"</span>, <span class="st">"E09"</span>, <span class="st">"E10"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Dwight"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>trainer <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">employee_id</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E01"</span>, <span class="st">"E02"</span>, <span class="st">"E03"</span>, <span class="st">"E04"</span>, <span class="st">"E05"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Michael"</span>,
+                             <span class="va">employee_id</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E06"</span>, <span class="st">"E07"</span>, <span class="st">"E08"</span>, <span class="st">"E09"</span>, <span class="st">"E10"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Dwight"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># ifelse() method</span>
 
-<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>trainer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>test <span class="op">=</span> <span class="va">employee_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E01"</span>, <span class="st">"E02"</span>, <span class="st">"E03"</span>, <span class="st">"E04"</span>, <span class="st">"E05"</span><span class="op">)</span>,
+<span class="va">survey_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>trainer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>test <span class="op">=</span> <span class="va">employee_id</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"E01"</span>, <span class="st">"E02"</span>, <span class="st">"E03"</span>, <span class="st">"E04"</span>, <span class="st">"E05"</span><span class="op">)</span>,
                            yes <span class="op">=</span> <span class="st">"Michael"</span>,
                            no <span class="op">=</span> <span class="st">"Dwight"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># mean satisfaction scores</span>
-<span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">trainer</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_satisfaction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">satisfaction</span><span class="op">)</span><span class="op">)</span>
+<span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">trainer</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>mean_satisfaction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">satisfaction</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># possible visualisation </span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">survey_data</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">satisfaction</span>, fill <span class="op">=</span> <span class="va">trainer</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">trainer</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Satisfaction scores by employee trainer"</span><span class="op">)</span></code></pre></div>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">survey_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">satisfaction</span>, fill <span class="op">=</span> <span class="va">trainer</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">trainer</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Satisfaction scores by employee trainer"</span><span class="op">)</span></code></pre></div>
 <img src="08-wrangle_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;"><div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -2582,11 +2581,11 @@ Hint
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># method 1 - tidyverse</span>
-<span class="va">mean_wait</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_wait <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">mean_wait</span><span class="op">)</span>
+<span class="va">mean_wait</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>mean_wait <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_time</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">mean_wait</span><span class="op">)</span>
 
 <span class="co"># method 2 - base R</span>
 <span class="va">mean_wait</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">survey_data</span><span class="op">$</span><span class="va">wait_time</span><span class="op">)</span></code></pre></div>
@@ -2596,19 +2595,19 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">long_wait</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">wait_time</span> <span class="op">&gt;</span> <span class="va">mean_wait</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">long_wait</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">wait_time</span> <span class="op">&gt;</span> <span class="va">mean_wait</span><span class="op">)</span></code></pre></div>
 </div>
 <p>Create a visualisation that shows how many customers waited more than the average wait time for each employee.</p>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">long_wait</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">employee_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">long_wait</span> <span class="op">%&gt;%</span>
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">employee_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="08-wrangle_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 </div>
@@ -2630,24 +2629,24 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># this is one possible solution, there are many other valid approaches </span>
 
 <span class="co"># calculate mean wait time across all calls</span>
 <span class="va">mean_wait</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">survey_data</span><span class="op">$</span><span class="va">wait_time</span><span class="op">)</span>
 
 <span class="co"># calculate mean call time for each category</span>
-<span class="va">follow_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">issue_category</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>mean_call <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">call_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+<span class="va">follow_data</span> <span class="op">&lt;-</span> <span class="va">survey_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">issue_category</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarise</span><span class="op">(</span>mean_call <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">call_time</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
 <span class="co">#then join it to the survey data  </span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">survey_data</span>, by <span class="op">=</span> <span class="st">"issue_category"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">survey_data</span>, by <span class="op">=</span> <span class="st">"issue_category"</span><span class="op">)</span> <span class="op">%&gt;%</span>
 <span class="co"># then add on the column</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>follow_up <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">wait_time</span> <span class="op">&gt;</span> <span class="va">mean_wait</span> <span class="op">&amp;</span> 
+  <span class="fu">mutate</span><span class="op">(</span>follow_up <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">wait_time</span> <span class="op">&gt;</span> <span class="va">mean_wait</span> <span class="op">&amp;</span> 
                                <span class="va">call_time</span> <span class="op">&gt;</span> <span class="va">mean_call</span> <span class="op">&amp;</span> 
                                <span class="va">satisfaction</span> <span class="op">&lt;</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"yes"</span>,
-                               <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"no"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">caller_id</span>, <span class="va">employee_id</span>, <span class="va">trainer</span>, <span class="va">follow_up</span><span class="op">)</span></code></pre></div>
+                               <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"no"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">caller_id</span>, <span class="va">employee_id</span>, <span class="va">trainer</span>, <span class="va">follow_up</span><span class="op">)</span></code></pre></div>
 </div>
 <p>For all of the above, write code that stores the answer as a single value, so that you could easily use it in inline coding.</p>
 <p>How many customers need to be followed up:</p>
@@ -2672,52 +2671,52 @@ Hint
 <button>
 Hint
 </button>
-<p>As above but add in an <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> along the way.</p>
+<p>As above but add in an <code>ungroup()</code> and <code>slice_max()</code> along the way.</p>
 </div>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># in total</span>
-<span class="va">follow_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">follow_up</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="va">follow_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">follow_up</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span><span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 
 <span class="co"># by employee 6</span>
-<span class="va">follow_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">employee_id</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">employee_id</span> <span class="op">==</span> <span class="st">"E06"</span>,
-         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="va">follow_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">employee_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">employee_id</span> <span class="op">==</span> <span class="st">"E06"</span>,
+         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 
 <span class="co"># by michael</span>
-<span class="va">follow_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">trainer</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">trainer</span> <span class="op">==</span> <span class="st">"Michael"</span>,
-         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="va">follow_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">trainer</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">trainer</span> <span class="op">==</span> <span class="st">"Michael"</span>,
+         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 
 <span class="co"># by dwight</span>
-<span class="va">follow_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">trainer</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">trainer</span> <span class="op">==</span> <span class="st">"Dwight"</span>,
-         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="va">follow_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">trainer</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">trainer</span> <span class="op">==</span> <span class="st">"Dwight"</span>,
+         <span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 
 <span class="co"># most follow-ups needed</span>
-<span class="va">follow_data</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">employee_id</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, order_by <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">employee_id</span><span class="op">)</span></code></pre></div>
+<span class="va">follow_data</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">follow_up</span>, <span class="va">employee_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">follow_up</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">slice_max</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, order_by <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">pull</span><span class="op">(</span><span class="va">employee_id</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 120
 ## [1] 16
 ## [1] 65
@@ -2742,7 +2741,7 @@ Solution
 <h2>
 <span class="header-section-number">8.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-wrangle"><i class="fas fa-link"></i></a>
 </h2>
-<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
+<div class="inline-table"><table class="table table-sm">
 <thead><tr>
 <th style="text-align:left;">
 term
@@ -3090,7 +3089,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-03-14.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-03-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

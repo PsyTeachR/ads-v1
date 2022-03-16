@@ -1558,10 +1558,10 @@ glimpse(mutated_data)
 ## Rows: 15
 ## Columns: 5
 ## $ customer_id    <dbl> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",…
-## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6…
+## $ price_per_item <chr> "3.91", "4.72", "5.59", "3.91", "4.72", "5.59", "3.91",~
+## $ totalprice     <chr> "7.82", "37.76", "55.9", "3.91", "28.32", "5.59", "15.6~
 ```
 
 Once the data are clean and tidy, you can fix all of your column data types in one step using `readr::type_convert()`. This is good practice when you've finished cleaning a data set. If the automatic type detection doesn't work as expected, this usually means that you still have non-numeric characters in a column where there were only supposed to be numbers. You can also manually set the column types in the same way as for `readr::read_csv()` (see Chapter\ \@ref(data)).
@@ -1581,10 +1581,10 @@ glimpse(tidy_data)
 ## Rows: 15
 ## Columns: 5
 ## $ customer_id    <dbl> 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5
-## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2…
+## $ year           <int> 2018, 2019, 2020, 2018, 2019, 2020, 2018, 2019, 2020, 2~
 ## $ items          <int> 2, 8, 10, 1, 6, 1, 4, 5, 5, 10, 1, 3, 3, 9, 8
-## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3…
-## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27…
+## $ price_per_item <dbl> 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3.91, 4.72, 5.59, 3~
+## $ totalprice     <dbl> 7.82, 37.76, 55.90, 3.91, 28.32, 5.59, 15.64, 23.60, 27~
 ```
 
 ## Pipes {#pipes}
@@ -1738,7 +1738,7 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 Let's try a couple of examples. 
 
 * Save your current Markdown, close it, and open a new Rmd named "Patient_survey".
-* Download a copy of [wide_excercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_excercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) into your data folder.
+* Download a copy of [wide_exercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_exercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) into your data folder.
 * In the set-up code chunk, load the <code class='package'>tidyverse</code> then load the two data files in using `read_csv()` and name the objects `wide1` and `wide2`
 
 
@@ -1746,8 +1746,8 @@ Let's try a couple of examples.
 
 ```r
 library(tidyverse)
-wide1 <- read_csv("data/wide_excercise-1.csv")
-wide2 <- read_csv("data/wide_excercise-2.csv")
+wide1 <- read_csv("data/wide_exercise-1.csv")
+wide2 <- read_csv("data/wide_exercise-2.csv")
 ```
 
 
@@ -2031,7 +2031,7 @@ If your head hurts a bit at this point, rest assured it's absolutely normal. As 
 
 ## Glossary {#glossary-tidy}
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table>
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

@@ -408,3 +408,7 @@ example-using-the-styles-above
 level-3-header
 level-4-header
 reference
+set-up-visualisation
+set-up-reports
+resources-report
+course-complete

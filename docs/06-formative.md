@@ -63,7 +63,7 @@ A few hints to help you on your way:
 -   theme_fivethirtyeight()
 -   The verified review definition is formatted as a block quote.
 -   [Create Awesome HTML Table with knitr::kable and kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html)
--   \[How to Turn off scientific notation like 1e+09 in R?(<https://community.rstudio.com/t/how-to-turn-off-scientific-notation-like-1e-09-in-r/71575>)\]
+-   [How to Turn off scientific notation like 1e+09 in R?](<https://community.rstudio.com/t/how-to-turn-off-scientific-notation-like-1e-09-in-r/71575)
 -   There are a couple of ways you can create the final plot, one method might be to calculate the numbers you need first, and then use this new dataset for the plot, another method would be to use stat_summary().
 
 ## Why am I being assessed like this?

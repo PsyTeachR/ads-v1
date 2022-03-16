@@ -17,6 +17,10 @@ library(kableExtra) # for styling tables
 
 Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
 
+## Walkthrough video
+
+There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/a8bb45d0-483c-437d-9ea0-c9aa3bd8d7a1/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
+
 ## Organising a project {#projects}
 
 Before we write any code, first, we need to get organised. <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all the files you need for one project. Most projects include scripts, data files, and output files like the PDF report created by the script or images.

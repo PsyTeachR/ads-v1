@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 8 Data Wrangling | Applied Data Skills</title>
+<title>Chapter 9 Data Wrangling | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="8.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  8.2 Set-up First, create a new...">
+<meta name="description" content="9.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  9.2 Walkthrough video There is a...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 8 Data Wrangling | Applied Data Skills">
+<meta property="og:title" content="Chapter 9 Data Wrangling | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/wrangle.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
-<meta property="og:description" content="8.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  8.2 Set-up First, create a new...">
+<meta property="og:description" content="9.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  9.2 Walkthrough video There is a...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 8 Data Wrangling | Applied Data Skills">
-<meta name="twitter:description" content="8.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  8.2 Set-up First, create a new...">
+<meta name="twitter:title" content="Chapter 9 Data Wrangling | Applied Data Skills">
+<meta name="twitter:description" content="9.1 Intended Learning Outcomes Be able to select and filter data for relevance Be able to create new columns and edit existing ones Be able to handle missing data  9.2 Walkthrough video There is a...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -63,10 +63,11 @@
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
 <li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
-<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
-<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
-<li><a class="active" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
-<li><a class="" href="advanced.html"><span class="header-section-number">9</span> Advanced Visualisations &amp; Reports</a></li>
+<li><a class="" href="practice-report.html"><span class="header-section-number">6</span> Practice Report</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">7</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">8</span> Data Tidying</a></li>
+<li><a class="active" href="wrangle.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="advanced.html"><span class="header-section-number">10</span> Advanced Visualisations &amp; Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -88,13 +89,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="wrangle" class="section level1" number="8">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="wrangle" class="section level1" number="9">
 <h1>
-<span class="header-section-number">8</span> Data Wrangling<a class="anchor" aria-label="anchor" href="#wrangle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9</span> Data Wrangling<a class="anchor" aria-label="anchor" href="#wrangle"><i class="fas fa-link"></i></a>
 </h1>
-<div id="ilo-wrangle" class="section level2" number="8.1">
+<div id="ilo-wrangle" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">8.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-wrangle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> Intended Learning Outcomes<a class="anchor" aria-label="anchor" href="#ilo-wrangle"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Be able to select and filter data for relevance</li>
@@ -102,9 +103,15 @@
 <li>Be able to handle missing data</li>
 </ul>
 </div>
-<div id="set-up-5" class="section level2" number="8.2">
+<div id="walkthrough-video-7" class="section level2" number="9.2">
 <h2>
-<span class="header-section-number">8.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Walkthrough video<a class="anchor" aria-label="anchor" href="#walkthrough-video-7"><i class="fas fa-link"></i></a>
+</h2>
+<p>There is a walkthrough video of this chapter available via <a href="https://echo360.org.uk/media/dc1e2869-a6c2-45d8-ab40-cb85cdb67f43/public">Echo360.</a> Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.</p>
+</div>
+<div id="set-up-5" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, create a new project for the work we'll do in this chapter named <code class="path">08-wrangle</code>. Second, open and save and new R Markdown document named <code>wrangle.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
@@ -113,11 +120,11 @@
 <a href="https://psyteachr.github.io/ads-v1/data/budget.csv" download>budget.csv</a>.</p>
 <p>Download the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation cheat sheet</a>.</p>
 </div>
-<div id="wrangling-functions" class="section level2" number="8.3">
+<div id="wrangling-functions" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">8.3</span> Wrangling functions<a class="anchor" aria-label="anchor" href="#wrangling-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Wrangling functions<a class="anchor" aria-label="anchor" href="#wrangling-functions"><i class="fas fa-link"></i></a>
 </h2>
-<p>Data wrangling refers to the process of cleaning, transforming, and restructuring your data to get it into the format you need for analysis and it's something you will spend an awful lot of time doing. Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">7</a> and six functions from the <code class="package">dplyr</code> package that is loaded as part of the <code class="package">tidyverse</code>: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>. You'll remember the last two from Chapter <a href="summary.html#summary">5</a>, so we'll only cover them briefly.</p>
+<p>Data wrangling refers to the process of cleaning, transforming, and restructuring your data to get it into the format you need for analysis and it's something you will spend an awful lot of time doing. Most <a class="glossary" target="_blank" title="The process of preparing data for visualisation and statistical analysis." href="https://psyteachr.github.io/glossary/d#data-wrangling">data wrangling</a> involves the reshaping functions you learned in Chapter <a href="tidy.html#tidy">8</a> and six functions from the <code class="package">dplyr</code> package that is loaded as part of the <code class="package">tidyverse</code>: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>. You'll remember the last two from Chapter <a href="summary.html#summary">5</a>, so we'll only cover them briefly.</p>
 <p>It's worth highlighting that in this chapter we're going to cover these common functions and common uses of said functions. However, <code class="package">dplyr</code> (and packages beyond it) has a huge number of additional wrangling functions and each function has many different arguments. Essentially, if you think you should be able to wrangle your data in a particular way that we haven't explicitly shown you, you almost certainly can, it might just take a bit of Googling to find out how.</p>
 <p>We'll use a small example table with the sales, expenses, and satisfaction for two years from four regions over two products. After you load the data, use <code>glimpse(budget)</code> or <code><a href="https://rdrr.io/r/utils/View.html">View(budget)</a></code> to get familiar with the data.</p>
 <div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
@@ -362,14 +369,14 @@ low
 </tbody>
 </table></div>
 </div>
-<div id="select" class="section level3" number="8.3.1">
+<div id="select" class="section level3" number="9.4.1">
 <h3>
-<span class="header-section-number">8.3.1</span> Select<a class="anchor" aria-label="anchor" href="#select"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1</span> Select<a class="anchor" aria-label="anchor" href="#select"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can select a subset of the columns (variables) in a table to make it easier to view or to prepare a table for display. You can also select columns in a new order.</p>
-<div id="by-name-or-index" class="section level4" number="8.3.1.1">
+<div id="by-name-or-index" class="section level4" number="9.4.1.1">
 <h4>
-<span class="header-section-number">8.3.1.1</span> By name or index<a class="anchor" aria-label="anchor" href="#by-name-or-index"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1.1</span> By name or index<a class="anchor" aria-label="anchor" href="#by-name-or-index"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can select columns by name or number (which is sometimes referred to as the column index). Selecting by number can be useful when the column names are long or complicated.</p>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
@@ -449,9 +456,9 @@ North
 </table></div>
 </div>
 </div>
-<div id="un-selecting-columns" class="section level4" number="8.3.1.2">
+<div id="un-selecting-columns" class="section level4" number="9.4.1.2">
 <h4>
-<span class="header-section-number">8.3.1.2</span> Un-selecting columns<a class="anchor" aria-label="anchor" href="#un-selecting-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1.2</span> Un-selecting columns<a class="anchor" aria-label="anchor" href="#un-selecting-columns"><i class="fas fa-link"></i></a>
 </h4>
 <p>You can select columns either by telling R which ones you want to keep as in the previous examples, or by specifying which ones you want to exclude by using a minus symbol to un-select columns. You can also use the colon notation to de-select columns, but to do so you need to put parentheses around the span first, e.g., <code>-(sales_2019:expenses_2020)</code>, not <code>-sales_2019:expenses_2020</code>.</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
@@ -461,9 +468,9 @@ North
 <span class="co"># de-select a range of columns</span>
 <span class="va">sales</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">expenses_2019</span><span class="op">:</span><span class="va">expenses_2020</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="select-helpers" class="section level4" number="8.3.1.3">
+<div id="select-helpers" class="section level4" number="9.4.1.3">
 <h4>
-<span class="header-section-number">8.3.1.3</span> Select helpers<a class="anchor" aria-label="anchor" href="#select-helpers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1.3</span> Select helpers<a class="anchor" aria-label="anchor" href="#select-helpers"><i class="fas fa-link"></i></a>
 </h4>
 <p>Finally, you can select columns based on criteria about the column names.</p>
 <div class="inline-table"><table class="table table-sm">
@@ -496,35 +503,35 @@ North
 <ul>
 <li>
 <code>budget %&gt;% select(contains("_"))</code>
-<div id="radio_EUIVBQYGWK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="answer"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_EUIVBQYGWK" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_ZUMZOUMGEE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZUMZOUMGEE" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_ZUMZOUMGEE" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_ZUMZOUMGEE" value="answer"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_ZUMZOUMGEE" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(num_range("expenses_", 2019:2020))</code>
-<div id="radio_MUDYTKTEGI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_MUDYTKTEGI" value="answer"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_BWSDPZUVEK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BWSDPZUVEK" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BWSDPZUVEK" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BWSDPZUVEK" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_BWSDPZUVEK" value="answer"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(starts_with("sales"))</code>
-<div id="radio_DDJSYVAFSX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="answer"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_DDJSYVAFSX" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_RLSBBQLIQH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RLSBBQLIQH" value="answer"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_RLSBBQLIQH" value="x"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_RLSBBQLIQH" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_RLSBBQLIQH" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 <li>
 <code>budget %&gt;% select(ends_with("2020"))</code>
-<div id="radio_JKHWQGFCPH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="answer"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_JKHWQGFCPH" value="x"><span>expenses_2019, expenses_2020</span></label>
+<div id="radio_WCSRMMYSGZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WCSRMMYSGZ" value="x"><span>sales_2019, sales_2020</span></label><label><input type="radio" autocomplete="off" name="radio_WCSRMMYSGZ" value="answer"><span>sales_2020, expenses_2020, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_WCSRMMYSGZ" value="x"><span>sales_2019, sales_2020, expenses_2019, expenses_2020, satisfaction_2019, satisfaction_2020</span></label><label><input type="radio" autocomplete="off" name="radio_WCSRMMYSGZ" value="x"><span>expenses_2019, expenses_2020</span></label>
 </div>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div id="filter" class="section level3" number="8.3.2">
+<div id="filter" class="section level3" number="9.4.2">
 <h3>
-<span class="header-section-number">8.3.2</span> Filter<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.2</span> Filter<a class="anchor" aria-label="anchor" href="#filter"><i class="fas fa-link"></i></a>
 </h3>
 <p>Whilst <code>select()</code> chooses the columns you want to retain, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> chooses the rows to retain by matching row or column criteria.</p>
 <p>You can filter by a single criterion. This criterion can be rows where a certain column's value matches a character value (e.g., "North") or a number (e.g., 9003). It can also be the result of a logical equation (e.g., keep all rows with a specific column value larger than a certain value). The criterion is checked for each row, and if the result is FALSE, the row is removed. You can reverse equations by specifying <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code> where <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> means "not".</p>
@@ -841,9 +848,9 @@ neutral
 <p><code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> is incredibly powerful and can allow you to select very specific subsets of data. But, it is also quite dangerous because when you start combining multiple criteria and operators, it's very easy to accidentally specify something slightly different than what you intended. <strong>Always check your output</strong>. If you have a small dataset, then you can eyeball it to see if it looks right. With a larger dataset, you may wish to compute summary statistics or count the number of groups/observations in each variable to verify your filter is correct. There is no level of expertise in coding that can substitute knowing and checking your data.</p>
 </div>
 </div>
-<div id="arrange" class="section level3" number="8.3.3">
+<div id="arrange" class="section level3" number="9.4.3">
 <h3>
-<span class="header-section-number">8.3.3</span> Arrange<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.3</span> Arrange<a class="anchor" aria-label="anchor" href="#arrange"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can sort your dataset using <code>arrange()</code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But <code>arrange()</code> can be useful when preparing data for display in tables. <code>arrange()</code> works on character data where it will sort alphabetically, as well as numeric data where the default is ascending order (smallest to largest). Reverse the order using <code>desc()</code>.</p>
 <div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
@@ -1237,9 +1244,9 @@ low
 </div>
 </div>
 </div>
-<div id="mutate" class="section level3" number="8.3.4">
+<div id="mutate" class="section level3" number="9.4.4">
 <h3>
-<span class="header-section-number">8.3.4</span> Mutate<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.4</span> Mutate<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
 </h3>
 <p>The function <code>mutate()</code> allows you to add new columns or change existing ones by overwriting them by using the syntax <code>new_column = operation</code>. You can add more than one column in the same mutate function by separating the columns with a comma. Once you make a new column, you can use it in further column definitions. For example, the creation of <code>profit</code> below uses the column <code>expenses</code>, which is created above it.</p>
 <div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
@@ -1282,12 +1289,12 @@ low
                                 <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"No bonus"</span><span class="op">)</span><span class="op">)</span> <span class="co"># set all other values to "no bonus"</span></code></pre></div>
 <p>Just like <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>mutate()</code> is incredibly powerful and the scope of what you can create is far beyond what we can cover in this book.</p>
 </div>
-<div id="dplyr-summarise" class="section level3" number="8.3.5">
+<div id="dplyr-summarise" class="section level3" number="9.4.5">
 <h3>
-<span class="header-section-number">8.3.5</span> Summarise<a class="anchor" aria-label="anchor" href="#dplyr-summarise"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.5</span> Summarise<a class="anchor" aria-label="anchor" href="#dplyr-summarise"><i class="fas fa-link"></i></a>
 </h3>
 <p>You were introduced to the <code>summarise()</code> function in Chapter @ref({#summary-summarise}). This applies summary functions to an entire table (or groups, as you'll see in the next section).</p>
-<p>Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter <a href="tidy.html#tidy">7</a>, so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year. We'll also drop the satisfaction data as we don't need it for this analysis.</p>
+<p>Let's say we want to determine the mean sales and expenses, plus the minimum and maximum profit, for any region, product and year. First, we need to reshape the data like we learned in Chapter <a href="tidy.html#tidy">8</a>, so that there is a column for year and one column each for sales and expenses, instead of separate columns for each year. We'll also drop the satisfaction data as we don't need it for this analysis.</p>
 <div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">budget4</span> <span class="op">&lt;-</span> <span class="va">budget</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">satisfaction_2019</span>, <span class="op">-</span><span class="va">satisfaction_2020</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1466,11 +1473,11 @@ max_profit
 </table></div>
 </div>
 </div>
-<div id="dplyr-groupby" class="section level3" number="8.3.6">
+<div id="dplyr-groupby" class="section level3" number="9.4.6">
 <h3>
-<span class="header-section-number">8.3.6</span> Group By<a class="anchor" aria-label="anchor" href="#dplyr-groupby"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.6</span> Group By<a class="anchor" aria-label="anchor" href="#dplyr-groupby"><i class="fas fa-link"></i></a>
 </h3>
-<p>You were introduced to the <code>group_by()</code> function in Chapter <a href="summary.html#grouping">5.6</a>. For example, you can break down the summary statistics above by year and product.</p>
+<p>You were introduced to the <code>group_by()</code> function in Chapter <a href="summary.html#grouping">5.7</a>. For example, you can break down the summary statistics above by year and product.</p>
 <div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">year_prod</span> <span class="op">&lt;-</span> <span class="va">budget4</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span>, <span class="va">product</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1601,23 +1608,23 @@ widgets
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">product</span> <span class="op">!=</span> <span class="st">"gadgets"</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <p>How would you find out the maximum sales for each region?</p>
-<div id="radio_IAZDMYDZHC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="answer"><span>
-<pre>budget3 %&gt;%
-  group_by(region) %&gt;%
-  summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(sales) %&gt;%
-  summarise(max_sales = max(region)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
-<pre>budget3 %&gt;%
-  group_by(sales) %&gt;%
-  summarise(max_sales = max(sales)</pre>
-</span></label><label><input type="radio" autocomplete="off" name="radio_IAZDMYDZHC" value="x"><span>
+<div id="radio_GXEAOUDPPR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GXEAOUDPPR" value="x"><span>
 <pre>budget3 %&gt;%
   group_by(region) %&gt;%
   summarise(max_sales = max(region)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_GXEAOUDPPR" value="answer"><span>
+<pre>budget3 %&gt;%
+  group_by(region) %&gt;%
+  summarise(max_sales = max(sales)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_GXEAOUDPPR" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(sales) %&gt;%
+  summarise(max_sales = max(region)</pre>
+</span></label><label><input type="radio" autocomplete="off" name="radio_GXEAOUDPPR" value="x"><span>
+<pre>budget3 %&gt;%
+  group_by(sales) %&gt;%
+  summarise(max_sales = max(sales)</pre>
 </span></label>
 </div>
 </div>
@@ -1799,13 +1806,13 @@ gadgets
 </div>
 </div>
 </div>
-<div id="complications" class="section level2" number="8.4">
+<div id="complications" class="section level2" number="9.5">
 <h2>
-<span class="header-section-number">8.4</span> Complications<a class="anchor" aria-label="anchor" href="#complications"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5</span> Complications<a class="anchor" aria-label="anchor" href="#complications"><i class="fas fa-link"></i></a>
 </h2>
-<div id="rounding" class="section level3" number="8.4.1">
+<div id="rounding" class="section level3" number="9.5.1">
 <h3>
-<span class="header-section-number">8.4.1</span> Rounding<a class="anchor" aria-label="anchor" href="#rounding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.1</span> Rounding<a class="anchor" aria-label="anchor" href="#rounding"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let's say we want to round all the values to the nearest pound. The pattern below uses the <code>across()</code> function to apply the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function to the columns from <code>mean_sales</code> to <code>max_profit</code>.</p>
 <div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
@@ -1918,7 +1925,7 @@ widgets
 </tbody>
 </table></div>
 </div>
-<p>If you compare this table to the one in Section <a href="wrangle.html#dplyr-groupby">8.3.6</a>, you'll see that the 2019 gadgets mean sales rounded up from 881.5 to 882, while the mean expenses rounded down from 238.5 to 238. What's going on!?</p>
+<p>If you compare this table to the one in Section <a href="wrangle.html#dplyr-groupby">9.4.6</a>, you'll see that the 2019 gadgets mean sales rounded up from 881.5 to 882, while the mean expenses rounded down from 238.5 to 238. What's going on!?</p>
 <p>This may seem like a mistake, but R rounds .5 to the nearest even number, rather than always up, like you were probably taught in school. This prevents overestimation biases, since x.5 is <em>exactly</em> halfway between x and x+1, so there is no reason it should always round up.</p>
 <div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>
@@ -1948,15 +1955,15 @@ widgets
 <code class="sourceCode R"><span class="co"># remove new round() method</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">round</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="missing-values" class="section level3" number="8.4.2">
+<div id="missing-values" class="section level3" number="9.5.2">
 <h3>
-<span class="header-section-number">8.4.2</span> Missing values<a class="anchor" aria-label="anchor" href="#missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2</span> Missing values<a class="anchor" aria-label="anchor" href="#missing-values"><i class="fas fa-link"></i></a>
 </h3>
 <p>If you have control over your data, it is always best to keep missing values as empty cells rather than denoting missingness with a word or implausible number. If you used "missing" rather than leaving the cell empty, the entire variable would be read as character data, which means you wouldn't be able to perform mathematical operations like calculating the mean. If you use an implausible number (0 or 999 are common), then you risk these values being included in any calculations as real numbers.</p>
 <p>However, we often don't have control over how the data come to us, so let's run through how to fix this.</p>
-<div id="bad-missing-values" class="section level4" number="8.4.2.1">
+<div id="bad-missing-values" class="section level4" number="9.5.2.1">
 <h4>
-<span class="header-section-number">8.4.2.1</span> Bad missing values<a class="anchor" aria-label="anchor" href="#bad-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2.1</span> Bad missing values<a class="anchor" aria-label="anchor" href="#bad-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>What if the South region hadn't returned their expenses (entered as 0) and the North region hadn't returned their sales data for 2020 yet, so someone entered it as "missing"? We're going to show you two functions that you can use to recode or change values, <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> and <code>case_when()</code>. <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> is from Base R and can be slightly more intuitive to use initially. <code>case_when()</code> is from the <code class="package">dplyr</code> and allows you to specify multiple criteria, although is slightly more difficult to use so it's good to be aware of both.</p>
 <p>First, we're going to recode the data to add in the missing values</p>
@@ -2113,9 +2120,9 @@ NA
 </table></div>
 </div>
 </div>
-<div id="convert-missing-values-to-na" class="section level4" number="8.4.2.2">
+<div id="convert-missing-values-to-na" class="section level4" number="9.5.2.2">
 <h4>
-<span class="header-section-number">8.4.2.2</span> Convert missing values to NA<a class="anchor" aria-label="anchor" href="#convert-missing-values-to-na"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2.2</span> Convert missing values to NA<a class="anchor" aria-label="anchor" href="#convert-missing-values-to-na"><i class="fas fa-link"></i></a>
 </h4>
 <p>To set the missing values to NA, you could use either <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> or <code>case_when()</code>. Because the <code>sales</code> column was converted to character, we also need to transform this back to numeric.</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
@@ -2236,9 +2243,9 @@ West
 </table></div>
 </div>
 </div>
-<div id="ignore-missing-values" class="section level4" number="8.4.2.3">
+<div id="ignore-missing-values" class="section level4" number="9.5.2.3">
 <h4>
-<span class="header-section-number">8.4.2.3</span> Ignore missing values<a class="anchor" aria-label="anchor" href="#ignore-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2.3</span> Ignore missing values<a class="anchor" aria-label="anchor" href="#ignore-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is because <code>NA</code> basically means "I don't know", and the sum of 100 and "I don't know" is "I don't know", not 100. However, when you're calculating means, you often want to just ignore missing values. Set <code>na.rm = TRUE</code> in the summary function to remove missing values before calculating.</p>
 <div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
@@ -2343,9 +2350,9 @@ West
 </table></div>
 </div>
 </div>
-<div id="count-missing-values" class="section level4" number="8.4.2.4">
+<div id="count-missing-values" class="section level4" number="9.5.2.4">
 <h4>
-<span class="header-section-number">8.4.2.4</span> Count missing values<a class="anchor" aria-label="anchor" href="#count-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2.4</span> Count missing values<a class="anchor" aria-label="anchor" href="#count-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>If you want to find out how many missing or non-missing values there are in a column, use the <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> function to get a <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a> vector of whether or not each value is missing, and use <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to count how many values are TRUE or <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> to calculate the proportion of TRUE values.</p>
 <div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
@@ -2449,9 +2456,9 @@ widgets
 </table></div>
 </div>
 </div>
-<div id="omit-missing-values" class="section level4" number="8.4.2.5">
+<div id="omit-missing-values" class="section level4" number="9.5.2.5">
 <h4>
-<span class="header-section-number">8.4.2.5</span> Omit missing values<a class="anchor" aria-label="anchor" href="#omit-missing-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2.5</span> Omit missing values<a class="anchor" aria-label="anchor" href="#omit-missing-values"><i class="fas fa-link"></i></a>
 </h4>
 <p>You may also want to remove rows that have missing values and only work from complete datasets. <code>drop_na()</code> will remove any row that has a missing observation. You can use <code>drop_na()</code> on the entire dataset which will remove any row that has <em>any</em> missing value, or you can specify to only remove rows that are missing a specific value.</p>
 <div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
@@ -2466,9 +2473,9 @@ widgets
 </div>
 </div>
 </div>
-<div id="together-wrangle" class="section level2" number="8.5">
+<div id="together-wrangle" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">8.5</span> Exercises<a class="anchor" aria-label="anchor" href="#together-wrangle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> Exercises<a class="anchor" aria-label="anchor" href="#together-wrangle"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let's try some exercises using a dataset you already encountered in Chapter <a href="viz.html#viz">3</a> so that you can see how much more you're able to do with the data now.</p>
 <ul>
@@ -2494,9 +2501,9 @@ Solution
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div id="creating-new-categories" class="section level3" number="8.5.1">
+<div id="creating-new-categories" class="section level3" number="9.6.1">
 <h3>
-<span class="header-section-number">8.5.1</span> Creating new categories<a class="anchor" aria-label="anchor" href="#creating-new-categories"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.1</span> Creating new categories<a class="anchor" aria-label="anchor" href="#creating-new-categories"><i class="fas fa-link"></i></a>
 </h3>
 <p>Employees 1-5 were trained by Michael and employees 6-10 were trained by Dwight.</p>
 <ul>
@@ -2534,7 +2541,7 @@ Solution
   <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">trainer</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Satisfaction scores by employee trainer"</span><span class="op">)</span></code></pre></div>
-<img src="08-wrangle_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;"><div class="kable-table">
+<img src="09-wrangle_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;"><div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
 <th style="text-align:left;">
@@ -2566,9 +2573,9 @@ Michael
 </div>
 </div>
 </div>
-<div id="filter-by-calculated-score" class="section level3" number="8.5.2">
+<div id="filter-by-calculated-score" class="section level3" number="9.6.2">
 <h3>
-<span class="header-section-number">8.5.2</span> Filter by calculated score<a class="anchor" aria-label="anchor" href="#filter-by-calculated-score"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.2</span> Filter by calculated score<a class="anchor" aria-label="anchor" href="#filter-by-calculated-score"><i class="fas fa-link"></i></a>
 </h3>
 <p>First, calculate the average wait time and store this in an object named <code>mean_wait</code>. This should be a single value rather than a table.</p>
 <div class="webex-solution">
@@ -2608,12 +2615,12 @@ Solution
 <code class="sourceCode R"><span class="va">long_wait</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">employee_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="08-wrangle_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="09-wrangle_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 </div>
-<div id="multiple-critera" class="section level3" number="8.5.3">
+<div id="multiple-critera" class="section level3" number="9.6.3">
 <h3>
-<span class="header-section-number">8.5.3</span> Multiple critera<a class="anchor" aria-label="anchor" href="#multiple-critera"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.3</span> Multiple critera<a class="anchor" aria-label="anchor" href="#multiple-critera"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now, add a column to <code>survey_data</code> named <code>follow_up</code> that flags whether a customer should be followed up with a courtesy phone call. Your company is short-staffed so only customers that meet all three of the following criteria should be followed-up:</p>
 <ul>
@@ -2724,22 +2731,22 @@ Solution
 ## [1] "E02"</code></pre>
 </div>
 </div>
-<div id="original-insight" class="section level3" number="8.5.4">
+<div id="original-insight" class="section level3" number="9.6.4">
 <h3>
-<span class="header-section-number">8.5.4</span> Original insight<a class="anchor" aria-label="anchor" href="#original-insight"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.4</span> Original insight<a class="anchor" aria-label="anchor" href="#original-insight"><i class="fas fa-link"></i></a>
 </h3>
 <p>In preparation for the final summative assessment, explore the data to provide one original insight of your own.</p>
 </div>
-<div id="report-1" class="section level3" number="8.5.5">
+<div id="report-1" class="section level3" number="9.6.5">
 <h3>
-<span class="header-section-number">8.5.5</span> Report<a class="anchor" aria-label="anchor" href="#report-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6.5</span> Report<a class="anchor" aria-label="anchor" href="#report-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Compile all the above into a visually appealing reproducible report that could be used to target employees and trainers for extra training (or depending on what mood you're in, to fire them). Use inline coding to report any numbers in the text. Once you're finished, post your Rmd and knitted html document on teams so that other learners can see your approach.</p>
 </div>
 </div>
-<div id="glossary-wrangle" class="section level2" number="8.6">
+<div id="glossary-wrangle" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">8.6</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-wrangle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-wrangle"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -2826,9 +2833,9 @@ A piece of text inside of quotes.
 </tbody>
 </table></div>
 </div>
-<div id="resources-wrangle" class="section level2" number="8.7">
+<div id="resources-wrangle" class="section level2" number="9.8">
 <h2>
-<span class="header-section-number">8.7</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-wrangle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.8</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-wrangle"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation cheat sheet</a></li>
@@ -3037,47 +3044,48 @@ $( document ).ready(function() {
   window.onresize = move_sidebar;
 });
 </script><div class="chapter-nav">
-<div class="prev"><a href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></div>
-<div class="next"><a href="advanced.html"><span class="header-section-number">9</span> Advanced Visualisations &amp; Reports</a></div>
+<div class="prev"><a href="tidy.html"><span class="header-section-number">8</span> Data Tidying</a></div>
+<div class="next"><a href="advanced.html"><span class="header-section-number">10</span> Advanced Visualisations &amp; Reports</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#wrangle"><span class="header-section-number">8</span> Data Wrangling</a></li>
-<li><a class="nav-link" href="#ilo-wrangle"><span class="header-section-number">8.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#set-up-5"><span class="header-section-number">8.2</span> Set-up</a></li>
+<li><a class="nav-link" href="#wrangle"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="nav-link" href="#ilo-wrangle"><span class="header-section-number">9.1</span> Intended Learning Outcomes</a></li>
+<li><a class="nav-link" href="#walkthrough-video-7"><span class="header-section-number">9.2</span> Walkthrough video</a></li>
+<li><a class="nav-link" href="#set-up-5"><span class="header-section-number">9.3</span> Set-up</a></li>
 <li>
-<a class="nav-link" href="#wrangling-functions"><span class="header-section-number">8.3</span> Wrangling functions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#select"><span class="header-section-number">8.3.1</span> Select</a></li>
-<li><a class="nav-link" href="#filter"><span class="header-section-number">8.3.2</span> Filter</a></li>
-<li><a class="nav-link" href="#arrange"><span class="header-section-number">8.3.3</span> Arrange</a></li>
-<li><a class="nav-link" href="#mutate"><span class="header-section-number">8.3.4</span> Mutate</a></li>
-<li><a class="nav-link" href="#dplyr-summarise"><span class="header-section-number">8.3.5</span> Summarise</a></li>
-<li><a class="nav-link" href="#dplyr-groupby"><span class="header-section-number">8.3.6</span> Group By</a></li>
+<a class="nav-link" href="#wrangling-functions"><span class="header-section-number">9.4</span> Wrangling functions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#select"><span class="header-section-number">9.4.1</span> Select</a></li>
+<li><a class="nav-link" href="#filter"><span class="header-section-number">9.4.2</span> Filter</a></li>
+<li><a class="nav-link" href="#arrange"><span class="header-section-number">9.4.3</span> Arrange</a></li>
+<li><a class="nav-link" href="#mutate"><span class="header-section-number">9.4.4</span> Mutate</a></li>
+<li><a class="nav-link" href="#dplyr-summarise"><span class="header-section-number">9.4.5</span> Summarise</a></li>
+<li><a class="nav-link" href="#dplyr-groupby"><span class="header-section-number">9.4.6</span> Group By</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#complications"><span class="header-section-number">8.4</span> Complications</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#rounding"><span class="header-section-number">8.4.1</span> Rounding</a></li>
-<li><a class="nav-link" href="#missing-values"><span class="header-section-number">8.4.2</span> Missing values</a></li>
+<a class="nav-link" href="#complications"><span class="header-section-number">9.5</span> Complications</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rounding"><span class="header-section-number">9.5.1</span> Rounding</a></li>
+<li><a class="nav-link" href="#missing-values"><span class="header-section-number">9.5.2</span> Missing values</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#together-wrangle"><span class="header-section-number">8.5</span> Exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#creating-new-categories"><span class="header-section-number">8.5.1</span> Creating new categories</a></li>
-<li><a class="nav-link" href="#filter-by-calculated-score"><span class="header-section-number">8.5.2</span> Filter by calculated score</a></li>
-<li><a class="nav-link" href="#multiple-critera"><span class="header-section-number">8.5.3</span> Multiple critera</a></li>
-<li><a class="nav-link" href="#original-insight"><span class="header-section-number">8.5.4</span> Original insight</a></li>
-<li><a class="nav-link" href="#report-1"><span class="header-section-number">8.5.5</span> Report</a></li>
+<a class="nav-link" href="#together-wrangle"><span class="header-section-number">9.6</span> Exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#creating-new-categories"><span class="header-section-number">9.6.1</span> Creating new categories</a></li>
+<li><a class="nav-link" href="#filter-by-calculated-score"><span class="header-section-number">9.6.2</span> Filter by calculated score</a></li>
+<li><a class="nav-link" href="#multiple-critera"><span class="header-section-number">9.6.3</span> Multiple critera</a></li>
+<li><a class="nav-link" href="#original-insight"><span class="header-section-number">9.6.4</span> Original insight</a></li>
+<li><a class="nav-link" href="#report-1"><span class="header-section-number">9.6.5</span> Report</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#glossary-wrangle"><span class="header-section-number">8.6</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-wrangle"><span class="header-section-number">8.7</span> Further resources</a></li>
+<li><a class="nav-link" href="#glossary-wrangle"><span class="header-section-number">9.7</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-wrangle"><span class="header-section-number">9.8</span> Further resources</a></li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/08-wrangle.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/08-wrangle.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/09-wrangle.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/09-wrangle.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -3097,6 +3105,34 @@ $( document ).ready(function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

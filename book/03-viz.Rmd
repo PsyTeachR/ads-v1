@@ -6,6 +6,10 @@
 * Be able to create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
+## Walkthrough video
+
+There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/d22c9f57-3ed5-44ce-ac60-246b7099eb9e/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
+
 ## Set-up
 
 Create a new project for the work we'll do in this chapter:

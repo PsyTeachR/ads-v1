@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 5 Data Summaries | Applied Data Skills</title>
 <meta name="author" content="Emily Nordmann and Lisa DeBruine">
-<meta name="description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Set-up First, create a new project for the...">
+<meta name="description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Walkthrough video There is a walkthrough...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Data Summaries | Applied Data Skills">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://psyteachr.github.io/ads-v1/summary.html">
 <meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
-<meta property="og:description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Set-up First, create a new project for the...">
+<meta property="og:description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Walkthrough video There is a walkthrough...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 5 Data Summaries | Applied Data Skills">
-<meta name="twitter:description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Set-up First, create a new project for the...">
+<meta name="twitter:description" content="5.1 Intended Learning Outcomes Be able to summarise data by groups Be able to produce well-formatted tables Use pipes to chain together functions  5.2 Walkthrough video There is a walkthrough...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -63,10 +63,11 @@
 <li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
 <li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
 <li><a class="active" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
-<li><a class="" href="joins.html"><span class="header-section-number">6</span> Data Relations</a></li>
-<li><a class="" href="tidy.html"><span class="header-section-number">7</span> Data Tidying</a></li>
-<li><a class="" href="wrangle.html"><span class="header-section-number">8</span> Data Wrangling</a></li>
-<li><a class="" href="advanced.html"><span class="header-section-number">9</span> Advanced Visualisations &amp; Reports</a></li>
+<li><a class="" href="practice-report.html"><span class="header-section-number">6</span> Practice Report</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">7</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">8</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="advanced.html"><span class="header-section-number">10</span> Advanced Visualisations &amp; Reports</a></li>
 <li class="book-part">Appendices</li>
 <li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
 <li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
@@ -102,9 +103,15 @@
 <li>Use pipes to chain together functions</li>
 </ul>
 </div>
-<div id="set-up-2" class="section level2" number="5.2">
+<div id="walkthrough-video-4" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">5.2</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Walkthrough video<a class="anchor" aria-label="anchor" href="#walkthrough-video-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>There is a walkthrough video of this chapter available via <a href="https://echo360.org.uk/media/6783dc21-2603-4579-bc19-5ae971638e85/public">Echo360.</a> Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.</p>
+</div>
+<div id="set-up-2" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Set-up<a class="anchor" aria-label="anchor" href="#set-up-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>First, create a new project for the work we'll do in this chapter named <code class="path">05-summary</code>. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named <code>summary.Rmd</code>, delete the welcome text and load the required packages for this chapter.</p>
 <div class="verbatim">
@@ -117,9 +124,9 @@
 </div>
 <p>Download the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation cheat sheet</a>.</p>
 </div>
-<div id="social-media-data" class="section level2" number="5.3">
+<div id="social-media-data" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">5.3</span> Social media data<a class="anchor" aria-label="anchor" href="#social-media-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> Social media data<a class="anchor" aria-label="anchor" href="#social-media-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this chapter we're going to analyse social media data, specifically data from Twitter. There are two broad types of data you can obtain from Twitter; data scraped from Twitter using purpose-built packages such as <code class="package">rtweet</code>, and data provided via <a href="https://analytics.twitter.com/">Twitter Analytics</a> for any accounts for which you have access.</p>
 <p>For this chapter, we'll use data scraped from Twitter using <code class="package">rtweet</code>. In order to use these functions, you need to have a Twitter account. Don't worry if you don't have one; we'll provide the data in the examples below for you.</p>
@@ -130,9 +137,9 @@
 <code class="sourceCode R"><span class="va">tweets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rtweet/man/search_tweets.html">search_tweets</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"#NationalComingOutDay"</span>, 
                         n <span class="op">=</span> <span class="fl">30000</span>, 
                         include_rts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div id="r-objects" class="section level3" number="5.3.1">
+<div id="r-objects" class="section level3" number="5.4.1">
 <h3>
-<span class="header-section-number">5.3.1</span> R objects<a class="anchor" aria-label="anchor" href="#r-objects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1</span> R objects<a class="anchor" aria-label="anchor" href="#r-objects"><i class="fas fa-link"></i></a>
 </h3>
 <p>If you're working with live social media data, every time you run a query it's highly likely you will get a different set of data as new tweets are added. Additionally, the Twitter API places limits on how much data you can download and searches are limited to data from the last 6-9 days. Consequently, it can be useful to save the results of your initial search. <code>saveRDS</code> is a useful function that allows you to save any object in your environment to disk.</p>
 <div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
@@ -144,13 +151,13 @@
 <p>First, run <code>glimpse(tweets)</code> or click on the object in the environment to find out what information is in the downloaded data (it's a lot!). Now let's create a series of summary tables and plots with these data.</p>
 </div>
 </div>
-<div id="summary-summarise" class="section level2" number="5.4">
+<div id="summary-summarise" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">5.4</span> Summarise<a class="anchor" aria-label="anchor" href="#summary-summarise"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> Summarise<a class="anchor" aria-label="anchor" href="#summary-summarise"><i class="fas fa-link"></i></a>
 </h2>
 <p>The <code>summarise()</code> function from the <code class="package">dplyr</code> package is loaded as part of the tidyverse and creates summary statistics. It creates a new table with columns that summarise the data from a larger table using summary functions. Check the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code>n()</code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, and <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
 <div class="warning">
-<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="wrangle.html#missing-values">8.4.2</a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
+<p>If you get the answer <code>NA</code> from a summary function, that usually means that there are missing values in the columns you were summarising. We'll discuss this more in Chapter <a href="wrangle.html#missing-values">9.5.2</a>, but you can ignore missing values for many functions by adding the argument <code>na.rm = TRUE</code>.</p>
 <div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="co"># is NA</span>
@@ -238,20 +245,20 @@ max_favs
 <div class="try">
 <ul>
 <li>How would you find the largest number of retweets?
-<div id="radio_DQFQIQNQFU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DQFQIQNQFU" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DQFQIQNQFU" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DQFQIQNQFU" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_DQFQIQNQFU" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label>
+<div id="radio_ATWVDBESSI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ATWVDBESSI" value="x"><span><code>tweets %&gt;% summarise(max_retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ATWVDBESSI" value="x"><span><code>tweets %&gt;% summarise(max = retweets)</code></span></label><label><input type="radio" autocomplete="off" name="radio_ATWVDBESSI" value="answer"><span><code>tweets %&gt;% summarise(max_retweets = max(retweets))</code></span></label><label><input type="radio" autocomplete="off" name="radio_ATWVDBESSI" value="x"><span><code>tweets %&gt;% max(retweets)</code></span></label>
 </div>
 </li>
 <li>How would you calculate the mean <code>display_text_width</code>?
-<div id="radio_STETPRYWQL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_STETPRYWQL" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_STETPRYWQL" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_STETPRYWQL" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_STETPRYWQL" value="x"><span><code>summarise(display_text_width = mean)</code></span></label>
+<div id="radio_HWZOBCJLDA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HWZOBCJLDA" value="x"><span><code>group_by(display_text_width)</code></span></label><label><input type="radio" autocomplete="off" name="radio_HWZOBCJLDA" value="answer"><span><code>summarise(width = mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_HWZOBCJLDA" value="x"><span><code>width(mean(display_text_width))</code></span></label><label><input type="radio" autocomplete="off" name="radio_HWZOBCJLDA" value="x"><span><code>summarise(display_text_width = mean)</code></span></label>
 </div>
 </li>
 </ul>
 </div>
-<div id="the-operator" class="section level3" number="5.4.1">
+<div id="the-operator" class="section level3" number="5.5.1">
 <h3>
-<span class="header-section-number">5.4.1</span> The $ operator<a class="anchor" aria-label="anchor" href="#the-operator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.1</span> The $ operator<a class="anchor" aria-label="anchor" href="#the-operator"><i class="fas fa-link"></i></a>
 </h3>
 <p>We need to take a couple of brief detours to introduce some additional coding conventions. First, let's clear up what that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> notation is doing. The dollar sign allows you to select items from an object, such as columns from a table. The left-hand side is the object, and the right-hand side is the item. When you call a column like this, R will print all the observations in that column.</p>
 <div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
@@ -264,9 +271,9 @@ max_favs
 <pre><code>## [1] "Twitter for Android"
 ## [1]  78 287 107</code></pre>
 </div>
-<div id="pipes-first" class="section level3" number="5.4.2">
+<div id="pipes-first" class="section level3" number="5.5.2">
 <h3>
-<span class="header-section-number">5.4.2</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes-first"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.2</span> Pipes<a class="anchor" aria-label="anchor" href="#pipes-first"><i class="fas fa-link"></i></a>
 </h3>
 <p>For our second detour, let's formally introduce the <a class="glossary" target="_blank" title="A way to order your code in a more readable format using the symbol %&gt;%" href="https://psyteachr.github.io/glossary/p#pipe">pipe</a>, that weird <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> symbol we've used occasionally. Pipes allow you to send the output from one function straight into another function. Specifically, they send the result of the function before <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> to be the first argument of the function after <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>. It can be useful to translate the pipe as "<strong>and then</strong>". It's easier to show than tell, so let's look at an example.</p>
 <p>We could write the above code using a pipe as follows:</p>
@@ -276,9 +283,9 @@ max_favs
             median_favs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">favorite_count</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Notice that <code>summarise()</code> no longer needs the first argument to be the data table, it is pulled in from the pipe. The power of the pipe may not be obvious now, but it will soon prove its worth.</p>
 </div>
-<div id="inline-coding" class="section level3" number="5.4.3">
+<div id="inline-coding" class="section level3" number="5.5.3">
 <h3>
-<span class="header-section-number">5.4.3</span> Inline coding<a class="anchor" aria-label="anchor" href="#inline-coding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.3</span> Inline coding<a class="anchor" aria-label="anchor" href="#inline-coding"><i class="fas fa-link"></i></a>
 </h3>
 <p>To insert those values into the text of a report you can use inline coding. First. we'll create another set of objects that contain the first and last date of the tweets in our dataset. <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> formats the dates to day/month/year.</p>
 <div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
@@ -295,9 +302,9 @@ max_favs
 <p>Ok, let's get back on track.</p>
 </div>
 </div>
-<div id="counting" class="section level2" number="5.5">
+<div id="counting" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">5.5</span> Counting<a class="anchor" aria-label="anchor" href="#counting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Counting<a class="anchor" aria-label="anchor" href="#counting"><i class="fas fa-link"></i></a>
 </h2>
 <p>How many different accounts tweeted using the hashtag? Who tweeted most?</p>
 <p>You can count categorical data with the <code>count()</code> function. Since each row is a tweet, you can count the number of rows per each different <code>screen_name</code> to get the number of tweets per user. This will give you a new table with each combination of the counted columns and a column called <code>n</code> containing the number of observations from that group.</p>
@@ -410,13 +417,13 @@ FALSE
 </tbody>
 </table></div>
 </div>
-<div id="radio_DFGZNBJBXT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DFGZNBJBXT" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DFGZNBJBXT" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_DFGZNBJBXT" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_DFGZNBJBXT" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
+<div id="radio_XGGYNOVXKV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XGGYNOVXKV" value="answer"><span><code>tweets %&gt;% count(is_quote, is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGGYNOVXKV" value="x"><span><code>tweets %&gt;% count(is_quote) %&gt;% count(is_retweet)</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGGYNOVXKV" value="x"><span><code>tweets %&gt;% count(c(is_quote, is_retweet))</code></span></label><label><input type="radio" autocomplete="off" name="radio_XGGYNOVXKV" value="x"><span><code>tweets %&gt;% select(is_quote, is_retweet) %&gt;% count()</code></span></label>
 </div>
 </div>
-<div id="inline-coding-2" class="section level3" number="5.5.1">
+<div id="inline-coding-2" class="section level3" number="5.6.1">
 <h3>
-<span class="header-section-number">5.5.1</span> Inline coding 2<a class="anchor" aria-label="anchor" href="#inline-coding-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6.1</span> Inline coding 2<a class="anchor" aria-label="anchor" href="#inline-coding-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let's do another example of inline coding that writes up a summary of the most prolific tweeters to demonstrate a few additional functions. First, we need to create some additional objects to use with inline R:</p>
 <ul>
@@ -440,9 +447,9 @@ FALSE
 <p>There were 25189 unique accounts tweeting about #NationalComingOutDay. interest_outfit was the most prolific tweeter, with 35 tweets.</p>
 </div>
 </div>
-<div id="grouping" class="section level2" number="5.6">
+<div id="grouping" class="section level2" number="5.7">
 <h2>
-<span class="header-section-number">5.6</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7</span> Grouping<a class="anchor" aria-label="anchor" href="#grouping"><i class="fas fa-link"></i></a>
 </h2>
 <p>You can also create summary values by group. The combination of <code>group_by()</code> and <code>summarise()</code> is incredibly powerful, and it is also a good demonstration of why pipes are so useful.</p>
 <p>The function <code>group_by()</code> takes an existing data table and converts it into a grouped table, where any operations that are performed on it are done "by group".</p>
@@ -522,15 +529,15 @@ TRUE
 <div class="try">
 <ul>
 <li>What would you change to calculate the mean favourites and retweets by <code>screen_name</code> instead of by <code>verified</code>?
-<div id="radio_GMPJKJJCGC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GMPJKJJCGC" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_GMPJKJJCGC" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_GMPJKJJCGC" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_GMPJKJJCGC" value="x"><span><code>count(screen_name)</code></span></label>
+<div id="radio_BCQWYXOTXA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BCQWYXOTXA" value="x"><span><code><a href="https://rdrr.io/r/base/mean.html">mean(screen_name)</a></code></span></label><label><input type="radio" autocomplete="off" name="radio_BCQWYXOTXA" value="x"><span><code>summarise(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BCQWYXOTXA" value="answer"><span><code>group_by(screen_name)</code></span></label><label><input type="radio" autocomplete="off" name="radio_BCQWYXOTXA" value="x"><span><code>count(screen_name)</code></span></label>
 </div>
 </li>
 </ul>
 </div>
-<div id="multiple-groupings" class="section level3" number="5.6.1">
+<div id="multiple-groupings" class="section level3" number="5.7.1">
 <h3>
-<span class="header-section-number">5.6.1</span> Multiple groupings<a class="anchor" aria-label="anchor" href="#multiple-groupings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7.1</span> Multiple groupings<a class="anchor" aria-label="anchor" href="#multiple-groupings"><i class="fas fa-link"></i></a>
 </h3>
 <p>You can add multiple variables to <code>group_by()</code> to further break down your data. For example, the below gives us the number of likes and retweets broken down by verified status and the device the person was tweeting from (<code>source</code>).</p>
 <ul>
@@ -679,11 +686,11 @@ Twitter for iPad
 <p>Tidyverse recently added a message to remind you whether the <code>summarise()</code> function automatically ungroups grouped data or not (it may do different things depending on how it's used). You can set the argument <code>.groups</code> to "drop", "drop_last", "keep", or "rowwise" (see the help for <code>?summarise</code>), but it's good practice to explicitly use <code>ungroup()</code> when you're done working by groups, regardless.</p>
 </div>
 </div>
-<div id="filter-and-mutate" class="section level3" number="5.6.2">
+<div id="filter-and-mutate" class="section level3" number="5.7.2">
 <h3>
-<span class="header-section-number">5.6.2</span> Filter and mutate<a class="anchor" aria-label="anchor" href="#filter-and-mutate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7.2</span> Filter and mutate<a class="anchor" aria-label="anchor" href="#filter-and-mutate"><i class="fas fa-link"></i></a>
 </h3>
-<p>You can also use additional functions like <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> or <code>mutate()</code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="wrangle.html#wrangle">8</a> but briefly:</p>
+<p>You can also use additional functions like <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> or <code>mutate()</code> after <code>group_by</code>. You'll learn more about these in Chapter  <a href="wrangle.html#wrangle">9</a> but briefly:</p>
 <ul>
 <li>
 <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> keeps observations (rows) according to specified criteria, e.g., all values above 5, or all verified users.</li>
@@ -705,16 +712,16 @@ Twitter for iPad
 <div class="try">
 <ul>
 <li>How would you limit the results to sources with 10 or more rows?
-<div id="radio_TRUCLTAIMA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TRUCLTAIMA" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TRUCLTAIMA" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TRUCLTAIMA" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_TRUCLTAIMA" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label>
+<div id="radio_VFZYUVWWGZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VFZYUVWWGZ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(n() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VFZYUVWWGZ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% select(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VFZYUVWWGZ" value="x"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(count() &gt;= 10)</code></span></label><label><input type="radio" autocomplete="off" name="radio_VFZYUVWWGZ" value="answer"><span><code>tweets %&gt;% group_by(source) %&gt;% filter(n() &gt;= 10)</code></span></label>
 </div>
 </li>
 </ul>
 </div>
 </div>
-<div id="inline-coding-3" class="section level3" number="5.6.3">
+<div id="inline-coding-3" class="section level3" number="5.7.3">
 <h3>
-<span class="header-section-number">5.6.3</span> Inline coding 3<a class="anchor" aria-label="anchor" href="#inline-coding-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7.3</span> Inline coding 3<a class="anchor" aria-label="anchor" href="#inline-coding-3"><i class="fas fa-link"></i></a>
 </h3>
 <p>There's a huge amount of data reported for each tweet, including things like the URLs of the tweets and any media attached to them. This means we can produce output like the below reproducibly and using inline coding.</p>
 <p>The most favourited 22935 original tweet was by <a href="https://twitter.com/jackrooke/status/1447541093260795904">jackrooke</a>:</p>
@@ -748,9 +755,9 @@ Twitter for iPad
 </ul>
 </div>
 </div>
-<div id="exercises-2" class="section level2" number="5.7">
+<div id="exercises-2" class="section level2" number="5.8">
 <h2>
-<span class="header-section-number">5.7</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.8</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>That was an intensive chapter! Take a break and then try one (or more) of the following and post your knitted HTML files on Teams so that other learners on the course can see what you did.</p>
 <ul>
@@ -761,9 +768,9 @@ Twitter for iPad
 <li>Work through the first few chapters of <a href="https://www.tidytextmining.com/index.html" target="_blank">Tidy Text</a> to see how you can work with and analyse text. In particular, see if you can conduct a sentiment analysis on the tweet data.</li>
 </ul>
 </div>
-<div id="glossary-summary" class="section level2" number="5.8">
+<div id="glossary-summary" class="section level2" number="5.9">
 <h2>
-<span class="header-section-number">5.8</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.9</span> Glossary<a class="anchor" aria-label="anchor" href="#glossary-summary"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -818,9 +825,9 @@ A type of data structure that collects values with the same data type, like T/F 
 </tbody>
 </table></div>
 </div>
-<div id="resources-summary" class="section level2" number="5.9">
+<div id="resources-summary" class="section level2" number="5.10">
 <h2>
-<span class="header-section-number">5.9</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.10</span> Further resources<a class="anchor" aria-label="anchor" href="#resources-summary"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation cheat sheet</a></li>
@@ -1029,36 +1036,37 @@ $( document ).ready(function() {
 });
 </script><div class="chapter-nav">
 <div class="prev"><a href="data.html"><span class="header-section-number">4</span> Data Import</a></div>
-<div class="next"><a href="joins.html"><span class="header-section-number">6</span> Data Relations</a></div>
+<div class="next"><a href="practice-report.html"><span class="header-section-number">6</span> Practice Report</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#summary"><span class="header-section-number">5</span> Data Summaries</a></li>
 <li><a class="nav-link" href="#ilo-summary"><span class="header-section-number">5.1</span> Intended Learning Outcomes</a></li>
-<li><a class="nav-link" href="#set-up-2"><span class="header-section-number">5.2</span> Set-up</a></li>
+<li><a class="nav-link" href="#walkthrough-video-4"><span class="header-section-number">5.2</span> Walkthrough video</a></li>
+<li><a class="nav-link" href="#set-up-2"><span class="header-section-number">5.3</span> Set-up</a></li>
 <li>
-<a class="nav-link" href="#social-media-data"><span class="header-section-number">5.3</span> Social media data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-objects"><span class="header-section-number">5.3.1</span> R objects</a></li></ul>
+<a class="nav-link" href="#social-media-data"><span class="header-section-number">5.4</span> Social media data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-objects"><span class="header-section-number">5.4.1</span> R objects</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#summary-summarise"><span class="header-section-number">5.4</span> Summarise</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-operator"><span class="header-section-number">5.4.1</span> The $ operator</a></li>
-<li><a class="nav-link" href="#pipes-first"><span class="header-section-number">5.4.2</span> Pipes</a></li>
-<li><a class="nav-link" href="#inline-coding"><span class="header-section-number">5.4.3</span> Inline coding</a></li>
+<a class="nav-link" href="#summary-summarise"><span class="header-section-number">5.5</span> Summarise</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-operator"><span class="header-section-number">5.5.1</span> The $ operator</a></li>
+<li><a class="nav-link" href="#pipes-first"><span class="header-section-number">5.5.2</span> Pipes</a></li>
+<li><a class="nav-link" href="#inline-coding"><span class="header-section-number">5.5.3</span> Inline coding</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#counting"><span class="header-section-number">5.5</span> Counting</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#inline-coding-2"><span class="header-section-number">5.5.1</span> Inline coding 2</a></li></ul>
+<a class="nav-link" href="#counting"><span class="header-section-number">5.6</span> Counting</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#inline-coding-2"><span class="header-section-number">5.6.1</span> Inline coding 2</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#grouping"><span class="header-section-number">5.6</span> Grouping</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#multiple-groupings"><span class="header-section-number">5.6.1</span> Multiple groupings</a></li>
-<li><a class="nav-link" href="#filter-and-mutate"><span class="header-section-number">5.6.2</span> Filter and mutate</a></li>
-<li><a class="nav-link" href="#inline-coding-3"><span class="header-section-number">5.6.3</span> Inline coding 3</a></li>
+<a class="nav-link" href="#grouping"><span class="header-section-number">5.7</span> Grouping</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-groupings"><span class="header-section-number">5.7.1</span> Multiple groupings</a></li>
+<li><a class="nav-link" href="#filter-and-mutate"><span class="header-section-number">5.7.2</span> Filter and mutate</a></li>
+<li><a class="nav-link" href="#inline-coding-3"><span class="header-section-number">5.7.3</span> Inline coding 3</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#exercises-2"><span class="header-section-number">5.7</span> Exercises</a></li>
-<li><a class="nav-link" href="#glossary-summary"><span class="header-section-number">5.8</span> Glossary</a></li>
-<li><a class="nav-link" href="#resources-summary"><span class="header-section-number">5.9</span> Further resources</a></li>
+<li><a class="nav-link" href="#exercises-2"><span class="header-section-number">5.8</span> Exercises</a></li>
+<li><a class="nav-link" href="#glossary-summary"><span class="header-section-number">5.9</span> Glossary</a></li>
+<li><a class="nav-link" href="#resources-summary"><span class="header-section-number">5.10</span> Further resources</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1084,6 +1092,34 @@ $( document ).ready(function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

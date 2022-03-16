@@ -6,6 +6,10 @@
 * Be able to create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
+## Walkthrough video
+
+There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/d22c9f57-3ed5-44ce-ac60-246b7099eb9e/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
+
 ## Set-up
 
 Create a new project for the work we'll do in this chapter:
@@ -132,7 +136,7 @@ lubridate::now(tzone = "GMT")
 ```
 
 ```
-## [1] "2022-03-16 12:40:05 GMT"
+## [1] "2022-03-16 22:46:53 GMT"
 ```
 
 ### Test your understanding
@@ -709,9 +713,9 @@ England             | 56,550,138      | Great Britain
 ::: {.try data-latex=""}
 
 * What geom would you use to plot the population for each of the 5 countries? <select class='webex-select'><option value='blank'></option><option value='x'>geom_bar</option><option value='answer'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_KPNJAMUEUA'><label><input type="radio" autocomplete="off" name="radio_KPNJAMUEUA" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_KPNJAMUEUA" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_KPNJAMUEUA" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_KPNJAMUEUA" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_KPNJAMUEUA" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_DPSJSABNFO'><label><input type="radio" autocomplete="off" name="radio_DPSJSABNFO" value="answer"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_DPSJSABNFO" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_DPSJSABNFO" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_DPSJSABNFO" value="x"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_DPSJSABNFO" value="x"></input> <span>aes(y = population)</span></label></div>
 * What geom would you use to plot the number of countries on each island? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_bar</option><option value='x'>geom_col</option></select>
-* What mapping would you use?  <div class='webex-radiogroup' id='radio_TIDGISWWTP'><label><input type="radio" autocomplete="off" name="radio_TIDGISWWTP" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_TIDGISWWTP" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TIDGISWWTP" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_TIDGISWWTP" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_TIDGISWWTP" value="x"></input> <span>aes(y = population)</span></label></div>
+* What mapping would you use?  <div class='webex-radiogroup' id='radio_VDMNVIUFBE'><label><input type="radio" autocomplete="off" name="radio_VDMNVIUFBE" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_VDMNVIUFBE" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_VDMNVIUFBE" value="x"></input> <span>aes(x = country)</span></label><label><input type="radio" autocomplete="off" name="radio_VDMNVIUFBE" value="answer"></input> <span>aes(x = island)</span></label><label><input type="radio" autocomplete="off" name="radio_VDMNVIUFBE" value="x"></input> <span>aes(y = population)</span></label></div>
 :::
 
 ### One continuous variable
@@ -821,7 +825,7 @@ Imagine you have a table of the [population for each country in the world](https
 * What kind of plot is A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='answer'>geom_density</option></select>
 * What kind of plot is B? <select class='webex-select'><option value='blank'></option><option value='answer'>geom_histogram</option><option value='x'>geom_freqpoly</option><option value='x'>geom_density</option></select>
 * What kind of plot is C? <select class='webex-select'><option value='blank'></option><option value='x'>geom_histogram</option><option value='answer'>geom_freqpoly</option><option value='x'>geom_density</option></select>
-* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_FHFJJIABXU'><label><input type="radio" autocomplete="off" name="radio_FHFJJIABXU" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_FHFJJIABXU" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_FHFJJIABXU" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_FHFJJIABXU" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
+* How would you set the mapping for these plots?  <div class='webex-radiogroup' id='radio_ENMQPWBXON'><label><input type="radio" autocomplete="off" name="radio_ENMQPWBXON" value="x"></input> <span>aes(x = country, y = population)</span></label><label><input type="radio" autocomplete="off" name="radio_ENMQPWBXON" value="x"></input> <span>aes(x = population, y = country)</span></label><label><input type="radio" autocomplete="off" name="radio_ENMQPWBXON" value="answer"></input> <span>aes(x = population)</span></label><label><input type="radio" autocomplete="off" name="radio_ENMQPWBXON" value="x"></input> <span>aes(x = population, y = count)</span></label></div>
 * What is the `binwidth` of the histogram? <select class='webex-select'><option value='blank'></option><option value=''>1</option><option value=''>100</option><option value='answer'>100K</option><option value=''>1M</option></select>
 :::
 
@@ -1020,7 +1024,7 @@ Column plots can also be very misleading. The plot on the left starts the y-axis
 ::: {.try data-latex=""}
 * How would you create plot A? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='x'>geom_boxplot()</option><option value='answer'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
 * How would you create plot B? <select class='webex-select'><option value='blank'></option><option value='x'>geom_box()</option><option value='answer'>geom_boxplot()</option><option value='x'>geom_violin()</option><option value='x'>geom_violinplot()</option></select>
-* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_SQWWNZCMLH'><label><input type="radio" autocomplete="off" name="radio_SQWWNZCMLH" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_SQWWNZCMLH" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_SQWWNZCMLH" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_SQWWNZCMLH" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label></div>
+* What does the mapping look like for both plots? <div class='webex-radiogroup' id='radio_GHOCHFFXCW'><label><input type="radio" autocomplete="off" name="radio_GHOCHFFXCW" value="answer"></input> <span>aes(x = employee_id, y = call_time, fill = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_GHOCHFFXCW" value="x"></input> <span>aes(x = employee_id, y = call_time, fill = call_time)</span></label><label><input type="radio" autocomplete="off" name="radio_GHOCHFFXCW" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = employee_id)</span></label><label><input type="radio" autocomplete="off" name="radio_GHOCHFFXCW" value="x"></input> <span>aes(x = employee_id, y = call_time, colour = call_time)</span></label></div>
 
 * Which employee tends to have the longest calls? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='answer'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='x'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>
 * Which employee has the record longest call? <select class='webex-select'><option value='blank'></option><option value='x'>e01</option><option value='x'>e02</option><option value='x'>e03</option><option value='x'>e04</option><option value='x'>e05</option><option value='x'>e06</option><option value='answer'>e07</option><option value='x'>e08</option><option value='x'>e09</option><option value='x'>e10</option></select>

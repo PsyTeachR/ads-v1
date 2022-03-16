@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Practice Report | Applied Data Skills</title>
+<meta name="author" content="Emily Nordmann and Lisa DeBruine">
+<meta name="description" content="6.1 Assessment information You will be given a dataset and a finished report on that data. Your task is to write the code that produces the report. Please check Moodle and the assessment...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Practice Report | Applied Data Skills">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://psyteachr.github.io/ads-v1/practice-report.html">
+<meta property="og:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
+<meta property="og:description" content="6.1 Assessment information You will be given a dataset and a finished report on that data. Your task is to write the code that produces the report. Please check Moodle and the assessment...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Practice Report | Applied Data Skills">
+<meta name="twitter:description" content="6.1 Assessment information You will be given a dataset and a finished report on that data. Your task is to write the code that produces the report. Please check Moodle and the assessment...">
+<meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6NP3MF25W3');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="include/psyteachr.css">
+<link rel="stylesheet" href="include/webex.css">
+<link rel="stylesheet" href="include/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Processing &amp; Presenting Data">Applied Data Skills</a>:
+        <small class="text-muted">Processing &amp; Presenting Data</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Overview</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Intro to R and RStudio</a></li>
+<li><a class="" href="reports.html"><span class="header-section-number">2</span> Reports with R Markdown</a></li>
+<li><a class="" href="viz.html"><span class="header-section-number">3</span> Basic Data Visualisation</a></li>
+<li><a class="" href="data.html"><span class="header-section-number">4</span> Data Import</a></li>
+<li><a class="" href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></li>
+<li><a class="active" href="practice-report.html"><span class="header-section-number">6</span> Practice Report</a></li>
+<li><a class="" href="joins.html"><span class="header-section-number">7</span> Data Relations</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">8</span> Data Tidying</a></li>
+<li><a class="" href="wrangle.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="advanced.html"><span class="header-section-number">10</span> Advanced Visualisations &amp; Reports</a></li>
+<li class="book-part">Appendices</li>
+<li><a class="" href="installing-r.html"><span class="header-section-number">A</span> Installing R</a></li>
+<li><a class="" href="appendix-updating-r.html"><span class="header-section-number">B</span> Updating R, RStudio, and packages</a></li>
+<li><a class="" href="symbols.html"><span class="header-section-number">C</span> Symbols</a></li>
+<li><a class="" href="conventions.html"><span class="header-section-number">D</span> Conventions</a></li>
+<li><a class="" href="teams.html"><span class="header-section-number">E</span> Using Teams</a></li>
+<li><a class="" href="data-types.html"><span class="header-section-number">F</span> Data Types</a></li>
+<li><a class="" href="plotstyle.html"><span class="header-section-number">G</span> Styling Plots</a></li>
+<li><a class="" href="twitter-hashtags.html"><span class="header-section-number">H</span> Twitter Hashtags</a></li>
+<li><a class="" href="twitter-data.html"><span class="header-section-number">I</span> Twitter Data</a></li>
+<li><a class="" href="spotify-data.html"><span class="header-section-number">J</span> Spotify Data</a></li>
+<li><a class="" href="webpages.html"><span class="header-section-number">K</span> Webpages</a></li>
+<li><a class="" href="license.html">License</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/psyteachr/ads-v1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="practice-report" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Practice Report<a class="anchor" aria-label="anchor" href="#practice-report"><i class="fas fa-link"></i></a>
+</h1>
+<div id="assessment-information" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Assessment information<a class="anchor" aria-label="anchor" href="#assessment-information"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>You will be given a dataset and a finished report on that data. Your task is to write the code that produces the report.</li>
+<li>Please check Moodle and the assessment information sheet for the deadline.</li>
+<li>The solution will be released immediately after the deadline on Moodle.</li>
+<li>This is a formative activity and does not count towards your course grade.</li>
+<li>You should submit two files to Moodle to complete the exercise - your .Rmd file and the knitted html document.</li>
+<li>Please read all the assessment information before attempting the exercise. Additionally, you should not expect to be able to complete it until you have worked through Chapters 1-5 (although particularly Chapters 1-3).</li>
+<li>The practice report will not be individually graded. Instead, we will release the solution file so that you can compare your code to our solution as generic feedback. If you would like to discuss any aspect of the report, you can attend office hours with the course leads and/or teaching assistants.</li>
+</ul>
+</div>
+<div id="intended-learning-outcomes-ilos" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Intended Learning Outcomes (ILOs)<a class="anchor" aria-label="anchor" href="#intended-learning-outcomes-ilos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Knowledge and skills</p>
+<ul>
+<li><p>Demonstrate the ability to use R for data wrangling and visualisation</p></li>
+<li><p>Demonstrate the ability to use R Markdown for reproducible reports</p></li>
+</ul>
+<p>Evaluation</p>
+<ul>
+<li>Demonstrate the ability to evaluate an output to understand the underlying data wrangling and analysis</li>
+</ul>
+<p>Communication</p>
+<ul>
+<li>Demonstrate the ability to produce a clear and coherent report with appropriate spelling, grammar, and layout.</li>
+</ul>
+</div>
+<div id="details-and-files" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Details and files<a class="anchor" aria-label="anchor" href="#details-and-files"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>There are two files you need to download. The first is the dataset: <a href="https://psyteachr.github.io/ads-v1/data/review_data.csv">review_data.csv</a>. The second is the finished report that you need to backwards engineer from the data: [formative_report_output.html]((<a href="https://psyteachr.github.io/ads-v1/data/formative_report_output.html" class="uri">https://psyteachr.github.io/ads-v1/data/formative_report_output.html</a>).</p></li>
+<li><p>There are multiple ways to achieve the same outcome when coding. You do not have to use the same solutions that we did, what matters is that the output is the same.</p></li>
+<li><p>All plots, and tables in the report should be fully reproducible, in addition, all numbers in bold should also be reproducible, i.e., you should use inline coding.</p></li>
+<li><p>For any visuals, you should get as close to the example report as possible, although we recognise that it may be difficult to know the exact theme or colours used without seeing the code.</p></li>
+<li>
+<p>In order to replicate the report you will need the following skills:</p>
+<ul>
+<li><p>Markdown text formatting (e.g., bold, italics, headings)</p></li>
+<li><p>Adding images to Markdown from online sources</p></li>
+<li><p>Data visualisation</p></li>
+<li><p>Summarising data in tables Inline coding</p></li>
+</ul>
+</li>
+</ul>
+<p>Almost everything you need to do generate this report will have been covered at least once in the workbook, but you should also expect to need to Google some things - being able to search for alternative solutions is such a key skill for programming.</p>
+</div>
+<div id="support" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Support<a class="anchor" aria-label="anchor" href="#support"><i class="fas fa-link"></i></a>
+</h2>
+<p>This assessment will require you to use the skills you have learned from Chapter 1 (Intro to R and R Studio) up to and including Chapter 5 (Data Summaries) of the Applied Data Skills workbook. You can also ask for help on Teams, although because this is a formative activity, the help we give will be constrained.</p>
+<p>Google and Stack Overflow will help you a lot. Remember to include the names of packages and functions to help ensure the results are closer to what you're trying to do.</p>
+</div>
+<div id="helpful-hints" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Helpful hints<a class="anchor" aria-label="anchor" href="#helpful-hints"><i class="fas fa-link"></i></a>
+</h2>
+<p>A few hints to help you on your way:</p>
+<ul>
+<li>This dataset is bigger than the ones you've used before, which means you might find it takes R a little longer to complete certain tasks.</li>
+<li>Googling "ggplot rotate x axis labels" will help you out.</li>
+<li>theme_fivethirtyeight()</li>
+<li>The verified review definition is formatted as a block quote.</li>
+<li><a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html">Create Awesome HTML Table with knitr::kable and kableExtra</a></li>
+<li><span class="math display">\[How to Turn off scientific notation like 1e+09 in R?(&lt;https://community.rstudio.com/t/how-to-turn-off-scientific-notation-like-1e-09-in-r/71575&gt;)\]</span></li>
+<li>There are a couple of ways you can create the final plot, one method might be to calculate the numbers you need first, and then use this new dataset for the plot, another method would be to use stat_summary().</li>
+</ul>
+</div>
+<div id="why-am-i-being-assessed-like-this" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> Why am I being assessed like this?<a class="anchor" aria-label="anchor" href="#why-am-i-being-assessed-like-this"><i class="fas fa-link"></i></a>
+</h2>
+<p>This report serves as a practice for the full report, which will be due at the end of the semester. The practice report gives you the intended output so that you can focus on your coding skills, rather than deciding how to summarise and present the data. You will need to make these decisions for the full report.</p>
+<p>Whist most of the skills required for the practice report have been explicitly taught, there are minor bits of the coding that will require you to look up solutions independently. This will be good practice for the final summative assessment and for applying your coding skills to your own work.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    $(solveme[i]).after(" <span class='webex-icon'></span>");
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    $(selects[i]).after(" <span class='webex-icon'></span>");
+  }
+
+  update_total_correct();
+}
+
+</script><script>
+$( document ).ready(function() {
+  var cite = ' ';
+  var psyteachr = ' <a href="https://psyteachr.github.io/"><img src="images/logos/psyteachr_logo.png" style="height: 31px; color: white;" alt="psyTeachR: Reproducible Research" /></a>';
+  var license = ' <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>';
+
+  $("footer div.row div:eq(1) p").html(
+    psyteachr + license + cite
+  );
+
+  function move_sidebar() {
+    var w = window.innerWidth;
+    if (w < 992) {
+      $("#toc").appendTo($("#main-nav"));
+    } else {
+      $("#toc").appendTo($("div.sidebar-chapter"));
+    }
+  }
+  move_sidebar();
+  window.onresize = move_sidebar;
+});
+</script><div class="chapter-nav">
+<div class="prev"><a href="summary.html"><span class="header-section-number">5</span> Data Summaries</a></div>
+<div class="next"><a href="joins.html"><span class="header-section-number">7</span> Data Relations</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#practice-report"><span class="header-section-number">6</span> Practice Report</a></li>
+<li><a class="nav-link" href="#assessment-information"><span class="header-section-number">6.1</span> Assessment information</a></li>
+<li><a class="nav-link" href="#intended-learning-outcomes-ilos"><span class="header-section-number">6.2</span> Intended Learning Outcomes (ILOs)</a></li>
+<li><a class="nav-link" href="#details-and-files"><span class="header-section-number">6.3</span> Details and files</a></li>
+<li><a class="nav-link" href="#support"><span class="header-section-number">6.4</span> Support</a></li>
+<li><a class="nav-link" href="#helpful-hints"><span class="header-section-number">6.5</span> Helpful hints</a></li>
+<li><a class="nav-link" href="#why-am-i-being-assessed-like-this"><span class="header-section-number">6.6</span> Why am I being assessed like this?</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/psyteachr/ads-v1/blob/master/book/06-formative.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/psyteachr/ads-v1/edit/master/book/06-formative.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-03-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -6,13 +6,13 @@
 * Be able to create new columns and edit existing ones
 * Be able to handle missing data
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-wrangle}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/dc1e2869-a6c2-45d8-ab40-cb85cdb67f43/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Set-up
+## Set-up {#setup-wrangle}
 
-First, create a new project for the work we'll do in this chapter named `r path("08-wrangle")`. Second, open and save and new R Markdown document named `wrangle.Rmd`, delete the welcome text and load the required packages for this chapter.
+First, create a new project for the work we'll do in this chapter named `r path("09-wrangle")`. Second, open and save and new R Markdown document named `wrangle.Rmd`, delete the welcome text and load the required packages for this chapter.
 
 ```{r setup-wrangle, message=FALSE}
 library(tidyverse)   # data wrangling functions

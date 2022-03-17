@@ -6,11 +6,11 @@
 * Be able to produce well-formatted tables
 * Use pipes to chain together functions
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-summary}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/6783dc21-2603-4579-bc19-5ae971638e85/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Set-up
+## Set-up {#setup-summary}
 
 First, create a new project for the work we'll do in this chapter named `r path("05-summary")`. Second, download the data for this chapter (<a href="data/ncod_tweets.rds" download>ncod_tweets.rds</a>) and save it in your project data folder. Finally, open and save and new R Markdown document named `summary.Rmd`, delete the welcome text and load the required packages for this chapter.
 

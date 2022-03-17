@@ -17,7 +17,7 @@ library(kableExtra) # for styling tables
 
 Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-reports}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/a8bb45d0-483c-437d-9ea0-c9aa3bd8d7a1/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
@@ -187,7 +187,7 @@ R Markdown will create and display a new HTML document, but it will also automat
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.
 
-**My name is Emily and I am 36 years old. It is 284 days until Christmas, which is my favourite holiday.**
+**My name is Emily and I am 36 years old. It is 283 days until Christmas, which is my favourite holiday.**
 
 ::: {.info data-latex=""}
 You can also knit by typing the following code into the console. Never put this in an Rmd script itself, or it will try to knit itself in an infinite loop.
@@ -550,7 +550,7 @@ sales_counts %>%
 </table>
 
 ::: {.info data-latex=""}
-The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page `html_document`, while this book uses the `bs4_book` style from the <code class='package'>bookdown</code> package. You'll learn more about other document output types in Chapter\ \@ref(present).
+The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page `html_document`, while this book uses the `bs4_book` style from the <code class='package'>bookdown</code> package. You'll learn more about other document output types in Chapter\ \@ref(custom-reports).
 :::
 
 
@@ -885,7 +885,7 @@ Or save an image into your project directory (e.g., in the images folder) and ad
 
 ### Inline R {#exercises-reports-inline}
 
-Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.1 (2021-08-10)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
+Use inline R to include the version of R you are using in the following sentence: "This report was created using R version 4.1.0 (2021-05-18)." You can get the version using the object `R.version.string`. [\@ref(rmd-inline-r)]
 
 
 <div class='webex-solution'><button>Solution</button>
@@ -917,7 +917,7 @@ rmarkdown::render("job.Rmd")
 
 ## Glossary {#glossary-reports}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

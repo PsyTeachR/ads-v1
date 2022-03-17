@@ -89,12 +89,12 @@ str(time_parts)
 
 ```
 ## List of 12
-##  $ second : num 54.2
+##  $ second : num 33.1
 ##  $ minute : int 54
-##  $ hour   : int 14
-##  $ day    : int 14
-##  $ wday   : num 2
-##  $ yday   : num 73
+##  $ hour   : int 0
+##  $ day    : int 17
+##  $ wday   : num 5
+##  $ yday   : num 76
 ##  $ week   : num 11
 ##  $ isoweek: num 11
 ##  $ epiweek: num 11
@@ -158,7 +158,7 @@ today() + weeks(1)
 ```
 
 ```
-## [1] "2022-03-21"
+## [1] "2022-03-24"
 ```
 
 ::: {.try data-latex=""}

@@ -16,7 +16,7 @@ library(kableExtra) # for styling tables
 
 Download the [R Markdown Cheat Sheet](https://www.rstudio.org/links/r_markdown_cheat_sheet).
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-reports}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/a8bb45d0-483c-437d-9ea0-c9aa3bd8d7a1/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
@@ -464,7 +464,7 @@ sales_counts %>%
 ```
 
 ::: {.info data-latex=""}
-The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page `html_document`, while this book uses the `bs4_book` style from the `r pkg("bookdown")` package. You'll learn more about other document output types in Chapter\ \@ref(present).
+The appearance and placement of the table caption depends on the type of document you are creating. Your captions may look different to those in this book because you are creating a single-page `html_document`, while this book uses the `bs4_book` style from the `r pkg("bookdown")` package. You'll learn more about other document output types in Chapter\ \@ref(custom-reports).
 :::
 
 

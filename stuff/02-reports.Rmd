@@ -54,6 +54,6 @@ The error message will tell you exactly where the problem is (the second charact
 
 ### Output Formats
 
-You can knit your file to PDF or Word if you have the right packages installed on your computer, although you'll lose some of the interactivity that an HTML report provides. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(present). In fact, the book you are reading right now was created using R markdown.
+You can knit your file to PDF or Word if you have the right packages installed on your computer, although you'll lose some of the interactivity that an HTML report provides. You can also create presentations, dashboards, websites, and even books with R markdown, which we'll learn more about in Chapter\ \@ref(custom-reports). In fact, the book you are reading right now was created using R markdown.
 
 

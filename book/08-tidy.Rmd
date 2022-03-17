@@ -35,13 +35,13 @@ write_csv(untidy_data, "data/untidy_data.csv")
 -   Separate, change, reorder, and rename columns
 -   Use pipes to chain together functions
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-tidy}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/a38a7789-9531-4908-9a0f-4509d638a0ca/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Set-up
+## Set-up {#setup-tidy}
 
-First, create a new project for the work we'll do in this chapter named `r path("07-tidy")`. Second, open and save and new R Markdown document named `tidy.Rmd`, delete the welcome text and load the required packages for this chapter.
+First, create a new project for the work we'll do in this chapter named `r path("08-tidy")`. Second, open and save and new R Markdown document named `tidy.Rmd`, delete the welcome text and load the required packages for this chapter.
 
 ```{r setup-tidy, message=FALSE, verbatim="r setup, include=FALSE"}
 library(tidyverse) # for data wrangling

@@ -11,7 +11,7 @@
 * Be able to get help for packages and functions
 * Be able to create objects by writing and running code in the console
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-intro}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/a12a11fe-dccc-4964-a11d-734b6d7a3518/public) We recommend first trying to work through each section of the book on your own and then watching the video if you get stuck, or if you would like more information. This will feel slower than just starting with the video, but you will learn more in the long-run. Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
@@ -140,10 +140,14 @@ After installing the<code class='package'>esquisse</code> package, you can load 
 library(esquisse)
 ```
 
+```
+## Warning: package 'esquisse' was built under R version 4.1.2
+```
+
 You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
 ::: {.info data-latex=""}
-You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a <a class='glossary' target='_blank' title='Having two packages loaded that have a function with the same name.' href='https://psyteachr.github.io/glossary/c#conflict'>conflict</a> (e.g., you have two packages loaded that have a function with the same name).
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see <code><span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='op'>)</span></code>, that refers to the function <code><span class='fu'>read_csv</span><span class='op'>(</span><span class='op'>)</span></code> in the <code class='package'>readr</code> add-on package. If the package is loaded using `library()`, you don't have to specify the package name before a function unless there is a <a class='glossary' target='_blank' title='Having two packages loaded that have a function with the same name.' href='https://psyteachr.github.io/glossary/c#conflict'>conflict</a> (e.g., you have two packages loaded that have a function with the same name).
 :::
 
 ### Using a function
@@ -374,7 +378,7 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Glossary {#glossary-intro}
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> term </th>

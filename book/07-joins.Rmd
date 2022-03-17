@@ -5,13 +5,13 @@
 -   Be able to match related data across multiple tables
 -   Be able to combine data from multiple files
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-joins}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/154a2d81-466d-4bfa-9307-df3f125ebfac/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Set-up
+## Set-up {#setup-joins}
 
-First, create a new project for the work we'll do in this chapter named `r path("06-relations")`. Second, open and save a new R Markdown document named `relations.Rmd`, delete the welcome text, and load the required packages for this chapter.
+First, create a new project for the work we'll do in this chapter named `r path("07-relations")`. Second, open and save a new R Markdown document named `relations.Rmd`, delete the welcome text, and load the required packages for this chapter.
 
 ```{r setup-joins, message=FALSE, verbatim="r setup, include=FALSE"}
 library(tidyverse)     # includes readr & tibble

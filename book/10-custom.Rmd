@@ -1,6 +1,6 @@
-# Advanced Visualisations & Reports {#advanced}
+# Customising Visualisations & Reports {#custom}
 
-## Intended Learning Outcomes {#ilo-advanced}
+## Intended Learning Outcomes {#ilo-custom}
 
 The final chapter of ADS moves beyond the core skills needed to complete the course. Our aim in this chapter is to give you a sense of what is now available to you with your new-found R skills. There's a lot in this chapter, as we wanted to present an overview of the possibilities, although there are no exercises at the end. If you're enrolled on ADS, you may wish to prioritise the summative assessment this week and come back to this chapter at a later date.
 
@@ -8,15 +8,15 @@ The final chapter of ADS moves beyond the core skills needed to complete the cou
 * Structure data in report, presentation, and dashboard formats
 * Include linked figures, tables, and references
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-custom}
 
-There is a walkthrough video of this chapter available via [Echo360.]() Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
+There is a walkthrough video of this chapter available via Echo360 (coming soon). Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Advanced Visualisation {#custom}
+## Visualisation {#custom-viz}
 
-### Set-up 
+### Set-up {#setup-custom-viz}
 
-First, create a new project for the work we'll do in this chapter named `r path("09-advanced")`. Second, open and save a new R Markdown document named `visualisations.Rmd`, delete the welcome text and load the required packages for this section. You will probably need to install several new packages.
+First, create a new project for the work we'll do in this chapter named `r path("10-advanced")`. Second, open and save a new R Markdown document named `visualisations.Rmd`, delete the welcome text and load the required packages for this section. You will probably need to install several new packages.
 
 ```{r setup-custom, message=FALSE, warning = FALSE}
 library(tidyverse)   # data wrangling functions
@@ -37,8 +37,8 @@ library(gganimate)   # for animated plots
 theme_set(theme_light())
 ```
 
-You'll need to make a folder called "data" and download a data file into it: 
-<a href="https://psyteachr.github.io/ads-v1/data/survey_data.csv" download>survey_data.csv</a>.
+You'll need to make a folder called "data" and download data files into it: 
+<a href="https://psyteachr.github.io/ads-v1/data/survey_data.csv" download>survey_data.csv</a> and <a href="https://psyteachr.github.io/ads-v1/data/scottish_population.csv" download>scottish_population.csv</a>.
 
 Download the [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
 
@@ -541,7 +541,7 @@ ggplot() +
 ```
 
 
-You can join data to the map table to visualise data on the map using colours or labels.
+You can join <a href="https://psyteachr.github.io/ads-v1/data/scottish_population.csv" download>Scottish population data</a> to the map table to visualise data on the map using colours or labels.
 
 ```{r}
 # load map data
@@ -639,6 +639,7 @@ anim <- worldpop %>%
   ggtitle('Year: {frame_time}') +
   transition_time(year)
   
+dir.create("images", FALSE) # creates an images directory if needed
 
 anim_save(filename = "images/gganim-demo.gif",
           animation = anim,
@@ -686,19 +687,19 @@ worldpop %>%
 There are so many more options for data visualisation in R than we have time to cover here. The following resources will get you started on your journey to informative, intuitive visualisations.
 
 * [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
-* [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)
+* [Look at Data](https://socviz.co/lookatdata.html) from [Data Vizualization for Social Science](http://socviz.co/)
 * [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
 * [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 * [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/) by Winston Chang
-* [ggplot extensions](https://www.ggplot2-exts.org/)
+* [ggplot extensions](https://exts.ggplot2.tidyverse.org/)
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 * [Drawing Beautiful Maps Programmatically](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
 * [gganimate](https://gganimate.com/)
 
 
-## Reports {#present}
+## Reports {#custom-reports}
 
-### Set-up
+### Set-up {#setup-custom-reports}
 
 Close your visualisation Markdown and open and save an new R Markdown document named `reports.Rmd`, delete the welcome text and load the required packages for this section.
 
@@ -708,6 +709,9 @@ library(bookdown)      # for chaptered reports
 library(flexdashboard) # for dashboards
 library(DT)            # for interactive tables
 ```
+
+You'll need to make a folder called "data" and download data files into it: 
+<a href="https://psyteachr.github.io/ads-v1/data/amazon_alexa.csv" download>amazon_alexa.csv</a> and <a href="https://psyteachr.github.io/ads-v1/data/scottish_population.csv" download>scottish_population.csv</a>.
 
 ### Linked documents
 

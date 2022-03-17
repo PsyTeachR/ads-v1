@@ -1,4 +1,4 @@
-# Basic Data Visualisation {#viz}
+# Data Visualisation {#viz}
 
 ## Intended Learning Outcomes {#ilo-viz}
 
@@ -6,11 +6,11 @@
 * Be able to create plots in layers using ggplot
 * Be able to choose appropriate plots for data
 
-## Walkthrough video
+## Walkthrough video {#walkthrough-viz}
 
 There is a walkthrough video of this chapter available via [Echo360.](https://echo360.org.uk/media/d22c9f57-3ed5-44ce-ac60-246b7099eb9e/public) Please note that there may have been minor edits to the book since the video was recorded. Where there are differences, the book should always take precedence.
 
-## Set-up
+## Set-up {#setup-viz}
 
 Create a new project for the work we'll do in this chapter:
 
@@ -536,7 +536,7 @@ ggplot(survey_data, aes(x = issue_category)) +
 
 ::: {.try data-latex=""}
 
-You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below and try running it layer by layer to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions. You'll learn more about this in Chapter\ \@ref(custom).
+You probably want to customise some things, like the colours, order of the columns, and their labels. Inspect the code below and try running it layer by layer to figure out where these things change. The functions `scale_fill_manual()` and `scale_x_discrete()` are new, but work in the same way as the other `scale_` functions. You'll learn more about this in Chapter\ \@ref(custom-viz).
 
 ```{r custom-bar, webex.hide = "Code"}
 
@@ -1082,7 +1082,7 @@ ggplot(survey_data, aes(x = call_time)) +
 ```
 
 ::: {.info data-latex=""}
-These are not, by any means, all the plot types that you can make in R. This chapter just gave you a basic overview, and we will go into more detail in Chapter\ \@ref(custom). The [further resources](#resources-viz) section at the end of this chapter lists many resources, but the [R Graph Gallery](http://www.r-graph-gallery.com/){target="_blank"} is an especially useful one to get inspiration for the kinds of beautiful plots you can make in R. 
+These are not, by any means, all the plot types that you can make in R. This chapter just gave you a basic overview, and we will go into more detail in Chapter\ \@ref(custom-viz). The [further resources](#resources-viz) section at the end of this chapter lists many resources, but the [R Graph Gallery](http://www.r-graph-gallery.com/){target="_blank"} is an especially useful one to get inspiration for the kinds of beautiful plots you can make in R. 
 :::
 
 ## Exercises

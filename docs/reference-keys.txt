@@ -384,7 +384,7 @@ maps
 animated-plots
 resources-custom
 custom-reports
-setup-cutom-reports
+setup-custom-reports
 linked-documents
 references
 creating-a-bibtex-file
@@ -518,4 +518,4 @@ change-certain-elements
 example-using-the-styles-above
 level-3-header
 level-4-header
-reference
+citation

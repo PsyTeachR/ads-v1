@@ -1,8 +1,9 @@
-# render only completed chapters
+# render only completed chapters ----
 # edit _bookdown_v1.yml to add or remove chapters to rmd_files:
 xfun::in_dir("book", bookdown::render_book(config_file = "_bookdown_v1.yml"))
 browseURL("docs/index.html")
 
+# run if anything in book/data changes ----
 # zip the data files
 zipfile <- "book/data/data"
 if (file.exists(zipfile)) file.remove(zipfile)

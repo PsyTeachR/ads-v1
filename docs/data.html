@@ -17,14 +17,14 @@
 <meta name="twitter:title" content="Chapter 4 Data Import | Applied Data Skills">
 <meta name="twitter:description" content="4.1 Intended Learning Outcomes Be able to inspect data Be able to import data from a range of sources Be able to identify and handle common problems with data import  4.2 Walkthrough video There...">
 <meta name="twitter:image" content="https://psyteachr.github.io/ads-v1/images/logos/logo.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.12/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1.9000/transition.js"></script><script src="libs/bs3compat-0.3.1.9000/tabs.js"></script><script src="libs/bs3compat-0.3.1.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.21/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.20/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script>
       window.dataLayer = window.dataLayer || [];
@@ -117,7 +117,7 @@
 <p>Create a new project for the work we'll do in this chapter named <code class="path">04-data</code>. Then, create and save a new R Markdown document named <code>data.Rmd</code>, get rid of the default template text, and load the packages in the set-up code chunk. You should have all of these packages installed already, but if you get the message <code>Error in library(x) : there is no package called ‘x’</code>, please refer to Chapter <a href="intro.html#install-package">1.6.1</a>.</p>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r setup, include=FALSE}</code></pre>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>     <span class="co"># includes readr &amp; tibble</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/rio">rio</a></span><span class="op">)</span>           <span class="co"># for almost any data import/export</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span>         <span class="co"># for SPSS, Stata,and SAS files</span>
@@ -133,17 +133,17 @@
 <span class="header-section-number">4.4</span> Built-in data<a class="anchor" aria-label="anchor" href="#builtin"><i class="fas fa-link"></i></a>
 </h2>
 <p>You'll likely want to import you own data to work with, however, Base R also comes with built-in datasets and these can be very useful for learning new functions and packages. Additionally, some packages, like <code class="package">tidyr</code>, also contain data. The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function lists the datasets available.</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># list datasets built in to base R</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># lists datasets in a specific package</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"tidyr"</span><span class="op">)</span></code></pre></div>
-<p>Type the name of a dataset into the <a class="glossary" target="_blank" title="The pane in RStudio where you can type in commands and view output messages." href="https://psyteachr.github.io/glossary/c#console">console</a> to see the data. For example, type <code><a href="https://tidyr.tidyverse.org/reference/table1.html">?table1</a></code> into the console to see the dataset description for <code>table1</code>, which is a dataset included with <code class="package">tidyr</code>.</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<p>Type the name of a dataset into the <a class="glossary" target="_blank" title="The pane in RStudio where you can type in commands and view output messages." href="https://psyteachr.github.io/glossary/c#console">console</a> to see the data. For example, type <code><a href="https://rdrr.io/pkg/tidyr/man/table1.html">?table1</a></code> into the console to see the dataset description for <code>table1</code>, which is a dataset included with <code class="package">tidyr</code>.</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">table1</span></code></pre></div>
 <p>You can also use the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></code> function to load a dataset into your <a class="glossary" target="_blank" title="The interactive workspace where your script runs" href="https://psyteachr.github.io/glossary/g#global-environment">global environment</a>.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loads table1 into the environment</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"table1"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -152,13 +152,13 @@
 <span class="header-section-number">4.5</span> Looking at data<a class="anchor" aria-label="anchor" href="#looking-at-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the object <code>table1</code> listed, along with the number of observations (rows) and variables (columns). This is your first check that everything went OK.</p>
-<p><strong>Always, always, always, look at your data once you've created or loaded a table</strong>. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
+<p><strong>Always, always, always, look at your data once you've created or loaded a table</strong>. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code>, <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
 <div id="view" class="section level3" number="4.5.1">
 <h3>
 <span class="header-section-number">4.5.1</span> View()<a class="anchor" aria-label="anchor" href="#view"><i class="fas fa-link"></i></a>
 </h3>
 <p>A familiar way to look at the table is given by <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></code> (uppercase 'V'), which opens up a data table in the console pane using a viewer that looks a bit like Excel. This command can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it. You can also click on an object in the <a class="glossary" target="_blank" title='RStudio is arranged with four window "panes".' href="https://psyteachr.github.io/glossary/p#panes">environment pane</a> to open it in the same interface. You can close the tab when you're done looking at it; it won't remove the object.</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="print" class="section level3" number="4.5.2">
@@ -167,7 +167,7 @@
 </h3>
 <p>The <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span></code> method can be run explicitly, but is more commonly called by just typing the variable name on a blank line. The default is not to print the entire table, but just the first 10 rows.</p>
 <p>Let's look at the <code>table1</code> table that we loaded above. Depending on how wide your screen is, you might need to click on an arrow at the right of the table to see the last column.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># call print explicitly</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span>
 
@@ -282,9 +282,9 @@ China
 <h3>
 <span class="header-section-number">4.5.3</span> glimpse()<a class="anchor" aria-label="anchor" href="#glimpse"><i class="fas fa-link"></i></a>
 </h3>
-<p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't easily see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name.</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
+<p>The function <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't easily see all of the columns. It also tells you the <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> of each column in angled brackets after each column name.</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 4
 ## $ country    &lt;chr&gt; "Afghanistan", "Afghanistan", "Brazil", "Brazil", "China", …
@@ -298,7 +298,7 @@ China
 </h3>
 <p>You can get a quick summary of a dataset with the <code><span class="fu"><a target="_blank" href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></code> function, which can be useful for spotting things like if the minimum or maximum values are clearly wrong, or if R thinks that a <a class="glossary" target="_blank" title="Categorical variables that don't have an inherent order, such as types of animal." href="https://psyteachr.github.io/glossary/n#nominal">nominal</a> variable is <a class="glossary" target="_blank" title="A data type representing a real decimal number or integer." href="https://psyteachr.github.io/glossary/n#numeric">numeric</a>. For example, if you had labelled gender as 1, 2, and 3 rather than male, female, and non-binary, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> would calculate a mean and median even though this isn't appropriate for the data. This can be a useful flag that you need to take further steps to correct your data.</p>
 <p>Note that because <code>population</code> is a very, very large number, R will use <a href="https://courses.lumenlearning.com/waymakerintermediatealgebra/chapter/read-writing-scientific-notation-2/">scientific notation</a>.</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">table1</span><span class="op">)</span></code></pre></div>
 <pre><code>##    country               year          cases          population       
 ##  Length:6           Min.   :1999   Min.   :   745   Min.   :1.999e+07  
@@ -320,7 +320,7 @@ China
 <span class="header-section-number">4.6.1</span> rio::import()<a class="anchor" aria-label="anchor" href="#rioimport"><i class="fas fa-link"></i></a>
 </h3>
 <p>The type of data files you have to work with will likely depend on the software that you typically use in your workflow. The <code class="package">rio</code> package has very straightforward functions for reading and saving data in most common formats: <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="op">)</span></code> and <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">demo_tsv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>  <span class="co"># tab-separated values</span>
 <span class="va">demo_csv</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>  <span class="co"># comma-separated values</span>
 <span class="va">demo_xls</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span> <span class="co"># Excel format</span>
@@ -331,19 +331,19 @@ China
 <span class="header-section-number">4.6.2</span> File type specific import<a class="anchor" aria-label="anchor" href="#file-type-specific-import"><i class="fas fa-link"></i></a>
 </h3>
 <p>However, it is also useful to know the specific functions that are used to import different file types because it is easier to discover features to deal with complicated cases, such as when you need to skip rows, rename columns, or choose which Excel sheet to use.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo_tsv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
-<span class="va">demo_csv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
-<span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
-<span class="va">demo_sav</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo_tsv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="st">"data/demo.tsv"</span><span class="op">)</span>
+<span class="va">demo_csv</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span>
+<span class="va">demo_xls</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/demo.xlsx"</span><span class="op">)</span>
+<span class="va">demo_sav</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav</a></span><span class="op">(</span><span class="st">"data/demo.sav"</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <p>Look at the help for each function above and read through the Arguments section to see how you can customise import.</p>
 </div>
 <p>If you keep data in Google Sheets, you can access it directly from R using <code class="package"><a href="https://googlesheets4.tidyverse.org/" target="_blank">googlesheets4</a></code>. The code below imports data from a <a href="https://docs.google.com/spreadsheets/d/16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI" target="_blank">public sheet</a>. You can set the <code>ss</code> argument to the entire <a class="glossary" target="_blank" title="The address of a web page (uniform resource locator)" href="https://psyteachr.github.io/glossary/u#url">URL</a> for the target sheet, or just the section after "<a href="https://docs.google.com/spreadsheets/d/" class="uri">https://docs.google.com/spreadsheets/d/</a>".</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># skip authorisation for public data</span>
 
-<span class="va">demo_gs4</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span>
+<span class="va">demo_gs4</span>  <span class="op">&lt;-</span> <span class="fu">googlesheets4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span>
   ss <span class="op">=</span> <span class="st">"16dkq0YL0J7fyAwT1pdgj1bNNrheckAU_2-DKuuM6aGI"</span>
 <span class="op">)</span></code></pre></div>
 </div>
@@ -351,9 +351,9 @@ China
 <h3>
 <span class="header-section-number">4.6.3</span> Column data types<a class="anchor" aria-label="anchor" href="#col_types"><i class="fas fa-link"></i></a>
 </h3>
-<p>Use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently. For example, SPSS stores factors as numbers, so the <code>factor</code> column contains the values 1, 2, 3 rather than <code>low</code>, <code>med</code>, <code>high</code>. It also stores <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a> values as 0 and 1 instead or TRUE and FALSE.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_csv</span><span class="op">)</span></code></pre></div>
+<p>Use <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code> to see how these different functions imported the data with slightly different data types. This is because the different file types store data slightly differently. For example, SPSS stores factors as numbers, so the <code>factor</code> column contains the values 1, 2, 3 rather than <code>low</code>, <code>med</code>, <code>high</code>. It also stores <a class="glossary" target="_blank" title="A data type representing TRUE or FALSE values." href="https://psyteachr.github.io/glossary/l#logical">logical</a> values as 0 and 1 instead or TRUE and FALSE.</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_csv</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 6
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
@@ -361,9 +361,9 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;date&gt; 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …</code></pre>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
+## $ date      &lt;date&gt; 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …</code></pre>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_xls</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 6
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
@@ -371,9 +371,9 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      &lt;dttm&gt; 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …</code></pre>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
+## $ date      &lt;dttm&gt; 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …</code></pre>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 6
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
@@ -381,9 +381,9 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …</code></pre>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
+## $ date      &lt;date&gt; 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …</code></pre>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_gs4</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 6
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
@@ -393,16 +393,16 @@ China
 ## $ logical   &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, NA, TRUE
 ## $ date      &lt;dttm&gt; 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …</code></pre>
 <p>The <code class="package">readr</code> functions display a message when you import data explaining what <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 6 Columns: 6
-## ── Column specification ────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 6 Columns: 6</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (2): character, factor
 ## dbl  (2): integer, double
 ## lgl  (1): logical
-## date (1): date
-## 
+## date (1): date</code></pre>
+<pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>The "Column specification" tells you which <a class="glossary" target="_blank" title="The kind of data represented by an object." href="https://psyteachr.github.io/glossary/d#data-type">data type</a> each column is. You can review data types in Appendix <a href="data-types.html#data-types">F</a>. Options are:</p>
@@ -424,10 +424,10 @@ China
 <li>
 <code>dttm</code>: date/time</li>
 </ul>
-<p><code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> will guess what type of data each variable is and normally it is pretty good at this. However, if it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types.</p>
-<p>First, run <code><a href="https://readr.tidyverse.org/reference/spec.html">spec()</a></code> on the dataset which will give you the full column specification that you can copy and paste:</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/spec.html">spec</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></code></pre></div>
+<p><code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> will guess what type of data each variable is and normally it is pretty good at this. However, if it makes a mistake, such as reading the "date" column as a <a class="glossary" target="_blank" title="A data type representing strings of text." href="https://psyteachr.github.io/glossary/c#character">character</a>, you can manually set the column data types.</p>
+<p>First, run <code><a href="https://rdrr.io/pkg/readr/man/spec.html">spec()</a></code> on the dataset which will give you the full column specification that you can copy and paste:</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/readr/man/spec.html">spec</a></span><span class="op">(</span><span class="va">demo</span><span class="op">)</span></code></pre></div>
 <pre><code>## cols(
 ##   character = col_character(),
 ##   factor = col_character(),
@@ -436,28 +436,28 @@ China
 ##   logical = col_logical(),
 ##   date = col_date(format = "")
 ## )</code></pre>
-<p>Then, we create an object using the code we just copied that lists the correct column types. Factor columns will always import as character data types, so you have to set their data type manually with <code><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor()</a></code> and set the order of levels with the <code>levels</code> argument. Otherwise, the order defaults to the order they appear in the dataset. For our <code>demo</code> dataset, we will tell R that the <code>factor</code> variable is a factor by using <code><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor()</a></code> and we can also specify the order of the levels so that they don't just appear alphabetically. Additionally, we can also specify exactly what format our <code>date</code> variable is in using <code>%Y-%m-%d</code>.</p>
-<p>We then save this column specification to an object, and then add this to the <code>col_types</code> argument when we call <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
-  character <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
-  factor <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"med"</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span>,
-  integer <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
-  double <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
-  logical <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_logical</a></span><span class="op">(</span><span class="op">)</span>,
-  date <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">col_date</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
+<p>Then, we create an object using the code we just copied that lists the correct column types. Factor columns will always import as character data types, so you have to set their data type manually with <code><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor()</a></code> and set the order of levels with the <code>levels</code> argument. Otherwise, the order defaults to the order they appear in the dataset. For our <code>demo</code> dataset, we will tell R that the <code>factor</code> variable is a factor by using <code><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor()</a></code> and we can also specify the order of the levels so that they don't just appear alphabetically. Additionally, we can also specify exactly what format our <code>date</code> variable is in using <code>%Y-%m-%d</code>.</p>
+<p>We then save this column specification to an object, and then add this to the <code>col_types</code> argument when we call <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code>.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/cols.html">cols</a></span><span class="op">(</span>
+  character <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"med"</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span>,
+  integer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
+  double <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
+  logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_logical</a></span><span class="op">(</span><span class="op">)</span>,
+  date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_datetime.html">col_date</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/demo.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
 <div class="info">
 <p>For dates, you might need to set the format your dates are in. See <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code> for a list of the codes used to represent different date formats. For example, <code><span class="st">"%d-%b-%y"</span></code> means that the dates are formatted like <code>31-Jan-21</code>.</p>
 </div>
-<p>The functions from <code class="package">readxl</code> for loading <code>.xlsx</code> sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">9</a>, so most people let <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
-<p>For SPSS data, whilst <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> will just read the numeric values of factors and not their labels, the function <code><a href="https://haven.tidyverse.org/reference/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> reads both. However, you have to convert factors from a haven-specific "labelled double" to a factor (we have no idea why haven doesn't do this for you).</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
+<p>The functions from <code class="package">readxl</code> for loading <code>.xlsx</code> sheets have a different, more limited way to specify the column types. You will have to convert factor columns and dates using <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>, which you'll learn about in Chapter <a href="wrangle.html#wrangle">9</a>, so most people let <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel()</a></code> guess data types and don't set the <code>col_types</code> argument.</p>
+<p>For SPSS data, whilst <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code> will just read the numeric values of factors and not their labels, the function <code><a href="https://rdrr.io/pkg/haven/man/read_spss.html">read_sav()</a></code> from <code class="package">haven</code> reads both. However, you have to convert factors from a haven-specific "labelled double" to a factor (we have no idea why haven doesn't do this for you).</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haven/man/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">$</span><span class="va">factor</span><span class="op">)</span>
 
-<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">demo_sav</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 6
 ## Columns: 6
 ## $ character &lt;chr&gt; "A", "B", "C", "D", "E", "F"
@@ -465,9 +465,9 @@ China
 ## $ integer   &lt;dbl&gt; 1, 2, 3, 4, 5, 6
 ## $ double    &lt;dbl&gt; 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   &lt;dbl&gt; 1, 1, 0, 0, NA, 1
-## $ date      &lt;date&gt; 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …</code></pre>
+## $ date      &lt;date&gt; 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …</code></pre>
 <div class="info">
-<p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
+<p>The way you specify column types for <code class="package">googlesheets4</code> is a little different from <code class="package">readr</code>, although you can also use the shortcodes described in the help for <code><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet()</a></code> with <code class="package">readr</code> functions. There is currently no column specification for factors.</p>
 </div>
 </div>
 </div>
@@ -475,11 +475,11 @@ China
 <h2>
 <span class="header-section-number">4.7</span> Creating data<a class="anchor" aria-label="anchor" href="#creating-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>If you need to create a small data table from scratch in R, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
+<p>If you need to create a small data table from scratch in R, use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span></code> function, and type the data right in. The <code>tibble</code> package is part of the <a class="glossary" target="_blank" title="A set of R packages that help you create and work with tidy data" href="https://psyteachr.github.io/glossary/t#tidyverse">tidyverse</a> package that we loaded at the start of this chapter.</p>
 <p>Let's create a small table with the names of three <a href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender">Avatar</a> characters and their bending type. The <code><span class="fu">tibble</span><span class="op">(</span><span class="op">)</span></code> function takes <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">arguments</a> with the names that you want your columns to have. The values are <a class="glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vectors</a> that list the column values in order.</p>
 <p>If you don't know the value for one of the cells, you can enter <a class="glossary" target="_blank" title='A missing value that is "Not Available"' href="https://psyteachr.github.io/glossary/n#na">NA</a>, which we have to do for Sokka because he doesn't have any bending ability. If all the values in the column are the same, you can just enter one value and it will be copied for each row.</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">avatar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Katara"</span>, <span class="st">"Toph"</span>, <span class="st">"Sokka"</span><span class="op">)</span>,
   bends <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"water"</span>, <span class="st">"earth"</span>, <span class="cn">NA</span><span class="op">)</span>,
   friendly <span class="op">=</span> <span class="cn">TRUE</span>
@@ -537,9 +537,9 @@ TRUE
 </tbody>
 </table></div>
 </div>
-<p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code>~</code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">avatar_by_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<p>You can also use the <code><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span><span class="op">)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (<code>~</code>), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">avatar_by_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">name</span>,    <span class="op">~</span><span class="va">bends</span>,  <span class="op">~</span><span class="va">friendly</span>,
   <span class="st">"Katara"</span>, <span class="st">"water"</span>, <span class="cn">TRUE</span>,
   <span class="st">"Toph"</span>,   <span class="st">"earth"</span>, <span class="cn">TRUE</span>,
@@ -555,47 +555,47 @@ TRUE
 <span class="header-section-number">4.8</span> Writing data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>If you have data that you want to save, use <code><span class="fu">rio</span><span class="fu">::</span><span class="fu"><a target="_blank" href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="op">)</span></code>, as follows.</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">avatar</span>, <span class="st">"data/avatar.csv"</span><span class="op">)</span></code></pre></div>
 <p>This will save the data in CSV format to your working directory.</p>
 <p>Writing to Google Sheets is a little trickier (if you never use Google Sheets feel free to skip this section). Even if a Google Sheet is publicly editable, you can't add data to it without authorising your account.</p>
 <p>You can authorise interactively using the following code (and your own email), which will prompt you to authorise "Tidyverse API Packages" the first time you do this. If you don't tick the checkbox authorising it to "See, edit, create, and delete all your Google Sheets spreadsheets", the next steps will fail.</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># authorise your account </span>
 <span class="co"># this only needs to be done once per script</span>
-<span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"myemail@gmail.com"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_auth.html">gs4_auth</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"myemail@gmail.com"</span><span class="op">)</span>
 
 <span class="co"># create a new sheet</span>
-<span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_create.html">gs4_create</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"demo-file"</span>, 
+<span class="va">sheet_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/gs4_create.html">gs4_create</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"demo-file"</span>, 
                        sheets <span class="op">=</span> <span class="st">"letters"</span><span class="op">)</span>
 
 <span class="co"># define the data table to save</span>
-<span class="va">letter_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+<span class="va">letter_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
   character <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,
   integer <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
   double <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.4</span>, <span class="fl">5.5</span><span class="op">)</span>,
   logical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span><span class="op">)</span>,
-  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
+  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/sheet_write.html">write_sheet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">letter_data</span>, 
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/sheet_write.html">write_sheet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">letter_data</span>, 
             ss <span class="op">=</span> <span class="va">sheet_id</span>, 
             sheet <span class="op">=</span> <span class="st">"letters"</span><span class="op">)</span>
 
 <span class="co">## append some data</span>
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
   character <span class="op">=</span> <span class="st">"F"</span>,
   integer <span class="op">=</span> <span class="fl">6L</span>,
   double <span class="op">=</span> <span class="fl">6.6</span>,
   logical <span class="op">=</span> <span class="cn">FALSE</span>,
-  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
+  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/sheet_append.html">sheet_append</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">new_data</span>,
+<span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/sheet_append.html">sheet_append</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">new_data</span>,
              ss <span class="op">=</span> <span class="va">sheet_id</span>,
              sheet <span class="op">=</span> <span class="st">"letters"</span><span class="op">)</span>
 
 <span class="co"># read the data</span>
-<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span>ss <span class="op">=</span> <span class="va">sheet_id</span>, sheet <span class="op">=</span> <span class="st">"letters"</span><span class="op">)</span></code></pre></div>
+<span class="va">demo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/googlesheets4/man/range_read.html">read_sheet</a></span><span class="op">(</span>ss <span class="op">=</span> <span class="va">sheet_id</span>, sheet <span class="op">=</span> <span class="st">"letters"</span><span class="op">)</span></code></pre></div>
 <div class="try">
 <ul>
 <li>Create a new table called <code>family</code> with the first name, last name, and age of your family members (biological, adopted, or chosen).</li>
@@ -607,9 +607,9 @@ TRUE
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create the table</span>
-<span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">first_name</span>, <span class="op">~</span><span class="va">last_name</span>, <span class="op">~</span><span class="va">age</span>,
   <span class="st">"Lisa"</span>, <span class="st">"DeBruine"</span>, <span class="fl">45</span>,
   <span class="st">"Robbie"</span>, <span class="st">"Jones"</span>, <span class="fl">14</span>
@@ -633,23 +633,23 @@ Solution
 </h2>
 <p>What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like <code><span class="fl">1.2</span></code> get represented as <code><span class="st">"1.2"</span></code>, which will cause very weird errors like <code>"100" &lt; "9" == TRUE</code>. You can catch this by using <code><span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></code> to check your data.</p>
 <p>The data directory you downloaded contains a file called "mess.csv". Let's try loading this dataset.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in (function (input = "", file = NULL, text = NULL, cmd = NULL, :
 ## Stopped early on line 5. Expected 7 fields but found 0. Consider fill=TRUE
 ## and comment.char=. First discarded non-empty line: &lt;&lt;junk,missing,0.72,b,1,2 -
 ## 3,2020-01-2&gt;&gt;</code></pre>
-<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type (e.g., use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> rather than <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code>. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span></code>.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<p>When importing goes wrong, it's often easier to fix it using the specific importing function for that file type (e.g., use <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> rather than <code><a href="https://rdrr.io/pkg/rio/man/import.html">rio::import()</a></code>. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class="fu">readr</span><span class="fu">::</span><span class="va"><a target="_blank" href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span></code>.</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># lazy = FALSE loads the data right away so you can see error messages</span>
 <span class="co"># this default changed in late 2021 and might change back soon</span>
-<span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, lazy <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, lazy <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
-<pre><code>## Rows: 27 Columns: 1
-## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## Rows: 27 Columns: 1</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
-## chr (1): This is my messy dataset
-## 
+## chr (1): This is my messy dataset</code></pre>
+<pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="kable-table">
@@ -704,21 +704,21 @@ junk,missing,0.72,b,1,2 - 3,2020-01-2
 junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
 
 junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
-<p>First, the file starts with a note: "This is my messy dataset" and then a blank line. The first line of data should be the column headings, so we want to skip the first two lines. You can do this with the argument <code>skip</code> in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
+<p>First, the file starts with a note: "This is my messy dataset" and then a blank line. The first line of data should be the column headings, so we want to skip the first two lines. You can do this with the argument <code>skip</code> in <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code>.</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mess</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                  skip <span class="op">=</span> <span class="fl">2</span>,
                  lazy <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 26 Columns: 7
-## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## Rows: 26 Columns: 7</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (6): junk, order, letter, good, min_max, date
-## dbl (1): score
-## 
+## dbl (1): score</code></pre>
+<pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mess</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mess</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 26
 ## Columns: 7
 ## $ junk    &lt;chr&gt; "junk", "junk", "junk", "junk", "junk", "junk", "junk", "junk"…
@@ -743,7 +743,7 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <li>
 <code>date</code> should be a date column</li>
 </ul>
-<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">8</a> and <a href="wrangle.html#wrangle">9</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code> or the abbreviation, like <code><span class="st">"d"</span></code>; for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.</p>
+<p>We'll learn how to deal with this mess in Chapters <a href="tidy.html#tidy">8</a> and <a href="wrangle.html#wrangle">9</a>, but we can fix a few things by setting the <code>col_types</code> argument in <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> to specify the column types for our two columns that were guessed wrong and skip the "junk" column. The argument <code>col_types</code> takes a list where the name of each item in the list is a column name and the value is from the table below. You can use the function, like <code><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_double()</a></code> or the abbreviation, like <code><span class="st">"d"</span></code>; for consistency with earlier in this chapter we will use the function names. Omitted column names are guessed.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th align="left">function</th>
@@ -808,24 +808,24 @@ junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># omitted values are guessed</span>
 <span class="co"># ?col_date for format options</span>
-<span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
-  junk <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># skip this column</span>
-  order <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
-  good <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_logical</a></span><span class="op">(</span><span class="op">)</span>,
-  date <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">col_date</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
+<span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/cols.html">cols</a></span><span class="op">(</span>
+  junk <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># skip this column</span>
+  order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
+  good <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_logical</a></span><span class="op">(</span><span class="op">)</span>,
+  date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_datetime.html">col_date</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">tidier</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
+<span class="va">tidier</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                    skip <span class="op">=</span> <span class="fl">2</span>,
                    col_types <span class="op">=</span> <span class="va">ct</span>,
                    lazy <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
-<p>You will get a message about parsing issues when you run this that tells you to run the <code><a href="https://readr.tidyverse.org/reference/problems.html">problems()</a></code> function to see a table of the problems. Warnings look scary at first, but always start by reading the message.</p>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/problems.html">problems</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>You will get a message about parsing issues when you run this that tells you to run the <code><a href="https://rdrr.io/pkg/readr/man/problems.html">problems()</a></code> function to see a table of the problems. Warnings look scary at first, but always start by reading the message.</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/readr/man/problems.html">problems</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="kable-table">
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
@@ -864,9 +864,9 @@ data/mess.csv
 </tr></tbody>
 </table></div>
 </div>
-<p>The output of <code><a href="https://readr.tidyverse.org/reference/problems.html">problems()</a></code> tells you what row (3) and column (2) the error was found in, what kind of data was expected (an integer), and what the actual value was (missing). If you specifically tell <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to import a column as an integer, any characters (i.e., not numbers) in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what missing values are recorded as with the <code>na</code> argument.</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tidiest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
+<p>The output of <code><a href="https://rdrr.io/pkg/readr/man/problems.html">problems()</a></code> tells you what row (3) and column (2) the error was found in, what kind of data was expected (an integer), and what the actual value was (missing). If you specifically tell <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> to import a column as an integer, any characters (i.e., not numbers) in the column will produce a warning like this and then be recorded as <code>NA</code>. You can manually set what missing values are recorded as with the <code>na</code> argument.</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tidiest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mess.csv"</span>, 
                    skip <span class="op">=</span> <span class="fl">2</span>,
                    na <span class="op">=</span> <span class="st">"missing"</span>,
                    col_types <span class="op">=</span> <span class="va">ct</span>,
@@ -1046,16 +1046,16 @@ FALSE
 <li>First, load the in-built dataset into the environment. Type and run the code to do this in the console; do not save it in your Markdown.<br>
 </li>
 <li>Then, export the dataset to a .csv file and save it in your <code>data</code> directory. Again, do this in the console.</li>
-<li>Finally, import this version of the dataset using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to an object named <code>starwars</code> - you can put this code in your Markdown.</li>
+<li>Finally, import this version of the dataset using <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> to an object named <code>starwars</code> - you can put this code in your Markdown.</li>
 </ul>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/rio/man/export.html">export</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="st">"data/starwars.csv"</span><span class="op">)</span>
-<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starwars.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starwars.csv"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="convert-column-types" class="section level3" number="4.11.3">
@@ -1071,26 +1071,26 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/spec.html">spec</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>
-<span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
-  name <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
-  height <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
-  mass <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
-  hair_color <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  skin_color <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  eye_color <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  birth_year <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
-  sex <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  gender <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  homeworld <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  species <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
-  films <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>,
-  vehicles <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>,
-  starships <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/readr/man/spec.html">spec</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>
+<span class="va">corrected_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/cols.html">cols</a></span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
+  mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
+  hair_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  skin_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  eye_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  birth_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
+  sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  homeworld <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,
+  films <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>,
+  vehicles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>,
+  starships <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/col_skip.html">col_skip</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starwars.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
+<span class="va">starwars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starwars.csv"</span>, col_types <span class="op">=</span> <span class="va">corrected_cols</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="exercises-plots" class="section level3" number="4.11.4">
@@ -1105,25 +1105,25 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">50</span>, to <span class="op">=</span> <span class="fl">300</span>, by <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Height (cm) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2000</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Weight (kg) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gender</span>, fill <span class="op">=</span> <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Gender of character"</span>, labels <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Masculine"</span>, <span class="st">"Feminine"</span>, <span class="st">"Missing"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Number of Star Wars characters of each gender"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">50</span>, to <span class="op">=</span> <span class="fl">300</span>, by <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Height (cm) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2000</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Weight (kg) distribution of Star Wars Characters"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gender</span>, fill <span class="op">=</span> <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Gender of character"</span>, labels <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Masculine"</span>, <span class="st">"Feminine"</span>, <span class="st">"Missing"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Number of Star Wars characters of each gender"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="make-it-look-nice" class="section level3" number="4.11.5">
@@ -1141,7 +1141,7 @@ Solution
 </button>
 <div class="verbatim">
 <pre class="sourceCode r"><code class="sourceCode R">```{r, echo = FALSE, out.width = "50%", fig.cap="Adaptation of Star Wars logo created by Weweje; original logo by Suzy Rice, 1976. CC-BY-3.0"}</code></pre>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Star_wars2.svg/2880px-Star_wars2.svg.png"</span><span class="op">)</span></code></pre></div>
 <pre class="sourceCode r"><code class="sourceCode R">```</code></pre>
 </div>
@@ -1579,7 +1579,7 @@ $( document ).ready(function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data<br><a href="https://doi.org/10.5281/zenodo.6365077"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6365077.svg" alt="DOI"></a>" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-03-17.</p>
+    <p>"<strong>Applied Data Skills</strong>: Processing &amp; Presenting Data<br><a href="https://doi.org/10.5281/zenodo.6365077"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6365077.svg" alt="DOI"></a>" was written by Emily Nordmann and Lisa DeBruine. It was last built on 2022-03-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

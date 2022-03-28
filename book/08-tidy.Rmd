@@ -573,7 +573,7 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 Let's try a couple of examples. 
 
 * Save your current Markdown, close it, and open a new Rmd named "Patient_survey".
-* Download a copy of [wide_exercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-1.csv) and [wide_exercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_excercise-2.csv) into your data folder.
+* Download a copy of [wide_exercise-1.csv](https://psyteachr.github.io/ads-v1/data/wide_exercise-1.csv) and [wide_exercise-2.csv](https://psyteachr.github.io/ads-v1/data/wide_exercise-2.csv) into your data folder.
 * In the set-up code chunk, load the `r pkg("tidyverse")` then load the two data files in using `read_csv()` and name the objects `wide1` and `wide2`
 
 ```{r, message = FALSE,  webex.hide = TRUE}

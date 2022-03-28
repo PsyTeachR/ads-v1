@@ -63,7 +63,7 @@ data("table1")
 
 Now that you've loaded some data, look the upper right hand window of RStudio, under the Environment tab. You will see the object `table1` listed, along with the number of observations (rows) and variables (columns). This is your first check that everything went OK.
 
-**Always, always, always, look at your data once you've created or loaded a table**. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
+**Always, always, always, look at your data once you've created or loaded a table**. Also look at it after each step that transforms your table. There are three main ways to look at your table: <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'><a target='_blank' href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='op'>)</span></code>, <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/pillar/man/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code>. 
 
 ### View() 
 
@@ -145,7 +145,7 @@ table1
 
 ### glimpse() 
 
-The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't easily see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. 
+The function <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/pillar/man/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='op'>)</span></code> gives a sideways version of the table. This is useful if the table is very wide and you can't easily see all of the columns. It also tells you the <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> of each column in angled brackets after each column name. 
 
 
 ```r
@@ -250,7 +250,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …
+## $ date      <date> 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …
 ```
 
 
@@ -266,7 +266,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …
+## $ date      <dttm> 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …
 ```
 
 
@@ -282,7 +282,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …
+## $ date      <date> 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …
 ```
 
 
@@ -310,12 +310,18 @@ demo <- readr::read_csv("data/demo.csv")
 
 ```
 ## Rows: 6 Columns: 6
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (2): character, factor
 ## dbl  (2): integer, double
 ## lgl  (1): logical
 ## date (1): date
+```
+
+```
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -391,7 +397,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-03-17, 2022-03-16, 2022-03-15, 2022-03-14, 2022-03-13, …
+## $ date      <date> 2022-03-28, 2022-03-27, 2022-03-26, 2022-03-25, 2022-03-24, …
 ```
 
 
@@ -401,7 +407,7 @@ The way you specify column types for <code class='package'>googlesheets4</code> 
 
 ## Creating data 
 
-If you need to create a small data table from scratch in R, use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
+If you need to create a small data table from scratch in R, use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span><span class='op'>(</span><span class='op'>)</span></code> function, and type the data right in. The `tibble` package is part of the <a class='glossary' target='_blank' title='A set of R packages that help you create and work with tidy data' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a> package that we loaded at the start of this chapter. 
 
 Let's create a small table with the names of three [Avatar](https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender) characters and their bending type. The <code><span class='fu'>tibble</span><span class='op'>(</span><span class='op'>)</span></code> function takes <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a> with the names that you want your columns to have. The values are <a class='glossary' target='_blank' title='A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vectors</a> that list the column values in order.
 
@@ -450,7 +456,7 @@ avatar
 
 </div>
 
-You can also use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
+You can also use the <code><span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/tibble/man/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>)</span></code> function to create a table by row, rather than by column. You start by listing the column names, each preceded by a tilde (`~`), then you list the values for each column, row by row, separated by commas (don't forget a comma at the end of each row).
 
 
 ```r
@@ -575,7 +581,7 @@ mess <- rio::import("data/mess.csv")
 ## 3,2020-01-2>>
 ```
 
-When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type (e.g., use `read_csv()` rather than `rio::import()`. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class='fu'>readr</span><span class='fu'>::</span><span class='va'><a target='_blank' href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span></code>.
+When importing goes wrong, it's often easier to fix it using the  specific importing function for that file type (e.g., use `read_csv()` rather than `rio::import()`. This is because the problems tend to be specific to the file format and you can look up the help for these functions more easily. For CSV files, the import function is <code><span class='fu'>readr</span><span class='fu'>::</span><span class='va'><a target='_blank' href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span></code>.
 
 
 ```r
@@ -590,9 +596,15 @@ mess <- read_csv("data/mess.csv", lazy = FALSE)
 
 ```
 ## Rows: 27 Columns: 1
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (1): This is my messy dataset
+```
+
+```
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -656,10 +668,16 @@ mess <- read_csv("data/mess.csv",
 
 ```
 ## Rows: 26 Columns: 7
+```
+
+```
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (6): junk, order, letter, good, min_max, date
 ## dbl (1): score
+```
+
+```
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.

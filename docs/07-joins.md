@@ -146,7 +146,7 @@ orders <- tibble(
 
 ## Mutating Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a target='_blank' href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='op'>)</span></code> function in that they add new columns to one table based on values in another table. (We'll learn more about the `mutate()` function in Chapter\ \@ref(tidy).)
 
 All the mutating joins have this basic syntax:
 
@@ -1122,7 +1122,8 @@ base::intersect(customers, new_customers)
 ```
 
 ```
-## Error: Must subset rows with a valid subscript vector.
+## Error:
+## ! Must subset rows with a valid subscript vector.
 ## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
@@ -1403,7 +1404,8 @@ inner_join(customers, new_customers2)
 ```
 
 ```
-## Error: Can't join on `x$id` x `y$id` because of incompatible types.
+## Error in `inner_join()`:
+## ! Can't join on `x$id` x `y$id` because of incompatible types.
 ## ℹ `x$id` is of type <integer>>.
 ## ℹ `y$id` is of type <character>>.
 ```
@@ -1416,7 +1418,8 @@ bind_rows(customers, new_customers2)
 ```
 
 ```
-## Error: Can't combine `..1$id` <integer> and `..2$id` <character>.
+## Error in `bind_rows()`:
+## ! Can't combine `..1$id` <integer> and `..2$id` <character>.
 ```
 
 

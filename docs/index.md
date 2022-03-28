@@ -1,6 +1,6 @@
 ---
 title: "Applied Data Skills"
-subtitle: "Processing & Presenting Data"
+subtitle: "Processing & Presenting Data<br><a href='https://doi.org/10.5281/zenodo.6365077'><img src='https://zenodo.org/badge/DOI/10.5281/zenodo.6365077.svg' alt='DOI'></a>"
 author: "Emily Nordmann and Lisa DeBruine"
 date: "2022-03-17"
 site: bookdown::bookdown_site

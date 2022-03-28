@@ -1,0 +1,28 @@
+{
+    "description": "The 2022 version of the course book for the Applied Data Skills microcredential course in the School of Psychology and Neuroscience at the University of Glasgow.",
+    "license": "cc-by-sa",
+    "title": "Applied Data Skills",
+    "version": "1.0",
+    "upload_type": "software",
+    "publication_date": "2022-03-17",
+    "creators": [
+       {
+            "name": "Emily Nordmann",
+            "affiliation": "University of Glasgow",
+            "orcid": "0000-0002-0806-1081"
+        },
+        {
+            "name": "Lisa DeBruine",
+            "affiliation": "University of Glasgow",
+            "orcid": "0000-0002-7523-5539"
+        }
+    ],
+    "access_right": "open",
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://PsyTeachR.github.io/ads-v1/",
+            "relation": "isSupplementTo"
+        }
+    ]
+}

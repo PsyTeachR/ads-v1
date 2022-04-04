@@ -292,7 +292,7 @@ Rather than creating an intermediate object, we can use the pipe to string our c
 
 ```{r}
 verified <- 
-  tweets_grouped %>% # Start with the original dataset; and then
+  tweets %>% # Start with the original dataset; and then
   group_by(verified) %>% # group it; and then
   summarise(count = n(), # summarise it by those groups
             mean_favs = mean(favorite_count),
@@ -421,8 +421,6 @@ This is quite complicated so let's break it down.
 * The line of dashes creates the solid line in the knitted output.
 * The `>` symbol changes the format to a block quote.
 * The image is then included using the format `![](url)`, which is an alternative method of including images in Markdown. 
-
-
 
 
 ## Exercises

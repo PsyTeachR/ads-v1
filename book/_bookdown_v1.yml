@@ -20,7 +20,7 @@ rmd_files:
 - appendix-d-conventions.Rmd
 - appendix-e-teams.Rmd
 - appendix-f-datatypes.Rmd
-- appendix-g-dates.Rmd
+#- appendix-g-dates.Rmd
 - appendix-h-styling.Rmd
 - appendix-i-hashtags.Rmd
 - appendix-j-twitter.Rmd

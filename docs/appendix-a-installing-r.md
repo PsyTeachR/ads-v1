@@ -35,8 +35,8 @@ Sys.which("make")
 ```
 
 ```
-##                               make 
-## "C:\\rtools40\\usr\\bin\\make.exe"
+##            make 
+## "/usr/bin/make"
 ```
 
 

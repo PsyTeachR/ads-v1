@@ -1122,9 +1122,9 @@ base::intersect(customers, new_customers)
 ```
 
 ```
-## Error:
+## Error in `vectbl_as_row_location()`:
 ## ! Must subset rows with a valid subscript vector.
-## i Logical subscripts must match the size of the indexed input.
+## ℹ Logical subscripts must match the size of the indexed input.
 ## x Input has size 5 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 :::
@@ -1386,7 +1386,7 @@ str(new_customers2)
 ```
 
 ```
-## tibble [5 x 3] (S3: tbl_df/tbl/data.frame)
+## tibble [5 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ id      : chr [1:5] "5" "6" "7" "8" ...
 ##  $ postcode: chr [1:5] "PA75 6NR" "FK1 4RS" "PA42 7EA" "G81 4SJ" ...
 ##  $ city    : chr [1:5] "Tobermory" "Falkirk" "Ardbeg" "Doogal" ...
@@ -1406,8 +1406,8 @@ inner_join(customers, new_customers2)
 ```
 ## Error in `inner_join()`:
 ## ! Can't join on `x$id` x `y$id` because of incompatible types.
-## i `x$id` is of type <integer>>.
-## i `y$id` is of type <character>>.
+## ℹ `x$id` is of type <integer>>.
+## ℹ `y$id` is of type <character>>.
 ```
 
 The same goes for `bind_rows()`:

@@ -155,10 +155,10 @@ glimpse(table1)
 ```
 ## Rows: 6
 ## Columns: 4
-## $ country    <chr> "Afghanistan", "Afghanistan", "Brazil", "Brazil", "China", ~
+## $ country    <chr> "Afghanistan", "Afghanistan", "Brazil", "Brazil", "China", …
 ## $ year       <int> 1999, 2000, 1999, 2000, 1999, 2000
 ## $ cases      <int> 745, 2666, 37737, 80488, 212258, 213766
-## $ population <int> 19987071, 20595360, 172006362, 174504898, 1272915272, 12804~
+## $ population <int> 19987071, 20595360, 172006362, 174504898, 1272915272, 12804…
 ```
 
 ### summary() {#summary-function}
@@ -176,7 +176,7 @@ summary(table1)
 ##    country               year          cases          population       
 ##  Length:6           Min.   :1999   Min.   :   745   Min.   :1.999e+07  
 ##  Class :character   1st Qu.:1999   1st Qu.: 11434   1st Qu.:5.845e+07  
-##  Mode  :character   Median :2000   Median : 59113   Median :1.733e+08  
+##  Mode  :character   Median :2000   Median : 59112   Median :1.733e+08  
 ##                     Mean   :2000   Mean   : 91277   Mean   :4.901e+08  
 ##                     3rd Qu.:2000   3rd Qu.:179316   3rd Qu.:9.983e+08  
 ##                     Max.   :2000   Max.   :213766   Max.   :1.280e+09
@@ -250,7 +250,7 @@ glimpse(demo_csv)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <date> 2022-04-04, 2022-04-03, 2022-04-02, 2022-04-01, 2022-03-31, ~
+## $ date      <date> 2022-05-10, 2022-05-09, 2022-05-08, 2022-05-07, 2022-05-06, …
 ```
 
 
@@ -266,7 +266,7 @@ glimpse(demo_xls)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2022-04-04, 2022-04-03, 2022-04-02, 2022-04-01, 2022-03-31, ~
+## $ date      <dttm> 2022-05-10, 2022-05-09, 2022-05-08, 2022-05-07, 2022-05-06, …
 ```
 
 
@@ -282,7 +282,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-04-04, 2022-04-03, 2022-04-02, 2022-04-01, 2022-03-31, ~
+## $ date      <date> 2022-05-10, 2022-05-09, 2022-05-08, 2022-05-07, 2022-05-06, …
 ```
 
 
@@ -298,7 +298,7 @@ glimpse(demo_gs4)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <lgl> TRUE, TRUE, FALSE, FALSE, NA, TRUE
-## $ date      <dttm> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, ~
+## $ date      <dttm> 2021-11-22, 2021-11-21, 2021-11-20, 2021-11-19, 2021-11-18, …
 ```
 
 The <code class='package'>readr</code> functions display a message when you import data explaining what <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is.
@@ -310,15 +310,15 @@ demo <- readr::read_csv("data/demo.csv")
 
 ```
 ## Rows: 6 Columns: 6
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr  (2): character, factor
 ## dbl  (2): integer, double
 ## lgl  (1): logical
 ## date (1): date
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 The "Column specification" tells you which <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a> each column is. You can review data types in Appendix\ \@ref(data-types). Options are:
@@ -391,7 +391,7 @@ glimpse(demo_sav)
 ## $ integer   <dbl> 1, 2, 3, 4, 5, 6
 ## $ double    <dbl> 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
 ## $ logical   <dbl> 1, 1, 0, 0, NA, 1
-## $ date      <date> 2022-04-04, 2022-04-03, 2022-04-02, 2022-04-01, 2022-03-31, ~
+## $ date      <date> 2022-05-10, 2022-05-09, 2022-05-08, 2022-05-07, 2022-05-06, …
 ```
 
 
@@ -590,12 +590,12 @@ mess <- read_csv("data/mess.csv", lazy = FALSE)
 
 ```
 ## Rows: 27 Columns: 1
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (1): This is my messy dataset
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 <div class="kable-table">
@@ -656,13 +656,13 @@ mess <- read_csv("data/mess.csv",
 
 ```
 ## Rows: 26 Columns: 7
-## -- Column specification --------------------------------------------------------
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## chr (6): junk, order, letter, good, min_max, date
 ## dbl (1): score
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -672,13 +672,13 @@ glimpse(mess)
 ```
 ## Rows: 26
 ## Columns: 7
-## $ junk    <chr> "junk", "junk", "junk", "junk", "junk", "junk", "junk", "junk"~
-## $ order   <chr> "1", "missing", "3", "4", "5", "6", "7", "8", "9", "10", "11",~
-## $ score   <dbl> -1.00, 0.72, -0.62, 2.03, NA, 0.99, 0.03, 0.67, 0.57, 0.90, -1~
-## $ letter  <chr> "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m~
-## $ good    <chr> "1", "1", "FALSE", "T", "1", "0", "T", "TRUE", "1", "T", "F", ~
-## $ min_max <chr> "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 - 6", "6 - 7", "7 - 8",~
-## $ date    <chr> "2020-01-1", "2020-01-2", "2020-01-3", "2020-01-4", "2020-01-5~
+## $ junk    <chr> "junk", "junk", "junk", "junk", "junk", "junk", "junk", "junk"…
+## $ order   <chr> "1", "missing", "3", "4", "5", "6", "7", "8", "9", "10", "11",…
+## $ score   <dbl> -1.00, 0.72, -0.62, 2.03, NA, 0.99, 0.03, 0.67, 0.57, 0.90, -1…
+## $ letter  <chr> "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m…
+## $ good    <chr> "1", "1", "FALSE", "T", "1", "0", "T", "TRUE", "1", "T", "F", …
+## $ min_max <chr> "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 - 6", "6 - 7", "7 - 8",…
+## $ date    <chr> "2020-01-1", "2020-01-2", "2020-01-3", "2020-01-4", "2020-01-5…
 ```
 
 OK, that's a little better, but this table is still a serious mess in several ways:
